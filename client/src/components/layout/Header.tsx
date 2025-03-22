@@ -52,7 +52,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
               <img 
                 src="/fixed-to-flow-logo.png" 
                 alt="Fixed to Flow logo" 
-                className="h-12 w-auto object-contain" 
+                className="h-16 w-auto object-contain" 
               />
             </div>
           </button>
