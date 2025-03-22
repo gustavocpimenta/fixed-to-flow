@@ -13,6 +13,20 @@ interface HeaderProps {
   };
 }
 
+const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
+  return (
+    <header className="fixed top-0 right-0 p-4 z-50">
+      <img 
+        src="/fixed-to-flow-logo.png" 
+        alt="Fixed to Flow Logo" 
+        className="h-12 w-auto"
+      />
+    </header>
+  );
+};
+
+export default Header;
+
 const Header = ({ onNavigate }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
