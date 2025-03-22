@@ -62,8 +62,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
             <nav className="flex items-center space-x-1">
               {[
                 { label: "What We Do", handler: onNavigate.whatWeDo },
-                { label: "Super Teams", handler: onNavigate.superTeams },
-                { label: "Leaders", handler: onNavigate.leaders },
                 { label: "Why Us", handler: onNavigate.whyUs },
                 { label: "Initiatives", handler: onNavigate.nonProfit },
                 { label: "Contact", handler: onNavigate.contact }
