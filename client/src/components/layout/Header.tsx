@@ -50,9 +50,9 @@ const Header = ({ onNavigate }: HeaderProps) => {
           >
             <div className="relative overflow-hidden transition-transform group-hover:scale-105">
               <img 
-                src={fixedToFlowLogo} 
+                src="/fixed-to-flow-logo.png" 
                 alt="Fixed to Flow logo" 
-                className="object-contain" 
+                className="h-12 w-auto object-contain" 
               />
             </div>
           </button>
