@@ -62,12 +62,12 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
-              <div className="relative w-full aspect-square">
-                <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative w-full max-w-lg mx-auto">
+                <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img 
                     src={springWithBackground} 
                     alt="Fixed to Flow Spring" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>
