@@ -68,7 +68,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                   <img 
                     src="/assets/spring.png" 
                     alt="Fixed to Flow Spring" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain p-4"
                   />
                 </div>
               </div>
