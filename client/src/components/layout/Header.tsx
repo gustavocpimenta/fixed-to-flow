@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import Logo from "@/components/ui/logo";
 import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
@@ -20,7 +19,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -37,61 +36,50 @@ const Header = ({ onNavigate }: HeaderProps) => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
+        : 'bg-transparent py-5'
+    }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <Button 
-            variant="ghost" 
+        <div className="flex justify-between items-center">
+          <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="p-2 hover:bg-transparent"
+            className="flex items-center space-x-2 focus:outline-none group"
+            aria-label="Go to top"
           >
-            <div className="text-lg font-bold text-primary">Fixed to Flow</div>
-          </Button>
+            <div className="relative w-8 h-8 overflow-hidden">
+              <span className="absolute inset-0 bg-primary rounded-sm transform -rotate-45 group-hover:scale-110 transition-transform duration-300"></span>
+              <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">F</span>
+            </div>
+            <span className={`text-xl font-bold ${isScrolled ? 'text-primary' : 'text-white'} tracking-tight transition-colors duration-300`}>
+              Fixed to Flow
+            </span>
+          </button>
 
           <div className="hidden md:block">
-            <nav className="flex space-x-8">
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.whatWeDo()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                What We Do
-              </Button>
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.superTeams()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                Super Teams
-              </Button>
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.leaders()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                Leaders
-              </Button>
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.whyUs()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                Why Us
-              </Button>
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.nonProfit()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                Initiatives
-              </Button>
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate.contact()}
-                className={`font-medium ${isScrolled ? 'text-dark hover:text-primary' : 'text-primary hover:text-primary-foreground'}`}
-              >
-                Contact
-              </Button>
+            <nav className="flex space-x-1">
+              {[
+                { label: "What We Do", handler: onNavigate.whatWeDo },
+                { label: "Super Teams", handler: onNavigate.superTeams },
+                { label: "Leaders", handler: onNavigate.leaders },
+                { label: "Why Us", handler: onNavigate.whyUs },
+                { label: "Initiatives", handler: onNavigate.nonProfit },
+                { label: "Contact", handler: onNavigate.contact }
+              ].map((item, index) => (
+                <Button 
+                  key={index}
+                  variant="ghost" 
+                  onClick={item.handler}
+                  className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-primary hover:bg-gray-100' 
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {item.label}
+                </Button>
+              ))}
             </nav>
           </div>
 
@@ -99,7 +87,11 @@ const Header = ({ onNavigate }: HeaderProps) => {
             <Button 
               variant="ghost" 
               onClick={toggleMenu}
-              className={`p-2 rounded-md ${isScrolled ? 'text-dark hover:bg-light hover:text-primary' : 'text-primary hover:bg-white/10 hover:text-white'}`}
+              className={`p-2 rounded-full ${
+                isScrolled 
+                  ? 'text-gray-700 hover:bg-gray-100' 
+                  : 'text-white hover:bg-white/10'
+              }`}
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -114,50 +106,25 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0">
-          <div className="px-4 pt-2 pb-4 space-y-3">
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.whatWeDo)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              What We Do
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.superTeams)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              Super Teams
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.leaders)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              Leaders
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.whyUs)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              Why Us
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.nonProfit)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              Initiatives
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={() => handleNavClick(onNavigate.contact)}
-              className="block w-full text-left py-2 text-dark hover:text-primary font-medium"
-            >
-              Contact
-            </Button>
+        <div className="md:hidden bg-white/95 backdrop-blur-md absolute top-full left-0 right-0 shadow-lg overflow-hidden transition-all duration-300">
+          <div className="container mx-auto px-4 pt-2 pb-4">
+            {[
+              { label: "What We Do", handler: onNavigate.whatWeDo },
+              { label: "Super Teams", handler: onNavigate.superTeams },
+              { label: "Leaders", handler: onNavigate.leaders },
+              { label: "Why Us", handler: onNavigate.whyUs },
+              { label: "Initiatives", handler: onNavigate.nonProfit },
+              { label: "Contact", handler: onNavigate.contact }
+            ].map((item, index) => (
+              <Button 
+                key={index}
+                variant="ghost" 
+                onClick={() => handleNavClick(item.handler)}
+                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg font-medium transition-colors"
+              >
+                {item.label}
+              </Button>
+            ))}
           </div>
         </div>
       )}
