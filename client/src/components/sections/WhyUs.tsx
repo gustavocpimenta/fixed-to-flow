@@ -81,7 +81,7 @@ const WhyUs = () => {
             <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
               <div className="md:w-1/3">
                 <img 
-                  src="https://res.cloudinary.com/dvujvlrcy/image/upload/c_fill,g_auto,h_400,w_400,f_auto,q_auto/v1/fixedtoflow/gus_novo" 
+                  src="/attached_assets/gus_novo.jpg" 
                   alt="Gus, Fixed to Flow Founder" 
                   className="rounded-lg shadow-xl mx-auto" 
                 />

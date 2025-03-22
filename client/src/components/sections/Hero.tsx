@@ -16,7 +16,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Logo color="white" height={80} className="mx-auto mb-8" />
+            <Logo height={80} darkMode={true} className="mx-auto mb-8" />
           </motion.div>
           
           <motion.h1 

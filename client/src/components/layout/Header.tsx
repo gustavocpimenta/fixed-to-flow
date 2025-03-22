@@ -45,7 +45,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="p-0 hover:bg-transparent"
           >
-            <Logo color={isScrolled ? "#FF3E01" : "#FF3E01"} height={40} />
+            <Logo height={40} />
           </Button>
 
           <div className="hidden md:block">
