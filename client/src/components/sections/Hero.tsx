@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import springLogo from "@/assets/spring.png";
+import springWithBackground from "@/assets/spring_with_background.png";
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -63,12 +63,11 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
               <div className="relative w-full aspect-square">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 to-primary rounded-2xl"></div>
-                <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
                   <img 
-                    src={springLogo} 
+                    src={springWithBackground} 
                     alt="Fixed to Flow Spring" 
-                    className="w-4/5 h-4/5 object-contain"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>
