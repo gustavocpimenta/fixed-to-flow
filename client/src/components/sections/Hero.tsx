@@ -63,8 +63,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
             >
               <div className="relative w-full aspect-square">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 to-primary rounded-2xl"></div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary to-primary/50 rounded-2xl blur-xl opacity-40"></div>
-                <div className="absolute inset-0 bg-[#0C0C0C] rounded-2xl m-1 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-[#0C0C0C] rounded-2xl flex items-center justify-center overflow-hidden">
                   <img 
                     src="/assets/spring.png" 
                     alt="Fixed to Flow Spring" 
