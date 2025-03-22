@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import fixedToFlowLogo from "@/assets/Vertical 01.png";
-import logo from "@/assets/logo.png";
 
 interface HeaderProps {
   onNavigate: {
@@ -82,15 +81,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
                 </Button>
               ))}
             </nav>
-            
-            {/* Logo in the top right */}
-            <div className="h-10 w-auto">
-              <img 
-                src={logo} 
-                alt="Fixed to Flow Logo" 
-                className="h-full w-auto object-contain"
-              />
-            </div>
           </div>
 
           {/* Mobile menu button */}
