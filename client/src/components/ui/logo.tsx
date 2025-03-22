@@ -15,7 +15,7 @@ const Logo: React.FC<LogoProps> = ({
 }) => {
   return (
     <img 
-      src="/attached_assets/Vertical 01.png"
+      src="/assets/Vertical 01.png"
       alt="Fixed to Flow Logo"
       width={width}
       height={height}
