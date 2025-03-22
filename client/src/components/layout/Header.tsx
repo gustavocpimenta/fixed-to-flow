@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
   onNavigate: {
@@ -12,20 +11,6 @@ interface HeaderProps {
     contact: () => void;
   };
 }
-
-const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
-  return (
-    <header className="fixed top-0 right-0 p-4 z-50">
-      <img 
-        src="/fixed-to-flow-logo.png" 
-        alt="Fixed to Flow Logo" 
-        className="h-12 w-auto"
-      />
-    </header>
-  );
-};
-
-export default Header;
 
 const Header = ({ onNavigate }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,50 +56,47 @@ const Header = ({ onNavigate }: HeaderProps) => {
             </span>
           </button>
 
-          <div className="hidden md:block">
-            <nav className="flex space-x-1">
-              {[
-                { label: "What We Do", handler: onNavigate.whatWeDo },
-                { label: "Super Teams", handler: onNavigate.superTeams },
-                { label: "Leaders", handler: onNavigate.leaders },
-                { label: "Why Us", handler: onNavigate.whyUs },
-                { label: "Initiatives", handler: onNavigate.nonProfit },
-                { label: "Contact", handler: onNavigate.contact }
-              ].map((item, index) => (
-                <Button 
-                  key={index}
-                  variant="ghost" 
-                  onClick={item.handler}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                    isScrolled 
-                      ? 'text-gray-700 hover:text-primary hover:bg-gray-100' 
-                      : 'text-white/90 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </nav>
-          </div>
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            {[
+              { label: "What We Do", handler: onNavigate.whatWeDo },
+              { label: "Super Teams", handler: onNavigate.superTeams },
+              { label: "Leaders", handler: onNavigate.leaders },
+              { label: "Why Us", handler: onNavigate.whyUs },
+              { label: "Initiatives", handler: onNavigate.nonProfit },
+              { label: "Contact", handler: onNavigate.contact }
+            ].map((item, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                onClick={() => handleNavClick(item.handler)}
+                className={`px-4 py-2 ${
+                  isScrolled ? 'text-gray-700' : 'text-white'
+                } hover:text-primary transition-colors`}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </nav>
 
-          <div className="md:hidden">
-            <Button 
-              variant="ghost" 
-              onClick={toggleMenu}
-              className={`p-2 rounded-full ${
-                isScrolled 
-                  ? 'text-gray-700 hover:bg-gray-100' 
-                  : 'text-white hover:bg-white/10'
-              }`}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
+          {/* Mobile menu button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100/10"
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 h-6 flex flex-col justify-around">
+              <span className={`block w-full h-0.5 transition-all transform ${
+                isScrolled ? 'bg-gray-700' : 'bg-white'
+              } ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+              <span className={`block w-full h-0.5 transition-all ${
+                isScrolled ? 'bg-gray-700' : 'bg-white'
+              } ${isOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-full h-0.5 transition-all transform ${
+                isScrolled ? 'bg-gray-700' : 'bg-white'
+              } ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            </div>
+          </button>
         </div>
       </div>
 
