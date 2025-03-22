@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import fixedToFlowLogo from "@/assets/Vertical 01.png";
+import fixedToFlowLogo from "/fixed-to-flow-logo.png";
 
 interface HeaderProps {
   onNavigate: {
@@ -48,11 +48,11 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <div className="w-16 h-16 relative overflow-hidden transition-transform group-hover:scale-105">
+            <div className="relative overflow-hidden transition-transform group-hover:scale-105">
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
-                className="w-full h-full object-contain" 
+                className="object-contain" 
               />
             </div>
           </button>
