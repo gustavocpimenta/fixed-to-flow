@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/ui/logo";
 
 interface HeaderProps {
   onNavigate: {
@@ -44,16 +45,14 @@ const Header = ({ onNavigate }: HeaderProps) => {
         <div className="flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center space-x-2 focus:outline-none group"
+            className="focus:outline-none"
             aria-label="Go to top"
           >
-            <div className="relative w-8 h-8 overflow-hidden">
-              <span className="absolute inset-0 bg-primary rounded-sm transform -rotate-45 group-hover:scale-110 transition-transform duration-300"></span>
-              <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">F</span>
-            </div>
-            <span className={`text-xl font-bold ${isScrolled ? 'text-primary' : 'text-white'} tracking-tight transition-colors duration-300`}>
-              Fixed to Flow
-            </span>
+            <Logo 
+              darkMode={!isScrolled} 
+              height={40}
+              className="transition-all duration-300"
+            />
           </button>
 
           {/* Desktop navigation */}
