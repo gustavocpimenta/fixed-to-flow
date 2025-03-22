@@ -48,16 +48,13 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <div className="w-10 h-10 relative overflow-hidden transition-transform group-hover:scale-105">
+            <div className="w-16 h-16 relative overflow-hidden transition-transform group-hover:scale-105">
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
                 className="w-full h-full object-contain" 
               />
             </div>
-            <span className="text-xl font-bold text-primary tracking-tight">
-              Fixed to Flow
-            </span>
           </button>
 
           {/* Desktop navigation */}
