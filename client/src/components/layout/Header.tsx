@@ -43,9 +43,9 @@ const Header = ({ onNavigate }: HeaderProps) => {
           <Button 
             variant="ghost" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="p-0 hover:bg-transparent"
+            className="p-2 hover:bg-transparent"
           >
-            <Logo height={40} />
+            <Logo height={30} />
           </Button>
 
           <div className="hidden md:block">
