@@ -1,4 +1,5 @@
 import React from 'react';
+import logoImage from '../../assets/Vertical 01.png';
 
 interface LogoProps {
   className?: string;
@@ -15,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({
 }) => {
   return (
     <img 
-      src="/assets/Vertical 01.png"
+      src={logoImage}
       alt="Fixed to Flow Logo"
       width={width}
       height={height}
