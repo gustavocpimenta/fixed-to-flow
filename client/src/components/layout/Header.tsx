@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import Logo from "@/components/ui/logo";
+import springLogo from "@/assets/spring.png";
 
 interface HeaderProps {
   onNavigate: {
@@ -39,20 +39,25 @@ const Header = ({ onNavigate }: HeaderProps) => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
-        : 'bg-transparent py-5'
+        : 'bg-white py-5'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="focus:outline-none"
+            className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <Logo 
-              darkMode={!isScrolled} 
-              height={40}
-              className="transition-all duration-300"
-            />
+            <div className="w-10 h-10 relative overflow-hidden transition-transform group-hover:scale-105">
+              <img 
+                src={springLogo} 
+                alt="Fixed to Flow spring logo" 
+                className="w-full h-full object-contain" 
+              />
+            </div>
+            <span className="text-xl font-bold text-primary tracking-tight">
+              Fixed to Flow
+            </span>
           </button>
 
           {/* Desktop navigation */}
@@ -69,9 +74,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                 key={index}
                 variant="ghost"
                 onClick={() => handleNavClick(item.handler)}
-                className={`px-4 py-2 ${
-                  isScrolled ? 'text-gray-700' : 'text-white'
-                } hover:text-primary transition-colors`}
+                className="px-4 py-2 text-gray-700 hover:text-primary transition-colors"
               >
                 {item.label}
               </Button>
@@ -85,15 +88,9 @@ const Header = ({ onNavigate }: HeaderProps) => {
             aria-label="Toggle menu"
           >
             <div className="w-6 h-6 flex flex-col justify-around">
-              <span className={`block w-full h-0.5 transition-all transform ${
-                isScrolled ? 'bg-gray-700' : 'bg-white'
-              } ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-              <span className={`block w-full h-0.5 transition-all ${
-                isScrolled ? 'bg-gray-700' : 'bg-white'
-              } ${isOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-full h-0.5 transition-all transform ${
-                isScrolled ? 'bg-gray-700' : 'bg-white'
-              } ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+              <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+              <span className={`block w-full h-0.5 transition-all bg-gray-700 ${isOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
             </div>
           </button>
         </div>
