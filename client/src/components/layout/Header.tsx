@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import springLogo from "@/assets/spring.png";
+import logo from "@/assets/logo.png";
 
 interface HeaderProps {
   onNavigate: {
@@ -61,38 +62,60 @@ const Header = ({ onNavigate }: HeaderProps) => {
           </button>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
-            {[
-              { label: "What We Do", handler: onNavigate.whatWeDo },
-              { label: "Super Teams", handler: onNavigate.superTeams },
-              { label: "Leaders", handler: onNavigate.leaders },
-              { label: "Why Us", handler: onNavigate.whyUs },
-              { label: "Initiatives", handler: onNavigate.nonProfit },
-              { label: "Contact", handler: onNavigate.contact }
-            ].map((item, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                onClick={() => handleNavClick(item.handler)}
-                className="px-4 py-2 text-gray-700 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Button>
-            ))}
-          </nav>
+          <div className="hidden md:flex items-center space-x-6">
+            <nav className="flex items-center space-x-1">
+              {[
+                { label: "What We Do", handler: onNavigate.whatWeDo },
+                { label: "Super Teams", handler: onNavigate.superTeams },
+                { label: "Leaders", handler: onNavigate.leaders },
+                { label: "Why Us", handler: onNavigate.whyUs },
+                { label: "Initiatives", handler: onNavigate.nonProfit },
+                { label: "Contact", handler: onNavigate.contact }
+              ].map((item, index) => (
+                <Button
+                  key={index}
+                  variant="ghost"
+                  onClick={() => handleNavClick(item.handler)}
+                  className="px-4 py-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </nav>
+            
+            {/* Logo in the top right */}
+            <div className="h-10 w-auto">
+              <img 
+                src={logo} 
+                alt="Fixed to Flow Logo" 
+                className="h-full w-auto object-contain"
+              />
+            </div>
+          </div>
 
           {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100/10"
-            aria-label="Toggle menu"
-          >
-            <div className="w-6 h-6 flex flex-col justify-around">
-              <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-              <span className={`block w-full h-0.5 transition-all bg-gray-700 ${isOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+          <div className="md:hidden flex items-center space-x-4">
+            {/* Small logo for mobile */}
+            <div className="h-8 w-auto">
+              <img 
+                src={logo} 
+                alt="Fixed to Flow Logo" 
+                className="h-full w-auto object-contain"
+              />
             </div>
-          </button>
+            
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-lg hover:bg-gray-100/10"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-6 flex flex-col justify-around">
+                <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`block w-full h-0.5 transition-all bg-gray-700 ${isOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-full h-0.5 transition-all transform bg-gray-700 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
