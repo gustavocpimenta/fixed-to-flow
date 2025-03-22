@@ -21,7 +21,7 @@ const Logo: React.FC<LogoProps> = ({
       width={width}
       height={height}
       className={`${className} ${darkMode ? 'brightness-0 invert' : ''}`}
-      style={{ objectFit: 'contain' }}
+      style={{ objectFit: 'contain', maxWidth: '200px' }}
     />
   );
 };
