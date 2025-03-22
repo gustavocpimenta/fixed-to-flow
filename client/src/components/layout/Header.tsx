@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import springLogo from "@/assets/spring.png";
+import fixedToFlowLogo from "@/assets/Vertical 01.png";
 import logo from "@/assets/logo.png";
 
 interface HeaderProps {
@@ -51,8 +51,8 @@ const Header = ({ onNavigate }: HeaderProps) => {
           >
             <div className="w-10 h-10 relative overflow-hidden transition-transform group-hover:scale-105">
               <img 
-                src={springLogo} 
-                alt="Fixed to Flow spring logo" 
+                src={fixedToFlowLogo} 
+                alt="Fixed to Flow logo" 
                 className="w-full h-full object-contain" 
               />
             </div>
