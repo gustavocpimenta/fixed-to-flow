@@ -43,14 +43,14 @@ function App() {
         
         <main className="flex-grow">
           <Hero onGetStarted={() => scrollToSection(contactRef)} />
+          <div ref={whatWeDoRef}>
+            <WhatWeDo />
+          </div>
           <div ref={superTeamsRef}>
             <SuperTeams />
           </div>
           <div ref={leadersRef}>
             <Leaders />
-          </div>
-          <div ref={whatWeDoRef}>
-            <WhatWeDo />
           </div>
           <div ref={whyUsRef}>
             <WhyUs />
