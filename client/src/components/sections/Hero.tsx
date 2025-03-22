@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero = ({ onGetStarted }: HeroProps) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute right-0 bottom-0 w-96 h-96 bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
@@ -25,12 +25,12 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
-                <span className="text-primary block mb-2">Fixed to Flow</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]">
+                <span className="text-white block mb-2">Fixed to Flow</span>
                 <span>Embrace change with confidence</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-xl md:text-2xl text-white/70 mb-10 max-w-2xl mx-auto lg:mx-0">
                 We empower people and businesses to amplify their adaptability to change in a transformative space designed for purpose.
               </p>
               
