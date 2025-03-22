@@ -85,15 +85,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
-            {/* Small logo for mobile */}
-            <div className="h-8 w-auto">
-              <img 
-                src={logo} 
-                alt="Fixed to Flow Logo" 
-                className="h-full w-auto object-contain"
-              />
-            </div>
-            
+
             <button
               onClick={toggleMenu}
               className="p-2 rounded-lg hover:bg-gray-100/10"
