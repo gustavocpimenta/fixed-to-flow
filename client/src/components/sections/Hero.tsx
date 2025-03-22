@@ -63,7 +63,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
               <div className="relative w-full max-w-lg mx-auto">
-                <div className="rounded-2xl overflow-hidden shadow-xl">
+                <div className="rounded-2xl overflow-hidden">
                   <img 
                     src={springWithBackground} 
                     alt="Fixed to Flow Spring" 
