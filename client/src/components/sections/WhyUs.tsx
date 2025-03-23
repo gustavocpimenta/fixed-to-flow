@@ -1,97 +1,126 @@
 import { motion } from "framer-motion";
+import { Check, ArrowRight, Star } from "lucide-react";
 import gusImage from "../../assets/gus_novo.jpg";
 
 const WhyUs = () => {
   return (
-    <section className="py-20 gradient-bg text-white">
+    <section className="py-20 bg-amber-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          <motion.div 
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Why Work With Us?
-          </motion.h2>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-center">Our Approach</h3>
-            <p className="text-lg text-center mb-12">We believe adaptability is a process, not a one-time fix. Our step-by-step approach ensures meaningful change and lasting impact.</p>
+            <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Designed for you</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Choose your path</h2>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">1</span>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-gray-900">1:1 Breakthrough</h3>
+                <div className="bg-primary text-white text-sm font-bold px-3 py-1 rounded">
+                  $2,500
+                </div>
               </div>
-              <h4 className="text-xl font-bold mb-2">Discovery Call</h4>
-              <p>A focused conversation to uncover challenges, explore opportunities, and set a direction.</p>
+              
+              <p className="text-gray-600 mb-8">Perfect for individuals looking to quickly transform their adaptability to change and reach new heights in their professional life.</p>
+              
+              <div className="space-y-4 mb-8">
+                {[
+                  "6 personalized coaching sessions",
+                  "Custom adaptability assessment",
+                  "Tailored transformation roadmap",
+                  "Weekly accountability check-ins",
+                  "Access to premium resources",
+                  "30-day follow-up support"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <button className="w-full py-3 bg-black text-white font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors">
+                <span>Apply Now</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </motion.div>
             
             <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">2</span>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-gray-900">Team Flow</h3>
+                <div className="bg-primary text-white text-sm font-bold px-3 py-1 rounded">
+                  $6,000
+                </div>
               </div>
-              <h4 className="text-xl font-bold mb-2">Tailored Strategy</h4>
-              <p>A dynamic roadmap designed for action, experimentation, and real-world impact.</p>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">3</span>
+              
+              <p className="text-gray-600 mb-8">Designed for teams of 5-10 members who want to develop collective adaptability and thrive through organizational change.</p>
+              
+              <div className="space-y-4 mb-8">
+                {[
+                  "3 facilitated team workshops",
+                  "Team adaptability assessment",
+                  "Customized team roadmap",
+                  "Leader coaching sessions (4x)",
+                  "Implementation support",
+                  "90-day accountability program",
+                  "Measurement and reporting"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
               </div>
-              <h4 className="text-xl font-bold mb-2">Ongoing Support & Iteration</h4>
-              <p>We fine-tune strategies, test bold ideas, and ensure continuous growth through rapid learning cycles.</p>
+              
+              <button className="w-full py-3 bg-black text-white font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors">
+                <span>Request Info</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </motion.div>
           </div>
           
           <motion.div 
-            className="mt-20"
+            className="mt-24 bg-black text-white p-8 rounded-xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-center">Meet Gus, Fixed to Flow Founder</h3>
-            
-            <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
+            <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/3">
                 <img 
                   src={gusImage} 
                   alt="Gus, Fixed to Flow Founder" 
-                  className="rounded-lg shadow-xl mx-auto" 
+                  className="rounded-lg mx-auto" 
                 />
               </div>
               <div className="md:w-2/3">
-                <p className="text-lg mb-4">Gus has been in the game of building digital products, creating meaningful productivity systems, empowering change and supporting top performers for the past 20 years.</p>
-                <p className="text-lg mb-4">His life path was marked by vast professional and personal experiences, which allowed him to adopt an approach based on radical diversity and leverage knowledge from different "worlds" and areas of expertise.</p>
-                <p className="text-lg mb-4">Gus's background is his secret sauce; he doesn't merely preach adaptability, he has been living it throughout his life. Whether he's in a boardroom helping leaders craft strategic visions or on the street helping young people hustling for their next opportunity, Gus feels equally at home.</p>
-                <p className="text-lg">This rare combination of skills and experiences enables Gus to provide valuable insights and guidance to anyone seeking to adapt to the current times.</p>
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Meet Gus, Fixed to Flow Founder</h3>
+                <p className="text-gray-300 mb-4">Gus has been in the game of building digital products, creating meaningful productivity systems, empowering change and supporting top performers for the past 20 years.</p>
+                <p className="text-gray-300">This rare combination of skills and experiences enables Gus to provide valuable insights and guidance to anyone seeking to adapt to the current times.</p>
               </div>
             </div>
           </motion.div>
