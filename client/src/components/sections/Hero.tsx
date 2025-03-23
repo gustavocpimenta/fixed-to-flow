@@ -18,7 +18,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
       
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-32">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16">
             {/* Text content */}
             <motion.div 
               className="flex-1 text-center lg:text-left"
@@ -26,17 +26,14 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-gray-900 mb-3 leading-[1.1]">
-                <span className="text-primary block mb-1">From Resistance to</span>
-                <span className="block mb-1">All-powerful leader</span>
-                <span className="block text-2xl md:text-3xl lg:text-4xl text-gray-700">in 5 weeks.</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
+                <span className="text-primary block mb-2">Fixed to Flow</span>
+                <span>Embrace change with confidence</span>
               </h1>
               
-              <div className="bg-black text-white p-5 rounded-lg mt-6 mb-8">
-                <p className="text-lg md:text-xl">
-                  We empower people and businesses to amplify their adaptability to change in a transformative space designed for purpose.
-                </p>
-              </div>
+              <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+                We empower people and businesses to amplify their adaptability to change in a transformative space designed for purpose.
+              </p>
               
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Button 
@@ -77,32 +74,11 @@ const Hero = ({ onGetStarted }: HeroProps) => {
             </motion.div>
           </div>
           
-          {/* Stats section */}
           <motion.div 
-            className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 text-center"
+            className="mt-24 md:mt-32 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <div className="bg-amber-50 p-6 rounded-lg">
-              <p className="text-primary text-5xl font-bold mb-2">71%</p>
-              <p className="text-gray-700">More capable in handling change</p>
-            </div>
-            <div className="bg-amber-50 p-6 rounded-lg">
-              <p className="text-primary text-5xl font-bold mb-2">310%</p>
-              <p className="text-gray-700">Increase in leadership confidence</p>
-            </div>
-            <div className="bg-amber-50 p-6 rounded-lg">
-              <p className="text-primary text-5xl font-bold mb-2">51%</p>
-              <p className="text-gray-700">Higher adaptability score</p>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            className="mt-16 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
           >
             <div className="h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             <p className="text-gray-500 mt-6 font-medium">
