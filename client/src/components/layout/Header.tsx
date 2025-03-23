@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import fixedToFlowLogo from "@/assets/Vertical 01.png";
+import fixedToFlowLogo from "/fixed-to-flow-logo.png";
 
 interface HeaderProps {
   onNavigate: {
@@ -48,11 +48,11 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <div className="w-16 h-16 relative overflow-hidden transition-transform group-hover:scale-105">
+            <div className="relative overflow-hidden transition-transform group-hover:scale-105">
               <img 
-                src={fixedToFlowLogo} 
+                src="/fixed-to-flow-logo.png" 
                 alt="Fixed to Flow logo" 
-                className="w-full h-full object-contain" 
+                className="h-16 w-auto object-contain" 
               />
             </div>
           </button>
@@ -62,8 +62,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
             <nav className="flex items-center space-x-1">
               {[
                 { label: "What We Do", handler: onNavigate.whatWeDo },
-                { label: "Super Teams", handler: onNavigate.superTeams },
-                { label: "Leaders", handler: onNavigate.leaders },
                 { label: "Why Us", handler: onNavigate.whyUs },
                 { label: "Initiatives", handler: onNavigate.nonProfit },
                 { label: "Contact", handler: onNavigate.contact }
@@ -72,7 +70,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                   key={index}
                   variant="ghost"
                   onClick={() => handleNavClick(item.handler)}
-                  className="px-4 py-2 text-gray-700 hover:text-primary transition-colors"
+                  className="px-4 py-2 text-gray-700 hover:text-primary transition-colors text-[18px]" // Increased font size here
                 >
                   {item.label}
                 </Button>
@@ -114,7 +112,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                 key={index}
                 variant="ghost" 
                 onClick={() => handleNavClick(item.handler)}
-                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg font-medium transition-colors"
+                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg font-medium transition-colors text-[18px]" //Increased font size here
               >
                 {item.label}
               </Button>
