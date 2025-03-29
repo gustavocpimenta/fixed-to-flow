@@ -191,8 +191,8 @@ const Contact = () => {
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Stress Resilience</h4>
-                  <p className="text-sm">Build strategies to thrive under pressure and uncertainty</p>
+                  <h4 className="font-bold mb-2">Personal Experiments Lab</h4>
+                  <p className="text-sm">A tool to design, test, and refine new habits through experimentation.</p>
                 </Card>
               </div>
             </motion.div>
