@@ -75,7 +75,7 @@ const Contact = () => {
             <Badge 
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded-full mb-6 text-sm font-medium"
             >
-              Spread the boundary love
+              Embrace change
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Learn, build, make it real</h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
