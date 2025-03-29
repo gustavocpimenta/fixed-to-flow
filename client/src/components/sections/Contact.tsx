@@ -77,7 +77,7 @@ const Contact = () => {
             >
               Embrace change
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Learn, build, make it real</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's meet as we are, on the way</h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               Ready to transform your approach to change? Get in touch to start your 
               journey from fixed to flow.
