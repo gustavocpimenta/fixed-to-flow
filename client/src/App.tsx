@@ -10,16 +10,14 @@ import WhatWeDo from "@/components/sections/WhatWeDo";
 import SuperTeams from "@/components/sections/SuperTeams";
 import Leaders from "@/components/sections/Leaders";
 import WhyUs from "@/components/sections/WhyUs";
-import NonProfit from "@/components/sections/NonProfit";
-import Contact from "@/components/sections/Contact";
+import ContactAndBeyond from "@/components/sections/ContactAndBeyond";
 
 function App() {
   const whatWeDoRef = useRef<HTMLDivElement>(null);
   const superTeamsRef = useRef<HTMLDivElement>(null);
   const leadersRef = useRef<HTMLDivElement>(null);
   const whyUsRef = useRef<HTMLDivElement>(null);
-  const nonProfitRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
+  const contactBeyondRef = useRef<HTMLDivElement>(null);
   
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -36,13 +34,13 @@ function App() {
             superTeams: () => scrollToSection(superTeamsRef),
             leaders: () => scrollToSection(leadersRef),
             whyUs: () => scrollToSection(whyUsRef),
-            nonProfit: () => scrollToSection(nonProfitRef),
-            contact: () => scrollToSection(contactRef)
+            nonProfit: () => scrollToSection(contactBeyondRef),
+            contact: () => scrollToSection(contactBeyondRef)
           }}
         />
         
         <main className="flex-grow">
-          <Hero onGetStarted={() => scrollToSection(contactRef)} />
+          <Hero onGetStarted={() => scrollToSection(contactBeyondRef)} />
           <div ref={whatWeDoRef}>
             <WhatWeDo />
           </div>
@@ -55,11 +53,8 @@ function App() {
           <div ref={whyUsRef}>
             <WhyUs />
           </div>
-          <div ref={nonProfitRef}>
-            <NonProfit />
-          </div>
-          <div ref={contactRef}>
-            <Contact />
+          <div ref={contactBeyondRef} id="contact-beyond">
+            <ContactAndBeyond />
           </div>
         </main>
         
