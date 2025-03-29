@@ -13,7 +13,7 @@ const Leaders = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            For Leaders and Top Performers
+            For Leaders and A-Players
           </motion.h2>
           
           <div className="grid md:grid-cols-2 gap-8 mt-12">
