@@ -197,32 +197,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Stats section */}
-            <motion.div
-              className="bg-gray-900 p-6 rounded-xl mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Ready to transform?</h3>
-              <p className="text-gray-300 mb-6">Our programs have helped hundreds of professionals and teams thrive in changing environments.</p>
-
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-red-500">93%</div>
-                  <div className="text-sm text-gray-400">Success rate</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-red-500">2.8x</div>
-                  <div className="text-sm text-gray-400">ROI increase</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-red-500">5wk</div>
-                  <div className="text-sm text-gray-400">Average timeline</div>
-                </div>
-              </div>
-            </motion.div>
+            
           </div>
         </div>
       </div>
