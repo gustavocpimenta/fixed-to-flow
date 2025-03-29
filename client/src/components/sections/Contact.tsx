@@ -172,7 +172,7 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-xl font-bold mb-6">What you'll learn and practice</h3>
+              <h3 className="text-xl font-bold mb-6">Beyond Business</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
