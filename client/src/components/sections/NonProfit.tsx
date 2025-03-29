@@ -28,7 +28,7 @@ const NonProfit = () => {
                   <CardTitle className="text-xl font-bold text-primary">Reinvention Stories</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>A publication capturing real-life stories of transformation, resilience, and reinvention.</p>
+                  <p>Real-life stories of transformation, resilience, and reinvention.</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -44,7 +44,7 @@ const NonProfit = () => {
                   <CardTitle className="text-xl font-bold text-primary">Cozy Sessions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Intimate, thought-provoking gatherings where diverse minds discuss the future of work, adaptability, and the human side of change.</p>
+                  <p>Small dinners where diverse groups of people discuss discuss big topics.</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -60,7 +60,7 @@ const NonProfit = () => {
                   <CardTitle className="text-xl font-bold text-primary">Fixed to Flow Newsletter</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Curated insights, stories, and strategies for navigating change—straight to your inbox.</p>
+                  <p>Thoughts and practices for living through change with intention.</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -69,6 +69,17 @@ const NonProfit = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Card className="card-hover h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-primary">Personal Experiments Lab</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>A tool to design, test, and refine new habits through experimentation.</p>
+                </CardContent>
+              </Card>
+            </motion.div>rue }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Card className="card-hover h-full">
