@@ -12,7 +12,7 @@ const NonProfit = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Beyond Business: Our Non-Profit Initiatives</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Beyond Business</h2>
             <p className="text-lg text-center mb-12">At <span className="font-semibold text-primary">Fixed to Flow</span>, adaptability isn't just a skill—it's a shared journey. We reinvest in community-driven projects that foster learning, storytelling, and meaningful conversations.</p>
           </motion.div>
           
