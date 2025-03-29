@@ -173,7 +173,7 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
             >
               <h3 className="text-2xl font-bold mb-6">Beyond Business</h3>
-              <p className="text-lg text-gray-300 mb-8">We promote community-led spaces — ranging from open to invite-only — that explore how we learn, share stories, and move through change</p>
+              <p className="text-lg text-gray-300 mb-8">We promote community-led spaces — ranging from open to invite-only — that explore how we learn, share stories, and move through change.</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
