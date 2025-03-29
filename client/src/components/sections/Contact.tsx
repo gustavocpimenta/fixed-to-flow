@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { apiRequest } from "@/lib/queryClient";
+import { CircleUser, Brain, Lightbulb, Shield } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Form,
   FormControl,
@@ -17,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -60,37 +63,58 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-950 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
-            <p className="text-lg mb-8">Whether you're navigating a career transition, leading a team through change, or looking to integrate AI into your business, we're here to help.</p>
+            <Badge 
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded-full mb-6 text-sm font-medium"
+            >
+              Spread the boundary love
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Learn, build, make it real</h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Ready to transform your approach to change? Get in touch to start your 
+              journey from fixed to flow.
+            </p>
           </motion.div>
-          
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Left column - Contact form */}
           <motion.div 
-            className="bg-accent/20 p-8 rounded-lg max-w-xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="bg-gray-900 p-8 rounded-xl"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold mb-6">Get in touch</h3>
+            <div className="flex items-center mb-6">
+              <span className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center mr-4">
+                <span className="font-bold">1</span>
+              </span>
+              <h3 className="text-xl font-bold">Get in touch</h3>
+            </div>
+            
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem className="text-left">
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel className="text-gray-300">Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your name" {...field} />
+                        <Input 
+                          placeholder="Your name" 
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -102,9 +126,13 @@ const Contact = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="text-left">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-gray-300">Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="your.email@example.com" {...field} />
+                        <Input 
+                          placeholder="your.email@example.com" 
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -116,11 +144,11 @@ const Contact = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem className="text-left">
-                      <FormLabel>How can we help?</FormLabel>
+                      <FormLabel className="text-gray-300">How can we help?</FormLabel>
                       <FormControl>
                         <Textarea 
                           placeholder="Tell us about your project or question..." 
-                          className="min-h-[120px]" 
+                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
                           {...field}
                         />
                       </FormControl>
@@ -131,7 +159,7 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full px-8 py-6 bg-primary hover:bg-primary/90 text-white font-semibold transition-colors shadow-lg"
+                  className="w-full py-6 bg-red-600 hover:bg-red-700 text-white font-semibold transition-colors"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
@@ -139,6 +167,72 @@ const Contact = () => {
               </form>
             </Form>
           </motion.div>
+          
+          {/* Right column - What you'll learn */}
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center mb-6">
+                <span className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center mr-4">
+                  <span className="font-bold">2</span>
+                </span>
+                <h3 className="text-xl font-bold">What you'll learn and practice</h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                  <h4 className="font-bold mb-2">Adaptability Skills</h4>
+                  <p className="text-sm">Learn techniques to quickly adjust to new situations and environments</p>
+                </Card>
+                
+                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                  <h4 className="font-bold mb-2">Change Leadership</h4>
+                  <p className="text-sm">Guide others through transitions with confidence and clarity</p>
+                </Card>
+                
+                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                  <h4 className="font-bold mb-2">Growth Mindset</h4>
+                  <p className="text-sm">Develop a positive approach to challenges and obstacles</p>
+                </Card>
+                
+                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                  <h4 className="font-bold mb-2">Stress Resilience</h4>
+                  <p className="text-sm">Build strategies to thrive under pressure and uncertainty</p>
+                </Card>
+              </div>
+            </motion.div>
+            
+            {/* Stats section */}
+            <motion.div
+              className="bg-gray-900 p-6 rounded-xl mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <h3 className="text-xl font-bold mb-4">Ready to transform?</h3>
+              <p className="text-gray-300 mb-6">Our programs have helped hundreds of professionals and teams thrive in changing environments.</p>
+              
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-red-500">93%</div>
+                  <div className="text-sm text-gray-400">Success rate</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-red-500">2.8x</div>
+                  <div className="text-sm text-gray-400">ROI increase</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-red-500">5wk</div>
+                  <div className="text-sm text-gray-400">Average timeline</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
