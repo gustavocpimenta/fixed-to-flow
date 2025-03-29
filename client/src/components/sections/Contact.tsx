@@ -181,8 +181,8 @@ const Contact = () => {
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Change Leadership</h4>
-                  <p className="text-sm">Guide others through transitions with confidence and clarity</p>
+                  <h4 className="font-bold mb-2">Reinvention Stories</h4>
+                  <p className="text-sm">Real-life stories of transformation, resilience, and reinvention.</p>
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
