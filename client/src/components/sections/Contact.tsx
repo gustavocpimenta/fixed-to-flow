@@ -176,8 +176,8 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Adaptability Skills</h4>
-                  <p className="text-sm">Learn techniques to quickly adjust to new situations and environments</p>
+                  <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
+                  <p className="text-sm">Thoughts and practices for living through change with intention</p>
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
