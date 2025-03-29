@@ -186,8 +186,8 @@ const Contact = () => {
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Growth Mindset</h4>
-                  <p className="text-sm">Develop a positive approach to challenges and obstacles</p>
+                  <h4 className="font-bold mb-2">Cozy Sessions</h4>
+                  <p className="text-sm">Small, intimate, dinners to discuss big topics.</p>
                 </Card>
 
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
