@@ -1,39 +1,29 @@
 
-import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Rocket, Clock, Users, Sparkles, Laptop } from "lucide-react";
+import { motion } from "framer-motion";
+import { Component1Icon, Component2Icon, BadgeCheckIcon, ArrowRightCircleIcon } from "lucide-react";
 
 const SuperTeams = () => {
   const services = [
     {
-      icon: <Brain className="w-8 h-8 text-primary" />,
-      title: "AI for Small Teams",
-      description: "We help small teams and startups integrate AI, streamline workflows, and work better, not harder."
+      icon: <Component1Icon className="w-6 h-6 text-primary" />,
+      title: "Flow OS",
+      description: "Your personalized operating system for navigating change with clarity and confidence. Build adaptive habits, systems, and mindsets that align with your unique rhythm and life direction."
     },
     {
-      icon: <Rocket className="w-8 h-8 text-primary" />,
-      title: "One-Week MVP Sprints",
-      description: "Using AI-powered tools, we take your idea from concept to MVP in just one week, allowing rapid testing and learning."
+      icon: <Component2Icon className="w-6 h-6 text-primary" />,
+      title: "Flow Compass",
+      description: "A self-discovery tool to map where you are, what's shifting, and where your energy wants to go next. Think of it as your inner GPS for meaningful change."
     },
     {
-      icon: <Clock className="w-8 h-8 text-primary" />,
-      title: "AI Foundations for Leaders",
-      description: "Understand AI's impact and turn it into business value through practical, hands-on learning."
+      icon: <BadgeCheckIcon className="w-6 h-6 text-primary" />,
+      title: "AI North Star",
+      description: "Leverage the power of AI to amplify your direction and decision-making. We co-create your personal or team North Star, blending human insight with smart AI support."
     },
     {
-      icon: <Users className="w-8 h-8 text-primary" />,
-      title: "AI Workforce Readiness",
-      description: "Practical sessions to equip teams with key AI skills and streamline workflows through scenario-based exercises."
-    },
-    {
-      icon: <Sparkles className="w-8 h-8 text-primary" />,
-      title: "Strategic Sessions",
-      description: "Expert-led discussions and scenario planning to help teams anticipate change and align strategies with the future."
-    },
-    {
-      icon: <Laptop className="w-8 h-8 text-primary" />,
-      title: "Power Sessions",
-      description: "Hands-on sessions designed to equip teams with future-ready skills and spark collaborative problem-solving."
+      icon: <ArrowRightCircleIcon className="w-6 h-6 text-primary" />,
+      title: "Sparring Session",
+      description: "One-on-one strategic sessions to challenge your thinking, unlock stuck patterns, and gain perspective. Fast, focused, and future-oriented."
     }
   ];
 
@@ -73,7 +63,7 @@ const SuperTeams = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="mt-12 grid md:grid-cols-2 gap-6"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
