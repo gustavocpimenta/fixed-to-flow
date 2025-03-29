@@ -84,7 +84,7 @@ const Contact = () => {
             </p>
           </motion.div>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left column - Contact form */}
           <motion.div 
@@ -94,15 +94,10 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center mb-6">
-              <span className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center mr-4">
-                <span className="font-bold">1</span>
-              </span>
-              <h3 className="text-xl font-bold">Get in touch</h3>
-            </div>
-            
+            <h3 className="text-xl font-bold mb-6">Get in touch</h3>
+
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="name"
@@ -113,14 +108,14 @@ const Contact = () => {
                         <Input 
                           placeholder="Your name" 
                           className="bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -129,16 +124,17 @@ const Contact = () => {
                       <FormLabel className="text-gray-300">Email</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="your.email@example.com" 
-                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
-                          {...field} 
+                          type="email"
+                          placeholder="you@example.com" 
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="message"
@@ -156,7 +152,7 @@ const Contact = () => {
                     </FormItem>
                   )}
                 />
-                
+
                 <Button 
                   type="submit" 
                   className="w-full py-6 bg-red-600 hover:bg-red-700 text-white font-semibold transition-colors"
@@ -167,7 +163,7 @@ const Contact = () => {
               </form>
             </Form>
           </motion.div>
-          
+
           {/* Right column - What you'll learn */}
           <div className="space-y-8">
             <motion.div
@@ -176,36 +172,31 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center mb-6">
-                <span className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center mr-4">
-                  <span className="font-bold">2</span>
-                </span>
-                <h3 className="text-xl font-bold">What you'll learn and practice</h3>
-              </div>
-              
+              <h3 className="text-xl font-bold mb-6">What you'll learn and practice</h3>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Adaptability Skills</h4>
                   <p className="text-sm">Learn techniques to quickly adjust to new situations and environments</p>
                 </Card>
-                
+
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Change Leadership</h4>
                   <p className="text-sm">Guide others through transitions with confidence and clarity</p>
                 </Card>
-                
+
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Growth Mindset</h4>
                   <p className="text-sm">Develop a positive approach to challenges and obstacles</p>
                 </Card>
-                
+
                 <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Stress Resilience</h4>
                   <p className="text-sm">Build strategies to thrive under pressure and uncertainty</p>
                 </Card>
               </div>
             </motion.div>
-            
+
             {/* Stats section */}
             <motion.div
               className="bg-gray-900 p-6 rounded-xl mt-8"
@@ -216,7 +207,7 @@ const Contact = () => {
             >
               <h3 className="text-xl font-bold mb-4">Ready to transform?</h3>
               <p className="text-gray-300 mb-6">Our programs have helped hundreds of professionals and teams thrive in changing environments.</p>
-              
+
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-3xl font-bold text-red-500">93%</div>
