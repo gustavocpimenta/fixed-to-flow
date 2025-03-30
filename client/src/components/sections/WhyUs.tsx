@@ -49,7 +49,7 @@ const WhyUs = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-4 p-8 flex flex-col justify-center items-center lg:items-start">
-                <div className="w-full max-w-[49%] lg:max-w-[70%]"> {/* 30% smaller again */}
+                <div className="w-full max-w-[56%] lg:max-w-[80%]"> {/* Increased by 15% */}
                   <img 
                     src={gusImage} 
                     alt="Gus, Fixed to Flow Founder" 
