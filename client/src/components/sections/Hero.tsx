@@ -12,8 +12,8 @@ const Hero = ({ onGetStarted }: HeroProps) => {
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute right-0 bottom-0 w-96 h-[67.2px] bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
-        <div className="absolute left-0 top-0 w-96 h-[67.2px] bg-primary/20 rounded-full filter blur-3xl -translate-x-1/2"></div>
+        <div className="absolute right-0 bottom-0 w-96 h-96 bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
+        <div className="absolute left-0 top-0 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl -translate-x-1/2"></div>
       </div>
 
       <div className="container relative z-10">
