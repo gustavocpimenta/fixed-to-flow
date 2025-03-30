@@ -16,7 +16,7 @@ const NonProfit = () => {
               <span className="text-primary block mb-2">Lived Experience</span>
               Beyond Business
             </h2>
-            <p className="text-lg text-center mb-12">Alongside our core services, we promote community-led initiatives—some open, others by invitation—that explore learning, storytelling, and the human side of change.</p>
+            <p className="text-lg text-center mb-12">From intimate dinners to personal tools, a grounded ecosystem for connection, reflection, and growth.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
