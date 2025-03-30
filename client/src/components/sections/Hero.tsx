@@ -32,7 +32,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               </h1>
 
               <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
-                We empower people and businesses to amplify their adaptability to change.
+                From intimate dinners to personal tools, a grounded ecosystem for connection, reflection, and growth.
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
