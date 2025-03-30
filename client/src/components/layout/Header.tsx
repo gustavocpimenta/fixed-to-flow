@@ -48,7 +48,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <div className="w-40 h-8 relative overflow-hidden transition-transform group-hover:scale-105">
+            <div className="w-48 h-10 relative overflow-hidden transition-transform group-hover:scale-105"> {/* Increased logo size */}
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
@@ -62,10 +62,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             <nav className="flex items-center space-x-1">
               {[
                 { label: "What We Do", handler: onNavigate.whatWeDo },
-                { label: "Super Teams", handler: onNavigate.superTeams },
-                { label: "Leaders", handler: onNavigate.leaders },
                 { label: "Why Us", handler: onNavigate.whyUs },
-                { label: "Initiatives", handler: onNavigate.nonProfit },
                 { label: "Contact", handler: onNavigate.contact }
               ].map((item, index) => (
                 <Button
@@ -104,10 +101,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
           <div className="container mx-auto px-4 pt-2 pb-4">
             {[
               { label: "What We Do", handler: onNavigate.whatWeDo },
-              { label: "Super Teams", handler: onNavigate.superTeams },
-              { label: "Leaders", handler: onNavigate.leaders },
               { label: "Why Us", handler: onNavigate.whyUs },
-              { label: "Initiatives", handler: onNavigate.nonProfit },
               { label: "Contact", handler: onNavigate.contact }
             ].map((item, index) => (
               <Button 
