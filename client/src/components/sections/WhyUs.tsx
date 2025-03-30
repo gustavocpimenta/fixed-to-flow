@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import gusImage from "../../assets/gus_novo.jpg";
+import gusImage from "../../assets/gus.png";
 
 const WhyUs = () => {
   return (
