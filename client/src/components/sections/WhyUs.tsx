@@ -88,10 +88,9 @@ const WhyUs = () => {
                 />
               </div>
               <div className="md:w-2/3">
-                <p className="text-lg mb-4">Gus has been in the game of building digital products, creating meaningful productivity systems, empowering change and supporting top performers for the past 20 years.</p>
-                <p className="text-lg mb-4">His life path was marked by vast professional and personal experiences, which allowed him to adopt an approach based on radical diversity and leverage knowledge from different "worlds" and areas of expertise.</p>
-                <p className="text-lg mb-4">Gus's background is his secret sauce; he doesn't merely preach adaptability, he has been living it throughout his life. Whether he's in a boardroom helping leaders craft strategic visions or on the street helping young people hustling for their next opportunity, Gus feels equally at home.</p>
-                <p className="text-lg">This rare combination of skills and experiences enables Gus to provide valuable insights and guidance to anyone seeking to adapt to the current times.</p>
+                <p className="text-lg mb-4">Gus has spent the past 20 years building digital products, designing meaningful productivity systems, and supporting top performers through change.</p>
+                <p className="text-lg mb-4">His path--shaped by radical diversity across personal and professional worlds--allows him to draw from a wide range of perspectives. Whether he's in the boardroom helping leaders craft strategic visions or on the street supporting young people hustling for their next opportunity, Gus feels equally at home.</p>
+                <p className="text-lg">He doesn't just talk about adaptability — he lives it. And that lived experience is what fuels his ability to guide others through complex, changing times.</p>
               </div>
             </div>
           </motion.div>
