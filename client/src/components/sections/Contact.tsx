@@ -176,17 +176,17 @@ const Contact = () => {
                   <p className="text-sm">Thoughts and practices for living through change with intention</p>
                 </Card>
 
-                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Reinvention Stories</h4>
                   <p className="text-sm">Real-life stories of transformation, resilience, and reinvention.</p>
                 </Card>
 
-                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Cozy Sessions</h4>
                   <p className="text-sm">Small, intimate, dinners to discuss big topics.</p>
                 </Card>
 
-                <Card className="bg-amber-50 text-gray-800 p-4 rounded-lg border-0">
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Personal Experiments Lab</h4>
                   <p className="text-sm">A tool to design, test, and refine new habits through experimentation.</p>
                 </Card>
