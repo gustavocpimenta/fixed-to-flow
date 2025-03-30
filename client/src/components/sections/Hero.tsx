@@ -28,7 +28,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
                 <span className="text-primary block mb-2">Fixed to Flow</span>
-                <span>Embrace change with confidence</span>
+                <span>Embrace change with confidence.</span>
               </h1>
 
               <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
