@@ -60,8 +60,6 @@ function App() {
             <Contact />
           </div>
         </main>
-        
-        <Footer />
       </div>
       <Toaster />
     </QueryClientProvider>
