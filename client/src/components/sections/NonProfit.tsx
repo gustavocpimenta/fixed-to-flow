@@ -12,7 +12,10 @@ const NonProfit = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Beyond Business</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              <span className="text-primary block mb-2">Lived Experience</span>
+              Beyond Business
+            </h2>
             <p className="text-lg text-center mb-12">Alongside our core services, we promote community-led initiatives—some open, others by invitation—that explore learning, storytelling, and the human side of change.</p>
           </motion.div>
           
