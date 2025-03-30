@@ -16,59 +16,7 @@ const WhyUs = () => {
             Why Work With Us?
           </motion.h2>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-center">Our Approach</h3>
-            <p className="text-lg text-center mb-12">We believe adaptability is a process, not a one-time fix. Our step-by-step approach ensures meaningful change and lasting impact.</p>
-          </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">1</span>
-              </div>
-              <h4 className="text-xl font-bold mb-2">Discovery Call</h4>
-              <p>A focused conversation to uncover challenges, explore opportunities, and set a direction.</p>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">2</span>
-              </div>
-              <h4 className="text-xl font-bold mb-2">Tailored Strategy</h4>
-              <p>A dynamic roadmap designed for action, experimentation, and real-world impact.</p>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-dark bg-opacity-50 p-6 rounded-lg text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="rounded-full bg-primary h-12 w-12 flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold text-white">3</span>
-              </div>
-              <h4 className="text-xl font-bold mb-2">Ongoing Support & Iteration</h4>
-              <p>We fine-tune strategies, test bold ideas, and ensure continuous growth through rapid learning cycles.</p>
-            </motion.div>
-          </div>
           
           <motion.div 
             className="mt-20"
