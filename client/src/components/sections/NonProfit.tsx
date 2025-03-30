@@ -18,7 +18,7 @@ const NonProfit = () => {
             </h2>
             <p className="text-lg text-center mb-12">Alongside our core services, we promote community-led initiatives—some open, others by invitation—that explore learning, storytelling, and the human side of change.</p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -35,23 +35,23 @@ const NonProfit = () => {
                 </CardContent>
               </Card>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Card className="card-hover h-full">
+              <Card className="card-hover h-full bg-[#101727] text-white">
                 <CardHeader>
-                  <CardTitle className="text-xl font-bold text-primary">Cozy Sessions</CardTitle>
+                  <CardTitle className="text-xl font-bold text-white">Cozy Sessions</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>Intimate, thought-provoking gatherings where diverse minds discuss the future of work, adaptability, and the human side of change.</p>
                 </CardContent>
               </Card>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -67,16 +67,16 @@ const NonProfit = () => {
                 </CardContent>
               </Card>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Card className="card-hover h-full">
+              <Card className="card-hover h-full bg-[#101727] text-white">
                 <CardHeader>
-                  <CardTitle className="text-xl font-bold text-primary">Personal Experiments Lab</CardTitle>
+                  <CardTitle className="text-xl font-bold text-white">Personal Experiments Lab</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>A tool to design, test, and refine new habits through experimentation.</p>
