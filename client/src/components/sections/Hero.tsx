@@ -16,8 +16,8 @@ const Hero = ({ onGetStarted }: HeroProps) => {
         <div className="absolute left-0 top-0 w-96 h-[67.2px] bg-primary/20 rounded-full filter blur-3xl -translate-x-1/2"></div>
       </div>
 
-      <div className="container relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10">
+        <div className="container max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16">
             {/* Text content */}
             <motion.div 
