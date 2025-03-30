@@ -13,7 +13,7 @@ const Leaders = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            For Leaders and A-Players
+            For Leaders and Change Makers
           </motion.h2>
           
           <p className="text-lg text-gray-600 mt-4 mb-8 max-w-3xl mx-auto text-center">
