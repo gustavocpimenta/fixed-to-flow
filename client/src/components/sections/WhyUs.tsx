@@ -25,7 +25,15 @@ const WhyUs = () => {
             Why Work With Us?
           </motion.h2>
           
-          
+          <motion.p
+            className="text-lg md:text-xl leading-relaxed mb-16 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            We bring two decades of hands-on experience navigating digital transformation and human adaptation, offering you not just strategies but proven pathways to thrive amid constant change.
+          </motion.p>
           
           <motion.div 
             className="mt-20"
