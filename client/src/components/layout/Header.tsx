@@ -41,7 +41,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
         ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
         : 'bg-white py-5'
     }`}>
-      <div className="mx-auto flex h-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
