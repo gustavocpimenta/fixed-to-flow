@@ -161,7 +161,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Right column - What you'll learn */}
-          <div className="space-y-8">
+          <div className="space-y-8 relative">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -194,7 +194,7 @@ const Contact = () => {
             </motion.div>
 
             {/* Footer section */}
-            <div className="mt-16 text-right">
+            <div className="absolute bottom-8 right-8">
               <div className="flex justify-end space-x-6 mb-4">
                 <a href="https://twitter.com" className="text-gray-400 hover:text-gray-300">
                   <span className="sr-only">Twitter</span>
