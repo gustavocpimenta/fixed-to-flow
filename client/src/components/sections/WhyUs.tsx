@@ -5,7 +5,7 @@ const WhyUs = () => {
   return (
     <section className="py-20 gradient-bg text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.span
             className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
             initial={{ opacity: 0, y: 20 }}
