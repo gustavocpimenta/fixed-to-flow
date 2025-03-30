@@ -69,7 +69,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                   key={index}
                   variant="ghost"
                   onClick={() => handleNavClick(item.handler)}
-                  className="px-4 py-2 text-gray-700 hover:text-primary transition-colors text-base" // Added text-base class
+                  className="px-4 py-2 text-gray-700 hover:text-primary transition-colors"
                 >
                   {item.label}
                 </Button>
@@ -108,7 +108,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                 key={index}
                 variant="ghost" 
                 onClick={() => handleNavClick(item.handler)}
-                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg font-medium transition-colors text-base" // Added text-base class
+                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg font-medium transition-colors"
               >
                 {item.label}
               </Button>
