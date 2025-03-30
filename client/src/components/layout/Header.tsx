@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import fixedToFlowLogo from "@/assets/horizontal-logo.png";
+import fixedToFlowLogo from "../../assets/logo.png";
 
 interface HeaderProps {
   onNavigate: {
