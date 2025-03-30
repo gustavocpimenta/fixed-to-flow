@@ -16,7 +16,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
         <div className="absolute left-0 top-0 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl -translate-x-1/2"></div>
       </div>
 
-      <div className="container relative z-10 px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-32">
+      <div className="container relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16">
             {/* Text content */}
