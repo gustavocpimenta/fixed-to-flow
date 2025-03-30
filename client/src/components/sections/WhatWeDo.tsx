@@ -14,11 +14,11 @@ const WhatWeDo = () => {
         >
           <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Our Services</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">What We Do</h2>
-          
+
           <p className="text-xl md:text-2xl text-gray-800 leading-relaxed mb-8">
             Change is inevitable. Navigating it successfully? That's a skill.
           </p>
-          
+
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               At <span className="font-semibold text-primary">Fixed to Flow</span>, we help small teams, businesses, and leaders not just <span className="italic">cope</span> with change, but actively <span className="font-semibold">leverage</span> it.
