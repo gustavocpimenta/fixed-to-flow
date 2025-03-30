@@ -194,8 +194,8 @@ const Contact = () => {
             </motion.div>
 
             {/* Footer section */}
-            <div className="mt-16 text-center">
-              <div className="flex justify-center space-x-6 mb-4">
+            <div className="mt-16 text-right">
+              <div className="flex justify-end space-x-6 mb-4">
                 <a href="https://twitter.com" className="text-gray-400 hover:text-gray-300">
                   <span className="sr-only">Twitter</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
