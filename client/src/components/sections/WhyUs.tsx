@@ -57,15 +57,7 @@ const WhyUs = () => {
                   />
                 </div>
                 
-                <motion.div 
-                  className="mt-4 text-center lg:text-left"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                >
-                  <h3 className="text-2xl font-bold text-primary">Meet Gus, Fixed to Flow Founder</h3>
-                </motion.div>
+
               </div>
               
               <div className="lg:col-span-8 p-8 lg:p-12 bg-gradient-to-br from-gray-800/70 to-gray-900/70">
@@ -76,7 +68,7 @@ const WhyUs = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Experience & Expertise</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Meet Gus, Fixed to Flow Founder</h3>
                     
                     <p className="text-lg leading-relaxed mb-6 text-gray-200">
                       Gus has spent the past 20 years building digital products, designing meaningful 
