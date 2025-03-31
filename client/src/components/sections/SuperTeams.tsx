@@ -1,39 +1,29 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Rocket, Clock, Users, Sparkles, Laptop } from "lucide-react";
+import { Brain, Rocket, Clock, Sparkles } from "lucide-react";
 
 const SuperTeams = () => {
   const services = [
     {
       icon: <Brain className="w-8 h-8 text-primary" />,
       title: "AI for Small Teams",
-      description: "We help small teams and startups integrate AI, streamline workflows, and work better, not harder."
+      description: "We help small teams and startups integrate AI, streamline workflows, and unlock smarter, faster ways of working."
     },
     {
       icon: <Rocket className="w-8 h-8 text-primary" />,
       title: "One-Week MVP Sprints",
-      description: "Using AI-powered tools, we take your idea from concept to MVP in just one week, allowing rapid testing and learning."
+      description: "From idea to MVP in one week. We use AI-powered tools to fast-track your concept, so you can test, learn, and evolve—fast."
     },
     {
       icon: <Clock className="w-8 h-8 text-primary" />,
       title: "AI Foundations for Leaders",
-      description: "Understand AI's impact and turn it into business value through practical, hands-on learning."
-    },
-    {
-      icon: <Users className="w-8 h-8 text-primary" />,
-      title: "AI Workforce Readiness",
-      description: "Practical sessions to equip teams with key AI skills and streamline workflows through scenario-based exercises."
+      description: "A one-day workshop to go from AI basics to strategic insight. Build literacy, explore future scenarios, and turn emerging tech into real business value."
     },
     {
       icon: <Sparkles className="w-8 h-8 text-primary" />,
-      title: "Strategic Sessions",
-      description: "Expert-led discussions and scenario planning to help teams anticipate change and align strategies with the future."
-    },
-    {
-      icon: <Laptop className="w-8 h-8 text-primary" />,
-      title: "Power Sessions",
-      description: "Hands-on sessions designed to equip teams with future-ready skills and spark collaborative problem-solving."
+      title: "Foresight Sessions",
+      description: "Scenario planning and strategic sensemaking to help your team anticipate change and explore what's next."
     }
   ];
 
@@ -73,7 +63,7 @@ const SuperTeams = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="mt-12 grid md:grid-cols-2 gap-6"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
