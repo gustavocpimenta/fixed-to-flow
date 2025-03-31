@@ -20,7 +20,7 @@ const Leaders = () => {
             One-on-one mentoring for leaders and change makers seeking clarity, decisive action, and accelerated growth through an experimental mindset.
           </p>
           
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
             {/* Flow OS */}
             <motion.div 
               className="bg-accent/20 p-8 rounded-lg"
@@ -45,7 +45,7 @@ const Leaders = () => {
               <p className="text-gray-700">A self-discovery tool to map where you are, what's shifting, and where your energy wants to go next. Think of it as your inner GPS for meaningful change.</p>
             </motion.div>
 
-            {/* AI North Star */}
+            {/* AI Mentoring */}
             <motion.div 
               className="bg-accent/20 p-8 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
@@ -53,20 +53,8 @@ const Leaders = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <h3 className="text-xl font-bold mb-4">AI North Star</h3>
-              <p className="text-gray-700">Leverage the power of AI to amplify your direction and decision-making. We co-create your personal or team North Star, blending human insight with smart AI support.</p>
-            </motion.div>
-
-            {/* Sparring Session */}
-            <motion.div 
-              className="bg-accent/20 p-8 rounded-lg"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Sparring Session</h3>
-              <p className="text-gray-700">One-on-one strategic sessions to challenge your thinking, unlock stuck patterns, and gain perspective. Fast, focused, and future-oriented.</p>
+              <h3 className="text-xl font-bold mb-4">AI Mentoring</h3>
+              <p className="text-gray-700">Stop feeling lost with AI. We'll build a clear, personal strategy—combining foundational know-how with tools and use cases that fit your goals.</p>
             </motion.div>
           </div>
         </div>
