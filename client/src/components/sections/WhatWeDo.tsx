@@ -1,113 +1,172 @@
 import { motion } from "framer-motion";
-import { Lightbulb, Brain, Rocket, Users, ArrowRight } from "lucide-react";
+import { CircleUser, Code, BarChart, Sparkles } from "lucide-react";
 
 const WhatWeDo = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  const services = [
-    {
-      icon: <Brain className="h-10 w-10" />,
-      title: "AI Strategy & Integration",
-      description: "We help you navigate the AI landscape, identifying the right tools and approaches to transform your business and workflows.",
-      color: "from-blue-500/20 to-purple-500/20"
-    },
-    {
-      icon: <Rocket className="h-10 w-10" />,
-      title: "Adaptive Leadership",
-      description: "Build the mindset and capabilities needed to thrive in rapid change, turning uncertainty into opportunity.",
-      color: "from-green-500/20 to-teal-500/20"
-    },
-    {
-      icon: <Lightbulb className="h-10 w-10" />,
-      title: "Future-Ready Workflows",
-      description: "Create systems and processes that flex with changing conditions while maintaining clarity and momentum.",
-      color: "from-amber-500/20 to-orange-500/20"
-    },
-    {
-      icon: <Users className="h-10 w-10" />,
-      title: "Team Transformation",
-      description: "Equip your people with the skills, tools and mindsets to navigate change with confidence and creativity.",
-      color: "from-pink-500/20 to-rose-500/20"
-    }
-  ];
-
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto text-center mb-20"
-        >
-          <span className="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide mb-4">OUR APPROACH</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            From Fixed to <span className="text-primary">Flow</span>
-          </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            We help small teams, businesses, and leaders not just <span className="italic">cope</span> with change, but actively <span className="font-semibold">leverage</span> it for growth, innovation, and sustainable success.
-          </p>
-        </motion.div>
+        <div className="text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold"
+          >
+            <span className="relative inline-block">
+              <span className="relative z-10">What We</span>
+              <motion.span 
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="absolute bottom-2 left-0 h-3 bg-primary/20 z-0 rounded"
+              ></motion.span>
+            </span>
+            {" "}
+            <span className="text-primary">Do</span>
+          </motion.h2>
+        </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
-        >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              className="relative"
-            >
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} transform rotate-1 scale-[1.02] opacity-70`}></div>
-              <div className="relative p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-5 flex-grow">{service.description}</p>
+        <div className="grid grid-cols-1 gap-20 max-w-5xl mx-auto">
+          {/* Section 1 */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="flex-1 order-2 md:order-1">
+              <h3 className="text-2xl font-bold mb-4 flex items-center">
+                <CircleUser className="text-primary mr-3 h-7 w-7" />
+                <span>We transform leaders</span>
+              </h3>
+              <p className="text-gray-700 mb-6">
+                We coach leaders to thrive in ambiguity, make clearer decisions under pressure, and build adaptive mindsets. Through personalized sessions, we help you develop the skills to lead effectively through rapid change.
+              </p>
+              <ul className="space-y-2">
+                {['Personalized leadership coaching', 'Adaptive decision-making', 'Resilience building'].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="inline-block w-5 h-5 bg-primary/20 rounded-full flex-shrink-0 mt-1 mr-3"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex-1 order-1 md:order-2 bg-gradient-to-br from-primary/10 to-primary/30 p-10 rounded-2xl shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/30 rounded-bl-full"></div>
+              <div className="relative z-10 flex items-center justify-center h-full">
                 <motion.div 
-                  whileHover={{ x: 5 }}
-                  className="flex items-center text-primary font-medium cursor-pointer group"
+                  initial={{ rotate: -5, scale: 0.9 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full max-w-xs h-64 bg-white rounded-xl shadow-xl flex items-center justify-center"
                 >
-                  <span>Learn more</span>
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-5xl font-bold text-primary">1</span>
                 </motion.div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+          </motion.div>
 
+          {/* Section 2 */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="flex-1 bg-gradient-to-br from-blue-500/10 to-purple-500/30 p-10 rounded-2xl shadow-lg relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/30 rounded-tr-full"></div>
+              <div className="relative z-10 flex items-center justify-center h-full">
+                <motion.div 
+                  initial={{ rotate: 5, scale: 0.9 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full max-w-xs h-64 bg-white rounded-xl shadow-xl flex items-center justify-center"
+                >
+                  <span className="text-5xl font-bold text-blue-500">2</span>
+                </motion.div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold mb-4 flex items-center">
+                <Code className="text-blue-500 mr-3 h-7 w-7" />
+                <span>We integrate AI</span>
+              </h3>
+              <p className="text-gray-700 mb-6">
+                We help teams adopt AI tools in practical, human-centered ways. From strategy to implementation, we ensure AI amplifies your team's capabilities without losing the human touch that makes your work meaningful.
+              </p>
+              <ul className="space-y-2">
+                {['AI readiness assessment', 'Workflow optimization', 'Custom implementation plans'].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="inline-block w-5 h-5 bg-blue-500/20 rounded-full flex-shrink-0 mt-1 mr-3"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Section 3 */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="flex-1 order-2 md:order-1">
+              <h3 className="text-2xl font-bold mb-4 flex items-center">
+                <BarChart className="text-green-600 mr-3 h-7 w-7" />
+                <span>We future-proof teams</span>
+              </h3>
+              <p className="text-gray-700 mb-6">
+                We build resilient teams that can adapt to rapidly changing environments. Our workshops and trainings help teams develop agile mindsets, effective collaboration skills, and the confidence to navigate uncertainty.
+              </p>
+              <ul className="space-y-2">
+                {['Team capability mapping', 'Adaptive workflows', 'Future scenario planning'].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="inline-block w-5 h-5 bg-green-600/20 rounded-full flex-shrink-0 mt-1 mr-3"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex-1 order-1 md:order-2 bg-gradient-to-br from-green-500/10 to-teal-500/30 p-10 rounded-2xl shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/30 rounded-bl-full"></div>
+              <div className="relative z-10 flex items-center justify-center h-full">
+                <motion.div 
+                  initial={{ rotate: -5, scale: 0.9 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full max-w-xs h-64 bg-white rounded-xl shadow-xl flex items-center justify-center"
+                >
+                  <span className="text-5xl font-bold text-green-600">3</span>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+        
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 text-center"
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-24 text-center"
         >
-          <button className="inline-flex items-center px-8 py-4 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl">
-            <span>See all our services</span>
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </button>
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary rounded-lg blur-md opacity-70 -m-1"></div>
+            <button className="relative bg-primary hover:bg-primary/90 text-white font-bold py-5 px-8 rounded-lg flex items-center shadow-xl">
+              <span className="mr-2 text-lg">Get Started</span>
+              <Sparkles className="h-5 w-5" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
