@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Compass, Bot, Layers } from "lucide-react";
+import { Compass, Bot, Layers, Swords } from "lucide-react";
 
 const Leaders = () => {
   const services = [
@@ -19,6 +19,11 @@ const Leaders = () => {
       icon: <Bot className="w-8 h-8 text-primary" />,
       title: "AI Mentoring",
       description: "Stop feeling lost with AI. We'll build a clear, personal strategy—combining foundational know-how with tools and use cases that fit your goals."
+    },
+    {
+      icon: <Swords className="w-8 h-8 text-primary" />,
+      title: "Sparring Sessions",
+      description: "We won't go easy on you. Tough love, sharp questions, and zero fluff — to challenge your thinking and unlock real movement."
     }
   ];
 
@@ -62,7 +67,7 @@ const Leaders = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-12 grid md:grid-cols-3 gap-6"
+            className="mt-12 grid md:grid-cols-2 gap-6"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
