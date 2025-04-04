@@ -22,7 +22,7 @@ const SuperTeams = () => {
     },
     {
       icon: <Sparkles className="w-8 h-8 text-primary" />,
-      title: "Future Thinking Session",
+      title: "Future Thinking Sessions",
       description: "Scenario planning and strategic sensemaking to help your team anticipate change and explore what's next."
     }
   ];
