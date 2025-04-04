@@ -174,7 +174,7 @@ const Footer = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
                   <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
-                  <p className="text-sm">Thoughts and practices for living through change with intention</p>
+                  <p className="text-sm">Thoughts and practices for living through change with intention.</p>
                 </Card>
 
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
