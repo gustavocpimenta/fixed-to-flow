@@ -60,7 +60,7 @@ const WhyUs = () => {
 
               </div>
 
-              <div className="lg:col-span-8 p-8 lg:p-12 bg-white shadow-xl rounded-xl">
+              <div className="lg:col-span-8 p-8 lg:p-12 bg-white rounded-3xl shadow-lg">
                 <div className="h-full flex flex-col">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -68,22 +68,24 @@ const WhyUs = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <span className="text-primary text-sm font-semibold tracking-wider uppercase mb-2 block">Founder Story</span>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Meet Gus, Fixed to Flow Founder</h3>
-                    
-                    <div className="border-l-4 border-primary pl-6 mb-8">
-                      <p className="text-xl italic text-gray-600">
+                    <div className="mb-8">
+                      <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full mb-4">FOUNDER STORY</span>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Meet Gus, Fixed to Flow Founder</h3>
+                    </div>
+
+                    <div className="border-l-[3px] border-primary pl-6 mb-8 py-2">
+                      <p className="text-lg italic text-gray-700">
                         "My mission is to help individuals and organizations navigate change with confidence and purpose."
                       </p>
                     </div>
 
                     <div className="space-y-6">
-                      <p className="text-lg leading-relaxed text-gray-700">
+                      <p className="text-base leading-relaxed text-gray-600">
                         Gus has spent the past 20 years building digital products, designing meaningful 
                         productivity systems, and supporting top performers through change.
                       </p>
 
-                      <p className="text-lg leading-relaxed text-gray-700">
+                      <p className="text-base leading-relaxed text-gray-600">
                         His path—shaped by radical diversity across personal and professional worlds—allows 
                         him to draw from a wide range of perspectives. Whether he's in the boardroom helping 
                         leaders craft strategic visions or on the street supporting young people hustling for 
@@ -91,7 +93,7 @@ const WhyUs = () => {
                       </p>
                     </div>
 
-                    <p className="text-lg leading-relaxed text-gray-700">
+                    <p className="text-base leading-relaxed text-gray-600">
                       He doesn't just talk about adaptability — he lives it. And that lived experience 
                       is what fuels his ability to guide others through complex, changing times.
                     </p>
