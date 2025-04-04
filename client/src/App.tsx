@@ -18,7 +18,7 @@ function App() {
   const superTeamsRef = useRef<HTMLDivElement>(null);
   const leadersRef = useRef<HTMLDivElement>(null);
   const whyUsRef = useRef<HTMLDivElement>(null);
-  
+  const nonProfitRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -36,7 +36,7 @@ function App() {
             superTeams: () => scrollToSection(superTeamsRef),
             leaders: () => scrollToSection(leadersRef),
             whyUs: () => scrollToSection(whyUsRef),
-            
+            nonProfit: () => scrollToSection(nonProfitRef),
             contact: () => scrollToSection(contactRef)
           }}
         />
@@ -56,10 +56,15 @@ function App() {
             <WhyUs />
           </div>
           
+          <div ref={nonProfitRef}>
+            <NonProfit />
+          </div>
+          
           <div ref={contactRef}>
             <Contact />
           </div>
         </main>
+        <Footer />
       </div>
       <Toaster />
     </QueryClientProvider>

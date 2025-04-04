@@ -63,6 +63,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
               {[
                 { label: "What We Do", handler: onNavigate.whatWeDo },
                 { label: "Why Us", handler: onNavigate.whyUs },
+                { label: "Beyond Business", handler: onNavigate.nonProfit },
                 { label: "Contact", handler: onNavigate.contact }
               ].map((item, index) => (
                 <Button
@@ -102,6 +103,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             {[
               { label: "What We Do", handler: onNavigate.whatWeDo },
               { label: "Why Us", handler: onNavigate.whyUs },
+              { label: "Beyond Business", handler: onNavigate.nonProfit },
               { label: "Contact", handler: onNavigate.contact }
             ].map((item, index) => (
               <Button 
