@@ -53,7 +53,7 @@ const WhyUs = () => {
                   <img 
                     src={gusImage} 
                     alt="Gus, Fixed to Flow Founder" 
-                    className="rounded-xl shadow-xl mx-auto object-cover" 
+                    className="rounded-xl mx-auto object-cover" 
                   />
                 </div>
 
