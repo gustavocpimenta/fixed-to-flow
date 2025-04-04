@@ -54,10 +54,6 @@ function App() {
           <div ref={whyUsRef}>
             <WhyUs />
           </div>
-          
-          <div ref={nonProfitRef}>
-            <NonProfit />
-          </div>
         </main>
         <div ref={contactRef}>
           <Footer />
