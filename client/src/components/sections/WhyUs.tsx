@@ -91,15 +91,6 @@ const WhyUs = () => {
                       </p>
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-gray-200">
-                      <p className="text-gray-500 mb-6">Trusted by leading organizations</p>
-                      <div className="grid grid-cols-3 gap-8 items-center opacity-70">
-                        <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 1</div>
-                        <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 2</div>
-                        <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 3</div>
-                      </div>
-                    </div>
-
                     <p className="text-lg leading-relaxed text-gray-700">
                       He doesn't just talk about adaptability — he lives it. And that lived experience 
                       is what fuels his ability to guide others through complex, changing times.
@@ -120,6 +111,15 @@ const WhyUs = () => {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        <div className="max-w-6xl mx-auto mt-16">
+          <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
+          <div className="grid grid-cols-3 gap-8 items-center opacity-70">
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 1</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 2</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 3</div>
+          </div>
         </div>
       </div>
     </section>
