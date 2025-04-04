@@ -3,12 +3,12 @@ import gusImage from "../../assets/gus.png";
 
 const WhyUs = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <section className="py-24 bg-gradient-to-b from-[#f8f8f8] to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <motion.span
-              className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-sm font-medium mb-4"
+              className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -18,7 +18,7 @@ const WhyUs = () => {
             </motion.span>
 
             <motion.h2 
-              className="text-3xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+              className="text-3xl md:text-5xl font-bold mb-8 text-gray-900"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -28,7 +28,7 @@ const WhyUs = () => {
             </motion.h2>
 
             <motion.p
-              className="text-lg md:text-xl leading-relaxed mb-12 max-w-4xl mx-auto text-gray-300"
+              className="text-lg md:text-xl leading-relaxed mb-12 max-w-4xl mx-auto text-gray-700"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -41,7 +41,7 @@ const WhyUs = () => {
           </div>
 
           <motion.div 
-            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-gray-700"
+            className="mb-16 text-center md:text-left bg-white rounded-2xl shadow-xl overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -60,7 +60,7 @@ const WhyUs = () => {
 
               </div>
 
-              <div className="lg:col-span-8 p-8 lg:p-12 bg-gradient-to-br from-gray-800/70 to-gray-900/70">
+              <div className="lg:col-span-8 p-8 lg:p-12 bg-gradient-to-br from-primary/5 to-primary/20">
                 <div className="h-full flex flex-col justify-center">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -68,21 +68,21 @@ const WhyUs = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Meet Gus, Fixed to Flow Founder</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Meet Gus, Fixed to Flow Founder</h3>
 
-                    <p className="text-lg leading-relaxed mb-6 text-gray-200">
+                    <p className="text-lg leading-relaxed mb-6 text-gray-700">
                       Gus has spent the past 20 years building digital products, designing meaningful 
                       productivity systems, and supporting top performers through change.
                     </p>
 
-                    <p className="text-lg leading-relaxed mb-6 text-gray-200">
+                    <p className="text-lg leading-relaxed mb-6 text-gray-700">
                       His path—shaped by radical diversity across personal and professional worlds—allows 
                       him to draw from a wide range of perspectives. Whether he's in the boardroom helping 
                       leaders craft strategic visions or on the street supporting young people hustling for 
                       their next opportunity, Gus feels equally at home.
                     </p>
 
-                    <p className="text-lg leading-relaxed text-gray-200">
+                    <p className="text-lg leading-relaxed text-gray-700">
                       He doesn't just talk about adaptability — he lives it. And that lived experience 
                       is what fuels his ability to guide others through complex, changing times.
                     </p>
