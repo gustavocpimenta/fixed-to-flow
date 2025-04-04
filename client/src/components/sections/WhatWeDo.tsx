@@ -32,19 +32,10 @@ const WhatWeDo = () => {
           >
             <div className="md:grid md:grid-cols-12 gap-0">
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center">
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Through strategy, training, and AI-powered tools</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Adaptability for Modern Teams</h3>
                 <p className="text-lg text-gray-200 mb-6 leading-relaxed">
-                  We ensure you and your team are AI-ready, future-focused, and adaptable in an evolving world.
+                  We help teams and organizations develop the skills and mindset needed to thrive in today's rapidly evolving landscape.
                 </p>
-                <div className="mt-4">
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70"
-                  >
-                    Learn More
-                  </motion.button>
-                </div>
               </div>
               <div className="md:col-span-5 bg-gradient-to-br from-gray-800/70 to-gray-900/70">
                 <div className="h-full flex items-center justify-center p-8">
