@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import springImage from "../../assets/spring.png";
 
 const WhatWeDo = () => {
   return (
@@ -21,34 +20,6 @@ const WhatWeDo = () => {
             </p>
           </div>
         </motion.div>
-
-        <div className="max-w-6xl mx-auto">
-          <motion.div 
-            className="mb-16 text-center md:text-left bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-gray-700"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="md:grid md:grid-cols-12 gap-0">
-              <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center">
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Adaptability for Modern Teams</h3>
-                <p className="text-lg text-gray-200 mb-6 leading-relaxed">
-                  We help teams and organizations develop the skills and mindset needed to thrive in today's rapidly evolving landscape.
-                </p>
-              </div>
-              <div className="md:col-span-5 bg-gradient-to-br from-gray-800/70 to-gray-900/70">
-                <div className="h-full flex items-center justify-center p-8">
-                  <img 
-                    src={springImage} 
-                    alt="Transformation visualization" 
-                    className="w-full h-auto object-contain max-h-72" 
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
