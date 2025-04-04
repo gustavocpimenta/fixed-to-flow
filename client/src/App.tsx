@@ -11,7 +11,6 @@ import SuperTeams from "@/components/sections/SuperTeams";
 import Leaders from "@/components/sections/Leaders";
 import WhyUs from "@/components/sections/WhyUs";
 import NonProfit from "@/components/sections/NonProfit";
-import Contact from "@/components/sections/Contact";
 
 function App() {
   const whatWeDoRef = useRef<HTMLDivElement>(null);
@@ -59,12 +58,10 @@ function App() {
           <div ref={nonProfitRef}>
             <NonProfit />
           </div>
-          
-          <div ref={contactRef}>
-            <Contact />
-          </div>
         </main>
-        <Footer />
+        <div ref={contactRef}>
+          <Footer />
+        </div>
       </div>
       <Toaster />
     </QueryClientProvider>
