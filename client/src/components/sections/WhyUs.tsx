@@ -1,5 +1,21 @@
 import { motion } from "framer-motion";
 import gusImage from "../../assets/gus.png";
+import vodafoneLogo from "../../assets/client_logos/vodafone.png";
+import lisboaUniLogo from "../../assets/client_logos/universidade_lisboa.png";
+import segurancaSocialLogo from "../../assets/client_logos/seguranca_social.png";
+import randstadLogo from "../../assets/client_logos/randstad.png";
+import seedrsLogo from "../../assets/client_logos/seedrs.png";
+import montepioLogo from "../../assets/client_logos/montepio.png";
+import adeoLogo from "../../assets/client_logos/adeo.png";
+import lorealLogo from "../../assets/client_logos/loreal.png";
+import lisboaCMLogo from "../../assets/client_logos/cml.png";
+import galpLogo from "../../assets/client_logos/galp.png";
+import claroLogo from "../../assets/client_logos/claro.png";
+import bcpLogo from "../../assets/client_logos/bcp.png";
+import biLogo from "../../assets/client_logos/bi.png";
+import tecnicoLogo from "../../assets/client_logos/tecnico.png";
+import landingLogo from "../../assets/client_logos/lannding.png";
+import bpLogo from "../../assets/client_logos/bp.png";
 
 const WhyUs = () => {
   return (
@@ -117,10 +133,97 @@ const WhyUs = () => {
 
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
-          <div className="grid grid-cols-3 gap-8 items-center opacity-70">
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 1</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 2</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 3</div>
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={vodafoneLogo} alt="Vodafone" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.15 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={segurancaSocialLogo} alt="Segurança Social" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.25 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={randstadLogo} alt="Randstad" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={seedrsLogo} alt="Seedrs" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.35 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={montepioLogo} alt="Montepio" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={adeoLogo} alt="Adeo" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.45 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={lorealLogo} alt="L'Oréal" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-10 object-contain" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.55 }}
+              className="h-12 flex items-center justify-center"
+            >
+              <img src={galpLogo} alt="Galp" className="h-10 object-contain" />
+            </motion.div>
           </div>
         </div>
       </div>
