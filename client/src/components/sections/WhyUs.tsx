@@ -117,17 +117,10 @@ const WhyUs = () => {
 
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center opacity-70">
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Vodafone</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Lisboa Uni</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Social Sec</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Randstad</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Seedrs</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Montepio</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Adeo</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">L'Oréal</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Lisboa CM</div>
-            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Galp</div>
+          <div className="grid grid-cols-3 gap-8 items-center opacity-70">
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 1</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 2</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 3</div>
           </div>
         </div>
       </div>
