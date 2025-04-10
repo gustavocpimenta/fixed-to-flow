@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import gusImage from "../../assets/gus.png";
-import LogoPlaceholder from "../ui/logo-placeholder";
 
 const WhyUs = () => {
   return (
@@ -117,35 +116,19 @@ const WhyUs = () => {
         </div>
 
         <div className="max-w-6xl mx-auto mt-16">
-          <motion.p 
-            className="text-gray-500 mb-6 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Trusted by leading organizations
-          </motion.p>
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, staggerChildren: 0.1 }}
-          >
-            <LogoPlaceholder name="vodafone" className="h-12 w-full" />
-            <LogoPlaceholder name="universidade_lisboa" className="h-12 w-full" />
-            <LogoPlaceholder name="seguranca_social" className="h-12 w-full" />
-            <LogoPlaceholder name="randstad" className="h-12 w-full" />
-            <LogoPlaceholder name="seedrs" className="h-12 w-full" />
-            <LogoPlaceholder name="montepio" className="h-12 w-full" />
-            <LogoPlaceholder name="adeo" className="h-12 w-full" />
-            <LogoPlaceholder name="loreal" className="h-12 w-full" />
-            <LogoPlaceholder name="cml" className="h-12 w-full" />
-            <LogoPlaceholder name="galp" className="h-12 w-full" />
-            <LogoPlaceholder name="claro" className="h-12 w-full" />
-            <LogoPlaceholder name="bp" className="h-12 w-full" />
-          </motion.div>
+          <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center opacity-70">
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Vodafone</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Lisboa Uni</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Social Sec</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Randstad</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Seedrs</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Montepio</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Adeo</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">L'Oréal</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Lisboa CM</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Galp</div>
+          </div>
         </div>
       </div>
     </section>
