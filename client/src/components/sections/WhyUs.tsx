@@ -133,7 +133,7 @@ const WhyUs = () => {
 
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 0.7, y: 0 }}
