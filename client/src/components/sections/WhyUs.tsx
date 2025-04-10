@@ -1,20 +1,5 @@
 import { motion } from "framer-motion";
 import gusImage from "../../assets/gus.png";
-import vodafoneLogo from "../../assets/vodafone.png";
-import lisboaUniLogo from "../../assets/universidade_lisboa.png";
-import segurancaSocialLogo from "../../assets/seguranca_social.png";
-import randstadLogo from "../../assets/randstad.png";
-import seedrsLogo from "../../assets/seedrs.png";
-import montepioLogo from "../../assets/montepio.png";
-import adeoLogo from "../../assets/adeo.png";
-import lorealLogo from "../../assets/loreal.png";
-import lisboaCMLogo from "../../assets/cml.png";
-import galpLogo from "../../assets/galp.png";
-import claroLogo from "../../assets/claro.png";
-import bcpLogo from "../../assets/bcp.png";
-import biLogo from "../../assets/bi.png";
-import tecnicoLogo from "../../assets/tecnico.png";
-import landingLogo from "../../assets/lannding.png";
 
 const WhyUs = () => {
   return (
@@ -132,22 +117,10 @@ const WhyUs = () => {
 
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center opacity-70">
-            <img src={vodafoneLogo} alt="Vodafone" className="h-12 object-contain" />
-            <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-12 object-contain" />
-            <img src={segurancaSocialLogo} alt="Segurança Social" className="h-12 object-contain" />
-            <img src={randstadLogo} alt="Randstad" className="h-12 object-contain" />
-            <img src={seedrsLogo} alt="Seedrs" className="h-12 object-contain" />
-            <img src={montepioLogo} alt="Montepio" className="h-12 object-contain" />
-            <img src={adeoLogo} alt="Adeo" className="h-12 object-contain" />
-            <img src={lorealLogo} alt="L'Oréal" className="h-12 object-contain" />
-            <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-12 object-contain" />
-            <img src={galpLogo} alt="Galp" className="h-12 object-contain" />
-            <img src={claroLogo} alt="Claro" className="h-12 object-contain" />
-            <img src={bcpLogo} alt="Millennium BCP" className="h-12 object-contain" />
-            <img src={biLogo} alt="BI" className="h-12 object-contain" />
-            <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-12 object-contain" />
-            <img src={landingLogo} alt="Landing.Jobs" className="h-12 object-contain" />
+          <div className="grid grid-cols-3 gap-8 items-center opacity-70">
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 1</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 2</div>
+            <div className="h-12 bg-gray-200 rounded flex items-center justify-center">Logo 3</div>
           </div>
         </div>
       </div>
