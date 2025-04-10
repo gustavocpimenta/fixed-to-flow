@@ -133,142 +133,149 @@ const WhyUs = () => {
 
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              className="flex items-center justify-center"
-            >
-              <img src={vodafoneLogo} alt="Vodafone" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-              className="flex items-center justify-center"
-            >
-              <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              className="flex items-center justify-center"
-            >
-              <img src={segurancaSocialLogo} alt="Segurança Social" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.25 }}
-              className="flex items-center justify-center"
-            >
-              <img src={randstadLogo} alt="Randstad" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              className="flex items-center justify-center"
-            >
-              <img src={seedrsLogo} alt="Seedrs" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.35 }}
-              className="flex items-center justify-center"
-            >
-              <img src={montepioLogo} alt="Montepio" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="flex items-center justify-center"
-            >
-              <img src={adeoLogo} alt="Adeo" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.45 }}
-              className="flex items-center justify-center"
-            >
-              <img src={lorealLogo} alt="L'Oréal" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-              className="flex items-center justify-center"
-            >
-              <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.55 }}
-              className="flex items-center justify-center"
-            >
-              <img src={galpLogo} alt="Galp" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-              className="flex items-center justify-center"
-            >
-              <img src={claroLogo} alt="Claro" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.65 }}
-              className="flex items-center justify-center"
-            >
-              <img src={bcpLogo} alt="Millennium BCP" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.7 }}
-              className="flex items-center justify-center"
-            >
-              <img src={biLogo} alt="BI" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.75 }}
-              className="flex items-center justify-center"
-            >
-              <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-auto md:h-auto object-contain" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.8 }}
-              className="flex items-center justify-center"
-            >
-              <img src={landingLogo} alt="Landing.Jobs" className="h-auto md:h-auto object-contain" />
-            </motion.div>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 items-center">
+            {/* First Row - 8 logos */}
+            <div className="flex flex-wrap justify-center mb-6 md:mb-8 gap-6 md:gap-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={vodafoneLogo} alt="Vodafone" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={segurancaSocialLogo} alt="Segurança Social" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.25 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={randstadLogo} alt="Randstad" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={seedrsLogo} alt="Seedrs" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.35 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={montepioLogo} alt="Montepio" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.4 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={adeoLogo} alt="Adeo" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.45 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={lorealLogo} alt="L'Oréal" className="h-auto w-full object-contain" />
+              </motion.div>
+            </div>
+            
+            {/* Second Row - 7 logos */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.55 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={galpLogo} alt="Galp" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.6 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={claroLogo} alt="Claro" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.65 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={bcpLogo} alt="Millennium BCP" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.7 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={biLogo} alt="BI" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.75 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-auto w-full object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="w-[70px] md:w-[100px] flex items-center justify-center"
+              >
+                <img src={landingLogo} alt="Landing.Jobs" className="h-auto w-full object-contain" />
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
