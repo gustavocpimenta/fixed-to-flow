@@ -143,7 +143,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.1 }}
                 className="flex items-center justify-center"
               >
-                <img src={vodafoneLogo} alt="Vodafone" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={vodafoneLogo} alt="Vodafone" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -152,7 +152,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.15 }}
                 className="flex items-center justify-center"
               >
-                <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -161,7 +161,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.2 }}
                 className="flex items-center justify-center"
               >
-                <img src={segurancaSocialLogo} alt="Segurança Social" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={segurancaSocialLogo} alt="Segurança Social" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -170,7 +170,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.25 }}
                 className="flex items-center justify-center"
               >
-                <img src={randstadLogo} alt="Randstad" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={randstadLogo} alt="Randstad" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -179,7 +179,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.3 }}
                 className="flex items-center justify-center"
               >
-                <img src={seedrsLogo} alt="Seedrs" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={seedrsLogo} alt="Seedrs" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
             </div>
             
@@ -192,7 +192,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.35 }}
                 className="flex items-center justify-center"
               >
-                <img src={montepioLogo} alt="Montepio" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={montepioLogo} alt="Montepio" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -201,7 +201,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.4 }}
                 className="flex items-center justify-center"
               >
-                <img src={adeoLogo} alt="Adeo" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={adeoLogo} alt="Adeo" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -210,7 +210,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.45 }}
                 className="flex items-center justify-center"
               >
-                <img src={lorealLogo} alt="L'Oréal" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={lorealLogo} alt="L'Oréal" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -219,7 +219,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.5 }}
                 className="flex items-center justify-center"
               >
-                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -228,7 +228,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.55 }}
                 className="flex items-center justify-center"
               >
-                <img src={galpLogo} alt="Galp" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={galpLogo} alt="Galp" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
             </div>
             
@@ -241,7 +241,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.6 }}
                 className="flex items-center justify-center"
               >
-                <img src={claroLogo} alt="Claro" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={claroLogo} alt="Claro" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -250,7 +250,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.65 }}
                 className="flex items-center justify-center"
               >
-                <img src={bcpLogo} alt="Millennium BCP" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={bcpLogo} alt="Millennium BCP" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -259,7 +259,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.7 }}
                 className="flex items-center justify-center"
               >
-                <img src={biLogo} alt="BI" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={biLogo} alt="BI" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -268,7 +268,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.75 }}
                 className="flex items-center justify-center"
               >
-                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -277,7 +277,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.8 }}
                 className="flex items-center justify-center"
               >
-                <img src={landingLogo} alt="Landing.Jobs" className="h-[40px] md:h-auto md:max-h-[60px] object-contain" />
+                <img src={landingLogo} alt="Landing.Jobs" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
             </div>
           </div>
