@@ -3,35 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #FF3E01;
-  --primary-dark: #d63300;
-}
-
-@layer base {
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-    position: relative;
-    height: auto;
-    min-height: 100%;
-  }
-  
-  body {
-    color: #333;
-    background-color: white;
-  }
-}
-
-@layer components {
-  .container-sm {
-    @apply container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8;
-  }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -99,9 +70,23 @@
     @apply border-border;
   }
 
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 100%;
+  }
+  
   body {
     @apply font-sans antialiased bg-background text-foreground;
     scroll-padding-top: 5rem;
+  }
+}
+
+@layer components {
+  .container-sm {
+    @apply container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8;
   }
 
   .gradient-bg {
