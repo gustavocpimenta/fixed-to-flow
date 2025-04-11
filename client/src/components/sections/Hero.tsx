@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import springWithBackground from "@/assets/spring_with_background.png";
 
 interface HeroProps {
-  onGetStarted: () => void;
+  onGetStarted: (section?: 'whatWeDo' | 'contact') => void;
 }
 
 const Hero = ({ onGetStarted }: HeroProps) => {
@@ -39,7 +39,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 <Button 
                   size="lg" 
                   className="px-8 py-6 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-primary/20 group"
-                  onClick={onGetStarted}
+                  onClick={() => onGetStarted('whatWeDo')}
                 >
                   <span>Discover How</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

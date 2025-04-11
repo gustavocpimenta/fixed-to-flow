@@ -41,7 +41,7 @@ function App() {
         />
         
         <main className="flex-grow">
-          <Hero onGetStarted={() => scrollToSection(contactRef)} />
+          <Hero onGetStarted={(section) => scrollToSection(section === 'whatWeDo' ? whatWeDoRef : contactRef)} />
           <div ref={whatWeDoRef}>
             <WhatWeDo />
           </div>
