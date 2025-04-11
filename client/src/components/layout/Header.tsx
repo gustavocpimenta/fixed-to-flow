@@ -45,10 +45,10 @@ const Header = ({ onNavigate }: HeaderProps) => {
         <div className="flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center space-x-3 focus:outline-none group"
+            className="flex items-center space-x-3 focus:outline-none"
             aria-label="Go to top"
           >
-            <div className="w-48 h-10 relative overflow-hidden transition-transform group-hover:scale-105"> {/* Increased logo size */}
+            <div className="w-48 h-10 relative overflow-hidden"> {/* Removed transition and hover effect */}
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
@@ -63,7 +63,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
               {[
                 { label: "What We Do", handler: onNavigate.whatWeDo },
                 { label: "Why Us", handler: onNavigate.whyUs },
-                { label: "Beyond Business", handler: onNavigate.nonProfit },
                 { label: "Contact", handler: onNavigate.contact }
               ].map((item, index) => (
                 <Button
@@ -103,7 +102,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
             {[
               { label: "What We Do", handler: onNavigate.whatWeDo },
               { label: "Why Us", handler: onNavigate.whyUs },
-              { label: "Beyond Business", handler: onNavigate.nonProfit },
               { label: "Contact", handler: onNavigate.contact }
             ].map((item, index) => (
               <Button 

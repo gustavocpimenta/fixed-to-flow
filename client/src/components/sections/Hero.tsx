@@ -39,7 +39,12 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 <Button 
                   size="lg" 
                   className="px-8 py-6 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-primary/20 group"
-                  onClick={onGetStarted}
+                  onClick={() => {
+                    const whatWeDoSection = document.getElementById('what-we-do');
+                    if (whatWeDoSection) {
+                      whatWeDoSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 >
                   <span>Discover How</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
