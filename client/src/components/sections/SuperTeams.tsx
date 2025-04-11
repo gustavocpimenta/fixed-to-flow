@@ -63,7 +63,7 @@ const SuperTeams = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-3 grid md:grid-cols-2 gap-4"
+            className="mt-8 grid md:grid-cols-2 gap-4"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
