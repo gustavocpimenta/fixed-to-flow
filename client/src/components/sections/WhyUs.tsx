@@ -103,11 +103,12 @@ const WhyUs = () => {
                         leaders craft strategic visions or on the street supporting young people hustling for 
                         their next opportunity, Gus feels equally at home.
                       </p>
-                    </div>
+                  
 
                     <p className="text-base leading-relaxed text-gray-600">
                       He doesn't just talk about adaptability — he lives it. And that lived experience is what fuels his ability to guide others through complex, changing times.
                     </p>
+                      </div>
                   </motion.div>
                 </div>
               </div>
