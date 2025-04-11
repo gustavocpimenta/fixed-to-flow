@@ -117,7 +117,7 @@ const WhyUs = () => {
         </div>
 
         <div className="max-w-6xl mx-auto mt-16">
-          <p className="text-gray-500 mb-6 text-center">Trusted by leading organizations</p>
+          <p className="text-gray-500 mb-6 text-center text-xl font-medium">Trusted by</p>
           <div className="flex flex-col gap-6 md:gap-8 items-center">
             {/* First Row - 5 logos */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">
