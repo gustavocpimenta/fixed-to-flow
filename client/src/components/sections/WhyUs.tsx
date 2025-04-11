@@ -64,8 +64,8 @@ const WhyUs = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-              <div className="lg:col-span-4 p-8 flex flex-col justify-center items-center lg:items-start">
-                <div className="w-full max-w-[56%] lg:max-w-[80%]"> {/* Increased by 15% */}
+              <div className="lg:col-span-4 p-8 flex flex-col justify-center items-center">
+                <div className="w-full max-w-[45%] lg:max-w-[64%] flex justify-center"> {/* Reduced by 20% */}
                   <img 
                     src={gusImage} 
                     alt="Gus, Fixed to Flow Founder" 
