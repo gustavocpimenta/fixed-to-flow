@@ -106,8 +106,7 @@ const WhyUs = () => {
                     </div>
 
                     <p className="text-base leading-relaxed text-gray-600">
-                      He doesn't just talk about adaptability — he lives it. And that lived experience 
-                      is what fuels his ability to guide others through complex, changing times.
+                      He doesn't just talk about adaptability — he lives it. And that lived experience is what fuels his ability to guide others through complex, changing times.
                     </p>
                   </motion.div>
                 </div>
