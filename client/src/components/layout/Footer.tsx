@@ -77,7 +77,7 @@ const Footer = () => {
             >
               Embrace change
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-12">Let's meet as we are, on the way</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-16">Let's meet as we are, on the way</h2>
           </motion.div>
         </div>
 
