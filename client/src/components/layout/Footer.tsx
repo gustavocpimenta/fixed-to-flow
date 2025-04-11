@@ -195,8 +195,8 @@ const Footer = () => {
             </motion.div>
 
             {/* Footer section */}
-            <div className="absolute bottom-8 right-8">
-              <div className="flex justify-end space-x-6 mb-4">
+            <div className="mt-20 md:mt-16 py-6 border-t border-gray-800">
+              <div className="flex justify-center md:justify-end space-x-6 mb-4">
                 <a href="https://twitter.com" className="text-gray-400 hover:text-gray-300">
                   <span className="sr-only">Twitter</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -216,7 +216,7 @@ const Footer = () => {
                   </svg>
                 </a>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm text-center md:text-right">
                 © 2025 Fixed to Flow. All rights reserved.
               </p>
             </div>
