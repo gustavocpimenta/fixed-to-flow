@@ -48,7 +48,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none group"
             aria-label="Go to top"
           >
-            <div className="w-48 h-10 relative overflow-hidden"> {/* Logo container */}
+            <div className="w-48 h-10 relative overflow-hidden transition-transform group-hover:scale-105"> {/* Increased logo size */}
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
