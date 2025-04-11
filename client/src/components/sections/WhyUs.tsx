@@ -86,7 +86,7 @@ const WhyUs = () => {
                   >
                     <div className="mb-8">
                       <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full mb-4">FOUNDER STORY</span>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Meet Gus, Fixed to Flow Founder</h3>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Meet Gus</h3>
                     </div>
 
                     
