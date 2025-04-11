@@ -1,3 +1,33 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FF3E01;
+  --primary-dark: #d63300;
+}
+
+@layer base {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  body {
+    color: #333;
+    background-color: white;
+  }
+}
+
+@layer components {
+  .container-sm {
+    @apply container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8;
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
