@@ -50,7 +50,7 @@ const WhyUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              We bring two decades of hands-on experience navigating digital transformation 
+              We bring hands-on experience navigating digital transformation 
               and human adaptation, offering you not just strategies but proven pathways 
               to thrive amid constant change.
             </motion.p>
