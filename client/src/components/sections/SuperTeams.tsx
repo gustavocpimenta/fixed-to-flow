@@ -45,7 +45,7 @@ const SuperTeams = () => {
   };
 
   return (
-    <section className="py-12 bg-gray-800 text-white">
+    <section className="py-8 bg-gray-800 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.h2 
@@ -63,7 +63,7 @@ const SuperTeams = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-12 grid md:grid-cols-2 gap-6"
+            className="mt-8 grid md:grid-cols-2 gap-6"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
