@@ -93,22 +93,17 @@ const WhyUs = () => {
 
                     <div className="space-y-6">
                       <p className="text-base leading-relaxed text-gray-600">
-                        Gus has spent the past 20 years building digital products, designing meaningful 
-                        productivity systems, and supporting top performers through change.
+                        Gus has spent the last 20 years making things that work—digital products, meaningful systems, and paths through change for people who like to do hard things.
                       </p>
 
                       <p className="text-base leading-relaxed text-gray-600">
-                        His path—shaped by radical diversity across personal and professional worlds—allows 
-                        him to draw from a wide range of perspectives. Whether he's in the boardroom helping 
-                        leaders craft strategic visions or on the street supporting young people hustling for 
-                        their next opportunity, Gus feels equally at home.
+                        His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality, he's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.
                       </p>
-                  
 
-                    <p className="text-base leading-relaxed text-gray-600">
-                      He doesn't just talk about adaptability — he lives it. And that lived experience is what fuels his ability to guide others through complex, changing times.
-                    </p>
-                      </div>
+                      <p className="text-base leading-relaxed text-gray-600">
+                        Adaptability isn't a tagline for Gus—it's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).
+                      </p>
+                    </div>
                   </motion.div>
                 </div>
               </div>
