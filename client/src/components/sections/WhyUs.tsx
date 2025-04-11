@@ -65,23 +65,15 @@ const WhyUs = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-4 p-8 flex flex-col justify-center items-center lg:items-start">
-                <div className="w-full max-w-[45%] lg:max-w-[60%]"> {/* Reduced by 20% */}
+                <div className="w-full max-w-[56%] lg:max-w-[80%]"> {/* Increased by 15% */}
                   <img 
                     src={gusImage} 
                     alt="Gus, Fixed to Flow Founder" 
                     className="rounded-xl mx-auto object-cover" 
                   />
                 </div>
-                <div className="mt-5">
-                  <a 
-                    href="https://linkedin.com" 
-                    className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary hover:bg-primary/30 transition-all"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                  </a>
-                </div>
+
+
               </div>
 
               <div className="lg:col-span-8 p-8 lg:p-12 bg-white rounded-3xl shadow-lg">
