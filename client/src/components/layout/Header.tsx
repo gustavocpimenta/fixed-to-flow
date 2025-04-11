@@ -16,10 +16,20 @@ interface HeaderProps {
 const Header = ({ onNavigate }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Get viewport height
+      const viewportHeight = window.innerHeight;
+      // Calculate half of the hero section height (assuming hero is full viewport height)
+      const halfHeroHeight = viewportHeight / 2;
+      
+      // Update scroll state for styling
       setIsScrolled(window.scrollY > 50);
+      
+      // Update visibility state based on scroll position relative to half of hero height
+      setIsVisible(window.scrollY >= halfHeroHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -36,7 +46,11 @@ const Header = ({ onNavigate }: HeaderProps) => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${
+      isVisible 
+        ? 'translate-y-0 opacity-100' 
+        : 'translate-y-[-100%] opacity-0'
+    } ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
         : 'bg-white py-5'
@@ -48,7 +62,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
             className="flex items-center space-x-3 focus:outline-none"
             aria-label="Go to top"
           >
-            <div className="w-48 h-10 relative overflow-hidden"> {/* Removed transition and hover effect */}
+            <div className="w-48 h-10 relative overflow-hidden">
               <img 
                 src={fixedToFlowLogo} 
                 alt="Fixed to Flow logo" 
@@ -79,7 +93,6 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
-
             <button
               onClick={toggleMenu}
               className="p-2 rounded-lg hover:bg-gray-100/10"
@@ -108,7 +121,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                 key={index}
                 variant="ghost" 
                 onClick={() => handleNavClick(item.handler)}
-                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary rounded-lg font-medium transition-colors text-lg hover:bg-transparent" // Added text-base class
+                className="block w-full text-left my-2 px-4 py-3 text-gray-700 hover:text-primary rounded-lg font-medium transition-colors text-lg hover:bg-transparent"
               >
                 {item.label}
               </Button>
