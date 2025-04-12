@@ -25,8 +25,8 @@ const WhatWeDo = () => {
         >
           {/* Dragon image on the left */}
           <div className="flex-1">
-            <div className="relative w-full max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-400 to-yellow-500 p-1">
-              <div className="rounded-xl overflow-hidden bg-yellow-400">
+            <div className="relative w-full max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <img 
                   src={dragonImage} 
                   alt="Origami dragon" 
