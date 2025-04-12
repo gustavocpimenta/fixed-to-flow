@@ -21,7 +21,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-col lg:flex-row items-center gap-12 max-w-5xl mx-auto"
+          className="flex flex-col lg:flex-row items-center gap-6 max-w-5xl mx-auto"
         >
           {/* Dragon image on the left */}
           <div className="flex-1">
