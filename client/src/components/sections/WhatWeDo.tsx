@@ -41,12 +41,9 @@ const WhatWeDo = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               <span className="text-primary">Adaptive by Design</span>
             </h3>
-            <div className="space-y-4 text-lg text-gray-300">
+            <div className="text-xl md:text-2xl text-gray-300">
               <p>
-                We help small teams, businesses, and leaders not just <em>cope</em> with change, but leverage it.
-              </p>
-              <p>
-                Through strategy, mentoring, and AI-powered tools, we ensure you're <strong>AI-ready, future-focused, and adaptable</strong>.
+                Become <strong>AI-ready, future-focused, and adaptable</strong>.
               </p>
             </div>
           </div>
