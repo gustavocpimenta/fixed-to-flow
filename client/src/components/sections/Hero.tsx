@@ -31,8 +31,8 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 <span>Embrace change with confidence.</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
-                We empower people and businesses to amplify their adaptability to change.
+              <p className="text-2xl md:text-3xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+                Become AI-ready, future-focused, and adaptable.
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
