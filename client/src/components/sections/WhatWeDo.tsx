@@ -46,7 +46,7 @@ const WhatWeDo = () => {
                 We help small teams, businesses, and leaders not just <em>cope</em> with change, but leverage it.
               </p>
               <p>
-                Through strategy, training, and AI-powered tools, we ensure you're <strong>AI-ready, future-focused, and adaptable</strong>.
+                Through strategy, mentoring, and AI-powered tools, we ensure you're <strong>AI-ready, future-focused, and adaptable</strong>.
               </p>
             </div>
           </div>
