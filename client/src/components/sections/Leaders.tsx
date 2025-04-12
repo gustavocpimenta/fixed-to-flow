@@ -55,11 +55,11 @@ const Leaders = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            For Leaders and Change Makers
+            For Leaders and Change-Makers
           </motion.h2>
           
           <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center">
-            One-on-one mentoring for leaders and change makers seeking clarity, decisive action, and accelerated growth through an experimental mindset.
+            One-on-one mentoring for leaders and change-makers seeking clarity, decisive action, and accelerated growth through an experimental mindset.
           </p>
           
           <motion.div
