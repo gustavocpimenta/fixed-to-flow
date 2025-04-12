@@ -12,7 +12,6 @@ import lisboaCMLogo from "../../assets/client_logos/cml.png";
 import galpLogo from "../../assets/client_logos/galp.png";
 import claroLogo from "../../assets/client_logos/claro.png";
 import bcpLogo from "../../assets/client_logos/bcp.png";
-import biLogo from "../../assets/client_logos/bi.png";
 import tecnicoLogo from "../../assets/client_logos/tecnico.png";
 import landingLogo from "../../assets/client_logos/lannding.png";
 import bpLogo from "../../assets/client_logos/bp.png";
@@ -251,7 +250,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.7 }}
                 className="flex items-center justify-center"
               >
-                <img src={biLogo} alt="BI" className="h-[40px] md:h-auto object-contain" />
+                <img src={bpLogo} alt="BP" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
