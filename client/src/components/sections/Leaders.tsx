@@ -59,7 +59,7 @@ const Leaders = () => {
           </motion.h2>
           
           <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center">
-            One-on-one mentoring for leaders and change-makers seeking clarity, decisive action, and accelerated growth through an experimental mindset.
+            One-on-one mentoring to build clarity, decisive action, and experimental growth.
           </p>
           
           <motion.div
