@@ -59,7 +59,7 @@ const SuperTeams = () => {
           </motion.h2>
           
           <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center">
-            Practical, fast-moving support to help small teams and bold companies adapt, build, and lead with AI.
+            Accelerating your team ability to adapt, build, and lead with AI.
           </p>
           
           <motion.div
