@@ -103,7 +103,7 @@ const Footer = () => {
                       <FormControl>
                         <Input 
                           placeholder="Your name" 
-                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white" 
                           {...field}
                         />
                       </FormControl>
@@ -122,7 +122,7 @@ const Footer = () => {
                         <Input 
                           type="email"
                           placeholder="you@example.com" 
-                          className="bg-gray-800 border-gray-700 focus:border-red-500 text-white"
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white"
                           {...field}
                         />
                       </FormControl>
@@ -140,7 +140,7 @@ const Footer = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Tell us about your project or question..." 
-                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-red-500 text-white" 
+                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white" 
                           {...field}
                         />
                       </FormControl>
