@@ -172,9 +172,11 @@ const Footer = () => {
               <p className="text-lg text-gray-300 mb-8">
                 From intimate dinners to personal tools, a grounded ecosystem for connection, reflection, and growth.</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
-                  <p className="text-sm">Thoughts and practices for living through change with intention.</p>
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0 hover:bg-[#1a2235] transition-colors">
+                  <a href="https://fixedtoflow.substack.com/" target="_blank" rel="noopener noreferrer" className="block">
+                    <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
+                    <p className="text-sm">Thoughts and practices for living through change with intention.</p>
+                  </a>
                 </Card>
 
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
