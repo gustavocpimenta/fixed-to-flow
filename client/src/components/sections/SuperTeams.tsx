@@ -72,13 +72,13 @@ const SuperTeams = () => {
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300 bg-gray-700/50 border-gray-600">
-                  <CardHeader>
+                  <CardHeader className="pb-3">
                     <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                       {service.icon}
                     </div>
                     <CardTitle className="text-xl font-bold text-white">{service.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="pt-0">
                     <p className="text-gray-300">{service.description}</p>
                   </CardContent>
                 </Card>
