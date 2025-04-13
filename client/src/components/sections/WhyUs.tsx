@@ -39,7 +39,7 @@ const WhyUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Why Work With Us?
+              Why Work With Us
             </motion.h2>
 
             <motion.p
