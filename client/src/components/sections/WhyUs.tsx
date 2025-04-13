@@ -123,7 +123,7 @@ const WhyUs = () => {
         <div className="max-w-6xl mx-auto mt-16">
           <p className="text-gray-500 mb-6 text-center text-xl font-medium">Trusted by</p>
           <div className="flex flex-col gap-6 md:gap-8 items-center">
-            {/* First Row - 5 logos */}
+            {/* First Row - 3 logos on mobile, 5 on desktop */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -157,7 +157,7 @@ const WhyUs = () => {
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.25 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={randstadLogo} alt="Randstad" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
@@ -166,13 +166,13 @@ const WhyUs = () => {
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.3 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={seedrsLogo} alt="Seedrs" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
             </div>
             
-            {/* Second Row - 5 logos */}
+            {/* Second Row - 3 logos on mobile, 5 on desktop */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -181,7 +181,8 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.35 }}
                 className="flex items-center justify-center"
               >
-                <img src={montepioLogo} alt="Montepio" className="h-[40px] md:h-auto object-contain" />
+                <img src={randstadLogo} alt="Randstad" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={montepioLogo} alt="Montepio" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -190,7 +191,8 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.4 }}
                 className="flex items-center justify-center"
               >
-                <img src={adeoLogo} alt="Adeo" className="h-[40px] md:h-auto object-contain" />
+                <img src={seedrsLogo} alt="Seedrs" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={adeoLogo} alt="Adeo" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -199,14 +201,15 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.45 }}
                 className="flex items-center justify-center"
               >
-                <img src={lorealLogo} alt="L'Oréal" className="h-[40px] md:h-auto object-contain" />
+                <img src={montepioLogo} alt="Montepio" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={lorealLogo} alt="L'Oréal" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
@@ -215,13 +218,13 @@ const WhyUs = () => {
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.55 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={galpLogo} alt="Galp" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
             </div>
             
-            {/* Third Row - 5 logos */}
+            {/* Third Row - 3 logos on mobile, 5 on desktop */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -230,7 +233,8 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.6 }}
                 className="flex items-center justify-center"
               >
-                <img src={claroLogo} alt="Claro" className="h-[40px] md:h-auto object-contain" />
+                <img src={adeoLogo} alt="Adeo" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={claroLogo} alt="Claro" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -239,7 +243,8 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.65 }}
                 className="flex items-center justify-center"
               >
-                <img src={bcpLogo} alt="Millennium BCP" className="h-[40px] md:h-auto object-contain" />
+                <img src={lorealLogo} alt="L'Oréal" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={bcpLogo} alt="Millennium BCP" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -248,14 +253,15 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.7 }}
                 className="flex items-center justify-center"
               >
-                <img src={bpLogo} alt="BP" className="h-[40px] md:h-auto object-contain" />
+                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={bpLogo} alt="BP" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.75 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[40px] md:h-auto object-contain" />
               </motion.div>
@@ -264,9 +270,71 @@ const WhyUs = () => {
                 whileInView={{ opacity: 0.7, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.8 }}
-                className="flex items-center justify-center"
+                className="hidden md:flex items-center justify-center"
               >
                 <img src={landingLogo} alt="Landing.Jobs" className="h-[40px] md:h-auto object-contain" />
+              </motion.div>
+            </div>
+            
+            {/* Fourth Row - Mobile only (3 logos) */}
+            <div className="grid grid-cols-3 gap-4 md:hidden">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.75 }}
+                className="flex items-center justify-center"
+              >
+                <img src={galpLogo} alt="Galp" className="h-[40px] object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="flex items-center justify-center"
+              >
+                <img src={claroLogo} alt="Claro" className="h-[40px] object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.85 }}
+                className="flex items-center justify-center"
+              >
+                <img src={bcpLogo} alt="Millennium BCP" className="h-[40px] object-contain" />
+              </motion.div>
+            </div>
+            
+            {/* Fifth Row - Mobile only (3 logos) */}
+            <div className="grid grid-cols-3 gap-4 md:hidden">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.9 }}
+                className="flex items-center justify-center"
+              >
+                <img src={bpLogo} alt="BP" className="h-[40px] object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.95 }}
+                className="flex items-center justify-center"
+              >
+                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[40px] object-contain" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 0.7, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 1.0 }}
+                className="flex items-center justify-center"
+              >
+                <img src={landingLogo} alt="Landing.Jobs" className="h-[40px] object-contain" />
               </motion.div>
             </div>
           </div>
