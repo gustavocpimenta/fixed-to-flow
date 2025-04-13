@@ -89,7 +89,7 @@ const WhyUs = () => {
 
                     <div className="space-y-6">
                       <p className="text-base leading-relaxed text-gray-600">
-                        Gus has spent the last 20 years making things that work—digital products, meaningful systems, and paths through change for people who like to do hard things.
+                        Gus has spent decades bringing ideas to life — building digital products, designing meaningful systems, and supporting people as they navigate complex change.
                       </p>
 
                       <p className="text-base leading-relaxed text-gray-600">
@@ -97,7 +97,7 @@ const WhyUs = () => {
                       </p>
 
                       <p className="text-base leading-relaxed text-gray-600">
-                        Adaptability isn't a tagline for Gus—it's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).
+                        Adaptability isn't a tagline for Gus — it's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).
                       </p>
                       
                       <div className="flex space-x-3 mt-4">
