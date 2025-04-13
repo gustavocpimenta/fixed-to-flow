@@ -19,9 +19,27 @@ const Hero = ({ onGetStarted }: HeroProps) => {
       <div className="container relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center gap-4 md:gap-8 lg:gap-16 lg:flex-row lg:items-start">
+            {/* Visual element - Now at the top on mobile */}
+            <motion.div 
+              className="w-full lg:w-auto flex-1 relative order-first lg:order-last mb-8 lg:mb-0"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-lg mx-auto">
+                <div className="rounded-2xl overflow-hidden">
+                  <img 
+                    src={springWithBackground} 
+                    alt="Fixed to Flow Spring" 
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+            </motion.div>
+            
             {/* Text content */}
             <motion.div 
-              className="flex-1 text-center lg:text-left"
+              className="flex-1 text-center lg:text-left order-last lg:order-first"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
@@ -57,24 +75,6 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 >
                   Get in Touch
                 </Button>
-              </div>
-            </motion.div>
-
-            {/* Visual element - Now visible on mobile too */}
-            <motion.div 
-              className="flex-1 relative mt-8 lg:mt-0"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-lg mx-auto">
-                <div className="rounded-2xl overflow-hidden">
-                  <img 
-                    src={springWithBackground} 
-                    alt="Fixed to Flow Spring" 
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
               </div>
             </motion.div>
           </div>
