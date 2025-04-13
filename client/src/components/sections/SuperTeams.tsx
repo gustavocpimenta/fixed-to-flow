@@ -13,7 +13,7 @@ const SuperTeams = () => {
     {
       icon: <Rocket className="w-8 h-8 text-primary" />,
       title: "One-Week MVP Sprints",
-      description: "From idea to MVP in one week. We use AI-powered tools to fast-track your concept, so you can test, learn, and evolve—fast."
+      description: "We use AI-powered tools to fast-track your concept, so you can test, learn, and evolve—fast."
     },
     {
       icon: <Clock className="w-8 h-8 text-primary" />,
