@@ -18,7 +18,7 @@ const SuperTeams = () => {
     {
       icon: <Clock className="w-8 h-8 text-primary" />,
       title: "AI Foundations for Leaders",
-      description: "A one-day workshop to go from AI basics to strategic insight. Build literacy, explore future scenarios, and turn emerging tech into real business value."
+      description: "A one-day workshop to to build AI literacy, play with future scenarios, and explore future skills."
     },
     {
       icon: <Sparkles className="w-8 h-8 text-primary" />,
