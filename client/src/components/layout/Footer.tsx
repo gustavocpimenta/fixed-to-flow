@@ -179,9 +179,11 @@ const Footer = () => {
                   </a>
                 </Card>
 
-                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Reinvention Stories</h4>
-                  <p className="text-sm">Real-life stories of transformation, resilience, and reinvention.</p>
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0 hover:bg-[#1a2235] transition-colors">
+                  <a href="https://medium.com/reinvention-space" target="_blank" rel="noopener noreferrer" className="block">
+                    <h4 className="font-bold mb-2">Reinvention Stories</h4>
+                    <p className="text-sm">Real-life stories of transformation, resilience, and reinvention.</p>
+                  </a>
                 </Card>
 
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
