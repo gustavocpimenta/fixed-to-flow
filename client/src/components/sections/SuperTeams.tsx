@@ -45,7 +45,7 @@ const SuperTeams = () => {
   };
 
   return (
-    <section className="pt-4 pb-20 bg-gray-800 text-white">
+    <section className="pt-4 pb-20 bg-gradient-to-b from-gray-800 to-gray-700 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.h2 
