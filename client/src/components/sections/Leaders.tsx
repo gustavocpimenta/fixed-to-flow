@@ -13,7 +13,7 @@ const Leaders = () => {
     {
       icon: <Compass className="w-8 h-8 text-primary" />,
       title: "Flow Compass",
-      description: "A self-discovery tool to map where you are, what's shifting, and where your energy wants to go next. Think of it as your inner GPS for meaningful change."
+      description: "A direction tool to map your current state, emerging shifts, and where your values and energy align."
     },
     {
       icon: <Bot className="w-8 h-8 text-primary" />,
