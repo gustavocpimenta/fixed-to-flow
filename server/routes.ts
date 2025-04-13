@@ -3,13 +3,33 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { sendContactEmail, verifyEmailConfig } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Check email configuration on startup
+  verifyEmailConfig().then(isConfigured => {
+    if (isConfigured) {
+      console.log("Email service configured successfully");
+    } else {
+      console.warn("Email service not configured. Contact form will store submissions but not send emails.");
+    }
+  });
+
   // API routes with /api prefix
   app.post("/api/contact", async (req: Request, res: Response) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
+      
+      // Send email to gustavo@gustavopimenta.com
+      try {
+        await sendContactEmail(contact);
+        console.log(`Contact form submission from ${contact.email} sent to gustavo@gustavopimenta.com`);
+      } catch (emailError) {
+        console.error("Failed to send email notification:", emailError);
+        // We still return success since we stored the contact in the database
+      }
+      
       res.status(201).json({ 
         success: true, 
         data: contact,
