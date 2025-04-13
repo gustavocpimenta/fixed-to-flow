@@ -58,7 +58,7 @@ const SuperTeams = () => {
             For Super Teams and Bold Companies
           </motion.h2>
           
-          <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center">
+          <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center font-bold">
             Accelerating your team ability to adapt, build, and lead with AI.
           </p>
           
