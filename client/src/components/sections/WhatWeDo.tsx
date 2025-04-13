@@ -43,7 +43,7 @@ const WhatWeDo = () => {
             </h3>
             <div className="text-xl md:text-2xl text-gray-300">
               <p>
-                Take shape to face change. Become <strong>AI-ready, future-focused, and adaptable</strong>.
+                Accelerating your team ability to adapt, build, and lead with AI.
               </p>
             </div>
           </div>
