@@ -132,7 +132,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.1 }}
                 className="flex items-center justify-center"
               >
-                <img src={vodafoneLogo} alt="Vodafone" className="h-[40px] md:h-auto object-contain" />
+                <img src={vodafoneLogo} alt="Vodafone" className="h-[46px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -141,7 +141,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.15 }}
                 className="flex items-center justify-center"
               >
-                <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-[40px] md:h-auto object-contain" />
+                <img src={lisboaUniLogo} alt="Universidade de Lisboa" className="h-[46px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -150,7 +150,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.2 }}
                 className="flex items-center justify-center"
               >
-                <img src={segurancaSocialLogo} alt="Segurança Social" className="h-[40px] md:h-auto object-contain" />
+                <img src={segurancaSocialLogo} alt="Segurança Social" className="h-[46px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -181,7 +181,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.35 }}
                 className="flex items-center justify-center"
               >
-                <img src={randstadLogo} alt="Randstad" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={randstadLogo} alt="Randstad" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={montepioLogo} alt="Montepio" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -191,7 +191,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.4 }}
                 className="flex items-center justify-center"
               >
-                <img src={seedrsLogo} alt="Seedrs" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={seedrsLogo} alt="Seedrs" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={adeoLogo} alt="Adeo" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -201,7 +201,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.45 }}
                 className="flex items-center justify-center"
               >
-                <img src={montepioLogo} alt="Montepio" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={montepioLogo} alt="Montepio" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={lorealLogo} alt="L'Oréal" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -233,7 +233,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.6 }}
                 className="flex items-center justify-center"
               >
-                <img src={adeoLogo} alt="Adeo" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={adeoLogo} alt="Adeo" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={claroLogo} alt="Claro" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -243,7 +243,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.65 }}
                 className="flex items-center justify-center"
               >
-                <img src={lorealLogo} alt="L'Oréal" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={lorealLogo} alt="L'Oréal" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={bcpLogo} alt="Millennium BCP" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -253,7 +253,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.7 }}
                 className="flex items-center justify-center"
               >
-                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="md:hidden h-[40px] md:h-auto object-contain" />
+                <img src={lisboaCMLogo} alt="Câmara Municipal de Lisboa" className="md:hidden h-[46px] md:h-auto object-contain" />
                 <img src={bpLogo} alt="BP" className="hidden md:block h-[40px] md:h-auto object-contain" />
               </motion.div>
               <motion.div 
@@ -285,7 +285,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.75 }}
                 className="flex items-center justify-center"
               >
-                <img src={galpLogo} alt="Galp" className="h-[40px] object-contain" />
+                <img src={galpLogo} alt="Galp" className="h-[46px] object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -294,7 +294,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.8 }}
                 className="flex items-center justify-center"
               >
-                <img src={claroLogo} alt="Claro" className="h-[40px] object-contain" />
+                <img src={claroLogo} alt="Claro" className="h-[46px] object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -303,7 +303,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.85 }}
                 className="flex items-center justify-center"
               >
-                <img src={bcpLogo} alt="Millennium BCP" className="h-[40px] object-contain" />
+                <img src={bcpLogo} alt="Millennium BCP" className="h-[46px] object-contain" />
               </motion.div>
             </div>
             
@@ -316,7 +316,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.9 }}
                 className="flex items-center justify-center"
               >
-                <img src={bpLogo} alt="BP" className="h-[40px] object-contain" />
+                <img src={bpLogo} alt="BP" className="h-[46px] object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -325,7 +325,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 0.95 }}
                 className="flex items-center justify-center"
               >
-                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[40px] object-contain" />
+                <img src={tecnicoLogo} alt="Técnico Lisboa" className="h-[46px] object-contain" />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
@@ -334,7 +334,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.3, delay: 1.0 }}
                 className="flex items-center justify-center"
               >
-                <img src={landingLogo} alt="Landing.Jobs" className="h-[40px] object-contain" />
+                <img src={landingLogo} alt="Landing.Jobs" className="h-[46px] object-contain" />
               </motion.div>
             </div>
           </div>
