@@ -174,7 +174,7 @@ const Footer = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0 hover:bg-[#1a2235] transition-colors">
                   <a href="https://fixedtoflow.substack.com/" target="_blank" rel="noopener noreferrer" className="block">
-                    <h4 className="font-bold mb-2">Fixed to Flow Newsletter</h4>
+                    <h4 className="font-bold mb-2">Newsletter</h4>
                     <p className="text-sm">Thoughts and practices for living through change with intention.</p>
                   </a>
                 </Card>
@@ -193,7 +193,7 @@ const Footer = () => {
 
                 <Card className="bg-[#101727] text-white p-4 rounded-lg border-0 hover:bg-[#1a2235] transition-colors">
                   <a href="https://www.notion.so/marketplace/templates/personal-experiments-lab" target="_blank" rel="noopener noreferrer" className="block">
-                    <h4 className="font-bold mb-2">Personal Experiments Lab</h4>
+                    <h4 className="font-bold mb-2">Personal Experiments</h4>
                     <p className="text-sm">A tool to design, test, and refine new habits through experimentation.</p>
                   </a>
                 </Card>
