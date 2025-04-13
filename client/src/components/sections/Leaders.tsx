@@ -8,7 +8,7 @@ const Leaders = () => {
     {
       icon: <Layers className="w-8 h-8 text-primary" />,
       title: "Flow OS",
-      description: "Your personalized operating system for navigating change with clarity and confidence. Build adaptive habits, systems, and mindsets that align with your unique rhythm and life direction."
+      description: "A meaningful system to master change. Aligned with how you naturally work."
     },
     {
       icon: <Compass className="w-8 h-8 text-primary" />,
