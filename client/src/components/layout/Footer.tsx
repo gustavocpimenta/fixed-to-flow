@@ -191,9 +191,11 @@ const Footer = () => {
                   <p className="text-sm">Small, intimate, dinners to discuss big topics.</p>
                 </Card>
 
-                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0">
-                  <h4 className="font-bold mb-2">Personal Experiments Lab</h4>
-                  <p className="text-sm">A tool to design, test, and refine new habits through experimentation.</p>
+                <Card className="bg-[#101727] text-white p-4 rounded-lg border-0 hover:bg-[#1a2235] transition-colors">
+                  <a href="https://www.notion.so/marketplace/templates/personal-experiments-lab" target="_blank" rel="noopener noreferrer" className="block">
+                    <h4 className="font-bold mb-2">Personal Experiments Lab</h4>
+                    <p className="text-sm">A tool to design, test, and refine new habits through experimentation.</p>
+                  </a>
                 </Card>
               </div>
             </motion.div>
