@@ -58,7 +58,7 @@ const Leaders = () => {
             For Leaders and Change-Makers
           </motion.h2>
           
-          <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center">
+          <p className="text-lg text-gray-300 mt-4 mb-8 max-w-3xl mx-auto text-center font-bold">
             One-on-one mentoring to build clarity, decisive action, and experimental growth.
           </p>
           
