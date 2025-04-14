@@ -18,7 +18,7 @@ import bpLogo from "../../assets/client_logos/bp.png";
 
 const WhyUs = () => {
   return (
-    <section className="py-24 text-white -mt-1">
+    <section className="py-24 bg-gradient-to-b from-[#f8f8f8] to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -33,7 +33,7 @@ const WhyUs = () => {
             </motion.span>
 
             <motion.h2 
-              className="text-3xl md:text-5xl font-bold mb-8 text-white"
+              className="text-3xl md:text-5xl font-bold mb-8 text-gray-900"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -43,7 +43,7 @@ const WhyUs = () => {
             </motion.h2>
 
             <motion.p
-              className="text-lg md:text-xl leading-relaxed mb-12 max-w-4xl mx-auto text-gray-300"
+              className="text-lg md:text-xl leading-relaxed mb-12 max-w-4xl mx-auto text-gray-700"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -54,7 +54,7 @@ const WhyUs = () => {
           </div>
 
           <motion.div 
-            className="mb-16 text-center md:text-left bg-gray-800 rounded-2xl shadow-xl overflow-hidden"
+            className="mb-16 text-center md:text-left bg-white rounded-2xl shadow-xl overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -121,7 +121,7 @@ const WhyUs = () => {
         </div>
 
         <div className="max-w-6xl mx-auto mt-16">
-          <p className="text-white mb-6 text-center text-xl font-medium">Trusted by</p>
+          <p className="text-gray-500 mb-6 text-center text-xl font-medium">Trusted by</p>
           <div className="flex flex-col gap-6 md:gap-8 items-center">
             {/* First Row - 3 logos on mobile, 5 on desktop */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">

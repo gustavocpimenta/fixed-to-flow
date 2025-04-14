@@ -43,10 +43,10 @@ function App() {
           <div ref={whatWeDoRef} className="bg-gradient-to-b from-gray-900 to-gray-800">
             <WhatWeDo />
           </div>
-          <div ref={superTeamsRef} style={{marginTop: "-1px"}} className="bg-gradient-to-b from-gray-900 to-gray-800">
+          <div ref={superTeamsRef} className="bg-gradient-to-b from-gray-800 to-gray-900">
             <ServicesTab />
           </div>
-          <div ref={whyUsRef} style={{marginTop: "-1px"}} className="bg-gradient-to-b from-gray-900 to-gray-800">
+          <div ref={whyUsRef}>
             <WhyUs />
           </div>
         </main>
