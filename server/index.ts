@@ -37,6 +37,13 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Log environment setup for debugging deployment issues
+  console.log("Environment:", {
+    NODE_ENV: process.env.NODE_ENV,
+    EMAIL_CONFIG: process.env.EMAIL_USER ? "Set" : "Not set",
+    IS_DEPLOYMENT: process.env.REPL_SLUG && process.env.REPL_OWNER ? "Yes" : "No"
+  });
+
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
