@@ -21,7 +21,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-0 max-w-4xl mx-auto"
+          className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-8 max-w-5xl mx-auto"
         >
           {/* Dragon image on the left */}
           <div className="w-full lg:w-1/2">
@@ -37,7 +37,7 @@ const WhatWeDo = () => {
           </div>
           
           {/* Text content on the right */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left lg:-ml-36">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               <span className="text-primary">Your Ally for Change</span>
             </h3>
