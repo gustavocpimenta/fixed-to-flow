@@ -37,7 +37,7 @@ const WhatWeDo = () => {
           </div>
           
           {/* Text content on the right */}
-          <div className="flex-1 text-center lg:text-left lg:-ml-8">
+          <div className="flex-1 text-center lg:text-left lg:-ml-48">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               <span className="text-primary">Adaptive by Design</span>
             </h3>
