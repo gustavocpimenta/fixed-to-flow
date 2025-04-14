@@ -27,12 +27,12 @@ const WhatWeDo = () => {
             <div className="flex flex-col md:flex-row items-center gap-1 md:gap-0 -mr-14">
               {/* Dragon image on the left */}
               <div className="md:w-5/12 flex justify-center">
-                <div className="relative w-full max-w-md mx-auto md:mr-0">
+                <div className="relative w-full max-w-md mx-auto md:mr-0 md:scale-110 md:origin-right">
                   <div className="rounded-xl overflow-hidden">
                     <img 
                       src={dragonImage} 
                       alt="Origami dragon" 
-                      className="w-full h-auto object-contain"
+                      className="w-[110%] h-auto object-contain"
                     />
                   </div>
                 </div>
