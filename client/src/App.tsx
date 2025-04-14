@@ -38,12 +38,21 @@ function App() {
           }}
         />
         
-        <main className="flex-grow">
+        <main className="flex-grow" style={{ position: "relative" }}>
           <Hero onGetStarted={() => scrollToSection(contactRef)} />
-          <div ref={whatWeDoRef} style={{ marginBottom: "-1px" }} className="bg-gradient-to-b from-gray-900 to-gray-800">
+          <div ref={whatWeDoRef} style={{ marginBottom: "-2px", position: "relative", zIndex: 1 }} className="bg-gradient-to-b from-gray-900 to-gray-800">
             <WhatWeDo />
           </div>
-          <div ref={superTeamsRef} style={{ marginTop: "-1px" }} className="bg-gradient-to-b from-gray-800 to-gray-900">
+          {/* This is a connection div to eliminate the white bar */}
+          <div style={{ 
+            position: "absolute", 
+            height: "4px", 
+            backgroundColor: "#1a1d21", 
+            width: "100%", 
+            marginTop: "-2px",
+            zIndex: 2
+          }}></div>
+          <div ref={superTeamsRef} style={{ marginTop: "-2px", position: "relative", zIndex: 1 }} className="bg-gradient-to-b from-gray-800 to-gray-900">
             <ServicesTab />
           </div>
           <div ref={whyUsRef}>
