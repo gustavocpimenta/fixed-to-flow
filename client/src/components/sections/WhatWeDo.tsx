@@ -22,30 +22,33 @@ const WhatWeDo = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-[208px] max-w-5xl mx-auto"
+            className="flex flex-col max-w-5xl mx-auto"
           >
-            {/* Dragon image on the left */}
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden">
-                <div className="rounded-xl overflow-hidden">
-                  <img 
-                    src={dragonImage} 
-                    alt="Origami dragon" 
-                    className="w-full h-auto object-contain"
-                  />
+            {/* Dark background container for dragon and text */}
+            <div className="bg-gray-900 rounded-3xl overflow-hidden p-8 sm:p-12">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                {/* Dragon image on the left */}
+                <div className="md:w-2/5 flex justify-center">
+                  <div className="relative w-64 md:w-full max-w-[280px] mx-auto">
+                    <img 
+                      src={dragonImage} 
+                      alt="Origami dragon" 
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Text content on the right */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                <span className="text-primary">Your Ally for Change</span>
-              </h3>
-              <div className="text-lg md:text-xl text-gray-300 mx-auto lg:mx-0 lg:w-[90%]">
-                <p>
-                  <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
-                </p>
+                {/* Text content on the right */}
+                <div className="md:w-3/5 text-center md:text-left">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 text-primary">
+                    Your Ally for Change
+                  </h3>
+                  <div className="text-lg md:text-xl text-gray-200">
+                    <p>
+                      <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
