@@ -43,7 +43,7 @@ const WhatWeDo = () => {
             </h3>
             <div className="text-xl md:text-2xl text-gray-300">
               <p>
-                <strong>We'll give you a helping hand — to take shape, face change, and become AI-ready, future-focused, and adaptable. But uniquely human.</strong>
+                <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
               </p>
             </div>
           </div>
