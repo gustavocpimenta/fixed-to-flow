@@ -9,6 +9,29 @@ img[src*="dragon.png"] {
 @tailwind components;
 @tailwind utilities;
 
+/* Remove any potential gaps between sections */
+section + section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Ensure no white space between divs */
+div {
+  border-width: 0;
+}
+
+/* Fix for the specific white bar between WhatWeDo and ServicesTab */
+#what-we-do {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+#what-we-do + div,
+#what-we-do + section {
+  margin-top: 0;
+  border-top: 0;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
