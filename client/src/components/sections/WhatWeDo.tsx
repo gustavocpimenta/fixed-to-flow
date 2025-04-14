@@ -39,7 +39,7 @@ const WhatWeDo = () => {
           {/* Text content on the right */}
           <div className="flex-1 text-center lg:text-left lg:-ml-36">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              <span className="text-primary">A Trusted Partner for What's Next</span>
+              <span className="text-primary">Your Ally for Change</span>
             </h3>
             <div className="text-lg md:text-xl text-gray-300 w-[70%]">
               <p>
