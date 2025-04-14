@@ -49,7 +49,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 <span>Embrace change with confidence.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">
                 We empower people and businesses to amplify their adaptability to change.
               </p>
 
