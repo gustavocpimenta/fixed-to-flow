@@ -31,9 +31,9 @@ function App() {
           onNavigate={{
             whatWeDo: () => scrollToSection(whatWeDoRef),
             superTeams: () => scrollToSection(superTeamsRef),
-            leaders: () => scrollToSection(superTeamsRef),
+            leaders: () => scrollToSection(superTeamsRef), // Both now use same ref
             whyUs: () => scrollToSection(whyUsRef),
-            nonProfit: () => {},
+            nonProfit: () => scrollToSection(whyUsRef), // Redirect to Why Us section
             contact: () => scrollToSection(contactRef)
           }}
         />
