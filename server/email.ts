@@ -49,16 +49,18 @@ export async function sendContactEmail(contact: Contact): Promise<boolean> {
 export async function verifyEmailConfig(): Promise<boolean> {
   try {
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.warn("Email credentials not configured");
+      console.warn("Email credentials not configured. Please set EMAIL_USER and EMAIL_PASSWORD environment variables.");
       return false;
     }
     
     // Verify connection configuration
     await transporter.verify();
-    console.log("Email service is ready");
+    console.log("Email service is ready. Using account:", process.env.EMAIL_USER);
     return true;
   } catch (error) {
     console.error("Email configuration error:", error);
+    console.error("This could be due to incorrect credentials or Gmail security settings.");
+    console.error("For Gmail, make sure to use an App Password and not your regular password.");
     return false;
   }
 }

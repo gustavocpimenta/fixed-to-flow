@@ -23,10 +23,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send email to gustavo@gustavopimenta.com
       try {
-        await sendContactEmail(contact);
-        console.log(`Contact form submission from ${contact.email} sent to gustavo@gustavopimenta.com`);
+        const emailSent = await sendContactEmail(contact);
+        if (emailSent) {
+          console.log(`Contact form submission from ${contact.email} sent to gustavo@gustavopimenta.com`);
+        } else {
+          console.error(`Failed to send email for contact from ${contact.email}. Email service may not be configured properly.`);
+        }
       } catch (emailError) {
         console.error("Failed to send email notification:", emailError);
+        console.error("Error details:", JSON.stringify(emailError, null, 2));
         // We still return success since we stored the contact in the database
       }
       
