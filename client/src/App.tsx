@@ -40,11 +40,13 @@ function App() {
         
         <main className="flex-grow">
           <Hero onGetStarted={() => scrollToSection(contactRef)} />
-          <div ref={whatWeDoRef} className="bg-gradient-to-b from-gray-900 to-gray-800">
-            <WhatWeDo />
-          </div>
-          <div ref={superTeamsRef} className="bg-gradient-to-b from-gray-800 to-gray-900">
-            <ServicesTab />
+          <div className="bg-gray-900">
+            <div ref={whatWeDoRef} className="bg-gradient-to-b from-gray-900 to-gray-800">
+              <WhatWeDo />
+            </div>
+            <div ref={superTeamsRef} style={{marginTop: "-1px"}} className="bg-gradient-to-b from-gray-800 to-gray-900">
+              <ServicesTab />
+            </div>
           </div>
           <div ref={whyUsRef}>
             <WhyUs />
