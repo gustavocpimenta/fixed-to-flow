@@ -7,17 +7,15 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import WhatWeDo from "@/components/sections/WhatWeDo";
-import SuperTeams from "@/components/sections/SuperTeams";
-import Leaders from "@/components/sections/Leaders";
+import ServicesTab from "@/components/sections/ServicesTab";
 import WhyUs from "@/components/sections/WhyUs";
-import NonProfit from "@/components/sections/NonProfit";
+// import NonProfit from "@/components/sections/NonProfit";
 
 function App() {
   const whatWeDoRef = useRef<HTMLDivElement>(null);
   const superTeamsRef = useRef<HTMLDivElement>(null);
-  const leadersRef = useRef<HTMLDivElement>(null);
+  // Combined SuperTeams and Leaders into ServicesTab
   const whyUsRef = useRef<HTMLDivElement>(null);
-  const nonProfitRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -33,9 +31,9 @@ function App() {
           onNavigate={{
             whatWeDo: () => scrollToSection(whatWeDoRef),
             superTeams: () => scrollToSection(superTeamsRef),
-            leaders: () => scrollToSection(leadersRef),
+            leaders: () => scrollToSection(superTeamsRef),
             whyUs: () => scrollToSection(whyUsRef),
-            nonProfit: () => scrollToSection(nonProfitRef),
+            nonProfit: () => {},
             contact: () => scrollToSection(contactRef)
           }}
         />
@@ -46,10 +44,7 @@ function App() {
             <WhatWeDo />
           </div>
           <div ref={superTeamsRef}>
-            <SuperTeams />
-          </div>
-          <div ref={leadersRef}>
-            <Leaders />
+            <ServicesTab />
           </div>
           <div ref={whyUsRef}>
             <WhyUs />
