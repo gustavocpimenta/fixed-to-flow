@@ -72,7 +72,7 @@ const WhyUs = () => {
 
               </div>
 
-              <div className="lg:col-span-8 p-8 lg:p-12 bg-gray-700 rounded-3xl shadow-lg">
+              <div className="lg:col-span-8 p-8 lg:p-12 bg-white rounded-3xl shadow-lg">
                 <div className="h-full flex flex-col">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -82,7 +82,7 @@ const WhyUs = () => {
                   >
                     <div className="mb-8">
                       <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full mb-4">FOUNDER STORY</span>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Meet Gus</h3>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Meet Gus</h3>
                     </div>
 
                     
