@@ -49,7 +49,7 @@ const SuperTeams = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-4 text-center text-white"
+            className="text-3xl md:text-4xl font-bold mb-4 text-center text-white mt-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
