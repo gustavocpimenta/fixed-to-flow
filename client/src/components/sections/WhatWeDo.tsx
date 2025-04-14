@@ -25,7 +25,7 @@ const WhatWeDo = () => {
             className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-0 max-w-5xl mx-auto"
           >
             {/* Dragon image on the left */}
-            <div className="w-full lg:w-1/2 flex justify-center">
+            <div className="w-full lg:w-1/2 flex justify-center lg:pr-16">
               <div className="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden">
                 <div className="rounded-xl overflow-hidden">
                   <img 
