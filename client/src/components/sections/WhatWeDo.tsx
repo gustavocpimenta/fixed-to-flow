@@ -45,7 +45,7 @@ const WhatWeDo = () => {
                 </h3>
                 <div className="text-lg md:text-xl text-gray-300 md:max-w-md">
                   <p>
-                    <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
+                    <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With a helping hand from us.</strong>
                   </p>
                 </div>
               </div>
