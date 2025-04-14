@@ -23,7 +23,7 @@ const WhyUs = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <motion.span
-              className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 -mt-[30px]"
+              className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 -mt-[60px]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
