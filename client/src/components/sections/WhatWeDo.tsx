@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import dragonImage from "@/assets/dragon.png";
 
@@ -16,38 +17,40 @@ const WhatWeDo = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">What We Do</h2>
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-2 max-w-5xl mx-auto"
-        >
-          {/* Dragon image on the left */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative w-full max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden">
-              <div className="rounded-xl overflow-hidden">
-                <img 
-                  src={dragonImage} 
-                  alt="Origami dragon" 
-                  className="w-full h-auto object-contain"
-                />
+        <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex flex-col lg:flex-row items-center gap-0 lg:gap-12 max-w-5xl"
+          >
+            {/* Dragon image on the left */}
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden">
+                <div className="rounded-xl overflow-hidden">
+                  <img 
+                    src={dragonImage} 
+                    alt="Origami dragon" 
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          
-          {/* Text content on the right */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              <span className="text-primary">Your Ally for Change</span>
-            </h3>
-            <div className="text-lg md:text-xl text-gray-300 mx-auto lg:mx-0 lg:w-[70%]">
-              <p>
-                <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
-              </p>
+            
+            {/* Text content on the right */}
+            <div className="w-full lg:w-1/2 text-center lg:text-left">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                <span className="text-primary">Your Ally for Change</span>
+              </h3>
+              <div className="text-lg md:text-xl text-gray-300 mx-auto lg:mx-0 lg:w-[90%]">
+                <p>
+                  <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
