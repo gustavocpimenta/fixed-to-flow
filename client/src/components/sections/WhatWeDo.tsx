@@ -22,10 +22,10 @@ const WhatWeDo = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-0 max-w-5xl mx-auto"
+            className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-24 max-w-5xl mx-auto"
           >
             {/* Dragon image on the left */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:pr-[136px]">
+            <div className="w-full lg:w-1/2 flex justify-center">
               <div className="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden">
                 <div className="rounded-xl overflow-hidden">
                   <img 
