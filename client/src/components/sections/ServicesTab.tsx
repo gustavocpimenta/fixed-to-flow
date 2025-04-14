@@ -74,15 +74,7 @@ const ServicesTab = () => {
     <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-8 text-center text-white"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Our Services
-          </motion.h2>
+          {/* Removed "Our Services" heading as requested */}
 
           <Tabs defaultValue="businesses" className="w-full">
             <div className="flex justify-center mb-8">
@@ -92,14 +84,14 @@ const ServicesTab = () => {
                   className="data-[state=active]:bg-primary data-[state=active]:text-white"
                   onClick={() => setActiveTab("businesses")}
                 >
-                  For Businesses
+                  Businesses
                 </TabsTrigger>
                 <TabsTrigger 
                   value="people"
                   className="data-[state=active]:bg-primary data-[state=active]:text-white"
                   onClick={() => setActiveTab("people")}
                 >
-                  For People
+                  People
                 </TabsTrigger>
               </TabsList>
             </div>
