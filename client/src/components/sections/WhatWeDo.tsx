@@ -41,7 +41,7 @@ const WhatWeDo = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               <span className="text-primary">Adaptive by Design</span>
             </h3>
-            <div className="text-xl md:text-2xl text-gray-300 w-[85%]">
+            <div className="text-xl md:text-2xl text-gray-300 w-[70%]">
               <p>
                 <strong>Become AI-ready, future-focused, and adaptable — all while staying uniquely human. With our helping hand to guide the way.</strong>
               </p>
