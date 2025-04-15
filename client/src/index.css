@@ -21,19 +21,12 @@ section + section {
 
 /* Override focus styles for inputs */
 input:focus, textarea:focus, 
-input:focus-visible, textarea:focus-visible,
-.focus-visible\:ring-ring:focus-visible,
-.focus-visible\:ring-2:focus-visible,
-*:focus-visible,
-*:focus {
+input:focus-visible, textarea:focus-visible {
   outline: none !important;
   box-shadow: none !important;
   border-color: rgb(55, 65, 81) !important; /* gray-700 */
   background-color: rgb(31, 41, 55) !important; /* gray-800 */
   --ring-color: rgb(55, 65, 81) !important; /* gray-700 */
-  --tw-ring-color: rgb(55, 65, 81) !important; /* gray-700 */
-  --tw-ring-opacity: 1 !important;
-  --tw-ring-offset-width: 0px !important;
 }
 
 /* Override autofill styles more aggressively */
@@ -50,9 +43,12 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
 select:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
-  -webkit-box-shadow: 0 0 0 30px rgb(31, 41, 55) inset !important;
+  -webkit-box-shadow: 0 0 0 100px rgb(31, 41, 55) inset !important;
+  box-shadow: 0 0 0 100px rgb(31, 41, 55) inset !important;
   transition: background-color 5000s ease-in-out 0s !important;
   background-color: rgb(31, 41, 55) !important;
+  color: white !important;
+  border-color: rgb(55, 65, 81) !important;
   caret-color: white !important;
 }
 
