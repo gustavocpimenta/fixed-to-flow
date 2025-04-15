@@ -103,7 +103,8 @@ const Footer = () => {
                       <FormControl>
                         <Input 
                           placeholder="Your name" 
-                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset] focus:bg-gray-800" 
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset] transition-colors" 
+                          autoComplete="name"
                           {...field}
                         />
                       </FormControl>
@@ -122,7 +123,8 @@ const Footer = () => {
                         <Input 
                           type="email"
                           placeholder="you@example.com" 
-                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset] focus:bg-gray-800"
+                          className="bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset] transition-colors"
+                          autoComplete="email"
                           {...field}
                         />
                       </FormControl>
@@ -140,7 +142,7 @@ const Footer = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Tell us about your project or question..." 
-                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset] focus:bg-gray-800" 
+                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-red-500 focus-visible:ring-gray-700 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_30px_rgb(31,41,55)_inset]" 
                           {...field}
                         />
                       </FormControl>
