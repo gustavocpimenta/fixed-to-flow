@@ -20,11 +20,13 @@ section + section {
 }
 
 /* Override focus styles for inputs */
-input:focus, textarea:focus {
+input:focus, textarea:focus, 
+input:focus-visible, textarea:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border-color: rgb(239, 68, 68) !important; /* red-500 */
+  border-color: rgb(55, 65, 81) !important; /* gray-700 */
   background-color: rgb(31, 41, 55) !important; /* gray-800 */
+  --ring-color: rgb(55, 65, 81) !important; /* gray-700 */
 }
 
 /* Override autofill styles more aggressively */
