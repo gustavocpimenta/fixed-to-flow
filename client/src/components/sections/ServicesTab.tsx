@@ -71,7 +71,7 @@ const ServicesTab = () => {
   };
 
   return (
-    <section className="pt-[45px] pb-20 text-white" style={{ margin: 0, border: 0, padding: "45px 0 80px 0" }}>
+    <section className="pt-6 pb-20 text-white" style={{ margin: 0, border: 0, padding: "24px 0 80px 0" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Removed "Our Services" heading as requested */}
