@@ -45,11 +45,30 @@ select:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
   -webkit-box-shadow: 0 0 0 100px rgb(31, 41, 55) inset !important;
   box-shadow: 0 0 0 100px rgb(31, 41, 55) inset !important;
-  transition: background-color 5000s ease-in-out 0s !important;
+  transition: background-color 9999s ease-in-out 0s !important;
   background-color: rgb(31, 41, 55) !important;
   color: white !important;
   border-color: rgb(55, 65, 81) !important;
   caret-color: white !important;
+}
+
+/* Additional force styles */
+input, textarea, select {
+  background-color: rgb(31, 41, 55) !important;
+  color: white !important;
+}
+
+/* Force Browser-specific autofill style override */
+@-webkit-keyframes autofill {
+  to {
+    color: white;
+    background: rgb(31, 41, 55);
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
 
   margin-bottom: 0;
