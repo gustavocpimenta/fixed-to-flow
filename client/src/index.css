@@ -21,12 +21,19 @@ section + section {
 
 /* Override focus styles for inputs */
 input:focus, textarea:focus, 
-input:focus-visible, textarea:focus-visible {
+input:focus-visible, textarea:focus-visible,
+.focus-visible\:ring-ring:focus-visible,
+.focus-visible\:ring-2:focus-visible,
+*:focus-visible,
+*:focus {
   outline: none !important;
   box-shadow: none !important;
   border-color: rgb(55, 65, 81) !important; /* gray-700 */
   background-color: rgb(31, 41, 55) !important; /* gray-800 */
   --ring-color: rgb(55, 65, 81) !important; /* gray-700 */
+  --tw-ring-color: rgb(55, 65, 81) !important; /* gray-700 */
+  --tw-ring-opacity: 1 !important;
+  --tw-ring-offset-width: 0px !important;
 }
 
 /* Override autofill styles more aggressively */
