@@ -12,6 +12,41 @@ img[src*="dragon.png"] {
 /* Remove any potential gaps between sections */
 section + section {
   margin-top: 0;
+
+/* Override browser's default selection color */
+::selection {
+  background-color: rgb(55, 65, 81) !important; /* gray-800 */
+  color: white !important;
+}
+
+/* Override focus styles for inputs */
+input:focus, textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: rgb(239, 68, 68) !important; /* red-500 */
+  background-color: rgb(31, 41, 55) !important; /* gray-800 */
+}
+
+/* Override autofill styles more aggressively */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0 30px rgb(31, 41, 55) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: rgb(31, 41, 55) !important;
+  caret-color: white !important;
+}
+
   margin-bottom: 0;
 }
 
