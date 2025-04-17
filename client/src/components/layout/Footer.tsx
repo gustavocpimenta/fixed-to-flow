@@ -108,8 +108,6 @@ const Footer = () => {
                           style={{
                             backgroundColor: 'rgb(31, 41, 55)',
                             color: 'white',
-                            '::placeholder': { color: 'rgb(107, 114, 128)' }, 
-                            color: 'white',
                             WebkitTextFillColor: 'white',
                             WebkitBoxShadow: '0 0 0 100px rgb(31, 41, 55) inset'
                           }}
@@ -156,10 +154,11 @@ const Footer = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Tell us about your project or question..." 
-                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-gray-700 focus-visible:ring-gray-700 focus-visible:ring-offset-0 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_100px_rgb(31,41,55)_inset] focus:bg-gray-800 selection:bg-gray-700 focus:!outline-none selection:!bg-gray-700 selection:!text-white focus-visible:!ring-gray-700 focus:!ring-gray-700 placeholder:text-gray-500" 
+                          className="min-h-[120px] bg-gray-800 border-gray-700 focus:border-gray-700 focus-visible:ring-gray-700 focus-visible:ring-offset-0 text-white [&:-webkit-autofill]:!bg-gray-800 [&:-webkit-autofill]:!text-white [&:-webkit-autofill_-webkit-text-fill-color]:!text-white [&:-webkit-autofill]:!shadow-[0_0_0_100px_rgb(31,41,55)_inset] focus:bg-gray-800 selection:bg-gray-700 focus:!outline-none selection:!bg-gray-700 selection:!text-white focus-visible:!ring-gray-700 focus:!ring-gray-700" 
                           style={{backgroundColor: 'rgb(31, 41, 55)', color: 'white'}}
                           {...field}
                         />
+</old_str>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
