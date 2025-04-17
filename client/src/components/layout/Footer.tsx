@@ -158,7 +158,6 @@ const Footer = () => {
                           style={{backgroundColor: 'rgb(31, 41, 55)', color: 'white'}}
                           {...field}
                         />
-</old_str>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
