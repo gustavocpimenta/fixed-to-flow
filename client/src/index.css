@@ -34,6 +34,28 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
+
+/* Ensure consistent placeholder styling */
+::placeholder {
+  color: rgb(107, 114, 128) !important; /* gray-500 */
+  opacity: 1;
+}
+
+::-webkit-input-placeholder {
+  color: rgb(107, 114, 128) !important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: rgb(107, 114, 128) !important;
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: rgb(107, 114, 128) !important;
+  opacity: 1;
+}
+
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
