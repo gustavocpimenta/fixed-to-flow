@@ -37,23 +37,23 @@ input:-webkit-autofill:active,
 
 /* Ensure consistent placeholder styling */
 ::placeholder {
-  color: rgb(107, 114, 128) !important; /* gray-500 */
-  opacity: 1;
+  color: rgb(156, 163, 175) !important; /* gray-400 */
+  opacity: 0.7 !important;
 }
 
 ::-webkit-input-placeholder {
-  color: rgb(107, 114, 128) !important;
-  opacity: 1;
+  color: rgb(156, 163, 175) !important; /* gray-400 */
+  opacity: 0.7 !important;
 }
 
 :-ms-input-placeholder {
-  color: rgb(107, 114, 128) !important;
-  opacity: 1;
+  color: rgb(156, 163, 175) !important; /* gray-400 */
+  opacity: 0.7 !important;
 }
 
 ::-ms-input-placeholder {
-  color: rgb(107, 114, 128) !important;
-  opacity: 1;
+  color: rgb(156, 163, 175) !important; /* gray-400 */
+  opacity: 0.7 !important;
 }
 
 textarea:-webkit-autofill,
@@ -225,5 +225,29 @@ div {
   .card-hover:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px -5px rgba(255, 62, 1, 0.1);
+  }
+  
+  .contact-input {
+    background-color: rgb(31, 41, 55) !important; /* gray-800 */
+    border-color: rgb(55, 65, 81) !important; /* gray-700 */
+    color: white !important;
+  }
+  
+  .contact-input::placeholder {
+    color: rgb(156, 163, 175) !important; /* gray-400 */
+    opacity: 0.7 !important;
+  }
+  
+  .contact-input:focus,
+  .contact-input:focus-visible {
+    background-color: rgb(31, 41, 55) !important; /* gray-800 */
+    border-color: rgb(55, 65, 81) !important; /* gray-700 */
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-color: rgb(55, 65, 81) !important; /* gray-700 */
+    --tw-ring-opacity: 0 !important;
+    --tw-ring-offset-width: 0 !important;
+    --tw-ring-offset-color: transparent !important;
+    color: white !important;
   }
 }
