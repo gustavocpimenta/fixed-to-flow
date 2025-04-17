@@ -87,7 +87,7 @@ const WhyUs = () => {
 
                     
 
-                    <div className="space-y-6">
+                    <div className="space-y-6 text-left">
                       <p className="text-base leading-relaxed text-gray-600">
                         Gus has spent decades bringing ideas to life — building digital products, designing meaningful systems, and supporting people as they navigate complex change.
                       </p>
