@@ -50,7 +50,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">
-                We empower people and businesses to amplify their adaptability to change.
+                We blend AI with human skills so leaders, teams, and companies can turn constant change into a competitive edge.
               </p>
 
               <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
