@@ -44,7 +44,7 @@ const ServicesTab = () => {
     {
       icon: <Bot className="w-8 h-8 text-primary" />,
       title: "AI Mentoring",
-      description: "Stop feeling lost with AI. We'll build a clear, personal strategy — combining foundational know-how with tools and use cases that fit your goals."
+      description: "Stop feeling lost with AI. We'll build a clear, personal strategy, combining foundational know-how with tools and use cases that fit your goals."
     },
     {
       icon: <Swords className="w-8 h-8 text-primary" />,
