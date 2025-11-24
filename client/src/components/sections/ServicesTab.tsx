@@ -16,7 +16,7 @@ const ServicesTab = () => {
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,
-      title: "Mentoring",
+      title: "Leadership Mentoring",
       description: "One-to-one sparring for leaders and founders who want clarity, better decisions, and a trusted partner in times of change."
     },
     {
