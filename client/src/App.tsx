@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import TopBar from "@/components/layout/TopBar";
 import Hero from "@/components/sections/Hero";
 import WhatWeDo from "@/components/sections/WhatWeDo";
 import ServicesTab from "@/components/sections/ServicesTab";
@@ -27,6 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
+        <TopBar />
         <Header 
           onNavigate={{
             whatWeDo: () => scrollToSection(whatWeDoRef),
