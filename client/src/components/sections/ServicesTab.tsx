@@ -6,12 +6,12 @@ const ServicesTab = () => {
   const services = [
     {
       icon: <Brain className="w-8 h-8 text-primary" />,
-      title: "AI strategy and adoption",
+      title: "AI Strategy and Adoption",
       description: "We help your organization build AI muscle: clear direction, real use cases, and the skills and guardrails to use AI responsibly and at scale."
     },
     {
       icon: <Lightbulb className="w-8 h-8 text-primary" />,
-      title: "AI for leaders and change makers",
+      title: "AI for Leaders and Change Makers",
       description: "Small group programs where leaders use AI in real work, run guided experiments, and upgrade how they think and decide."
     },
     {
@@ -21,7 +21,7 @@ const ServicesTab = () => {
     },
     {
       icon: <Mountain className="w-8 h-8 text-primary" />,
-      title: "Offline experiences",
+      title: "Offline Experiences",
       description: "In person sessions and retreats to learn how to live with technology, without technology, and in ways that protect your attention, cognition, and humanity."
     }
   ];
