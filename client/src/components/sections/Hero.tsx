@@ -15,7 +15,6 @@ const Hero = ({ onGetStarted }: HeroProps) => {
         <div className="absolute right-0 bottom-0 w-96 h-[67.2px] bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
         <div className="absolute left-0 top-0 w-96 h-[67.2px] bg-primary/20 rounded-full filter blur-3xl -translate-x-1/2"></div>
       </div>
-
       <div className="container relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center gap-4 md:gap-8 lg:gap-16 lg:flex-row lg:items-start">
@@ -49,9 +48,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 <span>Embrace change with confidence.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">
-                We blend AI with human skills so leaders, teams, and companies can turn constant change into a competitive edge.
-              </p>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
 
               <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button 
