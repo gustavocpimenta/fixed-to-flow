@@ -96,9 +96,7 @@ const WhyUs = () => {
                         His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality, he's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.
                       </p>
 
-                      <p className="text-base leading-relaxed text-gray-600">
-                        Adaptability isn't a tagline for Gus — it's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).
-                      </p>
+                      <p className="text-base leading-relaxed text-gray-600">Adaptability isn't a tagline for Gus. It's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).</p>
                       
                       <div className="flex space-x-3 mt-4">
                         <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary transition-colors">
