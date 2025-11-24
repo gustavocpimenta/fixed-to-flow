@@ -9,7 +9,7 @@ interface HeroProps {
 
 const Hero = ({ onGetStarted }: HeroProps) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden py-12 md:py-0">
+    <section className="relative min-h-[85vh] flex items-center justify-center bg-white overflow-hidden py-12 md:py-0">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute right-0 bottom-0 w-96 h-[67.2px] bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
