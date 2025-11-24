@@ -49,7 +49,7 @@ const WhyUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              We bring firsthand experience buiding systems and products  — and empowering people to adapt to what comes next.
+              We bring firsthand experience buiding systems and products, and empowering people to adapt to what comes next.
             </motion.p>
           </div>
 
