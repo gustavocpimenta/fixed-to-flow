@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Lightbulb, Users } from "lucide-react";
+import { Brain, Lightbulb, Users, Mountain } from "lucide-react";
 
 const ServicesTab = () => {
   const services = [
@@ -18,6 +18,11 @@ const ServicesTab = () => {
       icon: <Users className="w-8 h-8 text-primary" />,
       title: "Mentoring",
       description: "One-to-one sparring for leaders and founders who want clarity, better decisions, and a trusted partner in times of change."
+    },
+    {
+      icon: <Mountain className="w-8 h-8 text-primary" />,
+      title: "Offline experiences",
+      description: "In person sessions and retreats to learn how to live with technology, without technology, and in ways that protect your attention, cognition, and humanity."
     }
   ];
 
@@ -47,7 +52,7 @@ const ServicesTab = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 gap-6"
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={itemVariants}>
