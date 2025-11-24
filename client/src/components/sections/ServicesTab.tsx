@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Lightbulb, Users, Mountain } from "lucide-react";
+import { Brain, Lightbulb, Compass, Mountain } from "lucide-react";
 
 const ServicesTab = () => {
   const services = [
@@ -15,7 +15,7 @@ const ServicesTab = () => {
       description: "Small group programs where leaders use AI in real work, run guided experiments, and upgrade how they think and decide."
     },
     {
-      icon: <Users className="w-8 h-8 text-primary" />,
+      icon: <Compass className="w-8 h-8 text-primary" />,
       title: "Leadership Mentoring",
       description: "One-to-one sparring for leaders and founders who want clarity, better decisions, and a trusted partner in times of change."
     },
