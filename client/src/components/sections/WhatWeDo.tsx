@@ -14,7 +14,7 @@ const WhatWeDo = () => {
         >
           <span className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-sm font-medium mb-4">Our Services</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">What We Do</h2>
-          <p className="text-xl md:text-2xl text-gray-300 mb-4 font-semibold">Amplified by AI, Anchored in Humanity.</p>
+          <p className="text-xl md:text-2xl text-gray-300 mb-4 font-semibold">Amplified by AI, Anchored in Humanity</p>
           <p className="text-lg md:text-xl text-gray-400">
             Supporting leaders, teams, and companies who want to integrate AI, strengthen human skills, and stay adaptable.
           </p>
