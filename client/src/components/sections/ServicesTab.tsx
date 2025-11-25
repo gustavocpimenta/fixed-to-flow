@@ -17,7 +17,7 @@ const ServicesTab = () => {
     {
       icon: <Compass className="w-8 h-8 text-primary" />,
       title: "Leadership Mentoring",
-      description: "One-to-one sparring for leaders and change-makers who want clarity, better decisions, and a trusted partner in times of change."
+      description: "One-to-one sparring for leaders and change makers who want clarity, better decisions, and a trusted partner in times of change."
     },
     {
       icon: <Mountain className="w-8 h-8 text-primary" />,
