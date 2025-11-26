@@ -45,7 +45,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 mb-4 sm:mb-6 leading-[1.1]">
                 <span className="text-primary block mb-2">Fixed to Flow</span>
-                <span>Embrace change with confidence.</span>
+                <span>Lead with AI, Stay Human</span>
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
