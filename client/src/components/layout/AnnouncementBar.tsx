@@ -1,7 +1,7 @@
 
 const AnnouncementBar = () => {
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-yellow-400 text-gray-900 py-2 px-4">
+    <div className="fixed top-0 left-0 right-0 z-[60] text-gray-900 py-3 px-4" style={{ backgroundColor: '#B3CCD0' }}>
       <div className="container mx-auto text-center">
         <p className="text-sm md:text-base font-medium">
           <a 
