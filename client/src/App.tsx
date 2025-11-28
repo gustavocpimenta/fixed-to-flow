@@ -9,6 +9,7 @@ import Hero from "@/components/sections/Hero";
 import WhatWeDo from "@/components/sections/WhatWeDo";
 import ServicesTab from "@/components/sections/ServicesTab";
 import WhyUs from "@/components/sections/WhyUs";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 // import NonProfit from "@/components/sections/NonProfit";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
+        <AnnouncementBar />
         <Header 
           onNavigate={{
             whatWeDo: () => scrollToSection(whatWeDoRef),

@@ -46,7 +46,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${
+    <header className={`fixed top-10 left-0 right-0 z-50 transition-all duration-500 transform ${
       isVisible 
         ? 'translate-y-0 opacity-100' 
         : 'translate-y-[-100%] opacity-0'
