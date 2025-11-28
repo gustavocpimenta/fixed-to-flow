@@ -8,7 +8,7 @@ const AnnouncementBar = () => {
             href="https://fixedtoflow.carrd.co/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hover:underline"
+            className="underline hover:no-underline"
           >
             Amplified by AI, Anchored in Humanity
           </a>
