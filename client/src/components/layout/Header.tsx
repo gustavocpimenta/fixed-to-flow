@@ -15,23 +15,13 @@ interface HeaderProps {
 
 const Header = ({ onNavigate }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [showAnnouncementBar, setShowAnnouncementBar] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Get viewport height
-      const viewportHeight = window.innerHeight;
-      // Calculate half of the hero section height (assuming hero is full viewport height)
-      const halfHeroHeight = viewportHeight / 2;
-
-      // Update scroll state for styling
-      setIsScrolled(window.scrollY > 50);
-
-      // Update visibility state based on scroll position relative to half of hero height
-      setIsVisible(window.scrollY >= halfHeroHeight);
-      setShowAnnouncementBar(window.scrollY < halfHeroHeight);
+      // Show navbar after scrolling 100px
+      const scrollThreshold = 100;
+      setIsVisible(window.scrollY >= scrollThreshold);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -48,11 +38,11 @@ const Header = ({ onNavigate }: HeaderProps) => {
   };
 
   return (
-    <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-sm py-3'
-        : 'bg-white py-5'
-    } ${showAnnouncementBar ? 'top-[52px]' : 'top-0'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isVisible
+        ? 'bg-white/95 backdrop-blur-md shadow-sm py-3 translate-y-0 opacity-100'
+        : 'bg-white py-5 -translate-y-full opacity-0 pointer-events-none'
+    }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <button

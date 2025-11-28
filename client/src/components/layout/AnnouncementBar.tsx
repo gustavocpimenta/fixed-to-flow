@@ -6,9 +6,9 @@ const AnnouncementBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const viewportHeight = window.innerHeight;
-      const halfHeroHeight = viewportHeight / 2;
-      setIsVisible(window.scrollY < halfHeroHeight);
+      // Hide announcement bar after scrolling 100px (same threshold as navbar)
+      const scrollThreshold = 100;
+      setIsVisible(window.scrollY < scrollThreshold);
     };
 
     window.addEventListener('scroll', handleScroll);
