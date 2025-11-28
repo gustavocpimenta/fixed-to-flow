@@ -2,14 +2,30 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import springWithBackground from "@/assets/spring_with_background.png";
+import { useState, useEffect } from "react";
 
 interface HeroProps {
   onGetStarted: () => void;
 }
 
 const Hero = ({ onGetStarted }: HeroProps) => {
+  const [showAnnouncementBar, setShowAnnouncementBar] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const viewportHeight = window.innerHeight;
+      const halfHeroHeight = viewportHeight / 2;
+      setShowAnnouncementBar(window.scrollY < halfHeroHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center bg-white overflow-hidden py-12 md:py-0">
+    <section className={`relative min-h-[85vh] flex items-center justify-center bg-white overflow-hidden py-12 md:py-0 transition-all duration-300 ${
+      showAnnouncementBar ? 'pt-[112px] md:pt-[92px]' : 'pt-[60px] md:pt-[72px]'
+    }`}>
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute right-0 bottom-0 w-96 h-[67.2px] bg-primary/30 rounded-full filter blur-3xl -translate-y-1/4 translate-x-1/4"></div>
