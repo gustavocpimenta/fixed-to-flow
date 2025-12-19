@@ -1,0 +1,43 @@
+import { Resend } from "resend";
+import type { Contact } from "../../shared/schema";
+
+// Initialize Resend with API key
+if (!process.env.RESEND_API_KEY) {
+  throw new Error("RESEND_API_KEY environment variable is required");
+}
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+/**
+ * Send contact form notification email to Gus
+ * @param contact Contact form data
+ * @returns Promise<boolean> indicating success
+ */
+export async function sendContactEmail(contact: Contact): Promise<boolean> {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Fixed to Flow <onboarding@resend.dev>",
+      to: "gustavo@gustavopimenta.com",
+      subject: `New contact form submission from ${contact.name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${contact.name}</p>
+        <p><strong>Email:</strong> ${contact.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${contact.message.replace(/\n/g, "<br>")}</p>
+        <p><strong>Submitted at:</strong> ${new Date(contact.createdAt).toLocaleString()}</p>
+      `,
+    });
+
+    if (error) {
+      console.error("Error sending email:", error);
+      return false;
+    }
+
+    console.log("Email sent successfully:", data?.id);
+    return true;
+  } catch (error) {
+    console.error("Failed to send email:", error);
+    return false;
+  }
+}
