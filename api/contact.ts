@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { insertContactSchema } from "../shared/schema";
+import { insertContactSchema } from "./_lib/schema.js";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
-import { createContact } from "./_lib/db";
-import { sendContactEmail } from "./_lib/email";
+import { createContact } from "./_lib/db.js";
+import { sendContactEmail } from "./_lib/email.js";
 
 /**
  * POST /api/contact

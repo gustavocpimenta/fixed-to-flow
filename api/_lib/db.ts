@@ -1,7 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq } from "drizzle-orm";
-import { contacts, type Contact, type InsertContact } from "../../shared/schema";
+import { contacts, type Contact, type InsertContact } from "./schema.js";
 
 // Database connection for Vercel serverless functions
 if (!process.env.DATABASE_URL) {

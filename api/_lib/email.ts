@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import type { Contact } from "../../shared/schema";
+import type { Contact } from "./schema.js";
 
 // Initialize Resend with API key
 if (!process.env.RESEND_API_KEY) {

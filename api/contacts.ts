@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getAllContacts } from "./_lib/db";
+import { getAllContacts } from "./_lib/db.js";
 
 /**
  * GET /api/contacts
