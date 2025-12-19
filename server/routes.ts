@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { ZodError } from "zod";
 import { sendContactEmail, verifyEmailConfig } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -41,16 +42,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "Contact form submitted successfully" 
       });
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof ZodError) {
         const validationError = fromZodError(error);
-        res.status(400).json({ 
-          success: false, 
-          message: validationError.message 
+        res.status(400).json({
+          success: false,
+          message: validationError.message
         });
       } else {
-        res.status(500).json({ 
-          success: false, 
-          message: "An unexpected error occurred" 
+        res.status(500).json({
+          success: false,
+          message: "An unexpected error occurred"
         });
       }
     }

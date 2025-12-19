@@ -1,8 +1,17 @@
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
+import { eq } from "drizzle-orm";
 import { users, type User, type InsertUser, contacts, type Contact, type InsertContact } from "@shared/schema";
 
-// modify the interface with any CRUD methods
-// you might need
+// Database connection
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL environment variable is required");
+}
 
+const sql = neon(process.env.DATABASE_URL);
+const db = drizzle(sql);
+
+// Storage interface for CRUD operations
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
@@ -11,50 +20,36 @@ export interface IStorage {
   getAllContacts(): Promise<Contact[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private contacts: Map<number, Contact>;
-  currentUserId: number;
-  currentContactId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.contacts = new Map();
-    this.currentUserId = 1;
-    this.currentContactId = 1;
-  }
-
+// Database storage implementation using Drizzle ORM + Neon
+export class DatabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const result = await db.select().from(users).where(eq(users.id, id));
+    return result[0];
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const result = await db.select().from(users).where(eq(users.username, username));
+    return result[0];
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const result = await db.insert(users).values(insertUser).returning();
+    return result[0];
   }
 
   async createContact(insertContact: InsertContact): Promise<Contact> {
-    const id = this.currentContactId++;
-    const contact: Contact = { 
-      ...insertContact, 
-      id, 
-      createdAt: new Date().toISOString() 
+    const contactData = {
+      ...insertContact,
+      createdAt: new Date().toISOString()
     };
-    this.contacts.set(id, contact);
-    return contact;
+    const result = await db.insert(contacts).values(contactData).returning();
+    return result[0];
   }
 
   async getAllContacts(): Promise<Contact[]> {
-    return Array.from(this.contacts.values());
+    const result = await db.select().from(contacts);
+    return result;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
