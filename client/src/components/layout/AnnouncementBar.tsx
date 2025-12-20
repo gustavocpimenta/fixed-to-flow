@@ -30,7 +30,7 @@ const AnnouncementBar = () => {
             rel="noopener noreferrer"
             className="underline hover:no-underline"
           >
-            Amplified by AI, Anchored in Humanity
+            Lead with AI, Stay Human
           </a>
           {" | 7-day free email course."}
         </p>
