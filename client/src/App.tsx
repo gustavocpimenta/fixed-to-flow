@@ -57,7 +57,7 @@ function App() {
             <WhyUs />
           </div>
         </main>
-        <div ref={contactRef}>
+        <div ref={contactRef} id="contact">
           <Footer />
         </div>
       </div>
