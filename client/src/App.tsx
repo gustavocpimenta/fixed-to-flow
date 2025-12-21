@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,6 +24,15 @@ function App() {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Handle hash navigation on page load
+  useEffect(() => {
+    if (window.location.hash === '#contact' && contactRef.current) {
+      setTimeout(() => {
+        contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
