@@ -570,18 +570,38 @@
         }
 
         .logos-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px 60px;
-            opacity: 0.6;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            justify-items: center;
+            align-items: center;
+            gap: 30px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .logo-item {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--gray);
-            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+        }
+
+        .logo-item img {
+            height: auto;
+            max-height: 100px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            filter: grayscale(0%);
         }
 
         /* Contact Section */
@@ -1035,21 +1055,21 @@
         <div class="trusted-by-content reveal">
             <p>Trusted By</p>
             <div class="logos-grid">
-                <span class="logo-item">Vodafone</span>
-                <span class="logo-item">Universidade de Lisboa</span>
-                <span class="logo-item">Segurança Social</span>
-                <span class="logo-item">Randstad</span>
-                <span class="logo-item">Seedrs</span>
-                <span class="logo-item">Montepio</span>
-                <span class="logo-item">Adeo</span>
-                <span class="logo-item">L'Oréal</span>
-                <span class="logo-item">Câmara Municipal de Lisboa</span>
-                <span class="logo-item">Galp</span>
-                <span class="logo-item">Claro</span>
-                <span class="logo-item">Millennium BCP</span>
-                <span class="logo-item">BP</span>
-                <span class="logo-item">Técnico Lisboa</span>
-                <span class="logo-item">Landing.Jobs</span>
+                <div class="logo-item"><img src="vodafone.png" alt="Vodafone"></div>
+                <div class="logo-item"><img src="universidade_lisboa.png" alt="Universidade de Lisboa"></div>
+                <div class="logo-item"><img src="seguranca_social.png" alt="Segurança Social"></div>
+                <div class="logo-item"><img src="randstad.png" alt="Randstad"></div>
+                <div class="logo-item"><img src="seedrs.png" alt="Seedrs"></div>
+                <div class="logo-item"><img src="montepio.png" alt="Montepio"></div>
+                <div class="logo-item"><img src="adeo.png" alt="Adeo"></div>
+                <div class="logo-item"><img src="loreal.png" alt="L'Oréal"></div>
+                <div class="logo-item"><img src="cml.png" alt="Câmara Municipal de Lisboa"></div>
+                <div class="logo-item"><img src="galp.png" alt="Galp"></div>
+                <div class="logo-item"><img src="claro.png" alt="Claro"></div>
+                <div class="logo-item"><img src="bcp.png" alt="Millennium BCP"></div>
+                <div class="logo-item"><img src="bp.png" alt="BP"></div>
+                <div class="logo-item"><img src="tecnico.png" alt="Técnico Lisboa"></div>
+                <div class="logo-item"><img src="lannding.png" alt="Landing.Jobs"></div>
             </div>
         </div>
     </section>
