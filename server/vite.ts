@@ -43,6 +43,10 @@ export async function setupVite(app: Express, server: Server) {
     appType: "custom",
   });
 
+  // Serve drafts folder as static files (before Vite middleware)
+  const draftsPath = path.resolve(__dirname, "..", "client", "public", "drafts");
+  app.use("/drafts", express.static(draftsPath));
+
   app.use(vite.middlewares);
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
@@ -82,7 +86,12 @@ export function serveStatic(app: Express) {
   app.use(express.static(distPath));
 
   // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
+  // but skip /drafts/* URLs (they're served as static files)
+  app.use("*", (req, res) => {
+    if (req.originalUrl.startsWith("/drafts/")) {
+      res.status(404).send("Not found");
+      return;
+    }
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

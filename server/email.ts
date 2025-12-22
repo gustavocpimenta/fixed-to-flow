@@ -1,27 +1,24 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import type { Contact } from "@shared/schema";
 
-// Setup email transport
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER || "",
-    pass: process.env.EMAIL_PASSWORD || "",
-  },
-});
+// Initialize Resend - will be undefined if no API key (development mode)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 /**
- * Send contact form email
+ * Send contact form notification email to Gus
  * @param contact Contact form data
  * @returns Promise<boolean> indicating success
  */
 export async function sendContactEmail(contact: Contact): Promise<boolean> {
+  if (!resend) {
+    console.warn("Email not configured - RESEND_API_KEY not set. Skipping email send.");
+    console.log("Would have sent email for contact:", contact.name, contact.email);
+    return true; // Return true to not block form submission in dev
+  }
+
   try {
-    // Email to Gustavo
-    const info = await transporter.sendMail({
-      from: `"Fixed to Flow Website" <${process.env.EMAIL_USER || "noreply@fixedtoflow.com"}>`,
+    const { data, error } = await resend.emails.send({
+      from: "Fixed to Flow <onboarding@resend.dev>",
       to: "gustavo@gustavopimenta.com",
       subject: `New contact form submission from ${contact.name}`,
       html: `
@@ -34,10 +31,15 @@ export async function sendContactEmail(contact: Contact): Promise<boolean> {
       `,
     });
 
-    console.log("Message sent: %s", info.messageId);
+    if (error) {
+      console.error("Error sending email:", error);
+      return false;
+    }
+
+    console.log("Email sent successfully:", data?.id);
     return true;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Failed to send email:", error);
     return false;
   }
 }
@@ -47,20 +49,10 @@ export async function sendContactEmail(contact: Contact): Promise<boolean> {
  * @returns Promise<boolean> indicating if email is configured
  */
 export async function verifyEmailConfig(): Promise<boolean> {
-  try {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.warn("Email credentials not configured. Please set EMAIL_USER and EMAIL_PASSWORD environment variables.");
-      return false;
-    }
-    
-    // Verify connection configuration
-    await transporter.verify();
-    console.log("Email service is ready. Using account:", process.env.EMAIL_USER);
-    return true;
-  } catch (error) {
-    console.error("Email configuration error:", error);
-    console.error("This could be due to incorrect credentials or Gmail security settings.");
-    console.error("For Gmail, make sure to use an App Password and not your regular password.");
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("Email not configured - RESEND_API_KEY not set");
     return false;
   }
+  console.log("Email service is ready (Resend)");
+  return true;
 }

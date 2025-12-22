@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Amplifier | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+            --pink: #E891B2;
+            --orange: #E85C2C;
+            --sage: #B5C4C1;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Shapes */
+        .shape-sunrise {
+            position: absolute;
+            border-radius: 50% 50% 0 0;
+            background: var(--red);
+            opacity: 0.08;
+        }
+
+        .shape-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--sage);
+            opacity: 0.15;
+        }
+
+        .shape-blob {
+            position: absolute;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background: var(--pink);
+            opacity: 0.1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 247, 242, 0.9);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 247, 242, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--red);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-back {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--red);
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(230, 59, 46, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .shape-sunrise {
+            width: 500px;
+            height: 250px;
+            top: 80px;
+            right: -150px;
+        }
+
+        .hero .shape-circle {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -80px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(230, 59, 46, 0.1);
+            border-radius: 100px;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .hero-graphic::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            background: var(--red);
+            border-radius: 60px 60px 0 0;
+            opacity: 0.9;
+        }
+
+        .outcome-number {
+            font-size: 5.5rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+            padding-top: 0.5rem;
+        }
+
+        .outcome-label {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+            margin-top: 0.5rem;
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title-light {
+            color: var(--white);
+        }
+
+        .section-title-dark {
+            color: var(--black);
+        }
+
+        /* Challenge Section */
+        .challenge {
+            background: var(--white);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .challenge .shape-blob {
+            width: 250px;
+            height: 250px;
+            top: 60px;
+            right: 60px;
+        }
+
+        .challenge-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .challenge-content p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .challenge-content p:last-child {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* How It Works - RED Section */
+        .how-it-works {
+            background: var(--red);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 350px;
+            height: 175px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .how-it-works::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 250px;
+            height: 125px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .how-it-works .section-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            color: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .step-desc {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .process-summary {
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-summary p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+
+        .process-summary strong {
+            color: var(--white);
+        }
+
+        .process-summary .simple {
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Human Way Box */
+        .human-way {
+            background: var(--cream);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .human-way .shape-circle {
+            width: 180px;
+            height: 180px;
+            top: 80px;
+            left: 60px;
+            background: var(--sage);
+        }
+
+        .human-way-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 2px solid var(--red);
+            border-radius: 24px;
+            padding: 3.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+
+        .human-way-box::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 40px;
+            background: var(--red);
+            border-radius: 40px 40px 0 0;
+        }
+
+        .human-way-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .human-way-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .human-way-text:last-child {
+            margin-bottom: 0;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* What You Get Section */
+        .what-you-get {
+            background: var(--white);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .what-you-get .shape-blob {
+            width: 200px;
+            height: 200px;
+            bottom: 80px;
+            right: 80px;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .deliverable {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .deliverable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-color: var(--red);
+        }
+
+        .deliverable h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .deliverable p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Who For Section */
+        .who-for {
+            background: var(--cream);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .who-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .who-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .who-list {
+            list-style: none;
+        }
+
+        .who-list li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            line-height: 1.6;
+        }
+
+        .who-list li:last-child {
+            border-bottom: none;
+        }
+
+        .who-list.for-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .who-list.not-list li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            color: var(--gray-light);
+            font-weight: 700;
+        }
+
+        .who-list li a {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .who-list li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Why This Works Section */
+        .why-works {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .why-content > p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .why-points {
+            margin-top: 2.5rem;
+        }
+
+        .why-point {
+            background: var(--cream);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--red);
+            transition: all 0.3s ease;
+        }
+
+        .why-point:hover {
+            transform: translateX(5px);
+        }
+
+        .why-point p {
+            margin: 0;
+            color: var(--black);
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--cream);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .testimonials .shape-sunrise {
+            width: 280px;
+            height: 140px;
+            bottom: 0;
+            left: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(230, 59, 46, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .testimonial-info {
+            font-size: 0.875rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .testimonial-role {
+            color: var(--gray-light);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--black);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 175px;
+            background: var(--red);
+            opacity: 0.15;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .pricing .section-label {
+            color: var(--red);
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tier-card {
+            background: var(--gray-dark);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tier-card:hover {
+            border-color: var(--red);
+            transform: translateY(-5px);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(230, 59, 46, 0.2);
+            color: var(--red);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .tier-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .tier-desc {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features li {
+            padding: 0.75rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tier-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-features li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .tier-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--red);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tier-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.4);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-note p {
+            color: var(--gray-light);
+            font-size: 1rem;
+        }
+
+        .pricing-note strong {
+            color: var(--white);
+        }
+
+        /* Guide/Bio Section */
+        .guide {
+            background: var(--cream);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .guide .shape-blob {
+            width: 180px;
+            height: 180px;
+            top: 100px;
+            right: 100px;
+        }
+
+        .guide-single {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-photo-large {
+            width: 280px;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid var(--red);
+        }
+
+        .guide-photo-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .guide-info h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-info .guide-title {
+            color: var(--red);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-bio {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-credentials {
+            list-style: none;
+        }
+
+        .guide-credentials li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .guide-credentials li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            font-size: 1.0625rem;
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: var(--cream);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 90px;
+            background: var(--red);
+            opacity: 0.08;
+            border-radius: 0 0 90px 90px;
+        }
+
+        .final-cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .final-cta p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--red);
+            border: 2px solid var(--red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--red);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-text a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--red);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-title {
+                font-size: 2.75rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-single {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .guide-photo-large {
+                margin: 0 auto;
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .who-grid,
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-back {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="https://fixedtoflow.com" class="logo">Fixed to Flow</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-back">All Services</a>
+                <a href="https://fixedtoflow.com/#contact" class="nav-cta">Apply now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <div class="shape-sunrise"></div>
+        <div class="shape-circle"></div>
+        <div class="hero-container">
+            <div class="hero-content reveal">
+                <div class="hero-label">AI Amplifier</div>
+                <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                <p class="hero-desc">
+                    Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                </p>
+                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
+                    Apply now
+                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="hero-graphic">
+                    <div class="outcome-number">50%</div>
+                    <div class="outcome-label">Less Daily Work</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Challenge Section -->
+    <section class="challenge">
+        <div class="shape-blob"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title section-title-dark">You're drowning in tactical work</h2>
+            </div>
+            <div class="challenge-content reveal">
+                <p>Between meetings, emails, reports, and putting out fires, when do you actually do the work that matters?</p>
+                <p>You know AI could help. Everyone says it's a game changer. But you've tried ChatGPT a few times, and it just sits there in a browser tab you never open.</p>
+                <p>Most AI training teaches you prompts. You watch a webinar, take notes, try a few things. They don't stick. A week later, you're back to doing everything manually.</p>
+                <p>You don't need more tips. You need a system that works with your reality, not against it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">The Process</div>
+                <h2 class="section-title section-title-light">Four weeks. One session. Real results.</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step reveal">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Week 1: Build together</h3>
+                    <p class="step-desc">
+                        We start with your biggest time drains. Then we build your first AI assistant together, live, on your screen. You'll leave with something that immediately saves you time on a task that's been draining you.
+                    </p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Weeks 2 to 4: Implementation</h3>
+                    <p class="step-desc">
+                        You get a personalized implementation plan. Not overly detailed. Practical and actionable. Resources, templates, and guides included. Email support throughout.
+                    </p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Week 4: Wrap up call</h3>
+                    <p class="step-desc">
+                        You show us what you built. We discuss what worked, what didn't, and provide recommendations for your next steps.
+                    </p>
+                </div>
+            </div>
+            <div class="process-summary reveal">
+                <p><strong>Apply, Qualify, Build together, Implement for 30 days, Wrap up</strong></p>
+                <p class="simple">Simple.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. The Human Way Box -->
+    <section class="human-way">
+        <div class="shape-circle"></div>
+        <div class="container">
+            <div class="human-way-box reveal">
+                <h2 class="human-way-title">Lead with AI, Stay Human</h2>
+                <p class="human-way-text">
+                    AI should extend your reach, not substitute your thinking.
+                </p>
+                <p class="human-way-text">
+                    Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.
+                </p>
+                <p class="human-way-text">
+                    <strong>You get faster with AI. And you stay sharp without it.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. What You Get Section -->
+    <section class="what-you-get">
+        <div class="shape-blob"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Deliverables</div>
+                <h2 class="section-title section-title-dark">What you get</h2>
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable reveal">
+                    <h3>Build together session (90 min)</h3>
+                    <p>We identify your biggest time drains and build your first working AI assistant together. You leave with something useful on day one.</p>
+                </div>
+                <div class="deliverable reveal">
+                    <h3>Personalized 30 day plan</h3>
+                    <p>Practical implementation roadmap tailored to your specific role and challenges. Not a generic course. Your plan.</p>
+                </div>
+                <div class="deliverable reveal">
+                    <h3>Resources and templates</h3>
+                    <p>Prompts, frameworks, and guides you can actually use. Built from real world experience, not theory.</p>
+                </div>
+                <div class="deliverable reveal">
+                    <h3>Email support throughout</h3>
+                    <p>Questions come up during implementation. We're there to answer them and keep you moving forward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Who This Is For Section -->
+    <section class="who-for">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Right Fit?</div>
+                <h2 class="section-title section-title-dark">Who this is for / isn't for</h2>
+            </div>
+
+            <div class="who-grid">
+                <div class="who-card reveal">
+                    <h3>Who this is for</h3>
+                    <ul class="who-list for-list">
+                        <li><strong>Mid level leaders drowning in tactical work.</strong> Team leads, department heads, senior managers who need time back for strategy.</li>
+                        <li><strong>High agency professionals.</strong> Consultants, researchers, strategists with complex knowledge work.</li>
+                        <li><strong>Solo entrepreneurs wearing all the hats.</strong> You manage everything, and AI can give you leverage.</li>
+                        <li><strong>Self starters who can run with direction.</strong> You don't need hand holding, just a clear starting point.</li>
+                    </ul>
+                </div>
+                <div class="who-card reveal">
+                    <h3>Who this isn't for</h3>
+                    <ul class="who-list not-list">
+                        <li><strong>C level executives.</strong> You need a thinking partner, not tactical AI training. Consider <a href="strategic-sparring.html">Strategic Sparring</a>.</li>
+                        <li><strong>Organizations needing transformation strategy.</strong> You need a roadmap for your entire team. See <a href="ai-activation-sprint.html">AI Activation</a>.</li>
+                        <li><strong>People who want quick fixes without implementation.</strong> This requires you to do the work during the 30 days.</li>
+                        <li><strong>Large teams needing coordinated training.</strong> For team training, see <a href="ai-acceleration.html">AI Acceleration</a>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Why This Works Section -->
+    <section class="why-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">The Method</div>
+                <h2 class="section-title section-title-dark">Why this works</h2>
+            </div>
+
+            <div class="why-content">
+                <p class="reveal">Most AI training fails because it's generic. You watch videos, you take notes, nothing sticks. We do it differently.</p>
+
+                <div class="why-points">
+                    <div class="why-point reveal">
+                        <p><strong>We start with YOUR work.</strong> Not generic prompts. Your actual tasks, your actual challenges, your actual tools.</p>
+                    </div>
+                    <div class="why-point reveal">
+                        <p><strong>We build something useful on day one.</strong> You leave the first session with a working AI assistant. Immediate value, not promised future value.</p>
+                    </div>
+                    <div class="why-point reveal">
+                        <p><strong>We focus on implementation, not information.</strong> The plan is designed for 30 days of doing, not watching or reading.</p>
+                    </div>
+                    <div class="why-point reveal">
+                        <p><strong>We protect your human skills.</strong> AI should amplify what you're good at, not make you dependent. You stay sharp without it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Testimonials Section -->
+    <section class="testimonials">
+        <div class="shape-sunrise"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Track Record</div>
+                <h2 class="section-title section-title-dark">What people say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "He stood out for his great dedication and systemic mindset. He brought a lot of enthusiasm to the team."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">HS</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Hugo Sousa</div>
+                            <div class="testimonial-role">Client (AI strategy project)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "His insights have been extremely useful to challenge our vision and scale up strategy."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MD</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Matthieu Douziech</div>
+                            <div class="testimonial-role">Founding Partner at Harpoon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "His insights, based on an extremely clear way of thinking, really help me in setting a course of action."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">PA</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Pedro Andrade</div>
+                            <div class="testimonial-role">Forbes 30 Under 30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Investment</div>
+                <h2 class="section-title section-title-light">Two ways to get started</h2>
+            </div>
+
+            <div class="tiers-grid">
+                <div class="tier-card reveal">
+                    <div class="tier-badge">Basic</div>
+                    <h3 class="tier-name">700 EUR</h3>
+                    <p class="tier-desc">
+                        Perfect for self starters who need direction, then can run with it.
+                    </p>
+                    <ul class="tier-features">
+                        <li>Build together session (90 min)</li>
+                        <li>Personalized 30 day plan</li>
+                        <li>Email support</li>
+                        <li>Wrap up call</li>
+                    </ul>
+                    <a href="https://fixedtoflow.com/#contact" class="tier-cta">Apply for Basic</a>
+                </div>
+
+                <div class="tier-card reveal">
+                    <div class="tier-badge">Extended</div>
+                    <h3 class="tier-name">1,200 EUR</h3>
+                    <p class="tier-desc">
+                        Perfect for ongoing support and a learning community.
+                    </p>
+                    <ul class="tier-features">
+                        <li>Everything in Basic</li>
+                        <li>2 additional check in calls</li>
+                        <li>1 year of monthly Office Hours</li>
+                        <li>Priority support</li>
+                        <li>Lifetime resource access</li>
+                    </ul>
+                    <a href="https://fixedtoflow.com/#contact" class="tier-cta">Apply for Extended</a>
+                </div>
+            </div>
+            <div class="pricing-note reveal">
+                <p><strong>Not sure which tier?</strong> Apply now and we'll help you choose during qualification.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Meet Your Guide Section -->
+    <section class="guide">
+        <div class="shape-blob"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Your Guide</div>
+                <h2 class="section-title section-title-dark">Meet Gus</h2>
+            </div>
+
+            <div class="guide-single reveal">
+                <div class="guide-photo-large">
+                    <img src="gus-pimenta.jpg" alt="Gustavo da Cunha Pimenta">
+                </div>
+                <div class="guide-info">
+                    <h3>Gustavo da Cunha Pimenta</h3>
+                    <div class="guide-title">Founder, Fixed to Flow</div>
+                    <p class="guide-bio">
+                        I'm not an AI researcher or a tech evangelist. I'm a practitioner who learned GenAI the hard way in 2023, through structured experiments, lots of mistakes, and documenting what actually worked.
+                    </p>
+                    <p class="guide-bio">
+                        Before Fixed to Flow, I spent 25+ years in product leadership and digital transformation, including as Chief Product Officer at Cannavigia. I've advised startups, lectured at universities, and mentored Forbes 30 Under 30 leaders.
+                    </p>
+                    <p class="guide-bio">
+                        <strong>What drives me:</strong> I believe AI should make people stronger, not weaker. I've seen too many "AI training" programs that teach button clicking without building real capability. The AI Amplifier exists to fix that.
+                    </p>
+                    <ul class="guide-credentials">
+                        <li>25+ years in product leadership and digital transformation</li>
+                        <li>Former Chief Product Officer at Cannavigia</li>
+                        <li>Notion Ambassador since 2021</li>
+                        <li>Published thought leader on personal experiments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Questions</div>
+                <h2 class="section-title section-title-dark">Common questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-question">What happens in the "build together" session?</div>
+                    <div class="faq-answer">We start by identifying your biggest time drains. Then we build your first AI assistant together, live, on your screen. You leave with something immediately useful, not just notes to review later.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">What if I don't know what AI tools to use?</div>
+                    <div class="faq-answer">That's part of what we figure out together. Based on your work and challenges, we'll identify which tools make sense for you. We're tool agnostic, we recommend what fits your situation.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">How much time does this require?</div>
+                    <div class="faq-answer">The build together session is 90 minutes. After that, you implement at your own pace over 30 days. Most people spend 15 to 30 minutes per day during the implementation phase.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">What's the difference between Basic and Extended?</div>
+                    <div class="faq-answer">Basic is for self starters who need a strong start then can run independently. Extended adds ongoing support: two extra check in calls, a year of monthly Office Hours with other participants, and priority email support.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">What if it doesn't work for me?</div>
+                    <div class="faq-answer">The qualification call exists to make sure we're a good fit before you invest. If we're not, we'll tell you and point you to something better suited. We only work with people we believe we can actually help.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Final CTA Section -->
+    <section class="final-cta">
+        <div class="final-cta-content reveal">
+            <h2>Remove 50% of your daily work in 30 days</h2>
+            <p>You don't need more tips. You need a system that actually works.</p>
+            <div class="final-cta-buttons">
+                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
+                    Apply now
+                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="mailto:gus@fixedtoflow.com" class="btn btn-secondary">Email Gus directly</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">2025 <a href="https://fixedtoflow.com">Fixed to Flow</a>. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">All Services</a>
+            <a href="https://fixedtoflow.substack.com">Newsletter</a>
+            <a href="ai-activation-sprint.html">AI Activation</a>
+            <a href="strategic-sparring.html">Strategic Sparring</a>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+</html>

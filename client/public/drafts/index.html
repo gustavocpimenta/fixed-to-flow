@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #FF5722;
+            --orange-hover: #E64A19;
+            --dark: #0f172a;
+            --dark-lighter: #1e293b;
+            --light: #ffffff;
+            --light-bg: #fafafa;
+            --text-dark: #0f172a;
+            --text-light: #f8fafc;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-mark {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            padding: 0.625rem 1.25rem;
+            background: var(--orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: background 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--orange-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 6rem;
+            background: var(--light);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .brand {
+            color: var(--orange);
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .btn-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(3px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #FFD93D 0%, #FFB800 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-graphic::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.1) 20px,
+                rgba(255,255,255,0.1) 40px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-50%) translateY(-50%); }
+            100% { transform: translateX(0%) translateY(0%); }
+        }
+
+        .hero-graphic-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            color: var(--orange);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .hero-graphic-text span {
+            display: block;
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--dark);
+            padding: 6rem 2rem;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.75rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--dark-lighter);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 87, 34, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--orange);
+        }
+
+        .service-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-tagline {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            font-size: 0.9375rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--orange);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .service-link svg {
+            transition: transform 0.2s ease;
+        }
+
+        .service-card:hover .service-link svg {
+            transform: translateX(4px);
+        }
+
+        /* Decision Tree Section */
+        .decision {
+            background: var(--light-bg);
+            padding: 6rem 2rem;
+        }
+
+        .decision-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .decision-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .decision-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .decision-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .decision-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .decision-card ul {
+            list-style: none;
+        }
+
+        .decision-card li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .decision-card li:last-child {
+            border-bottom: none;
+        }
+
+        .decision-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .decision-card li strong {
+            color: var(--text-dark);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--dark);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .cta-desc {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-text a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-graphic {
+                max-width: 300px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .decision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title,
+            .decision-title,
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="https://fixedtoflow.com" class="logo">
+                <span class="logo-mark">Fixed to Flow</span>
+            </a>
+            <a href="https://fixedtoflow.com/#contact" class="nav-cta">Get in Touch</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-label">Our Services</div>
+                <h1 class="hero-title">
+                    <span class="brand">Fixed to Flow</span>
+                    Services
+                </h1>
+                <p class="hero-desc">
+                    Supporting leaders, teams, and companies who want to integrate AI, strengthen human skills, and stay adaptable. Choose the path that fits where you are.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">
+                        Explore Services
+                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="https://fixedtoflow.com/#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-graphic">
+                    <div class="hero-graphic-text">
+                        4
+                        <span>Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Choose Your Path</h2>
+                <p class="section-desc">From individual AI mastery to full organizational transformation, we meet you where you are.</p>
+            </div>
+
+            <div class="services-grid">
+                <a href="ai-amplifier-v3.html" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <div class="service-label">For Individuals</div>
+                    <h3 class="service-title">AI Amplifier</h3>
+                    <p class="service-tagline">Amplify what you do best. Offload the rest.</p>
+                    <p class="service-desc">
+                        Remove 50% of your daily work with AI in 30 days. Two sessions, personalized plan, and practical results you can use immediately.
+                    </p>
+                    <div class="service-footer">
+                        <span class="service-price">€700 - €1,200</span>
+                        <span class="service-link">
+                            Learn more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="strategic-sparring-v3.html" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="service-label">For Leaders</div>
+                    <h3 class="service-title">Strategic Sparring</h3>
+                    <p class="service-tagline">A thinking partner who helps you execute</p>
+                    <p class="service-desc">
+                        A peer who challenges you, gets in the trenches, and helps you figure out not just what to do—but how to do it. Plus team sessions when you need them.
+                    </p>
+                    <div class="service-footer">
+                        <span class="service-price">€2,000/month</span>
+                        <span class="service-link">
+                            Learn more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="ai-activation-sprint-v3.html" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <div class="service-label">For Organizations</div>
+                    <h3 class="service-title">AI Activation</h3>
+                    <p class="service-tagline">From AI potential to execution-ready in 30 days</p>
+                    <p class="service-desc">
+                        30-day intensive to design your AI strategy and roadmap. Everything you need to move forward with clarity.
+                    </p>
+                    <div class="service-footer">
+                        <span class="service-price">€10,000 - €15,000</span>
+                        <span class="service-link">
+                            Learn more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="ai-acceleration-v3.html" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <div class="service-label">For Organizations</div>
+                    <h3 class="service-title">AI Acceleration</h3>
+                    <p class="service-tagline">Sustained partnership to make AI real</p>
+                    <p class="service-desc">
+                        Hands-on support from strategy to results. Capacity building, implementation sprints, leadership mentoring - tailored to what you need.
+                    </p>
+                    <div class="service-footer">
+                        <span class="service-price">Starting at €30,000</span>
+                        <span class="service-link">
+                            Learn more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="decision">
+        <div class="decision-container">
+            <div class="decision-header">
+                <h2 class="decision-title">Not Sure Which to Choose?</h2>
+            </div>
+
+            <div class="decision-grid">
+                <div class="decision-card">
+                    <h3>I'm an individual or solo leader</h3>
+                    <ul>
+                        <li>New to AI, need clarity → <strong>AI Amplifier</strong></li>
+                        <li>Need a thinking partner for execution → <strong>Strategic Sparring</strong></li>
+                        <li>Want both? Start with AI Amplifier, add Sparring later</li>
+                    </ul>
+                </div>
+
+                <div class="decision-card">
+                    <h3>I lead a team or organization</h3>
+                    <ul>
+                        <li>Need strategy and roadmap first → <strong>AI Activation</strong></li>
+                        <li>Want hands-on support to implement → <strong>AI Acceleration</strong></li>
+                        <li>Need personal leadership support too? Add <strong>Strategic Sparring</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Start?</h2>
+            <p class="cta-desc">Every engagement begins with a conversation. Let's explore how we can help you lead with AI while staying human.</p>
+            <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
+                Get in Touch
+                <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 <a href="https://fixedtoflow.com">Fixed to Flow</a>. All rights reserved.</p>
+    </footer>
+</body>
+</html>
