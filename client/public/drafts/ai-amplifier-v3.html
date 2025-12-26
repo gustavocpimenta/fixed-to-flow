@@ -298,6 +298,12 @@
             color: var(--white);
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .btn-arrow {
             transition: transform 0.3s ease;
         }
@@ -855,6 +861,18 @@
         .testimonial-name {
             font-weight: 600;
             color: var(--black);
+            text-decoration: none;
+        }
+
+        a.testimonial-name:hover {
+            color: var(--red);
+        }
+
+        .testimonial-avatar-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .testimonial-role {
@@ -1162,6 +1180,32 @@
             stroke: var(--gray);
             fill: none;
             stroke-width: 2;
+        }
+
+        .founder-credentials {
+            list-style: none;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .founder-credentials li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .founder-credentials li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
         }
 
         /* FAQ Section */
@@ -1807,8 +1851,8 @@
                 <p class="hero-desc">
                     Stop pushing AI harder and start using it smarter. Remove 50% of your daily work in 30 days without forgetting how to think.
                 </p>
-                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
-                    Apply now
+                <a href="#contact" class="btn btn-primary">
+                    Get in Touch
                     <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -1883,7 +1927,7 @@
                 </div>
             </div>
             <div class="process-summary reveal">
-                <p><strong>Our highest-value service. Your commitment: 2-3 hours per week.</strong></p>
+                <p><strong>Maximum impact for your investment. Your commitment: 2-3 hours per week.</strong></p>
             </div>
         </div>
     </section>
@@ -1996,36 +2040,42 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "He stood out for his great dedication and systemic mindset. He brought a lot of enthusiasm to the team."
+                        "Gustavo gives everyone the best conditions so that they can do their best work. He doesn't force you to anything, he gives you the space and time you need to learn, work, improve, succeed. This is what great leaders do. They enable others."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">HS</div>
+                        <a href="https://www.linkedin.com/in/pedromoreiradasilva/" target="_blank" rel="noopener noreferrer">
+                            <img src="pedro_moreira_silva.jpeg" alt="Pedro Moreira da Silva" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Hugo Sousa</div>
-                            <div class="testimonial-role">Client (AI strategy project)</div>
+                            <a href="https://www.linkedin.com/in/pedromoreiradasilva/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Moreira da Silva</a>
+                            <div class="testimonial-role">Principal Product Designer at GitLab</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "His insights have been extremely useful to challenge our vision and scale up strategy."
+                        "To put it in very clear terms, Gustavo helped me to make the biggest decision of my professional and even personal life... After this breakthrough, Gustavo was always there for me, with practical and straightforward suggestions."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">MD</div>
+                        <a href="https://www.linkedin.com/in/henriquefialho/" target="_blank" rel="noopener noreferrer">
+                            <img src="henrique_fialho.jpeg" alt="Henrique Fialho" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Matthieu Douziech</div>
-                            <div class="testimonial-role">Founding Partner at Harpoon</div>
+                            <a href="https://www.linkedin.com/in/henriquefialho/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Henrique Fialho</a>
+                            <div class="testimonial-role">Production Coordinator at Terratreme Filmes</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "His insights, based on an extremely clear way of thinking, really help me in setting a course of action."
+                        "Gustavo has mentored me for the past few years, and the time I spend talking with him is definitely worth it. His insights, based on an extremely clear way of thinking, really help me in setting a course of action for my company and my life in general."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">PA</div>
+                        <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer">
+                            <img src="1598787356414.jpeg" alt="Pedro Andrade" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Pedro Andrade</div>
+                            <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Andrade</a>
                             <div class="testimonial-role">Forbes 30 Under 30</div>
                         </div>
                     </div>
@@ -2094,9 +2144,16 @@
                 <div class="founder-info">
                     <div class="founder-label">Your Guide</div>
                     <h3>Meet Gus</h3>
-                    <p>I'm not an AI researcher or a tech evangelist. I'm a practitioner who learned GenAI the hard way in 2023, through structured experiments, lots of mistakes, and documenting what actually worked.</p>
-                    <p>Before Fixed to Flow, I spent 25+ years in product leadership and digital transformation, including as Chief Product Officer at Cannavigia. I've advised startups, lectured at universities, and mentored Forbes 30 Under 30 leaders.</p>
-                    <p><strong>What drives me:</strong> I believe AI should make people stronger, not weaker. I've seen too many "AI training" programs that teach button clicking without building real capability. The AI Amplifier exists to fix that.</p>
+                    <p>Gus has spent decades bringing ideas to life. Building digital products, designing meaningful systems, and supporting people as they navigate complex change.</p>
+                    <p>His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality. He's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.</p>
+                    <p>He believes AI should amplify people's skills, not replace them. Adaptability isn't a tagline for Gus. It's a way of life. That's what makes him a trusted mentor for those navigating shifting ground.</p>
+                    <ul class="founder-credentials">
+                        <li>25+ years in product leadership and digital transformation</li>
+                        <li>Notion Ambassador</li>
+                        <li>Mentor to startup founders and executives</li>
+                        <li>Guide through reinvention and life transitions</li>
+                        <li>Leads teams, builds systems, ships products</li>
+                    </ul>
                     <div class="founder-social">
                         <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24">

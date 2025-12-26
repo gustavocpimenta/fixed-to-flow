@@ -298,6 +298,12 @@
             color: var(--white);
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .btn-arrow {
             transition: transform 0.3s ease;
         }
@@ -504,21 +510,10 @@
         .how-it-works::before {
             content: '';
             position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 350px;
-            height: 175px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50% 50% 0 0;
-        }
-
-        .how-it-works::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: -60px;
-            width: 250px;
-            height: 125px;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 200px;
             background: rgba(255,255,255,0.08);
             border-radius: 50% 50% 0 0;
         }
@@ -533,37 +528,59 @@
 
         .approach-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             position: relative;
             z-index: 1;
         }
 
         .approach-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .approach-card:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-5px);
+        .approach-number {
+            font-size: 8rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.1);
+            line-height: 1;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+
+        .approach-content {
+            position: relative;
+            z-index: 1;
+            padding-top: 60px;
         }
 
         .approach-label {
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--white);
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
         }
 
         .approach-text {
-            color: rgba(255,255,255,0.85);
-            line-height: 1.7;
             font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+        }
+
+        .approach-tagline {
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .approach-tagline p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+
+        .approach-tagline strong {
+            color: var(--white);
         }
 
         /* Human Way Box */
@@ -873,9 +890,9 @@
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -918,6 +935,13 @@
             justify-content: center;
             color: var(--red);
             font-weight: 700;
+        }
+
+        .testimonial-avatar-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .testimonial-info {
@@ -1064,6 +1088,21 @@
         }
 
         .price-cta-group .price-cta {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .pricing-cta-centered {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 500px;
+            margin: 3rem auto 0;
+        }
+
+        .pricing-cta-centered .price-cta,
+        .pricing-cta-centered .price-cta-secondary {
             flex: 1;
             min-width: 180px;
         }
@@ -1685,10 +1724,10 @@
                 <div class="hero-accent-line"></div>
                 <h1 class="hero-title">The pushback you need before the stakes are real</h1>
                 <p class="hero-desc">
-                    A peer who challenges you, works alongside you, and helps you figure out not just what to do. But how.
+                    Not a coach. Not a consultant. A peer who thinks with you, challenges you, and helps you get to action.
                 </p>
-                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
-                    Apply now
+                <a href="#contact" class="btn btn-primary">
+                    Get in Touch
                     <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -1734,27 +1773,54 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">The Solution</div>
-                <h2 class="section-title section-title-light">How we work together</h2>
+                <h2 class="section-title section-title-light">The Sparring Process</h2>
             </div>
 
             <div class="approach-grid">
                 <div class="approach-card reveal">
-                    <div class="approach-label">We challenge your assumptions</div>
-                    <div class="approach-text">We ask powerful questions that help you think differently. We tell you when we think you're wrong.</div>
+                    <span class="approach-number">01</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We challenge your assumptions</div>
+                        <div class="approach-text">We ask sharp questions that force clarity. We call out fuzzy thinking and tell you when we think you are wrong.</div>
+                    </div>
                 </div>
                 <div class="approach-card reveal">
-                    <div class="approach-label">We share what we've seen</div>
-                    <div class="approach-text">25+ years of pattern recognition. When we see something we've seen before, we tell you.</div>
+                    <span class="approach-number">02</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We stress test your ideas</div>
+                        <div class="approach-text">Before you commit, we pressure test your logic. We poke holes, play devil's advocate, and surface weak spots while they are still cheap to fix.</div>
+                    </div>
                 </div>
                 <div class="approach-card reveal">
-                    <div class="approach-label">We help you execute</div>
-                    <div class="approach-text">Not just what to do, how to actually do it. Strategy is easy. Execution is where it gets real.</div>
+                    <span class="approach-number">03</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We use AI, then we shut it up</div>
+                        <div class="approach-text">We bring AI in to generate alternatives, surface blind spots, and stress test the reasoning. Then we kick it out when it is time to decide. The call stays human.</div>
+                    </div>
                 </div>
                 <div class="approach-card reveal">
-                    <div class="approach-label">We're a peer, not an advisor</div>
-                    <div class="approach-text">We're not above you (consultant) or working for you (employee). We're alongside you.</div>
+                    <span class="approach-number">04</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We rehearse through scenarios</div>
+                        <div class="approach-text">We create realistic situations and run them end to end. We simulate counterarguments, trade offs, and second order effects so you can practice before it is real.</div>
+                    </div>
+                </div>
+                <div class="approach-card reveal">
+                    <span class="approach-number">05</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We help you execute</div>
+                        <div class="approach-text">We turn thinking into moves. Not just what to do, but how to do it in your reality: constraints, stakeholders, sequencing, and next steps.</div>
+                    </div>
+                </div>
+                <div class="approach-card reveal">
+                    <span class="approach-number">06</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We work as a peer, not an advisor</div>
+                        <div class="approach-text">We are not above you or working for you. We are alongside you: direct, invested, and accountable to the quality of your decisions.</div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1837,10 +1903,14 @@
 
             <div class="why-layout">
                 <div class="why-left reveal">
-                    <p>This isn't theory.</p>
-                    <p>We've led teams, built products, navigated complexity, and made hard calls for 25+ years. We're alongside you, a peer who happens to have pattern recognition from doing this for a long time.</p>
+                    <p>We've been in the room.</p>
+                    <p>We've seen how leaders think when stakes are high. We bring that perspective, not as consultants, but as peers who've been through it.</p>
                 </div>
                 <div class="why-right">
+                    <div class="why-card reveal">
+                        <h3>We give you tough love</h3>
+                        <p>Honest feedback that others hold back. Not harsh, just direct. Because you need clarity, not comfort.</p>
+                    </div>
                     <div class="why-card reveal">
                         <h3>We ask powerful questions</h3>
                         <p>That challenge your assumptions. We tell you when we think you're wrong.</p>
@@ -1864,7 +1934,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">What Leaders Say</div>
-                <h2 class="section-title section-title-dark">From people we've worked with</h2>
+                <h2 class="section-title section-title-dark">What people say</h2>
             </div>
 
             <div class="testimonials-grid">
@@ -1873,9 +1943,11 @@
                         "His insights have been extremely useful to challenge our vision and scale up strategy. He's always been a great listener, an honest and transparent professional."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">MD</div>
+                        <a href="https://www.linkedin.com/in/matthieu-douziech-a8662534/" target="_blank" rel="noopener noreferrer">
+                            <img src="matthieu.jpg" alt="Matthieu Douziech" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Matthieu Douziech</div>
+                            <a href="https://www.linkedin.com/in/matthieu-douziech-a8662534/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Matthieu Douziech</a>
                             <div class="testimonial-role">Founding Partner at Harpoon</div>
                         </div>
                     </div>
@@ -1885,10 +1957,26 @@
                         "His insights, based on an extremely clear way of thinking, really help me in setting a course of action for my company and my life in general."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">PA</div>
+                        <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer">
+                            <img src="1598787356414.jpeg" alt="Pedro Andrade" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Pedro Andrade</div>
+                            <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Andrade</a>
                             <div class="testimonial-role">Forbes 30 Under 30</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "For me, it's a no-brainer: Thinking about hiring his company? Go. Looking for advice/mentorship? Go."
+                    </p>
+                    <div class="testimonial-author">
+                        <a href="https://www.linkedin.com/in/pcboliveira/" target="_blank" rel="noopener noreferrer">
+                            <img src="pedro_oliveira.jpeg" alt="Pedro Oliveira" class="testimonial-avatar-img">
+                        </a>
+                        <div class="testimonial-info">
+                            <a href="https://www.linkedin.com/in/pcboliveira/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Oliveira</a>
+                            <div class="testimonial-role">CEO at Talent Protocol</div>
                         </div>
                     </div>
                 </div>
@@ -1916,10 +2004,6 @@
                         <li>WhatsApp access (weekdays)</li>
                         <li>Session summaries</li>
                     </ul>
-                    <div class="price-cta-group">
-                        <a href="#contact" class="price-cta">Get in touch</a>
-                        <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the founder</a>
-                    </div>
                 </div>
                 <div class="price-card reveal">
                     <div class="price-card-label">Add on</div>
@@ -1932,12 +2016,16 @@
                         <li>Designed and facilitated</li>
                         <li>Clear outputs and action plan</li>
                     </ul>
-                    <a href="https://fixedtoflow.com/#contact" class="price-cta secondary">Inquire</a>
                 </div>
             </div>
 
+            <div class="pricing-cta-centered reveal">
+                <a href="#contact" class="price-cta">Get in Touch</a>
+                <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the Founder</a>
+            </div>
+
             <p class="pricing-note reveal">
-                Limited to 2 to 3 clients at a time. 3 to 6 months recommended for real impact.
+                Limited to 2 to 3 clients at a time.
             </p>
         </div>
     </section>
@@ -1945,11 +2033,6 @@
     <!-- 10. Meet Your Sparring Partner Section -->
     <section class="guide">
         <div class="guide-content">
-            <div class="guide-header reveal">
-                <div class="section-label">Your Sparring Partner</div>
-                <h2>Meet Gus</h2>
-            </div>
-
             <div class="guide-card reveal">
                 <div class="guide-photo">
                     <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
@@ -1957,8 +2040,10 @@
                 <div class="guide-info">
                     <div class="guide-label">Founder Story</div>
                     <h3>Meet Gus</h3>
-                    <p>I've been in the field for more than 25 years. Building products, leading teams, navigating complexity. I've been Chief Product Officer at Cannavigia. I've advised startups and mentored Forbes 30 Under 30 leaders. I've made hard calls, gotten things wrong, and learned what actually works.</p>
-                    <p>I'm not a coach. I won't ask how you feel. I'm not a consultant. I won't hand you a framework and leave. I'm a peer who thinks with you. Who challenges you. Who helps you figure out not just what to do, but how to actually do it.</p>
+                    <p>Gus has advised startups, mentored leaders, and held leadership positions across different sectors for over two decades. But his real work has always been in the conversations: the ones where assumptions get tested, logic gets pressure-tested, and the hard truths get said.</p>
+                    <p>For the past two years, he's been deep in AI: updating his own toolkit, talking with countless leaders about how they're adapting, pushing them, and learning from them. That exchange sharpens everything he brings to the table.</p>
+                    <p>He calls it sparring because that's what it feels like. Not polite feedback. Not frameworks delivered from a distance. Real back-and-forth where both people are thinking hard and learning from the exchange.</p>
+                    <p>If you want someone who tells you what you want to hear, he's not the right fit. If you want someone who helps you think better, he's in.</p>
                     <div class="guide-social">
                         <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24">
@@ -2003,11 +2088,7 @@
                     <div class="faq-question">What does WhatsApp access mean?</div>
                     <div class="faq-answer">You can reach us weekdays for quick questions or when something comes up that can't wait. We respond within a few hours. It's not 24/7 support. It's having a thinking partner you can reach when you need to.</div>
                 </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question">Why month to month?</div>
-                    <div class="faq-answer">Because the relationship should continue only if it's valuable. We expect most engagements to last 3 to 6 months, but that's because the work is meaningful, not because you're locked in.</div>
-                </div>
-            </div>
+                            </div>
         </div>
     </section>
 
@@ -2015,10 +2096,10 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <div class="contact-header reveal">
-                <div class="section-label">Your Thinking Partner</div>
-                <h2>Book your first sparring session</h2>
+                <div class="section-label">Your Move</div>
+                <h2>Step into the ring</h2>
                 <p class="contact-description">
-                    Not sure if this is right? Let's have a conversation. No pressure, just clarity—and a chance to see if the fit is there.
+                    Curious what sparring actually feels like? One conversation. We'll be direct. You'll know quickly if this is for you.
                 </p>
             </div>
             <div class="contact-form reveal">
