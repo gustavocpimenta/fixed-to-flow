@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Label Variations | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --light-gray: #999999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .page-header {
+            background: var(--black);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .variations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .variation {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .variation-header {
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .variation-content {
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-desc {
+            color: var(--gray);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* V1: Current (Pill Badge) */
+        .label-v1 {
+            display: inline-block;
+            background: rgba(227, 36, 36, 0.1);
+            color: var(--red);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        /* V2: Underlined Text */
+        .label-v2 {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 4px;
+        }
+
+        /* V3: Left Border Accent */
+        .label-v3 {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-left: 12px;
+            border-left: 3px solid var(--red);
+        }
+
+        /* V4: Dash Prefix */
+        .label-v4 {
+            display: inline-block;
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .label-v4::before {
+            content: "— ";
+            color: var(--red);
+        }
+
+        /* V5: Decorative Dots */
+        .label-v5 {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .label-v5::before,
+        .label-v5::after {
+            content: "•";
+            margin: 0 8px;
+            opacity: 0.5;
+        }
+
+        /* V6: Square Brackets */
+        .label-v6 {
+            display: inline-block;
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .label-v6::before {
+            content: "[ ";
+            color: var(--red);
+        }
+        .label-v6::after {
+            content: " ]";
+            color: var(--red);
+        }
+
+        /* V7: Minimal Caps */
+        .label-v7 {
+            display: inline-block;
+            color: var(--light-gray);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        /* V8: Line Above */
+        .label-v8-wrapper {
+            margin-bottom: 1rem;
+        }
+        .label-v8-line {
+            width: 40px;
+            height: 2px;
+            background: var(--red);
+            margin: 0 auto 0.75rem;
+        }
+        .label-v8 {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* V9: Icon Prefix */
+        .label-v9 {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .label-v9::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        /* V10: Outlined Pill */
+        .label-v10 {
+            display: inline-block;
+            color: var(--red);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border: 1.5px solid var(--red);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Section Label Variations</h1>
+        <p>10 alternative styles for labels like "Lived Experience", "The Approach", etc.</p>
+    </div>
+
+    <div class="variations-grid">
+        <!-- V1: Current -->
+        <div class="variation">
+            <div class="variation-header">V1: Current (Pill Badge)</div>
+            <div class="variation-content">
+                <div class="label-v1">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V2: Underlined -->
+        <div class="variation">
+            <div class="variation-header">V2: Underlined Text</div>
+            <div class="variation-content">
+                <div class="label-v2">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V3: Left Border -->
+        <div class="variation">
+            <div class="variation-header">V3: Left Border Accent</div>
+            <div class="variation-content">
+                <div class="label-v3">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V4: Dash Prefix -->
+        <div class="variation">
+            <div class="variation-header">V4: Dash Prefix</div>
+            <div class="variation-content">
+                <div class="label-v4">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V5: Decorative Dots -->
+        <div class="variation">
+            <div class="variation-header">V5: Decorative Dots</div>
+            <div class="variation-content">
+                <div class="label-v5">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V6: Square Brackets -->
+        <div class="variation">
+            <div class="variation-header">V6: Square Brackets</div>
+            <div class="variation-content">
+                <div class="label-v6">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V7: Minimal Caps -->
+        <div class="variation">
+            <div class="variation-header">V7: Minimal All Caps</div>
+            <div class="variation-content">
+                <div class="label-v7">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V8: Line Above -->
+        <div class="variation">
+            <div class="variation-header">V8: Line Above</div>
+            <div class="variation-content">
+                <div class="label-v8-wrapper">
+                    <div class="label-v8-line"></div>
+                    <div class="label-v8">Lived Experience</div>
+                </div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V9: Icon Prefix -->
+        <div class="variation">
+            <div class="variation-header">V9: Dot Prefix</div>
+            <div class="variation-content">
+                <div class="label-v9">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+
+        <!-- V10: Outlined Pill -->
+        <div class="variation">
+            <div class="variation-header">V10: Outlined Pill</div>
+            <div class="variation-content">
+                <div class="label-v10">Lived Experience</div>
+                <h2 class="section-title">Why Work With Us</h2>
+                <p class="section-desc">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

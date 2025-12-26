@@ -60,62 +60,134 @@
             opacity: 0.1;
         }
 
+        /* Announcement Bar */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .announcement-bar.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .announcement-bar a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .announcement-bar a:hover {
+            opacity: 0.9;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            background: rgba(250, 247, 242, 0.9);
+            z-index: 1002;
+            background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
         }
 
-        nav.scrolled {
-            background: rgba(250, 247, 242, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        nav.visible {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
         .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--red);
             text-decoration: none;
-            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 22px;
+            width: auto;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .service-target {
+            font-size: 0.8rem;
+            color: var(--gray);
+            padding: 4px 12px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 100px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
-        .nav-back {
+        .nav-links a {
             color: var(--gray);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             transition: color 0.2s;
         }
 
-        .nav-back:hover {
+        .nav-links a:hover {
             color: var(--red);
         }
 
-        .nav-cta {
+        .nav-links a.nav-cta,
+        .nav-links a.nav-cta:hover,
+        .nav-links a.nav-cta:visited {
             padding: 0.75rem 1.5rem;
             background: var(--red);
-            color: white;
+            color: white !important;
             text-decoration: none;
             border-radius: 100px;
             font-weight: 500;
@@ -123,7 +195,7 @@
             transition: all 0.3s ease;
         }
 
-        .nav-cta:hover {
+        .nav-links a.nav-cta:hover {
             background: var(--red-dark);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(230, 59, 46, 0.3);
@@ -166,17 +238,11 @@
             max-width: 540px;
         }
 
-        .hero-label {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--red);
-            margin-bottom: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(230, 59, 46, 0.1);
-            border-radius: 100px;
+        .hero-accent-line {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            margin-bottom: 2rem;
         }
 
         .hero-title {
@@ -221,6 +287,17 @@
             box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
         .btn-arrow {
             transition: transform 0.3s ease;
         }
@@ -236,45 +313,43 @@
         }
 
         .hero-graphic {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 3.5rem;
-            text-align: center;
+            width: 400px;
+            height: 400px;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero-graphic::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 60px;
+        .wave-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 300px;
+        }
+
+        .wave-bar {
+            width: 8px;
             background: var(--red);
-            border-radius: 60px 60px 0 0;
-            opacity: 0.9;
+            border-radius: 4px;
+            animation: wave 1.5s ease-in-out infinite;
         }
 
-        .outcome-number {
-            font-size: 5.5rem;
-            font-weight: 700;
-            color: var(--red);
-            line-height: 1;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.02em;
-            padding-top: 0.5rem;
-        }
+        .wave-bar:nth-child(1) { height: 30px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 50px; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 80px; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 120px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 180px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 250px; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 180px; animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { height: 120px; animation-delay: 0.7s; }
+        .wave-bar:nth-child(9) { height: 80px; animation-delay: 0.8s; }
+        .wave-bar:nth-child(10) { height: 50px; animation-delay: 0.9s; }
+        .wave-bar:nth-child(11) { height: 30px; animation-delay: 1s; }
 
-        .outcome-label {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--gray);
-            position: relative;
-            z-index: 1;
-            margin-top: 0.5rem;
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
         }
 
         /* Sections */
@@ -290,12 +365,25 @@
 
         .section-label {
             display: inline-block;
-            font-size: 0.75rem;
+            color: var(--red);
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--red);
+            letter-spacing: 1px;
             margin-bottom: 1rem;
+            position: relative;
+            padding-top: 1rem;
+        }
+
+        .section-label::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--red);
         }
 
         .section-title {
@@ -377,7 +465,11 @@
         }
 
         .how-it-works .section-label {
-            color: rgba(255,255,255,0.8);
+            color: var(--white);
+        }
+
+        .how-it-works .section-label::before {
+            background: var(--white);
         }
 
         .steps-grid {
@@ -633,45 +725,64 @@
             text-decoration: underline;
         }
 
-        /* Why This Works Section */
+        /* Why This Works Section - Version 6: Two-column layout */
         .why-works {
             background: var(--white);
             padding: 6rem 2rem;
         }
 
-        .why-content {
-            max-width: 800px;
+        .why-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .why-content > p {
-            font-size: 1.15rem;
+        .why-left {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .why-left p {
+            font-size: 1.25rem;
             color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .why-points {
-            margin-top: 2.5rem;
-        }
-
-        .why-point {
-            background: var(--cream);
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--red);
-            transition: all 0.3s ease;
-        }
-
-        .why-point:hover {
-            transform: translateX(5px);
-        }
-
-        .why-point p {
-            margin: 0;
-            color: var(--black);
             line-height: 1.7;
+        }
+
+        .why-left p:first-child {
+            font-size: 1.75rem;
+            color: var(--black);
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .why-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .why-card {
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .why-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin: 0;
         }
 
         /* Testimonials Section */
@@ -771,7 +882,11 @@
         }
 
         .pricing .section-label {
-            color: var(--red);
+            color: var(--white);
+        }
+
+        .pricing .section-label::before {
+            background: var(--white);
         }
 
         .tiers-grid {
@@ -900,72 +1015,94 @@
             right: 100px;
         }
 
-        .guide-single {
-            max-width: 800px;
-            margin: 0 auto;
+        .founder-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 3rem;
+            grid-template-columns: auto 1fr;
+            gap: 50px;
             align-items: start;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .guide-photo-large {
-            width: 280px;
-            height: 280px;
-            border-radius: 20px;
+        .founder-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red) 0%, #C42B1C 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            border: 4px solid var(--red);
+            flex-shrink: 0;
         }
 
-        .guide-photo-large img {
+        .founder-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
         }
 
-        .guide-info h3 {
-            font-size: 2rem;
+        .founder-info .founder-label {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--black);
-            margin-bottom: 0.5rem;
-        }
-
-        .guide-info .guide-title {
             color: var(--red);
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
-        .guide-bio {
+        .founder-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .founder-info p {
             color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .guide-credentials {
-            list-style: none;
+        .founder-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
         }
 
-        .guide-credentials li {
-            padding: 0.4rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .guide-credentials li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.7rem;
-            width: 6px;
-            height: 6px;
-            background: var(--red);
+        .founder-social a {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .founder-social a:hover {
+            background: var(--red);
+        }
+
+        .founder-social a:hover svg {
+            stroke: var(--white);
+        }
+
+        .founder-social svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gray);
+            fill: none;
+            stroke-width: 2;
         }
 
         /* FAQ Section */
@@ -1003,101 +1140,235 @@
             line-height: 1.7;
         }
 
-        /* Final CTA Section */
-        .final-cta {
+        /* Contact Section */
+        .contact {
+            padding: 100px 2rem;
             background: var(--cream);
-            padding: 6rem 2rem;
-            text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 90px;
-            background: var(--red);
-            opacity: 0.08;
-            border-radius: 0 0 90px 90px;
-        }
-
-        .final-cta-content {
+        .contact-content {
             max-width: 600px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .final-cta h2 {
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* contact-header inherits from base .section-label */
+
+        .contact-header h2 {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--black);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
 
-        .final-cta p {
-            color: var(--gray);
+        .contact-description {
             font-size: 1.15rem;
-            margin-bottom: 2rem;
+            color: var(--gray);
+            line-height: 1.7;
         }
 
-        .final-cta-buttons {
+        .contact-form {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--red);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .form-buttons .btn {
+            flex: 1;
             justify-content: center;
-            flex-wrap: wrap;
+            padding: 16px 24px;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--red);
-            border: 2px solid var(--red);
-        }
-
-        .btn-secondary:hover {
-            background: var(--red);
-            color: white;
-            transform: translateY(-2px);
+        @media (max-width: 600px) {
+            .form-buttons {
+                flex-direction: column;
+            }
         }
 
         /* Footer */
         footer {
             background: var(--black);
-            padding: 2.5rem 2rem;
-            text-align: center;
+            padding: 80px 60px 40px;
         }
 
-        .footer-text {
-            color: var(--gray-light);
-            font-size: 0.9rem;
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 80px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .footer-text a {
+        .footer-brand .footer-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand .footer-tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .footer-tagline span {
             color: var(--red);
-            text-decoration: none;
+        }
+
+        .footer-brand .footer-desc {
+            font-size: 1rem;
+            color: var(--gray-light);
+            max-width: 380px;
         }
 
         .footer-links {
-            margin-top: 1.5rem;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 60px;
         }
 
-        .footer-links a {
+        .footer-link-column h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: var(--gray-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            margin-bottom: 20px;
         }
 
-        .footer-links a:hover {
+        .footer-link-column ul {
+            list-style: none;
+        }
+
+        .footer-link-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link-column a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-column a:hover {
             color: var(--red);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
         }
 
         /* Animations */
@@ -1139,19 +1410,30 @@
                 grid-template-columns: 1fr;
             }
 
+            .why-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .why-left {
+                position: static;
+            }
+
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
-            .guide-single {
+            .founder-card {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .guide-photo-large {
+            .founder-image {
                 margin: 0 auto;
-                width: 220px;
-                height: 220px;
+            }
+
+            .founder-social {
+                justify-content: center;
             }
         }
 
@@ -1170,26 +1452,290 @@
             }
 
             .nav-links {
-                gap: 1rem;
+                display: none;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
             }
 
             .nav-back {
                 display: none;
             }
+
+            .nav-container {
+                position: relative;
+                z-index: 1003;
+                padding: 0.75rem 1rem;
+            }
+
+            .service-info {
+                display: none;
+            }
+
+            nav {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+                top: 44px;
+                transition: top 0.3s ease;
+            }
+
+            nav.announcement-hidden {
+                top: 0;
+            }
         }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1002;
+            padding: 12px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mobile-nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center;
+        }
+
+        .mobile-nav-toggle span:first-child { width: 24px; }
+        .mobile-nav-toggle span:last-child { width: 16px; margin-left: auto; }
+
+        .mobile-nav-toggle.active span:first-child {
+            transform: rotate(45deg) translateY(5.5px);
+        }
+        .mobile-nav-toggle.active span:last-child {
+            width: 24px;
+            transform: rotate(-45deg) translateY(-5.5px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: flex;
+            }
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--cream);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            overflow: hidden;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-accent {
+            position: absolute;
+            top: -50%; right: -30%;
+            width: 80%; height: 150%;
+            background: var(--red);
+            opacity: 0.06;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transform: translateX(100%) rotate(-15deg);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mobile-nav-overlay.active .mobile-nav-accent {
+            transform: translateX(0) rotate(-15deg);
+        }
+
+        .mobile-nav-accent-secondary {
+            position: absolute;
+            bottom: -20%; left: -20%;
+            width: 60%; height: 80%;
+            background: var(--red);
+            opacity: 0.03;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transform: translateY(100%);
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+        }
+
+        .mobile-nav-overlay.active .mobile-nav-accent-secondary {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100%;
+            padding: 100px 40px 40px;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: static;
+            transform: none;
+            opacity: 1;
+            pointer-events: auto;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            padding: 16px 0;
+            position: relative;
+            transform: translateX(-40px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease, color 0.3s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .mobile-nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 8px;
+            width: 0; height: 3px;
+            background: var(--red);
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mobile-nav-link:hover::after { width: 60px; }
+        .mobile-nav-link:hover { color: var(--red); }
+
+        .mobile-nav-overlay.active .mobile-nav-link {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.15s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.22s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.29s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.36s; }
+
+        .mobile-nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 40px;
+            padding: 20px 36px;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 100px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.45s, opacity 0.6s ease 0.45s, background 0.3s ease;
+        }
+
+        .mobile-nav-cta svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
+        .mobile-nav-cta:hover { background: var(--red-dark); }
+        .mobile-nav-cta:hover svg { transform: translateX(4px); }
+
+        .mobile-nav-overlay.active .mobile-nav-cta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-nav-footer {
+            margin-top: auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            width: 100%;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.55s, opacity 0.6s ease 0.55s;
+        }
+
+        .mobile-nav-overlay.active .mobile-nav-footer {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-nav-tagline {
+            font-size: 0.9rem;
+            color: var(--gray);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        body.nav-open { overflow: hidden; }
     </style>
 </head>
 <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <a href="https://ai.fixedtoflow.com/">Lead with AI, Stay Human</a> | 7-day free email course
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">Fixed to Flow</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-back">All Services</a>
-                <a href="https://fixedtoflow.com/#contact" class="nav-cta">Apply now</a>
+            <div class="nav-left">
+                <a href="index.html" class="logo"><img src="logo.svg" alt="Fixed to Flow"></a>
+                <div class="nav-divider"></div>
+                <div class="service-info">
+                    <span class="service-name">AI Amplifier</span>
+                    <span class="service-target">For Individuals</span>
+                </div>
             </div>
+            <div class="nav-links">
+                <a href="index.html#services">What We Do</a>
+                <a href="index.html#why-us">Why Us</a>
+                <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" aria-hidden="true">
+        <div class="mobile-nav-accent"></div>
+        <div class="mobile-nav-accent-secondary"></div>
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-links">
+                <a href="/drafts/" class="mobile-nav-link">Home</a>
+                <a href="/drafts/index.html#services" class="mobile-nav-link">What We Do</a>
+                <a href="/drafts/index.html#why-us" class="mobile-nav-link">Why Us</a>
+            </div>
+            <a href="/drafts/index.html#contact" class="mobile-nav-cta">
+                Get in Touch
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <div class="mobile-nav-footer">
+                <span class="mobile-nav-tagline">Lead with AI, Stay Human</span>
+            </div>
+        </div>
+    </div>
 
     <!-- 1. Hero Section -->
     <section class="hero">
@@ -1197,10 +1743,10 @@
         <div class="shape-circle"></div>
         <div class="hero-container">
             <div class="hero-content reveal">
-                <div class="hero-label">AI Amplifier</div>
+                <div class="hero-accent-line"></div>
                 <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
                 <p class="hero-desc">
-                    Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    Stop pushing AI harder and start using it smarter. Remove 50% of your daily work in 30 days without forgetting how to think.
                 </p>
                 <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
                     Apply now
@@ -1211,8 +1757,19 @@
             </div>
             <div class="hero-visual reveal">
                 <div class="hero-graphic">
-                    <div class="outcome-number">50%</div>
-                    <div class="outcome-label">Less Daily Work</div>
+                    <div class="wave-container">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1268,25 +1825,6 @@
             <div class="process-summary reveal">
                 <p><strong>Apply, Qualify, Build together, Implement for 30 days, Wrap up</strong></p>
                 <p class="simple">Simple.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. The Human Way Box -->
-    <section class="human-way">
-        <div class="shape-circle"></div>
-        <div class="container">
-            <div class="human-way-box reveal">
-                <h2 class="human-way-title">Lead with AI, Stay Human</h2>
-                <p class="human-way-text">
-                    AI should extend your reach, not substitute your thinking.
-                </p>
-                <p class="human-way-text">
-                    Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.
-                </p>
-                <p class="human-way-text">
-                    <strong>You get faster with AI. And you stay sharp without it.</strong>
-                </p>
             </div>
         </div>
     </section>
@@ -1360,21 +1898,27 @@
                 <h2 class="section-title section-title-dark">Why this works</h2>
             </div>
 
-            <div class="why-content">
-                <p class="reveal">Most AI training fails because it's generic. You watch videos, you take notes, nothing sticks. We do it differently.</p>
-
-                <div class="why-points">
-                    <div class="why-point reveal">
-                        <p><strong>We start with YOUR work.</strong> Not generic prompts. Your actual tasks, your actual challenges, your actual tools.</p>
+            <div class="why-layout">
+                <div class="why-left reveal">
+                    <p>Most AI training fails because it's generic.</p>
+                    <p>You watch videos, you take notes, nothing sticks. We do it differently.</p>
+                </div>
+                <div class="why-right">
+                    <div class="why-card reveal">
+                        <h3>We start with YOUR work</h3>
+                        <p>Not generic prompts. Your actual tasks, your actual challenges, your actual tools.</p>
                     </div>
-                    <div class="why-point reveal">
-                        <p><strong>We build something useful on day one.</strong> You leave the first session with a working AI assistant. Immediate value, not promised future value.</p>
+                    <div class="why-card reveal">
+                        <h3>We build something useful on day one</h3>
+                        <p>You leave the first session with a working AI assistant. Immediate value, not promised future value.</p>
                     </div>
-                    <div class="why-point reveal">
-                        <p><strong>We focus on implementation, not information.</strong> The plan is designed for 30 days of doing, not watching or reading.</p>
+                    <div class="why-card reveal">
+                        <h3>We focus on implementation, not information</h3>
+                        <p>The plan is designed for 30 days of doing, not watching or reading.</p>
                     </div>
-                    <div class="why-point reveal">
-                        <p><strong>We protect your human skills.</strong> AI should amplify what you're good at, not make you dependent. You stay sharp without it.</p>
+                    <div class="why-card reveal">
+                        <h3>We protect your human skills</h3>
+                        <p>AI should amplify what you're good at, not make you dependent. You stay sharp without it.</p>
                     </div>
                 </div>
             </div>
@@ -1442,7 +1986,7 @@
             <div class="tiers-grid">
                 <div class="tier-card reveal">
                     <div class="tier-badge">Basic</div>
-                    <h3 class="tier-name">700 EUR</h3>
+                    <h3 class="tier-name">1,000 EUR</h3>
                     <p class="tier-desc">
                         Perfect for self starters who need direction, then can run with it.
                     </p>
@@ -1457,7 +2001,7 @@
 
                 <div class="tier-card reveal">
                     <div class="tier-badge">Extended</div>
-                    <h3 class="tier-name">1,200 EUR</h3>
+                    <h3 class="tier-name">1,500 EUR</h3>
                     <p class="tier-desc">
                         Perfect for ongoing support and a learning community.
                     </p>
@@ -1481,33 +2025,30 @@
     <section class="guide">
         <div class="shape-blob"></div>
         <div class="container">
-            <div class="section-header reveal">
-                <div class="section-label">Your Guide</div>
-                <h2 class="section-title section-title-dark">Meet Gus</h2>
-            </div>
-
-            <div class="guide-single reveal">
-                <div class="guide-photo-large">
+            <div class="founder-card reveal">
+                <div class="founder-image">
                     <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
-                <div class="guide-info">
-                    <h3>Gustavo da Cunha Pimenta</h3>
-                    <div class="guide-title">Founder, Fixed to Flow</div>
-                    <p class="guide-bio">
-                        I'm not an AI researcher or a tech evangelist. I'm a practitioner who learned GenAI the hard way in 2023, through structured experiments, lots of mistakes, and documenting what actually worked.
-                    </p>
-                    <p class="guide-bio">
-                        Before Fixed to Flow, I spent 25+ years in product leadership and digital transformation, including as Chief Product Officer at Cannavigia. I've advised startups, lectured at universities, and mentored Forbes 30 Under 30 leaders.
-                    </p>
-                    <p class="guide-bio">
-                        <strong>What drives me:</strong> I believe AI should make people stronger, not weaker. I've seen too many "AI training" programs that teach button clicking without building real capability. The AI Amplifier exists to fix that.
-                    </p>
-                    <ul class="guide-credentials">
-                        <li>25+ years in product leadership and digital transformation</li>
-                        <li>Former Chief Product Officer at Cannavigia</li>
-                        <li>Notion Ambassador since 2021</li>
-                        <li>Published thought leader on personal experiments</li>
-                    </ul>
+                <div class="founder-info">
+                    <div class="founder-label">Your Guide</div>
+                    <h3>Meet Gus</h3>
+                    <p>I'm not an AI researcher or a tech evangelist. I'm a practitioner who learned GenAI the hard way in 2023, through structured experiments, lots of mistakes, and documenting what actually worked.</p>
+                    <p>Before Fixed to Flow, I spent 25+ years in product leadership and digital transformation, including as Chief Product Officer at Cannavigia. I've advised startups, lectured at universities, and mentored Forbes 30 Under 30 leaders.</p>
+                    <p><strong>What drives me:</strong> I believe AI should make people stronger, not weaker. I've seen too many "AI training" programs that teach button clicking without building real capability. The AI Amplifier exists to fix that.</p>
+                    <div class="founder-social">
+                        <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/gustavocpimenta" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1546,42 +2087,107 @@
         </div>
     </section>
 
-    <!-- 12. Final CTA Section -->
-    <section class="final-cta">
-        <div class="final-cta-content reveal">
-            <h2>Remove 50% of your daily work in 30 days</h2>
-            <p>You don't need more tips. You need a system that actually works.</p>
-            <div class="final-cta-buttons">
-                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
-                    Apply now
-                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-                <a href="mailto:gus@fixedtoflow.com" class="btn btn-secondary">Email Gus directly</a>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-header reveal">
+                <div class="section-label">Ready to Start</div>
+                <h2>Remove 50% of your daily work</h2>
+                <p class="contact-description">You don't need more tips. You need a system that actually works. Let's talk about how AI Amplifier can transform your workflow.</p>
+            </div>
+
+            <div class="contact-form reveal">
+                <h3>Get in touch</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" placeholder="Tell us about your situation..."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p class="footer-text">2025 <a href="https://fixedtoflow.com">Fixed to Flow</a>. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="index.html">All Services</a>
-            <a href="https://fixedtoflow.substack.com">Newsletter</a>
-            <a href="ai-activation-sprint-v3.html">AI Activation</a>
-            <a href="strategic-sparring-v3.html">Strategic Sparring</a>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Fixed to Flow</p>
+                <h3 class="footer-tagline">Lead with AI,<br><span>Stay Human</span></h3>
+                <p class="footer-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-link-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="ai-activation-sprint-v3.html">AI Activation</a></li>
+                        <li><a href="ai-acceleration-v3.html">AI Acceleration</a></li>
+                        <li><a href="ai-amplifier-v3.html">AI Amplifier</a></li>
+                        <li><a href="strategic-sparring-v3.html">Strategic Sparring</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://fixedtoflow.substack.com/" target="_blank" rel="noopener">Newsletter</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/company/fixedtoflow/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/fixedtoflow" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/fixedtoflow/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navigation scroll effect
         const navbar = document.getElementById('navbar');
+        const announcementBar = document.querySelector('.announcement-bar');
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+                navbar.classList.add('announcement-hidden');
+                announcementBar.classList.add('hidden');
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('visible');
+                navbar.classList.remove('announcement-hidden');
+                announcementBar.classList.remove('hidden');
             }
         });
 
@@ -1601,6 +2207,34 @@
 
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
+
+        // Mobile Navigation
+        (function() {
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            const links = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
+            if (!toggle || !overlay) return;
+            function openNav() {
+                toggle.classList.add('active');
+                toggle.setAttribute('aria-expanded', 'true');
+                overlay.classList.add('active');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('nav-open');
+            }
+            function closeNav() {
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                overlay.classList.remove('active');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('nav-open');
+            }
+            toggle.addEventListener('click', function() {
+                overlay.classList.contains('active') ? closeNav() : openNav();
+            });
+            links.forEach(link => link.addEventListener('click', closeNav));
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeNav(); });
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
+        })();
     </script>
 </body>
 </html>

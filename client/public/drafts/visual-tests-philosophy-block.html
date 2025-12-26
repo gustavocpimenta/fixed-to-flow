@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Block Variations | Visual Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+            --sage: #B5C4C1;
+            --pink: #E891B2;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-dark);
+            color: var(--black);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            margin-bottom: 60px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .variation-label {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variation-label span {
+            color: var(--gray-light);
+            font-weight: 400;
+        }
+
+        /* Shared Section Styles */
+        .section {
+            padding: 100px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           VARIATION 1: CURRENT (Reference)
+           Red bordered card with sunrise top
+           ========================================== */
+        .v1 {
+            background: var(--cream);
+        }
+
+        .v1 .shape-circle {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: var(--sage);
+            border-radius: 50%;
+            opacity: 0.15;
+            top: 80px;
+            left: 60px;
+        }
+
+        .v1-box {
+            background: var(--white);
+            border: 2px solid var(--red);
+            border-radius: 24px;
+            padding: 56px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+
+        .v1-box::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 40px;
+            background: var(--red);
+            border-radius: 40px 40px 0 0;
+        }
+
+        .v1 h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 24px;
+            padding-top: 8px;
+        }
+
+        .v1 .lead {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .v1 .body {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .v1 .emphasis {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           VARIATION 2: SPLIT CARD
+           Two-column with icon side
+           ========================================== */
+        .v2 {
+            background: var(--cream);
+        }
+
+        .v2-box {
+            background: var(--white);
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .v2-icon-side {
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .v2-icon-side::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+
+        .v2-icon-side::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+        }
+
+        .v2-content {
+            padding: 48px;
+        }
+
+        .v2 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .v2 h2 span {
+            color: var(--red);
+            font-style: italic;
+        }
+
+        .v2 .lead {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .v2 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .v2 .emphasis {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            padding-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* ==========================================
+           VARIATION 3: DARK INSET
+           Dark card with inset border
+           ========================================== */
+        .v3 {
+            background: var(--cream);
+        }
+
+        .v3-box {
+            background: var(--black);
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        }
+
+        .v3-box::before {
+            content: '';
+            position: absolute;
+            inset: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        .v3-accent {
+            width: 60px;
+            height: 4px;
+            background: var(--red);
+            margin: 0 auto 32px;
+            border-radius: 2px;
+        }
+
+        .v3 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .v3 h2 em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .v3 .lead {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+        }
+
+        .v3 .body {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .v3 .emphasis {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* ==========================================
+           VARIATION 4: QUOTE STYLE
+           Large quote marks, editorial feel
+           ========================================== */
+        .v4 {
+            background: var(--white);
+        }
+
+        .v4-box {
+            background: var(--cream);
+            border-radius: 0;
+            padding: 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .v4-quote {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 12rem;
+            color: var(--red);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 0.8;
+            pointer-events: none;
+        }
+
+        .v4 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--red);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .v4 .lead {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .v4 .body {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .v4 .emphasis {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            position: relative;
+        }
+
+        /* ==========================================
+           VARIATION 5: FLOATING BADGE
+           Card with floating title badge
+           ========================================== */
+        .v5 {
+            background: var(--cream);
+            padding-top: 140px;
+        }
+
+        .v5-badge {
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(230, 59, 46, 0.3);
+            z-index: 10;
+        }
+
+        .v5-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 72px 56px 56px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .v5 .lead {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .v5 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .v5 .emphasis {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 6: GRADIENT BORDER
+           Subtle gradient border effect
+           ========================================== */
+        .v6 {
+            background: var(--cream);
+        }
+
+        .v6-wrapper {
+            background: linear-gradient(135deg, var(--red) 0%, var(--burgundy) 100%);
+            padding: 3px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(230, 59, 46, 0.15);
+        }
+
+        .v6-box {
+            background: var(--white);
+            border-radius: 21px;
+            padding: 56px;
+            text-align: center;
+        }
+
+        .v6-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--red) 0%, var(--burgundy) 100%);
+            border-radius: 50%;
+            margin: 0 auto 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v6-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .v6 h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .v6 h2 span {
+            background: linear-gradient(135deg, var(--red) 0%, var(--burgundy) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .v6 .lead {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .v6 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .v6 .emphasis {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           VARIATION 7: ASYMMETRIC LAYOUT
+           Off-center with side accent
+           ========================================== */
+        .v7 {
+            background: var(--cream);
+        }
+
+        .v7 .container {
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .v7-accent-bar {
+            width: 4px;
+            height: 200px;
+            background: linear-gradient(180deg, var(--red) 0%, transparent 100%);
+            border-radius: 2px;
+            justify-self: center;
+        }
+
+        .v7-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 56px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--red);
+        }
+
+        .v7 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .v7 h2 em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .v7 .lead {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .v7 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .v7 .emphasis {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           VARIATION 8: LAYERED CARDS
+           Stacked card effect with depth
+           ========================================== */
+        .v8 {
+            background: var(--cream);
+        }
+
+        .v8-stack {
+            position: relative;
+        }
+
+        .v8-stack::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: -16px;
+            bottom: -16px;
+            background: var(--red);
+            opacity: 0.1;
+            border-radius: 24px;
+        }
+
+        .v8-stack::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: -8px;
+            bottom: -8px;
+            background: var(--red);
+            opacity: 0.05;
+            border-radius: 24px;
+        }
+
+        .v8-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 56px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .v8-label {
+            display: inline-block;
+            background: rgba(230, 59, 46, 0.1);
+            color: var(--red);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .v8 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .v8 h2 span {
+            color: var(--red);
+            font-style: italic;
+        }
+
+        .v8 .lead {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .v8 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .v8 .emphasis {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           VARIATION 9: MINIMAL LINES
+           Clean with horizontal line accents
+           ========================================== */
+        .v9 {
+            background: var(--white);
+        }
+
+        .v9-box {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .v9-line-top {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--red) 50%, transparent 100%);
+            margin-bottom: 48px;
+        }
+
+        .v9 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--red);
+            margin-bottom: 32px;
+        }
+
+        .v9 .lead {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .v9 .body {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 24px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .v9 .emphasis {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 48px;
+        }
+
+        .v9-line-bottom {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--red) 50%, transparent 100%);
+        }
+
+        /* ==========================================
+           VARIATION 10: ICON GRID
+           Structured with icon emphasis
+           ========================================== */
+        .v10 {
+            background: var(--cream);
+        }
+
+        .v10-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 56px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+
+        .v10-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .v10-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--red);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .v10-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .v10 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--black);
+            line-height: 1.2;
+        }
+
+        .v10 h2 em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .v10-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .v10 .lead {
+            font-size: 1.1rem;
+            color: var(--black);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .v10 .body {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .v10-footer {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .v10 .emphasis {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 11: SERIF EDITORIAL
+           Magazine-style typography focus
+           ========================================== */
+        .v11 {
+            background: var(--cream);
+        }
+
+        .v11-box {
+            background: var(--white);
+            border-radius: 0;
+            padding: 80px;
+            text-align: center;
+            position: relative;
+            border-top: 4px solid var(--red);
+            border-bottom: 4px solid var(--red);
+        }
+
+        .v11-number {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 8rem;
+            color: var(--cream);
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .v11 h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .v11 h2 em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .v11 .lead {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .v11 .body {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .v11 .emphasis {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--black);
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>"Lead with AI, Stay Human" Block</h1>
+        <p>10 variations for the philosophy section that appears within service pages. Each designed to integrate with the overall page structure.</p>
+    </div>
+
+    <!-- VARIATION 1: Current Reference -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 1: Current (Reference)
+            <span>Red bordered card with sunrise top element</span>
+        </div>
+        <section class="section v1">
+            <div class="shape-circle"></div>
+            <div class="container">
+                <div class="v1-box">
+                    <h2>Lead with AI, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 2: Split Card -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 2: Split Card
+            <span>Two-column with colored icon panel</span>
+        </div>
+        <section class="section v2">
+            <div class="container">
+                <div class="v2-box">
+                    <div class="v2-icon-side"></div>
+                    <div class="v2-content">
+                        <h2>Lead with <span>AI</span>, Stay Human</h2>
+                        <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                        <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                        <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 3: Dark Inset -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 3: Dark Inset
+            <span>Dark card with subtle inset border</span>
+        </div>
+        <section class="section v3">
+            <div class="container">
+                <div class="v3-box">
+                    <div class="v3-accent"></div>
+                    <h2>Lead with <em>AI</em>, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 4: Quote Style -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 4: Quote Style
+            <span>Editorial feel with large quote mark</span>
+        </div>
+        <section class="section v4">
+            <div class="container">
+                <div class="v4-box">
+                    <div class="v4-quote">"</div>
+                    <h2>Lead with AI, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 5: Floating Badge -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 5: Floating Badge
+            <span>Card with floating title pill</span>
+        </div>
+        <section class="section v5">
+            <div class="container">
+                <div class="v5-box">
+                    <div class="v5-badge">Lead with AI, Stay Human</div>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 6: Gradient Border -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 6: Gradient Border
+            <span>Subtle gradient border wrap</span>
+        </div>
+        <section class="section v6">
+            <div class="container">
+                <div class="v6-wrapper">
+                    <div class="v6-box">
+                        <div class="v6-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v8M8 12h8"/>
+                            </svg>
+                        </div>
+                        <h2>Lead with <span>AI</span>, Stay Human</h2>
+                        <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                        <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                        <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 7: Asymmetric Layout -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 7: Asymmetric Layout
+            <span>Off-center with side accent bar</span>
+        </div>
+        <section class="section v7">
+            <div class="container">
+                <div class="v7-accent-bar"></div>
+                <div class="v7-box">
+                    <h2>Lead with <em>AI</em>, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 8: Layered Cards -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 8: Layered Cards
+            <span>Stacked depth effect</span>
+        </div>
+        <section class="section v8">
+            <div class="container">
+                <div class="v8-stack">
+                    <div class="v8-box">
+                        <span class="v8-label">Our Philosophy</span>
+                        <h2>Lead with <span>AI</span>, Stay Human</h2>
+                        <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                        <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                        <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 9: Minimal Lines -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 9: Minimal Lines
+            <span>Clean with horizontal line accents</span>
+        </div>
+        <section class="section v9">
+            <div class="container">
+                <div class="v9-box">
+                    <div class="v9-line-top"></div>
+                    <h2>Lead with AI, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                    <div class="v9-line-bottom"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 10: Icon Grid -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 10: Icon Grid
+            <span>Structured layout with icon header</span>
+        </div>
+        <section class="section v10">
+            <div class="container">
+                <div class="v10-box">
+                    <div class="v10-header">
+                        <div class="v10-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            </svg>
+                        </div>
+                        <h2>Lead with <em>AI</em>,<br>Stay Human</h2>
+                    </div>
+                    <div class="v10-content">
+                        <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                        <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    </div>
+                    <div class="v10-footer">
+                        <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 11: Serif Editorial -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 11: Serif Editorial (Bonus)
+            <span>Magazine-style typography focus</span>
+        </div>
+        <section class="section v11">
+            <div class="container">
+                <div class="v11-box">
+                    <div class="v11-number">01</div>
+                    <h2>Lead with <em>AI</em>, Stay Human</h2>
+                    <p class="lead">AI should extend your reach, not substitute your thinking.</p>
+                    <p class="body">Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.</p>
+                    <p class="emphasis">You get faster with AI. And you stay sharp without it.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

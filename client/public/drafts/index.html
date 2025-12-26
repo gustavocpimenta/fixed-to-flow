@@ -497,33 +497,73 @@
             width: 100%;
             height: 100%;
             border: 1px solid rgba(230, 59, 46, 0.2);
-            animation: breathe 6s ease-in-out infinite;
         }
 
         .hero-graphic .circle-middle {
             width: 70%;
             height: 70%;
             border: 1px solid rgba(230, 59, 46, 0.3);
-            animation: breathe 6s ease-in-out infinite 0.5s;
         }
 
         .hero-graphic .circle-inner {
             width: 45%;
             height: 45%;
             border: 3px solid var(--red);
-            animation: breathe 6s ease-in-out infinite 1s;
         }
 
+        /* Hero Animation Variations */
         @keyframes breathe {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.05);
-                opacity: 0.7;
-            }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
         }
+
+        @keyframes ripple {
+            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            10% { transform: translate(-50%, -50%) scale(1.03); }
+            20% { transform: translate(-50%, -50%) scale(1); }
+            30% { transform: translate(-50%, -50%) scale(1.02); }
+            40%, 100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes opacity-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes stagger-fade {
+            0%, 20%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); }
+            10% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+        }
+
+        /* V1: Breathing */
+        .hero-graphic.v1 .circle-outer { animation: breathe 6s ease-in-out infinite; }
+        .hero-graphic.v1 .circle-middle { animation: breathe 6s ease-in-out infinite 0.5s; }
+        .hero-graphic.v1 .circle-inner { animation: breathe 6s ease-in-out infinite 1s; }
+
+        /* V2: Ripple Outward */
+        .hero-graphic.v2 .circle-inner { animation: ripple 3s ease-out infinite; }
+        .hero-graphic.v2 .circle-middle { animation: ripple 3s ease-out infinite 0.3s; }
+        .hero-graphic.v2 .circle-outer { animation: ripple 3s ease-out infinite 0.6s; }
+
+        /* V4: Heartbeat */
+        .hero-graphic.v4 .circle-outer { animation: heartbeat 1.5s ease-in-out infinite; }
+        .hero-graphic.v4 .circle-middle { animation: heartbeat 1.5s ease-in-out infinite 0.1s; }
+        .hero-graphic.v4 .circle-inner { animation: heartbeat 1.5s ease-in-out infinite 0.2s; }
+
+        /* V6: Opacity Pulse */
+        .hero-graphic.v6 .circle-outer { animation: opacity-pulse 4s ease-in-out infinite; }
+        .hero-graphic.v6 .circle-middle { animation: opacity-pulse 4s ease-in-out infinite 0.5s; }
+        .hero-graphic.v6 .circle-inner { animation: opacity-pulse 4s ease-in-out infinite 1s; }
+
+        /* V9: Staggered Fade */
+        .hero-graphic.v9 .circle-outer { animation: stagger-fade 6s ease-in-out infinite; }
+        .hero-graphic.v9 .circle-middle { animation: stagger-fade 6s ease-in-out infinite 2s; }
+        .hero-graphic.v9 .circle-inner { animation: stagger-fade 6s ease-in-out infinite 4s; }
 
         /* Services Section */
         .services {
@@ -548,16 +588,24 @@
         }
 
         .section-label {
-            display: inline-block;
-            background: rgba(230, 59, 46, 0.1);
-            color: var(--red);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            color: var(--gray);
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             margin-bottom: 20px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: var(--gray);
+            border-radius: 2px;
         }
 
         .section-header h2 {
@@ -1201,9 +1249,23 @@
             resize: vertical;
         }
 
-        .contact-form .btn-primary {
-            width: 100%;
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .form-buttons .btn-primary,
+        .form-buttons .btn-secondary {
+            flex: 1;
             justify-content: center;
+            padding: 16px 24px;
+        }
+
+        @media (max-width: 600px) {
+            .form-buttons {
+                flex-direction: column;
+            }
         }
 
         /* Beyond Business Section */
@@ -1603,7 +1665,6 @@
         <div class="section-header reveal">
             <div class="section-label">Our Services</div>
             <h2>What We Do</h2>
-            <p class="section-tagline">Amplified by AI, Anchored in Humanity</p>
             <p class="section-description">Supporting leaders, teams, and companies who want to integrate AI, strengthen human skills, and stay adaptable.</p>
         </div>
 
@@ -1685,8 +1746,9 @@
     <section class="why-us" id="why-us">
         <div class="why-us-content">
             <div class="why-us-header reveal">
-                <div class="section-label">Founder Story</div>
+                <div class="section-label">Lived Experience</div>
                 <h2>Why Work With Us</h2>
+                <p class="section-description">We bring firsthand experience building systems and products, and empowering people to adapt to what comes next.</p>
             </div>
 
             <div class="founder-card reveal">
@@ -1694,7 +1756,7 @@
                     <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
                 <div class="founder-info">
-                    <div class="founder-label">Your Guide</div>
+                    <div class="founder-label">Founder Story</div>
                     <h3>Meet Gus</h3>
                     <p>I've been in the field for more than 25 years. Building products, leading teams, navigating complexity. I've been Chief Product Officer at Cannavigia. I've advised startups and mentored Forbes 30 Under 30 leaders. I've made hard calls, gotten things wrong, and learned what actually works.</p>
                     <p>I believe AI should make people stronger, not weaker. I've seen too many "AI training" programs that teach button clicking without building real capability. Fixed to Flow exists to fix that.</p>
@@ -1749,6 +1811,7 @@
             <div class="contact-header reveal">
                 <div class="section-label">Embrace Change</div>
                 <h2>Let's meet as we are, on the way</h2>
+                <p class="section-description">Whether you're exploring possibilities or ready to start, we're here to listen and figure out what makes sense together.</p>
             </div>
 
             <div class="contact-form reveal">
@@ -1766,7 +1829,10 @@
                         <label for="message">How can we help?</label>
                         <textarea id="message" placeholder="Tell us about your project or question..."></textarea>
                     </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn-secondary">Talk to the founder</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -1827,6 +1893,13 @@
     </footer>
 
     <script>
+        // Random hero animation on page load
+        (function() {
+            const variations = ['v1', 'v2', 'v4', 'v6', 'v9'];
+            const random = variations[Math.floor(Math.random() * variations.length)];
+            document.querySelector('.hero-graphic').classList.add(random);
+        })();
+
         // Navigation scroll effect - show nav on scroll, hide announcement
         const navbar = document.getElementById('navbar');
         const announcementBar = document.querySelector('.announcement-bar');

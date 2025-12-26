@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Amplifier Hero Variations | Visual Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-dark);
+            color: var(--black);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            margin-bottom: 60px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .variation-label {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variation-label span {
+            color: var(--gray-light);
+            font-weight: 400;
+        }
+
+        /* ==========================================
+           SHARED HERO STYLES
+           ========================================== */
+        .hero {
+            padding: 100px 60px;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .hero-accent-line {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            margin-bottom: 32px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-side-label {
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: rotate(90deg) translateX(-50%);
+            transform-origin: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray-light);
+            white-space: nowrap;
+        }
+
+        /* ==========================================
+           VARIATION 1: AMPLIFIER WAVES
+           Sound wave amplification - signal boost
+           ========================================== */
+        .v1 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v1 .wave-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 300px;
+        }
+
+        .v1 .wave-bar {
+            width: 8px;
+            background: var(--red);
+            border-radius: 4px;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+
+        .v1 .wave-bar:nth-child(1) { height: 30px; animation-delay: 0s; }
+        .v1 .wave-bar:nth-child(2) { height: 50px; animation-delay: 0.1s; }
+        .v1 .wave-bar:nth-child(3) { height: 80px; animation-delay: 0.2s; }
+        .v1 .wave-bar:nth-child(4) { height: 120px; animation-delay: 0.3s; }
+        .v1 .wave-bar:nth-child(5) { height: 180px; animation-delay: 0.4s; }
+        .v1 .wave-bar:nth-child(6) { height: 250px; animation-delay: 0.5s; }
+        .v1 .wave-bar:nth-child(7) { height: 180px; animation-delay: 0.6s; }
+        .v1 .wave-bar:nth-child(8) { height: 120px; animation-delay: 0.7s; }
+        .v1 .wave-bar:nth-child(9) { height: 80px; animation-delay: 0.8s; }
+        .v1 .wave-bar:nth-child(10) { height: 50px; animation-delay: 0.9s; }
+        .v1 .wave-bar:nth-child(11) { height: 30px; animation-delay: 1s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+
+        .v1 .amplifier-icon {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ==========================================
+           VARIATION 2: LEVERAGE / FULCRUM
+           Small input, massive output
+           ========================================== */
+        .v2 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v2 .lever-system {
+            position: relative;
+            width: 350px;
+            height: 250px;
+        }
+
+        .v2 .fulcrum {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--red);
+        }
+
+        .v2 .lever-beam {
+            position: absolute;
+            bottom: 88px;
+            left: 20px;
+            right: 20px;
+            height: 8px;
+            background: var(--black);
+            border-radius: 4px;
+            transform: rotate(-8deg);
+            transform-origin: center;
+        }
+
+        .v2 .input-side {
+            position: absolute;
+            bottom: 100px;
+            left: 30px;
+            text-align: center;
+        }
+
+        .v2 .output-side {
+            position: absolute;
+            bottom: 140px;
+            right: 20px;
+            text-align: center;
+        }
+
+        .v2 .small-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            margin: 0 auto 10px;
+        }
+
+        .v2 .large-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--red);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .v2 .lever-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           VARIATION 3: MULTIPLIER EFFECT
+           1 becomes many
+           ========================================== */
+        .v3 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v3 .multiplier-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .v3 .single-you {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .v3 .arrow-multiply {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .v3 .arrow-multiply svg {
+            width: 50px;
+            height: 30px;
+            stroke: var(--red);
+        }
+
+        .v3 .multiply-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--red);
+        }
+
+        .v3 .multiple-yous {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .v3 .clone {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .v3 .clone:nth-child(1) { opacity: 1; }
+        .v3 .clone:nth-child(4) { opacity: 0.8; }
+        .v3 .clone:nth-child(7) { opacity: 0.6; }
+
+        /* ==========================================
+           VARIATION 4: TELESCOPE / REACH
+           Extending your vision and reach
+           ========================================== */
+        .v4 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v4 .telescope-container {
+            position: relative;
+            width: 350px;
+            height: 300px;
+        }
+
+        .v4 .telescope-base {
+            position: absolute;
+            bottom: 60px;
+            left: 40px;
+            width: 60px;
+            height: 60px;
+            background: var(--black);
+            border-radius: 50%;
+        }
+
+        .v4 .telescope-tube {
+            position: absolute;
+            bottom: 80px;
+            left: 80px;
+            width: 200px;
+            height: 30px;
+            background: linear-gradient(to right, var(--black), var(--gray));
+            transform: rotate(-25deg);
+            border-radius: 4px 15px 15px 4px;
+        }
+
+        .v4 .telescope-lens {
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v4 .lens-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(230, 59, 46, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--red);
+            font-size: 1.5rem;
+        }
+
+        .v4 .vision-lines {
+            position: absolute;
+            top: 80px;
+            right: 120px;
+        }
+
+        .v4 .vision-line {
+            width: 80px;
+            height: 2px;
+            background: var(--red);
+            opacity: 0.3;
+            margin: 8px 0;
+            transform-origin: right;
+        }
+
+        .v4 .vision-line:nth-child(1) { transform: rotate(-15deg); }
+        .v4 .vision-line:nth-child(2) { transform: rotate(0deg); opacity: 0.5; }
+        .v4 .vision-line:nth-child(3) { transform: rotate(15deg); }
+
+        /* ==========================================
+           VARIATION 5: RISING GRAPH / GROWTH
+           Personal trajectory upward
+           ========================================== */
+        .v5 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v5 .graph-container {
+            width: 350px;
+            height: 300px;
+            position: relative;
+        }
+
+        .v5 .graph-axis-y {
+            position: absolute;
+            left: 40px;
+            bottom: 40px;
+            top: 40px;
+            width: 2px;
+            background: var(--gray-light);
+        }
+
+        .v5 .graph-axis-x {
+            position: absolute;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            height: 2px;
+            background: var(--gray-light);
+        }
+
+        .v5 .graph-line {
+            position: absolute;
+            left: 40px;
+            bottom: 40px;
+            width: 270px;
+            height: 200px;
+        }
+
+        .v5 .graph-line svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .v5 .graph-line path {
+            fill: none;
+            stroke: var(--red);
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+
+        .v5 .graph-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+            border: 4px solid var(--cream);
+            box-shadow: 0 4px 15px rgba(230, 59, 46, 0.4);
+        }
+
+        .v5 .dot-start {
+            left: 50px;
+            bottom: 50px;
+        }
+
+        .v5 .dot-end {
+            right: 50px;
+            top: 50px;
+        }
+
+        .v5 .growth-label {
+            position: absolute;
+            right: 40px;
+            top: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 6: SHIELD + POWER
+           Human protected, AI empowered
+           ========================================== */
+        .v6 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v6 .shield-container {
+            position: relative;
+            width: 250px;
+            height: 300px;
+        }
+
+        .v6 .shield {
+            width: 200px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            border: 4px solid var(--red);
+            border-radius: 100px 100px 150px 150px / 80px 80px 200px 200px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(230, 59, 46, 0.2);
+            margin: 0 auto;
+        }
+
+        .v6 .shield-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .v6 .shield-human {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v6 .shield-divider {
+            width: 40px;
+            height: 3px;
+            background: var(--red);
+            margin: 0 auto 8px;
+        }
+
+        .v6 .shield-ai {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v6 .power-rays {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .v6 .power-ray {
+            width: 3px;
+            height: 30px;
+            background: var(--red);
+            margin: 0 8px;
+            display: inline-block;
+            opacity: 0.6;
+        }
+
+        .v6 .power-ray:nth-child(2) { height: 45px; opacity: 0.8; }
+        .v6 .power-ray:nth-child(3) { height: 60px; opacity: 1; }
+        .v6 .power-ray:nth-child(4) { height: 45px; opacity: 0.8; }
+
+        /* ==========================================
+           VARIATION 7: LIGHTBULB / BRILLIANCE
+           Illumination and clarity
+           ========================================== */
+        .v7 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v7 .bulb-container {
+            position: relative;
+        }
+
+        .v7 .bulb-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(230, 59, 46, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .v7 .bulb {
+            width: 150px;
+            height: 200px;
+            position: relative;
+        }
+
+        .v7 .bulb-glass {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--red);
+            background: rgba(230, 59, 46, 0.05);
+            position: relative;
+        }
+
+        .v7 .bulb-filament {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v7 .bulb-base {
+            width: 60px;
+            height: 40px;
+            background: var(--black);
+            margin: -10px auto 0;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .v7 .spark {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .v7 .spark:nth-child(1) { top: -20px; left: 50%; }
+        .v7 .spark:nth-child(2) { top: 10px; right: -20px; }
+        .v7 .spark:nth-child(3) { top: 10px; left: -20px; }
+        .v7 .spark:nth-child(4) { bottom: 60px; right: -30px; }
+        .v7 .spark:nth-child(5) { bottom: 60px; left: -30px; }
+
+        /* ==========================================
+           VARIATION 8: CONCENTRIC CIRCLES / RIPPLE
+           Impact radiating outward
+           ========================================== */
+        .v8 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v8 .ripple-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .v8 .ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--red);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v8 .ripple-1 { width: 300px; height: 300px; opacity: 0.2; }
+        .v8 .ripple-2 { width: 240px; height: 240px; opacity: 0.3; }
+        .v8 .ripple-3 { width: 180px; height: 180px; opacity: 0.5; }
+        .v8 .ripple-4 { width: 120px; height: 120px; opacity: 0.7; border-width: 3px; }
+
+        .v8 .ripple-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .v8 .impact-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           VARIATION 9: SPRING / COILED ENERGY
+           Stored potential released
+           ========================================== */
+        .v9 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v9 .spring-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .v9 .compressed {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .v9 .spring-coil-compressed {
+            width: 60px;
+            height: 80px;
+            position: relative;
+        }
+
+        .v9 .coil-line-c {
+            width: 60px;
+            height: 3px;
+            background: var(--gray-light);
+            margin: 4px 0;
+            border-radius: 2px;
+        }
+
+        .v9 .arrow-release {
+            width: 60px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v9 .arrow-release svg {
+            stroke: var(--red);
+            width: 50px;
+            height: 30px;
+        }
+
+        .v9 .expanded {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .v9 .spring-coil-expanded {
+            width: 60px;
+            height: 200px;
+            position: relative;
+        }
+
+        .v9 .coil-line-e {
+            width: 60px;
+            height: 4px;
+            background: var(--red);
+            margin: 16px 0;
+            border-radius: 2px;
+        }
+
+        .v9 .spring-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        .v9 .energy-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--red);
+            margin-top: 10px;
+        }
+
+        /* ==========================================
+           VARIATION 10: 50% VISUAL / HALF FULL
+           Direct representation of the promise
+           ========================================== */
+        .v10 .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v10 .fifty-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .v10 .big-number {
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
+        }
+
+        .v10 .number-bottom {
+            color: var(--gray-light);
+        }
+
+        .v10 .number-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--red);
+            clip-path: inset(50% 0 0 0);
+        }
+
+        .v10 .percent {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--red);
+            vertical-align: top;
+            margin-left: -10px;
+        }
+
+        .v10 .fifty-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-top: 20px;
+        }
+
+        .v10 .fifty-sublabel {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        .v10 .progress-bar {
+            width: 200px;
+            height: 12px;
+            background: var(--gray-light);
+            border-radius: 6px;
+            margin: 30px auto 0;
+            overflow: hidden;
+        }
+
+        .v10 .progress-fill {
+            width: 50%;
+            height: 100%;
+            background: var(--red);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>AI Amplifier Hero Variations</h1>
+        <p>Exploring symbolism for personal amplification, individual transformation, and the 50% promise</p>
+    </div>
+
+    <!-- VARIATION 1: Amplifier Waves -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 1: Amplifier Waves
+            <span>Sound wave amplification - signal boost</span>
+        </div>
+        <section class="hero v1">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="wave-container">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <div class="amplifier-icon">Signal Amplified</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 2: Leverage / Fulcrum -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 2: Leverage / Fulcrum
+            <span>Small input, massive output</span>
+        </div>
+        <section class="hero v2">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="lever-system">
+                            <div class="input-side">
+                                <div class="small-circle"></div>
+                                <div class="lever-label">Your effort</div>
+                            </div>
+                            <div class="lever-beam"></div>
+                            <div class="fulcrum"></div>
+                            <div class="output-side">
+                                <div class="large-circle">AI</div>
+                                <div class="lever-label">Your impact</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 3: Multiplier Effect -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 3: Multiplier Effect
+            <span>One becomes many</span>
+        </div>
+        <section class="hero v3">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="multiplier-container">
+                            <div class="single-you">1</div>
+                            <div class="arrow-multiply">
+                                <svg viewBox="0 0 50 30" fill="none">
+                                    <path d="M5 15 L40 15 M30 5 L40 15 L30 25" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div class="multiply-label">+ AI</div>
+                            </div>
+                            <div class="multiple-yous">
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                                <div class="clone">1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 4: Telescope / Extended Reach -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 4: Telescope / Extended Reach
+            <span>See further, reach more</span>
+        </div>
+        <section class="hero v4">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="telescope-container">
+                            <div class="telescope-base"></div>
+                            <div class="telescope-tube"></div>
+                            <div class="vision-lines">
+                                <div class="vision-line"></div>
+                                <div class="vision-line"></div>
+                                <div class="vision-line"></div>
+                            </div>
+                            <div class="telescope-lens">
+                                <div class="lens-inner">2x</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 5: Rising Growth Graph -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 5: Rising Growth Graph
+            <span>Personal trajectory upward</span>
+        </div>
+        <section class="hero v5">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="graph-container">
+                            <div class="graph-axis-y"></div>
+                            <div class="graph-axis-x"></div>
+                            <div class="graph-line">
+                                <svg viewBox="0 0 270 200">
+                                    <path d="M 10 180 Q 60 170, 90 140 T 150 80 T 260 10"/>
+                                </svg>
+                            </div>
+                            <div class="graph-dot dot-start"></div>
+                            <div class="graph-dot dot-end"></div>
+                            <div class="growth-label">+50%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 6: Shield + Power -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 6: Shield + Power
+            <span>Human protected, AI empowered</span>
+        </div>
+        <section class="hero v6">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="shield-container">
+                            <div class="power-rays">
+                                <div class="power-ray"></div>
+                                <div class="power-ray"></div>
+                                <div class="power-ray"></div>
+                                <div class="power-ray"></div>
+                                <div class="power-ray"></div>
+                            </div>
+                            <div class="shield">
+                                <div class="shield-center">
+                                    <div class="shield-human">HUMAN</div>
+                                    <div class="shield-divider"></div>
+                                    <div class="shield-ai">AI</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 7: Lightbulb / Brilliance -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 7: Lightbulb / Brilliance
+            <span>Illumination and clarity</span>
+        </div>
+        <section class="hero v7">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="bulb-container">
+                            <div class="bulb-glow"></div>
+                            <div class="spark" style="top: -30px; left: 75px;"></div>
+                            <div class="spark" style="top: 20px; right: -20px;"></div>
+                            <div class="spark" style="top: 20px; left: -20px;"></div>
+                            <div class="spark" style="top: 80px; right: -30px;"></div>
+                            <div class="spark" style="top: 80px; left: -30px;"></div>
+                            <div class="bulb">
+                                <div class="bulb-glass">
+                                    <div class="bulb-filament">AI</div>
+                                </div>
+                                <div class="bulb-base"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 8: Concentric Circles / Ripple -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 8: Concentric Circles / Ripple
+            <span>Impact radiating outward</span>
+        </div>
+        <section class="hero v8">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="ripple-container">
+                            <div class="ripple ripple-1"></div>
+                            <div class="ripple ripple-2"></div>
+                            <div class="ripple ripple-3"></div>
+                            <div class="ripple ripple-4"></div>
+                            <div class="ripple-center">YOU</div>
+                        </div>
+                        <div class="impact-label">Amplified Impact</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 9: Spring / Coiled Energy -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 9: Spring / Coiled Energy
+            <span>Stored potential released</span>
+        </div>
+        <section class="hero v9">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="spring-container">
+                            <div class="compressed">
+                                <div class="spring-coil-compressed">
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                    <div class="coil-line-c"></div>
+                                </div>
+                                <div class="spring-label">Before</div>
+                            </div>
+                            <div class="arrow-release">
+                                <svg viewBox="0 0 50 30" fill="none">
+                                    <path d="M5 15 L40 15 M30 5 L40 15 L30 25" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="expanded">
+                                <div class="spring-coil-expanded">
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                    <div class="coil-line-e"></div>
+                                </div>
+                                <div class="energy-label">After AI</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 10: 50% Visual / Half Full -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 10: 50% Visual
+            <span>Direct representation of the promise</span>
+        </div>
+        <section class="hero v10">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Remove 50% of your daily work with AI in 30 days</h1>
+                    <p class="hero-desc">
+                        Individual AI training | Build together + 30 day implementation | For leaders drowning in tactical work
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Apply now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Amplifier</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="fifty-container">
+                            <div class="big-number">
+                                <span class="number-bottom">50</span>
+                                <span class="number-top">50</span>
+                            </div>
+                            <span class="percent">%</span>
+                            <div class="fifty-label">Less Daily Work</div>
+                            <div class="fifty-sublabel">More time for what matters</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

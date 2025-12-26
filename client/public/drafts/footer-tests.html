@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Variations | Visual Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--gray-dark);
+            color: var(--black);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            margin-bottom: 80px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .variation-label {
+            background: var(--black);
+            color: var(--white);
+            padding: 20px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variation-label span {
+            color: var(--gray-light);
+            font-weight: 400;
+        }
+
+        /* Simulated page content above footer */
+        .page-sim {
+            background: var(--cream);
+            padding: 60px;
+            text-align: center;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ==========================================
+           VARIATION 1: TAGLINE CENTERED
+           Hero message as the footer centerpiece
+           ========================================== */
+        .footer-v1 {
+            background: var(--black);
+            padding: 80px 60px 40px;
+            text-align: center;
+        }
+
+        .footer-v1 .tagline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-v1 .tagline span {
+            color: var(--red);
+        }
+
+        .footer-v1 .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+            margin-bottom: 48px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-v1 .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .footer-v1 .social-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v1 .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-v1 .social-links svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-v1 .bottom-bar {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v1 .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-v1 .copyright {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 2: SPLIT TWO-COLUMN
+           Brand message left, links right
+           ========================================== */
+        .footer-v2 {
+            background: var(--black);
+            padding: 80px 60px 40px;
+        }
+
+        .footer-v2 .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 80px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-v2 .brand-side .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-v2 .brand-side .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .footer-v2 .brand-side .tagline span {
+            color: var(--red);
+        }
+
+        .footer-v2 .brand-side .desc {
+            font-size: 1rem;
+            color: var(--gray-light);
+            max-width: 400px;
+        }
+
+        .footer-v2 .links-side {
+            display: flex;
+            gap: 60px;
+        }
+
+        .footer-v2 .link-column h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-v2 .link-column ul {
+            list-style: none;
+        }
+
+        .footer-v2 .link-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-v2 .link-column a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v2 .link-column a:hover {
+            color: var(--red);
+        }
+
+        .footer-v2 .bottom-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v2 .copyright {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .footer-v2 .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-v2 .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .footer-v2 .social-links a:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .footer-v2 .social-links svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ==========================================
+           VARIATION 3: MINIMAL ELEGANT
+           Ultra-refined, just essentials
+           ========================================== */
+        .footer-v3 {
+            background: var(--cream);
+            padding: 60px;
+        }
+
+        .footer-v3 .footer-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v3 .left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .footer-v3 .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .footer-v3 .divider {
+            width: 1px;
+            height: 20px;
+            background: var(--gray-light);
+        }
+
+        .footer-v3 .tagline {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .footer-v3 .tagline span {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .footer-v3 .right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-v3 .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-v3 .social-links a {
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .footer-v3 .social-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-v3 .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-v3 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 4: CTA FOCUSED
+           Strong call-to-action above footer
+           ========================================== */
+        .footer-v4-cta {
+            background: var(--red);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .footer-v4-cta h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-v4-cta p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 28px;
+        }
+
+        .footer-v4-cta .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            color: var(--red);
+            padding: 16px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-v4-cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .footer-v4 {
+            background: var(--black);
+            padding: 40px 60px;
+        }
+
+        .footer-v4 .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v4 .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-v4 .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-v4 .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v4 .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-v4 .copyright {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 5: DARK IMMERSIVE
+           Full dark with atmospheric glow
+           ========================================== */
+        .footer-v5 {
+            background: var(--black);
+            padding: 100px 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-v5 .glow {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(230, 59, 46, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .footer-v5 .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-v5 .tagline {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .footer-v5 .tagline span {
+            background: linear-gradient(90deg, var(--red), #ff6b5b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-v5 .desc {
+            font-size: 1.15rem;
+            color: var(--gray-light);
+            margin-bottom: 48px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-v5 .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--red);
+            color: var(--white);
+            padding: 18px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 60px;
+        }
+
+        .footer-v5 .cta-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(230, 59, 46, 0.3);
+        }
+
+        .footer-v5 .bottom-section {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v5 .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-v5 .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-v5 .social-links a {
+            color: var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .footer-v5 .social-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-v5 .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-v5 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 6: NEWSLETTER FOCUS
+           Email signup as main feature
+           ========================================== */
+        .footer-v6 {
+            background: var(--gray-dark);
+            padding: 80px 60px 40px;
+        }
+
+        .footer-v6 .footer-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-v6 .newsletter-side h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-v6 .newsletter-side p {
+            font-size: 1rem;
+            color: var(--gray-light);
+            margin-bottom: 24px;
+        }
+
+        .footer-v6 .email-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-v6 .email-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-v6 .email-form input::placeholder {
+            color: var(--gray-light);
+        }
+
+        .footer-v6 .email-form input:focus {
+            border-color: var(--red);
+        }
+
+        .footer-v6 .email-form button {
+            background: var(--red);
+            color: var(--white);
+            padding: 16px 28px;
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-v6 .email-form button:hover {
+            background: var(--red-dark);
+        }
+
+        .footer-v6 .brand-side {
+            text-align: right;
+        }
+
+        .footer-v6 .brand-side .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-v6 .brand-side .tagline span {
+            color: var(--red);
+        }
+
+        .footer-v6 .brand-side .social-links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        .footer-v6 .brand-side .social-links a {
+            color: var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .footer-v6 .brand-side .social-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-v6 .brand-side .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-v6 .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-v6 .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-v6 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 7: QUOTE CLOSING
+           Inspirational statement as farewell
+           ========================================== */
+        .footer-v7 {
+            background: var(--cream);
+            padding: 80px 60px 40px;
+        }
+
+        .footer-v7 .quote-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-v7 .quote-mark {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--red);
+            opacity: 0.1;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+        }
+
+        .footer-v7 .quote {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.5;
+            font-style: italic;
+            position: relative;
+        }
+
+        .footer-v7 .attribution {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .footer-v7 .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+            margin: 0 auto 40px;
+        }
+
+        .footer-v7 .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .footer-v7 .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .footer-v7 .social-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-v7 .social-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v7 .social-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-v7 .social-links svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-v7 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 8: THREE COLUMN BALANCED
+           Logo | Navigation | Social
+           ========================================== */
+        .footer-v8 {
+            background: var(--black);
+            padding: 60px;
+        }
+
+        .footer-v8 .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .footer-v8 .brand-col .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-v8 .brand-col .tagline {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        .footer-v8 .brand-col .tagline span {
+            color: var(--red);
+        }
+
+        .footer-v8 .nav-col {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .footer-v8 .nav-group h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-v8 .nav-group ul {
+            list-style: none;
+        }
+
+        .footer-v8 .nav-group li {
+            margin-bottom: 10px;
+        }
+
+        .footer-v8 .nav-group a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v8 .nav-group a:hover {
+            color: var(--red);
+        }
+
+        .footer-v8 .social-col {
+            text-align: right;
+        }
+
+        .footer-v8 .social-col h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-v8 .social-links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .footer-v8 .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .footer-v8 .social-links a:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .footer-v8 .social-links svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-v8 .copyright-bar {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .footer-v8 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 9: WARM GRADIENT
+           Soft gradient background with warmth
+           ========================================== */
+        .footer-v9 {
+            background: linear-gradient(135deg, #2a1f1f 0%, var(--black) 100%);
+            padding: 80px 60px 40px;
+        }
+
+        .footer-v9 .footer-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-v9 .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .footer-v9 .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .footer-v9 .tagline span {
+            color: var(--red);
+        }
+
+        .footer-v9 .subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+        }
+
+        .footer-v9 .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-v9 .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-v9 .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-v9 .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .footer-v9 .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .footer-v9 .social-links a:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .footer-v9 .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-v9 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ==========================================
+           VARIATION 10: CONVERSATION STARTER
+           Personal, inviting closing
+           ========================================== */
+        .footer-v10 {
+            background: var(--cream);
+            padding: 100px 60px 40px;
+        }
+
+        .footer-v10 .conversation {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .footer-v10 .conversation .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .footer-v10 .conversation h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .footer-v10 .conversation p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .footer-v10 .conversation .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--red);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-v10 .conversation .email-link:hover {
+            gap: 12px;
+        }
+
+        .footer-v10 .conversation .email-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-v10 .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .footer-v10 .left-side {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-v10 .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .footer-v10 .tagline-small {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .footer-v10 .tagline-small span {
+            color: var(--red);
+        }
+
+        .footer-v10 .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-v10 .social-links a {
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .footer-v10 .social-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-v10 .social-links svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-v10 .copyright {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+        }
+
+        /* SVG Icons */
+        svg {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Footer Variations</h1>
+        <p>10 creative approaches to the Fixed to Flow website footer</p>
+    </div>
+
+    <!-- VARIATION 1: Tagline Centered -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 1: Tagline Centered
+            <span>Hero message as the footer centerpiece</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v1">
+            <p class="tagline">Lead with AI, <span>Stay Human</span></p>
+            <p class="subtitle">Helping leaders and teams adapt to AI with humanity intact.</p>
+            <div class="social-links">
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg> X</a>
+                <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> Instagram</a>
+            </div>
+            <div class="bottom-bar">
+                <span class="logo">Fixed to Flow</span>
+                <span class="copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 2: Split Two-Column -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 2: Split Two-Column
+            <span>Brand message left, links right</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v2">
+            <div class="footer-grid">
+                <div class="brand-side">
+                    <p class="logo">Fixed to Flow</p>
+                    <h3 class="tagline">Lead with AI,<br><span>Stay Human</span></h3>
+                    <p class="desc">Helping leaders and teams adapt to AI with humanity intact.</p>
+                </div>
+                <div class="links-side">
+                    <div class="link-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">AI Activation</a></li>
+                            <li><a href="#">AI Acceleration</a></li>
+                            <li><a href="#">AI Amplifier</a></li>
+                            <li><a href="#">Strategic Sparring</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-bar">
+                <span class="copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+                <div class="social-links">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 3: Minimal Elegant -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 3: Minimal Elegant
+            <span>Ultra-refined, just the essentials</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v3">
+            <div class="footer-inner">
+                <div class="left">
+                    <span class="logo">Fixed to Flow</span>
+                    <span class="divider"></span>
+                    <span class="tagline">Lead with AI, <span>Stay Human</span></span>
+                </div>
+                <div class="right">
+                    <div class="social-links">
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                    <span class="copyright">&copy; 2025</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 4: CTA Focused -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 4: CTA Focused
+            <span>Strong call-to-action band above footer</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <div class="footer-v4-cta">
+            <h3>Ready to lead with AI?</h3>
+            <p>Let's start a conversation about what's possible.</p>
+            <a href="#" class="btn">Get in Touch <svg width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <footer class="footer-v4">
+            <div class="footer-inner">
+                <span class="logo">Fixed to Flow</span>
+                <div class="nav-links">
+                    <a href="#">Services</a>
+                    <a href="#">About</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <span class="copyright">&copy; 2025 Fixed to Flow</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 5: Dark Immersive -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 5: Dark Immersive
+            <span>Atmospheric with glowing accent</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v5">
+            <div class="glow"></div>
+            <div class="footer-inner">
+                <h3 class="tagline">Lead with AI,<br><span>Stay Human</span></h3>
+                <p class="desc">Helping leaders and teams adapt to AI with humanity intact.</p>
+                <a href="#" class="cta-btn">Let's Talk <svg width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="bottom-section">
+                    <span class="logo">Fixed to Flow</span>
+                    <div class="social-links">
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                    <span class="copyright">&copy; 2025 Fixed to Flow</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 6: Newsletter Focus -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 6: Newsletter Focus
+            <span>Email signup as main feature</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v6">
+            <div class="footer-top">
+                <div class="newsletter-side">
+                    <h3>Stay in the loop</h3>
+                    <p>Thoughts on AI, leadership, and staying human in a changing world.</p>
+                    <div class="email-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+                <div class="brand-side">
+                    <p class="tagline">Lead with AI, <span>Stay Human</span></p>
+                    <div class="social-links">
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="logo">Fixed to Flow</span>
+                <span class="copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 7: Quote Closing -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 7: Quote Closing
+            <span>Inspirational statement as farewell</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v7">
+            <div class="quote-section">
+                <span class="quote-mark">"</span>
+                <p class="quote">You get faster with AI. And you stay sharp without it.</p>
+                <p class="attribution">— The Fixed to Flow philosophy</p>
+            </div>
+            <div class="divider"></div>
+            <div class="footer-bottom">
+                <span class="logo">Fixed to Flow</span>
+                <div class="social-links">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg> X</a>
+                    <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> Instagram</a>
+                </div>
+                <span class="copyright">&copy; 2025 Fixed to Flow</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 8: Three Column Balanced -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 8: Three Column Balanced
+            <span>Logo | Navigation | Social</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v8">
+            <div class="footer-grid">
+                <div class="brand-col">
+                    <p class="logo">Fixed to Flow</p>
+                    <p class="tagline">Lead with AI, <span>Stay Human</span></p>
+                </div>
+                <div class="nav-col">
+                    <div class="nav-group">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">AI Activation</a></li>
+                            <li><a href="#">AI Acceleration</a></li>
+                            <li><a href="#">AI Amplifier</a></li>
+                            <li><a href="#">Strategic Sparring</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-group">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-col">
+                    <h4>Follow</h4>
+                    <div class="social-links">
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-bar">
+                <span class="copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 9: Warm Gradient -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 9: Warm Gradient
+            <span>Soft gradient background with warmth</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v9">
+            <div class="footer-inner">
+                <p class="logo">Fixed to Flow</p>
+                <h3 class="tagline">Lead with AI, <span>Stay Human</span></h3>
+                <p class="subtitle">Helping leaders and teams adapt to AI with humanity intact.</p>
+                <div class="nav-links">
+                    <a href="#">Services</a>
+                    <a href="#">About</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                </div>
+                <p class="copyright">&copy; 2025 Fixed to Flow. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- VARIATION 10: Conversation Starter -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 10: Conversation Starter
+            <span>Personal, inviting closing with email</span>
+        </div>
+        <div class="page-sim">[ Page content ends here ]</div>
+        <footer class="footer-v10">
+            <div class="conversation">
+                <p class="label">Let's Connect</p>
+                <h3>Have a question? Want to explore working together?</h3>
+                <p>Every engagement starts with a conversation. Drop me a line.</p>
+                <a href="mailto:gus@fixedtoflow.com" class="email-link">
+                    gus@fixedtoflow.com
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="left-side">
+                    <span class="logo">Fixed to Flow</span>
+                    <span class="tagline-small">Lead with AI, <span>Stay Human</span></span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                </div>
+                <span class="copyright">&copy; 2025</span>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

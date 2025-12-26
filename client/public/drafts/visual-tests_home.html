@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Hero Variations | Visual Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-dark);
+            color: var(--black);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            margin-bottom: 60px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .variation-label {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variation-label span {
+            color: var(--gray-light);
+            font-weight: 400;
+        }
+
+        /* ==========================================
+           SHARED HERO STYLES
+           ========================================== */
+        .hero {
+            padding: 100px 60px;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .hero-accent-line {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            margin-bottom: 32px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.05;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            width: 420px;
+            height: 420px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graphic-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .label-ai {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1.3;
+        }
+
+        .label-human {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.3;
+        }
+
+        /* ==========================================
+           VARIATION 1: RIPPLE OUT
+           Circles radiate outward like ripples
+           ========================================== */
+        .v1 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v1 .ripple {
+            border: 1px solid var(--red);
+            opacity: 0;
+            animation: ripple-out 4s ease-out infinite;
+        }
+
+        .v1 .ripple-1 { animation-delay: 0s; }
+        .v1 .ripple-2 { animation-delay: 1s; }
+        .v1 .ripple-3 { animation-delay: 2s; }
+        .v1 .ripple-4 { animation-delay: 3s; }
+
+        @keyframes ripple-out {
+            0% {
+                width: 100px;
+                height: 100px;
+                opacity: 0.6;
+            }
+            100% {
+                width: 420px;
+                height: 420px;
+                opacity: 0;
+            }
+        }
+
+        .v1 .core-circle {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 2: BREATHING CIRCLES
+           Concentric circles gently pulse
+           ========================================== */
+        .v2 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v2 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        .v2 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+            animation: breathe 6s ease-in-out infinite 0.5s;
+        }
+
+        .v2 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+            animation: breathe 6s ease-in-out infinite 1s;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 0.7;
+            }
+        }
+
+        /* ==========================================
+           VARIATION 3: SIGNAL PULSE
+           Center pulses, rings respond outward
+           ========================================== */
+        .v3 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v3 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.15);
+            animation: ring-respond 4s ease-out infinite 0.6s;
+        }
+
+        .v3 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.25);
+            animation: ring-respond 4s ease-out infinite 0.3s;
+        }
+
+        .v3 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 2px solid var(--red);
+            animation: ring-respond 4s ease-out infinite;
+        }
+
+        .v3 .center-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: center-emit 4s ease-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes center-emit {
+            0%, 20% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+            50%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes ring-respond {
+            0%, 10% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.98);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+            60%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ==========================================
+           VARIATION 4: FADE IN SEQUENCE
+           Rings appear from center outward
+           ========================================== */
+        .v4 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v4 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--red);
+            animation: fade-sequence 5s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .v4 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid var(--red);
+            animation: fade-sequence 5s ease-in-out infinite;
+            animation-delay: 0.75s;
+        }
+
+        .v4 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+            animation: fade-sequence 5s ease-in-out infinite;
+        }
+
+        @keyframes fade-sequence {
+            0%, 10% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+            30%, 70% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            90%, 100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+        }
+
+        /* ==========================================
+           VARIATION 5: EXPANDING CORE
+           Center expands, settles, expands again
+           ========================================== */
+        .v5 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v5 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .v5 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+        }
+
+        .v5 .expanding-core {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+            animation: core-expand 6s ease-in-out infinite;
+        }
+
+        @keyframes core-expand {
+            0%, 30% {
+                width: 45%;
+                height: 45%;
+                border-width: 3px;
+            }
+            35% {
+                width: 44%;
+                height: 44%;
+            }
+            50%, 70% {
+                width: 52%;
+                height: 52%;
+                border-width: 2px;
+            }
+            85%, 100% {
+                width: 45%;
+                height: 45%;
+                border-width: 3px;
+            }
+        }
+
+        /* ==========================================
+           VARIATION 6: ORBIT DOTS
+           Small dots orbit around center
+           ========================================== */
+        .v6 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v6 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .v6 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+        }
+
+        .v6 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+        }
+
+        .v6 .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 320px;
+            height: 320px;
+            transform: translate(-50%, -50%);
+            animation: orbit-rotate 20s linear infinite;
+        }
+
+        .v6 .orbit-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .v6 .orbit-dot-1 { top: 0; left: 50%; transform: translateX(-50%); }
+        .v6 .orbit-dot-2 { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .v6 .orbit-dot-3 { left: 0; top: 50%; transform: translateY(-50%); }
+        .v6 .orbit-dot-4 { right: 0; top: 50%; transform: translateY(-50%); }
+
+        @keyframes orbit-rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ==========================================
+           VARIATION 7: WAVE PROPAGATION
+           Single wave moves through rings
+           ========================================== */
+        .v7 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v7 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+            animation: wave-hit 3s ease-out infinite 0.6s;
+        }
+
+        .v7 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+            animation: wave-hit 3s ease-out infinite 0.3s;
+        }
+
+        .v7 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+            animation: wave-hit 3s ease-out infinite;
+        }
+
+        @keyframes wave-hit {
+            0%, 20% {
+                border-color: rgba(230, 59, 46, 0.2);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            25%, 35% {
+                border-color: var(--red);
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+            50%, 100% {
+                border-color: rgba(230, 59, 46, 0.2);
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ==========================================
+           VARIATION 8: SOFT GLOW
+           Subtle glow emanates from center
+           ========================================== */
+        .v8 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v8 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .v8 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+        }
+
+        .v8 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+        }
+
+        .v8 .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(230, 59, 46, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: soft-glow 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes soft-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+        }
+
+        /* ==========================================
+           VARIATION 9: DASHED ORBIT
+           Dashed ring rotates slowly
+           ========================================== */
+        .v9 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v9 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .v9 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 2px dashed rgba(230, 59, 46, 0.3);
+            animation: dashed-rotate 30s linear infinite;
+        }
+
+        .v9 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+        }
+
+        @keyframes dashed-rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ==========================================
+           VARIATION 10: INTERSECTION POINT
+           Center dot pulses where AI meets Human
+           ========================================== */
+        .v10 .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .v10 .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .v10 .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+        }
+
+        .v10 .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+        }
+
+        .v10 .intersection {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: intersection-pulse 3s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .v10 .intersection::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: intersection-ring 3s ease-out infinite;
+        }
+
+        @keyframes intersection-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes intersection-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Homepage Hero Variations</h1>
+        <p>Amplification symbolism — circles radiating from center, AI meets Human</p>
+    </div>
+
+    <!-- VARIATION 1: Ripple Out -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 1: Ripple Out
+            <span>Continuous ripples emanating from center</span>
+        </div>
+        <section class="hero v1">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle ripple ripple-1"></div>
+                        <div class="circle ripple ripple-2"></div>
+                        <div class="circle ripple ripple-3"></div>
+                        <div class="circle ripple ripple-4"></div>
+                        <div class="circle core-circle"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 2: Breathing Circles -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 2: Breathing Circles
+            <span>Gentle, synchronized pulsing</span>
+        </div>
+        <section class="hero v2">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 3: Signal Pulse -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 3: Signal Pulse
+            <span>Center emits, rings respond</span>
+        </div>
+        <section class="hero v3">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="center-pulse"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 4: Fade In Sequence -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 4: Fade In Sequence
+            <span>Rings materialize from center out</span>
+        </div>
+        <section class="hero v4">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 5: Expanding Core -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 5: Expanding Core
+            <span>Inner circle breathes larger</span>
+        </div>
+        <section class="hero v5">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle expanding-core"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 6: Orbit Dots -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 6: Orbit Dots
+            <span>Points slowly orbit around center</span>
+        </div>
+        <section class="hero v6">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="orbit">
+                            <div class="orbit-dot orbit-dot-1"></div>
+                            <div class="orbit-dot orbit-dot-2"></div>
+                            <div class="orbit-dot orbit-dot-3"></div>
+                            <div class="orbit-dot orbit-dot-4"></div>
+                        </div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 7: Wave Propagation -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 7: Wave Propagation
+            <span>Energy moves through each ring</span>
+        </div>
+        <section class="hero v7">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 8: Soft Glow -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 8: Soft Glow
+            <span>Subtle warmth radiates from center</span>
+        </div>
+        <section class="hero v8">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="glow"></div>
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 9: Dashed Orbit -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 9: Dashed Orbit
+            <span>Middle ring rotates slowly</span>
+        </div>
+        <section class="hero v9">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 10: Intersection Point -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 10: Intersection Point
+            <span>Pulsing dot at AI-Human intersection</span>
+        </div>
+        <section class="hero v10">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Lead with AI,<br>Stay Human</h1>
+                    <p class="hero-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Discover How
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="circle circle-outer"></div>
+                        <div class="circle circle-middle"></div>
+                        <div class="circle circle-inner"></div>
+                        <div class="intersection"></div>
+                        <div class="graphic-center">
+                            <div class="label-ai">AI</div>
+                            <div class="label-human">Human</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

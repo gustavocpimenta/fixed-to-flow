@@ -60,62 +60,134 @@
             opacity: 0.1;
         }
 
+        /* Announcement Bar */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .announcement-bar.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .announcement-bar a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .announcement-bar a:hover {
+            opacity: 0.9;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            background: rgba(250, 247, 242, 0.9);
+            z-index: 1002;
+            background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
         }
 
-        nav.scrolled {
-            background: rgba(250, 247, 242, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        nav.visible {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
         .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--red);
             text-decoration: none;
-            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 22px;
+            width: auto;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .service-target {
+            font-size: 0.8rem;
+            color: var(--gray);
+            padding: 4px 12px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 100px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
-        .nav-back {
+        .nav-links a {
             color: var(--gray);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             transition: color 0.2s;
         }
 
-        .nav-back:hover {
+        .nav-links a:hover {
             color: var(--red);
         }
 
-        .nav-cta {
+        .nav-links a.nav-cta,
+        .nav-links a.nav-cta:hover,
+        .nav-links a.nav-cta:visited {
             padding: 0.75rem 1.5rem;
             background: var(--red);
-            color: white;
+            color: white !important;
             text-decoration: none;
             border-radius: 100px;
             font-weight: 500;
@@ -123,7 +195,7 @@
             transition: all 0.3s ease;
         }
 
-        .nav-cta:hover {
+        .nav-links a.nav-cta:hover {
             background: var(--red-dark);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(230, 59, 46, 0.3);
@@ -166,17 +238,11 @@
             max-width: 540px;
         }
 
-        .hero-label {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--red);
-            margin-bottom: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(230, 59, 46, 0.1);
-            border-radius: 100px;
+        .hero-accent-line {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            margin-bottom: 2rem;
         }
 
         .hero-title {
@@ -221,6 +287,17 @@
             box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
         .btn-arrow {
             transition: transform 0.3s ease;
         }
@@ -236,37 +313,102 @@
         }
 
         .hero-graphic {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 3rem;
             width: 100%;
-            max-width: 350px;
+            max-width: 400px;
             aspect-ratio: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
         }
 
-        .hero-graphic::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 60px;
-            background: var(--red);
-            border-radius: 60px 60px 0 0;
-            opacity: 0.9;
-        }
-
-        .hero-graphic svg {
-            width: 60%;
-            height: 60%;
+        /* Compass Styles */
+        .compass-container {
             position: relative;
-            z-index: 1;
+            width: 280px;
+            height: 280px;
+        }
+
+        .compass-outer {
+            width: 280px;
+            height: 280px;
+            border: 4px solid var(--gray-light);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .compass-inner {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed rgba(230, 59, 46, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .compass-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 120px;
+            transform: translate(-50%, -100%) rotate(-30deg);
+            transform-origin: bottom center;
+            animation: needle-sway 4s ease-in-out infinite;
+        }
+
+        @keyframes needle-sway {
+            0%, 100% { transform: translate(-50%, -100%) rotate(-30deg); }
+            50% { transform: translate(-50%, -100%) rotate(-15deg); }
+        }
+
+        .needle-north {
+            width: 100%;
+            height: 60%;
+            background: var(--red);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .needle-south {
+            width: 100%;
+            height: 40%;
+            background: var(--black);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .compass-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: var(--black);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .compass-hand {
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .hand-left {
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--black);
+        }
+
+        .hand-right {
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--red);
         }
 
         /* Sections */
@@ -282,12 +424,25 @@
 
         .section-label {
             display: inline-block;
-            font-size: 0.75rem;
+            color: var(--red);
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--red);
+            letter-spacing: 1px;
             margin-bottom: 1rem;
+            position: relative;
+            padding-top: 1rem;
+        }
+
+        .section-label::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--red);
         }
 
         .section-title {
@@ -369,7 +524,11 @@
         }
 
         .how-it-works .section-label {
-            color: rgba(255,255,255,0.8);
+            color: var(--white);
+        }
+
+        .how-it-works .section-label::before {
+            background: var(--white);
         }
 
         .approach-grid {
@@ -537,56 +696,34 @@
             font-weight: 700;
         }
 
-        .addon-box {
+        .addon-minimal {
             margin-top: 2rem;
-            background: var(--cream);
-            border: 2px solid var(--red);
-            border-radius: 20px;
-            padding: 2.5rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
             position: relative;
             z-index: 1;
         }
 
-        .addon-box::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            width: 60px;
-            height: 30px;
-            background: var(--red);
-            border-radius: 30px 30px 0 0;
-            opacity: 0.9;
-        }
-
-        .addon-box h4 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--red);
-            margin-bottom: 1rem;
-        }
-
-        .addon-box p {
+        .addon-minimal p {
+            font-size: 1rem;
             color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
 
-        .addon-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .addon-detail {
+        .addon-minimal strong {
             color: var(--black);
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        .addon-detail span {
-            color: var(--gray);
-            font-weight: 400;
+        .addon-minimal a {
+            color: var(--red);
+            font-weight: 500;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .addon-minimal a:hover {
+            text-decoration: underline;
         }
 
         /* Who For Section */
@@ -660,45 +797,64 @@
             text-decoration: underline;
         }
 
-        /* Why This Works Section */
+        /* Why This Works Section - Version 6: Two-column layout */
         .why-works {
             background: var(--white);
             padding: 6rem 2rem;
         }
 
-        .why-content {
-            max-width: 800px;
+        .why-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .why-content > p {
-            font-size: 1.15rem;
+        .why-left {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .why-left p {
+            font-size: 1.25rem;
             color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .why-points {
-            margin-top: 2.5rem;
-        }
-
-        .why-point {
-            background: var(--cream);
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--red);
-            transition: all 0.3s ease;
-        }
-
-        .why-point:hover {
-            transform: translateX(5px);
-        }
-
-        .why-point p {
-            margin: 0;
-            color: var(--black);
             line-height: 1.7;
+        }
+
+        .why-left p:first-child {
+            font-size: 1.75rem;
+            color: var(--black);
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .why-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .why-card {
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .why-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin: 0;
         }
 
         /* Testimonials Section */
@@ -798,7 +954,11 @@
         }
 
         .pricing .section-label {
-            color: var(--red);
+            color: var(--white);
+        }
+
+        .pricing .section-label::before {
+            background: var(--white);
         }
 
         .pricing-grid {
@@ -844,7 +1004,7 @@
         }
 
         .price-amount {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--red);
             margin-bottom: 0.25rem;
@@ -920,98 +1080,111 @@
         /* Guide/Bio Section */
         .guide {
             background: var(--cream);
-            padding: 6rem 2rem;
+            padding: 100px 2rem;
             position: relative;
         }
 
-        .guide .shape-blob {
+        .guide-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .guide-header .section-label {
+            margin-bottom: 1rem;
+        }
+
+        .guide-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        .guide-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 50px;
+            align-items: start;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+        }
+
+        .guide-photo {
             width: 180px;
             height: 180px;
-            top: 100px;
-            right: 100px;
-        }
-
-        .guide-single {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 3rem;
-            align-items: start;
-            position: relative;
-            z-index: 1;
-        }
-
-        .guide-photo-large {
-            width: 280px;
-            height: 280px;
-            border-radius: 20px;
+            border-radius: 50%;
             overflow: hidden;
-            border: 4px solid var(--red);
+            flex-shrink: 0;
         }
 
-        .guide-photo-large img {
+        .guide-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
+        }
+
+        .guide-info .guide-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
         .guide-info h3 {
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--black);
-            margin-bottom: 0.5rem;
+            margin-bottom: 24px;
         }
 
-        .guide-info .guide-title {
-            color: var(--red);
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .guide-bio {
+        .guide-info p {
             color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .guide-credentials {
-            list-style: none;
+        .guide-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
         }
 
-        .guide-credentials li {
-            padding: 0.4rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .guide-credentials li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.7rem;
-            width: 6px;
-            height: 6px;
-            background: var(--red);
+        .guide-social a {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-        }
-
-        .guide-link {
-            display: inline-flex;
+            background: var(--cream);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            color: var(--red);
-            text-decoration: none;
-            font-weight: 600;
-            transition: gap 0.3s;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .guide-link:hover {
-            gap: 0.75rem;
+        .guide-social a:hover {
+            background: var(--red);
+        }
+
+        .guide-social a:hover svg {
+            stroke: var(--white);
+        }
+
+        .guide-social svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gray);
+            fill: none;
+            stroke-width: 2;
         }
 
         /* FAQ Section */
@@ -1049,101 +1222,231 @@
             line-height: 1.7;
         }
 
-        /* Final CTA Section */
-        .final-cta {
+        /* Contact Section */
+        .contact {
+            padding: 100px 2rem;
             background: var(--cream);
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
         }
 
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 90px;
-            background: var(--red);
-            opacity: 0.08;
-            border-radius: 0 0 90px 90px;
-        }
-
-        .final-cta-content {
+        .contact-content {
             max-width: 600px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
 
-        .final-cta h2 {
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* contact-header inherits from base .section-label */
+
+        .contact-header h2 {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--black);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
 
-        .final-cta p {
+        .contact-description {
             color: var(--gray);
             font-size: 1.15rem;
-            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
-        .final-cta-buttons {
+        .contact-form {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--red);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .form-buttons .btn {
+            flex: 1;
             justify-content: center;
-            flex-wrap: wrap;
+            padding: 16px 24px;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--red);
-            border: 2px solid var(--red);
-        }
-
-        .btn-secondary:hover {
-            background: var(--red);
-            color: white;
-            transform: translateY(-2px);
+        @media (max-width: 600px) {
+            .form-buttons {
+                flex-direction: column;
+            }
         }
 
         /* Footer */
         footer {
             background: var(--black);
-            padding: 2.5rem 2rem;
-            text-align: center;
+            padding: 80px 60px 40px;
         }
 
-        .footer-text {
-            color: var(--gray-light);
-            font-size: 0.9rem;
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 80px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .footer-text a {
+        .footer-brand .footer-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand .footer-tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .footer-tagline span {
             color: var(--red);
-            text-decoration: none;
+        }
+
+        .footer-brand .footer-desc {
+            font-size: 1rem;
+            color: var(--gray-light);
+            max-width: 380px;
         }
 
         .footer-links {
-            margin-top: 1.5rem;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 60px;
         }
 
-        .footer-links a {
+        .footer-link-column h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: var(--gray-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            margin-bottom: 20px;
         }
 
-        .footer-links a:hover {
+        .footer-link-column ul {
+            list-style: none;
+        }
+
+        .footer-link-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link-column a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-column a:hover {
             color: var(--red);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
         }
 
         /* Animations */
@@ -1183,15 +1486,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .guide-single {
+            .guide-card {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .guide-photo-large {
+            .why-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .why-left {
+                position: static;
+            }
+
+            .guide-photo {
                 margin: 0 auto;
-                width: 220px;
-                height: 220px;
+            }
+
+            .guide-social {
+                justify-content: center;
             }
         }
 
@@ -1210,26 +1524,125 @@
             }
 
             .nav-links {
-                gap: 1rem;
+                display: none;
             }
 
             .nav-back {
                 display: none;
             }
+
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            nav {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+                top: 44px;
+                transition: top 0.3s ease;
+            }
+
+            nav.announcement-hidden {
+                top: 0;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
+            }
+
+            .service-info {
+                display: none;
+            }
+
+            .nav-divider {
+                display: none;
+            }
         }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle { display: none; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; position: relative; z-index: 1002; padding: 12px; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+        .mobile-nav-toggle span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+        .mobile-nav-toggle.active span:first-child { transform: rotate(45deg) translate(2.5px, 2.5px); }
+        .mobile-nav-toggle.active span:last-child { transform: rotate(-45deg) translate(2.5px, -2.5px); }
+        @media (max-width: 768px) { .mobile-nav-toggle { display: flex; } }
+        .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--cream); z-index: 1001; opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 120px 40px 60px; overflow: hidden; }
+        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-nav-accent { position: absolute; top: -20%; right: -30%; width: 80%; height: 60%; background: var(--red); opacity: 0.08; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(0.8) rotate(-15deg); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .mobile-nav-overlay.active .mobile-nav-accent { transform: scale(1) rotate(0deg); }
+        .mobile-nav-accent-secondary { position: absolute; bottom: -15%; left: -20%; width: 60%; height: 50%; background: var(--red); opacity: 0.05; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: scale(0.8) rotate(15deg); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s; }
+        .mobile-nav-overlay.active .mobile-nav-accent-secondary { transform: scale(1) rotate(0deg); }
+        .mobile-nav-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 320px; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 0; position: static; transform: none; opacity: 1; pointer-events: auto; background: transparent; box-shadow: none; backdrop-filter: none; }
+        .mobile-nav-link { font-size: 1.75rem; font-weight: 600; color: var(--black); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1), color 0.2s ease; width: 100%; text-align: center; }
+        .mobile-nav-link:last-child { border-bottom: none; }
+        .mobile-nav-link:hover { color: var(--red); }
+        .mobile-nav-overlay.active .mobile-nav-link { opacity: 1; transform: translateY(0); }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.15s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.25s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.3s; }
+        .mobile-nav-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 40px; padding: 18px 36px; background: var(--red); color: white; text-decoration: none; border-radius: 100px; font-size: 1.1rem; font-weight: 600; opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.2s ease; }
+        .mobile-nav-cta:hover { background: var(--red-dark); }
+        .mobile-nav-cta svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+        .mobile-nav-cta:hover svg { transform: translateX(4px); }
+        .mobile-nav-overlay.active .mobile-nav-cta { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+        .mobile-nav-footer { margin-top: auto; padding-top: 40px; opacity: 0; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s; }
+        .mobile-nav-overlay.active .mobile-nav-footer { opacity: 1; }
+        .mobile-nav-tagline { font-size: 0.9rem; color: var(--gray); letter-spacing: 0.05em; }
+        body.nav-open { overflow: hidden; }
     </style>
 </head>
 <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <a href="https://ai.fixedtoflow.com/">Lead with AI, Stay Human</a> | 7-day free email course
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">Fixed to Flow</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-back">All Services</a>
-                <a href="https://fixedtoflow.com/#contact" class="nav-cta">Apply now</a>
+            <div class="nav-left">
+                <a href="index.html" class="logo"><img src="logo.svg" alt="Fixed to Flow"></a>
+                <div class="nav-divider"></div>
+                <div class="service-info">
+                    <span class="service-name">Strategic Sparring</span>
+                    <span class="service-target">For Individuals</span>
+                </div>
             </div>
+            <div class="nav-links">
+                <a href="index.html#services">What We Do</a>
+                <a href="index.html#why-us">Why Us</a>
+                <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" aria-hidden="true">
+        <div class="mobile-nav-accent"></div>
+        <div class="mobile-nav-accent-secondary"></div>
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-links">
+                <a href="/drafts/" class="mobile-nav-link">Home</a>
+                <a href="/drafts/index.html#services" class="mobile-nav-link">What We Do</a>
+                <a href="/drafts/index.html#why-us" class="mobile-nav-link">Why Us</a>
+            </div>
+            <a href="/drafts/index.html#contact" class="mobile-nav-cta">
+                Get in Touch
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <div class="mobile-nav-footer">
+                <span class="mobile-nav-tagline">Lead with AI, Stay Human</span>
+            </div>
+        </div>
+    </div>
 
     <!-- 1. Hero Section -->
     <section class="hero">
@@ -1237,10 +1650,10 @@
         <div class="shape-circle"></div>
         <div class="hero-container">
             <div class="hero-content reveal">
-                <div class="hero-label">Strategic Sparring</div>
-                <h1 class="hero-title">A thinking partner who challenges you</h1>
+                <div class="hero-accent-line"></div>
+                <h1 class="hero-title">The pushback you need before the stakes are real</h1>
                 <p class="hero-desc">
-                    Gets in the trenches with you. Helps you figure out not just what to do, but how to do it. For leaders at inflection points.
+                    A peer who challenges you, works alongside you, and helps you figure out not just what to do. But how.
                 </p>
                 <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
                     Apply now
@@ -1251,15 +1664,17 @@
             </div>
             <div class="hero-visual reveal">
                 <div class="hero-graphic">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="35" cy="40" r="18" stroke="#E63B2E" stroke-width="3" fill="none"/>
-                        <circle cx="65" cy="40" r="18" stroke="#E63B2E" stroke-width="3" fill="none"/>
-                        <path d="M35 58 L35 75 L25 65" stroke="#E63B2E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M65 58 L65 75 L75 65" stroke="#E63B2E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M44 35 L56 35" stroke="#E63B2E" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M44 40 L56 40" stroke="#E63B2E" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M44 45 L56 45" stroke="#E63B2E" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+                    <div class="compass-container">
+                        <div class="compass-outer"></div>
+                        <div class="compass-inner"></div>
+                        <div class="compass-needle">
+                            <div class="needle-north"></div>
+                            <div class="needle-south"></div>
+                        </div>
+                        <div class="compass-center"></div>
+                        <div class="compass-hand hand-left"></div>
+                        <div class="compass-hand hand-right"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1310,25 +1725,6 @@
         </div>
     </section>
 
-    <!-- 4. The Human Way Box -->
-    <section class="human-way">
-        <div class="shape-circle"></div>
-        <div class="container">
-            <div class="human-way-box reveal">
-                <h2 class="human-way-title">Lead with AI, Stay Human</h2>
-                <p class="human-way-text">
-                    AI should extend your reach, not substitute your thinking.
-                </p>
-                <p class="human-way-text">
-                    Most AI training teaches prompts and shortcuts. We teach you to use AI consciously and intentionally, amplifying what you're best at while protecting the skills that make you valuable.
-                </p>
-                <p class="human-way-text">
-                    <strong>You get faster with AI. And you stay sharp without it.</strong>
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- 5. What You Get Section -->
     <section class="what-you-get">
         <div class="shape-blob"></div>
@@ -1361,14 +1757,8 @@
                 </div>
             </div>
 
-            <div class="addon-box reveal">
-                <h4>Strategic Sessions (Add on)</h4>
-                <p>When you hit a challenge that needs more than 1:1 thinking, bring your team. We design and facilitate a focused session around a specific problem. You leave with clarity and an action plan.</p>
-                <div class="addon-details">
-                    <div class="addon-detail">Up to 6 participants <span>(you + your key people)</span></div>
-                    <div class="addon-detail">2 hours to half day <span>(based on the challenge)</span></div>
-                    <div class="addon-detail">Starting at 3,000 EUR <span>(per session)</span></div>
-                </div>
+            <div class="addon-minimal reveal">
+                <p><strong>Need your team in the room?</strong> Strategic Sessions are facilitated deep-dives for you and your key people. We design and facilitate a focused session around a specific challenge. You leave with clarity and an action plan. <a href="https://fixedtoflow.com/#contact">Tell us about your challenge →</a></p>
             </div>
         </div>
     </section>
@@ -1412,19 +1802,23 @@
                 <h2 class="section-title section-title-dark">Why this works</h2>
             </div>
 
-            <div class="why-content">
-                <p class="reveal">This isn't theory. We've led teams, built products, navigated complexity, and made hard calls for 25+ years. We've been Chief Product Officer. We've advised startups and mentored Forbes 30 Under 30 leaders.</p>
-                <p class="reveal">We're not above you (consultant) or working for you (employee). We're alongside you, a peer who happens to have pattern recognition from doing this for a long time.</p>
-
-                <div class="why-points">
-                    <div class="why-point reveal">
-                        <p><strong>We ask powerful questions</strong> that challenge your assumptions. We tell you when we think you're wrong.</p>
+            <div class="why-layout">
+                <div class="why-left reveal">
+                    <p>This isn't theory.</p>
+                    <p>We've led teams, built products, navigated complexity, and made hard calls for 25+ years. We're alongside you, a peer who happens to have pattern recognition from doing this for a long time.</p>
+                </div>
+                <div class="why-right">
+                    <div class="why-card reveal">
+                        <h3>We ask powerful questions</h3>
+                        <p>That challenge your assumptions. We tell you when we think you're wrong.</p>
                     </div>
-                    <div class="why-point reveal">
-                        <p><strong>We share what we've seen work</strong> and what we've seen fail. When we recognize a pattern, we tell you.</p>
+                    <div class="why-card reveal">
+                        <h3>We share what we've seen work</h3>
+                        <p>And what we've seen fail. When we recognize a pattern, we tell you.</p>
                     </div>
-                    <div class="why-point reveal">
-                        <p><strong>We help you figure out how to actually do it,</strong> not just what to do. Strategy is easy. Execution is where it gets real.</p>
+                    <div class="why-card reveal">
+                        <h3>We help you figure out how to actually do it</h3>
+                        <p>Not just what to do. Strategy is easy. Execution is where it gets real.</p>
                     </div>
                 </div>
             </div>
@@ -1514,38 +1908,35 @@
 
     <!-- 10. Meet Your Sparring Partner Section -->
     <section class="guide">
-        <div class="shape-blob"></div>
-        <div class="container">
-            <div class="section-header reveal">
+        <div class="guide-content">
+            <div class="guide-header reveal">
                 <div class="section-label">Your Sparring Partner</div>
-                <h2 class="section-title section-title-dark">Meet Gus</h2>
+                <h2>Meet Gus</h2>
             </div>
 
-            <div class="guide-single reveal">
-                <div class="guide-photo-large">
+            <div class="guide-card reveal">
+                <div class="guide-photo">
                     <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
                 <div class="guide-info">
-                    <h3>Gustavo da Cunha Pimenta</h3>
-                    <div class="guide-title">Founder, Fixed to Flow</div>
-                    <p class="guide-bio">
-                        I've been in the field for more than 25 years. Building products, leading teams, navigating complexity. I've been Chief Product Officer at Cannavigia. I've advised startups and mentored Forbes 30 Under 30 leaders. I've made hard calls, gotten things wrong, and learned what actually works.
-                    </p>
-                    <p class="guide-bio">
-                        I'm not a coach. I won't ask how you feel. I'm not a consultant. I won't hand you a framework and leave. I'm a peer who thinks with you. Who challenges you. Who helps you figure out not just what to do, but how to actually do it.
-                    </p>
-                    <ul class="guide-credentials">
-                        <li>25+ years in product leadership and digital transformation</li>
-                        <li>Former Chief Product Officer at Cannavigia</li>
-                        <li>Mentor to Forbes 30 Under 30 leaders and startup founders</li>
-                        <li>Published thought leader on personal experiments</li>
-                    </ul>
-                    <a href="https://fixedtoflow.substack.com/p/20-lessons-from-20-years-of-mentorship" class="guide-link">
-                        Read: 20 lessons from 20 years of mentorship
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    <div class="guide-label">Founder Story</div>
+                    <h3>Meet Gus</h3>
+                    <p>I've been in the field for more than 25 years. Building products, leading teams, navigating complexity. I've been Chief Product Officer at Cannavigia. I've advised startups and mentored Forbes 30 Under 30 leaders. I've made hard calls, gotten things wrong, and learned what actually works.</p>
+                    <p>I'm not a coach. I won't ask how you feel. I'm not a consultant. I won't hand you a framework and leave. I'm a peer who thinks with you. Who challenges you. Who helps you figure out not just what to do, but how to actually do it.</p>
+                    <div class="guide-social">
+                        <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/gustavocpimenta" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1584,42 +1975,108 @@
         </div>
     </section>
 
-    <!-- 12. Final CTA Section -->
-    <section class="final-cta">
-        <div class="final-cta-content reveal">
-            <h2>Not sure if this is right?</h2>
-            <p>Let's have a conversation. No pressure, just clarity.</p>
-            <div class="final-cta-buttons">
-                <a href="https://fixedtoflow.com/#contact" class="btn btn-primary">
-                    Apply now
-                    <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-                <a href="mailto:gus@fixedtoflow.com" class="btn btn-secondary">Email Gus directly</a>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-header reveal">
+                <div class="section-label">Your Thinking Partner</div>
+                <h2>Book your first sparring session</h2>
+                <p class="contact-description">
+                    Not sure if this is right? Let's have a conversation. No pressure, just clarity—and a chance to see if the fit is there.
+                </p>
+            </div>
+            <div class="contact-form reveal">
+                <h3>Get in touch</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p class="footer-text">2025 <a href="https://fixedtoflow.com">Fixed to Flow</a>. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="index.html">All Services</a>
-            <a href="https://fixedtoflow.substack.com">Newsletter</a>
-            <a href="ai-amplifier-v3.html">AI Amplifier</a>
-            <a href="ai-activation-sprint-v3.html">AI Activation</a>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Fixed to Flow</p>
+                <h3 class="footer-tagline">Lead with AI,<br><span>Stay Human</span></h3>
+                <p class="footer-desc">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-link-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="ai-activation-sprint-v3.html">AI Activation</a></li>
+                        <li><a href="ai-acceleration-v3.html">AI Acceleration</a></li>
+                        <li><a href="ai-amplifier-v3.html">AI Amplifier</a></li>
+                        <li><a href="strategic-sparring-v3.html">Strategic Sparring</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://fixedtoflow.substack.com/" target="_blank" rel="noopener">Newsletter</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">&copy; 2025 Fixed to Flow. All rights reserved.</span>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/company/fixedtoflow/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/fixedtoflow" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/fixedtoflow/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navigation scroll effect
         const navbar = document.getElementById('navbar');
+        const announcementBar = document.querySelector('.announcement-bar');
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+                navbar.classList.add('announcement-hidden');
+                announcementBar.classList.add('hidden');
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('visible');
+                navbar.classList.remove('announcement-hidden');
+                announcementBar.classList.remove('hidden');
             }
         });
 
@@ -1639,6 +2096,20 @@
 
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
+
+        // Mobile Navigation
+        (function() {
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            const links = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
+            if (!toggle || !overlay) return;
+            function openNav() { toggle.classList.add('active'); toggle.setAttribute('aria-expanded', 'true'); overlay.classList.add('active'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('nav-open'); }
+            function closeNav() { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('nav-open'); }
+            toggle.addEventListener('click', () => overlay.classList.contains('active') ? closeNav() : openNav());
+            links.forEach(link => link.addEventListener('click', closeNav));
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeNav(); });
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
+        })();
     </script>
 </body>
 </html>

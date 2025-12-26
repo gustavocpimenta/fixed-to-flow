@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Acceleration Hero Variations | Visual Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-dark);
+            color: var(--black);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            margin-bottom: 60px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .variation-label {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .variation-label span {
+            color: var(--gray-light);
+            font-weight: 400;
+        }
+
+        /* ==========================================
+           SHARED HERO STYLES
+           ========================================== */
+        .hero {
+            padding: 100px 60px;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .hero-accent-line {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            margin-bottom: 32px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-side-label {
+            position: absolute;
+            right: -80px;
+            top: 50%;
+            transform: rotate(90deg) translateX(-50%);
+            transform-origin: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray-light);
+            white-space: nowrap;
+        }
+
+        .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           VARIATION 1: SCATTERED TO ALIGNED
+           Floating shapes organize into formation
+           ========================================== */
+        .v1 .scatter-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .v1 .shape {
+            position: absolute;
+            background: var(--black);
+            animation: scatter-align 8s ease-in-out infinite;
+        }
+
+        .v1 .shape-1 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .v1 .shape-2 {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            animation-delay: 0.2s;
+        }
+
+        .v1 .shape-3 {
+            width: 45px;
+            height: 20px;
+            border-radius: 10px;
+            animation-delay: 0.4s;
+        }
+
+        .v1 .shape-4 {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--red);
+            animation-delay: 0.6s;
+        }
+
+        .v1 .shape-5 {
+            width: 50px;
+            height: 15px;
+            border-radius: 8px;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes scatter-align {
+            0%, 20% {
+                opacity: 0.4;
+            }
+            50%, 80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.4;
+            }
+        }
+
+        .v1 .shape-1 {
+            animation: shape1-move 8s ease-in-out infinite;
+        }
+        .v1 .shape-2 {
+            animation: shape2-move 8s ease-in-out infinite;
+        }
+        .v1 .shape-3 {
+            animation: shape3-move 8s ease-in-out infinite;
+        }
+        .v1 .shape-4 {
+            animation: shape4-move 8s ease-in-out infinite;
+        }
+        .v1 .shape-5 {
+            animation: shape5-move 8s ease-in-out infinite;
+        }
+
+        @keyframes shape1-move {
+            0%, 20% { top: 20px; left: 30px; transform: rotate(15deg); opacity: 0.5; }
+            50%, 80% { top: 80px; left: 50%; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            100% { top: 20px; left: 30px; transform: rotate(15deg); opacity: 0.5; }
+        }
+        @keyframes shape2-move {
+            0%, 20% { top: 60px; right: 20px; transform: rotate(-20deg); opacity: 0.5; }
+            50%, 80% { top: 130px; left: 50%; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            100% { top: 60px; right: 20px; left: auto; transform: rotate(-20deg); opacity: 0.5; }
+        }
+        @keyframes shape3-move {
+            0%, 20% { bottom: 80px; left: 10px; transform: rotate(25deg); opacity: 0.5; }
+            50%, 80% { top: 180px; left: 50%; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            100% { bottom: 80px; top: auto; left: 10px; transform: rotate(25deg); opacity: 0.5; }
+        }
+        @keyframes shape4-move {
+            0%, 20% { top: 180px; right: 40px; transform: rotate(-10deg); opacity: 0.5; }
+            50%, 80% { top: 230px; left: 50%; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            100% { top: 180px; right: 40px; left: auto; transform: rotate(-10deg); opacity: 0.5; }
+        }
+        @keyframes shape5-move {
+            0%, 20% { bottom: 20px; left: 100px; transform: rotate(30deg); opacity: 0.5; }
+            50%, 80% { top: 280px; left: 50%; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            100% { bottom: 20px; top: auto; left: 100px; transform: rotate(30deg); opacity: 0.5; }
+        }
+
+        /* ==========================================
+           VARIATION 2: FOG CLEARING
+           Blur lifts to reveal clarity
+           ========================================== */
+        .v2 .fog-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v2 .clarity-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--black);
+            animation: fog-clear 6s ease-in-out infinite;
+        }
+
+        .v2 .fog-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                rgba(250, 247, 242, 0.9) 0%,
+                rgba(250, 247, 242, 0.7) 50%,
+                rgba(250, 247, 242, 0.9) 100%);
+            animation: fog-lift 6s ease-in-out infinite;
+        }
+
+        @keyframes fog-clear {
+            0%, 20% { filter: blur(8px); opacity: 0.3; }
+            50%, 80% { filter: blur(0); opacity: 1; }
+            100% { filter: blur(8px); opacity: 0.3; }
+        }
+
+        @keyframes fog-lift {
+            0%, 20% { opacity: 1; }
+            50%, 80% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* ==========================================
+           VARIATION 3: PATH DRAWING
+           Line draws with nodes appearing
+           ========================================== */
+        .v3 .path-container {
+            position: relative;
+            width: 320px;
+            height: 120px;
+        }
+
+        .v3 .path-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 3px;
+            background: var(--gray-light);
+            width: 0;
+            animation: path-draw 6s ease-out infinite;
+        }
+
+        @keyframes path-draw {
+            0%, 10% { width: 0; }
+            80%, 100% { width: 100%; }
+        }
+
+        .v3 .path-node {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--black);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .v3 .node-1 { left: 0; animation: node-appear 6s ease-out infinite; animation-delay: 0.5s; }
+        .v3 .node-2 { left: 33%; animation: node-appear 6s ease-out infinite; animation-delay: 1.5s; }
+        .v3 .node-3 { left: 66%; animation: node-appear 6s ease-out infinite; animation-delay: 2.5s; }
+        .v3 .node-4 { right: 0; background: var(--red); animation: node-appear 6s ease-out infinite; animation-delay: 3.5s; }
+
+        @keyframes node-appear {
+            0%, 10% { opacity: 0; transform: translateY(-50%) scale(0); }
+            20%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+        }
+
+        .v3 .node-label {
+            position: absolute;
+            top: 70px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            opacity: 0;
+        }
+
+        .v3 .label-1 { left: -20px; animation: label-fade 6s ease-out infinite; animation-delay: 0.7s; }
+        .v3 .label-2 { left: calc(33% - 20px); animation: label-fade 6s ease-out infinite; animation-delay: 1.7s; }
+        .v3 .label-3 { left: calc(66% - 10px); animation: label-fade 6s ease-out infinite; animation-delay: 2.7s; }
+        .v3 .label-4 { right: -15px; animation: label-fade 6s ease-out infinite; animation-delay: 3.7s; }
+
+        @keyframes label-fade {
+            0%, 15% { opacity: 0; }
+            25%, 100% { opacity: 1; }
+        }
+
+        /* ==========================================
+           VARIATION 4: QUESTION TO EXCLAMATION
+           ? morphs to !
+           ========================================== */
+        .v4 .morph-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v4 .question-mark {
+            font-size: 12rem;
+            font-weight: 700;
+            color: var(--gray-light);
+            line-height: 1;
+            animation: question-morph 5s ease-in-out infinite;
+        }
+
+        .v4 .exclamation-mark {
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+            opacity: 0;
+            animation: exclamation-appear 5s ease-in-out infinite;
+        }
+
+        @keyframes question-morph {
+            0%, 30% { opacity: 1; transform: scale(1); }
+            50%, 80% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes exclamation-appear {
+            0%, 30% { opacity: 0; transform: scale(0.8); }
+            50%, 80% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        /* ==========================================
+           VARIATION 5: CONVERGING LINES
+           Lines meet at center point
+           ========================================== */
+        .v5 .converge-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .v5 .converge-line {
+            position: absolute;
+            height: 2px;
+            background: var(--gray-light);
+            transform-origin: right center;
+        }
+
+        .v5 .line-1 { top: 30%; left: 0; width: 120px; transform: rotate(15deg); animation: line-converge 5s ease-out infinite; }
+        .v5 .line-2 { top: 45%; left: 0; width: 140px; transform: rotate(5deg); animation: line-converge 5s ease-out infinite 0.2s; }
+        .v5 .line-3 { top: 55%; left: 0; width: 140px; transform: rotate(-5deg); animation: line-converge 5s ease-out infinite 0.4s; }
+        .v5 .line-4 { top: 70%; left: 0; width: 120px; transform: rotate(-15deg); animation: line-converge 5s ease-out infinite 0.6s; }
+
+        @keyframes line-converge {
+            0%, 20% { width: 0; opacity: 0; }
+            60%, 100% { width: 140px; opacity: 1; }
+        }
+
+        .v5 .converge-point {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+            opacity: 0;
+            animation: point-appear 5s ease-out infinite;
+        }
+
+        @keyframes point-appear {
+            0%, 50% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            70%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .v5 .arrow-out {
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            width: 80px;
+            height: 3px;
+            background: var(--red);
+            transform: translateY(-50%);
+            opacity: 0;
+            animation: arrow-extend 5s ease-out infinite;
+        }
+
+        .v5 .arrow-out::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 12px solid var(--red);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        @keyframes arrow-extend {
+            0%, 65% { width: 0; opacity: 0; }
+            85%, 100% { width: 80px; opacity: 1; }
+        }
+
+        /* ==========================================
+           VARIATION 6: UNLOCK / DOOR OPENING
+           Lock opens, path revealed
+           ========================================== */
+        .v6 .unlock-container {
+            position: relative;
+            width: 200px;
+            height: 280px;
+        }
+
+        .v6 .lock-body {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 80px;
+            background: var(--black);
+            border-radius: 12px;
+        }
+
+        .v6 .lock-hole {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 35px;
+            background: var(--cream);
+            border-radius: 12px 12px 6px 6px;
+        }
+
+        .v6 .lock-shackle {
+            position: absolute;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border: 10px solid var(--black);
+            border-bottom: none;
+            border-radius: 30px 30px 0 0;
+            animation: shackle-open 6s ease-in-out infinite;
+        }
+
+        @keyframes shackle-open {
+            0%, 30% { transform: translateX(-50%) rotate(0deg); }
+            50%, 80% { transform: translateX(-50%) rotate(-45deg); transform-origin: right bottom; }
+            100% { transform: translateX(-50%) rotate(0deg); }
+        }
+
+        .v6 .unlock-glow {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background: radial-gradient(ellipse, rgba(230, 59, 46, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            animation: glow-appear 6s ease-in-out infinite;
+        }
+
+        @keyframes glow-appear {
+            0%, 40% { opacity: 0; }
+            55%, 85% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* ==========================================
+           VARIATION 7: STATIC TO MOTION
+           Glitchy becomes smooth
+           ========================================== */
+        .v7 .motion-container {
+            position: relative;
+            width: 280px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v7 .motion-bars {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            height: 120px;
+        }
+
+        .v7 .bar {
+            width: 24px;
+            background: var(--black);
+            border-radius: 4px;
+        }
+
+        .v7 .bar-1 { height: 40px; animation: bar-stabilize 6s ease-in-out infinite; }
+        .v7 .bar-2 { height: 70px; animation: bar-stabilize 6s ease-in-out infinite 0.1s; }
+        .v7 .bar-3 { height: 100px; animation: bar-stabilize 6s ease-in-out infinite 0.2s; background: var(--red); }
+        .v7 .bar-4 { height: 60px; animation: bar-stabilize 6s ease-in-out infinite 0.3s; }
+        .v7 .bar-5 { height: 80px; animation: bar-stabilize 6s ease-in-out infinite 0.4s; }
+
+        @keyframes bar-stabilize {
+            0%, 10% {
+                transform: translateX(-2px);
+                opacity: 0.5;
+            }
+            5% { transform: translateX(3px); }
+            15% { transform: translateX(-1px); }
+            20% { transform: translateX(2px); }
+            30%, 80% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-2px);
+                opacity: 0.5;
+            }
+        }
+
+        /* ==========================================
+           VARIATION 8: HOURGLASS / SAND FLOW
+           Time structured and purposeful
+           ========================================== */
+        .v8 .hourglass-container {
+            position: relative;
+            width: 160px;
+            height: 280px;
+        }
+
+        .v8 .glass-top, .v8 .glass-bottom {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 100px;
+            border: 4px solid var(--black);
+            background: var(--cream);
+        }
+
+        .v8 .glass-top {
+            top: 20px;
+            border-radius: 60px 60px 10px 10px;
+            clip-path: polygon(10% 0%, 90% 0%, 60% 100%, 40% 100%);
+        }
+
+        .v8 .glass-bottom {
+            bottom: 20px;
+            border-radius: 10px 10px 60px 60px;
+            clip-path: polygon(40% 0%, 60% 0%, 90% 100%, 10% 100%);
+        }
+
+        .v8 .sand-top {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 60px;
+            background: var(--red);
+            border-radius: 40px 40px 5px 5px;
+            animation: sand-empty 8s ease-in-out infinite;
+        }
+
+        @keyframes sand-empty {
+            0% { height: 60px; opacity: 1; }
+            80%, 100% { height: 10px; opacity: 0.5; }
+        }
+
+        .v8 .sand-stream {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 40px;
+            background: var(--red);
+            animation: stream-flow 8s ease-in-out infinite;
+        }
+
+        @keyframes stream-flow {
+            0%, 10% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+            90%, 100% { opacity: 0; }
+        }
+
+        .v8 .sand-bottom {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 10px;
+            background: var(--red);
+            border-radius: 5px 5px 40px 40px;
+            animation: sand-fill 8s ease-in-out infinite;
+        }
+
+        @keyframes sand-fill {
+            0% { height: 10px; }
+            80%, 100% { height: 60px; }
+        }
+
+        /* ==========================================
+           VARIATION 9: ZOOM TO FOCUS
+           Blur to sharp, zoomed in
+           ========================================== */
+        .v9 .focus-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .v9 .focus-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: zoom-focus 6s ease-out infinite;
+        }
+
+        .v9 .focus-icon {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v9 .focus-icon::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .v9 .focus-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes zoom-focus {
+            0%, 20% {
+                transform: scale(0.85);
+                filter: blur(6px);
+                opacity: 0.4;
+            }
+            50%, 80% {
+                transform: scale(1);
+                filter: blur(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.85);
+                filter: blur(6px);
+                opacity: 0.4;
+            }
+        }
+
+        /* ==========================================
+           VARIATION 10: PULSE HEARTBEAT
+           Gentle, living timeline
+           ========================================== */
+        .v10 .pulse-container {
+            position: relative;
+            width: 280px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v10 .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gray-light);
+            transform: translateY(-50%);
+        }
+
+        .v10 .pulse-center {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: var(--cream);
+            border: 4px solid var(--red);
+            border-radius: 50%;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        .v10 .pulse-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v10 .pulse-ring {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--red);
+            border-radius: 50%;
+            animation: pulse-ring-expand 2s ease-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.08); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.05); }
+            60%, 100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-ring-expand {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        .v10 .timeline-label {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>AI Acceleration Hero Variations</h1>
+        <p>From scattered to aligned — clarity, focus, and structured momentum</p>
+    </div>
+
+    <!-- VARIATION 1: Scattered to Aligned -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 1: Scattered to Aligned
+            <span>Chaos organizes into formation</span>
+        </div>
+        <section class="hero v1">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="scatter-container">
+                            <div class="shape shape-1"></div>
+                            <div class="shape shape-2"></div>
+                            <div class="shape shape-3"></div>
+                            <div class="shape shape-4"></div>
+                            <div class="shape shape-5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 2: Fog Clearing -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 2: Fog Clearing
+            <span>Blur lifts to reveal clarity</span>
+        </div>
+        <section class="hero v2">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="fog-container">
+                            <div class="clarity-text">Clarity</div>
+                            <div class="fog-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 3: Path Drawing -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 3: Path Drawing
+            <span>Journey visualized with milestones</span>
+        </div>
+        <section class="hero v3">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="path-container">
+                            <div class="path-line"></div>
+                            <div class="path-node node-1"></div>
+                            <div class="path-node node-2"></div>
+                            <div class="path-node node-3"></div>
+                            <div class="path-node node-4"></div>
+                            <div class="node-label label-1">Discovery</div>
+                            <div class="node-label label-2">Strategy</div>
+                            <div class="node-label label-3">Pilot</div>
+                            <div class="node-label label-4">Results</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 4: Question to Exclamation -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 4: Question to Exclamation
+            <span>From uncertainty to action</span>
+        </div>
+        <section class="hero v4">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="morph-container">
+                            <div class="question-mark">?</div>
+                            <div class="exclamation-mark">!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 5: Converging Lines -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 5: Converging Lines
+            <span>Alignment into unified direction</span>
+        </div>
+        <section class="hero v5">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="converge-container">
+                            <div class="converge-line line-1"></div>
+                            <div class="converge-line line-2"></div>
+                            <div class="converge-line line-3"></div>
+                            <div class="converge-line line-4"></div>
+                            <div class="converge-point"></div>
+                            <div class="arrow-out"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 6: Unlock / Door Opening -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 6: Unlock
+            <span>Opening the path forward</span>
+        </div>
+        <section class="hero v6">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="unlock-container">
+                            <div class="lock-shackle"></div>
+                            <div class="lock-body">
+                                <div class="lock-hole"></div>
+                            </div>
+                            <div class="unlock-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 7: Static to Motion -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 7: Static to Motion
+            <span>From stuck to flowing</span>
+        </div>
+        <section class="hero v7">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="motion-container">
+                            <div class="motion-bars">
+                                <div class="bar bar-1"></div>
+                                <div class="bar bar-2"></div>
+                                <div class="bar bar-3"></div>
+                                <div class="bar bar-4"></div>
+                                <div class="bar bar-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 8: Hourglass -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 8: Hourglass
+            <span>Structured, purposeful time</span>
+        </div>
+        <section class="hero v8">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="hourglass-container">
+                            <div class="glass-top"></div>
+                            <div class="sand-top"></div>
+                            <div class="sand-stream"></div>
+                            <div class="sand-bottom"></div>
+                            <div class="glass-bottom"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 9: Zoom to Focus -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 9: Zoom to Focus
+            <span>Gaining clarity and sharpness</span>
+        </div>
+        <section class="hero v9">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="focus-container">
+                            <div class="focus-content">
+                                <div class="focus-icon"></div>
+                                <div class="focus-label">Focus</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VARIATION 10: Pulse Heartbeat -->
+    <div class="variation">
+        <div class="variation-label">
+            Variation 10: Pulse Heartbeat
+            <span>Living, breathing momentum</span>
+        </div>
+        <section class="hero v10">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-accent-line"></div>
+                    <h1 class="hero-title">Sustained partnership to make AI real</h1>
+                    <p class="hero-desc">
+                        From strategy to working pilots | Capacity building + Implementation | For organizations ready to execute
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Book a discovery call
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-side-label">AI Acceleration</div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="pulse-container">
+                            <div class="timeline-line"></div>
+                            <div class="pulse-center">
+                                <div class="pulse-number">90</div>
+                            </div>
+                            <div class="pulse-ring"></div>
+                            <div class="timeline-label">Days of Partnership</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
