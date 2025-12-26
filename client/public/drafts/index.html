@@ -711,46 +711,91 @@
             transform-origin: right center;
         }
 
-        .converge-line.line-1 { top: 25%; left: 0; width: 40px; transform: rotate(20deg); animation: line-converge-sm 4s ease-out infinite; animation-play-state: paused; }
-        .converge-line.line-2 { top: 40%; left: 0; width: 50px; transform: rotate(8deg); animation: line-converge-sm 4s ease-out infinite 0.15s; animation-play-state: paused; }
-        .converge-line.line-3 { top: 60%; left: 0; width: 50px; transform: rotate(-8deg); animation: line-converge-sm 4s ease-out infinite 0.3s; animation-play-state: paused; }
-        .converge-line.line-4 { top: 75%; left: 0; width: 40px; transform: rotate(-20deg); animation: line-converge-sm 4s ease-out infinite 0.45s; animation-play-state: paused; }
-
-        @keyframes line-converge-sm {
-            0%, 20% { width: 0; opacity: 0; }
-            60%, 100% { width: 50px; opacity: 1; }
+        /* Lines positioned to converge toward center - DEFAULT: visible (last frame) */
+        .converge-line.line-1 {
+            top: 20%;
+            left: 5%;
+            width: 35px;
+            transform: rotate(35deg);
+        }
+        .converge-line.line-2 {
+            top: 38%;
+            left: 0;
+            width: 45px;
+            transform: rotate(12deg);
+        }
+        .converge-line.line-3 {
+            top: 58%;
+            left: 0;
+            width: 45px;
+            transform: rotate(-12deg);
+        }
+        .converge-line.line-4 {
+            top: 76%;
+            left: 5%;
+            width: 35px;
+            transform: rotate(-35deg);
         }
 
+        /* On hover: replay animation */
+        .service-card:hover .converge-line.line-1 { animation: line-converge-1 2s ease-out; }
+        .service-card:hover .converge-line.line-2 { animation: line-converge-2 2s ease-out 0.1s both; }
+        .service-card:hover .converge-line.line-3 { animation: line-converge-3 2s ease-out 0.2s both; }
+        .service-card:hover .converge-line.line-4 { animation: line-converge-4 2s ease-out 0.3s both; }
+
+        @keyframes line-converge-1 {
+            0% { width: 0; opacity: 0; left: -10%; }
+            40% { width: 35px; opacity: 1; left: 5%; }
+            100% { width: 35px; opacity: 1; left: 5%; }
+        }
+        @keyframes line-converge-2 {
+            0% { width: 0; opacity: 0; left: -15%; }
+            40% { width: 45px; opacity: 1; left: 0; }
+            100% { width: 45px; opacity: 1; left: 0; }
+        }
+        @keyframes line-converge-3 {
+            0% { width: 0; opacity: 0; left: -15%; }
+            40% { width: 45px; opacity: 1; left: 0; }
+            100% { width: 45px; opacity: 1; left: 0; }
+        }
+        @keyframes line-converge-4 {
+            0% { width: 0; opacity: 0; left: -10%; }
+            40% { width: 35px; opacity: 1; left: 5%; }
+            100% { width: 35px; opacity: 1; left: 5%; }
+        }
+
+        /* Converge point - DEFAULT: visible */
         .converge-point {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 42%;
+            transform: translate(-50%, -50%) scale(1);
             width: 14px;
             height: 14px;
             background: var(--red);
             border-radius: 50%;
-            opacity: 0;
-            animation: point-appear-sm 4s ease-out infinite;
-            animation-play-state: paused;
+            opacity: 1;
+        }
+
+        .service-card:hover .converge-point {
+            animation: point-appear-sm 2s ease-out;
         }
 
         @keyframes point-appear-sm {
-            0%, 50% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-            70%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
+        /* Arrow out - DEFAULT: visible */
         .arrow-out {
             position: absolute;
             top: 50%;
-            left: 55%;
-            width: 30px;
+            left: 48%;
+            width: 35px;
             height: 2px;
             background: var(--red);
             transform: translateY(-50%);
-            opacity: 0;
-            animation: arrow-extend-sm 4s ease-out infinite;
-            animation-play-state: paused;
+            opacity: 1;
         }
 
         .arrow-out::after {
@@ -764,15 +809,13 @@
             border-bottom: 5px solid transparent;
         }
 
-        @keyframes arrow-extend-sm {
-            0%, 65% { width: 0; opacity: 0; }
-            85%, 100% { width: 30px; opacity: 1; }
+        .service-card:hover .arrow-out {
+            animation: arrow-extend-sm 2s ease-out;
         }
 
-        .service-card:hover .converge-line,
-        .service-card:hover .converge-point,
-        .service-card:hover .arrow-out {
-            animation-play-state: running;
+        @keyframes arrow-extend-sm {
+            0%, 45% { width: 0; opacity: 0; }
+            65%, 100% { width: 35px; opacity: 1; }
         }
 
         /* AI Acceleration - Gears */
@@ -799,6 +842,7 @@
             border-radius: 50%;
         }
 
+        /* Gears positioned to interlock (vertically centered) */
         .gear-large {
             width: 70px;
             height: 70px;
@@ -808,10 +852,8 @@
                 var(--black) 180deg 210deg, transparent 210deg 240deg,
                 var(--black) 240deg 270deg, transparent 270deg 300deg,
                 var(--black) 300deg 330deg, transparent 330deg 360deg);
-            left: 5px;
-            top: 25px;
-            animation: gear-rotate 6s linear infinite;
-            animation-play-state: paused;
+            left: 0;
+            top: 40px;
         }
 
         .gear-medium {
@@ -821,26 +863,30 @@
                 var(--red) 90deg 135deg, transparent 135deg 180deg,
                 var(--red) 180deg 225deg, transparent 225deg 270deg,
                 var(--red) 270deg 315deg, transparent 315deg 360deg);
-            right: 10px;
-            top: 10px;
-            animation: gear-rotate-reverse 4s linear infinite;
-            animation-play-state: paused;
+            left: 52px;
+            top: 20px;
         }
 
         .gear-small {
             width: 35px;
             height: 35px;
-            background: conic-gradient(from 0deg, var(--light-gray) 0deg 60deg, transparent 60deg 120deg,
-                var(--light-gray) 120deg 180deg, transparent 180deg 240deg,
-                var(--light-gray) 240deg 300deg, transparent 300deg 360deg);
-            right: 25px;
-            bottom: 15px;
-            animation: gear-rotate 3s linear infinite;
-            animation-play-state: paused;
+            background: conic-gradient(from 0deg, var(--light-gray) 0deg 45deg, transparent 45deg 90deg,
+                var(--light-gray) 90deg 135deg, transparent 135deg 180deg,
+                var(--light-gray) 180deg 225deg, transparent 225deg 270deg,
+                var(--light-gray) 270deg 315deg, transparent 315deg 360deg);
+            left: 62px;
+            top: 68px;
         }
 
-        .service-card:hover .gear {
-            animation-play-state: running;
+        /* On hover: animate gears */
+        .service-card:hover .gear-large {
+            animation: gear-rotate 6s linear infinite;
+        }
+        .service-card:hover .gear-medium {
+            animation: gear-rotate-reverse 4s linear infinite;
+        }
+        .service-card:hover .gear-small {
+            animation: gear-rotate 3s linear infinite;
         }
 
         @keyframes gear-rotate {
@@ -1674,7 +1720,7 @@
                 <div class="card-content">
                     <div class="service-tag">For Organizations</div>
                     <h3>AI Activation</h3>
-                    <p>Build real AI capability, not button-pushing skills. 30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
                 </div>
                 <div class="card-graphic activation-graphic">
                     <div class="converge-line line-1"></div>
@@ -1691,7 +1737,7 @@
                 <div class="card-content">
                     <div class="service-tag">For Organizations</div>
                     <h3>AI Acceleration</h3>
-                    <p>Your team learns by doing, with us alongside. From first experiments to working pilots to people who can think for themselves.</p>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.</p>
                 </div>
                 <div class="card-graphic gears-graphic">
                     <div class="gear gear-large"></div>
