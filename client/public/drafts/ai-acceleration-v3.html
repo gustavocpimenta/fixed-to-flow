@@ -859,6 +859,13 @@
             font-weight: 700;
         }
 
+        .testimonial-avatar-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
         .testimonial-info {
             font-size: 0.875rem;
         }
@@ -971,6 +978,38 @@
             background: var(--red-dark);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(230, 59, 46, 0.4);
+        }
+
+        .price-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .price-cta-group .price-cta {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .price-cta-secondary {
+            flex: 1;
+            min-width: 180px;
+            display: block;
+            padding: 1rem;
+            background: transparent;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .price-cta-secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
         }
 
         .price-note {
@@ -1869,6 +1908,10 @@
                 </div>
                 <div class="why-right">
                     <div class="why-card reveal">
+                        <h3>You get the A-team</h3>
+                        <p>Senior leaders who've built and shipped. No account managers passing notes.</p>
+                    </div>
+                    <div class="why-card reveal">
                         <h3>We're not just advisors</h3>
                         <p>We get in the trenches. We lead implementation work. We solve problems alongside your team.</p>
                     </div>
@@ -1901,25 +1944,57 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "He stood out for his great dedication and systemic mindset. He brought a lot of enthusiasm to the team and was able to design the project according to our business needs and those of our clients. It was truly great working with him!"
+                        "Gustavo first brought us his expertise in the conceptualization phase of our product, our business model and finally our go to market strategy. His insights have been extremely useful to challenge our vision and scale up strategy."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">HS</div>
+                        <a href="https://www.linkedin.com/in/matthieu-douziech-a8662534/" target="_blank" rel="noopener noreferrer">
+                            <img src="matthieu.jpg" alt="Matthieu Douziech" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Hugo Sousa</div>
-                            <div class="testimonial-role">Client (AI strategy project)</div>
+                            <a href="https://www.linkedin.com/in/matthieu-douziech-a8662534/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Matthieu Douziech</a>
+                            <div class="testimonial-role">Founding Partner at Harpoon</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "Gustavo first brought us his expertise in the conceptualization phase of our product, our business model and finally our go to market strategy. His insights have been extremely useful to challenge our vision and scale up strategy."
+                        "The product Gustavo delivered was a massive improvement on what we'd had, and it has received praise from all quarters."
                     </p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">MD</div>
+                        <a href="https://www.linkedin.com/in/jefflynn/" target="_blank" rel="noopener noreferrer">
+                            <img src="jeff.jpeg" alt="Jeff Lynn" class="testimonial-avatar-img">
+                        </a>
                         <div class="testimonial-info">
-                            <div class="testimonial-name">Matthieu Douziech</div>
-                            <div class="testimonial-role">Founding Partner at Harpoon</div>
+                            <a href="https://www.linkedin.com/in/jefflynn/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Jeff Lynn</a>
+                            <div class="testimonial-role">Chairman of Republic Europe</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "An amazing ability to decode needs creating good experiences and turn it into something useful. Gustavo has a great holistic view which gives him the ability to find great solutions to everyone. Very demanding and methodical while executing his work."
+                    </p>
+                    <div class="testimonial-author">
+                        <a href="https://www.linkedin.com/in/diogo-garrido/" target="_blank" rel="noopener noreferrer">
+                            <img src="diogo.jpeg" alt="Diogo Garrido" class="testimonial-avatar-img">
+                        </a>
+                        <div class="testimonial-info">
+                            <a href="https://www.linkedin.com/in/diogo-garrido/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Diogo Garrido</a>
+                            <div class="testimonial-role">Digital Delivery for Ageas Seguros</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">
+                        "Gustavo was a key part of bringing the marketing, design and product functions together at Seedrs. He is a real thought leader in UX and human factors, and helped build the framework for applying business metrics to design and growth. Highly recommended."
+                    </p>
+                    <div class="testimonial-author">
+                        <a href="https://www.linkedin.com/in/peterjthomson/" target="_blank" rel="noopener noreferrer">
+                            <img src="peter.jpeg" alt="Peter Thomson" class="testimonial-avatar-img">
+                        </a>
+                        <div class="testimonial-info">
+                            <a href="https://www.linkedin.com/in/peterjthomson/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Peter Thomson</a>
+                            <div class="testimonial-role">Former CMO at Seedrs</div>
                         </div>
                     </div>
                 </div>
@@ -1946,9 +2021,12 @@
                     <li>Protected human skills (amplification, not replacement)</li>
                     <li>Month to month (no lock in)</li>
                 </ul>
-                <a href="https://fixedtoflow.com/#contact" class="price-cta">Start the conversation</a>
+                <div class="price-cta-group">
+                    <a href="#contact" class="price-cta">Get in touch</a>
+                    <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the founder</a>
+                </div>
                 <p class="price-note">
-                    Not sure if you're ready? Start with <a href="ai-activation-sprint-v3.html">AI Activation</a> to develop your strategy first.
+                    Need strategy first? Try <a href="ai-activation-sprint-v3.html">AI Activation</a>.
                 </p>
             </div>
         </div>
