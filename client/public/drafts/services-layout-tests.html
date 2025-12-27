@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Layout Variations | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --light-gray: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--black);
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            color: var(--light-gray);
+            font-size: 1.15rem;
+        }
+
+        /* Variation Section */
+        .variation {
+            padding: 80px 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .variation:nth-child(even) {
+            background: var(--white);
+        }
+
+        .variation-header {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+        }
+
+        .variation-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+            opacity: 0.3;
+        }
+
+        .variation-info h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .variation-info p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .variation-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           VARIATION 1: MINIMAL CARDS
+           ============================================ */
+        .v1-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .v1-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .variation:nth-child(even) .v1-card {
+            background: var(--cream);
+        }
+
+        .v1-card:hover {
+            border-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        .v1-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 12px;
+        }
+
+        .v1-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .v1-card:hover h3 {
+            color: var(--red);
+        }
+
+        /* ============================================
+           VARIATION 2: FULL INFO CARDS (Current)
+           ============================================ */
+        .v2-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .v2-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            text-decoration: none;
+            color: inherit;
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            gap: 24px;
+            align-items: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .variation:nth-child(even) .v2-card {
+            background: var(--cream);
+        }
+
+        .v2-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .v2-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v2-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v2-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .v2-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--cream);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .variation:nth-child(even) .v2-icon {
+            background: var(--white);
+        }
+
+        .v2-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--red);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* ============================================
+           VARIATION 3: LIST LAYOUT
+           ============================================ */
+        .v3-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v3-item {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 40px;
+            padding: 36px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .v3-item:hover {
+            padding-left: 20px;
+            background: linear-gradient(90deg, rgba(230,59,46,0.05) 0%, transparent 50%);
+        }
+
+        .v3-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            transition: color 0.3s ease;
+        }
+
+        .v3-item:hover h3 {
+            color: var(--red);
+        }
+
+        .v3-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            max-width: 500px;
+        }
+
+        .v3-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            padding: 6px 14px;
+            background: rgba(0,0,0,0.04);
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           VARIATION 4: LARGE FEATURE CARDS
+           ============================================ */
+        .v4-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .v4-card {
+            background: var(--white);
+            border-radius: 32px;
+            padding: 60px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .variation:nth-child(even) .v4-card {
+            background: var(--cream);
+        }
+
+        .v4-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .v4-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .v4-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .v4-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .v4-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .v4-card p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .v4-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--red);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .v4-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .v4-card:hover .v4-link svg {
+            transform: translateX(4px);
+        }
+
+        /* ============================================
+           VARIATION 5: COMPACT PILLS
+           ============================================ */
+        .v5-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v5-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .v5-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 8px;
+        }
+
+        .v5-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            background: var(--white);
+            border-radius: 100px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .variation:nth-child(even) .v5-pill {
+            background: var(--cream);
+        }
+
+        .v5-pill:hover {
+            background: var(--red);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .v5-pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .v5-pill:hover::before {
+            background: var(--white);
+        }
+
+        /* ============================================
+           VARIATION 6: SPLIT BY AUDIENCE
+           ============================================ */
+        .v6-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .v6-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v6-column-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--light-gray);
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--red);
+            margin-bottom: 24px;
+        }
+
+        .v6-services {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .v6-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .variation:nth-child(even) .v6-card {
+            background: var(--cream);
+        }
+
+        .v6-card:hover {
+            transform: translateX(8px);
+            box-shadow: -8px 8px 0 var(--red);
+        }
+
+        .v6-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v6-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           VARIATION 7: ACCORDION STYLE
+           ============================================ */
+        .v7-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .v7-item {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .variation:nth-child(even) .v7-item {
+            background: var(--cream);
+        }
+
+        .v7-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .v7-header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .v7-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            transition: color 0.3s ease;
+        }
+
+        .v7-item:hover .v7-header h3 {
+            color: var(--red);
+        }
+
+        .v7-header-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            padding: 4px 12px;
+            background: rgba(0,0,0,0.04);
+            border-radius: 100px;
+        }
+
+        .v7-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .variation:nth-child(even) .v7-toggle {
+            background: var(--white);
+        }
+
+        .v7-item:hover .v7-toggle {
+            background: var(--red);
+        }
+
+        .v7-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray);
+            transition: all 0.3s ease;
+        }
+
+        .v7-item:hover .v7-toggle svg {
+            stroke: var(--white);
+        }
+
+        .v7-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .v7-item:hover .v7-content {
+            max-height: 200px;
+        }
+
+        .v7-content-inner {
+            padding: 0 32px 24px;
+        }
+
+        .v7-content p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           VARIATION 8: ICON-FIRST
+           ============================================ */
+        .v8-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .v8-card {
+            text-align: center;
+            padding: 48px 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+            border-radius: 24px;
+        }
+
+        .v8-card:hover {
+            background: var(--white);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .variation:nth-child(even) .v8-card:hover {
+            background: var(--cream);
+        }
+
+        .v8-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .variation:nth-child(even) .v8-icon {
+            background: var(--cream);
+        }
+
+        .v8-card:hover .v8-icon {
+            background: var(--red);
+            transform: scale(1.1);
+        }
+
+        .v8-icon svg {
+            width: 56px;
+            height: 56px;
+            stroke: var(--red);
+            fill: none;
+            stroke-width: 1.5;
+            transition: stroke 0.4s ease;
+        }
+
+        .v8-card:hover .v8-icon svg {
+            stroke: var(--white);
+        }
+
+        .v8-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v8-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        /* ============================================
+           VARIATION 9: TEXT-ONLY EDITORIAL
+           ============================================ */
+        .v9-editorial {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .v9-item {
+            padding: 48px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .v9-item:nth-child(1) { border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .v9-item:nth-child(2) { border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .v9-item:nth-child(3) { border-right: 1px solid rgba(0,0,0,0.1); }
+
+        .v9-item:hover {
+            background: var(--red);
+        }
+
+        .v9-item:hover * {
+            color: var(--white) !important;
+        }
+
+        .v9-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .variation:nth-child(even) .v9-number {
+            color: var(--white);
+        }
+
+        .v9-item:hover .v9-number {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .v9-item h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .v9-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           VARIATION 10: HORIZONTAL SCROLL
+           ============================================ */
+        .v10-wrapper {
+            margin: 0 -40px;
+            padding: 0 40px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .v10-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .v10-track {
+            display: flex;
+            gap: 24px;
+            padding: 20px 0;
+            width: max-content;
+        }
+
+        .v10-card {
+            width: 400px;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 48px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .variation:nth-child(even) .v10-card {
+            background: var(--cream);
+        }
+
+        .v10-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .v10-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--white);
+            background: var(--red);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .v10-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .v10-card p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .v10-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--red);
+            font-size: 0.9rem;
+        }
+
+        .v10-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .v10-card:hover .v10-cta svg {
+            transform: translateX(4px);
+        }
+
+        .v10-scroll-hint {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .v1-grid { grid-template-columns: repeat(2, 1fr); }
+            .v8-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .variation {
+                padding: 60px 24px;
+            }
+
+            .variation-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .variation-number {
+                font-size: 2.5rem;
+            }
+
+            .v1-grid,
+            .v2-grid,
+            .v4-grid,
+            .v6-split,
+            .v8-grid,
+            .v9-editorial {
+                grid-template-columns: 1fr;
+            }
+
+            .v2-card {
+                grid-template-columns: 1fr;
+            }
+
+            .v2-icon {
+                display: none;
+            }
+
+            .v3-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .v3-tag {
+                justify-self: start;
+            }
+
+            .v9-item {
+                border-right: none !important;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .v10-card {
+                width: 320px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Services Layout Variations</h1>
+        <p>10 different approaches to displaying services on the homepage</p>
+    </header>
+
+    <!-- VARIATION 1: MINIMAL CARDS -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">01</span>
+            <div class="variation-info">
+                <h2>Minimal Cards</h2>
+                <p>Just service name and target audience, no description - clean and scannable</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v1-grid">
+                <a href="ai-activation-sprint-v3.html" class="v1-card">
+                    <div class="v1-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v1-card">
+                    <div class="v1-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v1-card">
+                    <div class="v1-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v1-card">
+                    <div class="v1-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 2: FULL INFO CARDS -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">02</span>
+            <div class="variation-info">
+                <h2>Full Info Cards</h2>
+                <p>Current style with icon area, tag, title, and description</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v2-grid">
+                <a href="ai-activation-sprint-v3.html" class="v2-card">
+                    <div class="v2-content">
+                        <div class="v2-tag">For Organizations</div>
+                        <h3>AI Activation</h3>
+                        <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                    </div>
+                    <div class="v2-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M24 12v12l8 8"/></svg>
+                    </div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v2-card">
+                    <div class="v2-content">
+                        <div class="v2-tag">For Organizations</div>
+                        <h3>AI Acceleration</h3>
+                        <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                    </div>
+                    <div class="v2-icon">
+                        <svg viewBox="0 0 48 48"><path d="M12 24h24M24 12v24"/><circle cx="24" cy="24" r="18"/></svg>
+                    </div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v2-card">
+                    <div class="v2-content">
+                        <div class="v2-tag">For Individuals</div>
+                        <h3>AI Amplifier</h3>
+                        <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                    </div>
+                    <div class="v2-icon">
+                        <svg viewBox="0 0 48 48"><path d="M8 36l8-12 8 8 16-20"/></svg>
+                    </div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v2-card">
+                    <div class="v2-content">
+                        <div class="v2-tag">For Individuals</div>
+                        <h3>Strategic Sparring</h3>
+                        <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                    </div>
+                    <div class="v2-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="6"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 3: LIST LAYOUT -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">03</span>
+            <div class="variation-info">
+                <h2>List Layout</h2>
+                <p>Horizontal rows with editorial feel - easy to scan vertically</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v3-list">
+                <a href="ai-activation-sprint-v3.html" class="v3-item">
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                    <span class="v3-tag">For Organizations</span>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v3-item">
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                    <span class="v3-tag">For Organizations</span>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v3-item">
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                    <span class="v3-tag">For Individuals</span>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v3-item">
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                    <span class="v3-tag">For Individuals</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 4: LARGE FEATURE CARDS -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">04</span>
+            <div class="variation-info">
+                <h2>Large Feature Cards</h2>
+                <p>2 per row, more breathing room and visual impact</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v4-grid">
+                <a href="ai-activation-sprint-v3.html" class="v4-card">
+                    <div class="v4-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                    <span class="v4-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v4-card">
+                    <div class="v4-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.</p>
+                    <span class="v4-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v4-card">
+                    <div class="v4-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                    <span class="v4-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v4-card">
+                    <div class="v4-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                    <span class="v4-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 5: COMPACT PILLS -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">05</span>
+            <div class="variation-info">
+                <h2>Compact Pills</h2>
+                <p>Very minimal, just service names as clickable pills</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v5-container">
+                <div>
+                    <div class="v5-label">For Organizations</div>
+                    <div class="v5-row">
+                        <a href="ai-activation-sprint-v3.html" class="v5-pill">AI Activation</a>
+                        <a href="ai-acceleration-v3.html" class="v5-pill">AI Acceleration</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="v5-label">For Individuals</div>
+                    <div class="v5-row">
+                        <a href="ai-amplifier-v3.html" class="v5-pill">AI Amplifier</a>
+                        <a href="strategic-sparring-v3.html" class="v5-pill">Strategic Sparring</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 6: SPLIT BY AUDIENCE -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">06</span>
+            <div class="variation-info">
+                <h2>Split by Audience</h2>
+                <p>Two columns grouping services by target audience</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v6-split">
+                <div class="v6-column">
+                    <div class="v6-column-header">For Organizations</div>
+                    <div class="v6-services">
+                        <a href="ai-activation-sprint-v3.html" class="v6-card">
+                            <h3>AI Activation</h3>
+                            <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                        </a>
+                        <a href="ai-acceleration-v3.html" class="v6-card">
+                            <h3>AI Acceleration</h3>
+                            <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="v6-column">
+                    <div class="v6-column-header">For Individuals</div>
+                    <div class="v6-services">
+                        <a href="ai-amplifier-v3.html" class="v6-card">
+                            <h3>AI Amplifier</h3>
+                            <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                        </a>
+                        <a href="strategic-sparring-v3.html" class="v6-card">
+                            <h3>Strategic Sparring</h3>
+                            <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 7: ACCORDION STYLE -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">07</span>
+            <div class="variation-info">
+                <h2>Accordion Style</h2>
+                <p>Collapsed by default, expand on hover to reveal description</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v7-accordion">
+                <a href="ai-activation-sprint-v3.html" class="v7-item">
+                    <div class="v7-header">
+                        <div class="v7-header-left">
+                            <h3>AI Activation</h3>
+                            <span class="v7-header-tag">For Organizations</span>
+                        </div>
+                        <div class="v7-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </div>
+                    </div>
+                    <div class="v7-content">
+                        <div class="v7-content-inner">
+                            <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v7-item">
+                    <div class="v7-header">
+                        <div class="v7-header-left">
+                            <h3>AI Acceleration</h3>
+                            <span class="v7-header-tag">For Organizations</span>
+                        </div>
+                        <div class="v7-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </div>
+                    </div>
+                    <div class="v7-content">
+                        <div class="v7-content-inner">
+                            <p>Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v7-item">
+                    <div class="v7-header">
+                        <div class="v7-header-left">
+                            <h3>AI Amplifier</h3>
+                            <span class="v7-header-tag">For Individuals</span>
+                        </div>
+                        <div class="v7-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </div>
+                    </div>
+                    <div class="v7-content">
+                        <div class="v7-content-inner">
+                            <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v7-item">
+                    <div class="v7-header">
+                        <div class="v7-header-left">
+                            <h3>Strategic Sparring</h3>
+                            <span class="v7-header-tag">For Individuals</span>
+                        </div>
+                        <div class="v7-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </div>
+                    </div>
+                    <div class="v7-content">
+                        <div class="v7-content-inner">
+                            <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 8: ICON-FIRST -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">08</span>
+            <div class="variation-info">
+                <h2>Icon-First</h2>
+                <p>Large abstract icons as the focus, text secondary</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v8-grid">
+                <a href="ai-activation-sprint-v3.html" class="v8-card">
+                    <div class="v8-icon">
+                        <svg viewBox="0 0 48 48"><path d="M8 24h8l4-12 8 24 4-12h8"/></svg>
+                    </div>
+                    <h3>AI Activation</h3>
+                    <div class="v8-tag">For Organizations</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v8-card">
+                    <div class="v8-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="16" cy="24" r="8"/><circle cx="32" cy="24" r="8"/><path d="M24 16v16"/></svg>
+                    </div>
+                    <h3>AI Acceleration</h3>
+                    <div class="v8-tag">For Organizations</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v8-card">
+                    <div class="v8-icon">
+                        <svg viewBox="0 0 48 48"><path d="M12 36V24l6-8h12l6 8v12"/><path d="M18 24v12M30 24v12"/></svg>
+                    </div>
+                    <h3>AI Amplifier</h3>
+                    <div class="v8-tag">For Individuals</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v8-card">
+                    <div class="v8-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 12v6M24 30v6M12 24h6M30 24h6"/></svg>
+                    </div>
+                    <h3>Strategic Sparring</h3>
+                    <div class="v8-tag">For Individuals</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 9: TEXT-ONLY EDITORIAL -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">09</span>
+            <div class="variation-info">
+                <h2>Text-Only Editorial</h2>
+                <p>No cards, just typography-focused layout like a magazine</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v9-editorial">
+                <a href="ai-activation-sprint-v3.html" class="v9-item">
+                    <div class="v9-number">01</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v9-item">
+                    <div class="v9-number">02</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v9-item">
+                    <div class="v9-number">03</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v9-item">
+                    <div class="v9-number">04</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 10: HORIZONTAL SCROLL -->
+    <section class="variation">
+        <div class="variation-header">
+            <span class="variation-number">10</span>
+            <div class="variation-info">
+                <h2>Horizontal Scroll</h2>
+                <p>Cards in a scrolling container, one at a time focus</p>
+            </div>
+        </div>
+        <div class="variation-content">
+            <div class="v10-wrapper">
+                <div class="v10-track">
+                    <a href="ai-activation-sprint-v3.html" class="v10-card">
+                        <span class="v10-tag">For Organizations</span>
+                        <h3>AI Activation</h3>
+                        <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                        <span class="v10-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="ai-acceleration-v3.html" class="v10-card">
+                        <span class="v10-tag">For Organizations</span>
+                        <h3>AI Acceleration</h3>
+                        <p>Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.</p>
+                        <span class="v10-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="ai-amplifier-v3.html" class="v10-card">
+                        <span class="v10-tag">For Individuals</span>
+                        <h3>AI Amplifier</h3>
+                        <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                        <span class="v10-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="strategic-sparring-v3.html" class="v10-card">
+                        <span class="v10-tag">For Individuals</span>
+                        <h3>Strategic Sparring</h3>
+                        <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                        <span class="v10-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                </div>
+            </div>
+            <div class="v10-scroll-hint">Scroll horizontally to see all services</div>
+        </div>
+    </section>
+
+</body>
+</html>

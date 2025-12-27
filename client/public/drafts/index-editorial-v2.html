@@ -6,7 +6,7 @@
     <title>Fixed to Flow | Lead with AI, Stay Human</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --red: #E63B2E;
@@ -517,61 +517,18 @@
             border: 3px solid var(--red);
         }
 
-        /* Hero Animation Variations */
         @keyframes breathe {
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
             50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
         }
 
-        @keyframes ripple {
-            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            10% { transform: translate(-50%, -50%) scale(1.03); }
-            20% { transform: translate(-50%, -50%) scale(1); }
-            30% { transform: translate(-50%, -50%) scale(1.02); }
-            40%, 100% { transform: translate(-50%, -50%) scale(1); }
-        }
-
-        @keyframes opacity-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        @keyframes stagger-fade {
-            0%, 20%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); }
-            10% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
-        }
-
-        /* V1: Breathing */
         .hero-graphic.v1 .circle-outer { animation: breathe 6s ease-in-out infinite; }
         .hero-graphic.v1 .circle-middle { animation: breathe 6s ease-in-out infinite 0.5s; }
         .hero-graphic.v1 .circle-inner { animation: breathe 6s ease-in-out infinite 1s; }
 
-        /* V2: Ripple Outward */
-        .hero-graphic.v2 .circle-inner { animation: ripple 3s ease-out infinite; }
-        .hero-graphic.v2 .circle-middle { animation: ripple 3s ease-out infinite 0.3s; }
-        .hero-graphic.v2 .circle-outer { animation: ripple 3s ease-out infinite 0.6s; }
-
-        /* V4: Heartbeat */
-        .hero-graphic.v4 .circle-outer { animation: heartbeat 1.5s ease-in-out infinite; }
-        .hero-graphic.v4 .circle-middle { animation: heartbeat 1.5s ease-in-out infinite 0.1s; }
-        .hero-graphic.v4 .circle-inner { animation: heartbeat 1.5s ease-in-out infinite 0.2s; }
-
-        /* V6: Opacity Pulse */
-        .hero-graphic.v6 .circle-outer { animation: opacity-pulse 4s ease-in-out infinite; }
-        .hero-graphic.v6 .circle-middle { animation: opacity-pulse 4s ease-in-out infinite 0.5s; }
-        .hero-graphic.v6 .circle-inner { animation: opacity-pulse 4s ease-in-out infinite 1s; }
-
-        /* V9: Staggered Fade */
-        .hero-graphic.v9 .circle-outer { animation: stagger-fade 6s ease-in-out infinite; }
-        .hero-graphic.v9 .circle-middle { animation: stagger-fade 6s ease-in-out infinite 2s; }
-        .hero-graphic.v9 .circle-inner { animation: stagger-fade 6s ease-in-out infinite 4s; }
-
-        /* Services Section */
+        /* ============================================
+           SERVICES SECTION - EDITORIAL V2 (Stacked Vertical)
+           ============================================ */
         .services {
             padding: 120px 60px;
             position: relative;
@@ -612,13 +569,6 @@
             margin-bottom: 16px;
         }
 
-        .section-tagline {
-            font-size: 1.5rem;
-            color: var(--red);
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-
         .section-description {
             font-size: 1.1rem;
             color: var(--gray);
@@ -626,404 +576,74 @@
             margin: 0 auto;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+        /* Stacked Vertical Layout */
+        .services-stack {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .service-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 48px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        .service-item {
+            display: flex;
+            align-items: baseline;
+            padding: 44px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            gap: 40px;
             text-decoration: none;
             color: inherit;
-            display: grid;
-            grid-template-columns: 1fr 120px;
-            gap: 32px;
-            align-items: center;
         }
 
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        .service-item:first-child {
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
 
-        .card-content {
-            position: relative;
-            z-index: 1;
+        .service-item:hover {
+            padding-left: 30px;
         }
 
-        .card-graphic {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .service-index {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light-gray);
+            min-width: 30px;
+        }
+
+        .service-title {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            transition: color 0.3s ease;
+            flex: 1;
+        }
+
+        .service-item:hover .service-title {
+            color: var(--red);
         }
 
         .service-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .service-arrow {
+            font-size: 2rem;
+            color: var(--light-gray);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .service-item:hover .service-arrow {
+            opacity: 1;
+            transform: translateX(0);
             color: var(--red);
-            margin-bottom: 12px;
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--black);
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* AI Activation - Converging Lines */
-        .activation-graphic {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .converge-line {
-            position: absolute;
-            height: 2px;
-            background: var(--light-gray);
-            transform-origin: right center;
-        }
-
-        /* Lines positioned to converge toward center - DEFAULT: visible (last frame) */
-        .converge-line.line-1 {
-            top: 20%;
-            left: 5%;
-            width: 35px;
-            transform: rotate(35deg);
-        }
-        .converge-line.line-2 {
-            top: 38%;
-            left: 0;
-            width: 45px;
-            transform: rotate(12deg);
-        }
-        .converge-line.line-3 {
-            top: 58%;
-            left: 0;
-            width: 45px;
-            transform: rotate(-12deg);
-        }
-        .converge-line.line-4 {
-            top: 76%;
-            left: 5%;
-            width: 35px;
-            transform: rotate(-35deg);
-        }
-
-        /* On hover: replay animation */
-        .service-card:hover .converge-line.line-1 { animation: line-converge-1 2s ease-out; }
-        .service-card:hover .converge-line.line-2 { animation: line-converge-2 2s ease-out 0.1s both; }
-        .service-card:hover .converge-line.line-3 { animation: line-converge-3 2s ease-out 0.2s both; }
-        .service-card:hover .converge-line.line-4 { animation: line-converge-4 2s ease-out 0.3s both; }
-
-        @keyframes line-converge-1 {
-            0% { width: 0; opacity: 0; left: -10%; }
-            40% { width: 35px; opacity: 1; left: 5%; }
-            100% { width: 35px; opacity: 1; left: 5%; }
-        }
-        @keyframes line-converge-2 {
-            0% { width: 0; opacity: 0; left: -15%; }
-            40% { width: 45px; opacity: 1; left: 0; }
-            100% { width: 45px; opacity: 1; left: 0; }
-        }
-        @keyframes line-converge-3 {
-            0% { width: 0; opacity: 0; left: -15%; }
-            40% { width: 45px; opacity: 1; left: 0; }
-            100% { width: 45px; opacity: 1; left: 0; }
-        }
-        @keyframes line-converge-4 {
-            0% { width: 0; opacity: 0; left: -10%; }
-            40% { width: 35px; opacity: 1; left: 5%; }
-            100% { width: 35px; opacity: 1; left: 5%; }
-        }
-
-        /* Converge point - DEFAULT: visible */
-        .converge-point {
-            position: absolute;
-            top: 50%;
-            left: 42%;
-            transform: translate(-50%, -50%) scale(1);
-            width: 14px;
-            height: 14px;
-            background: var(--red);
-            border-radius: 50%;
-            opacity: 1;
-        }
-
-        .service-card:hover .converge-point {
-            animation: point-appear-sm 2s ease-out;
-        }
-
-        @keyframes point-appear-sm {
-            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-            50%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-
-        /* Arrow out - DEFAULT: visible */
-        .arrow-out {
-            position: absolute;
-            top: 50%;
-            left: 48%;
-            width: 35px;
-            height: 2px;
-            background: var(--red);
-            transform: translateY(-50%);
-            opacity: 1;
-        }
-
-        .arrow-out::after {
-            content: '';
-            position: absolute;
-            right: -6px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-left: 8px solid var(--red);
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-        }
-
-        .service-card:hover .arrow-out {
-            animation: arrow-extend-sm 2s ease-out;
-        }
-
-        @keyframes arrow-extend-sm {
-            0%, 45% { width: 0; opacity: 0; }
-            65%, 100% { width: 35px; opacity: 1; }
-        }
-
-        /* AI Acceleration - Gears */
-        .gears-graphic {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .gear {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .gear::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 35%;
-            height: 35%;
-            background: var(--white);
-            border-radius: 50%;
-        }
-
-        /* Gears positioned to interlock (vertically centered) */
-        .gear-large {
-            width: 70px;
-            height: 70px;
-            background: conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
-                var(--black) 60deg 90deg, transparent 90deg 120deg,
-                var(--black) 120deg 150deg, transparent 150deg 180deg,
-                var(--black) 180deg 210deg, transparent 210deg 240deg,
-                var(--black) 240deg 270deg, transparent 270deg 300deg,
-                var(--black) 300deg 330deg, transparent 330deg 360deg);
-            left: 0;
-            top: 40px;
-        }
-
-        .gear-medium {
-            width: 50px;
-            height: 50px;
-            background: conic-gradient(from 0deg, var(--red) 0deg 45deg, transparent 45deg 90deg,
-                var(--red) 90deg 135deg, transparent 135deg 180deg,
-                var(--red) 180deg 225deg, transparent 225deg 270deg,
-                var(--red) 270deg 315deg, transparent 315deg 360deg);
-            left: 52px;
-            top: 20px;
-        }
-
-        .gear-small {
-            width: 35px;
-            height: 35px;
-            background: conic-gradient(from 0deg, var(--light-gray) 0deg 45deg, transparent 45deg 90deg,
-                var(--light-gray) 90deg 135deg, transparent 135deg 180deg,
-                var(--light-gray) 180deg 225deg, transparent 225deg 270deg,
-                var(--light-gray) 270deg 315deg, transparent 315deg 360deg);
-            left: 62px;
-            top: 68px;
-        }
-
-        /* On hover: animate gears */
-        .service-card:hover .gear-large {
-            animation: gear-rotate 6s linear infinite;
-        }
-        .service-card:hover .gear-medium {
-            animation: gear-rotate-reverse 4s linear infinite;
-        }
-        .service-card:hover .gear-small {
-            animation: gear-rotate 3s linear infinite;
-        }
-
-        @keyframes gear-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes gear-rotate-reverse {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
-        }
-
-        /* AI Amplifier - Wave Bars */
-        .wave-graphic {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            height: 100%;
-        }
-
-        .wave-bar {
-            width: 6px;
-            background: var(--red);
-            border-radius: 3px;
-        }
-
-        .wave-bar:nth-child(1) { height: 15px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0s; animation-play-state: paused; }
-        .wave-bar:nth-child(2) { height: 25px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.08s; animation-play-state: paused; }
-        .wave-bar:nth-child(3) { height: 40px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.16s; animation-play-state: paused; }
-        .wave-bar:nth-child(4) { height: 60px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.24s; animation-play-state: paused; }
-        .wave-bar:nth-child(5) { height: 80px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.32s; animation-play-state: paused; }
-        .wave-bar:nth-child(6) { height: 60px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.4s; animation-play-state: paused; }
-        .wave-bar:nth-child(7) { height: 40px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.48s; animation-play-state: paused; }
-        .wave-bar:nth-child(8) { height: 25px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.56s; animation-play-state: paused; }
-        .wave-bar:nth-child(9) { height: 15px; animation: wave-sm 1.2s ease-in-out infinite; animation-delay: 0.64s; animation-play-state: paused; }
-
-        .service-card:hover .wave-bar {
-            animation-play-state: running;
-        }
-
-        @keyframes wave-sm {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(1.3); }
-        }
-
-        /* Strategic Sparring - Compass */
-        .compass-graphic {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .compass-outer {
-            width: 100px;
-            height: 100px;
-            border: 3px solid var(--light-gray);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .compass-inner {
-            width: 70px;
-            height: 70px;
-            border: 1px dashed rgba(230, 59, 46, 0.3);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .compass-needle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 44px;
-            transform: translate(-50%, -100%) rotate(-25deg);
-            transform-origin: bottom center;
-            animation: needle-sway-sm 3s ease-in-out infinite;
-            animation-play-state: paused;
-        }
-
-        .service-card:hover .compass-needle {
-            animation-play-state: running;
-        }
-
-        @keyframes needle-sway-sm {
-            0%, 100% { transform: translate(-50%, -100%) rotate(-30deg); }
-            50% { transform: translate(-50%, -100%) rotate(-10deg); }
-        }
-
-        .needle-north {
-            width: 100%;
-            height: 55%;
-            background: var(--red);
-            border-radius: 2px 2px 0 0;
-        }
-
-        .needle-south {
-            width: 100%;
-            height: 45%;
-            background: var(--black);
-            border-radius: 0 0 2px 2px;
-        }
-
-        .compass-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: var(--black);
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .compass-stroke {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 22px;
-            height: 8px;
-            border-radius: 4px;
-            z-index: 3;
-        }
-
-        .compass-stroke-west {
-            transform: translateX(-61px) translateY(-50%);
-            background: var(--black);
-        }
-
-        .compass-stroke-east {
-            transform: translateX(39px) translateY(-50%);
-            background: var(--red);
         }
 
         /* Why Us Section */
@@ -1308,72 +928,6 @@
             padding: 16px 24px;
         }
 
-        @media (max-width: 600px) {
-            .form-buttons {
-                flex-direction: column;
-            }
-        }
-
-        /* Beyond Business Section */
-        .beyond-business {
-            background: var(--dark-gray);
-            padding: 80px 60px;
-        }
-
-        .beyond-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .beyond-header {
-            margin-bottom: 40px;
-        }
-
-        .beyond-header h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .beyond-header p {
-            color: var(--light-gray);
-            font-size: 1rem;
-        }
-
-        .beyond-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .beyond-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 24px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .beyond-card:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-4px);
-        }
-
-        .beyond-card h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .beyond-card p {
-            font-size: 0.9rem;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
-
         /* Footer */
         footer {
             background: var(--black);
@@ -1517,18 +1071,8 @@
                 height: 320px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card {
-                grid-template-columns: 1fr 100px;
-                padding: 36px;
-            }
-
-            .card-graphic {
-                width: 100px;
-                height: 100px;
+            .service-title {
+                font-size: 3rem;
             }
 
             .founder-card {
@@ -1542,10 +1086,6 @@
 
             .founder-social {
                 justify-content: center;
-            }
-
-            .beyond-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1574,8 +1114,7 @@
             .services,
             .why-us,
             .contact,
-            .trusted-by,
-            .beyond-business {
+            .trusted-by {
                 padding: 80px 20px;
             }
 
@@ -1593,28 +1132,18 @@
                 font-size: 2rem;
             }
 
-            .service-card {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                padding: 32px;
+            .service-item {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
             }
 
-            .card-graphic {
-                width: 100%;
-                height: 80px;
-                order: -1;
+            .service-title {
+                font-size: 2rem;
             }
 
-            .wave-graphic {
-                justify-content: flex-start;
-            }
-
-            .service-card h3 {
-                font-size: 1.4rem;
-            }
-
-            .beyond-grid {
-                grid-template-columns: 1fr;
+            .service-arrow {
+                display: none;
             }
 
             .footer-grid {
@@ -1626,6 +1155,14 @@
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .logos-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -1691,7 +1228,7 @@
                 </div>
             </div>
             <div class="hero-visual reveal">
-                <div class="hero-graphic">
+                <div class="hero-graphic v1">
                     <div class="circle circle-outer"></div>
                     <div class="circle circle-middle"></div>
                     <div class="circle circle-inner"></div>
@@ -1704,7 +1241,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section - Editorial V2 (Stacked Vertical) -->
     <section class="services" id="services">
         <div class="shape-amoeba" style="width: 280px; height: 280px; background: var(--sage); opacity: 0.12; top: -140px; left: 8%;"></div>
         <div class="section-header reveal">
@@ -1713,76 +1250,30 @@
             <p class="section-description">Supporting leaders, teams, and companies who want to integrate AI, strengthen human skills, and stay adaptable.</p>
         </div>
 
-        <div class="services-grid">
-            <!-- AI Activation -->
-            <a href="ai-activation-sprint-v3.html" class="service-card reveal">
-                <div class="card-content">
-                    <div class="service-tag">For Organizations</div>
-                    <h3>AI Activation</h3>
-                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
-                </div>
-                <div class="card-graphic activation-graphic">
-                    <div class="converge-line line-1"></div>
-                    <div class="converge-line line-2"></div>
-                    <div class="converge-line line-3"></div>
-                    <div class="converge-line line-4"></div>
-                    <div class="converge-point"></div>
-                    <div class="arrow-out"></div>
-                </div>
+        <div class="services-stack">
+            <a href="ai-activation-sprint-v3.html" class="service-item reveal">
+                <span class="service-index">01</span>
+                <span class="service-title">AI Activation</span>
+                <span class="service-tag">For Organizations</span>
+                <span class="service-arrow">→</span>
             </a>
-
-            <!-- AI Acceleration -->
-            <a href="ai-acceleration-v3.html" class="service-card reveal">
-                <div class="card-content">
-                    <div class="service-tag">For Organizations</div>
-                    <h3>AI Acceleration</h3>
-                    <p>Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.</p>
-                </div>
-                <div class="card-graphic gears-graphic">
-                    <div class="gear gear-large"></div>
-                    <div class="gear gear-medium"></div>
-                    <div class="gear gear-small"></div>
-                </div>
+            <a href="ai-acceleration-v3.html" class="service-item reveal">
+                <span class="service-index">02</span>
+                <span class="service-title">AI Acceleration</span>
+                <span class="service-tag">For Organizations</span>
+                <span class="service-arrow">→</span>
             </a>
-
-            <!-- AI Amplifier -->
-            <a href="ai-amplifier-v3.html" class="service-card reveal">
-                <div class="card-content">
-                    <div class="service-tag">For Individuals</div>
-                    <h3>AI Amplifier</h3>
-                    <p>Stop pushing AI harder and start using it smarter. Remove 50% of your daily work in 30 days without forgetting how to think.</p>
-                </div>
-                <div class="card-graphic wave-graphic">
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                </div>
+            <a href="ai-amplifier-v3.html" class="service-item reveal">
+                <span class="service-index">03</span>
+                <span class="service-title">AI Amplifier</span>
+                <span class="service-tag">For Individuals</span>
+                <span class="service-arrow">→</span>
             </a>
-
-            <!-- Strategic Sparring -->
-            <a href="strategic-sparring-v3.html" class="service-card reveal">
-                <div class="card-content">
-                    <div class="service-tag">For Individuals</div>
-                    <h3>Strategic Sparring</h3>
-                    <p>Not a coach. Not a consultant. A peer who thinks with you, challenges you, and helps you get to action.</p>
-                </div>
-                <div class="card-graphic compass-graphic">
-                    <div class="compass-stroke compass-stroke-west"></div>
-                    <div class="compass-stroke compass-stroke-east"></div>
-                    <div class="compass-outer"></div>
-                    <div class="compass-inner"></div>
-                    <div class="compass-needle">
-                        <div class="needle-north"></div>
-                        <div class="needle-south"></div>
-                    </div>
-                    <div class="compass-center"></div>
-                </div>
+            <a href="strategic-sparring-v3.html" class="service-item reveal">
+                <span class="service-index">04</span>
+                <span class="service-title">Strategic Sparring</span>
+                <span class="service-tag">For Individuals</span>
+                <span class="service-arrow">→</span>
             </a>
         </div>
     </section>
@@ -1833,18 +1324,18 @@
             <div class="logos-grid">
                 <div class="logo-item"><img src="vodafone.png" alt="Vodafone"></div>
                 <div class="logo-item"><img src="universidade_lisboa.png" alt="Universidade de Lisboa"></div>
-                <div class="logo-item"><img src="seguranca_social.png" alt="Segurança Social"></div>
+                <div class="logo-item"><img src="seguranca_social.png" alt="Seguranca Social"></div>
                 <div class="logo-item"><img src="randstad.png" alt="Randstad"></div>
                 <div class="logo-item"><img src="seedrs.png" alt="Seedrs"></div>
                 <div class="logo-item"><img src="montepio.png" alt="Montepio"></div>
                 <div class="logo-item"><img src="adeo.png" alt="Adeo"></div>
-                <div class="logo-item"><img src="loreal.png" alt="L'Oréal"></div>
-                <div class="logo-item"><img src="cml.png" alt="Câmara Municipal de Lisboa"></div>
+                <div class="logo-item"><img src="loreal.png" alt="L'Oreal"></div>
+                <div class="logo-item"><img src="cml.png" alt="Camara Municipal de Lisboa"></div>
                 <div class="logo-item"><img src="galp.png" alt="Galp"></div>
                 <div class="logo-item"><img src="claro.png" alt="Claro"></div>
                 <div class="logo-item"><img src="bcp.png" alt="Millennium BCP"></div>
                 <div class="logo-item"><img src="bp.png" alt="BP"></div>
-                <div class="logo-item"><img src="tecnico.png" alt="Técnico Lisboa"></div>
+                <div class="logo-item"><img src="tecnico.png" alt="Tecnico Lisboa"></div>
                 <div class="logo-item"><img src="lannding.png" alt="Landing.Jobs"></div>
             </div>
         </div>
@@ -1940,13 +1431,6 @@
     </footer>
 
     <script>
-        // Random hero animation on page load
-        (function() {
-            const variations = ['v1', 'v2', 'v4', 'v6', 'v9'];
-            const random = variations[Math.floor(Math.random() * variations.length)];
-            document.querySelector('.hero-graphic').classList.add(random);
-        })();
-
         // Navigation scroll effect - show nav on scroll, hide announcement
         const navbar = document.getElementById('navbar');
         const announcementBar = document.querySelector('.announcement-bar');

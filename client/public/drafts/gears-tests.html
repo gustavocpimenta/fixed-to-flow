@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Acceleration - Animation Tests | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+            --pink: #E891B2;
+            --orange: #E85C2C;
+            --sage: #B5C4C1;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .animation-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .animation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .animation-preview {
+            background: var(--cream);
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animation-info {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .animation-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-right: 0.75rem;
+        }
+
+        .animation-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--black);
+            display: inline;
+        }
+
+        .animation-desc {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        /* Animation Container */
+        .anim-container {
+            width: 280px;
+            height: 280px;
+            position: relative;
+        }
+
+        /* ==================== ANIMATION 1: Original Gears ==================== */
+        .gear {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gear::before {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            background: var(--cream);
+            border-radius: 50%;
+        }
+
+        .anim-1 .gear-large {
+            width: 160px;
+            height: 160px;
+            background: conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
+                var(--black) 60deg 90deg, transparent 90deg 120deg,
+                var(--black) 120deg 150deg, transparent 150deg 180deg,
+                var(--black) 180deg 210deg, transparent 210deg 240deg,
+                var(--black) 240deg 270deg, transparent 270deg 300deg,
+                var(--black) 300deg 330deg, transparent 330deg 360deg);
+            left: 20px;
+            top: 60px;
+            animation: gear-rotate 8s linear infinite;
+        }
+
+        .anim-1 .gear-medium {
+            width: 100px;
+            height: 100px;
+            background: conic-gradient(from 0deg, var(--red) 0deg 40deg, transparent 40deg 80deg,
+                var(--red) 80deg 120deg, transparent 120deg 160deg,
+                var(--red) 160deg 200deg, transparent 200deg 240deg,
+                var(--red) 240deg 280deg, transparent 280deg 320deg,
+                var(--red) 320deg 360deg);
+            right: 30px;
+            top: 40px;
+            animation: gear-rotate-reverse 6s linear infinite;
+        }
+
+        .anim-1 .gear-small {
+            width: 70px;
+            height: 70px;
+            background: conic-gradient(from 0deg, var(--gray) 0deg 45deg, transparent 45deg 90deg,
+                var(--gray) 90deg 135deg, transparent 135deg 180deg,
+                var(--gray) 180deg 225deg, transparent 225deg 270deg,
+                var(--gray) 270deg 315deg, transparent 315deg 360deg);
+            right: 50px;
+            bottom: 50px;
+            animation: gear-rotate 4s linear infinite;
+        }
+
+        @keyframes gear-rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gear-rotate-reverse {
+            to { transform: rotate(-360deg); }
+        }
+
+        /* ==================== ANIMATION 2: Orbiting Particles ==================== */
+        .anim-2 .orbit {
+            position: absolute;
+            border: 2px dashed rgba(0,0,0,0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+
+        .anim-2 .orbit-1 { width: 100px; height: 100px; margin: -50px 0 0 -50px; }
+        .anim-2 .orbit-2 { width: 170px; height: 170px; margin: -85px 0 0 -85px; }
+        .anim-2 .orbit-3 { width: 240px; height: 240px; margin: -120px 0 0 -120px; }
+
+        .anim-2 .center-dot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--black);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .anim-2 .particle {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--red);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+
+        .anim-2 .p1 { animation: orbit-1 4s linear infinite; }
+        .anim-2 .p2 { animation: orbit-2 6s linear infinite reverse; }
+        .anim-2 .p3 { animation: orbit-3 8s linear infinite; }
+        .anim-2 .p4 { animation: orbit-1 4s linear infinite; animation-delay: -2s; }
+        .anim-2 .p5 { animation: orbit-2 6s linear infinite reverse; animation-delay: -3s; }
+
+        @keyframes orbit-1 {
+            to { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+        @keyframes orbit-2 {
+            to { transform: rotate(360deg) translateX(85px) rotate(-360deg); }
+        }
+        @keyframes orbit-3 {
+            to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        }
+
+        /* ==================== ANIMATION 3: Pulsing Rings ==================== */
+        .anim-3 .ring {
+            position: absolute;
+            border: 3px solid var(--red);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .anim-3 .ring-1 { animation: pulse-ring 3s ease-out infinite; }
+        .anim-3 .ring-2 { animation: pulse-ring 3s ease-out infinite 0.75s; }
+        .anim-3 .ring-3 { animation: pulse-ring 3s ease-out infinite 1.5s; }
+        .anim-3 .ring-4 { animation: pulse-ring 3s ease-out infinite 2.25s; }
+
+        .anim-3 .core {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: core-pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-ring {
+            0% { width: 50px; height: 50px; opacity: 1; }
+            100% { width: 250px; height: 250px; opacity: 0; }
+        }
+
+        @keyframes core-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        /* ==================== ANIMATION 4: Morphing Blobs ==================== */
+        .anim-4 .blob {
+            position: absolute;
+            filter: blur(0px);
+        }
+
+        .anim-4 .blob-1 {
+            width: 180px;
+            height: 180px;
+            background: var(--black);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: morph-1 8s ease-in-out infinite;
+        }
+
+        .anim-4 .blob-2 {
+            width: 100px;
+            height: 100px;
+            background: var(--red);
+            top: 30%;
+            right: 20%;
+            animation: morph-2 6s ease-in-out infinite;
+        }
+
+        .anim-4 .blob-3 {
+            width: 60px;
+            height: 60px;
+            background: var(--gray);
+            bottom: 25%;
+            left: 20%;
+            animation: morph-3 5s ease-in-out infinite;
+        }
+
+        @keyframes morph-1 {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 40% 30% 60% 70%; }
+            75% { border-radius: 40% 60% 70% 30% / 60% 50% 40% 50%; }
+        }
+
+        @keyframes morph-2 {
+            0%, 100% { border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; transform: translate(0, 0); }
+            50% { border-radius: 60% 40% 40% 60% / 40% 60% 40% 60%; transform: translate(-10px, 10px); }
+        }
+
+        @keyframes morph-3 {
+            0%, 100% { border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; transform: translate(0, 0); }
+            50% { border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%; transform: translate(10px, -10px); }
+        }
+
+        /* ==================== ANIMATION 5: Network Constellation ==================== */
+        .anim-5 .node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--black);
+            border-radius: 50%;
+        }
+
+        .anim-5 .node-center { width: 30px; height: 30px; background: var(--red); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .anim-5 .node-1 { top: 20%; left: 30%; animation: node-float 3s ease-in-out infinite; }
+        .anim-5 .node-2 { top: 25%; right: 25%; animation: node-float 3s ease-in-out infinite 0.5s; }
+        .anim-5 .node-3 { bottom: 30%; left: 20%; animation: node-float 3s ease-in-out infinite 1s; }
+        .anim-5 .node-4 { bottom: 25%; right: 30%; animation: node-float 3s ease-in-out infinite 1.5s; }
+        .anim-5 .node-5 { top: 50%; left: 15%; animation: node-float 3s ease-in-out infinite 0.3s; }
+        .anim-5 .node-6 { top: 50%; right: 15%; animation: node-float 3s ease-in-out infinite 0.8s; }
+
+        .anim-5 svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .anim-5 line {
+            stroke: var(--gray-light);
+            stroke-width: 1;
+            stroke-dasharray: 4 4;
+            animation: dash 2s linear infinite;
+        }
+
+        @keyframes node-float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(5px, -5px); }
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -16; }
+        }
+
+        /* ==================== ANIMATION 6: Staggered Bars ==================== */
+        .anim-6 {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .anim-6 .bar {
+            width: 24px;
+            background: var(--black);
+            border-radius: 12px 12px 0 0;
+            animation: bar-grow 1.5s ease-in-out infinite;
+        }
+
+        .anim-6 .bar:nth-child(1) { animation-delay: 0s; }
+        .anim-6 .bar:nth-child(2) { animation-delay: 0.15s; }
+        .anim-6 .bar:nth-child(3) { animation-delay: 0.3s; background: var(--red); }
+        .anim-6 .bar:nth-child(4) { animation-delay: 0.45s; }
+        .anim-6 .bar:nth-child(5) { animation-delay: 0.6s; }
+        .anim-6 .bar:nth-child(6) { animation-delay: 0.75s; background: var(--red); }
+        .anim-6 .bar:nth-child(7) { animation-delay: 0.9s; }
+
+        @keyframes bar-grow {
+            0%, 100% { height: 40px; }
+            50% { height: 180px; }
+        }
+
+        /* ==================== ANIMATION 7: Floating Cubes ==================== */
+        .anim-7 .cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            transform-style: preserve-3d;
+        }
+
+        .anim-7 .cube-1 { top: 30%; left: 25%; animation: cube-float 4s ease-in-out infinite; }
+        .anim-7 .cube-2 { top: 50%; right: 25%; animation: cube-float 5s ease-in-out infinite reverse; }
+        .anim-7 .cube-3 { bottom: 25%; left: 40%; animation: cube-float 6s ease-in-out infinite 1s; }
+
+        .anim-7 .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--black);
+            background: rgba(230, 59, 46, 0.1);
+        }
+
+        .anim-7 .cube-1 .cube-face { background: rgba(17, 17, 17, 0.1); border-color: var(--black); }
+        .anim-7 .cube-2 .cube-face { background: rgba(230, 59, 46, 0.1); border-color: var(--red); }
+        .anim-7 .cube-3 .cube-face { background: rgba(85, 85, 85, 0.1); border-color: var(--gray); }
+
+        @keyframes cube-float {
+            0%, 100% { transform: translateY(0) rotateX(25deg) rotateY(25deg); }
+            50% { transform: translateY(-20px) rotateX(205deg) rotateY(205deg); }
+        }
+
+        /* ==================== ANIMATION 8: Wave Lines ==================== */
+        .anim-8 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .anim-8 .wave-line {
+            height: 4px;
+            background: var(--black);
+            border-radius: 2px;
+            animation: wave-width 2s ease-in-out infinite;
+        }
+
+        .anim-8 .wave-line:nth-child(1) { animation-delay: 0s; }
+        .anim-8 .wave-line:nth-child(2) { animation-delay: 0.2s; background: var(--gray); }
+        .anim-8 .wave-line:nth-child(3) { animation-delay: 0.4s; background: var(--red); }
+        .anim-8 .wave-line:nth-child(4) { animation-delay: 0.6s; background: var(--gray); }
+        .anim-8 .wave-line:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes wave-width {
+            0%, 100% { width: 30%; margin-left: 0; }
+            25% { width: 80%; margin-left: 10%; }
+            50% { width: 50%; margin-left: 50%; }
+            75% { width: 90%; margin-left: 5%; }
+        }
+
+        /* ==================== ANIMATION 9: Rotating Rings ==================== */
+        .anim-9 .ring-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .anim-9 .rotating-ring {
+            position: absolute;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+
+        .anim-9 .ring-outer {
+            width: 220px;
+            height: 220px;
+            margin: -110px 0 0 -110px;
+            border-top-color: var(--black);
+            border-right-color: var(--black);
+            animation: ring-spin 3s linear infinite;
+        }
+
+        .anim-9 .ring-middle {
+            width: 160px;
+            height: 160px;
+            margin: -80px 0 0 -80px;
+            border-top-color: var(--red);
+            border-left-color: var(--red);
+            animation: ring-spin 2s linear infinite reverse;
+        }
+
+        .anim-9 .ring-inner {
+            width: 100px;
+            height: 100px;
+            margin: -50px 0 0 -50px;
+            border-bottom-color: var(--gray);
+            border-right-color: var(--gray);
+            animation: ring-spin 1.5s linear infinite;
+        }
+
+        .anim-9 .ring-core {
+            width: 40px;
+            height: 40px;
+            background: var(--black);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        @keyframes ring-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== ANIMATION 10: Bouncing Dots ==================== */
+        .anim-10 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .anim-10 .dot {
+            width: 24px;
+            height: 24px;
+            background: var(--black);
+            border-radius: 50%;
+            animation: dot-bounce 1.4s ease-in-out infinite;
+        }
+
+        .anim-10 .dot:nth-child(1) { animation-delay: 0s; }
+        .anim-10 .dot:nth-child(2) { animation-delay: 0.1s; background: var(--gray); }
+        .anim-10 .dot:nth-child(3) { animation-delay: 0.2s; background: var(--red); width: 32px; height: 32px; }
+        .anim-10 .dot:nth-child(4) { animation-delay: 0.3s; background: var(--gray); }
+        .anim-10 .dot:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes dot-bounce {
+            0%, 80%, 100% { transform: scale(1) translateY(0); }
+            40% { transform: scale(1.3) translateY(-40px); }
+        }
+
+        /* ==================== ANIMATION 11: DNA Helix ==================== */
+        .anim-11 {
+            perspective: 500px;
+        }
+
+        .anim-11 .helix {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .anim-11 .helix-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+        }
+
+        .anim-11 .helix-node.left { background: var(--black); }
+        .anim-11 .helix-node.right { background: var(--red); }
+
+        .anim-11 .helix-node:nth-child(1) { top: 10%; animation: helix-wave-l 2s ease-in-out infinite; }
+        .anim-11 .helix-node:nth-child(2) { top: 10%; animation: helix-wave-r 2s ease-in-out infinite; }
+        .anim-11 .helix-node:nth-child(3) { top: 25%; animation: helix-wave-l 2s ease-in-out infinite 0.25s; }
+        .anim-11 .helix-node:nth-child(4) { top: 25%; animation: helix-wave-r 2s ease-in-out infinite 0.25s; }
+        .anim-11 .helix-node:nth-child(5) { top: 40%; animation: helix-wave-l 2s ease-in-out infinite 0.5s; }
+        .anim-11 .helix-node:nth-child(6) { top: 40%; animation: helix-wave-r 2s ease-in-out infinite 0.5s; }
+        .anim-11 .helix-node:nth-child(7) { top: 55%; animation: helix-wave-l 2s ease-in-out infinite 0.75s; }
+        .anim-11 .helix-node:nth-child(8) { top: 55%; animation: helix-wave-r 2s ease-in-out infinite 0.75s; }
+        .anim-11 .helix-node:nth-child(9) { top: 70%; animation: helix-wave-l 2s ease-in-out infinite 1s; }
+        .anim-11 .helix-node:nth-child(10) { top: 70%; animation: helix-wave-r 2s ease-in-out infinite 1s; }
+        .anim-11 .helix-node:nth-child(11) { top: 85%; animation: helix-wave-l 2s ease-in-out infinite 1.25s; }
+        .anim-11 .helix-node:nth-child(12) { top: 85%; animation: helix-wave-r 2s ease-in-out infinite 1.25s; }
+
+        @keyframes helix-wave-l {
+            0%, 100% { transform: translateX(-60px) scale(0.8); opacity: 0.5; }
+            50% { transform: translateX(60px) scale(1.2); opacity: 1; }
+        }
+
+        @keyframes helix-wave-r {
+            0%, 100% { transform: translateX(60px) scale(1.2); opacity: 1; }
+            50% { transform: translateX(-60px) scale(0.8); opacity: 0.5; }
+        }
+
+        /* ==================== ANIMATION 12: Flowing Gradient ==================== */
+        .anim-12 .gradient-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: conic-gradient(from 0deg, var(--black), var(--red), var(--gray), var(--black));
+            animation: gradient-spin 4s linear infinite;
+        }
+
+        .anim-12 .gradient-circle::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--cream);
+            border-radius: 50%;
+        }
+
+        .anim-12 .gradient-inner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--black), var(--red));
+            animation: gradient-spin 3s linear infinite reverse;
+        }
+
+        @keyframes gradient-spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ==================== ANIMATION 13: Pendulum Swing ==================== */
+        .anim-13 .pendulum-pivot {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gray);
+            border-radius: 50%;
+        }
+
+        .anim-13 .pendulum-arm {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 4px;
+            height: 150px;
+            background: var(--gray-light);
+            transform-origin: top center;
+            animation: pendulum-swing 2s ease-in-out infinite;
+        }
+
+        .anim-13 .pendulum-weight {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--black);
+            border-radius: 50%;
+        }
+
+        .anim-13 .pendulum-shadow {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            width: 80px;
+            height: 20px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: shadow-move 2s ease-in-out infinite;
+        }
+
+        @keyframes pendulum-swing {
+            0%, 100% { transform: rotate(30deg); }
+            50% { transform: rotate(-30deg); }
+        }
+
+        @keyframes shadow-move {
+            0%, 100% { transform: translateX(-50%) translateX(50px) scaleX(0.7); }
+            50% { transform: translateX(-50%) translateX(-50px) scaleX(0.7); }
+        }
+
+        /* ==================== ANIMATION 14: Expanding Squares ==================== */
+        .anim-14 .square {
+            position: absolute;
+            border: 3px solid var(--black);
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            animation: square-expand 4s ease-out infinite;
+        }
+
+        .anim-14 .square:nth-child(1) { animation-delay: 0s; }
+        .anim-14 .square:nth-child(2) { animation-delay: 1s; border-color: var(--red); }
+        .anim-14 .square:nth-child(3) { animation-delay: 2s; border-color: var(--gray); }
+        .anim-14 .square:nth-child(4) { animation-delay: 3s; }
+
+        .anim-14 .center-square {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--black);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        @keyframes square-expand {
+            0% {
+                width: 40px;
+                height: 40px;
+                margin: -20px 0 0 -20px;
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+            100% {
+                width: 240px;
+                height: 240px;
+                margin: -120px 0 0 -120px;
+                opacity: 0;
+                transform: rotate(90deg);
+            }
+        }
+
+        /* ==================== ANIMATION 15: Circuit Board ==================== */
+        .anim-15 svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .anim-15 .circuit-line {
+            stroke: var(--gray-light);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .anim-15 .circuit-pulse {
+            stroke: var(--red);
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 20 200;
+            animation: circuit-flow 3s linear infinite;
+        }
+
+        .anim-15 .circuit-node {
+            fill: var(--black);
+        }
+
+        .anim-15 .circuit-node-active {
+            fill: var(--red);
+            animation: node-blink 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes circuit-flow {
+            to { stroke-dashoffset: -220; }
+        }
+
+        @keyframes node-blink {
+            0% { r: 6; opacity: 0.5; }
+            100% { r: 10; opacity: 1; }
+        }
+
+        /* ==================== ANIMATION 16: Spinning Triangles ==================== */
+        .anim-16 .triangle-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .anim-16 .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .anim-16 .tri-outer {
+            border-width: 0 80px 140px 80px;
+            border-color: transparent transparent var(--black) transparent;
+            margin: -90px 0 0 -80px;
+            animation: tri-spin 8s linear infinite;
+        }
+
+        .anim-16 .tri-middle {
+            border-width: 0 50px 86px 50px;
+            border-color: transparent transparent var(--red) transparent;
+            margin: -55px 0 0 -50px;
+            animation: tri-spin 6s linear infinite reverse;
+        }
+
+        .anim-16 .tri-inner {
+            border-width: 0 25px 43px 25px;
+            border-color: transparent transparent var(--gray) transparent;
+            margin: -27px 0 0 -25px;
+            animation: tri-spin 4s linear infinite;
+        }
+
+        @keyframes tri-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== ANIMATION 17: Particle Burst ==================== */
+        .anim-17 .particle-center {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: center-pulse 2s ease-in-out infinite;
+        }
+
+        .anim-17 .burst-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--red);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+
+        .anim-17 .bp-1 { animation: burst 2s ease-out infinite; }
+        .anim-17 .bp-2 { animation: burst 2s ease-out infinite 0.25s; }
+        .anim-17 .bp-3 { animation: burst 2s ease-out infinite 0.5s; }
+        .anim-17 .bp-4 { animation: burst 2s ease-out infinite 0.75s; }
+        .anim-17 .bp-5 { animation: burst 2s ease-out infinite 1s; }
+        .anim-17 .bp-6 { animation: burst 2s ease-out infinite 1.25s; }
+        .anim-17 .bp-7 { animation: burst 2s ease-out infinite 1.5s; }
+        .anim-17 .bp-8 { animation: burst 2s ease-out infinite 1.75s; }
+
+        .anim-17 .bp-1 { --angle: 0deg; }
+        .anim-17 .bp-2 { --angle: 45deg; }
+        .anim-17 .bp-3 { --angle: 90deg; }
+        .anim-17 .bp-4 { --angle: 135deg; }
+        .anim-17 .bp-5 { --angle: 180deg; }
+        .anim-17 .bp-6 { --angle: 225deg; }
+        .anim-17 .bp-7 { --angle: 270deg; }
+        .anim-17 .bp-8 { --angle: 315deg; }
+
+        @keyframes burst {
+            0% {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes center-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* ==================== ANIMATION 18: Liquid Loader ==================== */
+        .anim-18 .liquid-container {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border: 4px solid var(--black);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        .anim-18 .liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: var(--red);
+            animation: liquid-fill 3s ease-in-out infinite alternate;
+        }
+
+        .anim-18 .liquid::before,
+        .anim-18 .liquid::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -150%;
+            left: -50%;
+            border-radius: 40%;
+            background: var(--cream);
+        }
+
+        .anim-18 .liquid::before {
+            animation: liquid-wave 3s linear infinite;
+        }
+
+        .anim-18 .liquid::after {
+            animation: liquid-wave 3s linear infinite -1.5s;
+            opacity: 0.5;
+        }
+
+        @keyframes liquid-fill {
+            0% { height: 30%; }
+            100% { height: 70%; }
+        }
+
+        @keyframes liquid-wave {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== ANIMATION 19: Typewriter Dots ==================== */
+        .anim-19 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .anim-19 .dot-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .anim-19 .type-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            animation: type-appear 4s steps(1) infinite;
+        }
+
+        .anim-19 .row-1 .type-dot:nth-child(1) { animation-delay: 0s; }
+        .anim-19 .row-1 .type-dot:nth-child(2) { animation-delay: 0.15s; }
+        .anim-19 .row-1 .type-dot:nth-child(3) { animation-delay: 0.3s; }
+        .anim-19 .row-1 .type-dot:nth-child(4) { animation-delay: 0.45s; }
+        .anim-19 .row-1 .type-dot:nth-child(5) { animation-delay: 0.6s; }
+        .anim-19 .row-1 .type-dot:nth-child(6) { animation-delay: 0.75s; }
+        .anim-19 .row-1 .type-dot:nth-child(7) { animation-delay: 0.9s; }
+        .anim-19 .row-1 .type-dot:nth-child(8) { animation-delay: 1.05s; }
+
+        .anim-19 .row-2 .type-dot:nth-child(1) { animation-delay: 1.2s; }
+        .anim-19 .row-2 .type-dot:nth-child(2) { animation-delay: 1.35s; }
+        .anim-19 .row-2 .type-dot:nth-child(3) { animation-delay: 1.5s; }
+        .anim-19 .row-2 .type-dot:nth-child(4) { animation-delay: 1.65s; }
+        .anim-19 .row-2 .type-dot:nth-child(5) { animation-delay: 1.8s; }
+
+        .anim-19 .row-3 .type-dot:nth-child(1) { animation-delay: 1.95s; }
+        .anim-19 .row-3 .type-dot:nth-child(2) { animation-delay: 2.1s; }
+        .anim-19 .row-3 .type-dot:nth-child(3) { animation-delay: 2.25s; }
+        .anim-19 .row-3 .type-dot:nth-child(4) { animation-delay: 2.4s; }
+        .anim-19 .row-3 .type-dot:nth-child(5) { animation-delay: 2.55s; }
+        .anim-19 .row-3 .type-dot:nth-child(6) { animation-delay: 2.7s; }
+        .anim-19 .row-3 .type-dot:nth-child(7) { animation-delay: 2.85s; }
+
+        @keyframes type-appear {
+            0%, 12.5% { background: var(--gray-light); transform: scale(1); }
+            25% { background: var(--black); transform: scale(1.2); }
+            37.5%, 100% { background: var(--black); transform: scale(1); }
+        }
+
+        /* ==================== ANIMATION 20: Abstract Flow ==================== */
+        .anim-20 svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .anim-20 .flow-path {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+
+        .anim-20 .path-1 {
+            stroke: var(--black);
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: flow-draw 3s ease-in-out infinite;
+        }
+
+        .anim-20 .path-2 {
+            stroke: var(--red);
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: flow-draw 3s ease-in-out infinite 0.5s;
+        }
+
+        .anim-20 .path-3 {
+            stroke: var(--gray);
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: flow-draw 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes flow-draw {
+            0%, 100% { stroke-dashoffset: 300; }
+            50% { stroke-dashoffset: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .animation-preview {
+                height: 280px;
+            }
+
+            .anim-container {
+                width: 240px;
+                height: 240px;
+                transform: scale(0.85);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>AI Acceleration Animation Tests</h1>
+        <p>20 animation variations for the hero graphic</p>
+    </header>
+
+    <div class="grid">
+        <!-- Animation 1: Original Gears -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-1">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">1</span>
+                <h3 class="animation-title">Original Gears</h3>
+                <p class="animation-desc">Current design - interlocking gears representing AI systems working together</p>
+            </div>
+        </div>
+
+        <!-- Animation 2: Orbiting Particles -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-2">
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
+                    <div class="center-dot"></div>
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                    <div class="particle p4"></div>
+                    <div class="particle p5"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">2</span>
+                <h3 class="animation-title">Orbiting Particles</h3>
+                <p class="animation-desc">Particles circling a central core - suggests coordination and ecosystem</p>
+            </div>
+        </div>
+
+        <!-- Animation 3: Pulsing Rings -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-3">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                    <div class="ring ring-4"></div>
+                    <div class="core"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">3</span>
+                <h3 class="animation-title">Pulsing Rings</h3>
+                <p class="animation-desc">Expanding ripples from a center point - represents impact and reach</p>
+            </div>
+        </div>
+
+        <!-- Animation 4: Morphing Blobs -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-4">
+                    <div class="blob blob-1"></div>
+                    <div class="blob blob-2"></div>
+                    <div class="blob blob-3"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">4</span>
+                <h3 class="animation-title">Morphing Blobs</h3>
+                <p class="animation-desc">Organic, fluid shapes - represents adaptability and transformation</p>
+            </div>
+        </div>
+
+        <!-- Animation 5: Network Constellation -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-5">
+                    <svg viewBox="0 0 280 280">
+                        <line x1="84" y1="56" x2="140" y2="140" />
+                        <line x1="196" y1="70" x2="140" y2="140" />
+                        <line x1="56" y1="196" x2="140" y2="140" />
+                        <line x1="196" y1="210" x2="140" y2="140" />
+                        <line x1="42" y1="140" x2="140" y2="140" />
+                        <line x1="238" y1="140" x2="140" y2="140" />
+                    </svg>
+                    <div class="node node-center"></div>
+                    <div class="node node-1"></div>
+                    <div class="node node-2"></div>
+                    <div class="node node-3"></div>
+                    <div class="node node-4"></div>
+                    <div class="node node-5"></div>
+                    <div class="node node-6"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">5</span>
+                <h3 class="animation-title">Network Constellation</h3>
+                <p class="animation-desc">Connected nodes - represents team collaboration and AI networks</p>
+            </div>
+        </div>
+
+        <!-- Animation 6: Staggered Bars -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-6">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">6</span>
+                <h3 class="animation-title">Staggered Bars</h3>
+                <p class="animation-desc">Rising and falling bars - represents progress, metrics, growth</p>
+            </div>
+        </div>
+
+        <!-- Animation 7: Floating Cubes -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-7">
+                    <div class="cube cube-1">
+                        <div class="cube-face"></div>
+                    </div>
+                    <div class="cube cube-2">
+                        <div class="cube-face"></div>
+                    </div>
+                    <div class="cube cube-3">
+                        <div class="cube-face"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">7</span>
+                <h3 class="animation-title">Floating Cubes</h3>
+                <p class="animation-desc">3D cubes rotating in space - represents building blocks and structure</p>
+            </div>
+        </div>
+
+        <!-- Animation 8: Wave Lines -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-8">
+                    <div class="wave-line"></div>
+                    <div class="wave-line"></div>
+                    <div class="wave-line"></div>
+                    <div class="wave-line"></div>
+                    <div class="wave-line"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">8</span>
+                <h3 class="animation-title">Wave Lines</h3>
+                <p class="animation-desc">Flowing horizontal lines - represents flow, data streams, momentum</p>
+            </div>
+        </div>
+
+        <!-- Animation 9: Rotating Rings -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-9">
+                    <div class="ring-container">
+                        <div class="rotating-ring ring-outer"></div>
+                        <div class="rotating-ring ring-middle"></div>
+                        <div class="rotating-ring ring-inner"></div>
+                        <div class="ring-core"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">9</span>
+                <h3 class="animation-title">Rotating Rings</h3>
+                <p class="animation-desc">Concentric spinning rings - represents complexity and coordination</p>
+            </div>
+        </div>
+
+        <!-- Animation 10: Bouncing Dots -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-10">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">10</span>
+                <h3 class="animation-title">Bouncing Dots</h3>
+                <p class="animation-desc">Playful bouncing elements - represents energy and activity</p>
+            </div>
+        </div>
+
+        <!-- Animation 11: DNA Helix -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-11">
+                    <div class="helix">
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                        <div class="helix-node left"></div>
+                        <div class="helix-node right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">11</span>
+                <h3 class="animation-title">DNA Helix</h3>
+                <p class="animation-desc">Intertwined strands - represents human-AI integration</p>
+            </div>
+        </div>
+
+        <!-- Animation 12: Flowing Gradient -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-12">
+                    <div class="gradient-circle"></div>
+                    <div class="gradient-inner"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">12</span>
+                <h3 class="animation-title">Flowing Gradient</h3>
+                <p class="animation-desc">Spinning gradient rings - represents continuous transformation</p>
+            </div>
+        </div>
+
+        <!-- Animation 13: Pendulum Swing -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-13">
+                    <div class="pendulum-pivot"></div>
+                    <div class="pendulum-arm">
+                        <div class="pendulum-weight"></div>
+                    </div>
+                    <div class="pendulum-shadow"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">13</span>
+                <h3 class="animation-title">Pendulum Swing</h3>
+                <p class="animation-desc">Hypnotic swinging motion - represents steady momentum and timing</p>
+            </div>
+        </div>
+
+        <!-- Animation 14: Expanding Squares -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-14">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="center-square"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">14</span>
+                <h3 class="animation-title">Expanding Squares</h3>
+                <p class="animation-desc">Radiating geometric shapes - represents growth and scaling</p>
+            </div>
+        </div>
+
+        <!-- Animation 15: Circuit Board -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-15">
+                    <svg viewBox="0 0 280 280">
+                        <!-- Circuit paths -->
+                        <path class="circuit-line" d="M40 140 H100 V80 H140 V140 H200 V200 H240" />
+                        <path class="circuit-line" d="M40 180 H80 V220 H160 V180 H200" />
+                        <path class="circuit-line" d="M140 40 V80" />
+                        <path class="circuit-line" d="M200 100 H240" />
+
+                        <!-- Animated pulses -->
+                        <path class="circuit-pulse" d="M40 140 H100 V80 H140 V140 H200 V200 H240" />
+                        <path class="circuit-pulse" d="M40 180 H80 V220 H160 V180 H200" style="animation-delay: 1s" />
+
+                        <!-- Nodes -->
+                        <circle class="circuit-node" cx="40" cy="140" r="6" />
+                        <circle class="circuit-node" cx="100" cy="80" r="6" />
+                        <circle class="circuit-node-active" cx="140" cy="140" r="8" />
+                        <circle class="circuit-node" cx="200" cy="200" r="6" />
+                        <circle class="circuit-node" cx="240" cy="200" r="6" />
+                        <circle class="circuit-node" cx="80" cy="220" r="6" />
+                        <circle class="circuit-node" cx="200" cy="180" r="6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">15</span>
+                <h3 class="animation-title">Circuit Board</h3>
+                <p class="animation-desc">Digital pathways with signals - represents technology and systems</p>
+            </div>
+        </div>
+
+        <!-- Animation 16: Spinning Triangles -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-16">
+                    <div class="triangle-container">
+                        <div class="triangle tri-outer"></div>
+                        <div class="triangle tri-middle"></div>
+                        <div class="triangle tri-inner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">16</span>
+                <h3 class="animation-title">Spinning Triangles</h3>
+                <p class="animation-desc">Nested rotating triangles - represents hierarchy and acceleration</p>
+            </div>
+        </div>
+
+        <!-- Animation 17: Particle Burst -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-17">
+                    <div class="particle-center"></div>
+                    <div class="burst-particle bp-1"></div>
+                    <div class="burst-particle bp-2"></div>
+                    <div class="burst-particle bp-3"></div>
+                    <div class="burst-particle bp-4"></div>
+                    <div class="burst-particle bp-5"></div>
+                    <div class="burst-particle bp-6"></div>
+                    <div class="burst-particle bp-7"></div>
+                    <div class="burst-particle bp-8"></div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">17</span>
+                <h3 class="animation-title">Particle Burst</h3>
+                <p class="animation-desc">Exploding particles from center - represents energy and impact</p>
+            </div>
+        </div>
+
+        <!-- Animation 18: Liquid Loader -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-18">
+                    <div class="liquid-container">
+                        <div class="liquid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">18</span>
+                <h3 class="animation-title">Liquid Loader</h3>
+                <p class="animation-desc">Filling liquid with waves - represents progress and capacity</p>
+            </div>
+        </div>
+
+        <!-- Animation 19: Typewriter Dots -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-19">
+                    <div class="dot-row row-1">
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                    </div>
+                    <div class="dot-row row-2">
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                    </div>
+                    <div class="dot-row row-3">
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                        <div class="type-dot"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">19</span>
+                <h3 class="animation-title">Typewriter Dots</h3>
+                <p class="animation-desc">Sequential text-like appearance - represents AI writing and generation</p>
+            </div>
+        </div>
+
+        <!-- Animation 20: Abstract Flow -->
+        <div class="animation-card">
+            <div class="animation-preview">
+                <div class="anim-container anim-20">
+                    <svg viewBox="0 0 280 280">
+                        <path class="flow-path path-1" d="M40 200 Q100 100 140 140 T240 80" />
+                        <path class="flow-path path-2" d="M40 140 Q120 200 180 120 T240 160" />
+                        <path class="flow-path path-3" d="M40 100 Q80 180 160 100 T240 200" />
+                    </svg>
+                </div>
+            </div>
+            <div class="animation-info">
+                <span class="animation-number">20</span>
+                <h3 class="animation-title">Abstract Flow</h3>
+                <p class="animation-desc">Drawing curved paths - represents flow, journey, transformation</p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 3rem; color: var(--gray); font-size: 0.9rem;">
+        <p>AI Acceleration Animation Tests | Fixed to Flow</p>
+        <p style="margin-top: 0.5rem;"><a href="ai-acceleration-v3.html" style="color: var(--red);">Back to AI Acceleration page</a></p>
+    </footer>
+</body>
+</html>

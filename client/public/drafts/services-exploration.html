@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Display Exploration | 20 Variations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --light-gray: #999999;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Page Header */
+        .page-header {
+            background: var(--black);
+            padding: 60px 40px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .page-header p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Variation wrapper */
+        .variation {
+            padding: 80px 60px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            min-height: 500px;
+        }
+
+        .variation:nth-child(even) {
+            background: var(--white);
+        }
+
+        .var-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding: 8px 16px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 100px;
+        }
+
+        .var-label span {
+            color: var(--red);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           V1: SIMPLE TEXT LINKS
+           Brutally minimal - just words
+           ============================================ */
+        .v1-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 400px;
+        }
+
+        .v1-link {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .v1-link:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* ============================================
+           V2: GIANT DISPLAY TYPE
+           Massive typography, no descriptions
+           ============================================ */
+        .v2-giant {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v2-item {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            color: var(--black);
+            transition: color 0.3s;
+            padding: 16px 0;
+        }
+
+        .v2-item:hover {
+            color: var(--red);
+        }
+
+        /* ============================================
+           V3: PROBLEM → SOLUTION
+           Lead with pain points
+           ============================================ */
+        .v3-problems {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .v3-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .variation:nth-child(even) .v3-card {
+            background: var(--cream);
+        }
+
+        .v3-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .v3-problem {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .v3-solution {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .v3-arrow {
+            color: var(--red);
+            font-size: 1.25rem;
+        }
+
+        .v3-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           V4: OUTCOME CARDS
+           Focus on what you GET
+           ============================================ */
+        .v4-outcomes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .v4-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--white);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .variation:nth-child(even) .v4-card {
+            background: var(--cream);
+        }
+
+        .v4-card:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .v4-outcome {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v4-outcome-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .v4-card:hover .v4-outcome-label {
+            color: var(--light-gray);
+        }
+
+        .v4-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           V5: DARK BLOCKS
+           Inverted, bold blocks
+           ============================================ */
+        .v5-dark {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .v5-block {
+            background: var(--black);
+            color: var(--white);
+            padding: 48px;
+            border-radius: 24px;
+            transition: all 0.3s;
+        }
+
+        .v5-block:hover {
+            background: var(--red);
+        }
+
+        .v5-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .v5-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .v5-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           V6: BENTO GRID
+           Irregular sizes like Apple
+           ============================================ */
+        .v6-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 16px;
+        }
+
+        .v6-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: all 0.3s;
+        }
+
+        .variation:nth-child(even) .v6-item {
+            background: var(--cream);
+        }
+
+        .v6-item:hover {
+            transform: scale(1.02);
+        }
+
+        .v6-item.large {
+            grid-column: span 2;
+        }
+
+        .v6-item.tall {
+            grid-row: span 2;
+        }
+
+        .v6-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v6-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .v6-item.large .v6-name {
+            font-size: 2.5rem;
+        }
+
+        /* ============================================
+           V7: TIMELINE JOURNEY
+           Services as progression
+           ============================================ */
+        .v7-timeline {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            position: relative;
+        }
+
+        .v7-timeline::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--light-gray), var(--red));
+        }
+
+        .v7-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .v7-dot {
+            width: 48px;
+            height: 48px;
+            background: var(--cream);
+            border: 3px solid var(--light-gray);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .v7-step:hover .v7-dot {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .v7-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .v7-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* ============================================
+           V8: TABS
+           Click to reveal
+           ============================================ */
+        .v8-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .v8-tab {
+            padding: 16px 32px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .v8-tab:hover,
+        .v8-tab.active {
+            color: var(--black);
+            border-color: var(--red);
+        }
+
+        .v8-content {
+            padding: 40px 0;
+        }
+
+        .v8-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .v8-desc {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 24px;
+        }
+
+        .v8-cta {
+            display: inline-flex;
+            padding: 14px 28px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           V9: COMPARISON TABLE
+           Feature matrix
+           ============================================ */
+        .v9-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .v9-table th,
+        .v9-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v9-table th {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .v9-table th:first-child {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .v9-table td {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v9-table td:first-child {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .v9-check {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           V10: FLOATING PILLS
+           Scattered, organic layout
+           ============================================ */
+        .v10-pills {
+            position: relative;
+            height: 400px;
+        }
+
+        .v10-pill {
+            position: absolute;
+            padding: 20px 36px;
+            background: var(--white);
+            border-radius: 100px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .variation:nth-child(even) .v10-pill {
+            background: var(--cream);
+        }
+
+        .v10-pill:hover {
+            background: var(--red);
+            color: var(--white);
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .v10-pill:nth-child(1) { top: 20%; left: 5%; font-size: 1.5rem; }
+        .v10-pill:nth-child(2) { top: 10%; left: 45%; font-size: 1.25rem; }
+        .v10-pill:nth-child(3) { top: 55%; left: 25%; font-size: 1.1rem; }
+        .v10-pill:nth-child(4) { top: 65%; left: 60%; font-size: 1.4rem; }
+
+        /* ============================================
+           V11: QUOTE-DRIVEN
+           Client voice as entry
+           ============================================ */
+        .v11-quotes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .v11-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .variation:nth-child(even) .v11-card {
+            background: var(--cream);
+        }
+
+        .v11-card:hover {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .v11-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .v11-quote::before {
+            content: '"';
+            color: var(--red);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 0;
+            margin-right: 4px;
+        }
+
+        .v11-service {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .v11-arrow {
+            color: var(--red);
+        }
+
+        .v11-name {
+            font-weight: 700;
+        }
+
+        /* ============================================
+           V12: ICON FIRST
+           Big visual icons
+           ============================================ */
+        .v12-icons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .v12-item {
+            padding: 40px 24px;
+            transition: all 0.3s;
+        }
+
+        .v12-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .v12-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--red);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .v12-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .v12-tag {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           V13: SPLIT AUDIENCE
+           Clear segmentation
+           ============================================ */
+        .v13-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .v13-side {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .v13-side.orgs {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .v13-side.individuals {
+            background: var(--white);
+        }
+
+        .variation:nth-child(even) .v13-side.individuals {
+            background: var(--cream);
+        }
+
+        .v13-heading {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v13-item {
+            transition: all 0.2s;
+        }
+
+        .v13-item:hover {
+            transform: translateX(8px);
+        }
+
+        .v13-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .v13-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           V14: NUMBERED MENU
+           Restaurant menu style
+           ============================================ */
+        .v14-menu {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .v14-section {
+            margin-bottom: 48px;
+        }
+
+        .v14-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--light-gray);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v14-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            transition: all 0.2s;
+        }
+
+        .v14-item:hover {
+            color: var(--red);
+        }
+
+        .v14-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        .v14-num {
+            font-weight: 700;
+            color: var(--light-gray);
+        }
+
+        .v14-name {
+            font-weight: 600;
+        }
+
+        .v14-price {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ============================================
+           V15: FULL-WIDTH STRIPES
+           Bold horizontal bands
+           ============================================ */
+        .v15-stripes {
+            margin: 0 -60px;
+        }
+
+        .v15-stripe {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 48px 60px;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .v15-stripe:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .v15-left {
+            display: flex;
+            align-items: baseline;
+            gap: 32px;
+        }
+
+        .v15-num {
+            font-size: 3rem;
+            font-weight: 200;
+            color: var(--light-gray);
+        }
+
+        .v15-stripe:hover .v15-num {
+            color: var(--red);
+        }
+
+        .v15-name {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .v15-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        .v15-stripe:hover .v15-tag {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ============================================
+           V16: HOVER REVEAL
+           Minimal until interaction
+           ============================================ */
+        .v16-reveal {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .v16-item {
+            background: var(--cream);
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .variation:nth-child(even) .v16-item {
+            background: var(--white);
+        }
+
+        .v16-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .v16-item:hover .v16-name {
+            color: var(--red);
+        }
+
+        .v16-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .v16-item:hover .v16-details {
+            transform: translateY(0);
+        }
+
+        .v16-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v16-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ============================================
+           V17: GRADIENT CARDS
+           Colorful backgrounds
+           ============================================ */
+        .v17-gradients {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .v17-card {
+            padding: 48px;
+            border-radius: 24px;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .v17-card:hover {
+            transform: scale(1.02);
+        }
+
+        .v17-card:nth-child(1) { background: linear-gradient(135deg, #E63B2E, #8B1E1E); }
+        .v17-card:nth-child(2) { background: linear-gradient(135deg, #111, #333); }
+        .v17-card:nth-child(3) { background: linear-gradient(135deg, #333, #555); }
+        .v17-card:nth-child(4) { background: linear-gradient(135deg, #C42B1C, #E63B2E); }
+
+        .v17-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+
+        .v17-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .v17-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           V18: INTERACTIVE FILTER
+           "What describes you?"
+           ============================================ */
+        .v18-filter {
+            text-align: center;
+        }
+
+        .v18-question {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .v18-options {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .v18-option {
+            padding: 16px 32px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .variation:nth-child(even) .v18-option {
+            background: var(--cream);
+        }
+
+        .v18-option:hover,
+        .v18-option.active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .v18-results {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .v18-result {
+            padding: 32px;
+            background: var(--white);
+            border-radius: 16px;
+            max-width: 280px;
+            text-align: left;
+        }
+
+        .variation:nth-child(even) .v18-result {
+            background: var(--cream);
+        }
+
+        .v18-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .v18-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ============================================
+           V19: STACKED CARDS
+           Overlapping depth
+           ============================================ */
+        .v19-stack {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 400px;
+        }
+
+        .v19-card {
+            position: absolute;
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .v19-card:nth-child(1) { top: 0; z-index: 4; }
+        .v19-card:nth-child(2) { top: 30px; left: 20px; z-index: 3; transform: scale(0.96); }
+        .v19-card:nth-child(3) { top: 60px; left: 40px; z-index: 2; transform: scale(0.92); }
+        .v19-card:nth-child(4) { top: 90px; left: 60px; z-index: 1; transform: scale(0.88); }
+
+        .v19-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            z-index: 10;
+        }
+
+        .v19-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .v19-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .v19-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           V20: MAGAZINE ASYMMETRIC
+           Editorial layout
+           ============================================ */
+        .v20-magazine {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 24px;
+        }
+
+        .v20-item {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .variation:nth-child(even) .v20-item {
+            background: var(--cream);
+        }
+
+        .v20-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .v20-item.hero {
+            grid-row: span 2;
+            background: var(--black);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 400px;
+        }
+
+        .v20-item.hero .v20-tag {
+            color: var(--red);
+        }
+
+        .v20-item.hero .v20-name {
+            font-size: 2.5rem;
+        }
+
+        .v20-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .v20-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .v20-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .v20-item.hero .v20-desc {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .v4-outcomes,
+            .v12-icons { grid-template-columns: repeat(2, 1fr); }
+            .v6-bento { grid-template-columns: 1fr 1fr; }
+            .v6-item.large { grid-column: span 1; }
+            .v7-timeline { flex-wrap: wrap; }
+            .v13-split { grid-template-columns: 1fr; }
+            .v20-magazine { grid-template-columns: 1fr 1fr; }
+            .v20-item.hero { grid-row: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .variation { padding: 60px 24px; }
+            .v2-item { font-size: 2.5rem; }
+            .v3-problems,
+            .v5-dark,
+            .v11-quotes,
+            .v16-reveal,
+            .v17-gradients { grid-template-columns: 1fr; }
+            .v4-outcomes,
+            .v12-icons { grid-template-columns: 1fr; }
+            .v6-bento { grid-template-columns: 1fr; }
+            .v6-item.tall { grid-row: span 1; }
+            .v10-pills { height: auto; display: flex; flex-direction: column; gap: 12px; }
+            .v10-pill { position: static; font-size: 1rem !important; }
+            .v15-stripes { margin: 0 -24px; }
+            .v15-stripe { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+            .v18-options { flex-direction: column; }
+            .v18-results { flex-direction: column; align-items: center; }
+            .v19-stack { height: auto; }
+            .v19-card { position: static; transform: none !important; margin-bottom: 16px; }
+            .v20-magazine { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Services Display Exploration</h1>
+        <p>20 diverse approaches to displaying services on the homepage</p>
+    </header>
+
+    <!-- V1: Simple Text Links -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>01</span> Simple Text Links</div>
+            <div class="v1-links">
+                <a href="ai-activation-sprint-v3.html" class="v1-link">AI Activation</a>
+                <a href="ai-acceleration-v3.html" class="v1-link">AI Acceleration</a>
+                <a href="ai-amplifier-v3.html" class="v1-link">AI Amplifier</a>
+                <a href="strategic-sparring-v3.html" class="v1-link">Strategic Sparring</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V2: Giant Display Type -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>02</span> Giant Display Type</div>
+            <div class="v2-giant">
+                <a href="ai-activation-sprint-v3.html" class="v2-item">AI Activation</a>
+                <a href="ai-acceleration-v3.html" class="v2-item">AI Acceleration</a>
+                <a href="ai-amplifier-v3.html" class="v2-item">AI Amplifier</a>
+                <a href="strategic-sparring-v3.html" class="v2-item">Strategic Sparring</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V3: Problem → Solution -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>03</span> Problem → Solution</div>
+            <div class="v3-problems">
+                <a href="ai-activation-sprint-v3.html" class="v3-card">
+                    <div class="v3-problem">"We know we should do something with AI, but we don't know where to start."</div>
+                    <div class="v3-solution">
+                        <span class="v3-arrow">→</span>
+                        <span class="v3-name">AI Activation</span>
+                    </div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v3-card">
+                    <div class="v3-problem">"Our team needs hands-on guidance to build real AI pilots."</div>
+                    <div class="v3-solution">
+                        <span class="v3-arrow">→</span>
+                        <span class="v3-name">AI Acceleration</span>
+                    </div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v3-card">
+                    <div class="v3-problem">"I'm spending too much time on tasks AI could handle."</div>
+                    <div class="v3-solution">
+                        <span class="v3-arrow">→</span>
+                        <span class="v3-name">AI Amplifier</span>
+                    </div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v3-card">
+                    <div class="v3-problem">"I need someone to think through tough decisions with me."</div>
+                    <div class="v3-solution">
+                        <span class="v3-arrow">→</span>
+                        <span class="v3-name">Strategic Sparring</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V4: Outcome Cards -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>04</span> Outcome Cards</div>
+            <div class="v4-outcomes">
+                <a href="ai-activation-sprint-v3.html" class="v4-card">
+                    <div class="v4-outcome">30</div>
+                    <div class="v4-outcome-label">days to first pilots</div>
+                    <div class="v4-name">AI Activation</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v4-card">
+                    <div class="v4-outcome">3×</div>
+                    <div class="v4-outcome-label">faster adoption</div>
+                    <div class="v4-name">AI Acceleration</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v4-card">
+                    <div class="v4-outcome">50%</div>
+                    <div class="v4-outcome-label">work removed</div>
+                    <div class="v4-name">AI Amplifier</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v4-card">
+                    <div class="v4-outcome">∞</div>
+                    <div class="v4-outcome-label">clarity gained</div>
+                    <div class="v4-name">Strategic Sparring</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V5: Dark Blocks -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>05</span> Dark Blocks</div>
+            <div class="v5-dark">
+                <a href="ai-activation-sprint-v3.html" class="v5-block">
+                    <div class="v5-tag">For Organizations</div>
+                    <div class="v5-name">AI Activation</div>
+                    <div class="v5-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute.</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v5-block">
+                    <div class="v5-tag">For Organizations</div>
+                    <div class="v5-name">AI Acceleration</div>
+                    <div class="v5-desc">Your team learns by doing. We're with them from first experiments to working pilots.</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v5-block">
+                    <div class="v5-tag">For Individuals</div>
+                    <div class="v5-name">AI Amplifier</div>
+                    <div class="v5-desc">Remove 50% of your daily work in 30 days without forgetting how to think.</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v5-block">
+                    <div class="v5-tag">For Individuals</div>
+                    <div class="v5-name">Strategic Sparring</div>
+                    <div class="v5-desc">A peer who thinks with you, challenges you, and helps you get to action.</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V6: Bento Grid -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>06</span> Bento Grid</div>
+            <div class="v6-bento">
+                <a href="ai-activation-sprint-v3.html" class="v6-item large">
+                    <div class="v6-tag">For Organizations</div>
+                    <div class="v6-name">AI Activation</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v6-item tall">
+                    <div class="v6-tag">For Individuals</div>
+                    <div class="v6-name">AI Amplifier</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v6-item">
+                    <div class="v6-tag">For Organizations</div>
+                    <div class="v6-name">AI Acceleration</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v6-item">
+                    <div class="v6-tag">For Individuals</div>
+                    <div class="v6-name">Strategic Sparring</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V7: Timeline Journey -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>07</span> Timeline Journey</div>
+            <div class="v7-timeline">
+                <a href="ai-activation-sprint-v3.html" class="v7-step">
+                    <div class="v7-dot">1</div>
+                    <div class="v7-name">AI Activation</div>
+                    <div class="v7-desc">Find direction</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v7-step">
+                    <div class="v7-dot">2</div>
+                    <div class="v7-name">AI Acceleration</div>
+                    <div class="v7-desc">Build momentum</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v7-step">
+                    <div class="v7-dot">3</div>
+                    <div class="v7-name">AI Amplifier</div>
+                    <div class="v7-desc">Personal mastery</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v7-step">
+                    <div class="v7-dot">4</div>
+                    <div class="v7-name">Strategic Sparring</div>
+                    <div class="v7-desc">Ongoing clarity</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V8: Tabs -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>08</span> Tabs</div>
+            <div class="v8-tabs">
+                <div class="v8-tab active">AI Activation</div>
+                <div class="v8-tab">AI Acceleration</div>
+                <div class="v8-tab">AI Amplifier</div>
+                <div class="v8-tab">Strategic Sparring</div>
+            </div>
+            <div class="v8-content">
+                <h3 class="v8-title">AI Activation</h3>
+                <p class="v8-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute. For organizations ready to start their AI journey.</p>
+                <a href="ai-activation-sprint-v3.html" class="v8-cta">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V9: Comparison Table -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>09</span> Comparison Table</div>
+            <table class="v9-table">
+                <tr>
+                    <th></th>
+                    <th>AI Activation</th>
+                    <th>AI Acceleration</th>
+                    <th>AI Amplifier</th>
+                    <th>Strategic Sparring</th>
+                </tr>
+                <tr>
+                    <td>For Organizations</td>
+                    <td class="v9-check">✓</td>
+                    <td class="v9-check">✓</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>For Individuals</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td class="v9-check">✓</td>
+                    <td class="v9-check">✓</td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>30 days</td>
+                    <td>3-6 months</td>
+                    <td>30 days</td>
+                    <td>Ongoing</td>
+                </tr>
+                <tr>
+                    <td>Focus</td>
+                    <td>Strategy</td>
+                    <td>Implementation</td>
+                    <td>Productivity</td>
+                    <td>Clarity</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- V10: Floating Pills -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>10</span> Floating Pills</div>
+            <div class="v10-pills">
+                <a href="ai-activation-sprint-v3.html" class="v10-pill">AI Activation</a>
+                <a href="ai-acceleration-v3.html" class="v10-pill">AI Acceleration</a>
+                <a href="ai-amplifier-v3.html" class="v10-pill">AI Amplifier</a>
+                <a href="strategic-sparring-v3.html" class="v10-pill">Strategic Sparring</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V11: Quote-Driven -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>11</span> Quote-Driven</div>
+            <div class="v11-quotes">
+                <a href="ai-activation-sprint-v3.html" class="v11-card">
+                    <div class="v11-quote">In 30 days, we went from confusion to a clear AI roadmap with three pilots ready to launch.</div>
+                    <div class="v11-service">
+                        <span class="v11-arrow">→</span>
+                        <span class="v11-name">AI Activation</span>
+                    </div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v11-card">
+                    <div class="v11-quote">Having Gus alongside the team made adoption feel natural, not forced.</div>
+                    <div class="v11-service">
+                        <span class="v11-arrow">→</span>
+                        <span class="v11-name">AI Acceleration</span>
+                    </div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v11-card">
+                    <div class="v11-quote">I got half my day back without feeling like I'm outsourcing my thinking.</div>
+                    <div class="v11-service">
+                        <span class="v11-arrow">→</span>
+                        <span class="v11-name">AI Amplifier</span>
+                    </div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v11-card">
+                    <div class="v11-quote">He asks the questions I've been avoiding. That's exactly what I needed.</div>
+                    <div class="v11-service">
+                        <span class="v11-arrow">→</span>
+                        <span class="v11-name">Strategic Sparring</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V12: Icon First -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>12</span> Icon First</div>
+            <div class="v12-icons">
+                <a href="ai-activation-sprint-v3.html" class="v12-item">
+                    <div class="v12-icon">⚡</div>
+                    <div class="v12-name">AI Activation</div>
+                    <div class="v12-tag">Organizations</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v12-item">
+                    <div class="v12-icon">⚙️</div>
+                    <div class="v12-name">AI Acceleration</div>
+                    <div class="v12-tag">Organizations</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v12-item">
+                    <div class="v12-icon">📈</div>
+                    <div class="v12-name">AI Amplifier</div>
+                    <div class="v12-tag">Individuals</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v12-item">
+                    <div class="v12-icon">🧭</div>
+                    <div class="v12-name">Strategic Sparring</div>
+                    <div class="v12-tag">Individuals</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V13: Split Audience -->
+    <section class="variation" style="padding: 0;">
+        <div class="var-label" style="position: absolute; top: 40px; left: 60px; z-index: 10;"><span>13</span> Split Audience</div>
+        <div class="v13-split">
+            <div class="v13-side orgs">
+                <div class="v13-heading">For Organizations</div>
+                <a href="ai-activation-sprint-v3.html" class="v13-item">
+                    <div class="v13-name">AI Activation</div>
+                    <div class="v13-desc">30 days to first pilots</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v13-item">
+                    <div class="v13-name">AI Acceleration</div>
+                    <div class="v13-desc">Hands-on implementation</div>
+                </a>
+            </div>
+            <div class="v13-side individuals">
+                <div class="v13-heading">For Individuals</div>
+                <a href="ai-amplifier-v3.html" class="v13-item">
+                    <div class="v13-name">AI Amplifier</div>
+                    <div class="v13-desc">Remove 50% of daily work</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v13-item">
+                    <div class="v13-name">Strategic Sparring</div>
+                    <div class="v13-desc">Think through decisions</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V14: Numbered Menu -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>14</span> Numbered Menu</div>
+            <div class="v14-menu">
+                <div class="v14-section">
+                    <div class="v14-section-title">For Organizations</div>
+                    <a href="ai-activation-sprint-v3.html" class="v14-item">
+                        <div class="v14-left">
+                            <span class="v14-num">01</span>
+                            <span class="v14-name">AI Activation</span>
+                        </div>
+                        <span class="v14-price">30 days</span>
+                    </a>
+                    <a href="ai-acceleration-v3.html" class="v14-item">
+                        <div class="v14-left">
+                            <span class="v14-num">02</span>
+                            <span class="v14-name">AI Acceleration</span>
+                        </div>
+                        <span class="v14-price">3-6 months</span>
+                    </a>
+                </div>
+                <div class="v14-section">
+                    <div class="v14-section-title">For Individuals</div>
+                    <a href="ai-amplifier-v3.html" class="v14-item">
+                        <div class="v14-left">
+                            <span class="v14-num">03</span>
+                            <span class="v14-name">AI Amplifier</span>
+                        </div>
+                        <span class="v14-price">30 days</span>
+                    </a>
+                    <a href="strategic-sparring-v3.html" class="v14-item">
+                        <div class="v14-left">
+                            <span class="v14-num">04</span>
+                            <span class="v14-name">Strategic Sparring</span>
+                        </div>
+                        <span class="v14-price">Ongoing</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- V15: Full-Width Stripes -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>15</span> Full-Width Stripes</div>
+        </div>
+        <div class="v15-stripes">
+            <a href="ai-activation-sprint-v3.html" class="v15-stripe">
+                <div class="v15-left">
+                    <span class="v15-num">01</span>
+                    <span class="v15-name">AI Activation</span>
+                </div>
+                <span class="v15-tag">For Organizations</span>
+            </a>
+            <a href="ai-acceleration-v3.html" class="v15-stripe">
+                <div class="v15-left">
+                    <span class="v15-num">02</span>
+                    <span class="v15-name">AI Acceleration</span>
+                </div>
+                <span class="v15-tag">For Organizations</span>
+            </a>
+            <a href="ai-amplifier-v3.html" class="v15-stripe">
+                <div class="v15-left">
+                    <span class="v15-num">03</span>
+                    <span class="v15-name">AI Amplifier</span>
+                </div>
+                <span class="v15-tag">For Individuals</span>
+            </a>
+            <a href="strategic-sparring-v3.html" class="v15-stripe">
+                <div class="v15-left">
+                    <span class="v15-num">04</span>
+                    <span class="v15-name">Strategic Sparring</span>
+                </div>
+                <span class="v15-tag">For Individuals</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- V16: Hover Reveal -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>16</span> Hover Reveal</div>
+            <div class="v16-reveal">
+                <a href="ai-activation-sprint-v3.html" class="v16-item">
+                    <div class="v16-name">AI Activation</div>
+                    <div class="v16-details">
+                        <div class="v16-tag">For Organizations</div>
+                        <div class="v16-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute.</div>
+                    </div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v16-item">
+                    <div class="v16-name">AI Acceleration</div>
+                    <div class="v16-details">
+                        <div class="v16-tag">For Organizations</div>
+                        <div class="v16-desc">Your team learns by doing. We're with them from first experiments to working pilots.</div>
+                    </div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v16-item">
+                    <div class="v16-name">AI Amplifier</div>
+                    <div class="v16-details">
+                        <div class="v16-tag">For Individuals</div>
+                        <div class="v16-desc">Remove 50% of your daily work in 30 days without forgetting how to think.</div>
+                    </div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v16-item">
+                    <div class="v16-name">Strategic Sparring</div>
+                    <div class="v16-details">
+                        <div class="v16-tag">For Individuals</div>
+                        <div class="v16-desc">A peer who thinks with you, challenges you, and helps you get to action.</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V17: Gradient Cards -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>17</span> Gradient Cards</div>
+            <div class="v17-gradients">
+                <a href="ai-activation-sprint-v3.html" class="v17-card">
+                    <div class="v17-tag">For Organizations</div>
+                    <div class="v17-name">AI Activation</div>
+                    <div class="v17-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute.</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v17-card">
+                    <div class="v17-tag">For Organizations</div>
+                    <div class="v17-name">AI Acceleration</div>
+                    <div class="v17-desc">Your team learns by doing. We're with them from first experiments to working pilots.</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v17-card">
+                    <div class="v17-tag">For Individuals</div>
+                    <div class="v17-name">AI Amplifier</div>
+                    <div class="v17-desc">Remove 50% of your daily work in 30 days without forgetting how to think.</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v17-card">
+                    <div class="v17-tag">For Individuals</div>
+                    <div class="v17-name">Strategic Sparring</div>
+                    <div class="v17-desc">A peer who thinks with you, challenges you, and helps you get to action.</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V18: Interactive Filter -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>18</span> Interactive Filter</div>
+            <div class="v18-filter">
+                <h3 class="v18-question">What describes you?</h3>
+                <div class="v18-options">
+                    <div class="v18-option active">I lead a team or organization</div>
+                    <div class="v18-option">I'm an individual professional</div>
+                </div>
+                <div class="v18-results">
+                    <a href="ai-activation-sprint-v3.html" class="v18-result">
+                        <div class="v18-name">AI Activation</div>
+                        <div class="v18-desc">30 days to your first AI pilots</div>
+                    </a>
+                    <a href="ai-acceleration-v3.html" class="v18-result">
+                        <div class="v18-name">AI Acceleration</div>
+                        <div class="v18-desc">Hands-on implementation support</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- V19: Stacked Cards -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>19</span> Stacked Cards</div>
+            <div class="v19-stack">
+                <a href="ai-activation-sprint-v3.html" class="v19-card">
+                    <div class="v19-tag">For Organizations</div>
+                    <div class="v19-name">AI Activation</div>
+                    <div class="v19-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute.</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v19-card">
+                    <div class="v19-tag">For Organizations</div>
+                    <div class="v19-name">AI Acceleration</div>
+                    <div class="v19-desc">Your team learns by doing. We're with them from first experiments to working pilots.</div>
+                </a>
+                <a href="ai-amplifier-v3.html" class="v19-card">
+                    <div class="v19-tag">For Individuals</div>
+                    <div class="v19-name">AI Amplifier</div>
+                    <div class="v19-desc">Remove 50% of your daily work in 30 days without forgetting how to think.</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v19-card">
+                    <div class="v19-tag">For Individuals</div>
+                    <div class="v19-name">Strategic Sparring</div>
+                    <div class="v19-desc">A peer who thinks with you, challenges you, and helps you get to action.</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- V20: Magazine Asymmetric -->
+    <section class="variation">
+        <div class="container">
+            <div class="var-label"><span>20</span> Magazine Asymmetric</div>
+            <div class="v20-magazine">
+                <a href="ai-amplifier-v3.html" class="v20-item">
+                    <div class="v20-tag">For Individuals</div>
+                    <div class="v20-name">AI Amplifier</div>
+                    <div class="v20-desc">Remove 50% of your daily work in 30 days.</div>
+                </a>
+                <a href="ai-activation-sprint-v3.html" class="v20-item hero">
+                    <div class="v20-tag">For Organizations</div>
+                    <div class="v20-name">AI Activation</div>
+                    <div class="v20-desc">30 days to move from "we should do something with AI" to pilots your team can actually execute.</div>
+                </a>
+                <a href="strategic-sparring-v3.html" class="v20-item">
+                    <div class="v20-tag">For Individuals</div>
+                    <div class="v20-name">Strategic Sparring</div>
+                    <div class="v20-desc">A peer who thinks with you.</div>
+                </a>
+                <a href="ai-acceleration-v3.html" class="v20-item">
+                    <div class="v20-tag">For Organizations</div>
+                    <div class="v20-name">AI Acceleration</div>
+                    <div class="v20-desc">Hands-on implementation support.</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Make tabs interactive
+        document.querySelectorAll('.v8-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.v8-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Make filter interactive
+        document.querySelectorAll('.v18-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                document.querySelectorAll('.v18-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
