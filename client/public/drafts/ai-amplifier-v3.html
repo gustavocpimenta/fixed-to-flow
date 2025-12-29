@@ -1541,6 +1541,30 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1.25rem 4rem;
+                overflow: visible;
+            }
+
+            .hero .shape-sunrise,
+            .hero .shape-circle {
+                display: none;
+            }
+
+            .hero-container {
+                gap: 2rem;
+            }
+
+            .hero-graphic {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-accent-line {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             .who-grid,
             .tiers-grid {
                 grid-template-columns: 1fr;
@@ -1576,15 +1600,7 @@
                 display: none;
             }
 
-            nav {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: auto;
-                top: 44px;
-                transition: top 0.3s ease;
-            }
-
-            nav.announcement-hidden {
+            nav.visible {
                 top: 0;
             }
         }
@@ -1997,23 +2013,20 @@
     <section class="guide">
         <div class="shape-blob"></div>
         <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Lived Experience</div>
+                <h2 class="section-title section-title-dark">Your mentor</h2>
+            </div>
             <div class="founder-card reveal">
                 <div class="founder-image">
                     <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
                 <div class="founder-info">
-                    <div class="founder-label">Your Guide</div>
+                    <div class="founder-label">Founder Story</div>
                     <h3>Meet Gus</h3>
-                    <p>Gus has spent decades bringing ideas to life. Building digital products, designing meaningful systems, and supporting people as they navigate complex change.</p>
-                    <p>His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality. He's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.</p>
-                    <p>He believes AI should amplify people's skills, not replace them. Adaptability isn't a tagline for Gus. It's a way of life. That's what makes him a trusted mentor for those navigating shifting ground.</p>
-                    <ul class="founder-credentials">
-                        <li>25+ years in product leadership and digital transformation</li>
-                        <li>Notion Ambassador</li>
-                        <li>Mentor to startup founders and executives</li>
-                        <li>Guide through reinvention and life transitions</li>
-                        <li>Leads teams, builds systems, ships products</li>
-                    </ul>
+                    <p>Gus has spent decades bringing ideas to life, building digital products, designing meaningful systems, and supporting people as they navigate complex change.</p>
+                    <p>His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality, he's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.</p>
+                    <p>Adaptability isn't a tagline for Gus. It's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).</p>
                     <div class="founder-social">
                         <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24">
