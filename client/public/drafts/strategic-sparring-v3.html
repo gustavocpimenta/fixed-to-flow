@@ -144,6 +144,10 @@
             background: rgba(0,0,0,0.15);
         }
 
+        .logo-symbol {
+            display: none;
+        }
+
         .service-info {
             display: flex;
             align-items: center;
@@ -279,10 +283,12 @@
         .btn-primary {
             background: var(--red);
             color: white;
+            border: 2px solid var(--red);
         }
 
         .btn-primary:hover {
             background: var(--red-dark);
+            border-color: var(--red-dark);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
         }
@@ -1614,12 +1620,32 @@
                 display: flex;
             }
 
-            .service-info {
+            .logo-full {
                 display: none;
+            }
+
+            .logo-symbol {
+                display: block;
+                height: 28px;
+                width: auto;
             }
 
             .nav-divider {
                 display: none;
+            }
+
+            .service-info {
+                display: flex;
+                gap: 8px;
+            }
+
+            .service-target {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+
+            .service-name {
+                font-size: 0.95rem;
             }
         }
 
@@ -1666,7 +1692,10 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo"><img src="logo.svg" alt="Fixed to Flow"></a>
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="Fixed to Flow" class="logo-full">
+                    <img src="logo-symbol.svg" alt="Fixed to Flow" class="logo-symbol">
+                </a>
                 <div class="nav-divider"></div>
                 <div class="service-info">
                     <span class="service-name">Strategic Sparring</span>
@@ -1878,7 +1907,7 @@
                         <li><strong>People looking for someone to tell them the answer.</strong> We help you find your own answers, not hand you ours.</li>
                         <li><strong>Anyone expecting 24/7 availability.</strong> We're a thinking partner, not on call staff.</li>
                         <li><strong>Leaders who want validation, not challenge.</strong> If you want someone to agree with you, we're not a fit.</li>
-                        <li><strong>Organizations needing team training.</strong> For teams, see <a href="ai-amplifier-v3.html">AI Amplifier</a> or <a href="ai-activation-sprint-v3.html">AI Activation</a>.</li>
+                        <li><strong>Organizations needing team training.</strong> For teams, see <a href="ai-activation-sprint-v3.html">AI Activation</a> or <a href="ai-acceleration-v3.html">AI Acceleration</a>.</li>
                     </ul>
                 </div>
             </div>
@@ -1899,9 +1928,9 @@
                 <div class="guide-info">
                     <div class="guide-label">Founder Story</div>
                     <h3>Meet Gus</h3>
-                    <p>Gus has spent decades bringing ideas to life, building digital products, designing meaningful systems, and supporting people as they navigate complex change.</p>
-                    <p>His journey moves through radical diversity: boardrooms and backstreets, startups and soul-searching gatherings. One foot in vision, the other in reality, he's as at ease helping leaders craft bold strategies as he is backing young people chasing second chances.</p>
-                    <p>Adaptability isn't a tagline for Gus. It's a way of life. That's what makes him a trusted mentor for those navigating shifting ground (with just enough wit to make the trip worthwhile).</p>
+                    <p>Most leaders need a thinking partner, not a cheerleader. Someone who can handle complexity without simplifying it away. Someone who's been in boardrooms and backstreets and knows both worlds matter.</p>
+                    <p>Gus has spent years advising companies and mentoring leaders through the moments that shift everything: the pivots, the hard calls, the decisions you can't walk back. He's as at ease helping executives craft bold strategies as he is supporting young people chasing second chances.</p>
+                    <p>He boxed for five years. Sparring taught him more than any strategy deck ever could. You can't see your own blind spots. You need someone across from you who cares enough to point them out. That's the partnership he offers.</p>
                     <div class="guide-social">
                         <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24">
@@ -1926,7 +1955,7 @@
         <div class="shape-sunrise"></div>
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">What Leaders Say</div>
+                <div class="section-label">Track Record</div>
                 <h2 class="section-title section-title-dark">What people say</h2>
             </div>
 
@@ -1981,7 +2010,7 @@
     <section class="why-works">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">Track Record</div>
+                <div class="section-label">Our Approach</div>
                 <h2 class="section-title section-title-dark">Why this works</h2>
             </div>
 
@@ -2100,6 +2129,7 @@
             <div class="contact-form reveal">
                 <h3>Get in touch</h3>
                 <form>
+                    <input type="hidden" name="source" value="strategic-sparring">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>

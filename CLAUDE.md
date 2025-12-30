@@ -76,6 +76,14 @@ Use these specialized agents when their craft is needed. These are **recommendat
 
 ---
 
+## Critical Voice Rules
+
+- **NEVER use em dashes (—) in any copy** - use colons, periods, or rewrite instead
+- **ALWAYS invoke bard agent for any visitor-facing text changes** - no exceptions
+- **Read gus_voice.md before writing content** - located at `/docs/business/gus_voice.md` in main claude repo
+
+---
+
 ## Workflow Patterns
 
 | Task Type | Workflow |
@@ -154,9 +162,11 @@ Required in `.env`:
 
 **When redesign is complete:**
 1. Move approved designs from drafts to React components
-2. Update this CLAUDE.md (remove redesign-specific sections)
-3. Merge `redesign_2026` branch to `main`
-4. Deploy via Vercel
+2. Ensure Google Analytics tag (`G-98G900VJBV`) is included - it's in `client/index.html` and will automatically apply to all React routes, but verify after migration
+3. Add cookie consent banner for EU compliance (GA requires prior consent under GDPR/ePrivacy)
+4. Update this CLAUDE.md (remove redesign-specific sections)
+5. Merge `redesign_2026` branch to `main`
+6. Deploy via Vercel
 
 ---
 

@@ -144,6 +144,10 @@
             background: rgba(0,0,0,0.15);
         }
 
+        .logo-symbol {
+            display: none;
+        }
+
         .service-info {
             display: flex;
             align-items: center;
@@ -279,10 +283,12 @@
         .btn-primary {
             background: var(--red);
             color: white;
+            border: 2px solid var(--red);
         }
 
         .btn-primary:hover {
             background: var(--red-dark);
+            border-color: var(--red-dark);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
         }
@@ -1504,8 +1510,32 @@
                 padding: 0.75rem 1rem;
             }
 
-            .service-info {
+            .logo-full {
                 display: none;
+            }
+
+            .logo-symbol {
+                display: block;
+                height: 28px;
+                width: auto;
+            }
+
+            .nav-divider {
+                display: none;
+            }
+
+            .service-info {
+                display: flex;
+                gap: 8px;
+            }
+
+            .service-target {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+
+            .service-name {
+                font-size: 0.95rem;
             }
 
             nav.visible {
@@ -1723,7 +1753,10 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo"><img src="logo.svg" alt="Fixed to Flow"></a>
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="Fixed to Flow" class="logo-full">
+                    <img src="logo-symbol.svg" alt="Fixed to Flow" class="logo-symbol">
+                </a>
                 <div class="nav-divider"></div>
                 <div class="service-info">
                     <span class="service-name">AI Acceleration</span>
@@ -2148,6 +2181,7 @@
             <div class="contact-form reveal">
                 <h3>Get in touch</h3>
                 <form>
+                    <input type="hidden" name="source" value="ai-acceleration">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
