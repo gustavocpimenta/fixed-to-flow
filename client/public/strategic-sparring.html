@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Acceleration | Fixed to Flow</title>
+    <title>Strategic Sparring | Fixed to Flow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -214,16 +214,16 @@
         }
 
         .hero .shape-sunrise {
-            width: 600px;
-            height: 300px;
-            top: 100px;
-            right: -200px;
+            width: 500px;
+            height: 250px;
+            top: 80px;
+            right: -150px;
         }
 
         .hero .shape-circle {
-            width: 400px;
-            height: 400px;
-            bottom: -200px;
+            width: 350px;
+            height: 350px;
+            bottom: -150px;
             left: -100px;
         }
 
@@ -250,7 +250,7 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3.25rem;
             line-height: 1.1;
             font-weight: 700;
             color: var(--black);
@@ -334,79 +334,93 @@
             position: relative;
         }
 
-        /* Gears Animation */
-        .gears-container {
+        /* Compass Styles */
+        .compass-container {
             position: relative;
-            width: 320px;
-            height: 320px;
+            width: 280px;
+            height: 280px;
         }
 
-        .gear {
-            position: absolute;
+        .compass-outer {
+            width: 280px;
+            height: 280px;
+            border: 4px solid var(--gray-light);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gear::before {
-            content: '';
             position: absolute;
-            width: 40%;
-            height: 40%;
-            background: var(--cream);
+        }
+
+        .compass-inner {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed rgba(230, 59, 46, 0.3);
             border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .gear-large {
-            width: 180px;
-            height: 180px;
-            background:
-                conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
-                var(--black) 60deg 90deg, transparent 90deg 120deg,
-                var(--black) 120deg 150deg, transparent 150deg 180deg,
-                var(--black) 180deg 210deg, transparent 210deg 240deg,
-                var(--black) 240deg 270deg, transparent 270deg 300deg,
-                var(--black) 300deg 330deg, transparent 330deg 360deg);
-            left: 20px;
-            top: 70px;
-            animation: gear-rotate 8s linear infinite;
-        }
-
-        .gear-medium {
-            width: 120px;
+        .compass-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
             height: 120px;
-            background:
-                conic-gradient(from 0deg, var(--red) 0deg 45deg, transparent 45deg 90deg,
-                var(--red) 90deg 135deg, transparent 135deg 180deg,
-                var(--red) 180deg 225deg, transparent 225deg 270deg,
-                var(--red) 270deg 315deg, transparent 315deg 360deg);
-            right: 30px;
-            top: 40px;
-            animation: gear-rotate-reverse 6s linear infinite;
+            transform: translate(-50%, -100%) rotate(-30deg);
+            transform-origin: bottom center;
+            animation: needle-sway 4s ease-in-out infinite;
         }
 
-        .gear-small {
-            width: 80px;
-            height: 80px;
-            background:
-                conic-gradient(from 0deg, var(--gray) 0deg 45deg, transparent 45deg 90deg,
-                var(--gray) 90deg 135deg, transparent 135deg 180deg,
-                var(--gray) 180deg 225deg, transparent 225deg 270deg,
-                var(--gray) 270deg 315deg, transparent 315deg 360deg);
-            right: 60px;
-            bottom: 60px;
-            animation: gear-rotate 4s linear infinite;
+        @keyframes needle-sway {
+            0%, 100% { transform: translate(-50%, -100%) rotate(-30deg); }
+            50% { transform: translate(-50%, -100%) rotate(-15deg); }
         }
 
-        @keyframes gear-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .needle-north {
+            width: 100%;
+            height: 60%;
+            background: var(--red);
+            border-radius: 4px 4px 0 0;
         }
 
-        @keyframes gear-rotate-reverse {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
+        .needle-south {
+            width: 100%;
+            height: 40%;
+            background: var(--black);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .compass-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: var(--black);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .compass-hand {
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .hand-left {
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--black);
+        }
+
+        .hand-right {
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--red);
         }
 
         /* Sections */
@@ -466,10 +480,10 @@
         }
 
         .challenge .shape-blob {
-            width: 300px;
-            height: 300px;
-            top: 50px;
-            right: 50px;
+            width: 280px;
+            height: 280px;
+            top: 60px;
+            right: 60px;
         }
 
         .challenge-content {
@@ -506,7 +520,7 @@
             right: -100px;
             width: 400px;
             height: 200px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             border-radius: 50% 50% 0 0;
         }
 
@@ -518,68 +532,60 @@
             background: var(--white);
         }
 
-        .phases-grid {
+        .approach-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 40px;
             position: relative;
             z-index: 1;
         }
 
-        .phase {
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
+        .approach-card {
+            position: relative;
         }
 
-        .phase:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-5px);
+        .approach-number {
+            font-size: 8rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.1);
+            line-height: 1;
+            position: absolute;
+            top: -20px;
+            left: -10px;
         }
 
-        .phase-number {
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            color: var(--red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .approach-content {
+            position: relative;
+            z-index: 1;
+            padding-top: 60px;
+        }
+
+        .approach-label {
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 1.25rem;
-        }
-
-        .phase-title {
-            font-size: 1.5rem;
-            font-weight: 600;
             color: var(--white);
-            margin-bottom: 0.75rem;
+            margin-bottom: 12px;
         }
 
-        .phase-desc {
-            color: rgba(255,255,255,0.85);
+        .approach-text {
             font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
             line-height: 1.7;
         }
 
-        .process-summary {
+        .approach-tagline {
             text-align: center;
             margin-top: 3rem;
             position: relative;
             z-index: 1;
         }
 
-        .process-summary p {
+        .approach-tagline p {
             color: rgba(255,255,255,0.9);
             font-size: 1.1rem;
         }
 
-        .process-summary strong {
+        .approach-tagline strong {
             color: var(--white);
         }
 
@@ -591,10 +597,10 @@
         }
 
         .human-way .shape-circle {
-            width: 200px;
-            height: 200px;
-            top: 100px;
-            left: 50px;
+            width: 180px;
+            height: 180px;
+            top: 80px;
+            left: 60px;
             background: var(--sage);
         }
 
@@ -652,44 +658,95 @@
         }
 
         .what-you-get .shape-blob {
-            width: 250px;
-            height: 250px;
-            bottom: 100px;
-            right: 100px;
+            width: 220px;
+            height: 220px;
+            bottom: 80px;
+            right: 80px;
         }
 
-        .services-grid {
+        .included-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            gap: 2rem;
             position: relative;
             z-index: 1;
         }
 
-        .service-card {
+        .included-card {
             background: var(--cream);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 20px;
             transition: all 0.3s ease;
             border: 1px solid transparent;
         }
 
-        .service-card:hover {
+        .included-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             border-color: var(--red);
         }
 
-        .service-card h3 {
-            font-size: 1.375rem;
+        .included-card h3 {
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--black);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .service-card p {
+        .included-list {
+            list-style: none;
+        }
+
+        .included-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
             color: var(--gray);
-            line-height: 1.7;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            line-height: 1.6;
+        }
+
+        .included-list li:last-child {
+            border-bottom: none;
+        }
+
+        .included-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .addon-minimal {
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-minimal p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .addon-minimal strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .addon-minimal a {
+            color: var(--red);
+            font-weight: 500;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .addon-minimal a:hover {
+            text-decoration: underline;
         }
 
         /* Who For Section */
@@ -831,17 +888,17 @@
         }
 
         .testimonials .shape-sunrise {
-            width: 300px;
-            height: 150px;
+            width: 280px;
+            height: 140px;
             bottom: 0;
-            left: 50px;
+            left: 60px;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -917,10 +974,10 @@
         .pricing::before {
             content: '';
             position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 200px;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 175px;
             background: var(--red);
             opacity: 0.15;
             border-radius: 50% 50% 0 0;
@@ -934,50 +991,73 @@
             background: var(--white);
         }
 
-        .price-card {
-            max-width: 600px;
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
             margin: 0 auto;
-            background: var(--gray-dark);
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             z-index: 1;
+        }
+
+        .price-card {
+            background: var(--gray-dark);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-card.featured {
+            border-color: var(--red);
+        }
+
+        .price-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .price-card h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
         }
 
         .price-amount {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--red);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             letter-spacing: -0.02em;
         }
 
         .price-detail {
             color: var(--gray-light);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .price-features {
             list-style: none;
-            text-align: left;
             margin-bottom: 2rem;
         }
 
         .price-features li {
-            padding: 0.75rem 0;
+            padding: 0.5rem 0;
             padding-left: 1.75rem;
             position: relative;
             color: rgba(255,255,255,0.8);
             font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .price-features li:last-child {
-            border-bottom: none;
         }
 
         .price-features li::before {
@@ -1018,6 +1098,21 @@
             min-width: 180px;
         }
 
+        .pricing-cta-centered {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 500px;
+            margin: 3rem auto 0;
+        }
+
+        .pricing-cta-centered .price-cta,
+        .pricing-cta-centered .price-cta-secondary {
+            flex: 1;
+            min-width: 180px;
+        }
+
         .price-cta-secondary {
             flex: 1;
             min-width: 180px;
@@ -1039,65 +1134,70 @@
             transform: translateY(-2px);
         }
 
-        .price-note {
+        .price-cta.secondary {
+            background: transparent;
+            border: 2px solid var(--red);
+            color: var(--red);
+        }
+
+        .price-cta.secondary:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .pricing-note {
             margin-top: 2rem;
+            text-align: center;
             color: var(--gray-light);
             font-size: 0.95rem;
-        }
-
-        .price-note a {
-            color: var(--red);
-            text-decoration: none;
-        }
-
-        .price-note a:hover {
-            text-decoration: underline;
+            position: relative;
+            z-index: 1;
         }
 
         /* Guide/Bio Section */
         .guide {
             background: var(--cream);
-            padding: 6rem 2rem;
+            padding: 100px 2rem;
             position: relative;
         }
 
-        .guide .shape-blob {
-            width: 200px;
-            height: 200px;
-            top: 100px;
-            right: 100px;
-        }
-
-        .guide-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
+        .guide-content {
+            max-width: 1100px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .guide-header .section-label {
+            margin-bottom: 1rem;
+        }
+
+        .guide-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.02em;
         }
 
         .guide-card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        .guide-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 24px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 50px;
+            align-items: start;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
         }
 
         .guide-photo {
-            width: 100px;
-            height: 100px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--red);
             flex-shrink: 0;
         }
 
@@ -1105,48 +1205,63 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
         }
 
-        .guide-name {
-            font-size: 1.375rem;
+        .guide-info .guide-label {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--black);
-            margin-bottom: 0.25rem;
-        }
-
-        .guide-title {
             color: var(--red);
-            font-weight: 500;
-            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
-        .guide-bio {
+        .guide-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .guide-info p {
             color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .guide-credentials {
-            list-style: none;
+        .guide-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
         }
 
-        .guide-credentials li {
-            padding: 0.4rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .guide-credentials li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.7rem;
-            width: 6px;
-            height: 6px;
-            background: var(--red);
+        .guide-social a {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .guide-social a:hover {
+            background: var(--red);
+        }
+
+        .guide-social a:hover svg {
+            stroke: var(--white);
+        }
+
+        .guide-social svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gray);
+            fill: none;
+            stroke-width: 2;
         }
 
         /* FAQ Section */
@@ -1208,7 +1323,6 @@
             color: var(--black);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
-            line-height: 1.15;
         }
 
         .contact-description {
@@ -1413,17 +1527,6 @@
         }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -1454,12 +1557,15 @@
                 font-size: 2.75rem;
             }
 
-            .phases-grid {
+            .approach-grid,
+            .included-grid,
+            .pricing-grid {
                 grid-template-columns: 1fr;
             }
 
-            .services-grid {
+            .guide-card {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .why-layout {
@@ -1470,12 +1576,19 @@
             .why-left {
                 position: static;
             }
+
+            .guide-photo {
+                margin: 0 auto;
+            }
+
+            .guide-social {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 768px) {
             .who-grid,
-            .testimonials-grid,
-            .guide-grid {
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1487,17 +1600,8 @@
                 font-size: 2.25rem;
             }
 
-            .guide-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
             .nav-links {
                 display: none;
-            }
-
-            .mobile-nav-toggle {
-                display: flex;
             }
 
             .nav-back {
@@ -1505,9 +1609,15 @@
             }
 
             .nav-container {
-                position: relative;
-                z-index: 1003;
                 padding: 0.75rem 1rem;
+            }
+
+            nav.visible {
+                top: 0;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
             }
 
             .logo-full {
@@ -1537,209 +1647,38 @@
             .service-name {
                 font-size: 0.95rem;
             }
-
-            nav.visible {
-                top: 0;
-            }
         }
 
         /* Mobile Navigation */
-        .mobile-nav-toggle {
-            display: none;
-            width: 48px;
-            height: 48px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            z-index: 1002;
-            padding: 12px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .mobile-nav-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--black);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-origin: center;
-        }
-
-        .mobile-nav-toggle span:first-child { width: 24px; }
-        .mobile-nav-toggle span:last-child { width: 16px; margin-left: auto; }
-
-        .mobile-nav-toggle.active span:first-child {
-            transform: rotate(45deg) translateY(5.5px);
-        }
-        .mobile-nav-toggle.active span:last-child {
-            width: 24px;
-            transform: rotate(-45deg) translateY(-5.5px);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-nav-toggle {
-                display: flex;
-            }
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--cream);
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            overflow: hidden;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-accent {
-            position: absolute;
-            top: -50%; right: -30%;
-            width: 80%; height: 150%;
-            background: var(--red);
-            opacity: 0.06;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: translateX(100%) rotate(-15deg);
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-accent {
-            transform: translateX(0) rotate(-15deg);
-        }
-
-        .mobile-nav-accent-secondary {
-            position: absolute;
-            bottom: -20%; left: -20%;
-            width: 60%; height: 80%;
-            background: var(--red);
-            opacity: 0.03;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            transform: translateY(100%);
-            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-accent-secondary {
-            transform: translateY(0);
-        }
-
-        .mobile-nav-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            height: 100%;
-            padding: 100px 40px 40px;
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: static;
-            transform: none;
-            opacity: 1;
-            pointer-events: auto;
-            background: transparent;
-            box-shadow: none;
-            backdrop-filter: none;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-            padding: 16px 0;
-            position: relative;
-            transform: translateX(-40px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease, color 0.3s ease;
-            letter-spacing: -0.02em;
-        }
-
-        .mobile-nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0; bottom: 8px;
-            width: 0; height: 3px;
-            background: var(--red);
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .mobile-nav-link:hover::after { width: 60px; }
+        .mobile-nav-toggle { display: none; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; position: relative; z-index: 1002; padding: 12px; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+        .mobile-nav-toggle span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+        .mobile-nav-toggle.active span:first-child { transform: rotate(45deg) translate(2.5px, 2.5px); }
+        .mobile-nav-toggle.active span:last-child { transform: rotate(-45deg) translate(2.5px, -2.5px); }
+        @media (max-width: 768px) { .mobile-nav-toggle { display: flex; } }
+        .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--cream); z-index: 1001; opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 120px 40px 60px; overflow: hidden; }
+        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-nav-accent { position: absolute; top: -20%; right: -30%; width: 80%; height: 60%; background: var(--red); opacity: 0.08; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(0.8) rotate(-15deg); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .mobile-nav-overlay.active .mobile-nav-accent { transform: scale(1) rotate(0deg); }
+        .mobile-nav-accent-secondary { position: absolute; bottom: -15%; left: -20%; width: 60%; height: 50%; background: var(--red); opacity: 0.05; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: scale(0.8) rotate(15deg); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s; }
+        .mobile-nav-overlay.active .mobile-nav-accent-secondary { transform: scale(1) rotate(0deg); }
+        .mobile-nav-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 320px; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 0; position: static; transform: none; opacity: 1; pointer-events: auto; background: transparent; box-shadow: none; backdrop-filter: none; }
+        .mobile-nav-link { font-size: 1.75rem; font-weight: 600; color: var(--black); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1), color 0.2s ease; width: 100%; text-align: center; }
+        .mobile-nav-link:last-child { border-bottom: none; }
         .mobile-nav-link:hover { color: var(--red); }
-
-        .mobile-nav-overlay.active .mobile-nav-link {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
+        .mobile-nav-overlay.active .mobile-nav-link { opacity: 1; transform: translateY(0); }
         .mobile-nav-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.15s; }
-        .mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.22s; }
-        .mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.29s; }
-        .mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.36s; }
-
-        .mobile-nav-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 40px;
-            padding: 20px 36px;
-            background: var(--red);
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 100px;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.45s, opacity 0.6s ease 0.45s, background 0.3s ease;
-        }
-
-        .mobile-nav-cta svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.25s; }
+        .mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.3s; }
+        .mobile-nav-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 40px; padding: 18px 36px; background: var(--red); color: white; text-decoration: none; border-radius: 100px; font-size: 1.1rem; font-weight: 600; opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.2s ease; }
         .mobile-nav-cta:hover { background: var(--red-dark); }
+        .mobile-nav-cta svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
         .mobile-nav-cta:hover svg { transform: translateX(4px); }
-
-        .mobile-nav-overlay.active .mobile-nav-cta {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .mobile-nav-footer {
-            margin-top: auto;
-            padding-top: 40px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            width: 100%;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.55s, opacity 0.6s ease 0.55s;
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-footer {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .mobile-nav-tagline {
-            font-size: 0.9rem;
-            color: var(--gray);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
+        .mobile-nav-overlay.active .mobile-nav-cta { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+        .mobile-nav-footer { margin-top: auto; padding-top: 40px; opacity: 0; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s; }
+        .mobile-nav-overlay.active .mobile-nav-footer { opacity: 1; }
+        .mobile-nav-tagline { font-size: 0.9rem; color: var(--gray); letter-spacing: 0.05em; }
         body.nav-open { overflow: hidden; }
     </style>
 </head>
@@ -1759,8 +1698,8 @@
                 </a>
                 <div class="nav-divider"></div>
                 <div class="service-info">
-                    <span class="service-name">AI Acceleration</span>
-                    <span class="service-target">For Organizations</span>
+                    <span class="service-name">Strategic Sparring</span>
+                    <span class="service-target">For Individuals</span>
                 </div>
             </div>
             <div class="nav-links">
@@ -1787,7 +1726,7 @@
             </div>
             <a href="/drafts/index.html#contact" class="mobile-nav-cta">
                 Get in Touch
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </a>
@@ -1804,9 +1743,9 @@
         <div class="hero-container">
             <div class="hero-content reveal">
                 <div class="hero-accent-line"></div>
-                <h1 class="hero-title">AI that delivers today. Teams ready for what comes next.</h1>
+                <h1 class="hero-title">The pushback you need before the stakes are real</h1>
                 <p class="hero-desc">
-                    Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.
+                    Not a coach. Not a consultant. A peer who thinks with you, challenges you, and helps you get to action.
                 </p>
                 <a href="#contact" class="btn btn-primary">
                     Get in Touch
@@ -1817,10 +1756,16 @@
             </div>
             <div class="hero-visual reveal">
                 <div class="hero-graphic">
-                    <div class="gears-container">
-                        <div class="gear gear-large"></div>
-                        <div class="gear gear-medium"></div>
-                        <div class="gear gear-small"></div>
+                    <div class="compass-container">
+                        <div class="compass-outer"></div>
+                        <div class="compass-inner"></div>
+                        <div class="compass-needle">
+                            <div class="needle-north"></div>
+                            <div class="needle-south"></div>
+                        </div>
+                        <div class="compass-center"></div>
+                        <div class="compass-hand hand-left"></div>
+                        <div class="compass-hand hand-right"></div>
                     </div>
                 </div>
             </div>
@@ -1833,13 +1778,13 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">The Problem</div>
-                <h2 class="section-title section-title-dark">Strategy is just the beginning</h2>
+                <h2 class="section-title section-title-dark">Big decisions need real pushback</h2>
             </div>
             <div class="challenge-content reveal">
-                <p>You have your AI strategy. Maybe you completed AI Activation. Maybe you developed it internally. Either way, you know what you want to do.</p>
-                <p>Now comes the hard part: making it real. Implementation. Change management. Building internal capability. Maintaining momentum when the initial excitement fades.</p>
-                <p>Most AI strategies die in the gap between "good idea" and "working system." Teams get stuck. Pilots stall. Champions burn out. Vendors promise quick wins that never materialize.</p>
-                <p>You need a partner who stays in the trenches with you. Not someone who hands you a plan and leaves.</p>
+                <p>The bigger the decision, the fewer people will tell you the truth. Your team waits for direction. Consultants validate their frameworks. Your network gives well-meaning generalizations.</p>
+                <p>What you actually need is someone with no agenda except helping you think clearly. Someone who challenges you before the decision is made, not after. Someone comfortable enough with complexity to sit in the uncertainty with you.</p>
+                <p>The hard part is never the strategy. Strategy is easy on paper. The hard part is navigating the messy reality of making it happen. Stakeholder politics. Competing priorities. Trade-offs that could go either way.</p>
+                <p>Strategic Sparring is built for this. A peer who's done the work themselves. Someone who respects what you're facing and won't oversimplify it. We think together, challenge assumptions, and figure out not just what to do but how to actually do it.</p>
             </div>
         </div>
     </section>
@@ -1849,35 +1794,54 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">The Solution</div>
-                <h2 class="section-title section-title-light">The long game, together</h2>
+                <h2 class="section-title section-title-light">The Sparring Process</h2>
             </div>
 
-            <div class="phases-grid">
-                <div class="phase reveal">
-                    <div class="phase-number">1</div>
-                    <h3 class="phase-title">Scope Together</h3>
-                    <p class="phase-desc">
-                        We understand your situation and define what you need. Not every engagement includes everything. We scope what makes sense for you: capacity building, implementation sprints, leadership mentoring, or a combination.
-                    </p>
+            <div class="approach-grid">
+                <div class="approach-card reveal">
+                    <span class="approach-number">01</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We challenge your assumptions</div>
+                        <div class="approach-text">We ask sharp questions that force clarity. We call out fuzzy thinking and tell you when we think you are wrong.</div>
+                    </div>
                 </div>
-                <div class="phase reveal">
-                    <div class="phase-number">2</div>
-                    <h3 class="phase-title">Execute and Build</h3>
-                    <p class="phase-desc">
-                        Hands on work: implementation sprints where we lead (with partners as needed), capacity building to develop internal AI champions, innovation sessions to explore new opportunities, leadership mentoring to support those leading change.
-                    </p>
+                <div class="approach-card reveal">
+                    <span class="approach-number">02</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We stress test your ideas</div>
+                        <div class="approach-text">Before you commit, we pressure test your logic. We poke holes, play devil's advocate, and surface weak spots while they are still cheap to fix.</div>
+                    </div>
                 </div>
-                <div class="phase reveal">
-                    <div class="phase-number">3</div>
-                    <h3 class="phase-title">Extend or Complete</h3>
-                    <p class="phase-desc">
-                        When the initial scope is done, you choose: continue with us for more work, or move forward independently. Either way, you have working AI and capable people. You're never locked in.
-                    </p>
+                <div class="approach-card reveal">
+                    <span class="approach-number">03</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We use AI, then we shut it up</div>
+                        <div class="approach-text">We bring AI in to generate alternatives, surface blind spots, and stress test the reasoning. Then we kick it out when it is time to decide. The call stays human.</div>
+                    </div>
+                </div>
+                <div class="approach-card reveal">
+                    <span class="approach-number">04</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We rehearse through scenarios</div>
+                        <div class="approach-text">We create realistic situations and run them end to end. We simulate counterarguments, trade offs, and second order effects so you can practice before it is real.</div>
+                    </div>
+                </div>
+                <div class="approach-card reveal">
+                    <span class="approach-number">05</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We help you execute</div>
+                        <div class="approach-text">We turn thinking into moves. Not just what to do, but how to do it in your reality: constraints, stakeholders, sequencing, and next steps.</div>
+                    </div>
+                </div>
+                <div class="approach-card reveal">
+                    <span class="approach-number">06</span>
+                    <div class="approach-content">
+                        <div class="approach-label">We build you leverage</div>
+                        <div class="approach-text">When thinking isn't enough, we roll up our sleeves. Mental models you can apply tomorrow, small automations that reclaim your time, and practical artifacts that amplify how you work.</div>
+                    </div>
                 </div>
             </div>
-            <div class="process-summary reveal">
-                <p><strong>From strategy to independence. Support that fades when you're ready.</strong></p>
-            </div>
+
         </div>
     </section>
 
@@ -1886,27 +1850,35 @@
         <div class="shape-blob"></div>
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">Flexible Partnership</div>
-                <h2 class="section-title section-title-dark">How we show up</h2>
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title section-title-dark">What you get</h2>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3>Leadership Mentoring</h3>
-                    <p>Support for executives and team leads driving AI change. Strategic thinking, change management, navigating organizational politics.</p>
+            <div class="included-grid">
+                <div class="included-card reveal">
+                    <h3>Strategic Sparring</h3>
+                    <ul class="included-list">
+                        <li>6 hours per month of 1:1 sessions</li>
+                        <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                        <li>Direct WhatsApp access (weekdays)</li>
+                        <li>Session summaries with key insights</li>
+                        <li>Clarity on what AND how to execute</li>
+                    </ul>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Capacity Building</h3>
-                    <p>Develop internal AI champions who can lead future AI work independently. Structured training, hands on practice, ongoing support until they're confident.</p>
+                <div class="included-card reveal">
+                    <h3>What to expect</h3>
+                    <ul class="included-list">
+                        <li>Honest, direct feedback (we don't sugarcoat)</li>
+                        <li>Challenge when we think you're wrong</li>
+                        <li>Pattern recognition from 25+ years in the field</li>
+                        <li>Help navigating complexity, not just strategy</li>
+                        <li>A peer relationship, not consultant/client</li>
+                    </ul>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Discovery Sprints</h3>
-                    <p>Explore new AI opportunities, prototype rapidly, test ideas before committing resources. Discovery work that leads somewhere.</p>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Implementation Sprints</h3>
-                    <p>We lead the work, with partners as needed. From pilot to production. Clear milestones, measurable outcomes, working systems at the end.</p>
-                </div>
+            </div>
+
+            <div class="addon-minimal reveal">
+                <p><strong>Need your team in the room?</strong> Strategic Sessions are facilitated deep-dives for you and your key people. We design and facilitate a focused session around a specific challenge. You leave with clarity and an action plan. <a href="https://fixedtoflow.com/#contact">Tell us about your challenge →</a></p>
             </div>
         </div>
     </section>
@@ -1923,74 +1895,56 @@
                 <div class="who-card reveal">
                     <h3>Who this is for</h3>
                     <ul class="who-list for-list">
-                        <li><strong>Organizations with a clear AI strategy who need help executing</strong> You know what you want. You need help making it happen.</li>
-                        <li><strong>Companies that completed AI Activation and want to continue</strong> We already understand your context. Let's keep moving.</li>
-                        <li><strong>Leadership teams ready to invest in sustained partnership</strong> This isn't a quick fix. It's building real capability.</li>
-                        <li><strong>Organizations that value building internal capability, not dependency</strong> You want your team to lead AI work, not rely on us forever.</li>
+                        <li><strong>Leaders at inflection points.</strong> You're facing a transition, a major decision, or a period of uncertainty.</li>
+                        <li><strong>Founders navigating complexity.</strong> Building something new is hard. Having a thinking partner makes it easier.</li>
+                        <li><strong>Executives who want a peer, not an advisor.</strong> You're tired of consultants who don't understand your reality.</li>
+                        <li><strong>People who value being challenged over being validated.</strong> You want someone who'll tell you when you're wrong.</li>
                     </ul>
                 </div>
                 <div class="who-card reveal">
                     <h3>Who this isn't for</h3>
                     <ul class="who-list not-list">
-                        <li><strong>Organizations without clear AI direction</strong> Start with <a href="ai-activation-sprint-v3.html">AI Activation</a> to develop your strategy first.</li>
-                        <li><strong>Companies looking for a one time training session</strong> Consider <a href="ai-amplifier-v3.html">AI Amplifier</a> for individual or small team training.</li>
-                        <li><strong>Teams wanting someone to just "do the AI stuff"</strong> We build WITH you, not FOR you.</li>
-                        <li><strong>Organizations that can't commit leadership engagement</strong> This requires real involvement, not delegation.</li>
+                        <li><strong>People looking for someone to tell them the answer.</strong> We help you find your own answers, not hand you ours.</li>
+                        <li><strong>Anyone expecting 24/7 availability.</strong> We're a thinking partner, not on call staff.</li>
+                        <li><strong>Leaders who want validation, not challenge.</strong> If you want someone to agree with you, we're not a fit.</li>
+                        <li><strong>Organizations needing team training.</strong> For teams, see <a href="ai-activation.html">AI Activation</a> or <a href="ai-acceleration.html">AI Acceleration</a>.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Meet Your Guides Section -->
+    <!-- 7. Meet Your Sparring Partner Section -->
     <section class="guide">
-        <div class="shape-blob"></div>
-        <div class="container">
+        <div class="guide-content">
             <div class="section-header reveal">
-                <div class="section-label">Your Team</div>
-                <h2 class="section-title section-title-dark">Meet your guides</h2>
+                <div class="section-label">Lived Experience</div>
+                <h2 class="section-title section-title-dark">Your Sparring Partner</h2>
             </div>
-
-            <div class="guide-grid">
-                <div class="guide-card reveal">
-                    <div class="guide-header">
-                        <div class="guide-photo">
-                            <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
-                        </div>
-                        <div>
-                            <div class="guide-name">Gustavo da Cunha Pimenta</div>
-                            <div class="guide-title">Founder, Fixed to Flow</div>
-                        </div>
-                    </div>
-                    <p class="guide-bio">
-                        Gus has more than 25 years of experience building digital products, leading teams, and guiding transformation in organizations. He combines a strong product and strategy background with a deep interest in human behavior, learning, and reinvention.
-                    </p>
-                    <ul class="guide-credentials">
-                        <li>25+ years in product leadership and digital transformation</li>
-                        <li>Led product strategy for startups and scale-ups across Europe</li>
-                        <li>Mentor and sparring partner for leaders and startup founders</li>
-                        <li>Writes about AI amplification and intentional change</li>
-                    </ul>
+            <div class="guide-card reveal">
+                <div class="guide-photo">
+                    <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
-                <div class="guide-card reveal">
-                    <div class="guide-header">
-                        <div class="guide-photo">
-                            <img src="sandra-png.jpeg" alt="Sandra Fisher-Martins">
-                        </div>
-                        <div>
-                            <div class="guide-name">Sandra Fisher-Martins</div>
-                            <div class="guide-title">Strategist & Systems Change Practitioner | Founder, Claro</div>
-                        </div>
+                <div class="guide-info">
+                    <div class="guide-label">Founder Story</div>
+                    <h3>Meet Gus</h3>
+                    <p>Most leaders need a thinking partner, not a cheerleader. Someone who can handle complexity without simplifying it away. Someone who's been in boardrooms and backstreets and knows both worlds matter.</p>
+                    <p>Gus has spent years advising companies and mentoring leaders through the moments that shift everything: the pivots, the hard calls, the decisions you can't walk back. He's as at ease helping executives craft bold strategies as he is supporting young people chasing second chances.</p>
+                    <p>He boxed for five years. Sparring taught him more than any strategy deck ever could. You can't see your own blind spots. You need someone across from you who cares enough to point them out. That's the partnership he offers.</p>
+                    <div class="guide-social">
+                        <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/gustavocpimenta" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.4-6.4M20 4l-6.4 6.4"/>
+                            </svg>
+                        </a>
                     </div>
-                    <p class="guide-bio">
-                        Sandra partners with organizations on strategy, implementation, and team capacity-building. With 20+ years in consulting and systems change, she brings clarity, expertise, and a hands-on approach to AI transformation.
-                    </p>
-                    <ul class="guide-credentials">
-                        <li>Led AI pivot at Claro, building high-impact AI products and services</li>
-                        <li>Trained government agencies and regulators on safe, effective AI adoption</li>
-                        <li>TED speaker and Skoll Scholar for Social Entrepreneurship, University of Oxford</li>
-                        <li>Trusted facilitator helping expert teams co-design practical solutions</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -2008,7 +1962,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "Gustavo first brought us his expertise in the conceptualization phase of our product, our business model and finally our go to market strategy. His insights have been extremely useful to challenge our vision and scale up strategy."
+                        "His insights have been extremely useful to challenge our vision and scale up strategy. He's always been a great listener, an honest and transparent professional."
                     </p>
                     <div class="testimonial-author">
                         <a href="https://www.linkedin.com/in/matthieu-douziech-a8662534/" target="_blank" rel="noopener noreferrer">
@@ -2022,43 +1976,29 @@
                 </div>
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "The product Gustavo delivered was a massive improvement on what we'd had, and it has received praise from all quarters."
+                        "His insights, based on an extremely clear way of thinking, really help me in setting a course of action for my company and my life in general."
                     </p>
                     <div class="testimonial-author">
-                        <a href="https://www.linkedin.com/in/jefflynn/" target="_blank" rel="noopener noreferrer">
-                            <img src="jeff.jpeg" alt="Jeff Lynn" class="testimonial-avatar-img">
+                        <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer">
+                            <img src="1598787356414.jpeg" alt="Pedro Andrade" class="testimonial-avatar-img">
                         </a>
                         <div class="testimonial-info">
-                            <a href="https://www.linkedin.com/in/jefflynn/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Jeff Lynn</a>
-                            <div class="testimonial-role">Chairman of Republic Europe</div>
+                            <a href="https://www.linkedin.com/in/pedrohumanos/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Andrade</a>
+                            <div class="testimonial-role">Forbes 30 Under 30</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card reveal">
                     <p class="testimonial-quote">
-                        "An amazing ability to decode needs creating good experiences and turn it into something useful. Gustavo has a great holistic view which gives him the ability to find great solutions to everyone. Very demanding and methodical while executing his work."
+                        "For me, it's a no-brainer: Thinking about hiring his company? Go. Looking for advice/mentorship? Go."
                     </p>
                     <div class="testimonial-author">
-                        <a href="https://www.linkedin.com/in/diogo-garrido/" target="_blank" rel="noopener noreferrer">
-                            <img src="diogo.jpeg" alt="Diogo Garrido" class="testimonial-avatar-img">
+                        <a href="https://www.linkedin.com/in/pcboliveira/" target="_blank" rel="noopener noreferrer">
+                            <img src="pedro_oliveira.jpeg" alt="Pedro Oliveira" class="testimonial-avatar-img">
                         </a>
                         <div class="testimonial-info">
-                            <a href="https://www.linkedin.com/in/diogo-garrido/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Diogo Garrido</a>
-                            <div class="testimonial-role">Digital Delivery for Ageas Seguros</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <p class="testimonial-quote">
-                        "Gustavo was a key part of bringing the marketing, design and product functions together at Seedrs. He is a real thought leader in UX and human factors, and helped build the framework for applying business metrics to design and growth. Highly recommended."
-                    </p>
-                    <div class="testimonial-author">
-                        <a href="https://www.linkedin.com/in/peterjthomson/" target="_blank" rel="noopener noreferrer">
-                            <img src="peter.jpeg" alt="Peter Thomson" class="testimonial-avatar-img">
-                        </a>
-                        <div class="testimonial-info">
-                            <a href="https://www.linkedin.com/in/peterjthomson/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Peter Thomson</a>
-                            <div class="testimonial-role">Former CMO at Seedrs</div>
+                            <a href="https://www.linkedin.com/in/pcboliveira/" target="_blank" rel="noopener noreferrer" class="testimonial-name">Pedro Oliveira</a>
+                            <div class="testimonial-role">CEO at Talent Protocol</div>
                         </div>
                     </div>
                 </div>
@@ -2071,34 +2011,30 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Our Approach</div>
-                <h2 class="section-title section-title-dark">What sets us apart</h2>
+                <h2 class="section-title section-title-dark">Why this works</h2>
             </div>
 
             <div class="why-layout">
                 <div class="why-left reveal">
-                    <p>Strategy without execution is just a presentation.</p>
-                    <p>Implementation without capability building creates dependency. We do both. And we stay until you don't need us anymore.</p>
+                    <p>We've been in the room.</p>
+                    <p>We've seen how leaders think when stakes are high. We bring that perspective, not as consultants, but as peers who've been through it.</p>
                 </div>
                 <div class="why-right">
                     <div class="why-card reveal">
-                        <h3>You get the A-team</h3>
-                        <p>Senior leaders who've built and shipped. No account managers passing notes.</p>
+                        <h3>We give you tough love</h3>
+                        <p>Honest feedback that others hold back. Not harsh, just direct. Because you need clarity, not comfort.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We're not just advisors</h3>
-                        <p>We get in the trenches. We lead implementation work. We solve problems alongside your team.</p>
+                        <h3>We ask powerful questions</h3>
+                        <p>That challenge your assumptions. We tell you when we think you're wrong.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We build your capability, not ours</h3>
-                        <p>Every engagement is designed to make you more independent, not more reliant on us.</p>
+                        <h3>We share what we've seen work</h3>
+                        <p>And what we've seen fail. When we recognize a pattern, we tell you.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We protect human skills while implementing AI</h3>
-                        <p>You don't lose what makes your team valuable. You amplify it.</p>
-                    </div>
-                    <div class="why-card reveal">
-                        <h3>We don't lock you in</h3>
-                        <p>Scope what makes sense. Stop when you're ready. Continue as long as it's valuable.</p>
+                        <h3>We help you figure out how to actually do it</h3>
+                        <p>Not just what to do. Strategy is easy. Execution is where it gets real.</p>
                     </div>
                 </div>
             </div>
@@ -2110,28 +2046,44 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Investment</div>
-                <h2 class="section-title section-title-light">Ready to accelerate?</h2>
+                <h2 class="section-title section-title-light">Two ways to work together</h2>
             </div>
 
-            <div class="price-card reveal">
-                <div class="price-amount">30,000+ EUR</div>
-                <p class="price-detail">Starts as defined intervention, can extend to ongoing partnership<br>Scope and pricing customized to your needs</p>
-                <ul class="price-features">
-                    <li>Flexible scope: capacity building, implementation, innovation, mentoring</li>
-                    <li>Hands on partnership (we're in the trenches with you)</li>
-                    <li>Working AI systems (not just plans)</li>
-                    <li>Internal champions who can lead independently</li>
-                    <li>Protected human skills (amplification, not replacement)</li>
-                    <li>No lock in</li>
-                </ul>
-                <div class="price-cta-group">
-                    <a href="#contact" class="price-cta">Get in touch</a>
-                    <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the founder</a>
+            <div class="pricing-grid">
+                <div class="price-card featured reveal">
+                    <div class="price-card-label">Ongoing Partnership</div>
+                    <h3>Strategic Sparring</h3>
+                    <div class="price-amount">2,000 EUR</div>
+                    <p class="price-detail">per month, month to month</p>
+                    <ul class="price-features">
+                        <li>6 hours/month of 1:1 sessions</li>
+                        <li>Flexible scheduling</li>
+                        <li>WhatsApp access (weekdays)</li>
+                        <li>Session summaries</li>
+                    </ul>
                 </div>
-                <p class="price-note">
-                    Need strategy first? Try <a href="ai-activation-sprint-v3.html">AI Activation</a>.
-                </p>
+                <div class="price-card reveal">
+                    <div class="price-card-label">Add on</div>
+                    <h3>Strategic Sessions</h3>
+                    <div class="price-amount">3,000+ EUR</div>
+                    <p class="price-detail">per session, case by case</p>
+                    <ul class="price-features">
+                        <li>Up to 6 participants</li>
+                        <li>2 hours to half day</li>
+                        <li>Designed and facilitated</li>
+                        <li>Clear outputs and action plan</li>
+                    </ul>
+                </div>
             </div>
+
+            <div class="pricing-cta-centered reveal">
+                <a href="#contact" class="price-cta">Get in Touch</a>
+                <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the Founder</a>
+            </div>
+
+            <p class="pricing-note reveal">
+                Limited to 2 to 3 clients at a time.
+            </p>
         </div>
     </section>
 
@@ -2145,26 +2097,22 @@
 
             <div class="faq-list">
                 <div class="faq-item reveal">
-                    <div class="faq-question">How long does a typical engagement last?</div>
-                    <div class="faq-answer">Depends on scope. Initial interventions might be 3 to 6 months. Some partnerships extend longer. We scope together and adjust as we go. You're never locked in.</div>
+                    <div class="faq-question">What does "strategic sparring" actually mean?</div>
+                    <div class="faq-answer">It means we think through hard problems together. We challenge your assumptions. We share relevant experience. We push back when we think you're wrong.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">Do we need to complete AI Activation first?</div>
-                    <div class="faq-answer">No, but you need a clear AI strategy. AI Activation is one way to develop that. If you already have direction, we can start with AI Acceleration directly.</div>
+                    <div class="faq-question">How is this different from coaching?</div>
+                    <div class="faq-answer">Coaches help you find your own answers. We'll challenge your answers and tell you when we think you're heading in the wrong direction. We bring 25+ years of pattern recognition. When we see something we've seen before, we'll tell you. When we disagree, we'll tell you that too.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">What's the difference between this and hiring consultants?</div>
-                    <div class="faq-answer">We're not observers who write reports. We get in the trenches. We lead implementation. We build your capability so you don't need us forever. And we protect human skills while implementing AI.</div>
+                    <div class="faq-question">When should I use Strategic Sessions vs regular sparring?</div>
+                    <div class="faq-answer">Use Strategic Sessions when you have a specific challenge that needs your team involved: a strategic decision to make, a problem to crack, alignment to build.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">How much of our team's time does this require?</div>
-                    <div class="faq-answer">Depends on scope. Capacity building requires your team's active participation. Implementation sprints need stakeholder availability. We design the engagement around your constraints.</div>
+                    <div class="faq-question">What does WhatsApp access mean?</div>
+                    <div class="faq-answer">You can reach us weekdays for quick questions or when something comes up that can't wait. We respond within a few hours. It's not 24/7 support. It's having a thinking partner you can reach when you need to.</div>
                 </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question">What if we want to change scope mid engagement?</div>
-                    <div class="faq-answer">That's expected. We adjust as we learn. If something isn't working, we pivot. If you discover new opportunities, we explore them. The partnership is flexible.</div>
-                </div>
-            </div>
+                            </div>
         </div>
     </section>
 
@@ -2172,16 +2120,15 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <div class="contact-header reveal">
-                <div class="section-label">Long-term Partnership</div>
-                <h2>Start the conversation about acceleration</h2>
+                <div class="section-label">Your Move</div>
+                <h2>Step into the ring</h2>
                 <p class="contact-description">
-                    Strategy is just the beginning. Let's talk about what you need to make AI real in your organization, with ongoing support that grows with you.
+                    Curious what sparring actually feels like? One conversation. We'll be direct. You'll know quickly if this is for you.
                 </p>
             </div>
             <div class="contact-form reveal">
                 <h3>Get in touch</h3>
-                <form>
-                    <input type="hidden" name="source" value="ai-acceleration">
+                <form data-contact-form>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -2192,11 +2139,11 @@
                     </div>
                     <div class="form-group">
                         <label for="message">How can we help?</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                     <div class="form-buttons">
                         <button type="submit" class="btn btn-primary">Send Message</button>
-                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
+                        <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
                     </div>
                 </form>
             </div>
@@ -2215,10 +2162,10 @@
                 <div class="footer-link-column">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="ai-activation-sprint-v3.html">AI Activation</a></li>
-                        <li><a href="ai-acceleration-v3.html">AI Acceleration</a></li>
-                        <li><a href="ai-amplifier-v3.html">AI Amplifier</a></li>
-                        <li><a href="strategic-sparring-v3.html">Strategic Sparring</a></li>
+                        <li><a href="ai-activation.html">AI Activation</a></li>
+                        <li><a href="ai-acceleration.html">AI Acceleration</a></li>
+                        <li><a href="ai-amplifier.html">AI Amplifier</a></li>
+                        <li><a href="strategic-sparring.html">Strategic Sparring</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-column">
@@ -2297,27 +2244,15 @@
             const overlay = document.querySelector('.mobile-nav-overlay');
             const links = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
             if (!toggle || !overlay) return;
-            function openNav() {
-                toggle.classList.add('active');
-                toggle.setAttribute('aria-expanded', 'true');
-                overlay.classList.add('active');
-                overlay.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('nav-open');
-            }
-            function closeNav() {
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-                overlay.classList.remove('active');
-                overlay.setAttribute('aria-hidden', 'true');
-                document.body.classList.remove('nav-open');
-            }
-            toggle.addEventListener('click', function() {
-                overlay.classList.contains('active') ? closeNav() : openNav();
-            });
+            function openNav() { toggle.classList.add('active'); toggle.setAttribute('aria-expanded', 'true'); overlay.classList.add('active'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('nav-open'); }
+            function closeNav() { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('nav-open'); }
+            toggle.addEventListener('click', () => overlay.classList.contains('active') ? closeNav() : openNav());
             links.forEach(link => link.addEventListener('click', closeNav));
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeNav(); });
             window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
         })();
     </script>
+    <script src="/js/contact-form.js"></script>
+    <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

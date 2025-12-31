@@ -10,6 +10,7 @@ import WhatWeDo from "@/components/sections/WhatWeDo";
 import ServicesTab from "@/components/sections/ServicesTab";
 import WhyUs from "@/components/sections/WhyUs";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
+import CookieBanner from "@/components/CookieBanner";
 // import NonProfit from "@/components/sections/NonProfit";
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
         </div>
       </div>
       <Toaster />
+      <CookieBanner />
     </QueryClientProvider>
   );
 }

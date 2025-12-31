@@ -1,0 +1,21 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="#E63B2E"/>
+
+  <!-- Logo Mark -->
+  <g transform="translate(460, 280)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 17.1C0 7.66 7.66 0 17.1 0H143C152.44 0 160 7.66 160 17.1C160 26.54 152.44 34.2 143 34.2H34.2V68.1H0V17.1Z" fill="white"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M34.2 68H137.5C146.94 68 154.6 75.66 154.6 85.1C154.6 94.54 146.94 102.2 137.5 102.2H68.4V119.8C68.4 129.24 60.74 136.9 51.3 136.9C41.86 136.9 34.2 129.24 34.2 119.8V68Z" fill="white"/>
+  </g>
+
+  <!-- Main Text -->
+  <text x="540" y="540" text-anchor="middle" font-family="Outfit, sans-serif" font-size="96" font-weight="700" fill="white">
+    <tspan x="540" dy="0">Lead with AI,</tspan>
+    <tspan x="540" dy="115">Stay Human</tspan>
+  </text>
+
+  <!-- URL -->
+  <text x="540" y="780" text-anchor="middle" font-family="Outfit, sans-serif" font-size="36" font-weight="400" fill="rgba(255,255,255,0.8)">
+    fixedtoflow.com
+  </text>
+</svg>

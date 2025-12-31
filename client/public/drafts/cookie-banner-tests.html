@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Banner Variations | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --cream-dark: #F0EBE3;
+            --black: #111111;
+            --dark-gray: #1A1A1A;
+            --gray: #555555;
+            --light-gray: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Page Layout */
+        .page-header {
+            background: var(--black);
+            color: var(--cream);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .variations-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            gap: 60px;
+        }
+
+        .variation {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        }
+
+        .variation-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .variation-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-right: 16px;
+        }
+
+        .variation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .variation-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 6px 12px;
+            background: var(--cream);
+            border-radius: 20px;
+            color: var(--gray);
+        }
+
+        .variation-preview {
+            position: relative;
+            min-height: 400px;
+            background:
+                linear-gradient(90deg, var(--cream-dark) 1px, transparent 1px),
+                linear-gradient(var(--cream-dark) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-placeholder {
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 0.875rem;
+        }
+
+        .preview-placeholder svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        /* ================================================
+           VARIATION 1: Minimal Bottom Bar
+           Clean, unobtrusive, gets out of the way
+           ================================================ */
+        .cookie-v1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--black);
+            color: var(--cream);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cookie-v1 .cookie-text {
+            font-size: 0.9rem;
+            color: rgba(250, 247, 242, 0.85);
+            flex: 1;
+        }
+
+        .cookie-v1 .cookie-text a {
+            color: var(--cream);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .cookie-v1 .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .cookie-v1 .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .cookie-v1 .btn-reject {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(250, 247, 242, 0.3);
+        }
+
+        .cookie-v1 .btn-reject:hover {
+            border-color: rgba(250, 247, 242, 0.6);
+            background: rgba(250, 247, 242, 0.05);
+        }
+
+        .cookie-v1 .btn-accept {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .cookie-v1 .btn-accept:hover {
+            background: var(--red-dark);
+        }
+
+        /* ================================================
+           VARIATION 2: Corner Card
+           Friendly, approachable, less intrusive
+           ================================================ */
+        .cookie-v2 {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            width: 360px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow:
+                0 4px 6px rgba(0,0,0,0.04),
+                0 12px 40px rgba(0,0,0,0.12);
+            animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cookie-v2 .cookie-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .cookie-v2 .cookie-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--red);
+        }
+
+        .cookie-v2 h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .cookie-v2 p {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .cookie-v2 p a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .cookie-v2 p a:hover {
+            text-decoration: underline;
+        }
+
+        .cookie-v2 .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-v2 .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-align: center;
+        }
+
+        .cookie-v2 .btn-reject {
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .cookie-v2 .btn-reject:hover {
+            background: var(--cream-dark);
+        }
+
+        .cookie-v2 .btn-accept {
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .cookie-v2 .btn-accept:hover {
+            background: var(--dark-gray);
+        }
+
+        /* ================================================
+           VARIATION 3: Full-Width with Categories
+           Transparent, detailed, GDPR-friendly
+           ================================================ */
+        .cookie-v3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-top: 1px solid var(--cream-dark);
+            padding: 32px 40px;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cookie-v3-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cookie-v3 .cookie-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .cookie-v3 h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cookie-v3 .cookie-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        .cookie-v3 .cookie-desc a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .cookie-v3 .cookie-categories {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .cookie-v3 .category {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.875rem;
+        }
+
+        .cookie-v3 .category-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--cream-dark);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .cookie-v3 .category-toggle.required {
+            background: var(--red);
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cookie-v3 .category-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+
+        .cookie-v3 .category-toggle.active {
+            background: var(--red);
+        }
+
+        .cookie-v3 .category-toggle.active::after,
+        .cookie-v3 .category-toggle.required::after {
+            transform: translateX(20px);
+        }
+
+        .cookie-v3 .category-label {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .cookie-v3 .category-label span {
+            font-weight: 400;
+            color: var(--light-gray);
+            font-size: 0.8rem;
+        }
+
+        .cookie-v3 .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .cookie-v3 .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .cookie-v3 .btn-reject {
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid var(--cream-dark);
+        }
+
+        .cookie-v3 .btn-reject:hover {
+            border-color: var(--light-gray);
+            color: var(--black);
+        }
+
+        .cookie-v3 .btn-settings {
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .cookie-v3 .btn-settings:hover {
+            background: var(--cream-dark);
+        }
+
+        .cookie-v3 .btn-accept {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .cookie-v3 .btn-accept:hover {
+            background: var(--red-dark);
+        }
+
+        /* ================================================
+           VARIATION 4: Center Modal
+           Bold, attention-grabbing, clear choice
+           ================================================ */
+        .cookie-v4-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .cookie-v4 {
+            width: 480px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+        }
+
+        .cookie-v4 .cookie-visual {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--red) 0%, var(--burgundy) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .cookie-v4 .cookie-visual svg {
+            width: 36px;
+            height: 36px;
+            color: var(--white);
+        }
+
+        .cookie-v4 h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .cookie-v4 p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cookie-v4 p a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .cookie-v4 .cookie-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cookie-v4 .btn {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .cookie-v4 .btn-accept {
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .cookie-v4 .btn-accept:hover {
+            background: var(--dark-gray);
+            transform: translateY(-1px);
+        }
+
+        .cookie-v4 .btn-reject {
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .cookie-v4 .btn-reject:hover {
+            background: var(--cream-dark);
+        }
+
+        .cookie-v4 .cookie-link {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--light-gray);
+        }
+
+        .cookie-v4 .cookie-link a {
+            color: var(--gray);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ================================================
+           VARIATION 5: Floating Minimal Card
+           Elegant, refined, premium feel
+           ================================================ */
+        .cookie-v5 {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            width: 340px;
+            background: var(--black);
+            color: var(--cream);
+            border-radius: 16px;
+            padding: 24px;
+            animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+        }
+
+        .cookie-v5::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red), var(--burgundy));
+            border-radius: 16px 16px 0 0;
+        }
+
+        .cookie-v5 .cookie-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .cookie-v5 .cookie-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cookie-v5 h4 {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(250, 247, 242, 0.6);
+        }
+
+        .cookie-v5 p {
+            font-size: 0.9rem;
+            color: rgba(250, 247, 242, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .cookie-v5 p a {
+            color: var(--cream);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .cookie-v5 .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-v5 .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-align: center;
+        }
+
+        .cookie-v5 .btn-reject {
+            background: rgba(250, 247, 242, 0.1);
+            color: var(--cream);
+            border: 1px solid rgba(250, 247, 242, 0.2);
+        }
+
+        .cookie-v5 .btn-reject:hover {
+            background: rgba(250, 247, 242, 0.15);
+            border-color: rgba(250, 247, 242, 0.3);
+        }
+
+        .cookie-v5 .btn-accept {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .cookie-v5 .btn-accept:hover {
+            background: var(--red-dark);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 32px 20px;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .variations-grid {
+                padding: 40px 20px;
+                gap: 40px;
+            }
+
+            .variation-header {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .variation-preview {
+                min-height: 500px;
+            }
+
+            .cookie-v1 {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .cookie-v1 .cookie-buttons {
+                width: 100%;
+            }
+
+            .cookie-v1 .btn {
+                flex: 1;
+            }
+
+            .cookie-v2 {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                width: auto;
+            }
+
+            .cookie-v3 {
+                padding: 24px 20px;
+            }
+
+            .cookie-v3 .cookie-top {
+                flex-direction: column;
+            }
+
+            .cookie-v3 .cookie-categories {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cookie-v3 .cookie-buttons {
+                flex-direction: column;
+            }
+
+            .cookie-v4 {
+                width: calc(100% - 32px);
+                margin: 16px;
+                padding: 32px 24px;
+            }
+
+            .cookie-v5 {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Cookie Banner Variations</h1>
+        <p>GDPR-compliant cookie consent designs for Fixed to Flow. Each variation has equally weighted Accept/Reject options.</p>
+    </header>
+
+    <main class="variations-grid">
+        <!-- Variation 1: Minimal Bottom Bar -->
+        <article class="variation">
+            <header class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">1</span>
+                    <h2 class="variation-title">Minimal Bottom Bar</h2>
+                </div>
+                <span class="variation-tag">Unobtrusive</span>
+            </header>
+            <div class="variation-preview">
+                <div class="cookie-v1">
+                    <p class="cookie-text">
+                        We use cookies to analyze site traffic and improve your experience. <a href="#">Learn more</a>
+                    </p>
+                    <div class="cookie-buttons">
+                        <button class="btn btn-reject">Decline</button>
+                        <button class="btn btn-accept">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Variation 2: Corner Card -->
+        <article class="variation">
+            <header class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">2</span>
+                    <h2 class="variation-title">Corner Card</h2>
+                </div>
+                <span class="variation-tag">Friendly</span>
+            </header>
+            <div class="variation-preview">
+                <div class="cookie-v2">
+                    <div class="cookie-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+                            <path d="M8.5 8.5v.01"/>
+                            <path d="M16 15.5v.01"/>
+                            <path d="M12 12v.01"/>
+                            <path d="M11 17v.01"/>
+                            <path d="M7 14v.01"/>
+                        </svg>
+                    </div>
+                    <h3>Cookie preferences</h3>
+                    <p>We use cookies to understand how you use our site and improve your experience. <a href="#">Privacy Policy</a></p>
+                    <div class="cookie-buttons">
+                        <button class="btn btn-reject">Decline all</button>
+                        <button class="btn btn-accept">Accept all</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Variation 3: Full-Width with Categories -->
+        <article class="variation">
+            <header class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">3</span>
+                    <h2 class="variation-title">Full-Width with Categories</h2>
+                </div>
+                <span class="variation-tag">Detailed</span>
+            </header>
+            <div class="variation-preview">
+                <div class="cookie-v3">
+                    <div class="cookie-v3-inner">
+                        <div class="cookie-top">
+                            <div>
+                                <h3>Your privacy matters</h3>
+                                <p class="cookie-desc">We use cookies to analyze traffic and personalize content. You can choose which cookies to allow. <a href="#">Read our Privacy Policy</a></p>
+                            </div>
+                        </div>
+                        <div class="cookie-categories">
+                            <div class="category">
+                                <div class="category-toggle required"></div>
+                                <div class="category-label">Essential <span>(Required)</span></div>
+                            </div>
+                            <div class="category">
+                                <div class="category-toggle active" onclick="this.classList.toggle('active')"></div>
+                                <div class="category-label">Analytics</div>
+                            </div>
+                            <div class="category">
+                                <div class="category-toggle" onclick="this.classList.toggle('active')"></div>
+                                <div class="category-label">Marketing</div>
+                            </div>
+                            <div class="category">
+                                <div class="category-toggle" onclick="this.classList.toggle('active')"></div>
+                                <div class="category-label">Preferences</div>
+                            </div>
+                        </div>
+                        <div class="cookie-buttons">
+                            <button class="btn btn-reject">Reject all</button>
+                            <button class="btn btn-settings">Save preferences</button>
+                            <button class="btn btn-accept">Accept all</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Variation 4: Center Modal -->
+        <article class="variation">
+            <header class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">4</span>
+                    <h2 class="variation-title">Center Modal</h2>
+                </div>
+                <span class="variation-tag">Prominent</span>
+            </header>
+            <div class="variation-preview">
+                <div class="cookie-v4-overlay">
+                    <div class="cookie-v4">
+                        <div class="cookie-visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4"/>
+                                <path d="M12 8h.01"/>
+                            </svg>
+                        </div>
+                        <h3>We value your privacy</h3>
+                        <p>We use cookies to improve your browsing experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies.</p>
+                        <div class="cookie-buttons">
+                            <button class="btn btn-accept">Accept cookies</button>
+                            <button class="btn btn-reject">Decline cookies</button>
+                        </div>
+                        <p class="cookie-link">
+                            <a href="#">Cookie Policy</a> · <a href="#">Privacy Policy</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Variation 5: Floating Minimal Card -->
+        <article class="variation">
+            <header class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">5</span>
+                    <h2 class="variation-title">Floating Card</h2>
+                </div>
+                <span class="variation-tag">Premium</span>
+            </header>
+            <div class="variation-preview">
+                <div class="cookie-v5">
+                    <div class="cookie-header">
+                        <span class="cookie-dot"></span>
+                        <h4>Cookie Notice</h4>
+                    </div>
+                    <p>We use analytics cookies to understand how you interact with our site. <a href="#">Learn more</a></p>
+                    <div class="cookie-buttons">
+                        <button class="btn btn-reject">Decline</button>
+                        <button class="btn btn-accept">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        // Simple toggle interaction for category switches
+        document.querySelectorAll('.category-toggle:not(.required)').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

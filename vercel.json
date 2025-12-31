@@ -3,12 +3,7 @@
   "outputDirectory": "dist/public",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "vite",
   "rewrites": [
-    {
-      "source": "/drafts/:path*",
-      "destination": "/drafts/:path*"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

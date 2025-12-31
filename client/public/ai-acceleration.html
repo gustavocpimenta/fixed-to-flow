@@ -1932,8 +1932,8 @@
                 <div class="who-card reveal">
                     <h3>Who this isn't for</h3>
                     <ul class="who-list not-list">
-                        <li><strong>Organizations without clear AI direction</strong> Start with <a href="ai-activation-sprint-v3.html">AI Activation</a> to develop your strategy first.</li>
-                        <li><strong>Companies looking for a one time training session</strong> Consider <a href="ai-amplifier-v3.html">AI Amplifier</a> for individual or small team training.</li>
+                        <li><strong>Organizations without clear AI direction</strong> Start with <a href="ai-activation.html">AI Activation</a> to develop your strategy first.</li>
+                        <li><strong>Companies looking for a one time training session</strong> Consider <a href="ai-amplifier.html">AI Amplifier</a> for individual or small team training.</li>
                         <li><strong>Teams wanting someone to just "do the AI stuff"</strong> We build WITH you, not FOR you.</li>
                         <li><strong>Organizations that can't commit leadership engagement</strong> This requires real involvement, not delegation.</li>
                     </ul>
@@ -2129,7 +2129,7 @@
                     <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the founder</a>
                 </div>
                 <p class="price-note">
-                    Need strategy first? Try <a href="ai-activation-sprint-v3.html">AI Activation</a>.
+                    Need strategy first? Try <a href="ai-activation.html">AI Activation</a>.
                 </p>
             </div>
         </div>
@@ -2180,8 +2180,7 @@
             </div>
             <div class="contact-form reveal">
                 <h3>Get in touch</h3>
-                <form>
-                    <input type="hidden" name="source" value="ai-acceleration">
+                <form data-contact-form>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -2192,11 +2191,11 @@
                     </div>
                     <div class="form-group">
                         <label for="message">How can we help?</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                     <div class="form-buttons">
                         <button type="submit" class="btn btn-primary">Send Message</button>
-                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
+                        <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
                     </div>
                 </form>
             </div>
@@ -2215,10 +2214,10 @@
                 <div class="footer-link-column">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="ai-activation-sprint-v3.html">AI Activation</a></li>
-                        <li><a href="ai-acceleration-v3.html">AI Acceleration</a></li>
-                        <li><a href="ai-amplifier-v3.html">AI Amplifier</a></li>
-                        <li><a href="strategic-sparring-v3.html">Strategic Sparring</a></li>
+                        <li><a href="ai-activation.html">AI Activation</a></li>
+                        <li><a href="ai-acceleration.html">AI Acceleration</a></li>
+                        <li><a href="ai-amplifier.html">AI Amplifier</a></li>
+                        <li><a href="strategic-sparring.html">Strategic Sparring</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-column">
@@ -2319,5 +2318,7 @@
             window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
         })();
     </script>
+    <script src="/js/contact-form.js"></script>
+    <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

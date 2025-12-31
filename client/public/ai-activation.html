@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Acceleration | Fixed to Flow</title>
+    <title>AI Activation | Fixed to Flow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -214,16 +214,16 @@
         }
 
         .hero .shape-sunrise {
-            width: 600px;
-            height: 300px;
-            top: 100px;
-            right: -200px;
+            width: 500px;
+            height: 250px;
+            top: 80px;
+            right: -150px;
         }
 
         .hero .shape-circle {
-            width: 400px;
-            height: 400px;
-            bottom: -200px;
+            width: 350px;
+            height: 350px;
+            bottom: -150px;
             left: -100px;
         }
 
@@ -250,7 +250,7 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3.25rem;
             line-height: 1.1;
             font-weight: 700;
             color: var(--black);
@@ -325,88 +325,82 @@
         }
 
         .hero-graphic {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 1;
+            width: 400px;
+            height: 400px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
-        /* Gears Animation */
-        .gears-container {
+        /* Converging Lines Animation */
+        .converge-container {
             position: relative;
-            width: 320px;
-            height: 320px;
+            width: 300px;
+            height: 300px;
         }
 
-        .gear {
+        .converge-line {
             position: absolute;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 2px;
+            background: var(--gray-light);
+            transform-origin: right center;
         }
 
-        .gear::before {
+        .converge-line.line-1 { top: 30%; left: 0; width: 120px; transform: rotate(15deg); animation: line-converge 5s ease-out infinite; }
+        .converge-line.line-2 { top: 45%; left: 0; width: 140px; transform: rotate(5deg); animation: line-converge 5s ease-out infinite 0.2s; }
+        .converge-line.line-3 { top: 55%; left: 0; width: 140px; transform: rotate(-5deg); animation: line-converge 5s ease-out infinite 0.4s; }
+        .converge-line.line-4 { top: 70%; left: 0; width: 120px; transform: rotate(-15deg); animation: line-converge 5s ease-out infinite 0.6s; }
+
+        @keyframes line-converge {
+            0%, 20% { width: 0; opacity: 0; }
+            60%, 100% { width: 140px; opacity: 1; }
+        }
+
+        .converge-point {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+            opacity: 0;
+            animation: point-appear 5s ease-out infinite;
+        }
+
+        @keyframes point-appear {
+            0%, 50% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            70%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .arrow-out {
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            width: 80px;
+            height: 3px;
+            background: var(--red);
+            transform: translateY(-50%);
+            opacity: 0;
+            animation: arrow-extend 5s ease-out infinite;
+        }
+
+        .arrow-out::after {
             content: '';
             position: absolute;
-            width: 40%;
-            height: 40%;
-            background: var(--cream);
-            border-radius: 50%;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 12px solid var(--red);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
         }
 
-        .gear-large {
-            width: 180px;
-            height: 180px;
-            background:
-                conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
-                var(--black) 60deg 90deg, transparent 90deg 120deg,
-                var(--black) 120deg 150deg, transparent 150deg 180deg,
-                var(--black) 180deg 210deg, transparent 210deg 240deg,
-                var(--black) 240deg 270deg, transparent 270deg 300deg,
-                var(--black) 300deg 330deg, transparent 330deg 360deg);
-            left: 20px;
-            top: 70px;
-            animation: gear-rotate 8s linear infinite;
-        }
-
-        .gear-medium {
-            width: 120px;
-            height: 120px;
-            background:
-                conic-gradient(from 0deg, var(--red) 0deg 45deg, transparent 45deg 90deg,
-                var(--red) 90deg 135deg, transparent 135deg 180deg,
-                var(--red) 180deg 225deg, transparent 225deg 270deg,
-                var(--red) 270deg 315deg, transparent 315deg 360deg);
-            right: 30px;
-            top: 40px;
-            animation: gear-rotate-reverse 6s linear infinite;
-        }
-
-        .gear-small {
-            width: 80px;
-            height: 80px;
-            background:
-                conic-gradient(from 0deg, var(--gray) 0deg 45deg, transparent 45deg 90deg,
-                var(--gray) 90deg 135deg, transparent 135deg 180deg,
-                var(--gray) 180deg 225deg, transparent 225deg 270deg,
-                var(--gray) 270deg 315deg, transparent 315deg 360deg);
-            right: 60px;
-            bottom: 60px;
-            animation: gear-rotate 4s linear infinite;
-        }
-
-        @keyframes gear-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes gear-rotate-reverse {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
+        @keyframes arrow-extend {
+            0%, 65% { width: 0; opacity: 0; }
+            85%, 100% { width: 80px; opacity: 1; }
         }
 
         /* Sections */
@@ -466,10 +460,10 @@
         }
 
         .challenge .shape-blob {
-            width: 300px;
-            height: 300px;
-            top: 50px;
-            right: 50px;
+            width: 280px;
+            height: 280px;
+            top: 60px;
+            right: 60px;
         }
 
         .challenge-content {
@@ -502,11 +496,22 @@
         .how-it-works::before {
             content: '';
             position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 200px;
+            top: -80px;
+            right: -80px;
+            width: 350px;
+            height: 175px;
             background: rgba(255,255,255,0.1);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .how-it-works::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 250px;
+            height: 125px;
+            background: rgba(255,255,255,0.08);
             border-radius: 50% 50% 0 0;
         }
 
@@ -518,29 +523,30 @@
             background: var(--white);
         }
 
-        .phases-grid {
+        .steps-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
             position: relative;
             z-index: 1;
         }
 
-        .phase {
+        .step {
             background: rgba(255,255,255,0.1);
             border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
+            padding: 2rem 1.5rem;
+            text-align: center;
             border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
-        .phase:hover {
+        .step:hover {
             background: rgba(255,255,255,0.15);
             transform: translateY(-5px);
         }
 
-        .phase-number {
+        .step-number {
             width: 50px;
             height: 50px;
             background: var(--white);
@@ -551,20 +557,20 @@
             justify-content: center;
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 1.25rem;
+            margin: 0 auto 1.25rem;
         }
 
-        .phase-title {
-            font-size: 1.5rem;
+        .step-title {
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--white);
             margin-bottom: 0.75rem;
         }
 
-        .phase-desc {
+        .step-desc {
             color: rgba(255,255,255,0.85);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .process-summary {
@@ -583,6 +589,12 @@
             color: var(--white);
         }
 
+        .process-summary .simple {
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
         /* Human Way Box */
         .human-way {
             background: var(--cream);
@@ -591,10 +603,10 @@
         }
 
         .human-way .shape-circle {
-            width: 200px;
-            height: 200px;
-            top: 100px;
-            left: 50px;
+            width: 180px;
+            height: 180px;
+            top: 80px;
+            left: 60px;
             background: var(--sage);
         }
 
@@ -652,21 +664,21 @@
         }
 
         .what-you-get .shape-blob {
-            width: 250px;
-            height: 250px;
-            bottom: 100px;
-            right: 100px;
+            width: 220px;
+            height: 220px;
+            bottom: 80px;
+            right: 80px;
         }
 
-        .services-grid {
+        .deliverables-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             position: relative;
             z-index: 1;
         }
 
-        .service-card {
+        .deliverable {
             background: var(--cream);
             padding: 2rem;
             border-radius: 20px;
@@ -674,22 +686,40 @@
             border: 1px solid transparent;
         }
 
-        .service-card:hover {
+        .deliverable:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             border-color: var(--red);
         }
 
-        .service-card h3 {
-            font-size: 1.375rem;
-            font-weight: 600;
-            color: var(--black);
-            margin-bottom: 1rem;
+        .deliverable-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(230, 59, 46, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
         }
 
-        .service-card p {
+        .deliverable-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--red);
+        }
+
+        .deliverable-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .deliverable-desc {
             color: var(--gray);
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Who For Section */
@@ -831,10 +861,10 @@
         }
 
         .testimonials .shape-sunrise {
-            width: 300px;
-            height: 150px;
+            width: 280px;
+            height: 140px;
             bottom: 0;
-            left: 50px;
+            left: 60px;
         }
 
         .testimonials-grid {
@@ -900,6 +930,11 @@
         .testimonial-name {
             font-weight: 600;
             color: var(--black);
+            text-decoration: none;
+        }
+
+        a.testimonial-name:hover {
+            color: var(--red);
         }
 
         .testimonial-role {
@@ -917,10 +952,10 @@
         .pricing::before {
             content: '';
             position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 200px;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 175px;
             background: var(--red);
             opacity: 0.15;
             border-radius: 50% 50% 0 0;
@@ -1043,6 +1078,7 @@
             margin-top: 2rem;
             color: var(--gray-light);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .price-note a {
@@ -1062,10 +1098,10 @@
         }
 
         .guide .shape-blob {
-            width: 200px;
-            height: 200px;
-            top: 100px;
-            right: 100px;
+            width: 180px;
+            height: 180px;
+            top: 80px;
+            right: 80px;
         }
 
         .guide-grid {
@@ -1188,11 +1224,15 @@
         .contact {
             padding: 100px 2rem;
             background: var(--cream);
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-content {
             max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-header {
@@ -1208,12 +1248,11 @@
             color: var(--black);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
-            line-height: 1.15;
         }
 
         .contact-description {
-            color: var(--gray);
             font-size: 1.15rem;
+            color: var(--gray);
             line-height: 1.7;
         }
 
@@ -1413,17 +1452,6 @@
         }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -1454,12 +1482,12 @@
                 font-size: 2.75rem;
             }
 
-            .phases-grid {
-                grid-template-columns: 1fr;
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .deliverables-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .why-layout {
@@ -1473,9 +1501,35 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1.25rem 4rem;
+                overflow: visible;
+            }
+
+            .hero .shape-sunrise,
+            .hero .shape-circle {
+                display: none;
+            }
+
+            .hero-container {
+                gap: 2rem;
+            }
+
+            .hero-graphic {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-accent-line {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .steps-grid,
             .who-grid,
             .testimonials-grid,
-            .guide-grid {
+            .guide-grid,
+            .deliverables-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1544,202 +1598,38 @@
         }
 
         /* Mobile Navigation */
-        .mobile-nav-toggle {
-            display: none;
-            width: 48px;
-            height: 48px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            z-index: 1002;
-            padding: 12px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .mobile-nav-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--black);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-origin: center;
-        }
-
+        .mobile-nav-toggle { display: none; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; position: relative; z-index: 1002; padding: 12px; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+        .mobile-nav-toggle span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
         .mobile-nav-toggle span:first-child { width: 24px; }
         .mobile-nav-toggle span:last-child { width: 16px; margin-left: auto; }
-
-        .mobile-nav-toggle.active span:first-child {
-            transform: rotate(45deg) translateY(5.5px);
-        }
-        .mobile-nav-toggle.active span:last-child {
-            width: 24px;
-            transform: rotate(-45deg) translateY(-5.5px);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-nav-toggle {
-                display: flex;
-            }
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--cream);
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            overflow: hidden;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-accent {
-            position: absolute;
-            top: -50%; right: -30%;
-            width: 80%; height: 150%;
-            background: var(--red);
-            opacity: 0.06;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: translateX(100%) rotate(-15deg);
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-accent {
-            transform: translateX(0) rotate(-15deg);
-        }
-
-        .mobile-nav-accent-secondary {
-            position: absolute;
-            bottom: -20%; left: -20%;
-            width: 60%; height: 80%;
-            background: var(--red);
-            opacity: 0.03;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            transform: translateY(100%);
-            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-accent-secondary {
-            transform: translateY(0);
-        }
-
-        .mobile-nav-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            height: 100%;
-            padding: 100px 40px 40px;
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: static;
-            transform: none;
-            opacity: 1;
-            pointer-events: auto;
-            background: transparent;
-            box-shadow: none;
-            backdrop-filter: none;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-            padding: 16px 0;
-            position: relative;
-            transform: translateX(-40px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease, color 0.3s ease;
-            letter-spacing: -0.02em;
-        }
-
-        .mobile-nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0; bottom: 8px;
-            width: 0; height: 3px;
-            background: var(--red);
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
+        .mobile-nav-toggle.active span:first-child { transform: rotate(45deg) translateY(5.5px); }
+        .mobile-nav-toggle.active span:last-child { width: 24px; transform: rotate(-45deg) translateY(-5.5px); }
+        @media (max-width: 768px) { .mobile-nav-toggle { display: flex; } }
+        .mobile-nav-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 1001; opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease; overflow: hidden; }
+        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-nav-accent { position: absolute; top: -50%; right: -30%; width: 80%; height: 150%; background: var(--red); opacity: 0.06; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translateX(100%) rotate(-15deg); transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .mobile-nav-overlay.active .mobile-nav-accent { transform: translateX(0) rotate(-15deg); }
+        .mobile-nav-accent-secondary { position: absolute; bottom: -20%; left: -20%; width: 60%; height: 80%; background: var(--red); opacity: 0.03; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: translateY(100%); transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.1s; }
+        .mobile-nav-overlay.active .mobile-nav-accent-secondary { transform: translateY(0); }
+        .mobile-nav-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 100%; padding: 100px 40px 40px; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 0; position: static; transform: none; opacity: 1; pointer-events: auto; background: transparent; box-shadow: none; backdrop-filter: none; }
+        .mobile-nav-link { display: block; font-size: 2.2rem; font-weight: 600; color: var(--black); text-decoration: none; padding: 16px 0; position: relative; transform: translateX(-40px); opacity: 0; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease, color 0.3s ease; letter-spacing: -0.02em; }
+        .mobile-nav-link::after { content: ''; position: absolute; left: 0; bottom: 8px; width: 0; height: 3px; background: var(--red); transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
         .mobile-nav-link:hover::after { width: 60px; }
         .mobile-nav-link:hover { color: var(--red); }
-
-        .mobile-nav-overlay.active .mobile-nav-link {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
+        .mobile-nav-overlay.active .mobile-nav-link { transform: translateX(0); opacity: 1; }
         .mobile-nav-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.15s; }
         .mobile-nav-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.22s; }
         .mobile-nav-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.29s; }
         .mobile-nav-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.36s; }
-
-        .mobile-nav-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 40px;
-            padding: 20px 36px;
-            background: var(--red);
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 100px;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.45s, opacity 0.6s ease 0.45s, background 0.3s ease;
-        }
-
+        .mobile-nav-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; padding: 20px 36px; background: var(--red); color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; border-radius: 100px; transform: translateY(30px); opacity: 0; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.45s, opacity 0.6s ease 0.45s, background 0.3s ease; }
         .mobile-nav-cta svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
         .mobile-nav-cta:hover { background: var(--red-dark); }
         .mobile-nav-cta:hover svg { transform: translateX(4px); }
-
-        .mobile-nav-overlay.active .mobile-nav-cta {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .mobile-nav-footer {
-            margin-top: auto;
-            padding-top: 40px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            width: 100%;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.55s, opacity 0.6s ease 0.55s;
-        }
-
-        .mobile-nav-overlay.active .mobile-nav-footer {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .mobile-nav-tagline {
-            font-size: 0.9rem;
-            color: var(--gray);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
+        .mobile-nav-overlay.active .mobile-nav-cta { transform: translateY(0); opacity: 1; }
+        .mobile-nav-footer { margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(0, 0, 0, 0.08); width: 100%; transform: translateY(20px); opacity: 0; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.55s, opacity 0.6s ease 0.55s; }
+        .mobile-nav-overlay.active .mobile-nav-footer { transform: translateY(0); opacity: 1; }
+        .mobile-nav-tagline { font-size: 0.9rem; color: var(--gray); letter-spacing: 0.05em; text-transform: uppercase; }
         body.nav-open { overflow: hidden; }
     </style>
 </head>
@@ -1759,7 +1649,7 @@
                 </a>
                 <div class="nav-divider"></div>
                 <div class="service-info">
-                    <span class="service-name">AI Acceleration</span>
+                    <span class="service-name">AI Activation</span>
                     <span class="service-target">For Organizations</span>
                 </div>
             </div>
@@ -1804,9 +1694,9 @@
         <div class="hero-container">
             <div class="hero-content reveal">
                 <div class="hero-accent-line"></div>
-                <h1 class="hero-title">AI that delivers today. Teams ready for what comes next.</h1>
+                <h1 class="hero-title">From AI potential to execution ready in 30 days</h1>
                 <p class="hero-desc">
-                    Your team learns by doing. We're with them from first experiments to working pilots, until they're ready to adapt without us.
+                    30 days to move from "we should do something with AI" to pilots your team can actually execute.
                 </p>
                 <a href="#contact" class="btn btn-primary">
                     Get in Touch
@@ -1817,10 +1707,13 @@
             </div>
             <div class="hero-visual reveal">
                 <div class="hero-graphic">
-                    <div class="gears-container">
-                        <div class="gear gear-large"></div>
-                        <div class="gear gear-medium"></div>
-                        <div class="gear gear-small"></div>
+                    <div class="converge-container">
+                        <div class="converge-line line-1"></div>
+                        <div class="converge-line line-2"></div>
+                        <div class="converge-line line-3"></div>
+                        <div class="converge-line line-4"></div>
+                        <div class="converge-point"></div>
+                        <div class="arrow-out"></div>
                     </div>
                 </div>
             </div>
@@ -1833,13 +1726,13 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">The Problem</div>
-                <h2 class="section-title section-title-dark">Strategy is just the beginning</h2>
+                <h2 class="section-title section-title-dark">AI everywhere. Clarity nowhere.</h2>
             </div>
             <div class="challenge-content reveal">
-                <p>You have your AI strategy. Maybe you completed AI Activation. Maybe you developed it internally. Either way, you know what you want to do.</p>
-                <p>Now comes the hard part: making it real. Implementation. Change management. Building internal capability. Maintaining momentum when the initial excitement fades.</p>
-                <p>Most AI strategies die in the gap between "good idea" and "working system." Teams get stuck. Pilots stall. Champions burn out. Vendors promise quick wins that never materialize.</p>
-                <p>You need a partner who stays in the trenches with you. Not someone who hands you a plan and leaves.</p>
+                <p>Your leadership team knows AI matters. But every conversation ends the same way: "We should do something."</p>
+                <p>You've seen the vendor pitches. The hype cycles. The "AI will change everything" presentations. None of them answer the question that matters: what should WE do, specifically, given OUR situation?</p>
+                <p>Meanwhile, your competitors are moving. Your team is anxious. And the longer you wait, the harder it gets to catch up.</p>
+                <p>You don't need more awareness. You need a clear strategy, a practical roadmap, and pilots you can actually execute.</p>
             </div>
         </div>
     </section>
@@ -1849,34 +1742,41 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">The Solution</div>
-                <h2 class="section-title section-title-light">The long game, together</h2>
+                <h2 class="section-title section-title-light">Four weeks. Complete clarity.</h2>
             </div>
 
-            <div class="phases-grid">
-                <div class="phase reveal">
-                    <div class="phase-number">1</div>
-                    <h3 class="phase-title">Scope Together</h3>
-                    <p class="phase-desc">
-                        We understand your situation and define what you need. Not every engagement includes everything. We scope what makes sense for you: capacity building, implementation sprints, leadership mentoring, or a combination.
+            <div class="steps-grid">
+                <div class="step reveal">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Week 1: Discovery</h3>
+                    <p class="step-desc">
+                        Team AI Crash Session (90 minutes, up to 10 stakeholders). Stakeholder interviews. Current state assessment.
                     </p>
                 </div>
-                <div class="phase reveal">
-                    <div class="phase-number">2</div>
-                    <h3 class="phase-title">Execute and Build</h3>
-                    <p class="phase-desc">
-                        Hands on work: implementation sprints where we lead (with partners as needed), capacity building to develop internal AI champions, innovation sessions to explore new opportunities, leadership mentoring to support those leading change.
+                <div class="step reveal">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Week 2: Strategy</h3>
+                    <p class="step-desc">
+                        Synthesize findings and create your 12 month roadmap. Mid week check in to validate direction.
                     </p>
                 </div>
-                <div class="phase reveal">
-                    <div class="phase-number">3</div>
-                    <h3 class="phase-title">Extend or Complete</h3>
-                    <p class="phase-desc">
-                        When the initial scope is done, you choose: continue with us for more work, or move forward independently. Either way, you have working AI and capable people. You're never locked in.
+                <div class="step reveal">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Week 3: Pilot Design</h3>
+                    <p class="step-desc">
+                        Conceptualize 3 pilot experiments WITH your team. Design detailed specifications. Champion training workshop.
+                    </p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Week 4: Handoff</h3>
+                    <p class="step-desc">
+                        Final presentation to leadership. Complete documentation package. 30 day check in scheduled.
                     </p>
                 </div>
             </div>
             <div class="process-summary reveal">
-                <p><strong>From strategy to independence. Support that fades when you're ready.</strong></p>
+                <p><strong>No more AI paralysis. A roadmap you'll actually follow.</strong></p>
             </div>
         </div>
     </section>
@@ -1886,26 +1786,76 @@
         <div class="shape-blob"></div>
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">Flexible Partnership</div>
-                <h2 class="section-title section-title-dark">How we show up</h2>
+                <div class="section-label">Deliverables</div>
+                <h2 class="section-title section-title-dark">What you get</h2>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3>Leadership Mentoring</h3>
-                    <p>Support for executives and team leads driving AI change. Strategic thinking, change management, navigating organizational politics.</p>
+            <div class="deliverables-grid">
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18 9l-5 5-4-4-3 3"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">AI Readiness Assessment</div>
+                    <div class="deliverable-desc">Maturity scorecard and current state analysis</div>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Capacity Building</h3>
-                    <p>Develop internal AI champions who can lead future AI work independently. Structured training, hands on practice, ongoing support until they're confident.</p>
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">12 Month Roadmap</div>
+                    <div class="deliverable-desc">Detailed AI adoption plan with board ready presentation</div>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Discovery Sprints</h3>
-                    <p>Explore new AI opportunities, prototype rapidly, test ideas before committing resources. Discovery work that leads somewhere.</p>
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">3 Pilot Designs</div>
+                    <div class="deliverable-desc">Step by step specifications with objectives, metrics, and timelines</div>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Implementation Sprints</h3>
-                    <p>We lead the work, with partners as needed. From pilot to production. Clear milestones, measurable outcomes, working systems at the end.</p>
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">Champion Training</div>
+                    <div class="deliverable-desc">Materials and workshop for internal AI leaders</div>
+                </div>
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20V10"/>
+                            <path d="M18 20V4"/>
+                            <path d="M6 20v-4"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">Measurement Framework</div>
+                    <div class="deliverable-desc">Success metrics and governance structures</div>
+                </div>
+                <div class="deliverable reveal">
+                    <div class="deliverable-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-title">Decision Framework</div>
+                    <div class="deliverable-desc">Scale, pivot, or kill criteria for each pilot</div>
                 </div>
             </div>
         </div>
@@ -1923,19 +1873,19 @@
                 <div class="who-card reveal">
                     <h3>Who this is for</h3>
                     <ul class="who-list for-list">
-                        <li><strong>Organizations with a clear AI strategy who need help executing</strong> You know what you want. You need help making it happen.</li>
-                        <li><strong>Companies that completed AI Activation and want to continue</strong> We already understand your context. Let's keep moving.</li>
-                        <li><strong>Leadership teams ready to invest in sustained partnership</strong> This isn't a quick fix. It's building real capability.</li>
-                        <li><strong>Organizations that value building internal capability, not dependency</strong> You want your team to lead AI work, not rely on us forever.</li>
+                        <li><strong>Organizations (50 to 500 people) ready to move on AI</strong> You've talked about it long enough. Now you need a plan.</li>
+                        <li><strong>Leadership teams who want clarity before committing</strong> You want to know the path before you start walking.</li>
+                        <li><strong>Companies that need a strategic roadmap to align stakeholders</strong> Everyone has opinions about AI. You need one coherent strategy.</li>
+                        <li><strong>Decision makers who can commit time during the 30 days</strong> This requires real engagement, not delegation.</li>
                     </ul>
                 </div>
                 <div class="who-card reveal">
                     <h3>Who this isn't for</h3>
                     <ul class="who-list not-list">
-                        <li><strong>Organizations without clear AI direction</strong> Start with <a href="ai-activation-sprint-v3.html">AI Activation</a> to develop your strategy first.</li>
-                        <li><strong>Companies looking for a one time training session</strong> Consider <a href="ai-amplifier-v3.html">AI Amplifier</a> for individual or small team training.</li>
-                        <li><strong>Teams wanting someone to just "do the AI stuff"</strong> We build WITH you, not FOR you.</li>
-                        <li><strong>Organizations that can't commit leadership engagement</strong> This requires real involvement, not delegation.</li>
+                        <li><strong>Smaller teams (under 50 people)</strong> Consider <a href="ai-amplifier.html">AI Amplifier</a> for individuals or small team training.</li>
+                        <li><strong>Organizations not ready to commit leadership time</strong> If you can't carve out time for this, you're not ready.</li>
+                        <li><strong>Companies looking for just training</strong> This is strategy, not capability building. For ongoing training, see <a href="ai-acceleration.html">AI Acceleration</a>.</li>
+                        <li><strong>Organizations wanting someone to implement for them</strong> We design WITH you, not FOR you.</li>
                     </ul>
                 </div>
             </div>
@@ -2076,29 +2026,25 @@
 
             <div class="why-layout">
                 <div class="why-left reveal">
-                    <p>Strategy without execution is just a presentation.</p>
-                    <p>Implementation without capability building creates dependency. We do both. And we stay until you don't need us anymore.</p>
+                    <p>This isn't consulting theory.</p>
+                    <p>We don't design in isolation. Our methodology brings your stakeholders into the room, combining 25+ years of product leadership with true co-design.</p>
                 </div>
                 <div class="why-right">
                     <div class="why-card reveal">
                         <h3>You get the A-team</h3>
-                        <p>Senior leaders who've built and shipped. No account managers passing notes.</p>
+                        <p>You work directly with senior leaders who've built and shipped. Not account managers passing notes to offshore teams.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We're not just advisors</h3>
-                        <p>We get in the trenches. We lead implementation work. We solve problems alongside your team.</p>
+                        <h3>We work WITH your team, not just FOR you</h3>
+                        <p>We don't give you a generic framework and leave. We design a roadmap and pilots that fit your specific context, capabilities, and constraints.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We build your capability, not ours</h3>
-                        <p>Every engagement is designed to make you more independent, not more reliant on us.</p>
+                        <h3>We don't over promise</h3>
+                        <p>AI isn't magic. Some pilots will work, some won't. We build in decision frameworks so you know when to scale, pivot, or kill.</p>
                     </div>
                     <div class="why-card reveal">
-                        <h3>We protect human skills while implementing AI</h3>
-                        <p>You don't lose what makes your team valuable. You amplify it.</p>
-                    </div>
-                    <div class="why-card reveal">
-                        <h3>We don't lock you in</h3>
-                        <p>Scope what makes sense. Stop when you're ready. Continue as long as it's valuable.</p>
+                        <h3>We focus on execution, not just strategy</h3>
+                        <p>Every deliverable is designed to be actionable. Your roadmap isn't a vision document. It's a plan you can actually follow.</p>
                     </div>
                 </div>
             </div>
@@ -2110,26 +2056,28 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Investment</div>
-                <h2 class="section-title section-title-light">Ready to accelerate?</h2>
+                <h2 class="section-title section-title-light">Ready to get started?</h2>
             </div>
 
             <div class="price-card reveal">
-                <div class="price-amount">30,000+ EUR</div>
-                <p class="price-detail">Starts as defined intervention, can extend to ongoing partnership<br>Scope and pricing customized to your needs</p>
+                <div class="price-amount">10,000 to 15,000 EUR</div>
+                <p class="price-detail">Price based on company size + complexity, determined on discovery call</p>
                 <ul class="price-features">
-                    <li>Flexible scope: capacity building, implementation, innovation, mentoring</li>
-                    <li>Hands on partnership (we're in the trenches with you)</li>
-                    <li>Working AI systems (not just plans)</li>
-                    <li>Internal champions who can lead independently</li>
-                    <li>Protected human skills (amplification, not replacement)</li>
-                    <li>No lock in</li>
+                    <li>4 week intensive engagement</li>
+                    <li>AI Readiness Assessment</li>
+                    <li>12 month roadmap</li>
+                    <li>3 detailed pilot designs</li>
+                    <li>Champion training workshop</li>
+                    <li>Complete documentation</li>
+                    <li>30 day check in</li>
                 </ul>
                 <div class="price-cta-group">
                     <a href="#contact" class="price-cta">Get in touch</a>
                     <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" rel="noopener noreferrer" class="price-cta-secondary">Talk to the founder</a>
                 </div>
                 <p class="price-note">
-                    Need strategy first? Try <a href="ai-activation-sprint-v3.html">AI Activation</a>.
+                    Want hands on implementation support after the sprint?<br>
+                    Continue with <a href="ai-acceleration.html">AI Acceleration</a>
                 </p>
             </div>
         </div>
@@ -2145,24 +2093,24 @@
 
             <div class="faq-list">
                 <div class="faq-item reveal">
-                    <div class="faq-question">How long does a typical engagement last?</div>
-                    <div class="faq-answer">Depends on scope. Initial interventions might be 3 to 6 months. Some partnerships extend longer. We scope together and adjust as we go. You're never locked in.</div>
+                    <div class="faq-question">How much time does our team need to commit?</div>
+                    <div class="faq-answer">Plan for key stakeholders to be available for: 90 minute AI Crash Session (Week 1), individual interviews (30 to 60 mins each, Week 1), pilot design workshops (Week 3), and final presentation (Week 4). Leadership decision makers should be involved throughout.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">Do we need to complete AI Activation first?</div>
-                    <div class="faq-answer">No, but you need a clear AI strategy. AI Activation is one way to develop that. If you already have direction, we can start with AI Acceleration directly.</div>
+                    <div class="faq-question">What if we're not sure we're ready?</div>
+                    <div class="faq-answer">That's what the discovery call is for. We'll assess your situation together and tell you honestly whether AI Activation makes sense for you right now. Sometimes the answer is "not yet" and that's okay.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">What's the difference between this and hiring consultants?</div>
-                    <div class="faq-answer">We're not observers who write reports. We get in the trenches. We lead implementation. We build your capability so you don't need us forever. And we protect human skills while implementing AI.</div>
+                    <div class="faq-question">What happens after the 30 days?</div>
+                    <div class="faq-answer">You have everything you need to execute independently. Your pilots are designed step by step, with clear success metrics and decision frameworks. If you want hands on support during implementation, we offer AI Acceleration for ongoing partnership.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">How much of our team's time does this require?</div>
-                    <div class="faq-answer">Depends on scope. Capacity building requires your team's active participation. Implementation sprints need stakeholder availability. We design the engagement around your constraints.</div>
+                    <div class="faq-question">How is this different from hiring a consulting firm?</div>
+                    <div class="faq-answer">Traditional consultants give you a strategy deck and leave. We work WITH your team, design pilots that are immediately executable, include champion training so your people can lead, and schedule a 30 day check in to see how you're progressing.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">What if we want to change scope mid engagement?</div>
-                    <div class="faq-answer">That's expected. We adjust as we learn. If something isn't working, we pivot. If you discover new opportunities, we explore them. The partnership is flexible.</div>
+                    <div class="faq-question">Can you work with our existing IT team or vendors?</div>
+                    <div class="faq-answer">Yes. We focus on strategy and conceptualization. Your IT team or vendors handle implementation. Our pilot designs are tool agnostic unless there's a clear best choice.</div>
                 </div>
             </div>
         </div>
@@ -2172,16 +2120,15 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <div class="contact-header reveal">
-                <div class="section-label">Long-term Partnership</div>
-                <h2>Start the conversation about acceleration</h2>
+                <div class="section-label">Take Action</div>
+                <h2>Ready to find your AI direction?</h2>
                 <p class="contact-description">
-                    Strategy is just the beginning. Let's talk about what you need to make AI real in your organization, with ongoing support that grows with you.
+                    You don't need another awareness presentation. You need a strategy you can actually execute. Designed with your team, ready to implement.
                 </p>
             </div>
             <div class="contact-form reveal">
                 <h3>Get in touch</h3>
-                <form>
-                    <input type="hidden" name="source" value="ai-acceleration">
+                <form data-contact-form>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -2192,11 +2139,11 @@
                     </div>
                     <div class="form-group">
                         <label for="message">How can we help?</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                     <div class="form-buttons">
                         <button type="submit" class="btn btn-primary">Send Message</button>
-                        <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
+                        <a href="https://calendly.com/gustavocpimenta/15-m" target="_blank" class="btn btn-secondary">Talk to the founder</a>
                     </div>
                 </form>
             </div>
@@ -2215,10 +2162,10 @@
                 <div class="footer-link-column">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="ai-activation-sprint-v3.html">AI Activation</a></li>
-                        <li><a href="ai-acceleration-v3.html">AI Acceleration</a></li>
-                        <li><a href="ai-amplifier-v3.html">AI Amplifier</a></li>
-                        <li><a href="strategic-sparring-v3.html">Strategic Sparring</a></li>
+                        <li><a href="ai-activation.html">AI Activation</a></li>
+                        <li><a href="ai-acceleration.html">AI Acceleration</a></li>
+                        <li><a href="ai-amplifier.html">AI Amplifier</a></li>
+                        <li><a href="strategic-sparring.html">Strategic Sparring</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-column">
@@ -2297,27 +2244,15 @@
             const overlay = document.querySelector('.mobile-nav-overlay');
             const links = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
             if (!toggle || !overlay) return;
-            function openNav() {
-                toggle.classList.add('active');
-                toggle.setAttribute('aria-expanded', 'true');
-                overlay.classList.add('active');
-                overlay.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('nav-open');
-            }
-            function closeNav() {
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-                overlay.classList.remove('active');
-                overlay.setAttribute('aria-hidden', 'true');
-                document.body.classList.remove('nav-open');
-            }
-            toggle.addEventListener('click', function() {
-                overlay.classList.contains('active') ? closeNav() : openNav();
-            });
+            function openNav() { toggle.classList.add('active'); toggle.setAttribute('aria-expanded', 'true'); overlay.classList.add('active'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('nav-open'); }
+            function closeNav() { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); document.body.classList.remove('nav-open'); }
+            toggle.addEventListener('click', () => overlay.classList.contains('active') ? closeNav() : openNav());
             links.forEach(link => link.addEventListener('click', closeNav));
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeNav(); });
             window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
         })();
     </script>
+    <script src="/js/contact-form.js"></script>
+    <script src="/js/cookie-consent.js"></script>
 </body>
 </html>
