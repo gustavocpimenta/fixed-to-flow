@@ -2484,7 +2484,7 @@
                 return arr[Math.floor(Math.random() * arr.length)];
             }
 
-            function createParticle(container) {
+            function createParticle(container, startX, startY) {
                 const particle = document.createElement('div');
                 particle.className = 'confetti-particle';
 
@@ -2519,8 +2519,8 @@
                         particle.style.borderRadius = '2px';
                 }
 
-                particle.style.left = randomBetween(0, 100) + '%';
-                particle.style.top = randomBetween(-15, -5) + '%';
+                particle.style.left = startX + '%';
+                particle.style.top = startY + '%';
                 particle.style.opacity = '0';
 
                 container.appendChild(particle);
@@ -2529,12 +2529,13 @@
 
             function animateParticle(particle, delay) {
                 const drift = randomBetween(-30, 30);
-                const duration = randomBetween(1200, 2000);
+                const duration = randomBetween(1500, 2500);
                 const rotation = randomBetween(360, 1080) * (Math.random() > 0.5 ? 1 : -1);
+                const fallDistance = randomBetween(100, 200);
 
                 particle.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: 'translateY(320px) translateX(' + drift + 'px) rotate(' + rotation + 'deg)', opacity: 0 }
+                    { transform: 'translateY(0) rotate(0deg) scale(1)', opacity: 1 },
+                    { transform: 'translateY(' + fallDistance + 'px) translateX(' + drift + 'px) rotate(' + rotation + 'deg) scale(0.5)', opacity: 0 }
                 ], {
                     duration: duration,
                     delay: delay,
@@ -2547,9 +2548,9 @@
 
             function triggerConfetti() {
                 confirmation.querySelectorAll('.confetti-particle').forEach(function(p) { p.remove(); });
-                for (var i = 0; i < 30; i++) {
-                    var particle = createParticle(confirmation);
-                    animateParticle(particle, randomBetween(0, 400));
+                for (var i = 0; i < 60; i++) {
+                    var particle = createParticle(confirmation, randomBetween(0, 100), randomBetween(0, 80));
+                    animateParticle(particle, randomBetween(0, 500));
                 }
             }
 
