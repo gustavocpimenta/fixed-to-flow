@@ -122,6 +122,13 @@ Use these specialized agents when their craft is needed. These are **recommendat
 
 ---
 
+## Git Workflow
+
+- **ALWAYS ask before committing** - never commit without explicit user approval
+- **ALWAYS ask before pushing** - never push without explicit user approval
+
+---
+
 ## Development
 
 ### Local Development
