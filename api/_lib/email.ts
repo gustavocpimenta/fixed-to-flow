@@ -1,12 +1,18 @@
 import { Resend } from "resend";
 import type { Contact } from "./schema.js";
 
-// Initialize Resend with API key
-if (!process.env.RESEND_API_KEY) {
-  throw new Error("RESEND_API_KEY environment variable is required");
-}
+// Lazy initialization to avoid cold start issues in Vercel serverless
+let resend: Resend | null = null;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend(): Resend {
+  if (!resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY environment variable is required");
+    }
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 
 /**
  * Send contact form notification email to Gus
@@ -16,7 +22,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendContactEmail(contact: Contact): Promise<boolean> {
   try {
     const sourcePage = contact.source || "unknown";
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: "Fixed to Flow <onboarding@resend.dev>",
       to: "gustavo@gustavopimenta.com",
       subject: `[${sourcePage}] New contact from ${contact.name}`,
