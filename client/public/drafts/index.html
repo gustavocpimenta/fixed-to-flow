@@ -1536,6 +1536,73 @@
             transform: translateY(0);
         }
 
+        /* Confetti Confirmation */
+        .form-wrapper {
+            position: relative;
+        }
+
+        .form-confirmation {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 2;
+            background: var(--white);
+            border-radius: 24px;
+        }
+
+        .form-confirmation.active {
+            display: flex;
+        }
+
+        .form-confirmation .headline {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .form-confirmation .subtext {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .form-confirmation.active .confetti {
+            animation: confetti-fall 1.4s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(180px) rotate(720deg); opacity: 0; }
+        }
+
+        .confetti:nth-child(1) { left: 5%; top: -10px; background: var(--red); animation-delay: 0s; border-radius: 2px; }
+        .confetti:nth-child(2) { left: 15%; top: -18px; background: #22C55E; animation-delay: 0.08s; border-radius: 50%; }
+        .confetti:nth-child(3) { left: 28%; top: 0; background: #F59E0B; animation-delay: 0.04s; }
+        .confetti:nth-child(4) { left: 42%; top: -12px; background: var(--red); animation-delay: 0.12s; border-radius: 50%; }
+        .confetti:nth-child(5) { left: 55%; top: -5px; background: #3B82F6; animation-delay: 0.06s; }
+        .confetti:nth-child(6) { left: 68%; top: -15px; background: #22C55E; animation-delay: 0.1s; border-radius: 2px; }
+        .confetti:nth-child(7) { left: 80%; top: -2px; background: #F59E0B; animation-delay: 0.02s; border-radius: 50%; }
+        .confetti:nth-child(8) { left: 92%; top: -8px; background: #3B82F6; animation-delay: 0.14s; }
+        .confetti:nth-child(9) { left: 35%; top: -20px; background: var(--red); animation-delay: 0.05s; border-radius: 2px; }
+        .confetti:nth-child(10) { left: 62%; top: 5px; background: #22C55E; animation-delay: 0.16s; }
+        .confetti:nth-child(11) { left: 10%; top: -3px; background: #3B82F6; animation-delay: 0.09s; border-radius: 50%; }
+        .confetti:nth-child(12) { left: 85%; top: -14px; background: var(--red); animation-delay: 0.11s; }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-container {
@@ -1716,7 +1783,7 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo"><img src="logo.svg" alt="Fixed to Flow"></a>
+            <a href="index.html" class="logo"><img src="/logo.svg" alt="Fixed to Flow"></a>
             <div class="nav-links">
                 <a href="#services">What We Do</a>
                 <a href="#why-us">Why Us</a>
@@ -1878,7 +1945,7 @@
 
             <div class="founder-card reveal">
                 <div class="founder-image">
-                    <img src="gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
+                    <img src="/gus_novo.jpg" alt="Gustavo da Cunha Pimenta">
                 </div>
                 <div class="founder-info">
                     <div class="founder-label">Founder Story</div>
@@ -1910,21 +1977,21 @@
         <div class="trusted-by-content reveal">
             <p>Trusted By</p>
             <div class="logos-grid">
-                <div class="logo-item"><img src="vodafone.png" alt="Vodafone"></div>
-                <div class="logo-item"><img src="universidade_lisboa.png" alt="Universidade de Lisboa"></div>
-                <div class="logo-item"><img src="seguranca_social.png" alt="Segurança Social"></div>
-                <div class="logo-item"><img src="randstad.png" alt="Randstad"></div>
-                <div class="logo-item"><img src="seedrs.png" alt="Seedrs"></div>
-                <div class="logo-item"><img src="montepio.png" alt="Montepio"></div>
-                <div class="logo-item"><img src="adeo.png" alt="Adeo"></div>
-                <div class="logo-item"><img src="loreal.png" alt="L'Oréal"></div>
-                <div class="logo-item"><img src="cml.png" alt="Câmara Municipal de Lisboa"></div>
-                <div class="logo-item"><img src="galp.png" alt="Galp"></div>
-                <div class="logo-item"><img src="claro.png" alt="Claro"></div>
-                <div class="logo-item"><img src="bcp.png" alt="Millennium BCP"></div>
-                <div class="logo-item"><img src="bp.png" alt="BP"></div>
-                <div class="logo-item"><img src="tecnico.png" alt="Técnico Lisboa"></div>
-                <div class="logo-item"><img src="lannding.png" alt="Landing.Jobs"></div>
+                <div class="logo-item"><img src="/vodafone.png" alt="Vodafone"></div>
+                <div class="logo-item"><img src="/universidade_lisboa.png" alt="Universidade de Lisboa"></div>
+                <div class="logo-item"><img src="/seguranca_social.png" alt="Segurança Social"></div>
+                <div class="logo-item"><img src="/randstad.png" alt="Randstad"></div>
+                <div class="logo-item"><img src="/seedrs.png" alt="Seedrs"></div>
+                <div class="logo-item"><img src="/montepio.png" alt="Montepio"></div>
+                <div class="logo-item"><img src="/adeo.png" alt="Adeo"></div>
+                <div class="logo-item"><img src="/loreal.png" alt="L'Oréal"></div>
+                <div class="logo-item"><img src="/cml.png" alt="Câmara Municipal de Lisboa"></div>
+                <div class="logo-item"><img src="/galp.png" alt="Galp"></div>
+                <div class="logo-item"><img src="/claro.png" alt="Claro"></div>
+                <div class="logo-item"><img src="/bcp.png" alt="Millennium BCP"></div>
+                <div class="logo-item"><img src="/bp.png" alt="BP"></div>
+                <div class="logo-item"><img src="/tecnico.png" alt="Técnico Lisboa"></div>
+                <div class="logo-item"><img src="/lannding.png" alt="Landing.Jobs"></div>
             </div>
         </div>
     </section>
@@ -1940,27 +2007,44 @@
                 <p class="section-description">Whether you're exploring possibilities or ready to start, we're here to listen and figure out what makes sense together.</p>
             </div>
 
-            <div class="contact-form reveal">
+            <div class="contact-form reveal form-wrapper">
                 <h3>Get in touch</h3>
-                <form>
+                <form id="contact-form">
                     <input type="hidden" name="source" value="homepage">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Your name">
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="you@example.com">
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="message">How can we help?</label>
-                        <textarea id="message" placeholder="Tell us about your project or question..."></textarea>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or question..."></textarea>
                     </div>
                     <div class="form-buttons">
                         <button type="submit" class="btn-primary">Send Message</button>
                         <a href="https://calendly.com/gusatavocpimenta/15-m" target="_blank" class="btn-secondary">Talk to the founder</a>
                     </div>
                 </form>
+                <!-- Confetti Confirmation -->
+                <div class="form-confirmation" id="form-confirmation">
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <span class="headline">Perfect!</span>
+                    <span class="subtext">We'll get back to you shortly.</span>
+                </div>
             </div>
         </div>
     </section>
@@ -2100,6 +2184,43 @@
             links.forEach(link => link.addEventListener('click', closeNav));
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeNav(); });
             window.addEventListener('resize', () => { if (window.innerWidth > 768 && overlay.classList.contains('active')) closeNav(); });
+        })();
+
+        // Contact Form Submission
+        (function() {
+            const form = document.getElementById('contact-form');
+            const confirmation = document.getElementById('form-confirmation');
+            if (!form || !confirmation) return;
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    message: formData.get('message'),
+                    source: formData.get('source')
+                };
+
+                try {
+                    // Send to API
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    // Show confirmation regardless (for demo purposes)
+                    confirmation.classList.add('active');
+                    form.style.visibility = 'hidden';
+
+                } catch (error) {
+                    // Show confirmation anyway for demo
+                    confirmation.classList.add('active');
+                    form.style.visibility = 'hidden';
+                }
+            });
         })();
     </script>
 </body>
