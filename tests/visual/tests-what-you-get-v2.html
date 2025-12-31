@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What You Get Section V2 | Fixed to Flow Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #E5E5E5;
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 60px 40px;
+        }
+
+        .page-header {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .test-block {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .test-label {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .test-description {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .section-wrapper {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 60px 40px 40px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(230, 59, 46, 0.1);
+            color: var(--red);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+
+        /* ============================================
+           SHARED: Standard two-column cards
+           ============================================ */
+        .standard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .standard-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+        }
+
+        .standard-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .standard-list {
+            list-style: none;
+        }
+
+        .standard-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            line-height: 1.6;
+        }
+
+        .standard-list li:last-child {
+            border-bottom: none;
+        }
+
+        .standard-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           ORIGINAL
+           ============================================ */
+        .original-content {
+            padding: 0 60px 60px;
+        }
+
+        .original-addon {
+            margin-top: 2rem;
+            background: var(--cream);
+            border: 2px solid var(--red);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .original-addon::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 60px;
+            height: 30px;
+            background: var(--red);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .original-addon h4 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .original-addon > p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .original-addon-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .original-addon-detail {
+            color: var(--black);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .original-addon-detail span {
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        /* ============================================
+           V1: Minimal inline bar
+           ============================================ */
+        .v1-content {
+            padding: 0 60px 60px;
+        }
+
+        .v1-addon {
+            margin-top: 2rem;
+            background: var(--black);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .v1-addon-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v1-addon-badge {
+            background: var(--red);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .v1-addon-text h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .v1-addon-text p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .v1-addon-cta {
+            padding: 12px 24px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .v1-addon-cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ============================================
+           V2: Simple text with left accent
+           ============================================ */
+        .v2-content {
+            padding: 0 60px 60px;
+        }
+
+        .v2-addon {
+            margin-top: 2rem;
+            background: var(--white);
+            border-left: 4px solid var(--red);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .v2-addon h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .v2-addon p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v2-addon-cta {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid var(--red);
+            color: var(--red);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .v2-addon-cta:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        /* ============================================
+           V3: Integrated third card
+           ============================================ */
+        .v3-content {
+            padding: 0 60px 60px;
+        }
+
+        .v3-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .v3-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .v3-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.25rem;
+        }
+
+        .v3-list {
+            list-style: none;
+        }
+
+        .v3-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .v3-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v3-addon-card {
+            background: var(--red);
+            color: white;
+        }
+
+        .v3-addon-card h3 {
+            color: white;
+        }
+
+        .v3-addon-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .v3-addon-meta {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .v3-addon-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background: white;
+            color: var(--red);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           V4: Question-driven add-on
+           ============================================ */
+        .v4-content {
+            padding: 0 60px 60px;
+        }
+
+        .v4-addon {
+            margin-top: 2rem;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .v4-addon-question {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .v4-addon-answer {
+            font-size: 0.95rem;
+            color: var(--gray);
+            max-width: 550px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .v4-addon-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .v4-addon-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        .v4-addon-meta {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* ============================================
+           V5: Ultra minimal text only
+           ============================================ */
+        .v5-content {
+            padding: 0 60px 60px;
+        }
+
+        .v5-addon {
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v5-addon-text {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .v5-addon-text strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .v5-addon-text a {
+            color: var(--red);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .v5-addon-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           V6: Floating banner
+           ============================================ */
+        .v6-content {
+            padding: 0 60px 60px;
+        }
+
+        .v6-addon {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--black) 0%, var(--gray-dark) 100%);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .v6-addon-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--red);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v6-addon-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+        }
+
+        .v6-addon-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .v6-addon-content p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 400px;
+        }
+
+        .v6-addon-cta {
+            padding: 12px 24px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           V7: Subtle divider with icon
+           ============================================ */
+        .v7-content {
+            padding: 0 60px 60px;
+        }
+
+        .v7-addon {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--red);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .v7-addon-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(230, 59, 46, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .v7-addon-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--red);
+        }
+
+        .v7-addon-content {
+            flex: 1;
+        }
+
+        .v7-addon-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .v7-addon-header h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .v7-addon-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red);
+            background: rgba(230, 59, 46, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .v7-addon-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .v7-addon-meta {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .v7-addon-cta {
+            padding: 10px 20px;
+            background: var(--black);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           V8: Card within card
+           ============================================ */
+        .v8-content {
+            padding: 0 60px 60px;
+        }
+
+        .v8-wrapper {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .v8-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .v8-column h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--red);
+        }
+
+        .v8-list {
+            list-style: none;
+        }
+
+        .v8-list li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .v8-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v8-addon {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .v8-addon h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .v8-addon p {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .v8-addon-cta {
+            padding: 10px 20px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           V9: Compact row at bottom
+           ============================================ */
+        .v9-content {
+            padding: 0 60px 60px;
+        }
+
+        .v9-addon {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 0;
+        }
+
+        .v9-addon-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--red);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .v9-addon-text {
+            flex: 1;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .v9-addon-text strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .v9-addon-cta {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .v9-addon-cta:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           V10: Highlight box
+           ============================================ */
+        .v10-content {
+            padding: 0 60px 60px;
+        }
+
+        .v10-addon {
+            margin-top: 2rem;
+            background: var(--red);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .v10-addon-content h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .v10-addon-content p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 450px;
+        }
+
+        .v10-addon-cta {
+            padding: 12px 24px;
+            background: white;
+            color: var(--red);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .v10-addon-cta:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .section-header {
+                padding: 40px 20px 30px;
+            }
+
+            .original-content, .v1-content, .v2-content, .v3-content,
+            .v4-content, .v5-content, .v6-content, .v7-content,
+            .v8-content, .v9-content, .v10-content {
+                padding: 0 20px 40px;
+            }
+
+            .standard-grid, .v3-grid, .v8-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .v1-addon, .v2-addon, .v6-addon, .v7-addon, .v8-addon, .v9-addon, .v10-addon {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .v6-addon {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .v7-addon {
+                align-items: center;
+            }
+
+            .v7-addon-cta {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>What You Get Section - V2</h1>
+        <p>Same content, different add-on treatments. No prices shown.</p>
+    </div>
+
+    <!-- ============================================
+         ORIGINAL
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Original</span>
+        <p class="test-description">Current version with the red-bordered add-on box</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="original-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="original-addon">
+                    <h4>Strategic Sessions (Add on)</h4>
+                    <p>When you hit a challenge that needs more than 1:1 thinking, bring your team. We design and facilitate a focused session around a specific problem. You leave with clarity and an action plan.</p>
+                    <div class="original-addon-details">
+                        <div class="original-addon-detail">Up to 6 participants <span>(you + your key people)</span></div>
+                        <div class="original-addon-detail">2 hours to half day <span>(based on the challenge)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V1: Minimal inline dark bar
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 1</span>
+        <p class="test-description">Dark inline bar - compact, professional</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v1-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v1-addon">
+                    <div class="v1-addon-left">
+                        <span class="v1-addon-badge">Add-on</span>
+                        <div class="v1-addon-text">
+                            <h4>Strategic Sessions</h4>
+                            <p>Bring your team when the challenge is bigger than 1:1</p>
+                        </div>
+                    </div>
+                    <a href="#" class="v1-addon-cta">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V2: Simple left accent
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 2</span>
+        <p class="test-description">Left accent bar - subtle, editorial</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v2-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v2-addon">
+                    <div>
+                        <h4>Strategic Sessions</h4>
+                        <p>When a challenge needs more than 1:1 thinking, bring your team.</p>
+                    </div>
+                    <a href="#" class="v2-addon-cta">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V3: Integrated third card
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 3</span>
+        <p class="test-description">Three equal cards - add-on as red card</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v3-content">
+                <div class="v3-grid">
+                    <div class="v3-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="v3-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="v3-card">
+                        <h3>What to expect</h3>
+                        <ul class="v3-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                    <div class="v3-card v3-addon-card">
+                        <h3>Strategic Sessions</h3>
+                        <p>When a challenge needs more than 1:1 thinking, bring your team. Facilitated deep-dives that end with clarity and action.</p>
+                        <div class="v3-addon-meta">Up to 6 participants · 2-4 hours</div>
+                        <a href="#" class="v3-addon-cta">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V4: Question-driven centered
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 4</span>
+        <p class="test-description">Question-driven - conversational, centered</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v4-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v4-addon">
+                    <p class="v4-addon-question">Need your team in the room?</p>
+                    <p class="v4-addon-answer">Strategic Sessions are facilitated deep-dives for you and your key people. We tackle one specific challenge and leave with clarity and an action plan.</p>
+                    <a href="#" class="v4-addon-cta">
+                        Tell me more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <p class="v4-addon-meta">Up to 6 participants · 2 hours to half day</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V5: Ultra minimal text
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 5</span>
+        <p class="test-description">Ultra minimal - just text, no box</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v5-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v5-addon">
+                    <p class="v5-addon-text">
+                        <strong>Need your team in the room?</strong> Strategic Sessions are facilitated deep-dives for you and your key people. We design and facilitate a focused session around a specific challenge. You leave with clarity and an action plan. <a href="#">Tell me more →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V6: Floating banner with icon
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 6</span>
+        <p class="test-description">Dark banner with icon - prominent but clean</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v6-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v6-addon">
+                    <div class="v6-addon-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="v6-addon-content">
+                        <h4>Strategic Sessions</h4>
+                        <p>When a challenge needs your team. Facilitated deep-dives that end with clarity and action.</p>
+                    </div>
+                    <a href="#" class="v6-addon-cta">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V7: Subtle divider with icon
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 7</span>
+        <p class="test-description">Top border with icon - structured but light</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v7-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v7-addon">
+                    <div class="v7-addon-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="v7-addon-content">
+                        <div class="v7-addon-header">
+                            <h4>Strategic Sessions</h4>
+                            <span class="v7-addon-tag">Add-on</span>
+                        </div>
+                        <p>When a challenge needs more than 1:1 thinking, bring your team. Facilitated sessions that end with clarity and an action plan.</p>
+                        <div class="v7-addon-meta">Up to 6 participants · 2 hours to half day</div>
+                    </div>
+                    <a href="#" class="v7-addon-cta">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V8: Card within card
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 8</span>
+        <p class="test-description">Nested card - unified, cohesive</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v8-content">
+                <div class="v8-wrapper">
+                    <div class="v8-grid">
+                        <div class="v8-column">
+                            <h3>Strategic Sparring</h3>
+                            <ul class="v8-list">
+                                <li>6 hours per month of 1:1 sessions</li>
+                                <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                                <li>Direct WhatsApp access (weekdays)</li>
+                                <li>Session summaries with key insights</li>
+                                <li>Clarity on what AND how to execute</li>
+                            </ul>
+                        </div>
+                        <div class="v8-column">
+                            <h3>What to expect</h3>
+                            <ul class="v8-list">
+                                <li>Honest, direct feedback (we don't sugarcoat)</li>
+                                <li>Challenge when we think you're wrong</li>
+                                <li>Pattern recognition from 25+ years in the field</li>
+                                <li>Help navigating complexity, not just strategy</li>
+                                <li>A peer relationship, not consultant/client</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="v8-addon">
+                        <div>
+                            <h4>Need your team involved?</h4>
+                            <p>Strategic Sessions: facilitated deep-dives for you + your key people</p>
+                        </div>
+                        <a href="#" class="v8-addon-cta">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V9: Compact inline row
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 9</span>
+        <p class="test-description">Compact row - minimal footprint</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v9-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v9-addon">
+                    <div class="v9-addon-dot"></div>
+                    <p class="v9-addon-text"><strong>Strategic Sessions:</strong> When a challenge needs your team. Facilitated deep-dives that end with clarity and action.</p>
+                    <a href="#" class="v9-addon-cta">
+                        Inquire
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         V10: Red highlight box
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 10</span>
+        <p class="test-description">Red highlight box - bold, attention-grabbing</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v10-content">
+                <div class="standard-grid">
+                    <div class="standard-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="standard-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="standard-card">
+                        <h3>What to expect</h3>
+                        <ul class="standard-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v10-addon">
+                    <div class="v10-addon-content">
+                        <h4>Strategic Sessions</h4>
+                        <p>When a challenge needs more than 1:1 thinking, bring your team. Facilitated deep-dives that end with clarity and an action plan.</p>
+                    </div>
+                    <a href="#" class="v10-addon-cta">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

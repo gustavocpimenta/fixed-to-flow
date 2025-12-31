@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What You Get Section Alternatives | Fixed to Flow Tests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+            --pink: #E891B2;
+            --orange: #E85C2C;
+            --sage: #B5C4C1;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #E5E5E5;
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 60px 40px;
+        }
+
+        .page-header {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .test-block {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .test-label {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .test-description {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        /* Section wrapper to simulate page context */
+        .section-wrapper {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 60px 40px 40px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(230, 59, 46, 0.1);
+            color: var(--red);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+
+        /* ============================================
+           ORIGINAL VERSION
+           ============================================ */
+        .original-content {
+            padding: 0 60px 60px;
+        }
+
+        .original-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .original-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+        }
+
+        .original-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .original-list {
+            list-style: none;
+        }
+
+        .original-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            line-height: 1.6;
+        }
+
+        .original-list li:last-child {
+            border-bottom: none;
+        }
+
+        .original-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .original-addon {
+            margin-top: 2rem;
+            background: var(--cream);
+            border: 2px solid var(--red);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .original-addon::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 60px;
+            height: 30px;
+            background: var(--red);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .original-addon h4 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .original-addon > p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .original-addon-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .original-addon-detail {
+            color: var(--black);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .original-addon-detail span {
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        /* ============================================
+           VARIATION 1: Single Column Flow
+           ============================================ */
+        .v1-content {
+            padding: 0 60px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .v1-main {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .v1-main h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .v1-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 3rem;
+        }
+
+        .v1-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 0.75rem 0;
+        }
+
+        .v1-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .v1-feature-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: white;
+            stroke-width: 3;
+        }
+
+        .v1-feature-text {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .v1-addon {
+            background: var(--black);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .v1-addon-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .v1-addon-content p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .v1-addon-cta {
+            padding: 12px 24px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .v1-addon-cta:hover {
+            background: var(--red-dark);
+        }
+
+        /* ============================================
+           VARIATION 2: Horizontal Tabs Feel
+           ============================================ */
+        .v2-content {
+            padding: 0 60px 60px;
+        }
+
+        .v2-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .v2-column {
+            padding: 2.5rem;
+        }
+
+        .v2-column:first-child {
+            border-right: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .v2-column-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--red);
+        }
+
+        .v2-column-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--red);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v2-column-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .v2-column-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .v2-list {
+            list-style: none;
+        }
+
+        .v2-list li {
+            padding: 0.6rem 0;
+            color: var(--gray);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .v2-list li::before {
+            content: '→';
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .v2-addon {
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .v2-addon h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .v2-addon p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        .v2-addon-right {
+            text-align: right;
+        }
+
+        .v2-addon-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .v2-addon-cta {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            color: var(--red);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           VARIATION 3: Timeline Style
+           ============================================ */
+        .v3-content {
+            padding: 0 60px 60px;
+        }
+
+        .v3-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .v3-intro p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .v3-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .v3-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 16.66%;
+            right: 16.66%;
+            height: 2px;
+            background: var(--red);
+            opacity: 0.3;
+        }
+
+        .v3-item {
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .v3-item-number {
+            width: 80px;
+            height: 80px;
+            background: var(--cream);
+            border: 3px solid var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--red);
+            position: relative;
+            z-index: 1;
+        }
+
+        .v3-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .v3-item p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .v3-addon {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+
+        .v3-addon-badge {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .v3-addon h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .v3-addon > p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .v3-addon-meta {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* ============================================
+           VARIATION 4: Accordion/Stacked
+           ============================================ */
+        .v4-content {
+            padding: 0 60px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .v4-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .v4-card {
+            background: var(--cream);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .v4-card-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .v4-card-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v4-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v4-card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .v4-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .v4-card-subtitle {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        .v4-card-body {
+            padding: 0 2rem 1.5rem;
+            padding-left: calc(2rem + 48px + 16px);
+        }
+
+        .v4-card-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem 2rem;
+        }
+
+        .v4-card-list li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .v4-card-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v4-addon {
+            background: var(--black);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .v4-addon-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v4-addon-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v4-addon-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .v4-addon-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .v4-addon-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+
+        .v4-addon-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .v4-addon-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v4-addon-cta {
+            padding: 10px 20px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           VARIATION 5: Minimal List
+           ============================================ */
+        .v5-content {
+            padding: 0 60px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .v5-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v5-column h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        .v5-list {
+            list-style: none;
+        }
+
+        .v5-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .v5-list li:last-child {
+            border-bottom: none;
+        }
+
+        .v5-addon {
+            padding-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .v5-addon-main h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v5-addon-main p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            max-width: 450px;
+            line-height: 1.7;
+        }
+
+        .v5-addon-meta {
+            text-align: right;
+        }
+
+        .v5-addon-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .v5-addon-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--black);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           VARIATION 6: Cards with Numbers
+           ============================================ */
+        .v6-content {
+            padding: 0 60px 60px;
+        }
+
+        .v6-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .v6-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .v6-card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 4px;
+        }
+
+        .v6-card-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        .v6-features {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .v6-features h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .v6-features-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+        }
+
+        .v6-features-list span {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .v6-features-list span::before {
+            content: '✓';
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v6-addon {
+            background: linear-gradient(to right, var(--black) 60%, var(--red) 100%);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .v6-addon h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .v6-addon p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .v6-addon-cta {
+            padding: 12px 24px;
+            background: white;
+            color: var(--black);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           VARIATION 7: Side by Side Compact
+           ============================================ */
+        .v7-content {
+            padding: 0 60px 60px;
+        }
+
+        .v7-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .v7-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .v7-card.featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .v7-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.25rem;
+        }
+
+        .v7-list {
+            list-style: none;
+        }
+
+        .v7-list li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .v7-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v7-addon {
+            background: var(--red);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .v7-addon-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .v7-addon h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .v7-addon p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .v7-addon-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .v7-addon-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .v7-addon-cta {
+            padding: 10px 20px;
+            background: white;
+            color: var(--red);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           VARIATION 8: Everything Integrated
+           ============================================ */
+        .v8-content {
+            padding: 0 60px 60px;
+        }
+
+        .v8-main {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .v8-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+        }
+
+        .v8-features h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .v8-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .v8-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v8-feature::before {
+            content: '✓';
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .v8-highlight {
+            background: var(--red);
+            border-radius: 16px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .v8-highlight-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .v8-highlight-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .v8-highlight-sub {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .v8-addon {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .v8-addon-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .v8-addon-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v8-addon-action {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v8-addon-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v8-addon-cta {
+            padding: 12px 24px;
+            background: var(--black);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           VARIATION 9: Bold & Confident
+           ============================================ */
+        .v9-content {
+            padding: 0 60px 60px;
+        }
+
+        .v9-hero {
+            background: var(--black);
+            border-radius: 24px;
+            padding: 3rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .v9-hero-top {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        .v9-hero h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .v9-hero-desc {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+        }
+
+        .v9-hero-price {
+            text-align: right;
+        }
+
+        .v9-hero-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .v9-hero-period {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .v9-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .v9-feature {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .v9-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--red);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .v9-feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .v9-feature-text {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .v9-addon {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .v9-addon-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v9-addon-badge {
+            background: var(--red);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .v9-addon-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .v9-addon-subtitle {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .v9-addon-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v9-addon-price {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .v9-addon-cta {
+            padding: 10px 20px;
+            background: var(--black);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           VARIATION 10: Elegant Minimal
+           ============================================ */
+        .v10-content {
+            padding: 0 60px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .v10-main {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .v10-main h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .v10-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .v10-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .v10-feature-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .v10-divider {
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .v10-expectations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .v10-expectation {
+            background: var(--cream);
+            padding: 12px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v10-addon {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: var(--cream);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .v10-addon-question {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .v10-addon-answer {
+            font-size: 0.95rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .v10-addon-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--red);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .v10-addon-fine {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .section-header {
+                padding: 40px 20px 30px;
+            }
+
+            .original-content, .v1-content, .v2-content, .v3-content,
+            .v4-content, .v5-content, .v6-content, .v7-content,
+            .v8-content, .v9-content, .v10-content {
+                padding: 0 20px 40px;
+            }
+
+            .original-grid, .v2-columns, .v5-main, .v7-row, .v8-top {
+                grid-template-columns: 1fr;
+            }
+
+            .v1-features, .v4-card-list, .v6-grid, .v8-features-grid, .v9-features {
+                grid-template-columns: 1fr;
+            }
+
+            .v3-timeline {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .v3-timeline::before {
+                display: none;
+            }
+
+            .v7-card.featured {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+
+            .v1-addon, .v2-addon, .v4-addon, .v5-addon, .v6-addon,
+            .v8-addon, .v9-addon, .v9-hero-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .v2-addon-right, .v5-addon-meta, .v9-hero-price {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>What You Get Section - Complete Redesigns</h1>
+        <p>10 different approaches to the entire section including Strategic Sessions add-on</p>
+    </div>
+
+    <!-- ============================================
+         ORIGINAL VERSION
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Original</span>
+        <p class="test-description">Current version - what you want to replace</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="original-content">
+                <div class="original-grid">
+                    <div class="original-card">
+                        <h3>Strategic Sparring</h3>
+                        <ul class="original-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling: 3x2hr, 6x1hr, or any combination</li>
+                            <li>Direct WhatsApp access (weekdays)</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="original-card">
+                        <h3>What to expect</h3>
+                        <ul class="original-list">
+                            <li>Honest, direct feedback (we don't sugarcoat)</li>
+                            <li>Challenge when we think you're wrong</li>
+                            <li>Pattern recognition from 25+ years in the field</li>
+                            <li>Help navigating complexity, not just strategy</li>
+                            <li>A peer relationship, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="original-addon">
+                    <h4>Strategic Sessions (Add on)</h4>
+                    <p>When you hit a challenge that needs more than 1:1 thinking, bring your team. We design and facilitate a focused session around a specific problem. You leave with clarity and an action plan.</p>
+                    <div class="original-addon-details">
+                        <div class="original-addon-detail">Up to 6 participants <span>(you + your key people)</span></div>
+                        <div class="original-addon-detail">2 hours to half day <span>(based on the challenge)</span></div>
+                        <div class="original-addon-detail">Starting at 3,000 EUR <span>(per session)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 1: Single Column Flow
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 1</span>
+        <p class="test-description">Single column flow - centered, unified feel with dark add-on CTA</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v1-content">
+                <div class="v1-main">
+                    <h3>6 hours/month of strategic sparring</h3>
+                    <div class="v1-features">
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">Flexible scheduling (3x2hr, 6x1hr, any mix)</div>
+                        </div>
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">Direct WhatsApp access (weekdays)</div>
+                        </div>
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">Session summaries with key insights</div>
+                        </div>
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">Honest, direct feedback (no sugarcoating)</div>
+                        </div>
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">Challenge when we think you're wrong</div>
+                        </div>
+                        <div class="v1-feature">
+                            <div class="v1-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <div class="v1-feature-text">25+ years of pattern recognition</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="v1-addon">
+                    <div class="v1-addon-content">
+                        <h4>Need your team in the room?</h4>
+                        <p>Strategic Sessions: facilitated deep-dives for you + your key people. From 3,000 EUR</p>
+                    </div>
+                    <a href="#" class="v1-addon-cta">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 2: Horizontal Tabs Feel
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 2</span>
+        <p class="test-description">Two columns with icons and red gradient add-on banner</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v2-content">
+                <div class="v2-columns">
+                    <div class="v2-column">
+                        <div class="v2-column-header">
+                            <div class="v2-column-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <span class="v2-column-title">The Sessions</span>
+                        </div>
+                        <ul class="v2-list">
+                            <li>6 hours per month of 1:1 sessions</li>
+                            <li>Flexible scheduling (any combination)</li>
+                            <li>Direct WhatsApp access weekdays</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what AND how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="v2-column">
+                        <div class="v2-column-header">
+                            <div class="v2-column-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                            </div>
+                            <span class="v2-column-title">The Experience</span>
+                        </div>
+                        <ul class="v2-list">
+                            <li>Honest, direct feedback</li>
+                            <li>Challenge when you're wrong</li>
+                            <li>25+ years pattern recognition</li>
+                            <li>Help navigating complexity</li>
+                            <li>A peer, not consultant/client</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v2-addon">
+                    <div>
+                        <h4>Strategic Sessions</h4>
+                        <p>When a challenge needs your whole team. Facilitated deep-dives that end with clarity and action.</p>
+                    </div>
+                    <div class="v2-addon-right">
+                        <div class="v2-addon-price">From 3,000 EUR</div>
+                        <a href="#" class="v2-addon-cta">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 3: Timeline Style
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 3</span>
+        <p class="test-description">Timeline/journey style - emphasizes the process</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v3-content">
+                <div class="v3-intro">
+                    <p>6 hours per month of 1:1 strategic sparring. Flexible scheduling. Direct WhatsApp access weekdays. Session summaries with key insights.</p>
+                </div>
+                <div class="v3-timeline">
+                    <div class="v3-item">
+                        <div class="v3-item-number">1</div>
+                        <h4>We challenge you</h4>
+                        <p>Honest, direct feedback. We tell you when we think you're wrong.</p>
+                    </div>
+                    <div class="v3-item">
+                        <div class="v3-item-number">2</div>
+                        <h4>We share patterns</h4>
+                        <p>25+ years of pattern recognition. When we've seen it before, we tell you.</p>
+                    </div>
+                    <div class="v3-item">
+                        <div class="v3-item-number">3</div>
+                        <h4>We help execute</h4>
+                        <p>Not just what to do, but how. Navigating complexity, not just strategy.</p>
+                    </div>
+                </div>
+                <div class="v3-addon">
+                    <span class="v3-addon-badge">Add-on</span>
+                    <h4>Strategic Sessions</h4>
+                    <p>When the challenge needs your team. Facilitated deep-dives that end with clarity and an action plan.</p>
+                    <div class="v3-addon-meta">Up to 6 participants · 2-4 hours · From 3,000 EUR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 4: Accordion/Stacked
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 4</span>
+        <p class="test-description">Stacked cards with icons - clean, scannable</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v4-content">
+                <div class="v4-stack">
+                    <div class="v4-card">
+                        <div class="v4-card-header">
+                            <div class="v4-card-left">
+                                <div class="v4-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="v4-card-title">6 Hours Per Month</div>
+                                    <div class="v4-card-subtitle">1:1 strategic sparring sessions</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="v4-card-body">
+                            <ul class="v4-card-list">
+                                <li>Flexible scheduling (3x2hr, 6x1hr, any mix)</li>
+                                <li>Direct WhatsApp access weekdays</li>
+                                <li>Session summaries with key insights</li>
+                                <li>Clarity on what AND how to execute</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="v4-card">
+                        <div class="v4-card-header">
+                            <div class="v4-card-left">
+                                <div class="v4-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <path d="M22 4L12 14.01l-3-3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="v4-card-title">What to Expect</div>
+                                    <div class="v4-card-subtitle">A peer who challenges you</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="v4-card-body">
+                            <ul class="v4-card-list">
+                                <li>Honest, direct feedback (no sugarcoating)</li>
+                                <li>Challenge when we think you're wrong</li>
+                                <li>25+ years of pattern recognition</li>
+                                <li>A peer relationship, not consultant/client</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="v4-addon">
+                        <div class="v4-addon-left">
+                            <div class="v4-addon-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="v4-addon-title">Strategic Sessions</div>
+                                <div class="v4-addon-subtitle">Facilitated team deep-dives</div>
+                            </div>
+                        </div>
+                        <div class="v4-addon-right">
+                            <span class="v4-addon-price">From 3,000 EUR</span>
+                            <a href="#" class="v4-addon-cta">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 5: Minimal List
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 5</span>
+        <p class="test-description">Minimal two-column lists - editorial, sophisticated</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v5-content">
+                <div class="v5-main">
+                    <div class="v5-column">
+                        <h3>The Sessions</h3>
+                        <ul class="v5-list">
+                            <li>6 hours per month of 1:1 time</li>
+                            <li>Flexible scheduling (any combination)</li>
+                            <li>Direct WhatsApp access weekdays</li>
+                            <li>Session summaries with key insights</li>
+                            <li>Clarity on what and how to execute</li>
+                        </ul>
+                    </div>
+                    <div class="v5-column">
+                        <h3>The Experience</h3>
+                        <ul class="v5-list">
+                            <li>Honest, direct feedback</li>
+                            <li>Challenge when you're heading wrong</li>
+                            <li>25+ years of pattern recognition</li>
+                            <li>Help navigating complexity</li>
+                            <li>A peer, not a consultant</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="v5-addon">
+                    <div class="v5-addon-main">
+                        <h4>Strategic Sessions</h4>
+                        <p>When a challenge needs your whole team in the room. We design and facilitate focused sessions that end with clarity and an action plan.</p>
+                    </div>
+                    <div class="v5-addon-meta">
+                        <div class="v5-addon-price">From 3,000 EUR</div>
+                        <a href="#" class="v5-addon-cta">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 6: Cards with Numbers
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 6</span>
+        <p class="test-description">Numbers-first with feature tags - quick scan</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v6-content">
+                <div class="v6-grid">
+                    <div class="v6-card">
+                        <div class="v6-card-value">6</div>
+                        <div class="v6-card-label">hours per month<br>1:1 sessions</div>
+                    </div>
+                    <div class="v6-card">
+                        <div class="v6-card-value">25+</div>
+                        <div class="v6-card-label">years of<br>pattern recognition</div>
+                    </div>
+                    <div class="v6-card">
+                        <div class="v6-card-value">5d</div>
+                        <div class="v6-card-label">WhatsApp access<br>weekdays</div>
+                    </div>
+                    <div class="v6-card">
+                        <div class="v6-card-value">1</div>
+                        <div class="v6-card-label">peer relationship<br>not consultant</div>
+                    </div>
+                </div>
+                <div class="v6-features">
+                    <h4>What to expect</h4>
+                    <div class="v6-features-list">
+                        <span>Honest, direct feedback</span>
+                        <span>Challenge when you're wrong</span>
+                        <span>Session summaries</span>
+                        <span>Flexible scheduling</span>
+                        <span>Clarity on how to execute</span>
+                    </div>
+                </div>
+                <div class="v6-addon">
+                    <div>
+                        <h4>Strategic Sessions</h4>
+                        <p>Team facilitation for complex challenges · Up to 6 people · 2-4 hours</p>
+                    </div>
+                    <a href="#" class="v6-addon-cta">From 3,000 EUR →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 7: Side by Side Compact
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 7</span>
+        <p class="test-description">Three-column grid with integrated red add-on card</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v7-content">
+                <div class="v7-row">
+                    <div class="v7-card featured">
+                        <div>
+                            <h3>The Sessions</h3>
+                            <ul class="v7-list">
+                                <li>6 hours per month of 1:1 time</li>
+                                <li>Flexible scheduling</li>
+                                <li>WhatsApp access weekdays</li>
+                                <li>Session summaries</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>What to Expect</h3>
+                            <ul class="v7-list">
+                                <li>Honest, direct feedback</li>
+                                <li>Challenge when wrong</li>
+                                <li>25+ years experience</li>
+                                <li>A peer relationship</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="v7-card v7-addon">
+                        <div class="v7-addon-tag">Add-on</div>
+                        <h3>Strategic Sessions</h3>
+                        <p>When a challenge needs your team. Facilitated deep-dives that end with action.</p>
+                        <div class="v7-addon-footer">
+                            <span class="v7-addon-price">3,000+ EUR</span>
+                            <a href="#" class="v7-addon-cta">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 8: Everything Integrated
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 8</span>
+        <p class="test-description">Unified card with highlight box - cohesive feel</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v8-content">
+                <div class="v8-main">
+                    <div class="v8-top">
+                        <div class="v8-features">
+                            <h3>Strategic Sparring</h3>
+                            <div class="v8-features-grid">
+                                <div class="v8-feature">Flexible scheduling (3x2hr, 6x1hr, any mix)</div>
+                                <div class="v8-feature">Honest, direct feedback</div>
+                                <div class="v8-feature">Direct WhatsApp access weekdays</div>
+                                <div class="v8-feature">Challenge when you're wrong</div>
+                                <div class="v8-feature">Session summaries with insights</div>
+                                <div class="v8-feature">25+ years pattern recognition</div>
+                                <div class="v8-feature">Clarity on what AND how</div>
+                                <div class="v8-feature">A peer, not a consultant</div>
+                            </div>
+                        </div>
+                        <div class="v8-highlight">
+                            <div class="v8-highlight-value">6</div>
+                            <div class="v8-highlight-label">hours per month</div>
+                            <div class="v8-highlight-sub">of 1:1 time</div>
+                        </div>
+                    </div>
+                    <div class="v8-addon">
+                        <div class="v8-addon-content">
+                            <h4>Need your team involved?</h4>
+                            <p>Strategic Sessions: facilitated deep-dives for you + key people</p>
+                        </div>
+                        <div class="v8-addon-action">
+                            <span class="v8-addon-price">From 3,000 EUR</span>
+                            <a href="#" class="v8-addon-cta">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 9: Bold & Confident
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 9</span>
+        <p class="test-description">Bold dark hero with icon features - premium feel</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v9-content">
+                <div class="v9-hero">
+                    <div class="v9-hero-top">
+                        <div>
+                            <h3>6 hours per month of 1:1 sparring</h3>
+                            <p class="v9-hero-desc">A peer who challenges your assumptions, shares 25+ years of pattern recognition, and helps you figure out not just what to do but how.</p>
+                        </div>
+                        <div class="v9-hero-price">
+                            <div class="v9-hero-amount">2,000 EUR</div>
+                            <div class="v9-hero-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="v9-features">
+                        <div class="v9-feature">
+                            <div class="v9-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="v9-feature-text">Flexible scheduling</div>
+                        </div>
+                        <div class="v9-feature">
+                            <div class="v9-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="v9-feature-text">WhatsApp access</div>
+                        </div>
+                        <div class="v9-feature">
+                            <div class="v9-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>
+                                </svg>
+                            </div>
+                            <div class="v9-feature-text">Session summaries</div>
+                        </div>
+                        <div class="v9-feature">
+                            <div class="v9-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                            </div>
+                            <div class="v9-feature-text">Direct feedback</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="v9-addon">
+                    <div class="v9-addon-left">
+                        <span class="v9-addon-badge">ADD-ON</span>
+                        <div>
+                            <div class="v9-addon-title">Strategic Sessions</div>
+                            <div class="v9-addon-subtitle">Team facilitation for complex challenges</div>
+                        </div>
+                    </div>
+                    <div class="v9-addon-right">
+                        <span class="v9-addon-price">From 3,000 EUR</span>
+                        <a href="#" class="v9-addon-cta">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         VARIATION 10: Elegant Minimal
+         ============================================ -->
+    <div class="test-block">
+        <span class="test-label">Variation 10</span>
+        <p class="test-description">Elegant minimal - centered text with pill tags</p>
+
+        <div class="section-wrapper">
+            <div class="section-header">
+                <div class="section-label">The Partnership</div>
+                <h2 class="section-title">What you get</h2>
+            </div>
+            <div class="v10-content">
+                <div class="v10-main">
+                    <h3>6 hours per month of 1:1 strategic sparring</h3>
+                    <div class="v10-features">
+                        <div class="v10-feature"><span class="v10-feature-dot"></span>Flexible scheduling</div>
+                        <div class="v10-feature"><span class="v10-feature-dot"></span>WhatsApp access weekdays</div>
+                        <div class="v10-feature"><span class="v10-feature-dot"></span>Session summaries</div>
+                        <div class="v10-feature"><span class="v10-feature-dot"></span>Clarity on what AND how</div>
+                    </div>
+                    <div class="v10-divider"></div>
+                    <div class="v10-expectations">
+                        <span class="v10-expectation">Honest feedback</span>
+                        <span class="v10-expectation">Challenge when wrong</span>
+                        <span class="v10-expectation">25+ years experience</span>
+                        <span class="v10-expectation">Peer relationship</span>
+                    </div>
+                </div>
+                <div class="v10-addon">
+                    <p class="v10-addon-question">Need your team in the room?</p>
+                    <p class="v10-addon-answer">Strategic Sessions are facilitated deep-dives for you and your key people. We tackle one challenge and leave with clarity and action.</p>
+                    <a href="#" class="v10-addon-cta">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <p class="v10-addon-fine">Up to 6 participants · 2-4 hours · From 3,000 EUR</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

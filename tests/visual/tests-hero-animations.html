@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Animation Variations | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --white: #FFFFFF;
+            --gray: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .page-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .variation {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+        }
+
+        .variation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .variation-number {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .variation-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .variation-header p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Base Hero Graphic */
+        .hero-graphic {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .graphic-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .label-ai {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1.3;
+        }
+
+        .label-human {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.3;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .circle-outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(230, 59, 46, 0.2);
+        }
+
+        .circle-middle {
+            width: 70%;
+            height: 70%;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+        }
+
+        .circle-inner {
+            width: 45%;
+            height: 45%;
+            border: 3px solid var(--red);
+        }
+
+        /* =========================================
+           VARIATION 1: Breathing (Current)
+           ========================================= */
+        .v1 .circle-outer { animation: breathe 6s ease-in-out infinite; }
+        .v1 .circle-middle { animation: breathe 6s ease-in-out infinite 0.5s; }
+        .v1 .circle-inner { animation: breathe 6s ease-in-out infinite 1s; }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
+        }
+
+        /* =========================================
+           VARIATION 2: Pulse Outward (Ripple)
+           ========================================= */
+        .v2 .circle-inner { animation: ripple 3s ease-out infinite; }
+        .v2 .circle-middle { animation: ripple 3s ease-out infinite 0.3s; }
+        .v2 .circle-outer { animation: ripple 3s ease-out infinite 0.6s; }
+
+        @keyframes ripple {
+            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
+        }
+
+        /* =========================================
+           VARIATION 3: Rotating Circles
+           ========================================= */
+        .v3 .circle-outer {
+            animation: rotate-cw 20s linear infinite;
+            border-style: dashed;
+        }
+        .v3 .circle-middle {
+            animation: rotate-ccw 15s linear infinite;
+            border-style: dashed;
+        }
+        .v3 .circle-inner {
+            animation: rotate-cw 10s linear infinite;
+        }
+
+        @keyframes rotate-cw {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rotate-ccw {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        /* =========================================
+           VARIATION 4: Heartbeat
+           ========================================= */
+        .v4 .circle-outer { animation: heartbeat 1.5s ease-in-out infinite; }
+        .v4 .circle-middle { animation: heartbeat 1.5s ease-in-out infinite 0.1s; }
+        .v4 .circle-inner { animation: heartbeat 1.5s ease-in-out infinite 0.2s; }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            10% { transform: translate(-50%, -50%) scale(1.03); }
+            20% { transform: translate(-50%, -50%) scale(1); }
+            30% { transform: translate(-50%, -50%) scale(1.02); }
+            40%, 100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* =========================================
+           VARIATION 5: Gentle Float
+           ========================================= */
+        .v5 .circle-outer { animation: float 8s ease-in-out infinite; }
+        .v5 .circle-middle { animation: float 8s ease-in-out infinite 1s; }
+        .v5 .circle-inner { animation: float 8s ease-in-out infinite 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+        }
+
+        /* =========================================
+           VARIATION 6: Opacity Pulse
+           ========================================= */
+        .v6 .circle-outer { animation: opacity-pulse 4s ease-in-out infinite; }
+        .v6 .circle-middle { animation: opacity-pulse 4s ease-in-out infinite 0.5s; }
+        .v6 .circle-inner { animation: opacity-pulse 4s ease-in-out infinite 1s; }
+
+        @keyframes opacity-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* =========================================
+           VARIATION 7: Expanding Rings
+           ========================================= */
+        .v7 .circle-outer { animation: expand-ring 4s ease-out infinite; }
+        .v7 .circle-middle { animation: expand-ring 4s ease-out infinite 1.3s; }
+        .v7 .circle-inner { animation: expand-ring 4s ease-out infinite 2.6s; }
+
+        @keyframes expand-ring {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; border-width: 3px; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; border-width: 1px; }
+        }
+
+        /* =========================================
+           VARIATION 8: Subtle Wobble
+           ========================================= */
+        .v8 .circle-outer { animation: wobble 6s ease-in-out infinite; }
+        .v8 .circle-middle { animation: wobble 5s ease-in-out infinite 0.5s; }
+        .v8 .circle-inner { animation: wobble 4s ease-in-out infinite 1s; }
+
+        @keyframes wobble {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+            25% { transform: translate(-50%, -50%) scale(1.02) rotate(1deg); }
+            50% { transform: translate(-50%, -50%) scale(0.98) rotate(0deg); }
+            75% { transform: translate(-50%, -50%) scale(1.02) rotate(-1deg); }
+        }
+
+        /* =========================================
+           VARIATION 9: Staggered Fade
+           ========================================= */
+        .v9 .circle-outer { animation: stagger-fade 6s ease-in-out infinite; }
+        .v9 .circle-middle { animation: stagger-fade 6s ease-in-out infinite 2s; }
+        .v9 .circle-inner { animation: stagger-fade 6s ease-in-out infinite 4s; }
+
+        @keyframes stagger-fade {
+            0%, 20%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.95); }
+            10% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+        }
+
+        /* =========================================
+           VARIATION 10: Elastic Bounce
+           ========================================= */
+        .v10 .circle-outer { animation: elastic 3s ease-in-out infinite; }
+        .v10 .circle-middle { animation: elastic 3s ease-in-out infinite 0.2s; }
+        .v10 .circle-inner { animation: elastic 3s ease-in-out infinite 0.4s; }
+
+        @keyframes elastic {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            30% { transform: translate(-50%, -50%) scale(1.1); }
+            40% { transform: translate(-50%, -50%) scale(0.95); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            60% { transform: translate(-50%, -50%) scale(0.98); }
+            70%, 100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @media (max-width: 900px) {
+            .variations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Hero Animation Variations</h1>
+        <p>10 different circle behaviors with the same AI/Human center</p>
+    </header>
+
+    <div class="variations-grid">
+        <!-- Variation 1 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 1</span>
+                <h2>Breathing</h2>
+                <p>Current animation. Gentle scale up/down with opacity change.</p>
+            </div>
+            <div class="hero-graphic v1">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 2 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 2</span>
+                <h2>Ripple Outward</h2>
+                <p>Circles pulse outward from center like ripples in water.</p>
+            </div>
+            <div class="hero-graphic v2">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 3 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 3</span>
+                <h2>Rotating</h2>
+                <p>Circles rotate in alternating directions. Dashed outer rings.</p>
+            </div>
+            <div class="hero-graphic v3">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 4 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 4</span>
+                <h2>Heartbeat</h2>
+                <p>Quick double-pulse like a heartbeat, then pause.</p>
+            </div>
+            <div class="hero-graphic v4">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 5 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 5</span>
+                <h2>Gentle Float</h2>
+                <p>Circles gently float up and down at different timings.</p>
+            </div>
+            <div class="hero-graphic v5">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 6 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 6</span>
+                <h2>Opacity Pulse</h2>
+                <p>Circles fade in and out in sequence. No movement.</p>
+            </div>
+            <div class="hero-graphic v6">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 7 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 7</span>
+                <h2>Expanding Rings</h2>
+                <p>Rings expand outward and fade, like radar pulses.</p>
+            </div>
+            <div class="hero-graphic v7">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 8 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 8</span>
+                <h2>Subtle Wobble</h2>
+                <p>Gentle organic wobble with slight rotation.</p>
+            </div>
+            <div class="hero-graphic v8">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 9 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 9</span>
+                <h2>Staggered Fade</h2>
+                <p>Each circle brightens briefly in sequence.</p>
+            </div>
+            <div class="hero-graphic v9">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 10 -->
+        <div class="variation">
+            <div class="variation-header">
+                <span class="variation-number">Variation 10</span>
+                <h2>Elastic Bounce</h2>
+                <p>Springy bounce effect with overshoot.</p>
+            </div>
+            <div class="hero-graphic v10">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-middle"></div>
+                <div class="circle circle-inner"></div>
+                <div class="graphic-center">
+                    <div class="label-ai">AI</div>
+                    <div class="label-human">Human</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

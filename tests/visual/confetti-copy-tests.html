@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confetti Confirmation Copy Tests | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --light-gray: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--black);
+            padding: 24px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .page-label {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .intro p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Grid Layout */
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        /* Variation Card */
+        .variation {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .variation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .variation-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--cream);
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-right: 12px;
+        }
+
+        .variation-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .trigger-btn {
+            padding: 8px 16px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .trigger-btn:hover {
+            background: var(--gray);
+        }
+
+        /* Confetti Wrapper */
+        .confetti-wrapper {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .placeholder {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Confirmation Message */
+        .confirmation {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .confirmation.active {
+            display: flex;
+        }
+
+        .confirmation .headline {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .confirmation .subtext {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Confetti Pieces */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .confetti-wrapper.active .confetti {
+            animation: confetti-fall 1.2s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(120px) rotate(720deg); opacity: 0; }
+        }
+
+        .confetti:nth-child(1) { left: 8%; top: -5px; background: var(--red); animation-delay: 0s; border-radius: 2px; }
+        .confetti:nth-child(2) { left: 18%; top: -12px; background: #22C55E; animation-delay: 0.08s; border-radius: 50%; }
+        .confetti:nth-child(3) { left: 32%; top: 2px; background: #F59E0B; animation-delay: 0.04s; }
+        .confetti:nth-child(4) { left: 48%; top: -8px; background: var(--red); animation-delay: 0.12s; border-radius: 50%; }
+        .confetti:nth-child(5) { left: 62%; top: -3px; background: #3B82F6; animation-delay: 0.06s; }
+        .confetti:nth-child(6) { left: 78%; top: -10px; background: #22C55E; animation-delay: 0.1s; border-radius: 2px; }
+        .confetti:nth-child(7) { left: 88%; top: 0; background: #F59E0B; animation-delay: 0.02s; border-radius: 50%; }
+        .confetti:nth-child(8) { left: 25%; top: -6px; background: #3B82F6; animation-delay: 0.14s; }
+        .confetti:nth-child(9) { left: 55%; top: -14px; background: var(--red); animation-delay: 0.05s; border-radius: 2px; }
+        .confetti:nth-child(10) { left: 72%; top: 4px; background: #22C55E; animation-delay: 0.16s; }
+
+        /* Reset button overlay */
+        .reset-overlay {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .confetti-wrapper.active .reset-overlay {
+            opacity: 1;
+        }
+
+        .reset-btn {
+            padding: 6px 12px;
+            background: rgba(0,0,0,0.05);
+            color: var(--gray);
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 40px 20px;
+            }
+
+            .variations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .variation {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Fixed to Flow</div>
+            <div class="page-label">Confetti Copy Tests</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="intro">
+            <h1>Confetti Confirmation Copy</h1>
+            <p>10 copy variations for the celebration-style confirmation message</p>
+        </div>
+
+        <div class="variations-grid">
+            <!-- Variation 1 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">1</span>
+                        <span class="variation-title">"Got it!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v1')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v1-wrapper">
+                    <span class="placeholder" id="v1-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v1-msg">
+                        <span class="headline">Got it!</span>
+                        <span class="subtext">I'll reach out soon.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v1')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 2 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">2</span>
+                        <span class="variation-title">"Message received!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v2')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v2-wrapper">
+                    <span class="placeholder" id="v2-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v2-msg">
+                        <span class="headline">Message received!</span>
+                        <span class="subtext">Looking forward to connecting.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v2')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 3 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">3</span>
+                        <span class="variation-title">"Thanks!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v3')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v3-wrapper">
+                    <span class="placeholder" id="v3-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v3-msg">
+                        <span class="headline">Thanks!</span>
+                        <span class="subtext">I'll be in touch within 24 hours.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v3')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 4 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">4</span>
+                        <span class="variation-title">"On it!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v4')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v4-wrapper">
+                    <span class="placeholder" id="v4-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v4-msg">
+                        <span class="headline">On it!</span>
+                        <span class="subtext">Expect to hear from me soon.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v4')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 5 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">5</span>
+                        <span class="variation-title">"Perfect!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v5')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v5-wrapper">
+                    <span class="placeholder" id="v5-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v5-msg">
+                        <span class="headline">Perfect!</span>
+                        <span class="subtext">I'll get back to you shortly.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v5')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 6 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">6</span>
+                        <span class="variation-title">"Message sent!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v6')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v6-wrapper">
+                    <span class="placeholder" id="v6-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v6-msg">
+                        <span class="headline">Message sent!</span>
+                        <span class="subtext">Talk soon.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v6')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 7 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">7</span>
+                        <span class="variation-title">"Received!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v7')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v7-wrapper">
+                    <span class="placeholder" id="v7-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v7-msg">
+                        <span class="headline">Received!</span>
+                        <span class="subtext">I'll reach out in the next day or two.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v7')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 8 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">8</span>
+                        <span class="variation-title">"All set!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v8')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v8-wrapper">
+                    <span class="placeholder" id="v8-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v8-msg">
+                        <span class="headline">All set!</span>
+                        <span class="subtext">Expect a reply within 24 hours.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v8')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 9 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">9</span>
+                        <span class="variation-title">"Thanks for reaching out!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v9')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v9-wrapper">
+                    <span class="placeholder" id="v9-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v9-msg">
+                        <span class="headline">Thanks for reaching out!</span>
+                        <span class="subtext">I'll get back to you soon.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v9')">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variation 10 -->
+            <section class="variation">
+                <div class="variation-header">
+                    <div style="display: flex; align-items: center;">
+                        <span class="variation-number">10</span>
+                        <span class="variation-title">"Got your message!"</span>
+                    </div>
+                    <button class="trigger-btn" onclick="showConfetti('v10')">Show</button>
+                </div>
+                <div class="confetti-wrapper" id="v10-wrapper">
+                    <span class="placeholder" id="v10-placeholder">Click "Show" to preview</span>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confirmation" id="v10-msg">
+                        <span class="headline">Got your message!</span>
+                        <span class="subtext">I'll be in touch shortly.</span>
+                    </div>
+                    <div class="reset-overlay">
+                        <button class="reset-btn" onclick="resetConfetti('v10')">Reset</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function showConfetti(id) {
+            document.getElementById(id + '-placeholder').style.display = 'none';
+            document.getElementById(id + '-wrapper').classList.add('active');
+            document.getElementById(id + '-msg').classList.add('active');
+        }
+
+        function resetConfetti(id) {
+            const wrapper = document.getElementById(id + '-wrapper');
+            const msg = document.getElementById(id + '-msg');
+            const placeholder = document.getElementById(id + '-placeholder');
+
+            wrapper.classList.remove('active');
+            msg.classList.remove('active');
+
+            // Force reflow to reset animations
+            void wrapper.offsetWidth;
+
+            placeholder.style.display = 'inline';
+        }
+    </script>
+</body>
+</html>

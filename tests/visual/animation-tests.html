@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Tests | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --dark-gray: #1A1A1A;
+            --gray: #555555;
+            --light-gray: #999999;
+            --sage: #B5C4C1;
+            --pink: #E891B2;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--red);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--red);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 80px 2rem;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .section-desc {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .demo-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.06);
+        }
+
+        .demo-label {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* ==========================================
+           1. ACCENT LINE ANIMATIONS
+           ========================================== */
+
+        .accent-line-demo {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .accent-line-example {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .accent-line-example h3 {
+            margin-top: 20px;
+            font-size: 2rem;
+        }
+
+        /* Current (static) */
+        .accent-line-static {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+        }
+
+        /* Animation: Draw from left */
+        .accent-line-draw {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            transform-origin: left;
+            animation: draw-line 1s ease-out forwards;
+        }
+
+        @keyframes draw-line {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* Animation: Expand from center */
+        .accent-line-expand {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            transform-origin: center;
+            animation: expand-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes expand-line {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* Animation: Slide and fade */
+        .accent-line-slide {
+            width: 60px;
+            height: 5px;
+            background: var(--red);
+            animation: slide-line 1s ease-out forwards;
+        }
+
+        @keyframes slide-line {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ==========================================
+           2. SECTION LABEL ANIMATIONS
+           ========================================== */
+
+        .section-label-demo {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .section-label-example {
+            text-align: center;
+        }
+
+        /* Current style */
+        .section-label-current {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-top: 1.5rem;
+        }
+
+        .section-label-current::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--red);
+        }
+
+        /* Animated: Line draws in */
+        .section-label-animated {
+            display: inline-block;
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-top: 1.5rem;
+            animation: label-fade-in 0.6s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .section-label-animated::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 40px;
+            height: 2px;
+            background: var(--red);
+            animation: label-line-draw 0.5s ease-out forwards;
+        }
+
+        @keyframes label-line-draw {
+            to { transform: translateX(-50%) scaleX(1); }
+        }
+
+        @keyframes label-fade-in {
+            to { opacity: 1; }
+        }
+
+        /* ==========================================
+           3. TEXT HIGHLIGHT ANIMATIONS
+           ========================================== */
+
+        .highlight-demo {
+            font-size: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Underline draw effect */
+        .highlight-underline {
+            position: relative;
+            display: inline;
+        }
+
+        .highlight-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .highlight-underline.animate::after {
+            transform: scaleX(1);
+        }
+
+        /* Background highlight sweep */
+        .highlight-sweep {
+            position: relative;
+            display: inline;
+            background: linear-gradient(to right, rgba(230, 59, 46, 0.15) 50%, transparent 50%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            transition: background-position 0.5s ease;
+        }
+
+        .highlight-sweep.animate {
+            background-position: 0 0;
+        }
+
+        /* Marker effect */
+        .highlight-marker {
+            position: relative;
+            display: inline;
+        }
+
+        .highlight-marker::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -4px;
+            right: -4px;
+            height: 40%;
+            background: rgba(230, 59, 46, 0.2);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .highlight-marker.animate::before {
+            transform: scaleX(1);
+        }
+
+        /* ==========================================
+           4. CLIENT LOGO ANIMATIONS
+           ========================================== */
+
+        .logos-demo {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-item {
+            width: 120px;
+            height: 60px;
+            background: var(--cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-gray);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Staggered fade in */
+        .logo-stagger {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: logo-fade-up 0.6s ease-out forwards;
+        }
+
+        .logo-stagger:nth-child(1) { animation-delay: 0.1s; }
+        .logo-stagger:nth-child(2) { animation-delay: 0.2s; }
+        .logo-stagger:nth-child(3) { animation-delay: 0.3s; }
+        .logo-stagger:nth-child(4) { animation-delay: 0.4s; }
+        .logo-stagger:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes logo-fade-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle float on hover */
+        .logo-float {
+            transition: all 0.4s ease;
+        }
+
+        .logo-float:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        /* ==========================================
+           5. NUMBER COUNTER ANIMATIONS
+           ========================================== */
+
+        .counter-demo {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .counter-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Number with animated underline */
+        .counter-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .counter-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            transform: scaleX(0);
+            animation: counter-line 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes counter-line {
+            to { transform: scaleX(1); }
+        }
+
+        /* ==========================================
+           6. STEP NUMBER ANIMATIONS
+           ========================================== */
+
+        .steps-demo {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--red);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Pulse on hover */
+        .step-pulse {
+            transition: transform 0.3s ease;
+        }
+
+        .step-pulse:hover {
+            animation: pulse 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Ring expand */
+        .step-ring {
+            position: relative;
+        }
+
+        .step-ring::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px solid var(--red);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+        }
+
+        .step-ring:hover::before {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+
+        /* Fill animation */
+        .step-fill {
+            background: transparent;
+            border: 3px solid var(--red);
+            color: var(--red);
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+        }
+
+        .step-fill::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--red);
+            transform: scale(0);
+            border-radius: 50%;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+
+        .step-fill:hover {
+            color: var(--white);
+        }
+
+        .step-fill:hover::before {
+            transform: scale(1);
+        }
+
+        /* ==========================================
+           7. CARD STAGGER REVEAL
+           ========================================== */
+
+        .cards-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card-item {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 32px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .card-item.reveal {
+            animation: card-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .card-item:nth-child(1).reveal { animation-delay: 0s; }
+        .card-item:nth-child(2).reveal { animation-delay: 0.15s; }
+        .card-item:nth-child(3).reveal { animation-delay: 0.3s; }
+
+        @keyframes card-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           8. FLOATING BACKGROUND SHAPES
+           ========================================== */
+
+        .shapes-demo {
+            position: relative;
+            height: 300px;
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--red);
+            top: -50px;
+            right: -30px;
+            animation: float-1 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--sage);
+            bottom: -40px;
+            left: 20%;
+            animation: float-2 10s ease-in-out infinite;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--pink);
+            top: 30%;
+            left: 10%;
+            animation: float-3 12s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, 15px) rotate(5deg); }
+            50% { transform: translate(-10px, 25px) rotate(-3deg); }
+            75% { transform: translate(10px, 10px) rotate(3deg); }
+        }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(20px, -15px); }
+            66% { transform: translate(-15px, -25px); }
+        }
+
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(15px, -20px) scale(1.05); }
+        }
+
+        .shapes-demo-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .shapes-demo-content h3 {
+            font-size: 2rem;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           9. BUTTON MICRO-INTERACTIONS
+           ========================================== */
+
+        .buttons-demo {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Lift + shadow */
+        .btn-lift {
+            background: var(--red);
+            color: var(--white);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(230, 59, 46, 0.35);
+        }
+
+        /* Arrow slide */
+        .btn-arrow-slide {
+            background: var(--red);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-arrow-slide svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-arrow-slide:hover svg {
+            transform: translateX(6px);
+        }
+
+        /* Fill sweep */
+        .btn-sweep {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+        }
+
+        .btn-sweep::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+
+        .btn-sweep:hover {
+            color: var(--white);
+        }
+
+        .btn-sweep:hover::before {
+            left: 0;
+        }
+
+        /* Scale bounce */
+        .btn-bounce {
+            background: var(--red);
+            color: var(--white);
+            transition: transform 0.2s ease;
+        }
+
+        .btn-bounce:hover {
+            animation: btn-bounce-anim 0.4s ease;
+        }
+
+        @keyframes btn-bounce-anim {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.05); }
+            60% { transform: scale(0.98); }
+            100% { transform: scale(1); }
+        }
+
+        /* ==========================================
+           10. FORM INPUT ANIMATIONS
+           ========================================== */
+
+        .forms-demo {
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .input-animated {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .input-animated:focus {
+            outline: none;
+            border-color: var(--red);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(230, 59, 46, 0.1);
+        }
+
+        /* Underline style */
+        .input-underline-wrapper {
+            position: relative;
+        }
+
+        .input-underline {
+            width: 100%;
+            padding: 16px 0;
+            border: none;
+            border-bottom: 2px solid #E5E5E5;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-underline:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        .input-underline-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .input-underline-wrapper:focus-within::after {
+            transform: scaleX(1);
+        }
+
+        /* ==========================================
+           11. QUOTE MARKS ANIMATION
+           ========================================== */
+
+        .quote-demo {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .quote-card {
+            flex: 1;
+            min-width: 280px;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 4rem;
+            color: var(--red);
+            opacity: 0.2;
+            line-height: 1;
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            font-family: Georgia, serif;
+        }
+
+        .quote-mark-animated {
+            opacity: 0;
+            transform: scale(0.5);
+            animation: quote-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        @keyframes quote-pop {
+            to {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+        }
+
+        .quote-text {
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           12. LINK HOVER EFFECTS
+           ========================================== */
+
+        .links-demo {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+
+        .link-underline-left {
+            position: relative;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link-underline-left::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .link-underline-left:hover::after {
+            transform: scaleX(1);
+        }
+
+        .link-underline-center {
+            position: relative;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link-underline-center::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+            transform: translateX(-50%) scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .link-underline-center:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .link-color-shift {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .link-color-shift:hover {
+            color: var(--red);
+        }
+
+        /* ==========================================
+           13. FAQ ACCORDION ANIMATION
+           ========================================== */
+
+        .faq-demo {
+            max-width: 600px;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question-btn {
+            width: 100%;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question-btn:hover {
+            background: rgba(0,0,0,0.03);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--red);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon::before {
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .faq-icon::after {
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .faq-item.open .faq-icon::after {
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 20px;
+            color: var(--gray);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        /* ==========================================
+           14. PARALLAX FOUNDER IMAGE
+           ========================================== */
+
+        .parallax-demo {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .parallax-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .parallax-image:hover {
+            transform: translateY(-10px) rotate(5deg);
+        }
+
+        .parallax-text h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .parallax-text p {
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           TRIGGER BUTTON FOR DEMOS
+           ========================================== */
+
+        .trigger-btn {
+            padding: 12px 24px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .trigger-btn:hover {
+            background: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 1.5rem;
+            }
+
+            .demo-box {
+                padding: 40px 24px;
+            }
+
+            .cards-demo {
+                grid-template-columns: 1fr;
+            }
+
+            .accent-line-demo,
+            .section-label-demo,
+            .buttons-demo {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Fixed to Flow</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Animation Opportunities</h1>
+        <p>Subtle micro-interactions and animations that could enhance the Fixed to Flow website experience. Each demo shows before/after or interactive examples.</p>
+    </header>
+
+    <!-- 1. Accent Lines -->
+    <section>
+        <h2 class="section-title">1. Accent Line Animations</h2>
+        <p class="section-desc">The red accent line in heroes and section headers can animate on load to draw attention.</p>
+
+        <div class="demo-box">
+            <div class="accent-line-demo">
+                <div class="accent-line-example">
+                    <p class="demo-label">Current (Static)</p>
+                    <div class="accent-line-static"></div>
+                    <h3>Lead with AI</h3>
+                </div>
+                <div class="accent-line-example">
+                    <p class="demo-label">Draw from Left</p>
+                    <div class="accent-line-draw" id="drawLine"></div>
+                    <h3>Lead with AI</h3>
+                </div>
+                <div class="accent-line-example">
+                    <p class="demo-label">Expand from Center</p>
+                    <div class="accent-line-expand" id="expandLine"></div>
+                    <h3>Lead with AI</h3>
+                </div>
+            </div>
+            <button class="trigger-btn" onclick="replayAccentLines()">Replay Animations</button>
+        </div>
+    </section>
+
+    <!-- 2. Section Labels -->
+    <section>
+        <h2 class="section-title">2. Section Label Animations</h2>
+        <p class="section-desc">Section labels could have their decorative line animate in, followed by the text.</p>
+
+        <div class="demo-box">
+            <div class="section-label-demo">
+                <div class="section-label-example">
+                    <p class="demo-label">Current</p>
+                    <span class="section-label-current">Our Services</span>
+                </div>
+                <div class="section-label-example">
+                    <p class="demo-label">Animated (line + fade)</p>
+                    <span class="section-label-animated" id="animatedLabel">Our Services</span>
+                </div>
+            </div>
+            <button class="trigger-btn" onclick="replayLabelAnimation()">Replay Animation</button>
+        </div>
+    </section>
+
+    <!-- 3. Text Highlights -->
+    <section>
+        <h2 class="section-title">3. Text Highlight Animations</h2>
+        <p class="section-desc">Key phrases can be emphasized with animated highlights on scroll reveal. Hover each to see effect.</p>
+
+        <div class="demo-box">
+            <p class="highlight-demo">
+                We help leaders <span class="highlight-underline" id="highlight1">remove 50% of their daily work</span> while ensuring they <span class="highlight-sweep" id="highlight2">stay sharp without AI</span>. Our approach focuses on <span class="highlight-marker" id="highlight3">amplification, not replacement</span>.
+            </p>
+            <button class="trigger-btn" onclick="triggerHighlights()">Trigger Highlights</button>
+        </div>
+    </section>
+
+    <!-- 4. Client Logos -->
+    <section>
+        <h2 class="section-title">4. Client Logo Animations</h2>
+        <p class="section-desc">Logos can fade in with a staggered effect and have subtle hover interactions.</p>
+
+        <div class="demo-box">
+            <p class="demo-label">Staggered Reveal + Hover Float</p>
+            <div class="logos-demo" id="logosDemo">
+                <div class="logo-item logo-stagger logo-float">Vodafone</div>
+                <div class="logo-item logo-stagger logo-float">L'Oréal</div>
+                <div class="logo-item logo-stagger logo-float">Galp</div>
+                <div class="logo-item logo-stagger logo-float">BCP</div>
+                <div class="logo-item logo-stagger logo-float">BP</div>
+            </div>
+            <button class="trigger-btn" onclick="replayLogos()">Replay Stagger</button>
+        </div>
+    </section>
+
+    <!-- 5. Number Counters -->
+    <section>
+        <h2 class="section-title">5. Number Counter Animations</h2>
+        <p class="section-desc">Statistics and numbers can count up and have animated underlines for emphasis.</p>
+
+        <div class="demo-box">
+            <div class="counter-demo">
+                <div class="counter-item">
+                    <div class="counter-number counter-underline" data-target="50">50</div>
+                    <div class="counter-label">% daily work removed</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number counter-underline" data-target="30">30</div>
+                    <div class="counter-label">days to results</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number counter-underline" data-target="25">25+</div>
+                    <div class="counter-label">years experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Step Numbers -->
+    <section>
+        <h2 class="section-title">6. Step Number Interactions</h2>
+        <p class="section-desc">Process step numbers can have hover effects to increase engagement. Hover each circle.</p>
+
+        <div class="demo-box">
+            <div class="steps-demo">
+                <div class="step-circle step-pulse">1</div>
+                <div class="step-circle step-ring">2</div>
+                <div class="step-circle step-fill">3</div>
+            </div>
+            <p style="margin-top: 20px; color: var(--gray); font-size: 0.9rem;">Left: Pulse | Middle: Ring expand | Right: Fill on hover</p>
+        </div>
+    </section>
+
+    <!-- 7. Card Stagger -->
+    <section>
+        <h2 class="section-title">7. Card Staggered Reveal</h2>
+        <p class="section-desc">Service and feature cards can appear with a staggered animation for visual interest.</p>
+
+        <div class="demo-box">
+            <div class="cards-demo" id="cardsDemo">
+                <div class="card-item" id="card1">
+                    <h4>Build Together</h4>
+                    <p>Live session to create your first AI assistant on day one.</p>
+                </div>
+                <div class="card-item" id="card2">
+                    <h4>Implementation</h4>
+                    <p>30-day personalized plan with email support throughout.</p>
+                </div>
+                <div class="card-item" id="card3">
+                    <h4>Wrap Up</h4>
+                    <p>Review session to discuss progress and next steps.</p>
+                </div>
+            </div>
+            <button class="trigger-btn" onclick="replayCards()">Replay Stagger</button>
+        </div>
+    </section>
+
+    <!-- 8. Floating Shapes -->
+    <section>
+        <h2 class="section-title">8. Floating Background Shapes</h2>
+        <p class="section-desc">Decorative shapes can have subtle floating animations to add depth and movement.</p>
+
+        <div class="demo-box" style="padding: 0; overflow: hidden; border-radius: 24px;">
+            <div class="shapes-demo">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <div class="shapes-demo-content">
+                    <h3>Shapes float gently</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Button Micro-interactions -->
+    <section>
+        <h2 class="section-title">9. Button Micro-interactions</h2>
+        <p class="section-desc">Various button hover effects to consider. Hover each to see the effect.</p>
+
+        <div class="demo-box">
+            <div class="buttons-demo">
+                <button class="btn btn-lift">Lift + Shadow</button>
+                <button class="btn btn-arrow-slide">
+                    Arrow Slide
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <button class="btn btn-sweep">Fill Sweep</button>
+                <button class="btn btn-bounce">Scale Bounce</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Form Inputs -->
+    <section>
+        <h2 class="section-title">10. Form Input Animations</h2>
+        <p class="section-desc">Input focus states with animated feedback. Click into each field.</p>
+
+        <div class="demo-box">
+            <div class="forms-demo">
+                <div class="form-group">
+                    <label>Border + Shadow Focus</label>
+                    <input type="text" class="input-animated" placeholder="Click to focus">
+                </div>
+                <div class="form-group">
+                    <label>Animated Underline</label>
+                    <div class="input-underline-wrapper">
+                        <input type="text" class="input-underline" placeholder="Click to focus">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Quote Marks -->
+    <section>
+        <h2 class="section-title">11. Testimonial Quote Animation</h2>
+        <p class="section-desc">Quote marks can pop in for visual interest when testimonials scroll into view.</p>
+
+        <div class="demo-box">
+            <div class="quote-demo">
+                <div class="quote-card">
+                    <span class="quote-mark">"</span>
+                    <p class="quote-text">Static quote mark for comparison.</p>
+                </div>
+                <div class="quote-card" id="quoteAnimated">
+                    <span class="quote-mark quote-mark-animated" id="quoteMark">"</span>
+                    <p class="quote-text">Animated quote mark pops in on reveal.</p>
+                </div>
+            </div>
+            <button class="trigger-btn" onclick="replayQuote()">Replay Animation</button>
+        </div>
+    </section>
+
+    <!-- 12. Link Hovers -->
+    <section>
+        <h2 class="section-title">12. Link Hover Effects</h2>
+        <p class="section-desc">Navigation and inline links with animated underlines. Hover each to see.</p>
+
+        <div class="demo-box">
+            <div class="links-demo">
+                <a href="#" class="link-underline-left">Underline from Left</a>
+                <a href="#" class="link-underline-center">Underline from Center</a>
+                <a href="#" class="link-color-shift">Color Shift Only</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. FAQ Accordion -->
+    <section>
+        <h2 class="section-title">13. FAQ Accordion Animation</h2>
+        <p class="section-desc">Smooth expand/collapse for FAQ items. Click to toggle.</p>
+
+        <div class="demo-box">
+            <div class="faq-demo">
+                <div class="faq-item">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        What happens in the build session?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We identify your biggest time drains and build your first AI assistant together, live. You leave with something immediately useful.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        How much time does this require?
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The build session is 90 minutes. After that, most people spend 15-30 minutes per day during the 30-day implementation phase.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. Founder Image -->
+    <section>
+        <h2 class="section-title">14. Founder Image Interaction</h2>
+        <p class="section-desc">Subtle hover effect on founder image for personality. Hover the circle.</p>
+
+        <div class="demo-box">
+            <div class="parallax-demo">
+                <div class="parallax-image">G</div>
+                <div class="parallax-text">
+                    <h4>Meet Gus</h4>
+                    <p>Hover the image to see the subtle tilt and lift effect that adds personality without being distracting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section style="background: var(--white); max-width: 100%; padding: 80px 2rem;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title">Summary: Recommended Animations</h2>
+            <div style="text-align: left; margin-top: 2rem;">
+                <h3 style="color: var(--red); margin-bottom: 1rem;">High Impact, Low Risk</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li><strong>#1 Accent Lines</strong> - Draw on load adds polish</li>
+                    <li><strong>#4 Logo Stagger</strong> - Professional reveal effect</li>
+                    <li><strong>#7 Card Stagger</strong> - Already partially implemented</li>
+                    <li><strong>#8 Floating Shapes</strong> - Subtle depth without distraction</li>
+                    <li><strong>#9 Button Micro-interactions</strong> - Lift + arrow slide</li>
+                    <li><strong>#10 Form Focus</strong> - Better feedback on inputs</li>
+                </ul>
+
+                <h3 style="color: var(--red); margin: 2rem 0 1rem;">Medium Priority</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li><strong>#2 Section Labels</strong> - Nice but may be over-designed</li>
+                    <li><strong>#6 Step Numbers</strong> - Ring expand is subtle and effective</li>
+                    <li><strong>#12 Link Hovers</strong> - Underline from left is clean</li>
+                    <li><strong>#13 FAQ Accordion</strong> - Smooth expand improves UX</li>
+                </ul>
+
+                <h3 style="color: var(--red); margin: 2rem 0 1rem;">Use Sparingly</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li><strong>#3 Text Highlights</strong> - Can feel gimmicky if overused</li>
+                    <li><strong>#5 Number Counters</strong> - Only for key stats</li>
+                    <li><strong>#11 Quote Marks</strong> - Subtle pop is nice but optional</li>
+                    <li><strong>#14 Founder Image</strong> - Personal touch but may distract</li>
+                </ul>
+
+                <h3 style="color: var(--red); margin: 2rem 0 1rem;">Always Include</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li><strong>Scroll Progress</strong> - Top bar showing page progress</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Replay accent lines
+        function replayAccentLines() {
+            const lines = document.querySelectorAll('.accent-line-draw, .accent-line-expand');
+            lines.forEach(line => {
+                line.style.animation = 'none';
+                line.offsetHeight; // Trigger reflow
+                line.style.animation = '';
+            });
+        }
+
+        // Replay section label
+        function replayLabelAnimation() {
+            const label = document.getElementById('animatedLabel');
+            label.style.animation = 'none';
+            label.offsetHeight;
+            label.style.animation = '';
+        }
+
+        // Trigger highlights
+        function triggerHighlights() {
+            document.querySelectorAll('.highlight-underline, .highlight-sweep, .highlight-marker').forEach(el => {
+                el.classList.remove('animate');
+            });
+            setTimeout(() => {
+                document.getElementById('highlight1').classList.add('animate');
+            }, 100);
+            setTimeout(() => {
+                document.getElementById('highlight2').classList.add('animate');
+            }, 400);
+            setTimeout(() => {
+                document.getElementById('highlight3').classList.add('animate');
+            }, 700);
+        }
+
+        // Replay logos
+        function replayLogos() {
+            const logos = document.querySelectorAll('.logo-stagger');
+            logos.forEach(logo => {
+                logo.style.animation = 'none';
+                logo.offsetHeight;
+                logo.style.animation = '';
+            });
+        }
+
+        // Replay cards
+        function replayCards() {
+            const cards = document.querySelectorAll('.card-item');
+            cards.forEach(card => {
+                card.classList.remove('reveal');
+            });
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.classList.add('reveal');
+                });
+            }, 50);
+        }
+
+        // Replay quote
+        function replayQuote() {
+            const quote = document.getElementById('quoteMark');
+            quote.style.animation = 'none';
+            quote.offsetHeight;
+            quote.style.animation = '';
+        }
+
+        // Toggle FAQ
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            // Trigger card reveal
+            setTimeout(() => {
+                document.querySelectorAll('.card-item').forEach(card => {
+                    card.classList.add('reveal');
+                });
+            }, 500);
+
+            // Trigger highlights after a delay
+            setTimeout(triggerHighlights, 2000);
+        });
+    </script>
+</body>
+</html>

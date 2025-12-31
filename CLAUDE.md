@@ -41,6 +41,8 @@ fixedtoflow/
 │   └── storage.ts               # Database storage
 ├── dist/                        # Build output (deployed to Vercel)
 │   └── public/                  # Copied from client/public/
+├── tests/                       # Test and documentation files (KEEP)
+│   └── visual/                  # Design process documentation
 └── vercel.json                  # Vercel deployment configuration
 ```
 
@@ -152,6 +154,7 @@ Required in `.env`:
 - `/client/public/` - All HTML, CSS, JS files
 - `/server/` - Local development backend
 - `/api/` - Vercel serverless functions
+- `/tests/visual/` - Design documentation (keep for process reference)
 - `CLAUDE.md` - This file
 
 ### Read-Only References (in main claude repo)

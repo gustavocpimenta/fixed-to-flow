@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Cards Animation Variations | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --dark-gray: #1A1A1A;
+            --gray: #555555;
+            --light-gray: #999999;
+            --sage: #B5C4C1;
+            --pink: #E891B2;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--black);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Variation Section */
+        .variation-section {
+            padding: 60px 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .variation-section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .variation-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .variation-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 36px;
+            margin-bottom: 12px;
+        }
+
+        .variation-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .variation-header p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Services Grid - Base */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .variation-section:nth-child(even) .service-card {
+            background: var(--cream);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-graphic {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           GRAPHIC ELEMENTS - BASE STYLES
+           ============================================ */
+
+        /* AI Activation - Converging Lines */
+        .activation-graphic {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .converge-line {
+            position: absolute;
+            height: 2px;
+            background: var(--light-gray);
+            transform-origin: right center;
+        }
+
+        .converge-line.line-1 { top: 20%; left: 5%; width: 30px; transform: rotate(35deg); }
+        .converge-line.line-2 { top: 38%; left: 0; width: 38px; transform: rotate(12deg); }
+        .converge-line.line-3 { top: 58%; left: 0; width: 38px; transform: rotate(-12deg); }
+        .converge-line.line-4 { top: 76%; left: 5%; width: 30px; transform: rotate(-35deg); }
+
+        .converge-point {
+            position: absolute;
+            top: 50%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .arrow-out {
+            position: absolute;
+            top: 50%;
+            left: 48%;
+            width: 28px;
+            height: 2px;
+            background: var(--red);
+            transform: translateY(-50%);
+        }
+
+        .arrow-out::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 7px solid var(--red);
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        /* AI Acceleration - Gears */
+        .gears-graphic {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gear {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .gear::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            height: 35%;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .gear-large {
+            width: 58px;
+            height: 58px;
+            background: conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
+                var(--black) 60deg 90deg, transparent 90deg 120deg,
+                var(--black) 120deg 150deg, transparent 150deg 180deg,
+                var(--black) 180deg 210deg, transparent 210deg 240deg,
+                var(--black) 240deg 270deg, transparent 270deg 300deg,
+                var(--black) 300deg 330deg, transparent 330deg 360deg);
+            left: 0;
+            top: 32px;
+        }
+
+        .gear-large::before { background: var(--white); }
+        .variation-section:nth-child(even) .gear-large::before { background: var(--cream); }
+
+        .gear-medium {
+            width: 42px;
+            height: 42px;
+            background: conic-gradient(from 0deg, var(--red) 0deg 45deg, transparent 45deg 90deg,
+                var(--red) 90deg 135deg, transparent 135deg 180deg,
+                var(--red) 180deg 225deg, transparent 225deg 270deg,
+                var(--red) 270deg 315deg, transparent 315deg 360deg);
+            left: 44px;
+            top: 14px;
+        }
+
+        .gear-medium::before { background: var(--white); }
+        .variation-section:nth-child(even) .gear-medium::before { background: var(--cream); }
+
+        .gear-small {
+            width: 30px;
+            height: 30px;
+            background: conic-gradient(from 0deg, var(--light-gray) 0deg 45deg, transparent 45deg 90deg,
+                var(--light-gray) 90deg 135deg, transparent 135deg 180deg,
+                var(--light-gray) 180deg 225deg, transparent 225deg 270deg,
+                var(--light-gray) 270deg 315deg, transparent 315deg 360deg);
+            left: 52px;
+            top: 56px;
+        }
+
+        .gear-small::before { background: var(--white); }
+        .variation-section:nth-child(even) .gear-small::before { background: var(--cream); }
+
+        /* AI Amplifier - Wave Bars */
+        .wave-graphic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            height: 100%;
+        }
+
+        .wave-bar {
+            width: 5px;
+            background: var(--red);
+            border-radius: 3px;
+        }
+
+        .wave-bar:nth-child(1) { height: 12px; }
+        .wave-bar:nth-child(2) { height: 20px; }
+        .wave-bar:nth-child(3) { height: 32px; }
+        .wave-bar:nth-child(4) { height: 50px; }
+        .wave-bar:nth-child(5) { height: 65px; }
+        .wave-bar:nth-child(6) { height: 50px; }
+        .wave-bar:nth-child(7) { height: 32px; }
+        .wave-bar:nth-child(8) { height: 20px; }
+        .wave-bar:nth-child(9) { height: 12px; }
+
+        /* Strategic Sparring - Compass */
+        .compass-graphic {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .compass-outer {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--light-gray);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .compass-inner {
+            width: 56px;
+            height: 56px;
+            border: 1px dashed rgba(230, 59, 46, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .compass-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 36px;
+            transform: translate(-50%, -100%) rotate(-25deg);
+            transform-origin: bottom center;
+        }
+
+        .needle-north {
+            width: 100%;
+            height: 55%;
+            background: var(--red);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .needle-south {
+            width: 100%;
+            height: 45%;
+            background: var(--black);
+            border-radius: 0 0 2px 2px;
+        }
+
+        .compass-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--black);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .compass-stroke {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18px;
+            height: 6px;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .compass-stroke-west {
+            transform: translateX(-49px) translateY(-50%);
+            background: var(--black);
+        }
+
+        .compass-stroke-east {
+            transform: translateX(31px) translateY(-50%);
+            background: var(--red);
+        }
+
+        /* ============================================
+           VARIATION 1: STATIC (No animations)
+           ============================================ */
+        .v1-static .service-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ============================================
+           VARIATION 2: HOVER TO ANIMATE (Baseline)
+           ============================================ */
+        .v2-hover .service-card:hover .converge-line.line-1 { animation: line-converge-1 2s ease-out; }
+        .v2-hover .service-card:hover .converge-line.line-2 { animation: line-converge-2 2s ease-out 0.1s both; }
+        .v2-hover .service-card:hover .converge-line.line-3 { animation: line-converge-3 2s ease-out 0.2s both; }
+        .v2-hover .service-card:hover .converge-line.line-4 { animation: line-converge-4 2s ease-out 0.3s both; }
+        .v2-hover .service-card:hover .converge-point { animation: point-appear 2s ease-out; }
+        .v2-hover .service-card:hover .arrow-out { animation: arrow-extend 2s ease-out; }
+
+        .v2-hover .service-card:hover .gear-large { animation: gear-rotate 6s linear infinite; }
+        .v2-hover .service-card:hover .gear-medium { animation: gear-rotate-reverse 4s linear infinite; }
+        .v2-hover .service-card:hover .gear-small { animation: gear-rotate 3s linear infinite; }
+
+        .v2-hover .wave-bar { animation: wave-sm 1.2s ease-in-out infinite; animation-play-state: paused; }
+        .v2-hover .wave-bar:nth-child(1) { animation-delay: 0s; }
+        .v2-hover .wave-bar:nth-child(2) { animation-delay: 0.08s; }
+        .v2-hover .wave-bar:nth-child(3) { animation-delay: 0.16s; }
+        .v2-hover .wave-bar:nth-child(4) { animation-delay: 0.24s; }
+        .v2-hover .wave-bar:nth-child(5) { animation-delay: 0.32s; }
+        .v2-hover .wave-bar:nth-child(6) { animation-delay: 0.4s; }
+        .v2-hover .wave-bar:nth-child(7) { animation-delay: 0.48s; }
+        .v2-hover .wave-bar:nth-child(8) { animation-delay: 0.56s; }
+        .v2-hover .wave-bar:nth-child(9) { animation-delay: 0.64s; }
+        .v2-hover .service-card:hover .wave-bar { animation-play-state: running; }
+
+        .v2-hover .compass-needle { animation: needle-sway 3s ease-in-out infinite; animation-play-state: paused; }
+        .v2-hover .service-card:hover .compass-needle { animation-play-state: running; }
+
+        /* ============================================
+           VARIATION 3: ALWAYS ANIMATING
+           ============================================ */
+        .v3-always .converge-line.line-1 { animation: line-converge-1 3s ease-out infinite; }
+        .v3-always .converge-line.line-2 { animation: line-converge-2 3s ease-out 0.15s infinite; }
+        .v3-always .converge-line.line-3 { animation: line-converge-3 3s ease-out 0.3s infinite; }
+        .v3-always .converge-line.line-4 { animation: line-converge-4 3s ease-out 0.45s infinite; }
+        .v3-always .converge-point { animation: point-appear 3s ease-out infinite; }
+        .v3-always .arrow-out { animation: arrow-extend 3s ease-out infinite; }
+
+        .v3-always .gear-large { animation: gear-rotate 6s linear infinite; }
+        .v3-always .gear-medium { animation: gear-rotate-reverse 4s linear infinite; }
+        .v3-always .gear-small { animation: gear-rotate 3s linear infinite; }
+
+        .v3-always .wave-bar { animation: wave-sm 1.2s ease-in-out infinite; }
+        .v3-always .wave-bar:nth-child(1) { animation-delay: 0s; }
+        .v3-always .wave-bar:nth-child(2) { animation-delay: 0.08s; }
+        .v3-always .wave-bar:nth-child(3) { animation-delay: 0.16s; }
+        .v3-always .wave-bar:nth-child(4) { animation-delay: 0.24s; }
+        .v3-always .wave-bar:nth-child(5) { animation-delay: 0.32s; }
+        .v3-always .wave-bar:nth-child(6) { animation-delay: 0.4s; }
+        .v3-always .wave-bar:nth-child(7) { animation-delay: 0.48s; }
+        .v3-always .wave-bar:nth-child(8) { animation-delay: 0.56s; }
+        .v3-always .wave-bar:nth-child(9) { animation-delay: 0.64s; }
+
+        .v3-always .compass-needle { animation: needle-sway 3s ease-in-out infinite; }
+
+        /* ============================================
+           VARIATION 4: FADE IN ON HOVER
+           ============================================ */
+        .v4-fadein .card-graphic { opacity: 0; transition: opacity 0.5s ease; }
+        .v4-fadein .service-card:hover .card-graphic { opacity: 1; }
+
+        /* ============================================
+           VARIATION 5: FADE OUT ON HOVER
+           ============================================ */
+        .v5-fadeout .card-graphic { opacity: 1; transition: opacity 0.5s ease; }
+        .v5-fadeout .service-card:hover .card-graphic { opacity: 0.15; }
+
+        /* ============================================
+           VARIATION 6: SCALE UP ON HOVER
+           ============================================ */
+        .v6-scale .card-graphic { transform: scale(0.6); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .v6-scale .service-card:hover .card-graphic { transform: scale(1); }
+
+        /* ============================================
+           VARIATION 7: COLOR SHIFT ON HOVER
+           ============================================ */
+        .v7-color .converge-line { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .converge-point { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .arrow-out { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .arrow-out::after { border-left-color: var(--light-gray); transition: border-color 0.4s ease; }
+        .v7-color .service-card:hover .converge-point { background: var(--red); }
+        .v7-color .service-card:hover .arrow-out { background: var(--red); }
+        .v7-color .service-card:hover .arrow-out::after { border-left-color: var(--red); }
+
+        .v7-color .gear-large {
+            background: conic-gradient(from 0deg, var(--light-gray) 0deg 30deg, transparent 30deg 60deg,
+                var(--light-gray) 60deg 90deg, transparent 90deg 120deg,
+                var(--light-gray) 120deg 150deg, transparent 150deg 180deg,
+                var(--light-gray) 180deg 210deg, transparent 210deg 240deg,
+                var(--light-gray) 240deg 270deg, transparent 270deg 300deg,
+                var(--light-gray) 300deg 330deg, transparent 330deg 360deg);
+            transition: filter 0.4s ease;
+        }
+        .v7-color .gear-medium {
+            background: conic-gradient(from 0deg, var(--light-gray) 0deg 45deg, transparent 45deg 90deg,
+                var(--light-gray) 90deg 135deg, transparent 135deg 180deg,
+                var(--light-gray) 180deg 225deg, transparent 225deg 270deg,
+                var(--light-gray) 270deg 315deg, transparent 315deg 360deg);
+        }
+        .v7-color .service-card:hover .gear-large {
+            background: conic-gradient(from 0deg, var(--black) 0deg 30deg, transparent 30deg 60deg,
+                var(--black) 60deg 90deg, transparent 90deg 120deg,
+                var(--black) 120deg 150deg, transparent 150deg 180deg,
+                var(--black) 180deg 210deg, transparent 210deg 240deg,
+                var(--black) 240deg 270deg, transparent 270deg 300deg,
+                var(--black) 300deg 330deg, transparent 330deg 360deg);
+        }
+        .v7-color .service-card:hover .gear-medium {
+            background: conic-gradient(from 0deg, var(--red) 0deg 45deg, transparent 45deg 90deg,
+                var(--red) 90deg 135deg, transparent 135deg 180deg,
+                var(--red) 180deg 225deg, transparent 225deg 270deg,
+                var(--red) 270deg 315deg, transparent 315deg 360deg);
+        }
+
+        .v7-color .wave-bar { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .service-card:hover .wave-bar { background: var(--red); }
+
+        .v7-color .needle-north { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .needle-south { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .compass-stroke-west { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .compass-stroke-east { background: var(--light-gray); transition: background 0.4s ease; }
+        .v7-color .service-card:hover .needle-north { background: var(--red); }
+        .v7-color .service-card:hover .needle-south { background: var(--black); }
+        .v7-color .service-card:hover .compass-stroke-west { background: var(--black); }
+        .v7-color .service-card:hover .compass-stroke-east { background: var(--red); }
+
+        /* ============================================
+           VARIATION 8: GENTLE PULSE
+           ============================================ */
+        .v8-pulse .card-graphic { animation: gentle-pulse 2.5s ease-in-out infinite; }
+
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.85; }
+        }
+
+        /* ============================================
+           VARIATION 9: DRAW ON HOVER
+           ============================================ */
+        .v9-draw .converge-line { width: 0; transition: width 0.5s ease; }
+        .v9-draw .converge-point { transform: translate(-50%, -50%) scale(0); transition: transform 0.4s ease 0.3s; }
+        .v9-draw .arrow-out { width: 0; transition: width 0.4s ease 0.5s; }
+        .v9-draw .service-card:hover .converge-line.line-1 { width: 30px; }
+        .v9-draw .service-card:hover .converge-line.line-2 { width: 38px; transition-delay: 0.1s; }
+        .v9-draw .service-card:hover .converge-line.line-3 { width: 38px; transition-delay: 0.15s; }
+        .v9-draw .service-card:hover .converge-line.line-4 { width: 30px; transition-delay: 0.2s; }
+        .v9-draw .service-card:hover .converge-point { transform: translate(-50%, -50%) scale(1); }
+        .v9-draw .service-card:hover .arrow-out { width: 28px; }
+
+        .v9-draw .gear { transform: scale(0); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .v9-draw .service-card:hover .gear-large { transform: scale(1); transition-delay: 0s; }
+        .v9-draw .service-card:hover .gear-medium { transform: scale(1); transition-delay: 0.15s; }
+        .v9-draw .service-card:hover .gear-small { transform: scale(1); transition-delay: 0.3s; }
+
+        .v9-draw .wave-bar { height: 0 !important; transition: height 0.4s ease; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(1) { height: 12px !important; transition-delay: 0.4s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(2) { height: 20px !important; transition-delay: 0.35s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(3) { height: 32px !important; transition-delay: 0.3s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(4) { height: 50px !important; transition-delay: 0.25s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(5) { height: 65px !important; transition-delay: 0.2s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(6) { height: 50px !important; transition-delay: 0.25s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(7) { height: 32px !important; transition-delay: 0.3s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(8) { height: 20px !important; transition-delay: 0.35s; }
+        .v9-draw .service-card:hover .wave-bar:nth-child(9) { height: 12px !important; transition-delay: 0.4s; }
+
+        .v9-draw .compass-outer { transform: translate(-50%, -50%) scale(0); transition: transform 0.4s ease; }
+        .v9-draw .compass-inner { transform: translate(-50%, -50%) scale(0); transition: transform 0.3s ease 0.1s; }
+        .v9-draw .compass-needle { opacity: 0; transition: opacity 0.3s ease 0.2s; }
+        .v9-draw .compass-center { transform: translate(-50%, -50%) scale(0); transition: transform 0.3s ease 0.15s; }
+        .v9-draw .compass-stroke { opacity: 0; transition: opacity 0.3s ease 0.25s; }
+        .v9-draw .service-card:hover .compass-outer { transform: translate(-50%, -50%) scale(1); }
+        .v9-draw .service-card:hover .compass-inner { transform: translate(-50%, -50%) scale(1); }
+        .v9-draw .service-card:hover .compass-needle { opacity: 1; }
+        .v9-draw .service-card:hover .compass-center { transform: translate(-50%, -50%) scale(1); }
+        .v9-draw .service-card:hover .compass-stroke { opacity: 1; }
+
+        /* ============================================
+           VARIATION 10: STAGGERED REVEAL
+           ============================================ */
+        .v10-stagger .converge-line { opacity: 0; transform: translateX(-20px); transition: all 0.3s ease; }
+        .v10-stagger .converge-point { opacity: 0; transform: translate(-50%, -50%) scale(0); transition: all 0.3s ease; }
+        .v10-stagger .arrow-out { opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; }
+        .v10-stagger .service-card:hover .converge-line.line-1 { opacity: 1; transform: translateX(0) rotate(35deg); transition-delay: 0s; }
+        .v10-stagger .service-card:hover .converge-line.line-2 { opacity: 1; transform: translateX(0) rotate(12deg); transition-delay: 0.1s; }
+        .v10-stagger .service-card:hover .converge-line.line-3 { opacity: 1; transform: translateX(0) rotate(-12deg); transition-delay: 0.2s; }
+        .v10-stagger .service-card:hover .converge-line.line-4 { opacity: 1; transform: translateX(0) rotate(-35deg); transition-delay: 0.3s; }
+        .v10-stagger .service-card:hover .converge-point { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0.4s; }
+        .v10-stagger .service-card:hover .arrow-out { opacity: 1; transform: translateX(0); transition-delay: 0.5s; }
+
+        .v10-stagger .gear { opacity: 0; transform: scale(0.5) rotate(-90deg); transition: all 0.4s ease; }
+        .v10-stagger .service-card:hover .gear-large { opacity: 1; transform: scale(1) rotate(0deg); transition-delay: 0s; }
+        .v10-stagger .service-card:hover .gear-medium { opacity: 1; transform: scale(1) rotate(0deg); transition-delay: 0.15s; }
+        .v10-stagger .service-card:hover .gear-small { opacity: 1; transform: scale(1) rotate(0deg); transition-delay: 0.3s; }
+
+        .v10-stagger .wave-bar { opacity: 0; transform: scaleY(0); transition: all 0.3s ease; transform-origin: bottom; }
+        .v10-stagger .service-card:hover .wave-bar:nth-child(5) { opacity: 1; transform: scaleY(1); transition-delay: 0s; }
+        .v10-stagger .service-card:hover .wave-bar:nth-child(4),
+        .v10-stagger .service-card:hover .wave-bar:nth-child(6) { opacity: 1; transform: scaleY(1); transition-delay: 0.1s; }
+        .v10-stagger .service-card:hover .wave-bar:nth-child(3),
+        .v10-stagger .service-card:hover .wave-bar:nth-child(7) { opacity: 1; transform: scaleY(1); transition-delay: 0.2s; }
+        .v10-stagger .service-card:hover .wave-bar:nth-child(2),
+        .v10-stagger .service-card:hover .wave-bar:nth-child(8) { opacity: 1; transform: scaleY(1); transition-delay: 0.3s; }
+        .v10-stagger .service-card:hover .wave-bar:nth-child(1),
+        .v10-stagger .service-card:hover .wave-bar:nth-child(9) { opacity: 1; transform: scaleY(1); transition-delay: 0.4s; }
+
+        .v10-stagger .compass-outer { opacity: 0; transform: translate(-50%, -50%) scale(0.8); transition: all 0.3s ease; }
+        .v10-stagger .compass-inner { opacity: 0; transform: translate(-50%, -50%) scale(0.8); transition: all 0.3s ease; }
+        .v10-stagger .compass-needle { opacity: 0; transition: opacity 0.3s ease; }
+        .v10-stagger .compass-center { opacity: 0; transform: translate(-50%, -50%) scale(0); transition: all 0.3s ease; }
+        .v10-stagger .compass-stroke { opacity: 0; transform: scaleX(0); transition: all 0.3s ease; }
+        .v10-stagger .service-card:hover .compass-outer { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0s; }
+        .v10-stagger .service-card:hover .compass-inner { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0.1s; }
+        .v10-stagger .service-card:hover .compass-center { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0.2s; }
+        .v10-stagger .service-card:hover .compass-needle { opacity: 1; transition-delay: 0.3s; }
+        .v10-stagger .service-card:hover .compass-stroke { opacity: 1; transform: scaleX(1); transition-delay: 0.4s; }
+
+        /* ============================================
+           SHARED KEYFRAMES
+           ============================================ */
+        @keyframes line-converge-1 {
+            0% { width: 0; opacity: 0; left: -10%; }
+            40% { width: 30px; opacity: 1; left: 5%; }
+            100% { width: 30px; opacity: 1; left: 5%; }
+        }
+        @keyframes line-converge-2 {
+            0% { width: 0; opacity: 0; left: -15%; }
+            40% { width: 38px; opacity: 1; left: 0; }
+            100% { width: 38px; opacity: 1; left: 0; }
+        }
+        @keyframes line-converge-3 {
+            0% { width: 0; opacity: 0; left: -15%; }
+            40% { width: 38px; opacity: 1; left: 0; }
+            100% { width: 38px; opacity: 1; left: 0; }
+        }
+        @keyframes line-converge-4 {
+            0% { width: 0; opacity: 0; left: -10%; }
+            40% { width: 30px; opacity: 1; left: 5%; }
+            100% { width: 30px; opacity: 1; left: 5%; }
+        }
+
+        @keyframes point-appear {
+            0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes arrow-extend {
+            0%, 45% { width: 0; opacity: 0; }
+            65%, 100% { width: 28px; opacity: 1; }
+        }
+
+        @keyframes gear-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gear-rotate-reverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        @keyframes wave-sm {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.3); }
+        }
+
+        @keyframes needle-sway {
+            0%, 100% { transform: translate(-50%, -100%) rotate(-30deg); }
+            50% { transform: translate(-50%, -100%) rotate(-10deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+            .variation-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Service Cards Animation Variations</h1>
+        <p>10 different animation behaviors for the homepage service block</p>
+    </header>
+
+    <!-- VARIATION 1: STATIC -->
+    <section class="variation-section v1-static">
+        <div class="variation-header">
+            <div class="variation-number">1</div>
+            <h2>Static</h2>
+            <p>No animations at all - everything visible, clean and simple</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 2: HOVER TO ANIMATE -->
+    <section class="variation-section v2-hover">
+        <div class="variation-header">
+            <div class="variation-number">2</div>
+            <h2>Hover to Animate</h2>
+            <p>Current baseline - static by default, animations play on hover</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 3: ALWAYS ANIMATING -->
+    <section class="variation-section v3-always">
+        <div class="variation-header">
+            <div class="variation-number">3</div>
+            <h2>Always Animating</h2>
+            <p>Continuous animations running without hover - adds energy but may distract</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 4: FADE IN ON HOVER -->
+    <section class="variation-section v4-fadein">
+        <div class="variation-header">
+            <div class="variation-number">4</div>
+            <h2>Fade In on Hover</h2>
+            <p>Graphics start invisible and fade in when hovering - creates discovery moment</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 5: FADE OUT ON HOVER -->
+    <section class="variation-section v5-fadeout">
+        <div class="variation-header">
+            <div class="variation-number">5</div>
+            <h2>Fade Out on Hover</h2>
+            <p>Graphics visible by default, fade away on hover - focuses attention on content</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 6: SCALE UP ON HOVER -->
+    <section class="variation-section v6-scale">
+        <div class="variation-header">
+            <div class="variation-number">6</div>
+            <h2>Scale Up on Hover</h2>
+            <p>Graphics start small and scale up with a bouncy ease - playful and engaging</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 7: COLOR SHIFT ON HOVER -->
+    <section class="variation-section v7-color">
+        <div class="variation-header">
+            <div class="variation-number">7</div>
+            <h2>Color Shift on Hover</h2>
+            <p>Graphics start gray and shift to brand colors on hover - subtle but effective</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 8: GENTLE PULSE -->
+    <section class="variation-section v8-pulse">
+        <div class="variation-header">
+            <div class="variation-number">8</div>
+            <h2>Gentle Pulse</h2>
+            <p>Subtle continuous pulsing animation - adds life without being distracting</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 9: DRAW ON HOVER -->
+    <section class="variation-section v9-draw">
+        <div class="variation-header">
+            <div class="variation-number">9</div>
+            <h2>Draw on Hover</h2>
+            <p>Graphics "draw in" from zero on hover - satisfying reveal effect</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- VARIATION 10: STAGGERED REVEAL -->
+    <section class="variation-section v10-stagger">
+        <div class="variation-header">
+            <div class="variation-number">10</div>
+            <h2>Staggered Reveal</h2>
+            <p>Elements appear one by one with delays on hover - theatrical and engaging</p>
+        </div>
+        <div class="services-grid">
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Activation</h3>
+                    <p>30 days to move from "we should do something with AI" to pilots your team can actually execute.</p>
+                </div>
+                <div class="card-graphic activation-graphic">
+                    <div class="converge-line line-1"></div>
+                    <div class="converge-line line-2"></div>
+                    <div class="converge-line line-3"></div>
+                    <div class="converge-line line-4"></div>
+                    <div class="converge-point"></div>
+                    <div class="arrow-out"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Organizations</div>
+                    <h3>AI Acceleration</h3>
+                    <p>Your team learns by doing. We're with them from first experiments to working pilots.</p>
+                </div>
+                <div class="card-graphic gears-graphic">
+                    <div class="gear gear-large"></div>
+                    <div class="gear gear-medium"></div>
+                    <div class="gear gear-small"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>AI Amplifier</h3>
+                    <p>Remove 50% of your daily work in 30 days without forgetting how to think.</p>
+                </div>
+                <div class="card-graphic wave-graphic">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </a>
+            <a href="#" class="service-card">
+                <div class="card-content">
+                    <div class="service-tag">For Individuals</div>
+                    <h3>Strategic Sparring</h3>
+                    <p>A peer who thinks with you, challenges you, and helps you get to action.</p>
+                </div>
+                <div class="card-graphic compass-graphic">
+                    <div class="compass-stroke compass-stroke-west"></div>
+                    <div class="compass-stroke compass-stroke-east"></div>
+                    <div class="compass-outer"></div>
+                    <div class="compass-inner"></div>
+                    <div class="compass-needle">
+                        <div class="needle-north"></div>
+                        <div class="needle-south"></div>
+                    </div>
+                    <div class="compass-center"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>

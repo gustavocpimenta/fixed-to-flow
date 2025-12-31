@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Message Tests | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --light-gray: #999999;
+            --white: #FFFFFF;
+            --green: #22C55E;
+            --green-light: #DCFCE7;
+            --green-dark: #16A34A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--black);
+            padding: 24px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .page-label {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .intro p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Variation Section */
+        .variation {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .variation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .variation-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--cream);
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-right: 16px;
+        }
+
+        .variation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .trigger-btn {
+            padding: 10px 20px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .trigger-btn:hover {
+            background: var(--gray);
+            transform: translateY(-1px);
+        }
+
+        .reset-btn {
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 8px;
+        }
+
+        .reset-btn:hover {
+            border-color: var(--black);
+            color: var(--black);
+        }
+
+        .demo-area {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .placeholder {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Hidden state */
+        .confirmation {
+            display: none;
+        }
+
+        .confirmation.active {
+            display: flex;
+        }
+
+        /* ========================================
+           VARIATION 1: Green Banner (Current)
+           ======================================== */
+        .v1-confirmation {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 8px;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .v1-confirmation svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           VARIATION 2: Minimal Text + Icon
+           ======================================== */
+        .v2-confirmation {
+            align-items: center;
+            gap: 10px;
+            color: var(--green-dark);
+            font-weight: 500;
+        }
+
+        .v2-confirmation svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ========================================
+           VARIATION 3: Slide-down Toast
+           ======================================== */
+        .v3-wrapper {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .v3-confirmation {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            background: var(--black);
+            color: var(--white);
+            border-radius: 100px;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+        }
+
+        .v3-confirmation.active {
+            top: 30px;
+        }
+
+        .v3-confirmation svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========================================
+           VARIATION 4: Inline Form Replacement
+           ======================================== */
+        .v4-form {
+            width: 100%;
+            text-align: center;
+        }
+
+        .v4-form-content {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .v4-form input {
+            padding: 14px 20px;
+            border: 2px solid #E5E5E5;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 240px;
+            background: var(--cream);
+        }
+
+        .v4-form button {
+            padding: 14px 28px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .v4-confirmation {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 40px;
+        }
+
+        .v4-confirmation svg {
+            width: 48px;
+            height: 48px;
+            color: var(--green);
+        }
+
+        .v4-confirmation h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .v4-confirmation p {
+            color: var(--gray);
+        }
+
+        /* ========================================
+           VARIATION 5: Modal/Overlay
+           ======================================== */
+        .v5-wrapper {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v5-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .v5-overlay.active {
+            display: flex;
+        }
+
+        .v5-modal {
+            background: var(--white);
+            padding: 48px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            animation: v5-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes v5-pop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .v5-modal svg {
+            width: 56px;
+            height: 56px;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+
+        .v5-modal h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .v5-modal p {
+            color: var(--gray);
+            margin-bottom: 28px;
+        }
+
+        .v5-modal button {
+            padding: 14px 32px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           VARIATION 6: Brand Red
+           ======================================== */
+        .v6-confirmation {
+            width: 100%;
+            padding: 20px 24px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 12px;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .v6-confirmation svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .v6-confirmation span {
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        /* ========================================
+           VARIATION 7: Animated Checkmark
+           ======================================== */
+        .v7-confirmation {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v7-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v7-circle svg {
+            width: 36px;
+            height: 36px;
+            color: var(--green);
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+        }
+
+        .v7-confirmation.active .v7-circle svg {
+            animation: v7-draw 0.6s ease forwards 0.2s;
+        }
+
+        @keyframes v7-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .v7-confirmation span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* ========================================
+           VARIATION 8: Card with Shadow
+           ======================================== */
+        .v8-confirmation {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 24px 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            align-items: center;
+            gap: 16px;
+        }
+
+        .v8-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--green-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .v8-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--green);
+        }
+
+        .v8-text h4 {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .v8-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           VARIATION 9: Left Border Accent
+           ======================================== */
+        .v9-confirmation {
+            width: 100%;
+            padding: 20px 24px;
+            background: var(--green-light);
+            border-left: 4px solid var(--green);
+            border-radius: 0 8px 8px 0;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .v9-confirmation svg {
+            width: 22px;
+            height: 22px;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .v9-confirmation span {
+            color: var(--green-dark);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           VARIATION 10: Confetti Celebration
+           ======================================== */
+        .v10-wrapper {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .v10-confirmation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .v10-confirmation span {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .v10-confirmation p {
+            color: var(--gray);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .v10-wrapper.active .confetti {
+            animation: confetti-fall 1s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+        }
+
+        .confetti:nth-child(1) { left: 10%; top: 0; background: var(--red); animation-delay: 0s; border-radius: 2px; }
+        .confetti:nth-child(2) { left: 20%; top: -10px; background: var(--green); animation-delay: 0.1s; border-radius: 50%; }
+        .confetti:nth-child(3) { left: 35%; top: 5px; background: #F59E0B; animation-delay: 0.05s; }
+        .confetti:nth-child(4) { left: 50%; top: -5px; background: var(--red); animation-delay: 0.15s; border-radius: 50%; }
+        .confetti:nth-child(5) { left: 65%; top: 0; background: #3B82F6; animation-delay: 0.08s; }
+        .confetti:nth-child(6) { left: 80%; top: -8px; background: var(--green); animation-delay: 0.12s; border-radius: 2px; }
+        .confetti:nth-child(7) { left: 90%; top: 3px; background: #F59E0B; animation-delay: 0.03s; border-radius: 50%; }
+        .confetti:nth-child(8) { left: 15%; top: -3px; background: #3B82F6; animation-delay: 0.18s; }
+        .confetti:nth-child(9) { left: 45%; top: -12px; background: var(--red); animation-delay: 0.07s; border-radius: 2px; }
+        .confetti:nth-child(10) { left: 75%; top: 8px; background: var(--green); animation-delay: 0.2s; }
+
+        /* ========================================
+           VARIATION 11: Minimal Underline
+           ======================================== */
+        .v11-confirmation {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .v11-confirmation span {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .v11-line {
+            width: 40px;
+            height: 2px;
+            background: var(--green);
+        }
+
+        /* Checkmark SVG */
+        .check-icon {
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 40px 20px;
+            }
+
+            .variation {
+                padding: 24px;
+            }
+
+            .variation-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .v4-form-content {
+                flex-direction: column;
+            }
+
+            .v4-form input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Fixed to Flow</div>
+            <div class="page-label">Confirmation Message Tests</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="intro">
+            <h1>Form Confirmation Styles</h1>
+            <p>Click "Show" to preview each confirmation message style</p>
+        </div>
+
+        <!-- Variation 1: Green Banner -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">1</span>
+                    <span class="variation-title">Green Banner (Current)</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV1()">Show</button>
+                    <button class="reset-btn" onclick="resetV1()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v1-area">
+                <span class="placeholder" id="v1-placeholder">Click "Show" to preview</span>
+                <div class="v1-confirmation confirmation" id="v1-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Message sent! We'll get back to you soon.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 2: Minimal Text -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">2</span>
+                    <span class="variation-title">Minimal Text + Icon</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV2()">Show</button>
+                    <button class="reset-btn" onclick="resetV2()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v2-area">
+                <span class="placeholder" id="v2-placeholder">Click "Show" to preview</span>
+                <div class="v2-confirmation confirmation" id="v2-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Message sent successfully</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 3: Slide-down Toast -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">3</span>
+                    <span class="variation-title">Slide-down Toast</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV3()">Show</button>
+                    <button class="reset-btn" onclick="resetV3()">Reset</button>
+                </div>
+            </div>
+            <div class="v3-wrapper">
+                <div class="v3-confirmation" id="v3-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Message sent!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 4: Form Replacement -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">4</span>
+                    <span class="variation-title">Inline Form Replacement</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV4()">Show</button>
+                    <button class="reset-btn" onclick="resetV4()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v4-area">
+                <div class="v4-form" id="v4-form">
+                    <div class="v4-form-content">
+                        <input type="email" placeholder="you@example.com" disabled>
+                        <button type="button" onclick="showV4()">Send Message</button>
+                    </div>
+                </div>
+                <div class="v4-confirmation confirmation" id="v4-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><circle cx="12" cy="12" r="10"/><path d="M16 10l-5 5-3-3"/></svg>
+                    <h3>Thank you!</h3>
+                    <p>We'll be in touch within 24 hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 5: Modal -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">5</span>
+                    <span class="variation-title">Modal / Overlay</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV5()">Show</button>
+                </div>
+            </div>
+            <div class="v5-wrapper">
+                <span class="placeholder">Click "Show" to preview modal</span>
+            </div>
+        </section>
+        <div class="v5-overlay" id="v5-overlay" onclick="closeV5(event)">
+            <div class="v5-modal" onclick="event.stopPropagation()">
+                <svg viewBox="0 0 24 24" class="check-icon"><circle cx="12" cy="12" r="10"/><path d="M16 10l-5 5-3-3"/></svg>
+                <h3>Message Sent!</h3>
+                <p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
+                <button onclick="closeV5()">Got it</button>
+            </div>
+        </div>
+
+        <!-- Variation 6: Brand Red -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">6</span>
+                    <span class="variation-title">Brand Red</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV6()">Show</button>
+                    <button class="reset-btn" onclick="resetV6()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v6-area">
+                <span class="placeholder" id="v6-placeholder">Click "Show" to preview</span>
+                <div class="v6-confirmation confirmation" id="v6-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Message sent! We'll be in touch soon.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 7: Animated Checkmark -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">7</span>
+                    <span class="variation-title">Animated Checkmark</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV7()">Show</button>
+                    <button class="reset-btn" onclick="resetV7()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v7-area">
+                <span class="placeholder" id="v7-placeholder">Click "Show" to preview</span>
+                <div class="v7-confirmation confirmation" id="v7-msg">
+                    <div class="v7-circle">
+                        <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    </div>
+                    <span>Message sent successfully</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 8: Card with Shadow -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">8</span>
+                    <span class="variation-title">Card with Shadow</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV8()">Show</button>
+                    <button class="reset-btn" onclick="resetV8()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v8-area">
+                <span class="placeholder" id="v8-placeholder">Click "Show" to preview</span>
+                <div class="v8-confirmation confirmation" id="v8-msg">
+                    <div class="v8-icon">
+                        <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    </div>
+                    <div class="v8-text">
+                        <h4>Message sent!</h4>
+                        <p>We'll respond within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 9: Left Border Accent -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">9</span>
+                    <span class="variation-title">Left Border Accent</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV9()">Show</button>
+                    <button class="reset-btn" onclick="resetV9()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v9-area">
+                <span class="placeholder" id="v9-placeholder">Click "Show" to preview</span>
+                <div class="v9-confirmation confirmation" id="v9-msg">
+                    <svg viewBox="0 0 24 24" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Your message has been sent successfully.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 10: Confetti -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">10</span>
+                    <span class="variation-title">Confetti Celebration</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV10()">Show</button>
+                    <button class="reset-btn" onclick="resetV10()">Reset</button>
+                </div>
+            </div>
+            <div class="v10-wrapper" id="v10-wrapper">
+                <span class="placeholder" id="v10-placeholder">Click "Show" to preview</span>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="v10-confirmation confirmation" id="v10-msg">
+                    <span>Message sent!</span>
+                    <p>We'll be in touch soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variation 11: Minimal Underline -->
+        <section class="variation">
+            <div class="variation-header">
+                <div style="display: flex; align-items: center;">
+                    <span class="variation-number">11</span>
+                    <span class="variation-title">Minimal Underline</span>
+                </div>
+                <div>
+                    <button class="trigger-btn" onclick="showV11()">Show</button>
+                    <button class="reset-btn" onclick="resetV11()">Reset</button>
+                </div>
+            </div>
+            <div class="demo-area" id="v11-area">
+                <span class="placeholder" id="v11-placeholder">Click "Show" to preview</span>
+                <div class="v11-confirmation confirmation" id="v11-msg">
+                    <span>Message sent</span>
+                    <div class="v11-line"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Variation 1
+        function showV1() {
+            document.getElementById('v1-placeholder').style.display = 'none';
+            document.getElementById('v1-msg').classList.add('active');
+        }
+        function resetV1() {
+            document.getElementById('v1-placeholder').style.display = 'inline';
+            document.getElementById('v1-msg').classList.remove('active');
+        }
+
+        // Variation 2
+        function showV2() {
+            document.getElementById('v2-placeholder').style.display = 'none';
+            document.getElementById('v2-msg').classList.add('active');
+        }
+        function resetV2() {
+            document.getElementById('v2-placeholder').style.display = 'inline';
+            document.getElementById('v2-msg').classList.remove('active');
+        }
+
+        // Variation 3
+        function showV3() {
+            document.getElementById('v3-msg').classList.add('active');
+        }
+        function resetV3() {
+            document.getElementById('v3-msg').classList.remove('active');
+        }
+
+        // Variation 4
+        function showV4() {
+            document.getElementById('v4-form').style.display = 'none';
+            document.getElementById('v4-msg').classList.add('active');
+        }
+        function resetV4() {
+            document.getElementById('v4-form').style.display = 'block';
+            document.getElementById('v4-msg').classList.remove('active');
+        }
+
+        // Variation 5
+        function showV5() {
+            document.getElementById('v5-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeV5(e) {
+            if (!e || e.target === document.getElementById('v5-overlay')) {
+                document.getElementById('v5-overlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Variation 6
+        function showV6() {
+            document.getElementById('v6-placeholder').style.display = 'none';
+            document.getElementById('v6-msg').classList.add('active');
+        }
+        function resetV6() {
+            document.getElementById('v6-placeholder').style.display = 'inline';
+            document.getElementById('v6-msg').classList.remove('active');
+        }
+
+        // Variation 7
+        function showV7() {
+            document.getElementById('v7-placeholder').style.display = 'none';
+            const msg = document.getElementById('v7-msg');
+            msg.classList.add('active');
+        }
+        function resetV7() {
+            document.getElementById('v7-placeholder').style.display = 'inline';
+            const msg = document.getElementById('v7-msg');
+            msg.classList.remove('active');
+        }
+
+        // Variation 8
+        function showV8() {
+            document.getElementById('v8-placeholder').style.display = 'none';
+            document.getElementById('v8-msg').classList.add('active');
+        }
+        function resetV8() {
+            document.getElementById('v8-placeholder').style.display = 'inline';
+            document.getElementById('v8-msg').classList.remove('active');
+        }
+
+        // Variation 9
+        function showV9() {
+            document.getElementById('v9-placeholder').style.display = 'none';
+            document.getElementById('v9-msg').classList.add('active');
+        }
+        function resetV9() {
+            document.getElementById('v9-placeholder').style.display = 'inline';
+            document.getElementById('v9-msg').classList.remove('active');
+        }
+
+        // Variation 10
+        function showV10() {
+            document.getElementById('v10-placeholder').style.display = 'none';
+            document.getElementById('v10-wrapper').classList.add('active');
+            document.getElementById('v10-msg').classList.add('active');
+        }
+        function resetV10() {
+            document.getElementById('v10-placeholder').style.display = 'inline';
+            document.getElementById('v10-wrapper').classList.remove('active');
+            document.getElementById('v10-msg').classList.remove('active');
+        }
+
+        // Variation 11
+        function showV11() {
+            document.getElementById('v11-placeholder').style.display = 'none';
+            document.getElementById('v11-msg').classList.add('active');
+        }
+        function resetV11() {
+            document.getElementById('v11-placeholder').style.display = 'inline';
+            document.getElementById('v11-msg').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
