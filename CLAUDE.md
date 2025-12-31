@@ -88,6 +88,7 @@ Use these specialized agents when their craft is needed. These are **recommendat
 
 ## Critical Voice Rules
 
+- **NEVER use first person ("I", "I'll", "my") on the website** - use "we" or impersonal constructions
 - **NEVER use em dashes (—) in any copy** - use colons, periods, or rewrite instead
 - **ALWAYS invoke bard agent for any visitor-facing text changes** - no exceptions
 - **Read gus_voice.md before writing content**
