@@ -56,9 +56,12 @@ export default async function handler(
     }
 
     console.error("Unexpected error:", error);
+    // Temporary verbose error for debugging
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return res.status(500).json({
       success: false,
-      message: "An unexpected error occurred"
+      message: "An unexpected error occurred",
+      debug: errorMessage
     });
   }
 }
