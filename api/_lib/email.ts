@@ -15,12 +15,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  */
 export async function sendContactEmail(contact: Contact): Promise<boolean> {
   try {
+    const sourcePage = contact.source || "unknown";
     const { data, error } = await resend.emails.send({
       from: "Fixed to Flow <onboarding@resend.dev>",
       to: "gustavo@gustavopimenta.com",
-      subject: `New contact form submission from ${contact.name}`,
+      subject: `[${sourcePage}] New contact from ${contact.name}`,
       html: `
         <h2>New Contact Form Submission</h2>
+        <p><strong>From page:</strong> ${sourcePage}</p>
         <p><strong>Name:</strong> ${contact.name}</p>
         <p><strong>Email:</strong> ${contact.email}</p>
         <p><strong>Message:</strong></p>

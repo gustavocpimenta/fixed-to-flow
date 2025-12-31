@@ -13,6 +13,7 @@ export const contacts = pgTable("contacts", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   message: text("message").notNull(),
+  source: text("source"),
   createdAt: text("created_at").notNull().default(new Date().toISOString()),
 });
 
@@ -25,6 +26,7 @@ export const insertContactSchema = createInsertSchema(contacts).pick({
   name: true,
   email: true,
   message: true,
+  source: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
