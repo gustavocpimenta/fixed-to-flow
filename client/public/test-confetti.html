@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confetti Test | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--gray-dark);
+            color: var(--cream);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            color: var(--gray-light);
+            font-size: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: var(--black);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .demo-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .demo-label h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cream);
+        }
+
+        .demo-label span {
+            font-size: 0.75rem;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .demo-container {
+            position: relative;
+            background: var(--cream);
+            border-radius: 12px;
+            height: 280px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .form-confirmation {
+            position: absolute;
+            inset: 0;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .form-confirmation .headline {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-confirmation .subtext {
+            font-size: 1rem;
+            color: var(--gray);
+            position: relative;
+            z-index: 2;
+        }
+
+        .replay-btn {
+            margin-top: 16px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .replay-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Confetti particle base */
+        .confetti-particle {
+            position: absolute;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        @media (max-width: 840px) {
+            .grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Confetti Variations</h1>
+        <p>Click each card or Replay to see randomized animations</p>
+    </header>
+
+    <div class="grid">
+        <!-- Final Choice -->
+        <div class="demo-card">
+            <div class="demo-label">
+                <h2>Final Choice</h2>
+                <span>Ready for production</span>
+            </div>
+            <div class="demo-container" id="demo-falling" onclick="triggerConfetti('falling')">
+                <div class="form-confirmation">
+                    <span class="headline">Human detected.</span>
+                    <span class="subtext">Humans on this end too. We'll reply soon.</span>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="triggerConfetti('falling')">Replay</button>
+        </div>
+
+        <!-- Burst -->
+        <div class="demo-card">
+            <div class="demo-label">
+                <h2>Burst</h2>
+                <span>Center explosion</span>
+            </div>
+            <div class="demo-container" id="demo-burst" onclick="triggerConfetti('burst')">
+                <div class="form-confirmation">
+                    <span class="headline">Perfect!</span>
+                    <span class="subtext">We'll get back to you shortly.</span>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="triggerConfetti('burst')">Replay</button>
+        </div>
+
+        <!-- Cannon -->
+        <div class="demo-card">
+            <div class="demo-label">
+                <h2>Cannon</h2>
+                <span>Side bursts</span>
+            </div>
+            <div class="demo-container" id="demo-cannon" onclick="triggerConfetti('cannon')">
+                <div class="form-confirmation">
+                    <span class="headline">Perfect!</span>
+                    <span class="subtext">We'll get back to you shortly.</span>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="triggerConfetti('cannon')">Replay</button>
+        </div>
+
+        <!-- Celebration -->
+        <div class="demo-card">
+            <div class="demo-label">
+                <h2>Celebration</h2>
+                <span>Full party</span>
+            </div>
+            <div class="demo-container" id="demo-celebration" onclick="triggerConfetti('celebration')">
+                <div class="form-confirmation">
+                    <span class="headline">Perfect!</span>
+                    <span class="subtext">We'll get back to you shortly.</span>
+                </div>
+            </div>
+            <button class="replay-btn" onclick="triggerConfetti('celebration')">Replay</button>
+        </div>
+    </div>
+
+    <script>
+        const COLORS = ['#E63B2E', '#22C55E', '#F59E0B', '#3B82F6', '#EC4899', '#8B5CF6', '#14B8A6', '#F97316'];
+        const SHAPES = ['square', 'circle', 'rectangle', 'star', 'diamond'];
+
+        function randomBetween(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function randomFrom(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function createParticle(container, options = {}) {
+            const particle = document.createElement('div');
+            particle.className = 'confetti-particle';
+
+            const color = randomFrom(COLORS);
+            const shape = randomFrom(SHAPES);
+            const size = randomBetween(6, 14);
+
+            particle.style.background = color;
+            particle.style.width = `${size}px`;
+
+            switch(shape) {
+                case 'circle':
+                    particle.style.height = `${size}px`;
+                    particle.style.borderRadius = '50%';
+                    break;
+                case 'rectangle':
+                    particle.style.height = `${size * 2.5}px`;
+                    particle.style.borderRadius = '2px';
+                    break;
+                case 'star':
+                    particle.style.height = `${size}px`;
+                    particle.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+                    break;
+                case 'diamond':
+                    particle.style.height = `${size}px`;
+                    particle.style.clipPath = 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)';
+                    break;
+                default:
+                    particle.style.height = `${size}px`;
+                    particle.style.borderRadius = '2px';
+            }
+
+            particle.style.left = `${options.startX ?? randomBetween(0, 100)}%`;
+            particle.style.top = `${options.startY ?? -5}%`;
+            particle.style.opacity = '0';
+
+            container.appendChild(particle);
+            return particle;
+        }
+
+        function animateFalling(particle, delay) {
+            const drift = randomBetween(-30, 30);
+            const duration = randomBetween(1500, 2500);
+            const rotation = randomBetween(360, 1080) * (Math.random() > 0.5 ? 1 : -1);
+            const fallDistance = randomBetween(100, 200);
+
+            particle.animate([
+                {
+                    transform: 'translateY(0) rotate(0deg) scale(1)',
+                    opacity: 1
+                },
+                {
+                    transform: `translateY(${fallDistance}px) translateX(${drift}px) rotate(${rotation}deg) scale(0.5)`,
+                    opacity: 0
+                }
+            ], {
+                duration,
+                delay,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => particle.remove(), duration + delay + 100);
+        }
+
+        function animateBurst(particle, delay) {
+            const angle = randomBetween(0, Math.PI * 2);
+            const distance = randomBetween(80, 180);
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+            const rotation = randomBetween(360, 900) * (Math.random() > 0.5 ? 1 : -1);
+            const duration = randomBetween(800, 1400);
+
+            particle.style.left = '50%';
+            particle.style.top = '50%';
+            particle.style.transform = 'translate(-50%, -50%)';
+
+            particle.animate([
+                {
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 1
+                },
+                {
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotation}deg) scale(0.3)`,
+                    opacity: 0
+                }
+            ], {
+                duration,
+                delay,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => particle.remove(), duration + delay + 100);
+        }
+
+        function animateCannon(particle, fromLeft, delay) {
+            const startX = fromLeft ? -5 : 105;
+            const startY = randomBetween(70, 90);
+            const endX = fromLeft ? randomBetween(30, 80) : randomBetween(20, 70);
+            const peakY = randomBetween(-10, 20);
+            const endY = randomBetween(90, 120);
+            const rotation = randomBetween(360, 1080) * (fromLeft ? 1 : -1);
+            const duration = randomBetween(1000, 1600);
+
+            particle.style.left = `${startX}%`;
+            particle.style.top = `${startY}%`;
+
+            particle.animate([
+                {
+                    transform: 'translate(0, 0) rotate(0deg)',
+                    opacity: 1,
+                    offset: 0
+                },
+                {
+                    transform: `translate(${(endX - startX) * 0.5}%, ${(peakY - startY)}%) rotate(${rotation * 0.5}deg)`,
+                    opacity: 1,
+                    offset: 0.4
+                },
+                {
+                    transform: `translate(${endX - startX}%, ${endY - startY}%) rotate(${rotation}deg)`,
+                    opacity: 0,
+                    offset: 1
+                }
+            ], {
+                duration,
+                delay,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => particle.remove(), duration + delay + 100);
+        }
+
+        function animateCelebration(particle, delay) {
+            const startX = randomBetween(5, 95);
+            const startY = randomBetween(-10, -5);
+            const midX = startX + randomBetween(-20, 20);
+            const endX = midX + randomBetween(-20, 20);
+            const sway1 = randomBetween(-40, 40);
+            const sway2 = randomBetween(-40, 40);
+            const rotation = randomBetween(360, 1440) * (Math.random() > 0.5 ? 1 : -1);
+            const duration = randomBetween(1800, 2800);
+
+            particle.style.left = `${startX}%`;
+            particle.style.top = `${startY}%`;
+
+            particle.animate([
+                {
+                    transform: 'translateX(0) translateY(0) rotate(0deg) scale(0.5)',
+                    opacity: 0,
+                    offset: 0
+                },
+                {
+                    transform: `translateX(${sway1}px) translateY(80px) rotate(${rotation * 0.3}deg) scale(1)`,
+                    opacity: 1,
+                    offset: 0.15
+                },
+                {
+                    transform: `translateX(${sway2}px) translateY(180px) rotate(${rotation * 0.6}deg) scale(1)`,
+                    opacity: 1,
+                    offset: 0.5
+                },
+                {
+                    transform: `translateX(${sway1 * 0.5}px) translateY(350px) rotate(${rotation}deg) scale(0.6)`,
+                    opacity: 0,
+                    offset: 1
+                }
+            ], {
+                duration,
+                delay,
+                easing: 'ease-out',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => particle.remove(), duration + delay + 100);
+        }
+
+        function clearConfetti(container) {
+            container.querySelectorAll('.confetti-particle').forEach(p => p.remove());
+        }
+
+        function triggerConfetti(type) {
+            const container = document.getElementById(`demo-${type}`);
+            clearConfetti(container);
+
+            const count = type === 'celebration' ? 50 : 30;
+
+            switch(type) {
+                case 'falling':
+                    // Spawn across entire container area
+                    for (let i = 0; i < 60; i++) {
+                        const particle = createParticle(container, {
+                            startX: randomBetween(0, 100),
+                            startY: randomBetween(0, 80)
+                        });
+                        animateFalling(particle, randomBetween(0, 500));
+                    }
+                    break;
+
+                case 'burst':
+                    for (let i = 0; i < count; i++) {
+                        const particle = createParticle(container);
+                        animateBurst(particle, randomBetween(0, 150));
+                    }
+                    break;
+
+                case 'cannon':
+                    for (let i = 0; i < count / 2; i++) {
+                        const particleLeft = createParticle(container);
+                        animateCannon(particleLeft, true, randomBetween(0, 300));
+
+                        const particleRight = createParticle(container);
+                        animateCannon(particleRight, false, randomBetween(0, 300));
+                    }
+                    break;
+
+                case 'celebration':
+                    // Mix of all effects
+                    for (let i = 0; i < 20; i++) {
+                        const particle = createParticle(container);
+                        animateCelebration(particle, randomBetween(0, 600));
+                    }
+                    for (let i = 0; i < 15; i++) {
+                        const particle = createParticle(container);
+                        animateBurst(particle, randomBetween(0, 200));
+                    }
+                    for (let i = 0; i < 8; i++) {
+                        const particleLeft = createParticle(container);
+                        animateCannon(particleLeft, true, randomBetween(100, 400));
+                        const particleRight = createParticle(container);
+                        animateCannon(particleRight, false, randomBetween(100, 400));
+                    }
+                    break;
+            }
+        }
+
+        // Auto-play on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                ['falling', 'burst', 'cannon', 'celebration'].forEach((type, i) => {
+                    setTimeout(() => triggerConfetti(type), i * 300);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
