@@ -1,0 +1,6 @@
+# robots.txt for fixedtoflow.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://fixedtoflow.com/sitemap.xml
