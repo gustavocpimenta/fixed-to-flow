@@ -1709,6 +1709,14 @@
             }
         }
 
+        /* Large screens - prevent excessive vertical centering and height */
+        @media (min-width: 1440px) {
+            .hero {
+                align-items: flex-start;
+                min-height: auto;
+            }
+        }
+
         /* Confetti Confirmation */
         .form-wrapper {
             position: relative;
