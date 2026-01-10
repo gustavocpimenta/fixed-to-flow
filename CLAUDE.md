@@ -50,8 +50,10 @@ fixedtoflow/
 
 ## Git Workflow
 
+**CRITICAL - DO NOT SKIP:**
 - **ALWAYS ask before committing** - never commit without explicit user approval
 - **ALWAYS ask before pushing** - never push without explicit user approval
+- Even if the user says "commit this", still ask before pushing separately
 
 ---
 
