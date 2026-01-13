@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead with AI, Stay Human | Free 7-Day Email Course | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --red: #E63B2E;
+            --black: #111111;
+            --gray: #555555;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* V3: Full Dark Mode - Cinematic, dramatic, immersive */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(17,17,17,0.9), transparent);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(230,59,46,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-number {
+            font-size: 15rem;
+            font-weight: 700;
+            color: var(--red);
+            opacity: 0.1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(230,59,46,0.4);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 60px rgba(230,59,46,0.5);
+        }
+
+        /* Days Grid */
+        .days-section {
+            padding: 100px 40px;
+            background: linear-gradient(to bottom, var(--black), #1a1a1a);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .day-cell:hover {
+            background: rgba(230,59,46,0.1);
+            border-color: var(--red);
+        }
+
+        .day-cell-num {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .day-cell-skill {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Outcome */
+        .outcome {
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .outcome h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .outcome-cards {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .outcome-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        .outcome-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .outcome-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 150px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse at bottom, rgba(230,59,46,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cta-form input {
+            padding: 18px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            font-size: 1rem;
+            width: 300px;
+            font-family: inherit;
+        }
+
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        .cta-form button {
+            padding: 18px 40px;
+            background: var(--red);
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-form button:hover {
+            filter: brightness(1.1);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover { color: var(--white); }
+
+        @media (max-width: 900px) {
+            .hero-title { font-size: 3rem; }
+            .hero-number { font-size: 8rem; }
+            .days-grid { grid-template-columns: repeat(4, 1fr); }
+            .day-cell:nth-child(n+5) { display: none; }
+            .section-header h2 { font-size: 2rem; }
+            .cta h2 { font-size: 2.5rem; }
+            .cta-form { flex-direction: column; align-items: center; }
+            .cta-form input { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Fixed to Flow</a>
+        <a href="#signup" class="nav-cta">Join course</a>
+    </nav>
+
+    <section class="hero">
+        <span class="hero-number">7</span>
+        <div class="hero-content">
+            <span class="hero-label">Free Email Course</span>
+            <h1 class="hero-title">Lead with AI,<br><span>Stay Human</span></h1>
+            <p class="hero-subtitle">Build your AI thinking partner while protecting the skills that make you valuable.</p>
+            <a href="#signup" class="btn-glow">Start the course</a>
+        </div>
+    </section>
+
+    <section class="days-section">
+        <div class="section-header">
+            <h2>7 Days. 7 Skills.</h2>
+            <p>Each day builds both an AI capability and a human skill.</p>
+        </div>
+        <div class="days-grid">
+            <div class="day-cell"><span class="day-cell-num">1</span><span class="day-cell-skill">Intentionality</span></div>
+            <div class="day-cell"><span class="day-cell-num">2</span><span class="day-cell-skill">Curiosity</span></div>
+            <div class="day-cell"><span class="day-cell-num">3</span><span class="day-cell-skill">Judgment</span></div>
+            <div class="day-cell"><span class="day-cell-num">4</span><span class="day-cell-skill">Discipline</span></div>
+            <div class="day-cell"><span class="day-cell-num">5</span><span class="day-cell-skill">Clarity</span></div>
+            <div class="day-cell"><span class="day-cell-num">6</span><span class="day-cell-skill">Self-awareness</span></div>
+            <div class="day-cell"><span class="day-cell-num">7</span><span class="day-cell-skill">Adaptability</span></div>
+        </div>
+    </section>
+
+    <section class="outcome">
+        <h2>What you'll build</h2>
+        <div class="outcome-cards">
+            <div class="outcome-card">
+                <h3>Custom Instructions</h3>
+                <p>Configure AI to understand who you are and how you work.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>Context & Memory</h3>
+                <p>Give your assistant files and knowledge about your projects.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>A Practice</h3>
+                <p>A framework for using AI that protects your human skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="signup">
+        <h2>Ready to start?</h2>
+        <p>Join the free course. Starting Early 2026.</p>
+        <form class="cta-form">
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Join the course</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Fixed to Flow &nbsp;&middot;&nbsp; <a href="/">Home</a> <a href="/about.html">About</a> <a href="/privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>

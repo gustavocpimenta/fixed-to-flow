@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead with AI, Stay Human | Free 7-Day Email Course | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --red: #E63B2E;
+            --black: #111111;
+            --gray: #555555;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* V5: Timeline Hero - Journey as the centerpiece */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250,247,242,0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 700; color: var(--black); text-decoration: none; }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Hero with Timeline */
+        .hero {
+            padding: 150px 40px 100px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span { color: var(--red); }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 550px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(to right, var(--cream), var(--red), var(--cream));
+        }
+
+        .timeline-day {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .timeline-dot {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border: 3px solid var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--red);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-day:hover .timeline-dot {
+            background: var(--red);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .timeline-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .timeline-phase {
+            position: absolute;
+            top: -40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--red);
+            white-space: nowrap;
+        }
+
+        .timeline-day:nth-child(2) .timeline-phase,
+        .timeline-day:nth-child(4) .timeline-phase,
+        .timeline-day:nth-child(5) .timeline-phase,
+        .timeline-day:nth-child(6) .timeline-phase,
+        .timeline-day:nth-child(7) .timeline-phase {
+            display: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--red);
+            transform: translateY(-3px);
+        }
+
+        /* Content */
+        section {
+            padding: 100px 40px;
+        }
+
+        .section-alt { background: var(--white); }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(230,59,46,0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--red);
+        }
+
+        .feature h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-form {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cta-form input {
+            padding: 18px 24px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: var(--white);
+            font-size: 1rem;
+            width: 300px;
+            border-radius: 100px;
+            font-family: inherit;
+        }
+
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        .cta-form input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .cta-form button {
+            padding: 18px 40px;
+            background: var(--red);
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-form button:hover {
+            filter: brightness(1.1);
+        }
+
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; margin: 0 10px; }
+        footer a:hover { color: var(--white); }
+
+        @media (max-width: 800px) {
+            .hero { padding: 120px 20px 60px; }
+            .hero-title { font-size: 2.5rem; }
+            .timeline { flex-wrap: wrap; gap: 20px; }
+            .timeline::before { display: none; }
+            .timeline-phase { display: none !important; }
+            section { padding: 60px 20px; }
+            .section-header h2 { font-size: 2rem; }
+            .cta h2 { font-size: 2rem; }
+            .cta-form { flex-direction: column; align-items: center; }
+            .cta-form input { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Fixed to Flow</a>
+        <a href="#signup" class="nav-cta">Join course</a>
+    </nav>
+
+    <section class="hero">
+        <span class="hero-label">Free 7-Day Email Course</span>
+        <h1 class="hero-title">Lead with AI, Stay <span>Human</span></h1>
+        <p class="hero-subtitle">Build your AI thinking partner while protecting the skills that make you valuable.</p>
+
+        <div class="timeline">
+            <div class="timeline-day">
+                <span class="timeline-phase">Foundations</span>
+                <div class="timeline-dot">1</div>
+                <span class="timeline-label">Intentionality</span>
+            </div>
+            <div class="timeline-day">
+                <div class="timeline-dot">2</div>
+                <span class="timeline-label">Curiosity</span>
+            </div>
+            <div class="timeline-day">
+                <div class="timeline-dot">3</div>
+                <span class="timeline-label">Judgment</span>
+            </div>
+            <div class="timeline-day">
+                <span class="timeline-phase">Core Skills</span>
+                <div class="timeline-dot">4</div>
+                <span class="timeline-label">Discipline</span>
+            </div>
+            <div class="timeline-day">
+                <div class="timeline-dot">5</div>
+                <span class="timeline-label">Clarity</span>
+            </div>
+            <div class="timeline-day">
+                <span class="timeline-phase">Build</span>
+                <div class="timeline-dot">6</div>
+                <span class="timeline-label">Self-awareness</span>
+            </div>
+            <div class="timeline-day">
+                <div class="timeline-dot">7</div>
+                <span class="timeline-label">Adaptability</span>
+            </div>
+        </div>
+
+        <a href="#signup" class="btn">Start the course</a>
+    </section>
+
+    <section class="section-alt">
+        <div class="section-header">
+            <h2>What you'll build</h2>
+            <p>By the end, you'll have your own AI thinking partner configured to your work and context.</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Custom Instructions</h3>
+                <p>AI configured to understand who you are and how you work.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                </div>
+                <h3>Context & Memory</h3>
+                <p>Files and knowledge about your projects and thinking.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>A Practice</h3>
+                <p>A framework that protects your human skills from erosion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="signup">
+        <h2>Ready to start?</h2>
+        <p>Join the free course. Starting Early 2026.</p>
+        <form class="cta-form">
+            <input type="email" placeholder="Your email">
+            <button type="submit">Join the course</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Fixed to Flow &middot; <a href="/">Home</a> <a href="/about.html">About</a> <a href="/privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>

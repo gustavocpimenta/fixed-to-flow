@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Signature Variations | Fixed to Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #E63B2E;
+      --red-dark: #C42B1C;
+      --cream: #FAF7F2;
+      --cream-dark: #F0EBE3;
+      --black: #111111;
+      --gray-dark: #1A1A1A;
+      --gray: #555555;
+      --gray-light: #999999;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .subtitle {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .intro-note {
+      background: var(--white);
+      border-left: 3px solid var(--red);
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .intro-note p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* Filter Buttons */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      border-radius: 100px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .filter-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+      font-size: 0.875rem;
+      color: var(--gray-light);
+    }
+
+    .stats span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stats .count {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* Signature Grid */
+    .signatures-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .signature-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .signature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .signature-card.hidden {
+      display: none;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cream);
+      background: var(--cream);
+    }
+
+    .card-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-number {
+      width: 28px;
+      height: 28px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .card-category {
+      font-weight: 500;
+      color: var(--black);
+      font-size: 0.95rem;
+    }
+
+    .card-type {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .card-type.provocative { background: #FEE2E2; color: #991B1B; }
+    .card-type.curious { background: #DBEAFE; color: #1E40AF; }
+    .card-type.direct { background: #D1FAE5; color: #065F46; }
+    .card-type.minimal { background: #F3F4F6; color: #374151; }
+    .card-type.personal { background: #FEF3C7; color: #92400E; }
+    .card-type.achievement { background: #EDE9FE; color: #5B21B6; }
+
+    /* Signature Preview */
+    .signature-preview {
+      padding: 24px;
+      background: var(--white);
+      border: 1px dashed #E5E5E5;
+      margin: 20px;
+      border-radius: 8px;
+    }
+
+    /* Action Buttons */
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--cream);
+    }
+
+    .copy-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: #FEF2F2;
+    }
+
+    .copy-btn.copied {
+      border-color: #059669;
+      color: #059669;
+      background: #D1FAE5;
+    }
+
+    .copy-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: #10B981;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .filters {
+        gap: 6px;
+      }
+
+      .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .card-actions {
+        flex-direction: column;
+      }
+
+      .signature-preview {
+        margin: 12px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Email Signature Variations</h1>
+      <p class="subtitle">20 options to test what resonates with different audiences</p>
+
+      <div class="intro-note">
+        <p><strong>Brainstorming toolkit:</strong> These signatures range from provocative (challenge assumptions) to minimal (understated elegance). Try different styles for different contexts: cold outreach vs. warm relationships, thought leadership vs. service promotion. Copy the HTML directly into your email client.</p>
+      </div>
+    </header>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="provocative">Provocative</button>
+      <button class="filter-btn" data-filter="curious">Curious</button>
+      <button class="filter-btn" data-filter="direct">Direct</button>
+      <button class="filter-btn" data-filter="minimal">Minimal</button>
+      <button class="filter-btn" data-filter="personal">Personal</button>
+      <button class="filter-btn" data-filter="achievement">Achievement</button>
+    </div>
+
+    <div class="stats">
+      <span>Showing <span class="count" id="visible-count">20</span> of 20 signatures</span>
+    </div>
+
+    <div class="signatures-grid" id="signatures-grid">
+      <!-- Cards will be injected here -->
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <script>
+    const signatures = [
+      {
+        num: 1,
+        category: "Provocative - Challenge",
+        type: "provocative",
+        plainText: `Gus Pimenta
+Founder, Fixed to Flow
+AI adoption that makes people stronger, not weaker
+
+Most organizations are optimizing for speed without asking what happens to their people.
+→ Book a conversation: fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Founder, Fixed to Flow</td></tr><tr><td style="color: #555555; padding-top: 8px;">AI adoption that makes people stronger, not weaker</td></tr><tr><td style="padding-top: 10px; color: #555555;">Most organizations are optimizing for speed without asking what happens to their people.</td></tr><tr><td style="padding-top: 6px;">→ <a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">Book a conversation: fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 2,
+        category: "Minimal - Ultra Clean",
+        type: "minimal",
+        plainText: `Gus Pimenta
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600;">Gus Pimenta</td></tr><tr><td><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 3,
+        category: "Curious - Question Hook",
+        type: "curious",
+        plainText: `Gus Pimenta
+Fixed to Flow | AI Strategy & Adoption
+
+What if AI could amplify your team's strengths instead of replacing them?
+→ AI Amplifier: Remove 50% of your daily work in 30 days
+   fixedtoflow.com/ai-amplifier`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow | AI Strategy & Adoption</td></tr><tr><td style="padding-top: 10px; color: #555555; font-style: italic;">What if AI could amplify your team's strengths instead of replacing them?</td></tr><tr><td style="padding-top: 6px;">→ AI Amplifier: Remove 50% of your daily work in 30 days</td></tr><tr><td style="padding-left: 12px;"><a href="https://fixedtoflow.com/ai-amplifier" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com/ai-amplifier</a></td></tr></table>`
+      },
+      {
+        num: 4,
+        category: "Direct - Clear Value Prop",
+        type: "direct",
+        plainText: `Gus Pimenta
+Founder, Fixed to Flow
+
+Helping leaders adopt AI without creating teams that can't think without it.
+
+→ Strategic Sparring (€2k/month): A thinking partner who challenges you
+→ AI Activation: From strategy to execution-ready in 30 days
+   fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Founder, Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Helping leaders adopt AI without creating teams that can't think without it.</td></tr><tr><td style="padding-top: 10px;">→ Strategic Sparring (€2k/month): A thinking partner who challenges you</td></tr><tr><td>→ AI Activation: From strategy to execution-ready in 30 days</td></tr><tr><td style="padding-top: 6px; padding-left: 12px;"><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 5,
+        category: "Personal - Warm & Human",
+        type: "personal",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+25+ years mentoring leaders through change.
+Now helping teams adopt AI consciously and intentionally.
+
+Let's talk: calendly.com/gustavocpimenta/fixed-to-flow
+Newsletter: fixedtoflow.substack.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">25+ years mentoring leaders through change.<br>Now helping teams adopt AI consciously and intentionally.</td></tr><tr><td style="padding-top: 10px;">Let's talk: <a href="https://calendly.com/gustavocpimenta/fixed-to-flow" style="color: #E63B2E; text-decoration: none;">calendly.com/gustavocpimenta/fixed-to-flow</a></td></tr><tr><td>Newsletter: <a href="https://fixedtoflow.substack.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.substack.com</a></td></tr></table>`
+      },
+      {
+        num: 6,
+        category: "Achievement - Credibility Markers",
+        type: "achievement",
+        plainText: `Gus Pimenta
+Founder, Fixed to Flow
+Former CPO | Notion Ambassador | Lecturer at Católica
+
+AI strategy and adoption for leaders who want their teams AI-capable and still able to think.
+
+fixedtoflow.com | LinkedIn: /in/gustavocpimenta`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Founder, Fixed to Flow</td></tr><tr><td style="color: #999999; font-size: 13px;">Former CPO | Notion Ambassador | Lecturer at Católica</td></tr><tr><td style="padding-top: 10px; color: #555555;">AI strategy and adoption for leaders who want their teams AI-capable and still able to think.</td></tr><tr><td style="padding-top: 10px;"><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a> | LinkedIn: <a href="https://linkedin.com/in/gustavocpimenta" style="color: #E63B2E; text-decoration: none;">/in/gustavocpimenta</a></td></tr></table>`
+      },
+      {
+        num: 7,
+        category: "Provocative - Bold Statement",
+        type: "provocative",
+        plainText: `Gus Pimenta | Fixed to Flow
+
+AI fluency without cognitive atrophy.
+
+Read: "Beyond prompt engineering: What real AI capability looks like"
+fixedtoflow.com/newsletter`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta | Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-weight: 600; color: #E63B2E;">AI fluency without cognitive atrophy.</td></tr><tr><td style="padding-top: 10px; color: #555555;">Read: "Beyond prompt engineering: What real AI capability looks like"</td></tr><tr><td><a href="https://fixedtoflow.com/newsletter" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com/newsletter</a></td></tr></table>`
+      },
+      {
+        num: 8,
+        category: "Curious - Invitation to Think",
+        type: "curious",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+Are you building AI capability or AI dependency?
+
+Free 7-day course: "Lead with AI, Stay Human"
+fixedtoflow.carrd.co`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-style: italic; color: #555555;">Are you building AI capability or AI dependency?</td></tr><tr><td style="padding-top: 10px;">Free 7-day course: "Lead with AI, Stay Human"</td></tr><tr><td><a href="https://fixedtoflow.carrd.co" style="color: #E63B2E; text-decoration: none;">fixedtoflow.carrd.co</a></td></tr></table>`
+      },
+      {
+        num: 9,
+        category: "Direct - Specific Outcome",
+        type: "direct",
+        plainText: `Gus Pimenta
+Founder, Fixed to Flow
+
+AI Amplifier: Remove 50% of your daily work in 30 days
+Two 1:1 sessions + personalized plan | €1,000
+
+Learn more: fixedtoflow.com/ai-amplifier`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Founder, Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-weight: 600;">AI Amplifier: Remove 50% of your daily work in 30 days</td></tr><tr><td style="color: #555555;">Two 1:1 sessions + personalized plan | €1,000</td></tr><tr><td style="padding-top: 8px;">Learn more: <a href="https://fixedtoflow.com/ai-amplifier" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com/ai-amplifier</a></td></tr></table>`
+      },
+      {
+        num: 10,
+        category: "Minimal - Newsletter Focus",
+        type: "minimal",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+Weekly insights on AI adoption with humanity intact.
+Subscribe: fixedtoflow.substack.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Weekly insights on AI adoption with humanity intact.</td></tr><tr><td>Subscribe: <a href="https://fixedtoflow.substack.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.substack.com</a></td></tr></table>`
+      },
+      {
+        num: 11,
+        category: "Personal - Conversation Starter",
+        type: "personal",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+Building AI assistants, designing workflows, running experiments.
+Helping leaders do the same.
+
+Facing an AI challenge? Let's talk.
+calendly.com/gustavocpimenta/fixed-to-flow`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Building AI assistants, designing workflows, running experiments.<br>Helping leaders do the same.</td></tr><tr><td style="padding-top: 10px;">Facing an AI challenge? Let's talk.</td></tr><tr><td><a href="https://calendly.com/gustavocpimenta/fixed-to-flow" style="color: #E63B2E; text-decoration: none;">calendly.com/gustavocpimenta/fixed-to-flow</a></td></tr></table>`
+      },
+      {
+        num: 12,
+        category: "Provocative - Uncomfortable Truth",
+        type: "provocative",
+        plainText: `Gus Pimenta | Fixed to Flow
+
+Your team might be getting faster while getting weaker.
+
+AI adoption designed for augmentation, not atrophy.
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta | Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Your team might be getting faster while getting weaker.</td></tr><tr><td style="padding-top: 8px;">AI adoption designed for augmentation, not atrophy.</td></tr><tr><td><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 13,
+        category: "Achievement - Track Record",
+        type: "achievement",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+25+ years mentoring leaders | Former CPO | Advisor to Forbes 30 Under 30
+
+Strategic Sparring: Month-to-month thinking partnership for leaders at inflection points.
+€2,000/month | fixedtoflow.com/strategic-sparring`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 8px; color: #999999; font-size: 13px;">25+ years mentoring leaders | Former CPO | Advisor to Forbes 30 Under 30</td></tr><tr><td style="padding-top: 10px; color: #555555;">Strategic Sparring: Month-to-month thinking partnership for leaders at inflection points.</td></tr><tr><td>€2,000/month | <a href="https://fixedtoflow.com/strategic-sparring" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com/strategic-sparring</a></td></tr></table>`
+      },
+      {
+        num: 14,
+        category: "Curious - Risk Framing",
+        type: "curious",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+What skills is your team forgetting while AI handles the thinking?
+
+Conscious AI adoption for leaders who want capability, not dependency.
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-style: italic; color: #555555;">What skills is your team forgetting while AI handles the thinking?</td></tr><tr><td style="padding-top: 8px; color: #555555;">Conscious AI adoption for leaders who want capability, not dependency.</td></tr><tr><td><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 15,
+        category: "Direct - Organizational Focus",
+        type: "direct",
+        plainText: `Gus Pimenta & Sandra Fisher-Martins
+Fixed to Flow
+
+AI Activation: From potential to execution-ready in 30 days
+Complete strategy, roadmap, and pilot designs | €10-15k
+
+For organizations (50-500 people): fixedtoflow.com/ai-activation`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta & Sandra Fisher-Martins</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-weight: 600;">AI Activation: From potential to execution-ready in 30 days</td></tr><tr><td style="color: #555555;">Complete strategy, roadmap, and pilot designs | €10-15k</td></tr><tr><td style="padding-top: 8px;">For organizations (50-500 people): <a href="https://fixedtoflow.com/ai-activation" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com/ai-activation</a></td></tr></table>`
+      },
+      {
+        num: 16,
+        category: "Minimal - Tagline Only",
+        type: "minimal",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+Lead with AI, Stay Human.
+
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; font-style: italic; color: #555555;">Lead with AI, Stay Human.</td></tr><tr><td style="padding-top: 8px;"><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 17,
+        category: "Personal - Methodology Hook",
+        type: "personal",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+"I learned GenAI in 2023 using personal experiments. Now I teach this method to leaders."
+
+Read: "On Personal Experiments"
+fixedtoflow.substack.com/p/on-personal-experiments`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555; font-style: italic;">"I learned GenAI in 2023 using personal experiments. Now I teach this method to leaders."</td></tr><tr><td style="padding-top: 10px;">Read: "On Personal Experiments"</td></tr><tr><td><a href="https://fixedtoflow.substack.com/p/on-personal-experiments" style="color: #E63B2E; text-decoration: none;">fixedtoflow.substack.com/p/on-personal-experiments</a></td></tr></table>`
+      },
+      {
+        num: 18,
+        category: "Provocative - System Failure",
+        type: "provocative",
+        plainText: `Gus Pimenta | Fixed to Flow
+
+Studies show: Workers using AI for challenging tasks perform worse when the AI is gone.
+
+This doesn't have to be your future.
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta | Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Studies show: Workers using AI for challenging tasks perform worse when the AI is gone.</td></tr><tr><td style="padding-top: 8px; font-weight: 500;">This doesn't have to be your future.</td></tr><tr><td><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 19,
+        category: "Direct - Service Menu",
+        type: "direct",
+        plainText: `Gus Pimenta
+Founder, Fixed to Flow
+
+→ Individuals: AI Amplifier (€1k-1.5k)
+→ Leaders: Strategic Sparring (€2k/month)
+→ Organizations: AI Activation & Acceleration (€10k+)
+
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Founder, Fixed to Flow</td></tr><tr><td style="padding-top: 10px;">→ Individuals: AI Amplifier (€1k-1.5k)</td></tr><tr><td>→ Leaders: Strategic Sparring (€2k/month)</td></tr><tr><td>→ Organizations: AI Activation & Acceleration (€10k+)</td></tr><tr><td style="padding-top: 10px;"><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      },
+      {
+        num: 20,
+        category: "Curious - Second-Order Thinking",
+        type: "curious",
+        plainText: `Gus Pimenta
+Fixed to Flow
+
+Everyone's asking: How fast can we adopt AI?
+Few are asking: What happens to our people when we do?
+
+AI adoption with both eyes open.
+fixedtoflow.com`,
+        html: `<table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; color: #1A1A1A;"><tr><td style="font-weight: 600; font-size: 15px;">Gus Pimenta</td></tr><tr><td style="color: #555555;">Fixed to Flow</td></tr><tr><td style="padding-top: 10px; color: #555555;">Everyone's asking: How fast can we adopt AI?<br>Few are asking: What happens to our people when we do?</td></tr><tr><td style="padding-top: 10px;">AI adoption with both eyes open.</td></tr><tr><td><a href="https://fixedtoflow.com" style="color: #E63B2E; text-decoration: none;">fixedtoflow.com</a></td></tr></table>`
+      }
+    ];
+
+    // Render signatures
+    const grid = document.getElementById('signatures-grid');
+
+    signatures.forEach(sig => {
+      const card = document.createElement('div');
+      card.className = 'signature-card';
+      card.dataset.type = sig.type;
+
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-label">
+            <span class="card-number">${sig.num}</span>
+            <span class="card-category">${sig.category}</span>
+          </div>
+          <span class="card-type ${sig.type}">${sig.type}</span>
+        </div>
+        <div class="signature-preview">
+          ${sig.html}
+        </div>
+        <div class="card-actions">
+          <button class="copy-btn" data-copy="html" data-index="${sig.num - 1}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+            </svg>
+            Copy HTML
+          </button>
+          <button class="copy-btn" data-copy="text" data-index="${sig.num - 1}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            Copy Plain Text
+          </button>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.signature-card');
+    const visibleCount = document.getElementById('visible-count');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let count = 0;
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.type === filter) {
+            card.classList.remove('hidden');
+            count++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        visibleCount.textContent = count;
+      });
+    });
+
+    // Copy functionality
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const index = parseInt(btn.dataset.index);
+        const copyType = btn.dataset.copy;
+        const sig = signatures[index];
+
+        const textToCopy = copyType === 'html' ? sig.html : sig.plainText;
+
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+
+          // Visual feedback on button
+          btn.classList.add('copied');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            Copied!
+          `;
+
+          // Show toast
+          toastMessage.textContent = copyType === 'html' ? 'HTML copied to clipboard!' : 'Plain text copied to clipboard!';
+          toast.classList.add('show');
+
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = originalText;
+            toast.classList.remove('show');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+          toastMessage.textContent = 'Failed to copy. Try again.';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

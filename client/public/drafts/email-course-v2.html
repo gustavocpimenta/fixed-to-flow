@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead with AI, Stay Human | Free 7-Day Email Course | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --black: #111111;
+            --gray: #555555;
+            --gray-light: #999999;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* V2: Editorial/Magazine Style - Asymmetric, serif headlines, lots of whitespace */
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--cream);
+        }
+
+        .hero-left {
+            padding: 120px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-right {
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right::before {
+            content: '7';
+            font-family: 'Instrument Serif', serif;
+            font-size: 40vw;
+            color: var(--red);
+            opacity: 0.1;
+            position: absolute;
+        }
+
+        .hero-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 400px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1.25rem 2.5rem;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--red);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .days-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-line {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--white);
+        }
+
+        .day-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            width: 30px;
+        }
+
+        .day-bar {
+            height: 3px;
+            background: var(--red);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .day-line:nth-child(1) .day-bar { width: 60px; }
+        .day-line:nth-child(2) .day-bar { width: 100px; }
+        .day-line:nth-child(3) .day-bar { width: 140px; }
+        .day-line:nth-child(4) .day-bar { width: 180px; }
+        .day-line:nth-child(5) .day-bar { width: 220px; }
+        .day-line:nth-child(6) .day-bar { width: 260px; }
+        .day-line:nth-child(7) .day-bar { width: 300px; }
+
+        .day-line:hover .day-bar {
+            opacity: 1;
+        }
+
+        .day-text {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 120px 80px;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            position: sticky;
+            top: 120px;
+        }
+
+        .section-content h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .white-bg { background: var(--white); }
+        .cream-bg { background: var(--cream); }
+
+        /* Journey Cards */
+        .journey-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--black);
+            margin-top: 3rem;
+        }
+
+        .journey-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .journey-card:hover {
+            background: var(--white);
+        }
+
+        .journey-card-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--red);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .journey-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Skills Strip */
+        .skills-strip {
+            background: var(--black);
+            padding: 60px 80px;
+            overflow: hidden;
+        }
+
+        .skills-marquee {
+            display: flex;
+            gap: 60px;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .skill-item {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            color: var(--white);
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-item:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        /* CTA */
+        .cta {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 1.25rem;
+            border: 2px solid var(--black);
+            border-right: none;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .cta-form button {
+            padding: 1.25rem 2rem;
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-form button:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--gray-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-left { padding: 100px 30px; }
+            .hero-right { display: none; }
+            .hero-title { font-size: 2.75rem; }
+            section { padding: 80px 30px; }
+            .section-grid { grid-template-columns: 1fr; gap: 30px; }
+            .section-label { position: static; }
+            .journey-cards { grid-template-columns: 1fr; }
+            .cta h2 { font-size: 2.5rem; }
+            .cta-form { flex-direction: column; }
+            .cta-form input { border-right: 2px solid var(--black); border-bottom: none; }
+            footer { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-left">
+            <span class="hero-badge">Free 7-Day Email Course</span>
+            <h1 class="hero-title">Lead with AI,<br>Stay <em>Human</em></h1>
+            <p class="hero-subtitle">Build your AI thinking partner while protecting the skills that make you valuable. One email a day, one idea to practice.</p>
+            <a href="#signup" class="btn">
+                Start the course
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="hero-right">
+            <div class="days-visual">
+                <div class="day-line"><span class="day-num">01</span><div class="day-bar"></div><span class="day-text">Intentionality</span></div>
+                <div class="day-line"><span class="day-num">02</span><div class="day-bar"></div><span class="day-text">Curiosity</span></div>
+                <div class="day-line"><span class="day-num">03</span><div class="day-bar"></div><span class="day-text">Judgment</span></div>
+                <div class="day-line"><span class="day-num">04</span><div class="day-bar"></div><span class="day-text">Discipline</span></div>
+                <div class="day-line"><span class="day-num">05</span><div class="day-bar"></div><span class="day-text">Clarity</span></div>
+                <div class="day-line"><span class="day-num">06</span><div class="day-bar"></div><span class="day-text">Self-awareness</span></div>
+                <div class="day-line"><span class="day-num">07</span><div class="day-bar"></div><span class="day-text">Adaptability</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="white-bg">
+        <div class="section-grid">
+            <span class="section-label">The Problem</span>
+            <div class="section-content">
+                <h2>AI is everywhere. Most people are using it wrong.</h2>
+                <p>Not wrong in a technical sense. Wrong in a "this might actually make you worse at your job" sense.</p>
+                <p>When you offload too much thinking to AI, you stop exercising the mental muscles that make you valuable. The pattern is clear: use it or lose it.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cream-bg">
+        <div class="section-grid">
+            <span class="section-label">What You'll Build</span>
+            <div class="section-content">
+                <h2>Your own AI thinking partner</h2>
+                <p>By the end of this course, you'll have a personalized assistant with custom instructions and files that knows your context, your work, and how you think.</p>
+                <p>More importantly, you'll have a framework for using AI in ways that make you stronger, not weaker.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="white-bg">
+        <div class="section-grid">
+            <span class="section-label">The Journey</span>
+            <div class="section-content">
+                <h2>7 days, 7 human skills</h2>
+                <div class="journey-cards">
+                    <div class="journey-card"><span class="journey-card-num">1-3</span><h3>Foundations</h3><p>Mindset, dialogue, amplification</p></div>
+                    <div class="journey-card"><span class="journey-card-num">4-5</span><h3>Core Skills</h3><p>Protecting thinking, prompting</p></div>
+                    <div class="journey-card"><span class="journey-card-num">6-7</span><h3>Build</h3><p>Your AI thinking partner</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="skills-strip">
+        <div class="skills-marquee">
+            <span class="skill-item">Intentionality</span>
+            <span class="skill-item">Curiosity</span>
+            <span class="skill-item">Judgment</span>
+            <span class="skill-item">Discipline</span>
+            <span class="skill-item">Clarity</span>
+            <span class="skill-item">Self-awareness</span>
+            <span class="skill-item">Adaptability</span>
+            <span class="skill-item">Intentionality</span>
+            <span class="skill-item">Curiosity</span>
+            <span class="skill-item">Judgment</span>
+            <span class="skill-item">Discipline</span>
+            <span class="skill-item">Clarity</span>
+            <span class="skill-item">Self-awareness</span>
+            <span class="skill-item">Adaptability</span>
+        </div>
+    </div>
+
+    <section class="cta" id="signup">
+        <h2>Ready to start?</h2>
+        <p style="color: var(--gray); margin-bottom: 2rem;">Join the free course. One email a day for 7 days.</p>
+        <form class="cta-form">
+            <input type="email" placeholder="Your email">
+            <button type="submit">Join</button>
+        </form>
+        <p style="font-size: 0.85rem; color: var(--gray-light); margin-top: 1rem;">Starting Early 2026</p>
+    </section>
+
+    <footer>
+        <span>&copy; 2026 Fixed to Flow</span>
+        <div><a href="/">Home</a> &nbsp;&middot;&nbsp; <a href="/about.html">About</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy</a></div>
+    </footer>
+</body>
+</html>

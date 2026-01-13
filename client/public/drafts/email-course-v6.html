@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead with AI, Stay Human | Free 7-Day Email Course | Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --red: #E63B2E;
+            --black: #111111;
+            --gray: #555555;
+            --cream: #FAF7F2;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* V6: Split Screen - Alternating left/right layout */
+
+        .section-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .section-split.reverse .split-content { order: 2; }
+        .section-split.reverse .split-visual { order: 1; }
+
+        .split-content {
+            padding: 100px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .split-visual {
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .split-visual.cream { background: var(--cream); }
+        .split-visual.red { background: var(--red); }
+
+        /* Hero */
+        .hero-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span { color: var(--red); }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 400px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--black);
+            transform: translateY(-2px);
+        }
+
+        /* Visual Elements */
+        .big-number {
+            font-size: 25vw;
+            font-weight: 700;
+            color: var(--white);
+            opacity: 0.1;
+        }
+
+        .days-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .day-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .day-row:hover {
+            background: rgba(230,59,46,0.2);
+        }
+
+        .day-num {
+            font-weight: 700;
+            color: var(--red);
+            width: 24px;
+        }
+
+        .day-skill {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Content sections */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .outcome-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .outcome-list li {
+            padding: 16px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 1.05rem;
+        }
+
+        .outcome-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 22px;
+            width: 10px;
+            height: 10px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        /* CTA Visual */
+        .cta-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .cta-visual h2 {
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .cta-form input {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .cta-form button {
+            padding: 16px;
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-form button:hover {
+            background: var(--cream);
+        }
+
+        .cta-note {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 1rem;
+        }
+
+        /* Skills Visual */
+        .skills-scatter {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .skill-bubble {
+            position: absolute;
+            background: rgba(0,0,0,0.05);
+            border-radius: 100px;
+            padding: 12px 24px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .skill-bubble:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .skill-bubble:nth-child(1) { top: 15%; left: 10%; }
+        .skill-bubble:nth-child(2) { top: 25%; left: 55%; }
+        .skill-bubble:nth-child(3) { top: 40%; left: 25%; }
+        .skill-bubble:nth-child(4) { top: 50%; left: 60%; }
+        .skill-bubble:nth-child(5) { top: 65%; left: 15%; }
+        .skill-bubble:nth-child(6) { top: 70%; left: 50%; }
+        .skill-bubble:nth-child(7) { top: 85%; left: 35%; }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            background: var(--cream);
+        }
+
+        footer a { color: var(--gray); text-decoration: none; margin: 0 10px; }
+
+        @media (max-width: 900px) {
+            .section-split {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .split-content { padding: 60px 30px; order: 1 !important; }
+            .split-visual { min-height: 50vh; order: 2 !important; }
+            .hero-title { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .big-number { font-size: 40vw; }
+            .skills-scatter { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="section-split">
+        <div class="split-content">
+            <span class="hero-label">Free 7-Day Email Course</span>
+            <h1 class="hero-title">Lead with AI,<br>Stay <span>Human</span></h1>
+            <p class="hero-subtitle">Build your AI thinking partner while protecting the skills that make you valuable.</p>
+            <a href="#signup" class="btn">Start the course</a>
+        </div>
+        <div class="split-visual">
+            <span class="big-number">7</span>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section-split reverse">
+        <div class="split-content">
+            <span class="section-label">The Problem</span>
+            <h2>AI is everywhere. Most people are using it wrong.</h2>
+            <p>When you offload too much thinking to AI, you stop exercising the mental muscles that make you valuable.</p>
+            <p>The pattern is clear: use it or lose it. This course teaches you to use AI in ways that make you stronger.</p>
+        </div>
+        <div class="split-visual">
+            <div class="days-stack">
+                <div class="day-row"><span class="day-num">01</span><span class="day-skill">Intentionality</span></div>
+                <div class="day-row"><span class="day-num">02</span><span class="day-skill">Curiosity</span></div>
+                <div class="day-row"><span class="day-num">03</span><span class="day-skill">Judgment</span></div>
+                <div class="day-row"><span class="day-num">04</span><span class="day-skill">Discipline</span></div>
+                <div class="day-row"><span class="day-num">05</span><span class="day-skill">Clarity</span></div>
+                <div class="day-row"><span class="day-num">06</span><span class="day-skill">Self-awareness</span></div>
+                <div class="day-row"><span class="day-num">07</span><span class="day-skill">Adaptability</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome -->
+    <section class="section-split">
+        <div class="split-content">
+            <span class="section-label">What You'll Build</span>
+            <h2>Your own AI thinking partner</h2>
+            <p>By the end, you'll have a personalized assistant that knows your context, your work, and how you think.</p>
+            <ul class="outcome-list">
+                <li>Custom instructions that reflect who you are</li>
+                <li>Files that give your assistant context</li>
+                <li>A practice that protects your skills</li>
+            </ul>
+        </div>
+        <div class="split-visual cream">
+            <div class="skills-scatter">
+                <span class="skill-bubble">Intentionality</span>
+                <span class="skill-bubble">Curiosity</span>
+                <span class="skill-bubble">Judgment</span>
+                <span class="skill-bubble">Discipline</span>
+                <span class="skill-bubble">Clarity</span>
+                <span class="skill-bubble">Self-awareness</span>
+                <span class="skill-bubble">Adaptability</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-split reverse" id="signup">
+        <div class="split-content" style="background: var(--cream);">
+            <span class="section-label">Join Today</span>
+            <h2>One email a day. Seven human skills.</h2>
+            <p>Start with day one and build your AI thinking partner over the next week.</p>
+        </div>
+        <div class="split-visual red cta-visual">
+            <h2>Ready to start?</h2>
+            <form class="cta-form">
+                <input type="email" placeholder="Your email">
+                <button type="submit">Join the course</button>
+            </form>
+            <span class="cta-note">Starting Early 2026</span>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Fixed to Flow &middot; <a href="/">Home</a> <a href="/about.html">About</a> <a href="/privacy.html">Privacy</a></p>
+    </footer>
+</body>
+</html>
