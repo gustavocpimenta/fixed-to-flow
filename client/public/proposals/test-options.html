@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Variations - Test Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --red-glow: rgba(230, 59, 46, 0.15);
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --cream-dark: #F5F0E8;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        .page-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .variation {
+            padding: 80px 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .variation:nth-child(even) {
+            background: var(--white);
+        }
+
+        .variation-header {
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .variation-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .variation-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .variation-desc {
+            color: var(--gray);
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .options-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================
+           VARIATION 1: Current Design (Black recommended)
+           ========================================== */
+        .v1-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .v1-card {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 36px 28px 32px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .v1-card.recommended {
+            background: var(--black);
+        }
+
+        .v1-card.recommended .v1-name,
+        .v1-card.recommended .v1-duration,
+        .v1-card.recommended .v1-features li,
+        .v1-card.recommended .v1-best-for {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .v1-card.recommended::before {
+            content: 'Recommended';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 20px;
+            border-radius: 100px;
+        }
+
+        .v1-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .v1-duration {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 20px;
+        }
+
+        .v1-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 28px;
+        }
+
+        .v1-features {
+            list-style: none;
+        }
+
+        .v1-features li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding: 10px 0;
+            padding-left: 26px;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .v1-card.recommended .v1-features li {
+            border-bottom-color: rgba(255,255,255,0.08);
+        }
+
+        .v1-features li:last-child {
+            border-bottom: none;
+        }
+
+        .v1-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .v1-best-for {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .v1-card.recommended .v1-best-for {
+            border-top-color: rgba(255,255,255,0.1);
+        }
+
+        /* ==========================================
+           VARIATION 2: Red recommended card
+           ========================================== */
+        .v2-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .v2-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 28px 32px;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .v2-card.recommended {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .v2-card.recommended .v2-name,
+        .v2-card.recommended .v2-duration,
+        .v2-card.recommended .v2-price,
+        .v2-card.recommended .v2-features li,
+        .v2-card.recommended .v2-best-for {
+            color: var(--white);
+        }
+
+        .v2-card.recommended::before {
+            content: 'Recommended';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 20px;
+            border-radius: 100px;
+        }
+
+        .v2-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .v2-duration {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 20px;
+        }
+
+        .v2-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 28px;
+        }
+
+        .v2-features {
+            list-style: none;
+        }
+
+        .v2-features li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding: 10px 0;
+            padding-left: 26px;
+            position: relative;
+        }
+
+        .v2-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+        }
+
+        .v2-card.recommended .v2-features li::before {
+            color: var(--white);
+        }
+
+        .v2-best-for {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           VARIATION 3: Outlined cards with scale
+           ========================================== */
+        .v3-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: center;
+        }
+
+        .v3-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .v3-card.recommended {
+            border: 2px solid var(--red);
+            padding: 48px 32px;
+            box-shadow: 0 20px 60px rgba(230, 59, 46, 0.15);
+        }
+
+        .v3-card.recommended::before {
+            content: 'Recommended';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--red);
+            color: var(--white);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .v3-name {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .v3-card.recommended .v3-name {
+            font-size: 1.8rem;
+        }
+
+        .v3-duration {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-bottom: 20px;
+        }
+
+        .v3-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .v3-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-light);
+        }
+
+        .v3-card.recommended .v3-price {
+            font-size: 2.5rem;
+            color: var(--red);
+        }
+
+        .v3-features {
+            list-style: none;
+        }
+
+        .v3-features li {
+            font-size: 0.85rem;
+            color: var(--gray);
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .v3-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+        }
+
+        .v3-best-for {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            font-style: italic;
+        }
+
+        /* ==========================================
+           VARIATION 4: Horizontal layout
+           ========================================== */
+        .v4-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .v4-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 1fr 120px auto;
+            gap: 32px;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .v4-card.recommended {
+            background: var(--black);
+            border: none;
+        }
+
+        .v4-card.recommended .v4-name,
+        .v4-card.recommended .v4-desc,
+        .v4-card.recommended .v4-price {
+            color: var(--white);
+        }
+
+        .v4-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .v4-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .v4-badge {
+            background: var(--red);
+            color: var(--white);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .v4-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .v4-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            color: var(--red);
+            text-align: right;
+        }
+
+        .v4-duration {
+            font-size: 0.75rem;
+            color: var(--gray-light);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .v4-cta {
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .v4-card.recommended .v4-cta {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ==========================================
+           VARIATION 5: Minimal with top accent
+           ========================================== */
+        .v5-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .v5-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .v5-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .v5-card.recommended::before {
+            background: var(--red);
+        }
+
+        .v5-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 8px;
+        }
+
+        .v5-card.recommended .v5-name {
+            color: var(--red);
+        }
+
+        .v5-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3rem;
+            color: var(--black);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .v5-duration {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 24px;
+        }
+
+        .v5-features {
+            list-style: none;
+        }
+
+        .v5-features li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .v5-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* ==========================================
+           VARIATION 6: Cards with icons
+           ========================================== */
+        .v6-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .v6-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .v6-card.recommended {
+            border: 2px solid var(--red);
+            background: linear-gradient(180deg, rgba(230,59,46,0.03) 0%, var(--white) 100%);
+        }
+
+        .v6-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--cream);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        .v6-card.recommended .v6-icon {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .v6-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .v6-duration {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-bottom: 16px;
+        }
+
+        .v6-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--red);
+            margin-bottom: 24px;
+        }
+
+        .v6-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .v6-features li {
+            font-size: 0.85rem;
+            color: var(--gray);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .v6-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 7: Dark theme
+           ========================================== */
+        .v7-wrapper {
+            background: var(--black);
+            padding: 60px 40px;
+            border-radius: 24px;
+        }
+
+        .v7-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .v7-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 32px 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .v7-card.recommended {
+            background: var(--white);
+        }
+
+        .v7-card.recommended .v7-name,
+        .v7-card.recommended .v7-duration,
+        .v7-card.recommended .v7-features li {
+            color: var(--black);
+        }
+
+        .v7-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .v7-duration {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        .v7-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--red);
+            margin-bottom: 24px;
+        }
+
+        .v7-features {
+            list-style: none;
+        }
+
+        .v7-features li {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .v7-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+        }
+
+        /* ==========================================
+           VARIATION 8: Table layout
+           ========================================== */
+        .v8-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .v8-table th,
+        .v8-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .v8-table th {
+            background: var(--cream);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .v8-table th.recommended {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .v8-table td {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .v8-table td.recommended {
+            background: rgba(230,59,46,0.03);
+        }
+
+        .v8-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .v8-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+
+        .v8-table td.recommended .v8-price {
+            color: var(--red);
+        }
+
+        .v8-check {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           VARIATION 9: Side by side comparison
+           ========================================== */
+        .v9-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .v9-main {
+            background: var(--black);
+            border-radius: 24px;
+            padding: 48px 40px;
+            color: var(--white);
+        }
+
+        .v9-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .v9-main-name {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .v9-main-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .v9-main-duration {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 32px;
+        }
+
+        .v9-main-features {
+            list-style: none;
+        }
+
+        .v9-main-features li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .v9-main-features li:last-child {
+            border-bottom: none;
+        }
+
+        .v9-main-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+        }
+
+        .v9-others {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .v9-other-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .v9-other-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .v9-other-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .v9-other-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           VARIATION 10: Feature-focused
+           ========================================== */
+        .v10-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .v10-card {
+            padding: 40px 32px;
+            border-right: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .v10-card:last-child {
+            border-right: none;
+        }
+
+        .v10-card.recommended {
+            background: var(--cream-dark);
+            margin: -20px 0;
+            padding: 60px 32px;
+            border-radius: 20px;
+            border-right: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .v10-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .v10-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .v10-badge {
+            background: var(--red);
+            color: var(--white);
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .v10-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .v10-card.recommended .v10-price {
+            color: var(--red);
+        }
+
+        .v10-duration {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 32px;
+        }
+
+        .v10-feature-group {
+            margin-bottom: 24px;
+        }
+
+        .v10-feature-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray-light);
+            margin-bottom: 12px;
+        }
+
+        .v10-feature-value {
+            font-size: 1rem;
+            color: var(--black);
+        }
+
+        .v10-feature-value strong {
+            color: var(--red);
+        }
+
+        @media (max-width: 900px) {
+            .v1-grid, .v2-grid, .v3-grid, .v5-grid, .v6-grid, .v7-grid, .v10-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .v4-card {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .v4-price {
+                text-align: center;
+            }
+
+            .v8-table {
+                font-size: 0.8rem;
+            }
+
+            .v9-container {
+                grid-template-columns: 1fr;
+            }
+
+            .v10-card {
+                border-right: none;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+            }
+
+            .v10-card.recommended {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Options Section Variations</h1>
+        <p>10 different approaches for the pricing/plans section</p>
+    </header>
+
+    <!-- VARIATION 1 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 1</p>
+            <h2 class="variation-title">Current Design (Black Recommended Card)</h2>
+            <p class="variation-desc">The current implementation with inverted black card for recommended option</p>
+        </div>
+        <div class="options-container">
+            <div class="v1-grid">
+                <div class="v1-card">
+                    <h3 class="v1-name">Basic</h3>
+                    <p class="v1-duration">1 month</p>
+                    <p class="v1-price">&euro;1,500</p>
+                    <ul class="v1-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                    <p class="v1-best-for"><strong>Best for:</strong> Self-starter who needs direction</p>
+                </div>
+                <div class="v1-card recommended">
+                    <h3 class="v1-name">Plus</h3>
+                    <p class="v1-duration">2 months</p>
+                    <p class="v1-price">&euro;2,500</p>
+                    <ul class="v1-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                    <p class="v1-best-for"><strong>Best for:</strong> Guided support through the journey</p>
+                </div>
+                <div class="v1-card">
+                    <h3 class="v1-name">Supported</h3>
+                    <p class="v1-duration">2 months</p>
+                    <p class="v1-price">&euro;4,000</p>
+                    <ul class="v1-features">
+                        <li>Everything in Plus</li>
+                        <li>Custom scenario framework</li>
+                        <li>Significant prep work</li>
+                        <li>More prep between sessions</li>
+                    </ul>
+                    <p class="v1-best-for"><strong>Best for:</strong> Thinking partner + head start</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 2 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 2</p>
+            <h2 class="variation-title">Red Recommended Card</h2>
+            <p class="variation-desc">Recommended option uses brand red color</p>
+        </div>
+        <div class="options-container">
+            <div class="v2-grid">
+                <div class="v2-card">
+                    <h3 class="v2-name">Basic</h3>
+                    <p class="v2-duration">1 month</p>
+                    <p class="v2-price">&euro;1,500</p>
+                    <ul class="v2-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                    <p class="v2-best-for"><strong>Best for:</strong> Self-starter who needs direction</p>
+                </div>
+                <div class="v2-card recommended">
+                    <h3 class="v2-name">Plus</h3>
+                    <p class="v2-duration">2 months</p>
+                    <p class="v2-price">&euro;2,500</p>
+                    <ul class="v2-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                    <p class="v2-best-for"><strong>Best for:</strong> Guided support through the journey</p>
+                </div>
+                <div class="v2-card">
+                    <h3 class="v2-name">Supported</h3>
+                    <p class="v2-duration">2 months</p>
+                    <p class="v2-price">&euro;4,000</p>
+                    <ul class="v2-features">
+                        <li>Everything in Plus</li>
+                        <li>Custom scenario framework</li>
+                        <li>Significant prep work</li>
+                        <li>More prep between sessions</li>
+                    </ul>
+                    <p class="v2-best-for"><strong>Best for:</strong> Thinking partner + head start</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 3 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 3</p>
+            <h2 class="variation-title">Outlined with Scale</h2>
+            <p class="variation-desc">Recommended card is larger with red border and shadow</p>
+        </div>
+        <div class="options-container">
+            <div class="v3-grid">
+                <div class="v3-card">
+                    <h3 class="v3-name">Basic</h3>
+                    <p class="v3-duration">1 month</p>
+                    <p class="v3-price">&euro;1,500 <span>/ month</span></p>
+                    <ul class="v3-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                    <p class="v3-best-for">For self-starters who need direction</p>
+                </div>
+                <div class="v3-card recommended">
+                    <h3 class="v3-name">Plus</h3>
+                    <p class="v3-duration">2 months</p>
+                    <p class="v3-price">&euro;2,500 <span>total</span></p>
+                    <ul class="v3-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                    <p class="v3-best-for">For those who want guided support through the journey</p>
+                </div>
+                <div class="v3-card">
+                    <h3 class="v3-name">Supported</h3>
+                    <p class="v3-duration">2 months</p>
+                    <p class="v3-price">&euro;4,000 <span>total</span></p>
+                    <ul class="v3-features">
+                        <li>Everything in Plus</li>
+                        <li>Custom scenario framework</li>
+                        <li>Significant prep work</li>
+                        <li>More prep between sessions</li>
+                    </ul>
+                    <p class="v3-best-for">For thinking partner + head start</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 4 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 4</p>
+            <h2 class="variation-title">Horizontal Layout</h2>
+            <p class="variation-desc">Stacked horizontal cards with CTA buttons</p>
+        </div>
+        <div class="options-container">
+            <div class="v4-stack">
+                <div class="v4-card">
+                    <div class="v4-info">
+                        <h3 class="v4-name">Basic</h3>
+                        <p class="v4-desc">2 sessions, email support, AI system setup</p>
+                    </div>
+                    <div class="v4-price">&euro;1,500<br><span class="v4-duration">1 month</span></div>
+                    <button class="v4-cta">Select</button>
+                </div>
+                <div class="v4-card recommended">
+                    <div class="v4-info">
+                        <h3 class="v4-name">Plus <span class="v4-badge">Recommended</span></h3>
+                        <p class="v4-desc">5 sessions, WhatsApp support, scenario workflow</p>
+                    </div>
+                    <div class="v4-price">&euro;2,500<br><span class="v4-duration">2 months</span></div>
+                    <button class="v4-cta">Select</button>
+                </div>
+                <div class="v4-card">
+                    <div class="v4-info">
+                        <h3 class="v4-name">Supported</h3>
+                        <p class="v4-desc">Everything in Plus + custom framework + prep work</p>
+                    </div>
+                    <div class="v4-price">&euro;4,000<br><span class="v4-duration">2 months</span></div>
+                    <button class="v4-cta">Select</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 5 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 5</p>
+            <h2 class="variation-title">Minimal with Top Accent</h2>
+            <p class="variation-desc">Clean cards with colored top bar indicator</p>
+        </div>
+        <div class="options-container">
+            <div class="v5-grid">
+                <div class="v5-card">
+                    <p class="v5-name">Basic</p>
+                    <p class="v5-price">&euro;1,500</p>
+                    <p class="v5-duration">1 month</p>
+                    <ul class="v5-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                </div>
+                <div class="v5-card recommended">
+                    <p class="v5-name">Plus</p>
+                    <p class="v5-price">&euro;2,500</p>
+                    <p class="v5-duration">2 months</p>
+                    <ul class="v5-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                </div>
+                <div class="v5-card">
+                    <p class="v5-name">Supported</p>
+                    <p class="v5-price">&euro;4,000</p>
+                    <p class="v5-duration">2 months</p>
+                    <ul class="v5-features">
+                        <li>Everything in Plus</li>
+                        <li>Custom scenario framework</li>
+                        <li>Significant prep work</li>
+                        <li>More prep between sessions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 6 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 6</p>
+            <h2 class="variation-title">Centered with Icons</h2>
+            <p class="variation-desc">Icon-topped cards with center alignment</p>
+        </div>
+        <div class="options-container">
+            <div class="v6-grid">
+                <div class="v6-card">
+                    <div class="v6-icon">◇</div>
+                    <h3 class="v6-name">Basic</h3>
+                    <p class="v6-duration">1 month</p>
+                    <p class="v6-price">&euro;1,500</p>
+                    <ul class="v6-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                </div>
+                <div class="v6-card recommended">
+                    <div class="v6-icon">★</div>
+                    <h3 class="v6-name">Plus</h3>
+                    <p class="v6-duration">2 months</p>
+                    <p class="v6-price">&euro;2,500</p>
+                    <ul class="v6-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                </div>
+                <div class="v6-card">
+                    <div class="v6-icon">◆</div>
+                    <h3 class="v6-name">Supported</h3>
+                    <p class="v6-duration">2 months</p>
+                    <p class="v6-price">&euro;4,000</p>
+                    <ul class="v6-features">
+                        <li>Everything in Plus</li>
+                        <li>Custom scenario framework</li>
+                        <li>Significant prep work</li>
+                        <li>More prep between sessions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 7 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 7</p>
+            <h2 class="variation-title">Full Dark Theme</h2>
+            <p class="variation-desc">All cards on dark background, recommended is white</p>
+        </div>
+        <div class="options-container">
+            <div class="v7-wrapper">
+                <div class="v7-grid">
+                    <div class="v7-card">
+                        <h3 class="v7-name">Basic</h3>
+                        <p class="v7-duration">1 month</p>
+                        <p class="v7-price">&euro;1,500</p>
+                        <ul class="v7-features">
+                            <li>1 setup session (90 min)</li>
+                            <li>1 follow-up session (60 min)</li>
+                            <li>Email support</li>
+                            <li>Personal AI system setup</li>
+                        </ul>
+                    </div>
+                    <div class="v7-card recommended">
+                        <h3 class="v7-name">Plus</h3>
+                        <p class="v7-duration">2 months</p>
+                        <p class="v7-price">&euro;2,500</p>
+                        <ul class="v7-features">
+                            <li>1 setup session (90 min)</li>
+                            <li>4 working sessions (60 min)</li>
+                            <li>WhatsApp + email support</li>
+                            <li>Priority response</li>
+                            <li>Scenario workflow built together</li>
+                        </ul>
+                    </div>
+                    <div class="v7-card">
+                        <h3 class="v7-name">Supported</h3>
+                        <p class="v7-duration">2 months</p>
+                        <p class="v7-price">&euro;4,000</p>
+                        <ul class="v7-features">
+                            <li>Everything in Plus</li>
+                            <li>Custom scenario framework</li>
+                            <li>Significant prep work</li>
+                            <li>More prep between sessions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 8 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 8</p>
+            <h2 class="variation-title">Comparison Table</h2>
+            <p class="variation-desc">Traditional table format for feature comparison</p>
+        </div>
+        <div class="options-container">
+            <table class="v8-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic</th>
+                        <th class="recommended">Plus</th>
+                        <th>Supported</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td><span class="v8-price">&euro;1,500</span></td>
+                        <td class="recommended"><span class="v8-price">&euro;2,500</span></td>
+                        <td><span class="v8-price">&euro;4,000</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duration</strong></td>
+                        <td>1 month</td>
+                        <td class="recommended">2 months</td>
+                        <td>2 months</td>
+                    </tr>
+                    <tr>
+                        <td>Setup session</td>
+                        <td><span class="v8-check">✓</span> 90 min</td>
+                        <td class="recommended"><span class="v8-check">✓</span> 90 min</td>
+                        <td><span class="v8-check">✓</span> 90 min</td>
+                    </tr>
+                    <tr>
+                        <td>Working sessions</td>
+                        <td>1 session</td>
+                        <td class="recommended">4 sessions</td>
+                        <td>4 sessions</td>
+                    </tr>
+                    <tr>
+                        <td>WhatsApp support</td>
+                        <td>—</td>
+                        <td class="recommended"><span class="v8-check">✓</span></td>
+                        <td><span class="v8-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Custom framework</td>
+                        <td>—</td>
+                        <td class="recommended">—</td>
+                        <td><span class="v8-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Prep work between sessions</td>
+                        <td>—</td>
+                        <td class="recommended">—</td>
+                        <td><span class="v8-check">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- VARIATION 9 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 9</p>
+            <h2 class="variation-title">Hero Recommended</h2>
+            <p class="variation-desc">Large featured card with smaller alternatives</p>
+        </div>
+        <div class="options-container">
+            <div class="v9-container">
+                <div class="v9-main">
+                    <span class="v9-badge">Recommended</span>
+                    <h3 class="v9-main-name">Plus</h3>
+                    <p class="v9-main-price">&euro;2,500</p>
+                    <p class="v9-main-duration">2 months</p>
+                    <ul class="v9-main-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min each)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>Scenario workflow built together</li>
+                    </ul>
+                </div>
+                <div class="v9-others">
+                    <div class="v9-other-card">
+                        <div>
+                            <h4 class="v9-other-name">Basic</h4>
+                            <p class="v9-other-desc">2 sessions, email support, 1 month</p>
+                        </div>
+                        <p class="v9-other-price">&euro;1,500</p>
+                    </div>
+                    <div class="v9-other-card">
+                        <div>
+                            <h4 class="v9-other-name">Supported</h4>
+                            <p class="v9-other-desc">Plus features + custom framework + prep work</p>
+                        </div>
+                        <p class="v9-other-price">&euro;4,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VARIATION 10 -->
+    <section class="variation">
+        <div class="variation-header">
+            <p class="variation-number">Variation 10</p>
+            <h2 class="variation-title">Feature Groups</h2>
+            <p class="variation-desc">Organized by feature categories with elevated recommended</p>
+        </div>
+        <div class="options-container">
+            <div class="v10-grid">
+                <div class="v10-card">
+                    <div class="v10-header">
+                        <h3 class="v10-name">Basic</h3>
+                    </div>
+                    <p class="v10-price">&euro;1,500</p>
+                    <p class="v10-duration">1 month</p>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Sessions</p>
+                        <p class="v10-feature-value">1 setup + 1 follow-up</p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Support</p>
+                        <p class="v10-feature-value">Email only</p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Deliverable</p>
+                        <p class="v10-feature-value">AI system setup</p>
+                    </div>
+                </div>
+                <div class="v10-card recommended">
+                    <div class="v10-header">
+                        <h3 class="v10-name">Plus</h3>
+                        <span class="v10-badge">Best Value</span>
+                    </div>
+                    <p class="v10-price">&euro;2,500</p>
+                    <p class="v10-duration">2 months</p>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Sessions</p>
+                        <p class="v10-feature-value"><strong>1 setup + 4 working</strong></p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Support</p>
+                        <p class="v10-feature-value"><strong>WhatsApp + Email</strong></p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Deliverable</p>
+                        <p class="v10-feature-value"><strong>Scenario workflow</strong></p>
+                    </div>
+                </div>
+                <div class="v10-card">
+                    <div class="v10-header">
+                        <h3 class="v10-name">Supported</h3>
+                    </div>
+                    <p class="v10-price">&euro;4,000</p>
+                    <p class="v10-duration">2 months</p>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Sessions</p>
+                        <p class="v10-feature-value">1 setup + 4 working</p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Support</p>
+                        <p class="v10-feature-value">WhatsApp + Email</p>
+                    </div>
+                    <div class="v10-feature-group">
+                        <p class="v10-feature-label">Deliverable</p>
+                        <p class="v10-feature-value">Custom framework + prep</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

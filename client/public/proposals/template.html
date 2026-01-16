@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================
+           TEMPLATE.HTML - DO NOT DEPLOY
+           Copy this file and customize for each proposal
+           ========================================== */
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        /* Password Overlay */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--cream);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-card {
+            background: var(--white);
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .password-logo {
+            margin-bottom: 32px;
+        }
+
+        .password-logo img {
+            height: 24px;
+            width: auto;
+        }
+
+        .password-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .password-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-input:focus {
+            border-color: var(--red);
+        }
+
+        .password-input.error {
+            border-color: var(--red);
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .password-error {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .password-error.visible {
+            display: block;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .password-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(230, 59, 46, 0.3);
+        }
+
+        /* Proposal Content - Hidden until password entered */
+        .proposal-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .proposal-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Header */
+        .proposal-header {
+            padding: 60px 40px 80px;
+            background: var(--black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proposal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: var(--red);
+            opacity: 0.03;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-logo {
+            margin-bottom: 60px;
+        }
+
+        .header-logo img {
+            height: 20px;
+            width: auto;
+            opacity: 0.9;
+        }
+
+        .header-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--red);
+            margin-bottom: 24px;
+            padding: 10px 20px;
+            border: 1px solid rgba(230, 59, 46, 0.3);
+            border-radius: 100px;
+        }
+
+        .header-client {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .header-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 32px;
+            color: var(--black);
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .section ul li {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(230, 59, 46, 0.05);
+            border-left: 4px solid var(--red);
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .highlight-box p {
+            color: var(--black);
+            margin-bottom: 0;
+        }
+
+        /* Options Table - Variation 2 from test page */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+        }
+
+        .option-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 28px 32px;
+            border: 2px solid transparent;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .option-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .option-card.recommended {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .option-card.recommended .option-name,
+        .option-card.recommended .option-duration,
+        .option-card.recommended .option-price,
+        .option-card.recommended .option-features li,
+        .option-card.recommended .best-for {
+            color: var(--white);
+        }
+
+        .option-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--black);
+        }
+
+        .option-duration {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 20px;
+        }
+
+        .option-price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--red);
+            margin-bottom: 28px;
+        }
+
+        .option-features {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .option-features li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding: 10px 0;
+            padding-left: 26px;
+            position: relative;
+        }
+
+        .option-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .option-card.recommended .option-features li::before {
+            color: var(--white);
+        }
+
+        .best-for {
+            margin-top: auto;
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .best-for strong {
+            font-weight: 600;
+        }
+
+        /* Investment Section */
+        .investment-box {
+            background: var(--black);
+            border-radius: 24px;
+            padding: 48px;
+            margin: 40px 0;
+            color: var(--white);
+        }
+
+        .investment-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .investment-list {
+            list-style: none;
+        }
+
+        .investment-list li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .investment-list li:last-child {
+            border-bottom: none;
+        }
+
+        .investment-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63B2E'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--white);
+            padding: 80px 40px;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: var(--cream);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .next-steps-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .next-steps h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .next-steps-list {
+            text-align: left;
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .next-steps-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .next-steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-top: 4px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.3);
+        }
+
+        .validity {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+
+        /* Footer */
+        .proposal-footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-logo img {
+            height: 18px;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-client {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 60px 24px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-photo {
+                margin: 0 auto;
+            }
+
+            .investment-box {
+                padding: 32px 24px;
+            }
+
+            .password-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-card">
+            <div class="password-logo">
+                <img src="/logo.svg" alt="Fixed to Flow">
+            </div>
+            <h2 class="password-title">View Proposal</h2>
+            <p class="password-subtitle">Enter the password to access this proposal.</p>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Enter password"
+                        autocomplete="off"
+                    >
+                    <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
+                </div>
+                <button type="submit" class="password-btn">View Proposal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proposal Content -->
+    <div class="proposal-content" id="proposalContent">
+
+        <!-- Header -->
+        <header class="proposal-header">
+            <div class="header-logo">
+                <img src="/logo.svg" alt="Fixed to Flow">
+            </div>
+            <span class="header-label">Proposal</span>
+            <h1 class="header-client">[CLIENT NAME]</h1>
+            <p class="header-subtitle">[SHORT DESCRIPTION OF WHAT THIS PROPOSAL IS FOR]</p>
+            <p class="header-date">[MONTH YEAR]</p>
+        </header>
+
+        <!-- Context Section -->
+        <section class="section">
+            <h2 class="section-title">Context & <em>Situation</em></h2>
+            <p>[PERSONALIZED CONTEXT ABOUT THE CLIENT AND THEIR SITUATION]</p>
+            <p>[MORE CONTEXT PARAGRAPHS AS NEEDED]</p>
+        </section>
+
+        <!-- Challenge Section -->
+        <section class="section section-alt">
+            <h2 class="section-title">The <em>Challenge</em></h2>
+            <p>[DESCRIBE THE CORE CHALLENGE THE CLIENT IS FACING]</p>
+            <ul>
+                <li>[SPECIFIC CHALLENGE POINT 1]</li>
+                <li>[SPECIFIC CHALLENGE POINT 2]</li>
+                <li>[SPECIFIC CHALLENGE POINT 3]</li>
+            </ul>
+            <div class="highlight-box">
+                <p>[KEY INSIGHT OR REFRAME OF THE CHALLENGE]</p>
+            </div>
+        </section>
+
+        <!-- Approach Section -->
+        <section class="section">
+            <h2 class="section-title">The <em>Approach</em></h2>
+            <p>[DESCRIBE HOW YOU'LL WORK TOGETHER]</p>
+            <p><strong>How we'll work:</strong></p>
+            <ul>
+                <li><strong>Setup session</strong> (90 minutes). [DESCRIPTION]</li>
+                <li><strong>Ongoing sessions.</strong> [DESCRIPTION]</li>
+                <li><strong>Between sessions.</strong> [DESCRIPTION]</li>
+            </ul>
+        </section>
+
+        <!-- Options Section -->
+        <section class="section section-alt">
+            <h2 class="section-title">Your <em>Options</em></h2>
+            <p>[BRIEF INTRO TO THE OPTIONS]</p>
+
+            <div class="options-grid">
+                <!-- Option 1: Basic -->
+                <div class="option-card">
+                    <h3 class="option-name">Basic</h3>
+                    <p class="option-duration">1 month</p>
+                    <p class="option-price">&euro;1,500</p>
+                    <ul class="option-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>1 follow-up session (60 min)</li>
+                        <li>Email support</li>
+                        <li>Personal AI system setup</li>
+                    </ul>
+                    <p class="best-for"><strong>Best for</strong> Self-starter who needs direction and can run with it</p>
+                </div>
+
+                <!-- Option 2: Plus (Recommended) -->
+                <div class="option-card recommended">
+                    <h3 class="option-name">Plus</h3>
+                    <p class="option-duration">2 months</p>
+                    <p class="option-price">&euro;2,500</p>
+                    <ul class="option-features">
+                        <li>1 setup session (90 min)</li>
+                        <li>4 working sessions (60 min each)</li>
+                        <li>WhatsApp + email support</li>
+                        <li>Priority response</li>
+                        <li>[PRIMARY DELIVERABLE]</li>
+                    </ul>
+                    <p class="best-for"><strong>Best for</strong> Someone who wants guided support through the full journey</p>
+                </div>
+
+                <!-- Option 3: Supported -->
+                <div class="option-card">
+                    <h3 class="option-name">Supported</h3>
+                    <p class="option-duration">2 months</p>
+                    <p class="option-price">&euro;4,000</p>
+                    <ul class="option-features">
+                        <li>Everything in Plus</li>
+                        <li>2 additional working sessions (60 min)</li>
+                        <li>1 [CONCEPTUALIZATION] session</li>
+                    </ul>
+                    <p class="best-for"><strong>Best for</strong> Someone short on time who wants me to carry more of the load</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Section -->
+        <section class="section">
+            <h2 class="section-title">The <em>Investment</em></h2>
+            <p>[RECOMMENDATION TEXT]</p>
+
+            <div class="investment-box">
+                <h3 class="investment-title">What you're investing in</h3>
+                <ul class="investment-list">
+                    <li>[VALUE POINT 1]</li>
+                    <li>[VALUE POINT 2]</li>
+                    <li>[VALUE POINT 3]</li>
+                    <li>[VALUE POINT 4]</li>
+                </ul>
+            </div>
+
+            <p><strong>Payment:</strong> [PAYMENT TERMS]</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <img src="/gus_novo.jpg" alt="Gus" class="about-photo">
+                <div class="about-text">
+                    <h3>About Gus</h3>
+                    <p>I've spent 25+ years in tech leadership. Building products, leading teams, mentoring leaders across industries. My academic background is in sociology, which means I care deeply about the human side of technology.</p>
+                    <p>Three years ago, I left my role as Chief Product Officer of a Swiss startup to focus entirely on helping people work with AI. I learned by doing. Running experiments in public, teaching everyone from 10-year-olds to startup founders.</p>
+                    <p><strong>What makes this different:</strong> I'm a practitioner, not just an advisor. I build real AI systems and workflows every day. I've been mentoring leaders for 25+ years. I know how to work with people who have no time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Steps Section -->
+        <section class="next-steps">
+            <div class="next-steps-content">
+                <h2>Next Steps</h2>
+                <ol class="next-steps-list">
+                    <li>
+                        <span class="step-number">1</span>
+                        <span class="step-text">Review this proposal</span>
+                    </li>
+                    <li>
+                        <span class="step-number">2</span>
+                        <span class="step-text">Reply with questions or book a quick call if you want to discuss</span>
+                    </li>
+                    <li>
+                        <span class="step-number">3</span>
+                        <span class="step-text">Once you decide, I'll send a simple agreement and payment link</span>
+                    </li>
+                </ol>
+                <a href="mailto:gustavo@gustavopimenta.com?subject=Re: Proposal" class="cta-btn">Reply to Discuss</a>
+                <p class="validity">This proposal is valid for 30 days.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="proposal-footer">
+            <div class="footer-logo">
+                <img src="/logo.svg" alt="Fixed to Flow">
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // PASSWORD CONFIGURATION
+        // Change this for each proposal
+        // ==========================================
+        const PROPOSAL_PASSWORD = 'CHANGE_THIS_PASSWORD';
+
+        // ==========================================
+        // Password Protection Logic
+        // ==========================================
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const proposalContent = document.getElementById('proposalContent');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        // Check if already authenticated (session storage)
+        const isAuthenticated = sessionStorage.getItem('proposal_auth') === 'true';
+        if (isAuthenticated) {
+            passwordOverlay.classList.add('hidden');
+            proposalContent.classList.add('visible');
+        }
+
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const enteredPassword = passwordInput.value;
+
+            if (enteredPassword === PROPOSAL_PASSWORD) {
+                // Success
+                sessionStorage.setItem('proposal_auth', 'true');
+                passwordOverlay.classList.add('hidden');
+                proposalContent.classList.add('visible');
+            } else {
+                // Error
+                passwordInput.classList.add('error');
+                passwordError.classList.add('visible');
+
+                // Remove error state after animation
+                setTimeout(() => {
+                    passwordInput.classList.remove('error');
+                }, 500);
+            }
+        });
+
+        // Clear error when typing
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('visible');
+        });
+    </script>
+</body>
+</html>

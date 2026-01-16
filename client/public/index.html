@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>AI Adoption for Leaders & Teams | Fixed to Flow</title>
     <meta name="description" content="We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.">
     <link rel="canonical" href="https://fixedtoflow.com/">
@@ -91,13 +91,16 @@
             color: var(--white);
             text-align: center;
             padding: 12px 20px;
+            padding-top: max(12px, env(safe-area-inset-top));
             font-size: 0.95rem;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s;
         }
 
         .announcement-bar.hidden {
             transform: translateY(-100%);
             opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
         }
 
         .announcement-bar a {
@@ -124,6 +127,7 @@
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
+            padding-top: env(safe-area-inset-top, 0);
         }
 
         nav.visible {
@@ -1611,10 +1615,6 @@
 
             .mobile-nav-toggle {
                 display: flex;
-            }
-
-            nav.visible {
-                top: 0;
             }
 
             .hero,
