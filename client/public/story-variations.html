@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed to Flow - Story Variations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --black-deep: #0A0A0A;
+        }
+
+        body {
+            background: #1a1a1a;
+            padding: 40px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        h1 {
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 24px;
+        }
+
+        .instructions {
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        /* Each story card - scaled down for preview */
+        .story {
+            width: 270px;
+            height: 480px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .story:hover {
+            transform: scale(1.02);
+        }
+
+        .story-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            z-index: 100;
+        }
+
+        /* Logo SVG inline */
+        .logo {
+            fill: var(--red);
+        }
+
+        .logo-cream {
+            fill: var(--cream);
+        }
+
+        .logo-black {
+            fill: var(--black);
+        }
+
+        /* ============================================
+           VARIATION 1: Bold Centered
+           ============================================ */
+        .v1 {
+            background: var(--black-deep);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .v1 .logo { width: 50px; margin-bottom: 30px; }
+        .v1 .tagline { color: var(--cream); }
+        .v1 .lead { font-size: 28px; font-weight: 300; letter-spacing: 0.1em; }
+        .v1 .ai { font-size: 72px; font-weight: 900; color: var(--red); margin: 5px 0; }
+        .v1 .stay { font-size: 28px; font-weight: 300; letter-spacing: 0.1em; }
+        .v1 .human { font-size: 72px; font-weight: 900; color: var(--red); }
+
+        /* ============================================
+           VARIATION 2: Cream Background, Split Layout
+           ============================================ */
+        .v2 {
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v2 .top {
+            flex: 1;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .v2 .bottom {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .v2 .logo { width: 40px; margin-bottom: 15px; }
+        .v2 .top .text { color: var(--cream); font-size: 24px; font-weight: 700; text-transform: uppercase; }
+        .v2 .top .ai { font-size: 56px; font-weight: 900; color: var(--red); }
+        .v2 .bottom .text { color: var(--black); font-size: 24px; font-weight: 700; text-transform: uppercase; margin-top: 15px; }
+        .v2 .bottom .human { font-size: 56px; font-weight: 900; color: var(--red); }
+
+        /* ============================================
+           VARIATION 3: Diagonal Split
+           ============================================ */
+        .v3 {
+            background: var(--red);
+            position: relative;
+        }
+
+        .v3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+
+        .v3 .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 20px;
+        }
+
+        .v3 .logo { width: 40px; }
+        .v3 .top-text { color: var(--cream); font-size: 20px; font-weight: 700; text-transform: uppercase; }
+        .v3 .ai-text { font-size: 64px; font-weight: 900; color: var(--cream); }
+        .v3 .bottom-text { color: var(--cream); font-size: 20px; font-weight: 700; text-transform: uppercase; text-align: right; }
+        .v3 .human-text { font-size: 48px; font-weight: 900; color: var(--red); text-align: right; }
+
+        /* ============================================
+           VARIATION 4: Minimal White
+           ============================================ */
+        .v4 {
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .v4 .logo { width: 45px; margin-bottom: 40px; }
+        .v4 .line { font-size: 22px; font-weight: 400; color: var(--black); letter-spacing: 0.05em; text-align: center; line-height: 1.6; }
+        .v4 .highlight { color: var(--red); font-weight: 700; }
+
+        /* ============================================
+           VARIATION 5: Stacked Bold
+           ============================================ */
+        .v5 {
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .v5 .logo { width: 35px; margin-bottom: 25px; }
+        .v5 .word {
+            font-size: 52px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+        .v5 .lead { color: #444; }
+        .v5 .with { color: #666; }
+        .v5 .ai { color: var(--red); font-size: 80px; }
+        .v5 .stay { color: #444; margin-top: 15px; }
+        .v5 .human { color: var(--cream); }
+
+        /* ============================================
+           VARIATION 6: Geometric Blocks
+           ============================================ */
+        .v6 {
+            background: var(--cream);
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+
+        .v6 .block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .v6 .b1 { background: var(--black); color: var(--cream); font-size: 28px; letter-spacing: 0.1em; }
+        .v6 .b2 { background: var(--red); color: var(--cream); font-size: 72px; }
+        .v6 .b3 { background: var(--cream); color: var(--black); font-size: 28px; letter-spacing: 0.1em; }
+        .v6 .b4 { background: var(--black); color: var(--red); font-size: 48px; }
+        .v6 .logo-wrap { position: absolute; top: 15px; right: 15px; }
+        .v6 .logo { width: 30px; }
+
+        /* ============================================
+           VARIATION 7: Typography Focus
+           ============================================ */
+        .v7 {
+            background: var(--black-deep);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .v7 .logo { width: 35px; margin-bottom: 30px; }
+        .v7 .main {
+            font-size: 18px;
+            font-weight: 200;
+            color: var(--cream);
+            text-align: center;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        .v7 .big {
+            font-size: 110px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 0.85;
+            margin: 10px 0;
+        }
+        .v7 .sub {
+            font-size: 18px;
+            font-weight: 200;
+            color: var(--cream);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        /* ============================================
+           VARIATION 8: Red Bold
+           ============================================ */
+        .v8 {
+            background: var(--red);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .v8 .logo { width: 45px; margin-bottom: 35px; }
+        .v8 .text {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            line-height: 1.5;
+        }
+        .v8 .emphasis {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--black);
+            display: block;
+            margin: 8px 0;
+        }
+
+        /* ============================================
+           VARIATION 9: Side by Side
+           ============================================ */
+        .v9 {
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v9 .logo-area {
+            padding: 20px;
+        }
+
+        .v9 .logo { width: 35px; }
+
+        .v9 .row {
+            flex: 1;
+            display: flex;
+        }
+
+        .v9 .left, .v9 .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .v9 .left { background: var(--red); }
+        .v9 .label { font-size: 14px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 5px; }
+        .v9 .left .label { color: var(--cream); opacity: 0.7; }
+        .v9 .right .label { color: #666; }
+        .v9 .value { font-size: 42px; font-weight: 900; }
+        .v9 .left .value { color: var(--cream); }
+        .v9 .right .value { color: var(--cream); }
+
+        /* ============================================
+           VARIATION 10: Outline Style
+           ============================================ */
+        .v10 {
+            background: var(--black-deep);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 3px solid var(--red);
+        }
+
+        .v10 .logo { width: 40px; margin-bottom: 30px; }
+        .v10 .outline-text {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            -webkit-text-stroke: 2px var(--cream);
+            color: transparent;
+            line-height: 1.1;
+        }
+        .v10 .filled {
+            -webkit-text-stroke: 0;
+            color: var(--red);
+        }
+        .v10 .small {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--cream);
+            letter-spacing: 0.2em;
+            margin: 15px 0;
+            -webkit-text-stroke: 0;
+        }
+
+        /* Click to expand functionality */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 360px;
+            height: 640px;
+            transform-origin: center;
+        }
+
+        .modal-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fixed to Flow - Instagram Story Variations</h1>
+    <p class="instructions">Click any variation to view larger. Right-click the expanded view to save as image.</p>
+
+    <div class="grid">
+
+        <!-- Variation 1: Bold Centered -->
+        <div class="story v1" onclick="openModal(this)">
+            <div class="story-number">1</div>
+            <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="currentColor"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="currentColor"/>
+            </svg>
+            <div class="tagline">
+                <div class="lead">LEAD WITH</div>
+                <div class="ai">AI</div>
+                <div class="stay">STAY</div>
+                <div class="human">HUMAN</div>
+            </div>
+        </div>
+
+        <!-- Variation 2: Split Layout -->
+        <div class="story v2" onclick="openModal(this)">
+            <div class="story-number">2</div>
+            <div class="top">
+                <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+                </svg>
+                <div class="text">Lead with</div>
+                <div class="ai">AI</div>
+            </div>
+            <div class="bottom">
+                <div class="text">Stay</div>
+                <div class="human">Human</div>
+            </div>
+        </div>
+
+        <!-- Variation 3: Diagonal Split -->
+        <div class="story v3" onclick="openModal(this)">
+            <div class="story-number">3</div>
+            <div class="content">
+                <div>
+                    <svg class="logo logo-cream" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#FAF7F2"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#FAF7F2"/>
+                    </svg>
+                    <div class="top-text">Lead with</div>
+                    <div class="ai-text">AI</div>
+                </div>
+                <div>
+                    <div class="bottom-text">Stay</div>
+                    <div class="human-text">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 4: Minimal White -->
+        <div class="story v4" onclick="openModal(this)">
+            <div class="story-number">4</div>
+            <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+            </svg>
+            <div class="line">
+                Lead with <span class="highlight">AI</span><br>
+                Stay <span class="highlight">Human</span>
+            </div>
+        </div>
+
+        <!-- Variation 5: Stacked Bold -->
+        <div class="story v5" onclick="openModal(this)">
+            <div class="story-number">5</div>
+            <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+            </svg>
+            <div class="word lead">Lead</div>
+            <div class="word with">With</div>
+            <div class="word ai">AI</div>
+            <div class="word stay">Stay</div>
+            <div class="word human">Human</div>
+        </div>
+
+        <!-- Variation 6: Geometric Blocks -->
+        <div class="story v6" onclick="openModal(this)">
+            <div class="story-number">6</div>
+            <div class="logo-wrap">
+                <svg class="logo logo-black" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#111"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#111"/>
+                </svg>
+            </div>
+            <div class="block b1">Lead With</div>
+            <div class="block b2">AI</div>
+            <div class="block b3">Stay</div>
+            <div class="block b4">Human</div>
+        </div>
+
+        <!-- Variation 7: Typography Focus -->
+        <div class="story v7" onclick="openModal(this)">
+            <div class="story-number">7</div>
+            <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+            </svg>
+            <div class="main">Lead With</div>
+            <div class="big">AI</div>
+            <div class="sub">Stay</div>
+            <div class="big">Human</div>
+        </div>
+
+        <!-- Variation 8: Red Bold -->
+        <div class="story v8" onclick="openModal(this)">
+            <div class="story-number">8</div>
+            <svg class="logo logo-cream" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#FAF7F2"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#FAF7F2"/>
+            </svg>
+            <div class="text">
+                Lead With
+                <span class="emphasis">AI</span>
+                Stay
+                <span class="emphasis">Human</span>
+            </div>
+        </div>
+
+        <!-- Variation 9: Side by Side -->
+        <div class="story v9" onclick="openModal(this)">
+            <div class="story-number">9</div>
+            <div class="logo-area">
+                <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+                </svg>
+            </div>
+            <div class="row">
+                <div class="left">
+                    <div class="label">Lead With</div>
+                    <div class="value">AI</div>
+                </div>
+                <div class="right">
+                    <div class="label">Stay</div>
+                    <div class="value">Human</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 10: Outline Style -->
+        <div class="story v10" onclick="openModal(this)">
+            <div class="story-number">10</div>
+            <svg class="logo" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 25.8036C0 11.5527 11.5527 0 25.8036 0H215.508C229.759 0 241.312 11.5527 241.312 25.8036C241.312 40.0546 229.759 51.6072 215.508 51.6072H51.6072V102.719H0V25.8036Z" fill="#E63B2E"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.606 102.661H207.383C221.634 102.661 233.187 114.213 233.187 128.464C233.187 142.715 221.634 154.268 207.383 154.268H103.213V180.839C103.213 195.09 91.6605 206.643 77.4096 206.643C63.1586 206.643 51.606 195.09 51.606 180.839V102.661Z" fill="#E63B2E"/>
+            </svg>
+            <div class="outline-text">Lead</div>
+            <div class="small">WITH</div>
+            <div class="outline-text filled">AI</div>
+            <div class="outline-text">Stay</div>
+            <div class="outline-text filled">Human</div>
+        </div>
+
+    </div>
+
+    <!-- Modal for expanded view -->
+    <div class="modal" id="modal" onclick="closeModal()">
+        <div class="modal-content" id="modal-content"></div>
+        <div class="modal-hint">Click anywhere to close. Right-click to save image.</div>
+    </div>
+
+    <script>
+        function openModal(el) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+            const clone = el.cloneNode(true);
+            clone.querySelector('.story-number')?.remove();
+            clone.style.width = '360px';
+            clone.style.height = '640px';
+            clone.onclick = null;
+            content.innerHTML = '';
+            content.appendChild(clone);
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

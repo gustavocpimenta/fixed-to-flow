@@ -463,12 +463,15 @@
         .section p {
             font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 24px;
             line-height: 1.85;
         }
 
-        .section p:last-child {
-            margin-bottom: 0;
+        .section p + p {
+            margin-top: 24px;
+        }
+
+        .section .reveal + .reveal {
+            margin-top: 24px;
         }
 
         .section p strong {
@@ -550,6 +553,7 @@
             gap: 24px;
             margin: 48px auto;
             max-width: 1000px;
+            align-items: stretch;
         }
 
         .option-card {
@@ -595,12 +599,14 @@
             margin-bottom: 20px;
         }
 
-        .option-price {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 2.5rem;
+        .option-card .option-price {
+            font-family: 'Instrument Serif', Georgia, serif !important;
+            font-size: 36px !important;
             font-weight: 400;
             color: var(--red);
             margin-bottom: 28px;
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
 
         .option-features {
@@ -679,42 +685,26 @@
         }
 
         .investment-list {
-            list-style: none;
+            list-style: disc;
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
         }
 
         .investment-list li {
             padding: 14px 0;
-            padding-left: 28px;
-            position: relative;
             color: var(--gray);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             font-size: 1rem;
             line-height: 1.65;
         }
 
+        .investment-list li::marker {
+            color: var(--red);
+        }
+
         .investment-list li:last-child {
             border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .investment-list li:first-child {
-            padding-top: 0;
-        }
-
-        .investment-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 20px;
-            width: 12px;
-            height: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63B2E'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .investment-list li:first-child::before {
-            top: 6px;
         }
 
         /* ==========================================
@@ -1019,7 +1009,7 @@
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-card">
             <div class="password-logo">
-                <img src="/logo.svg" alt="Fixed to Flow">
+                <img src="../logo.svg" alt="Fixed to Flow">
             </div>
             <h2 class="password-title">View Proposal</h2>
             <p class="password-subtitle">Enter the password to access this proposal.</p>
@@ -1045,7 +1035,7 @@
         <!-- Header -->
         <header class="proposal-header">
             <div class="header-logo">
-                <img src="/logo.svg" alt="Fixed to Flow">
+                <img src="../logo.svg" alt="Fixed to Flow">
             </div>
             <span class="header-confidential">Confidential</span>
             <span class="header-label">Proposal</span>
@@ -1063,15 +1053,16 @@
                 <h2 class="section-title">Context & <em>Situation</em></h2>
             </div>
             <div class="reveal reveal-delay-1">
-                <p>Hello, Cynthia. I loved our conversation. You reached out through Martin after hearing how AI transformed his work, and I can see why you connected.</p>
+                <p>Hello, Cynthia.</p>
+                <p>I loved our conversation. Martin told me about your work, and I immediately understood why he thought we should connect.</p>
             </div>
             <div class="reveal reveal-delay-2">
-                <p>You're Director for Health for Africa at the Gates Foundation. Forty-two countries. That's not just a big job. It's the kind of scope that requires you to hold multiple futures in your head at once.</p>
+                <p>Director for Health for Africa at the Gates Foundation. Forty-two countries. You wake up at 5am, travel to a different country every week until February, and somehow still find time to think about what the Foundation should leave behind 20 years from now.</p>
             </div>
             <div class="reveal reveal-delay-3">
-                <p>Right now you're in transition. Moving from Seattle to Nairobi. Traveling every week until late February. Different time zones, different contexts, carrying strategic decisions that will shape health outcomes for millions.</p>
-                <p>Your background is what makes this interesting. Social work and sustainable development, not medicine. You've built your expertise through relentless self-learning. You told me about the imposter syndrome that drove you to get your public health degree at University of Bern. That same drive brought you here.</p>
-                <p>You're paying personally because you can't wait for organizational processes. You need to move now.</p>
+                <p>What struck me most is how you learn. You've built your career through relentless self-teaching.</p>
+                <p>You mentioned your three sons constantly showing you new tools. More than 6,000 unread emails waiting for your attention. And this restless feeling that AI could help you think bigger if only you knew where to start.</p>
+                <p>That's exactly why I think we'll work well together. You don't need someone to convince you AI matters. You need a thinking partner who can help you learn it your way, on your schedule, across whatever time zone you're in that week.</p>
             </div>
         </section>
 
@@ -1084,19 +1075,20 @@
                 <div class="reveal reveal-delay-1">
                     <p>You're facing a tension that few people at your level articulate this clearly.</p>
                     <p>You need to think strategically about 5, 10, and 20 years out. While drowning in the operational present.</p>
-                    <p>You described it perfectly. You now get asked "what should we do?" rather than "how do we execute what's decided." That's a fundamentally different job. It requires continuous intelligence, scenario thinking, and the mental space to see patterns others miss.</p>
+                    <p>You described it perfectly. You now get asked "what should we do?" rather than "how do we execute what's decided."</p>
+                    <p>That's a fundamentally different job. It requires continuous intelligence, scenario thinking, and the mental space to see patterns others miss.</p>
                 </div>
                 <div class="reveal reveal-delay-2">
                     <p>But right now you have:</p>
                     <ul>
-                        <li>6,850 unread emails competing for your attention</li>
+                        <li>More than 6,000 unread emails competing for your attention</li>
                         <li>A different country every week</li>
                         <li>A project that requires thinking 20 years into the future</li>
                     </ul>
                 </div>
                 <div class="reveal reveal-delay-3">
-                    <p>The specific project you mentioned. What Gates Foundation should leave behind in surveillance. That's exactly the kind of challenge where AI can multiply your thinking capacity.</p>
-                    <p>You need to synthesize vast amounts of information, build scenarios, and present options to leadership. Not one scenario. Multiple. With clear reasoning for what you considered and rejected.</p>
+                    <p>You need to synthesize vast amounts of information, build scenarios, and present options to leadership.</p>
+                    <p>Not one scenario. Multiple. With clear reasoning for what you considered and rejected.</p>
                     <div class="highlight-box">
                         <p>This is where AI stops being a productivity tool and becomes a thinking partner.</p>
                     </div>
@@ -1125,7 +1117,8 @@
                     <li>Then: Other use cases as we discover them together</li>
                     <li>Throughout: You're building capabilities you can eventually bring to your team</li>
                 </ul>
-                <p>I should be honest. Your scenario project is exactly the kind of work I love. Building systems that help leaders think through complex futures. This is where AI becomes genuinely powerful, not just efficient.</p>
+                <p>I should be honest. Your scenario project is exactly the kind of work I love.</p>
+                <p>Building systems that help leaders think through complex futures. This is where AI becomes genuinely powerful, not just efficient.</p>
             </div>
         </section>
 
@@ -1140,7 +1133,7 @@
 
             <div class="options-grid">
                     <!-- Option 1: Basic -->
-                    <div class="option-card reveal reveal-delay-1">
+                    <div class="option-card">
                         <h3 class="option-name">Basic</h3>
                         <p class="option-duration">1 month</p>
                         <p class="option-price">&euro;1,500</p>
@@ -1155,7 +1148,7 @@
                     </div>
 
                     <!-- Option 2: Plus (Recommended) -->
-                    <div class="option-card recommended reveal reveal-delay-2">
+                    <div class="option-card recommended">
                         <h3 class="option-name">Plus</h3>
                         <p class="option-duration">2 months</p>
                         <p class="option-price">&euro;2,500</p>
@@ -1170,14 +1163,15 @@
                     </div>
 
                     <!-- Option 3: Supported -->
-                    <div class="option-card reveal reveal-delay-3">
+                    <div class="option-card">
                         <h3 class="option-name">Supported</h3>
-                        <p class="option-duration">2 months</p>
+                        <p class="option-duration">3 months</p>
                         <p class="option-price">&euro;4,000</p>
                         <ul class="option-features">
                             <li>Everything in Plus</li>
                             <li>2 additional working sessions (60 min)</li>
                             <li>1 scenario conceptualization session</li>
+                            <li>~10 hours of async work building your systems</li>
                         </ul>
                         <p class="best-for"><strong>Best for</strong> Someone short on time who wants me to carry more of the load</p>
                     </div>
@@ -1212,10 +1206,10 @@
                     <div class="investment-box">
                         <h3 class="investment-title">What you're investing in</h3>
                         <ul class="investment-list">
+                            <li>AI foundations and literacy: understanding what these tools can do, how to think with them, and where they fall short</li>
                             <li>A working system for strategic scenario analysis you can use on your current project and beyond</li>
-                            <li>The capability to think at scale. Synthesizing information across 42 countries into coherent strategic options.</li>
-                            <li>Foundations you can eventually bring to your team</li>
-                            <li>A thinking partner for the next two months who understands both the technology and the stakes</li>
+                            <li>The capability to think at scale: synthesizing information across 42 countries into coherent strategic options</li>
+                            <li>A thinking partner who understands both the technology and the stakes</li>
                         </ul>
                     </div>
                 </div>
@@ -1246,7 +1240,7 @@
         <section class="about-section">
             <div class="about-content">
                 <div class="reveal">
-                    <img src="/gus_novo.jpg" alt="Gus" class="about-photo">
+                    <img src="../gus_novo.jpg" alt="Gus" class="about-photo">
                 </div>
                 <div class="about-text">
                     <div class="reveal">
@@ -1264,7 +1258,6 @@
                             <li>I'm comfortable with complexity. Your 42-country scope doesn't scare me. It energizes me.</li>
                             <li>I care about protecting human judgment while amplifying human capability. That's the edge I write about and teach.</li>
                         </ul>
-                        <p>I should also be transparent. When you described the scenario project, my brain immediately started designing the system. This is exactly the kind of work I love. Helping leaders think through complex futures. I genuinely want to work on this with you.</p>
                     </div>
                 </div>
             </div>
@@ -1301,7 +1294,7 @@
         <!-- Footer -->
         <footer class="proposal-footer">
             <a href="https://fixedtoflow.com" class="footer-logo">
-                <img src="/logo.svg" alt="Fixed to Flow">
+                <img src="../logo.svg" alt="Fixed to Flow">
             </a>
         </footer>
     </div>
