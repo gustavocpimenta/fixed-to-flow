@@ -423,20 +423,22 @@
         }
 
         /* ==========================================
-           SECTIONS - Refined typography and spacing
+           SECTIONS - Full-width swimming lanes
            ========================================== */
         .section {
             padding: 100px 40px;
+            width: 100%;
+        }
+
+        /* Content constraint inside sections */
+        .section > *:not(.options-grid) {
             max-width: 780px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-alt {
             background: var(--white);
-        }
-
-        .section-full {
-            max-width: none;
         }
 
         .section-inner {

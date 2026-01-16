@@ -241,11 +241,17 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Sections */
+        /* Sections - Full-width swimming lanes */
         .section {
             padding: 80px 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Content constraint inside sections */
+        .section > *:not(.options-grid) {
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-alt {
