@@ -685,26 +685,42 @@
         }
 
         .investment-list {
-            list-style: disc;
-            padding: 0;
-            margin: 0;
-            padding-left: 20px;
+            margin-top: 24px;
         }
 
-        .investment-list li {
-            padding: 14px 0;
-            color: var(--gray);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            font-size: 1rem;
-            line-height: 1.65;
+        .investment-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
 
-        .investment-list li::marker {
-            color: var(--red);
-        }
-
-        .investment-list li:last-child {
+        .investment-item:last-child {
             border-bottom: none;
+        }
+
+        .investment-number {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .investment-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .investment-content span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* ==========================================
@@ -1205,12 +1221,36 @@
                 <div class="reveal reveal-delay-1">
                     <div class="investment-box">
                         <h3 class="investment-title">What you're investing in</h3>
-                        <ul class="investment-list">
-                            <li>AI foundations and literacy: understanding what these tools can do, how to think with them, and where they fall short</li>
-                            <li>A working system for strategic scenario analysis you can use on your current project and beyond</li>
-                            <li>The capability to think at scale: synthesizing information across 42 countries into coherent strategic options</li>
-                            <li>A thinking partner who understands both the technology and the stakes</li>
-                        </ul>
+                        <div class="investment-list">
+                            <div class="investment-item">
+                                <div class="investment-number">1</div>
+                                <div class="investment-content">
+                                    <strong>AI foundations</strong>
+                                    <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+                                </div>
+                            </div>
+                            <div class="investment-item">
+                                <div class="investment-number">2</div>
+                                <div class="investment-content">
+                                    <strong>A working system</strong>
+                                    <span>Strategic scenario analysis you can use on your current project and beyond</span>
+                                </div>
+                            </div>
+                            <div class="investment-item">
+                                <div class="investment-number">3</div>
+                                <div class="investment-content">
+                                    <strong>Thinking at scale</strong>
+                                    <span>Synthesizing information across 42 countries into coherent strategic options</span>
+                                </div>
+                            </div>
+                            <div class="investment-item">
+                                <div class="investment-number">4</div>
+                                <div class="investment-content">
+                                    <strong>A thinking partner</strong>
+                                    <span>Someone who understands both the technology and the stakes</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1278,15 +1318,10 @@
                         <span class="step-number">2</span>
                         <span class="step-text">Reply with questions or book a quick call if you want to discuss</span>
                     </li>
-                    <li class="reveal reveal-delay-3">
-                        <span class="step-number">3</span>
-                        <span class="step-text">Once you decide, I'll send a simple agreement and payment link</span>
-                    </li>
                 </ol>
                 <div class="reveal">
                     <a href="mailto:gustavo@gustavopimenta.com?subject=Re: Proposal" class="cta-btn">Reply to Discuss</a>
-                    <p class="validity">This proposal is valid for 30 days.<br>
-                    <strong>Preferred start:</strong> As soon as you're ready. Given your end-of-February target, sooner is better.</p>
+                    <p class="validity">This proposal is valid for 30 days.</p>
                 </div>
             </div>
         </section>
