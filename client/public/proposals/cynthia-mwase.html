@@ -546,7 +546,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin: 48px 0;
+            margin: 48px auto;
+            max-width: 1000px;
         }
 
         .option-card {
@@ -615,10 +616,15 @@
             position: relative;
         }
 
-        .option-features li::before {
+        .option-card .option-features li::before {
             content: '✓';
             position: absolute;
             left: 0;
+            top: 10px;
+            width: auto;
+            height: auto;
+            background: none;
+            border-radius: 0;
             color: var(--red);
             font-weight: 600;
         }
@@ -1128,8 +1134,9 @@
                     <h2 class="section-title">Your <em>Options</em></h2>
                     <p>Based on our conversation and your timeline (end of February target for the scenario system), here are three paths:</p>
                 </div>
+            </div>
 
-                <div class="options-grid">
+            <div class="options-grid">
                     <!-- Option 1: Basic -->
                     <div class="option-card reveal reveal-delay-1">
                         <h3 class="option-name">Basic</h3>
@@ -1172,7 +1179,6 @@
                         </ul>
                         <p class="best-for"><strong>Best for</strong> Someone short on time who wants me to carry more of the load</p>
                     </div>
-                </div>
             </div>
         </section>
 
