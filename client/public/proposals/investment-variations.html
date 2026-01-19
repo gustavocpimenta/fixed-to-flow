@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Section - Design Variations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --cream: #FAF7F2;
+            --black: #111111;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            padding: 40px;
+            color: var(--black);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2rem;
+        }
+
+        .variation {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: #F5F2ED;
+            border-radius: 20px;
+        }
+
+        .variation-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        /* ========== VARIATION 1: 2x2 Grid Cards ========== */
+        .v1-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .v1-item {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 3px solid var(--red);
+        }
+
+        .v1-item strong {
+            display: block;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .v1-item span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== VARIATION 2: Numbered List ========== */
+        .v2-list {
+            counter-reset: v2;
+        }
+
+        .v2-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .v2-item:last-child {
+            border-bottom: none;
+        }
+
+        .v2-number {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .v2-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .v2-content span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ========== VARIATION 3: Icon Boxes ========== */
+        .v3-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .v3-item {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .v3-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--red);
+            border-radius: 12px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        .v3-item strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .v3-item span {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ========== VARIATION 4: Simple Stacked ========== */
+        .v4-item {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .v4-item:last-child {
+            border-bottom: none;
+        }
+
+        .v4-item strong {
+            color: var(--red);
+            margin-right: 8px;
+        }
+
+        .v4-item span {
+            color: var(--gray);
+        }
+
+        /* ========== VARIATION 5: Horizontal Scroll Cards ========== */
+        .v5-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+        }
+
+        .v5-card {
+            min-width: 280px;
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            border-top: 4px solid var(--red);
+        }
+
+        .v5-card strong {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .v5-card span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== VARIATION 6: Timeline Style ========== */
+        .v6-timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .v6-timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--red);
+        }
+
+        .v6-item {
+            position: relative;
+            padding: 16px 0;
+        }
+
+        .v6-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--red);
+            border-radius: 50%;
+            border: 3px solid var(--cream);
+        }
+
+        .v6-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .v6-item span {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ========== VARIATION 7: Accordion Style ========== */
+        .v7-item {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .v7-header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .v7-header strong {
+            color: var(--black);
+        }
+
+        .v7-header span {
+            color: var(--red);
+            font-size: 1.2rem;
+        }
+
+        .v7-content {
+            padding: 0 24px 20px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== VARIATION 8: Magazine Style ========== */
+        .v8-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v8-item {
+            padding: 32px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .v8-item strong {
+            display: block;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .v8-item span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== VARIATION 9: Pill Tags ========== */
+        .v9-container {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+        }
+
+        .v9-item {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .v9-tag {
+            background: var(--red);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .v9-text {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding-top: 4px;
+        }
+
+        /* ========== VARIATION 10: Bold Headlines ========== */
+        .v10-item {
+            margin-bottom: 32px;
+        }
+
+        .v10-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .v10-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--black);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            border-left: 4px solid var(--red);
+        }
+
+        .v10-item span {
+            display: block;
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-left: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Investment Section - 10 Design Variations</h1>
+
+    <!-- Variation 1 -->
+    <div class="variation">
+        <div class="variation-label">Variation 1: 2x2 Grid Cards</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v1-grid">
+            <div class="v1-item">
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v1-item">
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v1-item">
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v1-item">
+                <strong>A thinking partner</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 2 -->
+    <div class="variation">
+        <div class="variation-label">Variation 2: Numbered List</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v2-list">
+            <div class="v2-item">
+                <div class="v2-number">1</div>
+                <div class="v2-content">
+                    <strong>AI foundations</strong>
+                    <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+                </div>
+            </div>
+            <div class="v2-item">
+                <div class="v2-number">2</div>
+                <div class="v2-content">
+                    <strong>A working system</strong>
+                    <span>Strategic scenario analysis you can use on your current project and beyond</span>
+                </div>
+            </div>
+            <div class="v2-item">
+                <div class="v2-number">3</div>
+                <div class="v2-content">
+                    <strong>Thinking at scale</strong>
+                    <span>Synthesizing information across 42 countries into coherent strategic options</span>
+                </div>
+            </div>
+            <div class="v2-item">
+                <div class="v2-number">4</div>
+                <div class="v2-content">
+                    <strong>A thinking partner</strong>
+                    <span>Someone who understands both the technology and the stakes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 3 -->
+    <div class="variation">
+        <div class="variation-label">Variation 3: Icon Boxes</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v3-grid">
+            <div class="v3-item">
+                <div class="v3-icon">&#9881;</div>
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do and where they fall short</span>
+            </div>
+            <div class="v3-item">
+                <div class="v3-icon">&#9733;</div>
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis for your projects</span>
+            </div>
+            <div class="v3-item">
+                <div class="v3-icon">&#9775;</div>
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries</span>
+            </div>
+            <div class="v3-item">
+                <div class="v3-icon">&#9829;</div>
+                <strong>A thinking partner</strong>
+                <span>Someone who understands the technology and stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 4 -->
+    <div class="variation">
+        <div class="variation-label">Variation 4: Simple Stacked</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div>
+            <div class="v4-item">
+                <strong>AI foundations:</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v4-item">
+                <strong>A working system:</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v4-item">
+                <strong>Thinking at scale:</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v4-item">
+                <strong>A thinking partner:</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 5 -->
+    <div class="variation">
+        <div class="variation-label">Variation 5: Horizontal Cards</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v5-scroll">
+            <div class="v5-card">
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v5-card">
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v5-card">
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v5-card">
+                <strong>A thinking partner</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 6 -->
+    <div class="variation">
+        <div class="variation-label">Variation 6: Timeline Style</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v6-timeline">
+            <div class="v6-item">
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v6-item">
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v6-item">
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v6-item">
+                <strong>A thinking partner</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 7 -->
+    <div class="variation">
+        <div class="variation-label">Variation 7: Accordion Style</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div>
+            <div class="v7-item">
+                <div class="v7-header">
+                    <strong>AI foundations</strong>
+                    <span>+</span>
+                </div>
+                <div class="v7-content">Understanding what these tools can do, how to think with them, and where they fall short</div>
+            </div>
+            <div class="v7-item">
+                <div class="v7-header">
+                    <strong>A working system</strong>
+                    <span>+</span>
+                </div>
+                <div class="v7-content">Strategic scenario analysis you can use on your current project and beyond</div>
+            </div>
+            <div class="v7-item">
+                <div class="v7-header">
+                    <strong>Thinking at scale</strong>
+                    <span>+</span>
+                </div>
+                <div class="v7-content">Synthesizing information across 42 countries into coherent strategic options</div>
+            </div>
+            <div class="v7-item">
+                <div class="v7-header">
+                    <strong>A thinking partner</strong>
+                    <span>+</span>
+                </div>
+                <div class="v7-content">Someone who understands both the technology and the stakes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 8 -->
+    <div class="variation">
+        <div class="variation-label">Variation 8: Magazine Grid</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v8-grid">
+            <div class="v8-item">
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v8-item">
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v8-item">
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v8-item">
+                <strong>A thinking partner</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 9 -->
+    <div class="variation">
+        <div class="variation-label">Variation 9: Pill Tags</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div class="v9-container">
+            <div class="v9-item">
+                <span class="v9-tag">AI foundations</span>
+                <span class="v9-text">Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v9-item">
+                <span class="v9-tag">A working system</span>
+                <span class="v9-text">Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v9-item">
+                <span class="v9-tag">Thinking at scale</span>
+                <span class="v9-text">Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v9-item">
+                <span class="v9-tag">A thinking partner</span>
+                <span class="v9-text">Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 10 -->
+    <div class="variation">
+        <div class="variation-label">Variation 10: Bold Headlines</div>
+        <h3 class="section-title">What you're investing in</h3>
+        <div>
+            <div class="v10-item">
+                <strong>AI foundations</strong>
+                <span>Understanding what these tools can do, how to think with them, and where they fall short</span>
+            </div>
+            <div class="v10-item">
+                <strong>A working system</strong>
+                <span>Strategic scenario analysis you can use on your current project and beyond</span>
+            </div>
+            <div class="v10-item">
+                <strong>Thinking at scale</strong>
+                <span>Synthesizing information across 42 countries into coherent strategic options</span>
+            </div>
+            <div class="v10-item">
+                <strong>A thinking partner</strong>
+                <span>Someone who understands both the technology and the stakes</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
