@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Lab — Fixed to Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-glow: rgba(230, 59, 46, 0.15);
+            --red-vivid: #E32424;
+            --cream: #FAF7F2;
+            --cream-dim: rgba(250, 247, 242, 0.7);
+            --black: #111111;
+            --black-soft: #1a1a1a;
+            --black-card: #141414;
+            --gray: #555555;
+            --gray-light: #999999;
+            --border: rgba(250, 247, 242, 0.08);
+            --border-hover: rgba(250, 247, 242, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--black);
+            color: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            padding: 40px 24px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            margin-bottom: 12px;
+        }
+
+        .logo svg {
+            width: 140px;
+            height: auto;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+            padding-left: 2px;
+        }
+
+        /* Search */
+        .search-wrap {
+            margin-bottom: 32px;
+        }
+
+        .search {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--black-soft);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--cream);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .search::placeholder {
+            color: var(--gray);
+        }
+
+        .search:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px var(--red-glow);
+        }
+
+        /* Nav */
+        nav {
+            flex: 1;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-bottom: 12px;
+            padding-left: 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: var(--cream-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--red-glow);
+            color: var(--cream);
+        }
+
+        .nav-link.active {
+            background: var(--red);
+            color: white;
+        }
+
+        .nav-count {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .nav-link:hover .nav-count,
+        .nav-link.active .nav-count {
+            color: inherit;
+        }
+
+        /* Sidebar footer */
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.15s ease;
+        }
+
+        .sidebar-footer a:hover {
+            color: var(--cream);
+        }
+
+        /* Main content */
+        main {
+            padding: 60px 80px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 80px;
+        }
+
+        .header-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--red);
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .header h1 em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .header-desc {
+            font-size: 1.15rem;
+            color: var(--gray-light);
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--cream);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--red);
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+        }
+
+        .section-count {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gray);
+            padding: 4px 10px;
+            background: var(--black-soft);
+            border-radius: 4px;
+        }
+
+        /* Cards grid */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        /* Card - Magazine/Editorial Style */
+        .card {
+            position: relative;
+            background: var(--black-card);
+            padding: 0;
+            text-decoration: none;
+            color: var(--cream);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            min-height: 120px;
+        }
+
+        .card-number {
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            border-right: 1px solid var(--border);
+        }
+
+        .card-content {
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .card-file {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            opacity: 0.7;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
+
+        .card-arrow {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%) translateX(10px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--red);
+            stroke-width: 2;
+        }
+
+        /* Card hover */
+        .card:hover {
+            background: var(--black-soft);
+        }
+
+        .card:hover .card-number {
+            background: var(--red);
+            color: white;
+        }
+
+        .card:hover .card-title {
+            color: var(--red);
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Featured card */
+        .card.featured {
+            background: linear-gradient(135deg, var(--black-card) 0%, rgba(230, 59, 46, 0.05) 100%);
+        }
+
+        .card.featured .card-number {
+            background: var(--red);
+            color: white;
+        }
+
+        .card.featured .card-title::after {
+            content: '★';
+            margin-left: 8px;
+            color: var(--red);
+            font-size: 0.7em;
+        }
+
+        .card.featured:hover .card-number {
+            background: var(--red-vivid);
+        }
+
+        /* Empty state for search */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 80px 40px;
+            color: var(--gray);
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .no-results h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        /* Hide filtered items */
+        .card.hidden,
+        .section.hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            main {
+                padding: 40px;
+            }
+
+            .header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 24px;
+            }
+
+            .nav-section {
+                display: none;
+            }
+
+            .sidebar-footer {
+                display: none;
+            }
+
+            .logo {
+                margin-bottom: 8px;
+            }
+
+            .logo-sub {
+                margin-bottom: 24px;
+            }
+
+            .header {
+                margin-bottom: 48px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-stats {
+                flex-wrap: wrap;
+                gap: 24px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                grid-template-columns: 56px 1fr;
+                min-height: 100px;
+            }
+
+            .card-number {
+                font-size: 1.5rem;
+            }
+
+            .card-content {
+                padding: 16px 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.4s ease backwards;
+        }
+
+        .cards .card:nth-child(1) { animation-delay: 0.02s; }
+        .cards .card:nth-child(2) { animation-delay: 0.04s; }
+        .cards .card:nth-child(3) { animation-delay: 0.06s; }
+        .cards .card:nth-child(4) { animation-delay: 0.08s; }
+        .cards .card:nth-child(5) { animation-delay: 0.1s; }
+        .cards .card:nth-child(6) { animation-delay: 0.12s; }
+        .cards .card:nth-child(7) { animation-delay: 0.14s; }
+        .cards .card:nth-child(8) { animation-delay: 0.16s; }
+        .cards .card:nth-child(9) { animation-delay: 0.18s; }
+        .cards .card:nth-child(10) { animation-delay: 0.2s; }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <svg viewBox="0 0 686 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 11.061C0 6.34639 3.82198 2.52441 8.53663 2.52441H71.2966C76.0113 2.52441 79.8333 6.34639 79.8333 11.061C79.8333 15.7757 76.0113 19.5977 71.2966 19.5977H17.0733V36.5071H0V11.061Z" fill="#E32424"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0725 36.4883H68.6084C73.3231 36.4883 77.1451 40.3103 77.1451 45.0249C77.1451 49.7396 73.3231 53.5615 68.6084 53.5615H34.1458V62.3521C34.1458 67.0668 30.3238 70.8888 25.6091 70.8888C20.8945 70.8888 17.0725 67.0668 17.0725 62.3521V36.4883Z" fill="#E32424"/>
+                    <path d="M602.903 18.5093H614.487L626.898 57.0883L639.31 18.5093H649.342L661.754 57.0883L674.165 18.5093H685.749L667.649 70.2237H657.41L644.378 32.8859L631.242 70.2237H621.003L602.903 18.5093Z" fill="#E32424"/>
+                    <path d="M574.329 71.2577C558.298 71.2577 548.265 59.1565 548.265 44.3661C548.265 29.5758 558.298 17.4746 574.329 17.4746C590.361 17.4746 600.29 29.5758 600.29 44.3661C600.29 59.1565 590.361 71.2577 574.329 71.2577ZM559.125 44.3661C559.125 53.5713 564.607 61.4319 574.329 61.4319C583.948 61.4319 589.43 53.5713 589.43 44.3661C589.43 35.0575 583.948 27.1969 574.329 27.1969C564.607 27.1969 559.125 35.0575 559.125 44.3661Z" fill="#E32424"/>
+                    <path d="M527.957 1.41455H539.271L539.271 70.0092H527.957L527.957 1.41455Z" fill="#E32424"/>
+                    <path d="M474.517 1.41455H520.233V11.1369H485.377L485.378 34.182H517.527V43.4907H485.378V70.2235H474.518L474.517 1.41455Z" fill="#E32424"/>
+                    <path d="M425.532 71.2577C409.5 71.2577 399.468 59.1565 399.468 44.3661C399.468 29.5758 409.5 17.4746 425.532 17.4746C441.563 17.4746 451.492 29.5758 451.492 44.3661C451.492 59.1565 441.563 71.2577 425.532 71.2577ZM410.328 44.3661C410.328 53.5713 415.809 61.4319 425.532 61.4319C435.151 61.4319 440.632 53.5713 440.632 44.3661C440.632 35.0575 435.151 27.1969 425.532 27.1969C415.809 27.1969 410.328 35.0575 410.328 44.3661Z" fill="#E32424"/>
+                    <path d="M394.89 69.7064C393.545 70.1201 391.373 70.7406 388.064 70.7406C378.135 70.7406 370.791 65.7761 370.791 54.0886V28.2314H361.689V18.509H370.791V1.41455H381.651V18.509H396.235V28.2314H381.651V51.9166C381.651 57.812 384.857 60.9149 389.925 60.9149C392.201 60.9149 393.959 60.2943 394.89 59.7772V69.7064Z" fill="#E32424"/>
+                    <path d="M329.437 70.2235C329.127 68.1549 329.127 65.9829 329.127 63.9143V60.0875C326.024 66.7069 320.439 71.2578 311.957 71.2578C298.512 71.2578 289.513 59.5703 289.513 44.3663C289.513 29.0588 298.512 17.4747 311.957 17.4747C320.439 17.4747 326.024 22.0256 329.127 28.5416V1.41455H339.987V63.604C339.987 65.5692 340.09 68.0515 340.4 70.2235H329.437ZM300.373 44.3663C300.373 53.5714 305.441 61.432 314.75 61.432C323.955 61.432 329.127 53.5714 329.127 44.3663C329.127 35.0577 323.955 27.1971 314.75 27.1971C305.441 27.1971 300.373 35.0577 300.373 44.3663Z" fill="#E32424"/>
+                    <path d="M258.963 71.2577C243.242 71.2577 232.692 59.053 232.692 44.3661C232.692 29.5758 243.242 17.4746 258.963 17.4746C274.581 17.4746 284.924 29.3689 283.269 47.469H243.759C244.69 55.8467 249.861 62.3628 259.066 62.3628C265.996 62.3628 270.857 58.6393 272.823 53.0542L282.855 54.0884C280.58 63.8108 271.788 71.2577 258.963 71.2577ZM243.966 39.2981H272.719C271.581 31.8512 267.237 26.2661 258.756 26.2661C250.172 26.2661 245.414 31.8512 243.966 39.2981Z" fill="#E32424"/>
+                    <path d="M180.847 70.2237L200.292 43.1254L182.192 18.5093H194.5L207.015 35.8853L219.633 18.5093H231.941L213.634 43.5391L232.769 70.2237H220.461L206.808 50.986L193.155 70.2237H180.847Z" fill="#E32424"/>
+                    <path d="M163.789 18.5093H174.649V70.2237H163.789V18.5093Z" fill="#E32424"/>
+                    <path d="M169.075 0C165.796 0 163.064 2.73222 163.064 6.01087C163.064 9.3806 165.796 12.0217 169.075 12.0217C172.445 12.0217 175.086 9.3806 175.086 6.01087C175.086 2.73222 172.445 0 169.075 0Z" fill="#E32424"/>
+                    <path d="M109.623 1.41455H155.339V11.1369H120.483L120.484 34.182H152.633V43.4907H120.484V70.2235H109.624L109.623 1.41455Z" fill="#E32424"/>
+                </svg>
+            </div>
+            <div class="logo-sub">Design Lab</div>
+
+            <div class="search-wrap">
+                <input type="text" class="search" placeholder="Search tests... ( / )" id="search" autocomplete="off">
+            </div>
+
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-label">Categories</div>
+                    <a href="#animations" class="nav-link">
+                        <span>Animations</span>
+                        <span class="nav-count">5</span>
+                    </a>
+                    <a href="#layouts" class="nav-link">
+                        <span>Layouts</span>
+                        <span class="nav-count">10</span>
+                    </a>
+                    <a href="#ui" class="nav-link">
+                        <span>UI Elements</span>
+                        <span class="nav-count">10</span>
+                    </a>
+                    <a href="#pages" class="nav-link">
+                        <span>Full Pages</span>
+                        <span class="nav-count">5</span>
+                    </a>
+                    <a href="#variations" class="nav-link">
+                        <span>Variations</span>
+                        <span class="nav-count">3</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../../client/public/index.html">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Website
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <header class="header">
+                <div class="header-eyebrow">Internal Design System</div>
+                <h1>Visual <em>Tests</em> Index</h1>
+                <p class="header-desc">A curated collection of design explorations, component variations, and visual experiments for the Fixed to Flow brand system.</p>
+
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-value">33</span>
+                        <span class="stat-label">Test Files</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Featured</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="no-results" id="noResults">
+                <h3>No tests found</h3>
+                <p>Try a different search term</p>
+            </div>
+
+            <!-- Animation Tests -->
+            <section class="section" id="animations" data-category="animations">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Animation Tests</h2>
+                    <span class="section-count">5 files</span>
+                </div>
+                <div class="cards">
+                    <a href="tests-hero-animations.html" class="card featured" data-title="Hero Animations" data-file="tests-hero-animations.html">
+                        <div class="card-number">01</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Hero Animations</h3>
+                            <div class="card-file">tests-hero-animations.html</div>
+                            <p class="card-desc">Animation variations for the homepage hero section</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests-hero-v2.html" class="card" data-title="Hero V2" data-file="visual-tests-hero-v2.html">
+                        <div class="card-number">02</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Hero V2</h3>
+                            <div class="card-file">visual-tests-hero-v2.html</div>
+                            <p class="card-desc">Second iteration of hero section designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="animation-tests.html" class="card" data-title="General Animations" data-file="animation-tests.html">
+                        <div class="card-number">03</div>
+                        <div class="card-content">
+                            <h3 class="card-title">General Animations</h3>
+                            <div class="card-file">animation-tests.html</div>
+                            <p class="card-desc">Core animation patterns and effects</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="services-animation-tests.html" class="card" data-title="Services Animations" data-file="services-animation-tests.html">
+                        <div class="card-number">04</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Services Animations</h3>
+                            <div class="card-file">services-animation-tests.html</div>
+                            <p class="card-desc">Animations for service page elements</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tests-beyond-animations.html" class="card" data-title="Beyond Section Animations" data-file="tests-beyond-animations.html">
+                        <div class="card-number">05</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Beyond Section Animations</h3>
+                            <div class="card-file">tests-beyond-animations.html</div>
+                            <p class="card-desc">"Go beyond" section animation tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Layout & Component Tests -->
+            <section class="section" id="layouts" data-category="layouts">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Layout & Component Tests</h2>
+                    <span class="section-count">10 files</span>
+                </div>
+                <div class="cards">
+                    <a href="visual-tests-amplifier.html" class="card featured" data-title="AI Amplifier" data-file="visual-tests-amplifier.html">
+                        <div class="card-number">06</div>
+                        <div class="card-content">
+                            <h3 class="card-title">AI Amplifier</h3>
+                            <div class="card-file">visual-tests-amplifier.html</div>
+                            <p class="card-desc">AI Amplifier service page variations</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests-philosophy-block.html" class="card" data-title="Philosophy Block" data-file="visual-tests-philosophy-block.html">
+                        <div class="card-number">07</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Philosophy Block</h3>
+                            <div class="card-file">visual-tests-philosophy-block.html</div>
+                            <p class="card-desc">Philosophy/values section designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests-why-works.html" class="card" data-title="Why It Works" data-file="visual-tests-why-works.html">
+                        <div class="card-number">08</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Why It Works</h3>
+                            <div class="card-file">visual-tests-why-works.html</div>
+                            <p class="card-desc">"Why it works" section variations</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="services-layout-tests.html" class="card" data-title="Services Layout" data-file="services-layout-tests.html">
+                        <div class="card-number">09</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Services Layout</h3>
+                            <div class="card-file">services-layout-tests.html</div>
+                            <p class="card-desc">Service page layout options</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="services-editorial-tests.html" class="card" data-title="Services Editorial" data-file="services-editorial-tests.html">
+                        <div class="card-number">10</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Services Editorial</h3>
+                            <div class="card-file">services-editorial-tests.html</div>
+                            <p class="card-desc">Editorial styling for service pages</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tests-what-you-get.html" class="card" data-title="What You Get" data-file="tests-what-you-get.html">
+                        <div class="card-number">11</div>
+                        <div class="card-content">
+                            <h3 class="card-title">What You Get</h3>
+                            <div class="card-file">tests-what-you-get.html</div>
+                            <p class="card-desc">Deliverables section designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tests-what-you-get-v2.html" class="card" data-title="What You Get V2" data-file="tests-what-you-get-v2.html">
+                        <div class="card-number">12</div>
+                        <div class="card-content">
+                            <h3 class="card-title">What You Get V2</h3>
+                            <div class="card-file">tests-what-you-get-v2.html</div>
+                            <p class="card-desc">Second iteration of deliverables section</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tests-strategic-sessions.html" class="card" data-title="Strategic Sessions" data-file="tests-strategic-sessions.html">
+                        <div class="card-number">13</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Strategic Sessions</h3>
+                            <div class="card-file">tests-strategic-sessions.html</div>
+                            <p class="card-desc">Strategic sessions block designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tests-section-labels.html" class="card" data-title="Section Labels" data-file="tests-section-labels.html">
+                        <div class="card-number">14</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Section Labels</h3>
+                            <div class="card-file">tests-section-labels.html</div>
+                            <p class="card-desc">Section header/label styling</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="solution-tests.html" class="card" data-title="Solution Section" data-file="solution-tests.html">
+                        <div class="card-number">15</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Solution Section</h3>
+                            <div class="card-file">solution-tests.html</div>
+                            <p class="card-desc">Solution/approach section tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- UI Elements -->
+            <section class="section" id="ui" data-category="ui">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">UI Elements</h2>
+                    <span class="section-count">10 files</span>
+                </div>
+                <div class="cards">
+                    <a href="styleguide.html" class="card featured" data-title="Style Guide" data-file="styleguide.html">
+                        <div class="card-number">16</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Style Guide</h3>
+                            <div class="card-file">styleguide.html</div>
+                            <p class="card-desc">Design system reference: colors, typography, components</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="footer-tests.html" class="card" data-title="Footer" data-file="footer-tests.html">
+                        <div class="card-number">17</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Footer</h3>
+                            <div class="card-file">footer-tests.html</div>
+                            <p class="card-desc">Footer layout variations</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="cookie-banner-tests.html" class="card" data-title="Cookie Banner" data-file="cookie-banner-tests.html">
+                        <div class="card-number">18</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cookie Banner</h3>
+                            <div class="card-file">cookie-banner-tests.html</div>
+                            <p class="card-desc">GDPR cookie consent banner designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="confirmation-tests.html" class="card" data-title="Confirmation UI" data-file="confirmation-tests.html">
+                        <div class="card-number">19</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Confirmation UI</h3>
+                            <div class="card-file">confirmation-tests.html</div>
+                            <p class="card-desc">Form submission confirmation designs</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="confetti-copy-tests.html" class="card" data-title="Confetti + Copy" data-file="confetti-copy-tests.html">
+                        <div class="card-number">20</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Confetti + Copy</h3>
+                            <div class="card-file">confetti-copy-tests.html</div>
+                            <p class="card-desc">Confetti animation with copy variations</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="confetti-test-v2.html" class="card" data-title="Confetti V2" data-file="confetti-test-v2.html">
+                        <div class="card-number">21</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Confetti V2</h3>
+                            <div class="card-file">confetti-test-v2.html</div>
+                            <p class="card-desc">Confetti animation refinements</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="bio-tests.html" class="card" data-title="Bio Section" data-file="bio-tests.html">
+                        <div class="card-number">22</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Bio Section</h3>
+                            <div class="card-file">bio-tests.html</div>
+                            <p class="card-desc">Author/bio block variations</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="gears-tests.html" class="card" data-title="Gears Graphics" data-file="gears-tests.html">
+                        <div class="card-number">23</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Gears Graphics</h3>
+                            <div class="card-file">gears-tests.html</div>
+                            <p class="card-desc">Gear iconography tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="og-image-tests.html" class="card" data-title="OG Images" data-file="og-image-tests.html">
+                        <div class="card-number">24</div>
+                        <div class="card-content">
+                            <h3 class="card-title">OG Images</h3>
+                            <div class="card-file">og-image-tests.html</div>
+                            <p class="card-desc">Open Graph image previews</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="social-media-tests.html" class="card" data-title="Social Media" data-file="social-media-tests.html">
+                        <div class="card-number">25</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Social Media</h3>
+                            <div class="card-file">social-media-tests.html</div>
+                            <p class="card-desc">Social media asset tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Page-Level Tests -->
+            <section class="section" id="pages" data-category="pages">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Full Page Tests</h2>
+                    <span class="section-count">5 files</span>
+                </div>
+                <div class="cards">
+                    <a href="visual-tests_home.html" class="card featured" data-title="Homepage" data-file="visual-tests_home.html">
+                        <div class="card-number">26</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Homepage</h3>
+                            <div class="card-file">visual-tests_home.html</div>
+                            <p class="card-desc">Full homepage design tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests_services.html" class="card" data-title="Services Overview" data-file="visual-tests_services.html">
+                        <div class="card-number">27</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Services Overview</h3>
+                            <div class="card-file">visual-tests_services.html</div>
+                            <p class="card-desc">Services listing page tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests_acceleration.html" class="card" data-title="AI Acceleration" data-file="visual-tests_acceleration.html">
+                        <div class="card-number">28</div>
+                        <div class="card-content">
+                            <h3 class="card-title">AI Acceleration</h3>
+                            <div class="card-file">visual-tests_acceleration.html</div>
+                            <p class="card-desc">AI Acceleration service page tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests_activation.html" class="card" data-title="AI Activation" data-file="visual-tests_activation.html">
+                        <div class="card-number">29</div>
+                        <div class="card-content">
+                            <h3 class="card-title">AI Activation</h3>
+                            <div class="card-file">visual-tests_activation.html</div>
+                            <p class="card-desc">AI Activation service page tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="visual-tests.html" class="card" data-title="General Visual Tests" data-file="visual-tests.html">
+                        <div class="card-number">30</div>
+                        <div class="card-content">
+                            <h3 class="card-title">General Visual Tests</h3>
+                            <div class="card-file">visual-tests.html</div>
+                            <p class="card-desc">Miscellaneous visual tests</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Variation Pages -->
+            <section class="section" id="variations" data-category="variations">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Variation Pages</h2>
+                    <span class="section-count">3 files</span>
+                </div>
+                <div class="cards">
+                    <a href="../../client/public/story-variations.html" class="card featured" data-title="Instagram Story Variations" data-file="story-variations.html">
+                        <div class="card-number">31</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Story Variations</h3>
+                            <div class="card-file">client/public/story-variations.html</div>
+                            <p class="card-desc">10 variations of "Lead with AI, Stay Human" stories</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../../client/public/proposals/investment-variations.html" class="card" data-title="Investment Section" data-file="investment-variations.html">
+                        <div class="card-number">32</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Investment Section</h3>
+                            <div class="card-file">proposals/investment-variations.html</div>
+                            <p class="card-desc">10 layout variations for investment content</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../../../writing-assistant/instagram-stories.html" class="card featured" data-title="Instagram Story Designs" data-file="instagram-stories.html">
+                        <div class="card-number">33</div>
+                        <div class="card-content">
+                            <h3 class="card-title">Instagram Story Designs</h3>
+                            <div class="card-file">writing-assistant/instagram-stories.html</div>
+                            <p class="card-desc">Story designs from the Writing Assistant project</p>
+                            <div class="card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('search');
+        const cards = document.querySelectorAll('.card');
+        const sections = document.querySelectorAll('.section');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.dataset.title.toLowerCase();
+                const file = card.dataset.file.toLowerCase();
+                const desc = card.querySelector('.card-desc').textContent.toLowerCase();
+
+                const matches = title.includes(query) || file.includes(query) || desc.includes(query);
+                card.classList.toggle('hidden', !matches);
+                if (matches) visibleCount++;
+            });
+
+            // Hide empty sections
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.card:not(.hidden)');
+                section.classList.toggle('hidden', visibleCards.length === 0);
+            });
+
+            // Show no results message
+            noResults.classList.toggle('visible', visibleCount === 0 && query.length > 0);
+        });
+
+        // Keyboard shortcut for search
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                searchInput.blur();
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // Active nav link on scroll
+        const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+        const observerOptions = {
+            rootMargin: '-20% 0px -80% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
