@@ -119,21 +119,11 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1002;
+            z-index: 1000;
             background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(20px);
             box-shadow: 0 2px 40px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
             padding-top: env(safe-area-inset-top, 0);
-        }
-
-        nav.visible {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
         }
 
         .nav-container {
@@ -380,7 +370,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 140px 60px 100px;
+            padding: 160px 60px 100px; /* Extra top padding for fixed header */
             background: var(--cream);
             position: relative;
             overflow: hidden;
@@ -1800,10 +1790,11 @@
     </script>
 </head>
 <body>
-    <!-- Announcement Bar -->
+    <!-- Announcement Bar (temporarily hidden - uncomment to restore)
     <div class="announcement-bar">
         <a href="https://ai.fixedtoflow.com/" target="_blank" rel="noopener">Lead with AI, Stay Human</a> | 7-day free email course
     </div>
+    -->
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -2124,21 +2115,7 @@
             document.querySelector('.hero-graphic').classList.add(random);
         })();
 
-        // Navigation scroll effect - show nav on scroll, hide announcement
-        const navbar = document.getElementById('navbar');
-        const announcementBar = document.querySelector('.announcement-bar');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('visible');
-                navbar.classList.add('announcement-hidden');
-                announcementBar.classList.add('hidden');
-            } else {
-                navbar.classList.remove('visible');
-                navbar.classList.remove('announcement-hidden');
-                announcementBar.classList.remove('hidden');
-            }
-        });
+        // Navigation is always visible - no scroll-based show/hide
 
         // Scroll reveal animation
         const revealElements = document.querySelectorAll('.reveal');
