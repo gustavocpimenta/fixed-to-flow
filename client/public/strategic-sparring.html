@@ -1000,12 +1000,19 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 900px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
         }
 
         .price-card {
@@ -1565,8 +1572,7 @@
             }
 
             .approach-grid,
-            .included-grid,
-            .pricing-grid {
+            .included-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -2156,24 +2162,36 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Investment</div>
-                <h2 class="section-title section-title-light">Two ways to work together</h2>
+                <h2 class="section-title section-title-light">Choose your corner</h2>
             </div>
 
             <div class="pricing-grid">
+                <div class="price-card reveal">
+                    <div class="price-card-label">Test the Waters</div>
+                    <h3>Single Round</h3>
+                    <div class="price-amount">500 EUR</div>
+                    <p class="price-detail">one-time session</p>
+                    <ul class="price-features">
+                        <li>90-minute deep dive</li>
+                        <li>Come with one challenge</li>
+                        <li>Leave with clarity</li>
+                        <li>No commitment</li>
+                    </ul>
+                </div>
                 <div class="price-card featured reveal">
                     <div class="price-card-label">Ongoing Partnership</div>
                     <h3>Strategic Sparring</h3>
-                    <div class="price-amount">2,000 EUR</div>
+                    <div class="price-amount">1,000 EUR</div>
                     <p class="price-detail">per month, month to month</p>
                     <ul class="price-features">
-                        <li>6 hours/month of 1:1 sessions</li>
+                        <li>4 hours/month of 1:1 sessions</li>
                         <li>Flexible scheduling</li>
                         <li>WhatsApp access (weekdays)</li>
-                        <li>Session summaries</li>
+                        <li>Session reports</li>
                     </ul>
                 </div>
                 <div class="price-card reveal">
-                    <div class="price-card-label">Add on</div>
+                    <div class="price-card-label">For Your Team</div>
                     <h3>Strategic Sessions</h3>
                     <div class="price-amount">3,000+ EUR</div>
                     <p class="price-detail">per session, case by case</p>
@@ -2192,7 +2210,7 @@
             </div>
 
             <p class="pricing-note reveal">
-                Limited to 2 to 3 clients at a time.
+                Limited to 3 to 4 ongoing clients at a time.
             </p>
         </div>
     </section>
@@ -2212,7 +2230,11 @@
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-question">How is this different from coaching?</div>
-                    <div class="faq-answer">Coaches help you find your own answers. We'll challenge your answers and tell you when we think you're heading in the wrong direction. We bring 25+ years of pattern recognition. When we see something we've seen before, we'll tell you. When we disagree, we'll tell you that too.</div>
+                    <div class="faq-answer">Coaches help you find your own answers. We'll challenge your answers and tell you when we think you're heading in the wrong direction.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">What's the difference between a Single Round and ongoing sparring?</div>
+                    <div class="faq-answer">A Single Round is a 90-minute one-time session. You come with one challenge, we work through it, you leave with clarity. No strings attached. Ongoing sparring is a continuous partnership: regular sessions, WhatsApp access, someone in your corner month after month.</div>
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-question">When should I use Strategic Sessions vs regular sparring?</div>
