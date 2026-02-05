@@ -183,4 +183,30 @@ Required in `.env`:
 
 ---
 
-*Last updated: 2025-12-31*
+## Documentation Updates
+
+**ALWAYS update deployment-guide.md** when making changes to this website:
+
+| Change Type | Update In deployment-guide.md |
+|-------------|-------------------------------|
+| Code changes | Directory structure, features |
+| Config changes | Environment variables section |
+| Architecture | Database schema, API structure |
+| Security | Authentication, endpoint access |
+| Infrastructure | Hosting, services, costs |
+
+**Update these sections as needed:**
+- Directory structure if files are added/removed
+- API endpoints if routes change
+- Environment variables if new secrets are needed
+- Security considerations if access controls change
+- Troubleshooting if new issues are discovered
+- Changelog with date, change description, and author
+
+**Commit documentation updates** together with code changes or immediately after.
+
+**Documentation location:** Main claude repo at `docs/business/fixedtoflow/deployment-guide.md`
+
+---
+
+*Last updated: 2026-02-01*
