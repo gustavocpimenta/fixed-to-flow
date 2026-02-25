@@ -18,13 +18,16 @@ export async function sendContactEmail(contact: Contact): Promise<boolean> {
 
   try {
     const sourcePage = contact.source || "unknown";
+    const referralTag = contact.referralSource ? ` [ref:${contact.referralSource}]` : '';
     const { data, error } = await resend.emails.send({
       from: "Fixed to Flow <onboarding@resend.dev>",
       to: "gustavo@gustavopimenta.com",
-      subject: `[${sourcePage}] New contact from ${contact.name}`,
+      subject: `[${sourcePage}]${referralTag} New contact from ${contact.name}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>From page:</strong> ${sourcePage}</p>
+        ${contact.referralSource ? `<p><strong>Referred by:</strong> ${contact.referralSource}</p>` : ''}
+        ${contact.utmSource ? `<p><strong>UTM:</strong> ${contact.utmSource} / ${contact.utmMedium || '-'} / ${contact.utmCampaign || '-'}</p>` : ''}
         <p><strong>Name:</strong> ${contact.name}</p>
         <p><strong>Email:</strong> ${contact.email}</p>
         <p><strong>Message:</strong></p>

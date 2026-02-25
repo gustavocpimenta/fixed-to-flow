@@ -14,6 +14,10 @@ export const contacts = pgTable("contacts", {
   email: text("email").notNull(),
   message: text("message").notNull(),
   source: text("source"),
+  referralSource: text("referral_source"),
+  utmSource: text("utm_source"),
+  utmMedium: text("utm_medium"),
+  utmCampaign: text("utm_campaign"),
   createdAt: text("created_at").notNull().default(new Date().toISOString()),
 });
 
@@ -27,6 +31,10 @@ export const insertContactSchema = createInsertSchema(contacts).pick({
   email: true,
   message: true,
   source: true,
+  referralSource: true,
+  utmSource: true,
+  utmMedium: true,
+  utmCampaign: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
