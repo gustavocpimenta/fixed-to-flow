@@ -33,5 +33,25 @@
     }
   };
 
+  function tagCalendlyLinks() {
+    var data = window.FTFReferral.getData();
+    if (!data || !data.ref) return;
+
+    var links = document.querySelectorAll('a[href*="calendly.com"]');
+    links.forEach(function(link) {
+      var url = new URL(link.href);
+      url.searchParams.set('utm_source', data.ref);
+      if (data.utm_medium) url.searchParams.set('utm_medium', data.utm_medium);
+      if (data.utm_campaign) url.searchParams.set('utm_campaign', data.utm_campaign);
+      link.href = url.toString();
+    });
+  }
+
   captureReferralParams();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tagCalendlyLinks);
+  } else {
+    tagCalendlyLinks();
+  }
 })();
