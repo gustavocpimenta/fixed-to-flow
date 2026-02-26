@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta para Accountbase | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --red-glow: rgba(230, 59, 46, 0.15);
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --cream-dark: #F5F0E8;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ==========================================
+           PASSWORD OVERLAY - Dramatic entrance
+           ========================================== */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .password-overlay::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150vmax;
+            height: 150vmax;
+            background: radial-gradient(circle, var(--red-glow) 0%, transparent 50%);
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-card {
+            background: var(--cream);
+            padding: 56px 48px;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: card-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        @keyframes card-enter {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .password-logo {
+            margin-bottom: 40px;
+        }
+
+        .password-logo img {
+            height: 22px;
+            width: auto;
+        }
+
+        .password-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .password-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            border: 2px solid #E5E5E5;
+            border-radius: 14px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+        }
+
+        .password-input:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 4px var(--red-glow);
+        }
+
+        .password-input.error {
+            border-color: var(--red);
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .password-error {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .password-error.visible {
+            display: block;
+            animation: fade-in 0.3s ease;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .password-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .password-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+        }
+
+        .password-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .password-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           PROPOSAL CONTENT
+           ========================================== */
+        .proposal-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .proposal-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ==========================================
+           HEADER - Dramatic, layered
+           ========================================== */
+        .proposal-header {
+            padding: 80px 40px 100px;
+            background: var(--black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .proposal-header::before {
+            content: 'PROPOSTA';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(80px, 20vw, 280px);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.02);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: -0.02em;
+        }
+
+        .proposal-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, var(--red) 0%, transparent 70%);
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .header-logo {
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-logo img {
+            height: 20px;
+            width: auto;
+            opacity: 0.85;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-label::before {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: var(--red);
+            border-radius: 2px;
+        }
+
+        .header-confidential {
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.35);
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 1;
+        }
+
+        .header-client {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .header-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 550px;
+            margin: 0 auto 28px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .header-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-scroll-hint span {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scroll-hint 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-hint {
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 0.6; height: 50px; }
+        }
+
+        /* ==========================================
+           SECTIONS - Full-width swimming lanes
+           ========================================== */
+        .section {
+            padding: 100px 40px;
+            width: 100%;
+        }
+
+        .section > *:not(.options-grid) {
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-alt {
+            background: var(--white);
+        }
+
+        .section-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 36px;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.85;
+        }
+
+        .section p + p {
+            margin-top: 24px;
+        }
+
+        .section .reveal + .reveal {
+            margin-top: 24px;
+        }
+
+        .section p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 28px 0;
+        }
+
+        .section ul li {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .section ul li:hover::before {
+            transform: scale(1.3);
+        }
+
+        .section ul li strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .note-box {
+            background: linear-gradient(135deg, rgba(85, 85, 85, 0.06) 0%, rgba(85, 85, 85, 0.02) 100%);
+            border-left: 4px solid var(--gray-light);
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.75;
+        }
+
+        .note-box strong {
+            color: var(--black);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(230, 59, 46, 0.06) 0%, rgba(230, 59, 46, 0.02) 100%);
+            border-left: 4px solid var(--red);
+            padding: 28px 32px;
+            margin: 40px 0;
+            border-radius: 0 16px 16px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '\201C';
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 4rem;
+            color: var(--red);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .highlight-box p {
+            color: var(--black);
+            margin-bottom: 0;
+            font-size: 1.15rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           ACTIVITIES TABLE
+           ========================================== */
+        .activities-table {
+            width: 100%;
+            margin: 40px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .activities-table thead th {
+            background: var(--black);
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 18px 24px;
+            text-align: left;
+        }
+
+        .activities-table thead th:last-child {
+            text-align: right;
+            width: 80px;
+        }
+
+        .activities-table tbody td {
+            padding: 18px 24px;
+            font-size: 1rem;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .activities-table tbody td:last-child {
+            text-align: right;
+            font-weight: 500;
+            color: var(--black);
+            white-space: nowrap;
+        }
+
+        .activities-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .activities-table tbody tr:hover {
+            background: rgba(230, 59, 46, 0.03);
+        }
+
+        .activities-table tfoot td {
+            padding: 18px 24px;
+            font-weight: 700;
+            color: var(--black);
+            background: var(--cream-dark);
+            border-top: 2px solid var(--red);
+        }
+
+        .activities-table tfoot td:last-child {
+            text-align: right;
+        }
+
+        /* ==========================================
+           SINGLE INVESTMENT HIGHLIGHT
+           ========================================== */
+        .investment-highlight {
+            text-align: center;
+            margin: 48px 0 32px;
+        }
+
+        .investment-highlight .price {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--red);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .investment-highlight .price-note {
+            font-size: 1rem;
+            color: var(--gray-light);
+        }
+
+        .investment-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .investment-detail-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .investment-detail-item .detail-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 8px;
+        }
+
+        .investment-detail-item .detail-value {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+
+        /* ==========================================
+           INVESTMENT - Refined premium box
+           ========================================== */
+        .investment-box {
+            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 24px;
+            padding: 44px 48px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .investment-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--red);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .investment-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--black);
+            letter-spacing: -0.01em;
+        }
+
+        .investment-list {
+            margin-top: 24px;
+        }
+
+        .investment-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .investment-item:last-child {
+            border-bottom: none;
+        }
+
+        .investment-number {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .investment-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .investment-content span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about-section {
+            background: var(--white);
+            padding: 100px 40px;
+        }
+
+        .about-content {
+            max-width: 780px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .about-photo:hover {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        .about-text h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 18px;
+            line-height: 1.85;
+        }
+
+        .about-text p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .about-text ul li {
+            font-size: 1rem;
+            color: var(--gray);
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .about-text ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        /* ==========================================
+           NEXT STEPS - Clear CTA
+           ========================================== */
+        .next-steps {
+            background: var(--cream-dark);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .next-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+        }
+
+        .next-steps-content {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .next-steps h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .next-steps-list {
+            text-align: left;
+            list-style: none;
+            margin: 48px 0;
+        }
+
+        .next-steps-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .next-steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(230, 59, 46, 0.25);
+        }
+
+        .step-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-top: 6px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(230, 59, 46, 0.35);
+        }
+
+        .cta-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .validity {
+            margin-top: 48px;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+
+        .validity strong {
+            color: var(--gray);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .proposal-footer {
+            padding: 48px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            background: var(--cream);
+        }
+
+        .footer-logo img {
+            height: 18px;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 768px) {
+            .proposal-header {
+                min-height: 60vh;
+                padding: 60px 24px 80px;
+            }
+
+            .header-confidential {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .header-client {
+                font-size: 2.4rem;
+            }
+
+            .header-scroll-hint {
+                display: none;
+            }
+
+            .section {
+                padding: 70px 24px;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+
+            .about-photo {
+                margin: 0 auto;
+                width: 140px;
+                height: 140px;
+            }
+
+            .about-text ul {
+                text-align: left;
+            }
+
+            .investment-box {
+                padding: 36px 28px;
+                border-radius: 20px;
+            }
+
+            .password-card {
+                padding: 40px 28px;
+            }
+
+            .next-steps h2 {
+                font-size: 2.2rem;
+            }
+
+            .investment-details {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .investment-highlight .price {
+                font-size: 2.8rem;
+            }
+
+            .activities-table thead th,
+            .activities-table tbody td,
+            .activities-table tfoot td {
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-card">
+            <div class="password-logo">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </div>
+            <h2 class="password-title">Ver Proposta</h2>
+            <p class="password-subtitle">Introduza a password para aceder a esta proposta.</p>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Password"
+                        autocomplete="off"
+                    >
+                    <p class="password-error" id="passwordError">Password incorreta. Tente novamente.</p>
+                </div>
+                <button type="submit" class="password-btn">Ver Proposta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proposal Content -->
+    <div class="proposal-content" id="proposalContent">
+
+        <!-- Header -->
+        <header class="proposal-header">
+            <div class="header-logo">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </div>
+            <span class="header-confidential">Confidencial</span>
+            <span class="header-label">Proposta</span>
+            <h1 class="header-client">Accountbase</h1>
+            <p class="header-subtitle">Diagn&oacute;stico de processos e roadmap de automa&ccedil;&atilde;o</p>
+            <p class="header-date">Fevereiro 2026</p>
+            <div class="header-scroll-hint">
+                <span></span>
+            </div>
+        </header>
+
+        <!-- Contexto Section -->
+        <section class="section section-alt">
+            <div class="reveal">
+                <h2 class="section-title"><em>Contexto</em></h2>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <p>A Accountbase tem mais de 20 anos de opera&ccedil;&atilde;o e uma equipa de cinco pessoas que gere uma carteira crescente de clientes. Mais de metade dessa carteira fica pela rela&ccedil;&atilde;o, n&atilde;o pelo pre&ccedil;o. Num mercado onde as aven&ccedil;as tendem a comprimir-se, esse v&iacute;nculo relacional &eacute; o verdadeiro ativo da empresa.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p>O crescimento tem acentuado nos &uacute;ltimos meses. Com mais clientes a entrar, o processo de onboarding, que envolve cerca de 40 tarefas manuais, come&ccedil;a a mostrar os seus limites. N&atilde;o h&aacute; um gui&atilde;o &uacute;nico. As tarefas est&atilde;o distribu&iacute;das pela equipa, mas sem garantia de que o procedimento &eacute; sempre o mesmo, independentemente de quem trata ou de como o dia est&aacute; a correr.</p>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <p>A Fixed to Flow chegou a este projeto a partir de uma rela&ccedil;&atilde;o j&aacute; existente. Esse contexto de proximidade &eacute; o ponto de partida para um diagn&oacute;stico que reflita o que existe de facto, n&atilde;o o que existe no papel.</p>
+            </div>
+        </section>
+
+        <!-- O Desafio Section -->
+        <section class="section section-full">
+            <div class="section-inner">
+                <div class="reveal">
+                    <h2 class="section-title">O <em>Desafio</em></h2>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <p>O crescimento acelerado cria tr&ecirc;s tens&otilde;es concretas que precisam de ser endere&ccedil;adas antes de qualquer decis&atilde;o de implementa&ccedil;&atilde;o.</p>
+                    <p><strong>O processo atual n&atilde;o foi desenhado para este ritmo.</strong> Com cerca de 40 tarefas manuais por novo cliente, sem um playbook &uacute;nico, a consist&ecirc;ncia do servi&ccedil;o depende demasiado de quem est&aacute; dispon&iacute;vel e em que condi&ccedil;&otilde;es. &Agrave; medida que o n&uacute;mero de clientes cresce, essa depend&ecirc;ncia torna-se um risco operacional real.</p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <p><strong>A componente relacional que distingue a Accountbase tem de sobreviver &agrave; melhoria de processos.</strong> Automatizar mal destr&oacute;i exatamente o que a empresa construiu ao longo de duas d&eacute;cadas. Um workflow que n&atilde;o reflete o processo real &eacute; um sistema que ningu&eacute;m vai usar, ou pior, que vai criar mais trabalho do que resolve. A automa&ccedil;&atilde;o bem feita preserva e amplifica a rela&ccedil;&atilde;o. A automa&ccedil;&atilde;o mal feita substitui-a por fric&ccedil;&atilde;o.</p>
+                </div>
+                <div class="reveal reveal-delay-3">
+                    <p><strong>Antes de construir, &eacute; preciso medir.</strong> Sem mapear o que existe e sem quantificar o tempo real de cada processo, qualquer estimativa de ROI &eacute; uma suposi&ccedil;&atilde;o. E decis&otilde;es baseadas em suposi&ccedil;&otilde;es t&ecirc;m custos que s&oacute; aparecem mais tarde. Preparar antes de estimar n&atilde;o &eacute; perder tempo. &Eacute; poupar o tempo que seria desperdi&ccedil;ado em solu&ccedil;&otilde;es constru&iacute;das sobre bases erradas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- O Nosso M&eacute;todo Section -->
+        <section class="section section-alt">
+            <div class="reveal">
+                <h2 class="section-title">O Nosso <em>M&eacute;todo</em></h2>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <p>O trabalho da Fixed to Flow assenta em dois princ&iacute;pios que se aplicam a qualquer projeto de automa&ccedil;&atilde;o e AI.</p>
+                <p><strong>Diagn&oacute;stico como funda&ccedil;&atilde;o.</strong> Compreender antes de construir. Mapear a realidade, medir o tempo, quantificar os custos. N&atilde;o o que est&aacute; documentado ou como devia ser, mas o que acontece de facto no dia a dia da equipa. Este &eacute; o ponto de partida que faz sentido.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p><strong>Decis&otilde;es baseadas em dados.</strong> Cada recomenda&ccedil;&atilde;o que a Fixed to Flow apresenta est&aacute; ancorada em medi&ccedil;&otilde;es reais, n&atilde;o em benchmarks gen&eacute;ricos de setor. O modelo de ROI por altera&ccedil;&atilde;o proposta &eacute; constru&iacute;do sobre os n&uacute;meros da Accountbase, n&atilde;o sobre estimativas de mercado. Isso significa que, ap&oacute;s receber o relat&oacute;rio, a equipa tem toda a informa&ccedil;&atilde;o necess&aacute;ria para decidir com clareza o que faz sentido avan&ccedil;ar, em que ordem, e com que expectativa de retorno.</p>
+            </div>
+        </section>
+
+        <!-- A Abordagem Section -->
+        <section class="section section-full">
+            <div class="section-inner">
+                <div class="reveal">
+                    <h2 class="section-title">A <em>Abordagem</em></h2>
+                    <p><strong>Fase 1: diagn&oacute;stico e roadmap</strong></p>
+                    <p>O foco desta fase &eacute; exclusivamente diagn&oacute;stico e prepara&ccedil;&atilde;o. Sem prot&oacute;tipos. Sem c&oacute;digo. O objetivo &eacute; ter uma base s&oacute;lida sobre a qual qualquer decis&atilde;o de implementa&ccedil;&atilde;o possa ser tomada com confian&ccedil;a.</p>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <p><strong>Prepara&ccedil;&atilde;o e an&aacute;lise pr&eacute;via (5h).</strong> Antes de qualquer sess&atilde;o, a Fixed to Flow rev&ecirc; os documentos, ferramentas e processos existentes. A equipa da Accountbase n&atilde;o perde tempo a fazer o trabalho de contexto nas sess&otilde;es. Chegamos preparados.</p>
+                    <p><strong>Sess&atilde;o de mapeamento de workflows (3h).</strong> Sess&atilde;o remota com a equipa operacional. O objetivo &eacute; mapear as cerca de 40 tarefas do processo de onboarding: quem faz o qu&ecirc;, onde h&aacute; fric&ccedil;&atilde;o, o que &eacute; inconsistente entre pessoas ou momentos. Este mapeamento &eacute; a funda&ccedil;&atilde;o de todo o trabalho seguinte.</p>
+                    <p><strong>Sess&atilde;o de mapeamento de dados (2h).</strong> Sess&atilde;o remota. Onde vivem os dados (Drive, TOC Online, Sheets, portais), como est&atilde;o estruturados, o que &eacute; reutiliz&aacute;vel. A estrutura de dados &eacute; o que determina o que &eacute; poss&iacute;vel automatizar e com que n&iacute;vel de esfor&ccedil;o. Sem a conhecer, qualquer estimativa de implementa&ccedil;&atilde;o &eacute; especulativa.</p>
+                    <p><strong>Medi&ccedil;&atilde;o de tempo por workflow (4h).</strong> Acompanhamento e registo do tempo por tarefa pela equipa, com apoio na recolha e an&aacute;lise dos resultados. O objetivo &eacute; quantificar o tempo real por tarefa. Esta medi&ccedil;&atilde;o &eacute; a base do modelo de ROI. Sem ela, qualquer c&aacute;lculo de retorno &eacute; uma aproxima&ccedil;&atilde;o.</p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <p><strong>Acompanhamento dos s&oacute;cios (3h).</strong> Duas sess&otilde;es com os s&oacute;cios: alinhamento no in&iacute;cio do projeto e valida&ccedil;&atilde;o de prioridades e resultados interm&eacute;dios no final. Garante que o diagn&oacute;stico reflete o que importa para o neg&oacute;cio, n&atilde;o apenas o que &eacute; tecnicamente poss&iacute;vel.</p>
+                    <p><strong>Sess&atilde;o de introdu&ccedil;&atilde;o &agrave; IA para a equipa (2h).</strong> Sess&atilde;o remota curta para toda a equipa. O objetivo &eacute; apresentar o que a IA consegue fazer, o que n&atilde;o consegue, e o que &eacute; relevante no contexto de contabilidade. Desmistificar, alinhar expectativas, abrir espa&ccedil;o para que as pessoas se envolvam com o processo em vez de o temerem. &Eacute; dif&iacute;cil melhorar processos com uma equipa que n&atilde;o compreende o que vai mudar e porqu&ecirc;. No final da sess&atilde;o, cada membro da equipa sai com um pequeno assistente de IA configurado para o seu contexto de trabalho. Algo pr&aacute;tico e imediato que pode usar no dia a dia, n&atilde;o apenas teoria.</p>
+                    <p><strong>An&aacute;lise e documenta&ccedil;&atilde;o (6h).</strong> Processar toda a informa&ccedil;&atilde;o recolhida, classificar oportunidades por impacto versus esfor&ccedil;o e modelar o ROI por altera&ccedil;&atilde;o proposta.</p>
+                    <p><strong>Relat&oacute;rio, roadmap e modelo ROI (7h).</strong> Entreg&aacute;vel final: relat&oacute;rio completo com o diagn&oacute;stico, roadmap faseado com recomenda&ccedil;&otilde;es, e modelo de ROI por cada altera&ccedil;&atilde;o proposta.</p>
+                    <div class="note-box">
+                        <strong>Nota:</strong> Durante o processo, haver&aacute; oportunidade de entrevistar individualmente os v&aacute;rios membros da equipa. Estas conversas s&atilde;o fundamentais para o diagn&oacute;stico: permitem captar perspetivas, dificuldades e sugest&otilde;es que nem sempre surgem em sess&otilde;es de grupo.
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3">
+                    <table class="activities-table">
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Horas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Prepara&ccedil;&atilde;o e an&aacute;lise pr&eacute;via</td><td>5h</td></tr>
+                            <tr><td>Sess&atilde;o de mapeamento de workflows</td><td>3h</td></tr>
+                            <tr><td>Sess&atilde;o de mapeamento de dados</td><td>2h</td></tr>
+                            <tr><td>Medi&ccedil;&atilde;o de tempo por workflow</td><td>4h</td></tr>
+                            <tr><td>Acompanhamento dos s&oacute;cios</td><td>3h</td></tr>
+                            <tr><td>Sess&atilde;o de introdu&ccedil;&atilde;o &agrave; IA para a equipa</td><td>2h</td></tr>
+                            <tr><td>An&aacute;lise e documenta&ccedil;&atilde;o</td><td>6h</td></tr>
+                            <tr><td>Relat&oacute;rio, roadmap e modelo ROI</td><td>7h</td></tr>
+                        </tbody>
+                        <tfoot>
+                            <tr><td>Total</td><td>32h</td></tr>
+                        </tfoot>
+                    </table>
+                    <div class="note-box">
+                        <strong>Nota:</strong> A distribui&ccedil;&atilde;o de horas apresentada &eacute; indicativa. Pode ser ajustada consoante o decorrer do projeto, mantendo o total acordado.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Entreg&aacute;veis Section -->
+        <section class="section section-alt">
+            <div class="reveal">
+                <h2 class="section-title"><em>Entreg&aacute;veis</em></h2>
+                <p>No final da Fase 1, a Accountbase recebe:</p>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <div class="investment-box">
+                    <div class="investment-list">
+                        <div class="investment-item">
+                            <div class="investment-number">1</div>
+                            <div class="investment-content">
+                                <strong>Mapa de workflows</strong>
+                                <span>O processo atual documentado, com pontos de fric&ccedil;&atilde;o e inconsist&ecirc;ncia identificados.</span>
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-number">2</div>
+                            <div class="investment-content">
+                                <strong>Mapa de dados</strong>
+                                <span>Onde est&aacute; a informa&ccedil;&atilde;o, como est&aacute; estruturada e o que pode ser utilizado em automa&ccedil;&otilde;es futuras.</span>
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-number">3</div>
+                            <div class="investment-content">
+                                <strong>An&aacute;lise de tempo</strong>
+                                <span>Tempo dispendido por workflow, a base concreta para calcular o ROI de cada altera&ccedil;&atilde;o.</span>
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-number">4</div>
+                            <div class="investment-content">
+                                <strong>Matriz de oportunidades</strong>
+                                <span>Classifica&ccedil;&atilde;o de cada workflow por potencial de automa&ccedil;&atilde;o versus esfor&ccedil;o de implementa&ccedil;&atilde;o.</span>
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-number">5</div>
+                            <div class="investment-content">
+                                <strong>Roadmap recomendado</strong>
+                                <span>Fases, prioridades e sequ&ecirc;ncia recomendada para avan&ccedil;ar.</span>
+                            </div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-number">6</div>
+                            <div class="investment-content">
+                                <strong>Modelo de ROI por altera&ccedil;&atilde;o</strong>
+                                <span>Retorno estimado de cada altera&ccedil;&atilde;o proposta: tempo poupado, valor por hora, frequ&ecirc;ncia anual.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p>A proposta de implementa&ccedil;&atilde;o &eacute; um momento separado. Ap&oacute;s receber o relat&oacute;rio, a Accountbase decide como e se avan&ccedil;ar, com toda a informa&ccedil;&atilde;o necess&aacute;ria para o fazer com confian&ccedil;a.</p>
+            </div>
+        </section>
+
+        <!-- O Investimento Section -->
+        <section class="section section-full">
+            <div class="section-inner">
+                <div class="reveal">
+                    <h2 class="section-title">O <em>Investimento</em></h2>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <div class="investment-highlight">
+                        <p class="price">&euro;2.500 <span style="font-size: 1.2rem; color: var(--gray-light);">+ IVA</span></p>
+                    </div>
+                    <div class="investment-details">
+                        <div class="investment-detail-item">
+                            <p class="detail-label">Esfor&ccedil;o</p>
+                            <p class="detail-value">~32h</p>
+                        </div>
+                        <div class="investment-detail-item">
+                            <p class="detail-label">Dura&ccedil;&atilde;o</p>
+                            <p class="detail-value">3-4 semanas</p>
+                        </div>
+                        <div class="investment-detail-item">
+                            <p class="detail-label">Fatura&ccedil;&atilde;o</p>
+                            <p class="detail-value">50%-50%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="investment-box">
+                        <h3 class="investment-title">Equipa</h3>
+                        <p style="color: var(--gray); font-size: 1rem; line-height: 1.85;">Gustavo Pimenta acompanha pessoalmente todo o projeto, do primeiro mapeamento ao relat&oacute;rio final. A s&oacute;lida rela&ccedil;&atilde;o j&aacute; existente com a Accountbase permite come&ccedil;ar com contexto real, assim como agilizar toda a comunica&ccedil;&atilde;o e entreg&aacute;veis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Gustavo Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="reveal">
+                    <img src="../gus_novo.jpg" alt="Gustavo" class="about-photo">
+                </div>
+                <div class="about-text">
+                    <div class="reveal">
+                        <h3>Sobre o Gustavo</h3>
+                    </div>
+                    <div class="reveal reveal-delay-1">
+                        <p>Mais de 25 anos a trazer ideias &agrave; vida. Produtos digitais, lideran&ccedil;a de equipas, mentoria de l&iacute;deres em processos de transforma&ccedil;&atilde;o. O que o move &eacute; o lado humano da tecnologia: ajudar pessoas a adaptar-se sem perder o que as torna &uacute;nicas.</p>
+                        <p>H&aacute; tr&ecirc;s anos, saiu do cargo de Chief Product Officer de uma startup su&iacute;&ccedil;a para se dedicar inteiramente a ajudar pessoas e organiza&ccedil;&otilde;es a trabalhar com IA. Aprendeu fazendo. Experi&ecirc;ncias em p&uacute;blico, ensino desde mi&uacute;dos de 10 anos a fundadores de startups. Foi assim que desenvolveu a sua abordagem: pr&aacute;tica, hands-on, focada no que se pode usar imediatamente.</p>
+                        <p>Mais sobre o seu trabalho no <a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener noreferrer" style="color: inherit;">LinkedIn</a>.</p>
+                    </div>
+                    <div class="reveal reveal-delay-2">
+                        <p><strong>O que distingue este trabalho:</strong></p>
+                        <ul>
+                            <li>&Eacute; praticante, n&atilde;o apenas consultor. Constr&oacute;i sistemas reais de IA e automa&ccedil;&atilde;o todos os dias.</li>
+                            <li>Tem mais de 25 anos de mentoria a l&iacute;deres. Sabe trabalhar com pessoas que n&atilde;o t&ecirc;m tempo a perder.</li>
+                            <li>Protege o julgamento humano enquanto amplifica a capacidade humana. &Eacute; esse o equil&iacute;brio que procura em cada projeto.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pr&oacute;ximo Passo Section -->
+        <section class="next-steps">
+            <div class="next-steps-content">
+                <div class="reveal">
+                    <h2>Pr&oacute;ximo Passo</h2>
+                </div>
+                <ol class="next-steps-list">
+                    <li class="reveal reveal-delay-1">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Rever esta proposta</span>
+                    </li>
+                    <li class="reveal reveal-delay-2">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Para validar o &acirc;mbito e esclarecer d&uacute;vidas, basta agendar uma chamada curta</span>
+                    </li>
+                </ol>
+                <div class="reveal">
+                    <a href="https://calendly.com/gustavocpimenta/25-m" target="_blank" rel="noopener noreferrer" class="cta-btn">Agendar Chamada</a>
+                    <p class="validity">Esta proposta &eacute; v&aacute;lida por 30 dias a partir da data de rece&ccedil;&atilde;o.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="proposal-footer">
+            <a href="https://fixedtoflow.com" class="footer-logo" target="_blank" rel="noopener noreferrer">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // PASSWORD CONFIGURATION
+        // ==========================================
+        const PROPOSAL_PASSWORD = 'TheFutureAhead2026';
+
+        // ==========================================
+        // Password Protection Logic
+        // ==========================================
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const proposalContent = document.getElementById('proposalContent');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        // Check if already authenticated (session storage)
+        const isAuthenticated = sessionStorage.getItem('proposal_accountbase_auth') === 'true';
+        if (isAuthenticated) {
+            passwordOverlay.classList.add('hidden');
+            proposalContent.classList.add('visible');
+            initScrollReveal();
+        }
+
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const enteredPassword = passwordInput.value;
+
+            if (enteredPassword === PROPOSAL_PASSWORD) {
+                // Success
+                sessionStorage.setItem('proposal_accountbase_auth', 'true');
+                passwordOverlay.classList.add('hidden');
+                proposalContent.classList.add('visible');
+
+                // Initialize scroll reveal after content becomes visible
+                setTimeout(initScrollReveal, 100);
+            } else {
+                // Error
+                passwordInput.classList.add('error');
+                passwordError.classList.add('visible');
+
+                // Remove error state after animation
+                setTimeout(() => {
+                    passwordInput.classList.remove('error');
+                }, 500);
+            }
+        });
+
+        // Clear error when typing
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('visible');
+        });
+
+        // ==========================================
+        // Scroll Reveal Animation
+        // ==========================================
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            reveals.forEach(el => observer.observe(el));
+        }
+    </script>
+</body>
+</html>
