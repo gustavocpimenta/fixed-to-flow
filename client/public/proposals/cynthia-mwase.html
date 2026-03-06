@@ -1330,9 +1330,15 @@
 
     <script>
         // ==========================================
-        // PASSWORD CONFIGURATION
+        // PASSWORD CONFIGURATION (SHA-256 hash)
         // ==========================================
-        const PROPOSAL_PASSWORD = 'BoldStart2026';
+        const PROPOSAL_HASH = 'bbe724fed7e6a3e035c02ea1f848c4878dec2a81bacddfbbd46c9e6bfc3b0be1';
+
+        async function hashPassword(password) {
+            const encoded = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
 
         // ==========================================
         // Password Protection Logic
@@ -1351,12 +1357,12 @@
             initScrollReveal();
         }
 
-        passwordForm.addEventListener('submit', function(e) {
+        passwordForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const enteredPassword = passwordInput.value;
+            const enteredHash = await hashPassword(passwordInput.value);
 
-            if (enteredPassword === PROPOSAL_PASSWORD) {
+            if (enteredHash === PROPOSAL_HASH) {
                 // Success
                 sessionStorage.setItem('proposal_cynthia_auth', 'true');
                 passwordOverlay.classList.add('hidden');

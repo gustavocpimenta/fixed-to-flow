@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta para Palácio do Correio Velho | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E63B2E;
+            --red-dark: #C42B1C;
+            --red-glow: rgba(230, 59, 46, 0.15);
+            --burgundy: #8B1E1E;
+            --cream: #FAF7F2;
+            --cream-dark: #F5F0E8;
+            --black: #111111;
+            --gray-dark: #1A1A1A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ==========================================
+           PASSWORD OVERLAY
+           ========================================== */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 56px 48px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .password-logo {
+            margin-bottom: 40px;
+        }
+
+        .password-logo img {
+            height: 20px;
+        }
+
+        .password-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .password-subtitle {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .password-input-group {
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+            outline: none;
+            background: var(--cream);
+        }
+
+        .password-input:focus {
+            border-color: var(--red);
+        }
+
+        .password-input.error {
+            border-color: var(--red);
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .password-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .password-error.visible {
+            opacity: 1;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .password-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================
+           PROPOSAL CONTENT
+           ========================================== */
+        .proposal-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease;
+        }
+
+        .proposal-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+
+        /* ==========================================
+           HEADER
+           ========================================== */
+        .proposal-header {
+            background: var(--black);
+            color: var(--white);
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 40px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proposal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(230, 59, 46, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(139, 30, 30, 0.06) 0%, transparent 50%);
+            animation: headerGlow 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes headerGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-2%, 1%) scale(1.05); }
+        }
+
+        .header-logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+        }
+
+        .header-logo img {
+            height: 18px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-confidential {
+            position: absolute;
+            top: 44px;
+            right: 40px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+
+        .header-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-client {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3.8rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-scroll-hint span {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scroll-hint 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-hint {
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 0.6; height: 50px; }
+        }
+
+        /* ==========================================
+           SECTIONS
+           ========================================== */
+        .section {
+            padding: 100px 40px;
+            width: 100%;
+        }
+
+        .section > *:not(.moments-timeline):not(.deliverables-grid) {
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-alt {
+            background: var(--white);
+        }
+
+        .section-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 36px;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.85;
+        }
+
+        .section p + p {
+            margin-top: 24px;
+        }
+
+        .section .reveal + .reveal {
+            margin-top: 24px;
+        }
+
+        .deliverables-grid .reveal + .reveal {
+            margin-top: 0;
+        }
+
+        .section p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 28px 0;
+        }
+
+        .section ul li {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .section ul li:hover::before {
+            transform: scale(1.3);
+        }
+
+        .section ul li strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(230, 59, 46, 0.06) 0%, rgba(230, 59, 46, 0.02) 100%);
+            border-left: 4px solid var(--red);
+            padding: 28px 32px;
+            margin: 40px 0;
+            border-radius: 0 16px 16px 0;
+            position: relative;
+        }
+
+        .highlight-box p {
+            color: var(--black);
+            margin-bottom: 0;
+            font-size: 1.15rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           MOMENTS TIMELINE
+           ========================================== */
+        .moments-timeline {
+            max-width: 900px;
+            margin: 60px auto 0;
+            position: relative;
+            padding-left: 80px;
+        }
+
+        /* Vertical connecting line */
+        .moments-timeline::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--red), rgba(230, 59, 46, 0.15));
+        }
+
+        .moment-item {
+            position: relative;
+            margin-bottom: 56px;
+        }
+
+        .moment-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Numbered circle on the timeline */
+        .moment-number {
+            position: absolute;
+            left: -70px;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            box-shadow: 0 6px 24px rgba(230, 59, 46, 0.3);
+            z-index: 2;
+        }
+
+        .moment-item:last-child .moment-number {
+            background: var(--cream-dark);
+            color: var(--gray);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .moment-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 40px 36px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .moment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        /* The main discovery moment gets special treatment */
+        .moment-item.moment-featured .moment-card {
+            border: 2px solid rgba(230, 59, 46, 0.12);
+            background: linear-gradient(135deg, var(--white) 0%, rgba(250, 247, 242, 0.5) 100%);
+        }
+
+        .moment-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .moment-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--black);
+            letter-spacing: -0.01em;
+        }
+
+        .moment-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--red);
+            background: rgba(230, 59, 46, 0.08);
+            padding: 4px 14px;
+            border-radius: 100px;
+        }
+
+        .moment-badge.muted {
+            color: var(--gray-light);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .moment-desc {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .moment-desc + .moment-desc {
+            margin-top: 16px;
+        }
+
+        /* Sub-items within Momento 2 */
+        .moment-activities {
+            margin-top: 28px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--cream);
+            border-radius: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: var(--cream-dark);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-content strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .activity-content span {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           DELIVERABLES GRID
+           ========================================== */
+        .deliverables-grid {
+            max-width: 900px;
+            margin: 48px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .deliverable-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 28px 28px 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .deliverable-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .deliverable-card strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 6px;
+        }
+
+        .deliverable-card span {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .deliverable-card .deliverable-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about-section {
+            background: var(--white);
+            padding: 100px 40px;
+        }
+
+        .about-content {
+            max-width: 780px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .about-photo:hover {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        .about-text h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 18px;
+            line-height: 1.85;
+        }
+
+        .about-text p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           NEXT STEPS
+           ========================================== */
+        .next-steps {
+            background: var(--cream-dark);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .next-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+        }
+
+        .next-steps-content {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .next-steps h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .next-steps p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(230, 59, 46, 0.35);
+        }
+
+        .cta-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .proposal-footer {
+            padding: 48px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            background: var(--cream);
+        }
+
+        .footer-logo img {
+            height: 18px;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 768px) {
+            .proposal-header {
+                min-height: 60vh;
+                padding: 60px 24px 80px;
+            }
+
+            .header-confidential {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .header-client {
+                font-size: 2.4rem;
+            }
+
+            .header-scroll-hint {
+                display: none;
+            }
+
+            .section {
+                padding: 70px 24px;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+            }
+
+            .moments-timeline {
+                padding-left: 60px;
+            }
+
+            .moments-timeline::before {
+                left: 24px;
+            }
+
+            .moment-number {
+                left: -56px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .moment-card {
+                padding: 28px 24px 24px;
+            }
+
+            .moment-title {
+                font-size: 1.3rem;
+            }
+
+            .moment-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .activity-item {
+                flex-direction: column;
+                gap: 10px;
+                padding: 16px 20px;
+            }
+
+            .activity-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+
+            .about-photo {
+                margin: 0 auto;
+                width: 140px;
+                height: 140px;
+            }
+
+            .next-steps h2 {
+                font-size: 2.2rem;
+            }
+
+            .password-card {
+                padding: 40px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-card">
+            <div class="password-logo">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </div>
+            <h2 class="password-title">Ver Proposta</h2>
+            <p class="password-subtitle">Insira a password para aceder a esta proposta.</p>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Password"
+                        autocomplete="off"
+                    >
+                    <p class="password-error" id="passwordError">Password incorreta. Tente novamente.</p>
+                </div>
+                <button type="submit" class="password-btn">Ver Proposta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proposal Content -->
+    <div class="proposal-content" id="proposalContent">
+
+        <!-- Header -->
+        <header class="proposal-header">
+            <div class="header-logo">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </div>
+            <span class="header-confidential">Confidencial</span>
+            <span class="header-label">Proposta</span>
+            <h1 class="header-client">Palácio do<br>Correio Velho</h1>
+            <p class="header-subtitle">AI Discovery & Activation</p>
+            <p class="header-date">Março 2026</p>
+            <div class="header-scroll-hint">
+                <span></span>
+            </div>
+        </header>
+
+        <!-- Contexto e Oportunidade -->
+        <section class="section section-alt">
+            <div class="reveal">
+                <h2 class="section-title">Contexto e <em>oportunidade</em></h2>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <p>O Palácio do Correio Velho tem 37 anos de leilões, um ERP operacional com a Bluescreen, e uma equipa que já usa IA no dia a dia. Há uma base sólida de trabalho feito em várias frentes: criação de conteúdo, geração de imagens, testes com chatbots, iniciativas de venda direta e e-commerce a arrancar.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p>A questão agora é como alavancar tudo o que já foi construído. Uma equipa de cerca de 22 pessoas a tirar mais partido do que já tem. Ativação de compradores por perfil e histórico. Planeamento de leilões orientado por dados. Visibilidade internacional reforçada.</p>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <div class="highlight-box">
+                    <p>No mundo da IA, os dados são o ativo com maior valor. O PCV tem centenas de milhares de peças catalogadas com imagem, descrição e valores reais de venda ao longo de quase quatro décadas. Este historial é raro e abre a porta a um produto de IA próprio.</p>
+                </div>
+            </div>
+            <div class="reveal reveal-delay-4">
+                <p>Estamos a viver uma transformação que afeta a forma como trabalhamos e como vivemos. A adoção de IA não é uma questão de se, é uma questão de quando. E quem avança agora ganha uma vantagem competitiva significativa, porque o conhecimento acumula. Cada experiência alimenta a seguinte.</p>
+                <p>E a própria ação tem o mesmo efeito composto, porque o custo de testar é cada vez mais baixo. Com IA, é possível pôr uma ideia em movimento em dias, não meses. Validar antes de investir. Iterar sem risco. Para uma organização com o historial e a marca do PCV, isso abre espaço para explorar oportunidades que antes exigiriam recursos que simplesmente não existiam.</p>
+            </div>
+        </section>
+
+        <!-- Abordagem -->
+        <section class="section">
+            <div class="section-inner">
+                <div class="reveal">
+                    <h2 class="section-title">A abordagem: <em>envolvimento por etapas</em></h2>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <p>A nossa forma de trabalhar é, ela própria, um reflexo desta filosofia. Em vez de um compromisso grande à partida, propomos uma progressão natural: o envolvimento cresce à medida que os resultados se tornam visíveis.</p>
+                    <p>A colaboração cresce à medida que o valor se torna visível. Cada passo serve para nos conhecermos melhor, validar a direção, e decidir o seguinte com base no que já foi demonstrado.</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="moments-timeline">
+
+                <!-- Momento 1 -->
+                <div class="moment-item reveal reveal-delay-2">
+                    <div class="moment-number">1</div>
+                    <div class="moment-card">
+                        <div class="moment-header">
+                            <h3 class="moment-title">Conhecermo-nos melhor</h3>
+                            <span class="moment-badge">1h30 · Sem custo</span>
+                        </div>
+                        <p class="moment-desc">Uma sessão com o Sebastião Pinto Ribeiro, o Diego Felice e uma ou duas pessoas da equipa de liderança. Pela nossa experiência, estas sessões resultam melhor com três a quatro participantes.</p>
+                        <p class="moment-desc">O objetivo é simples: conhecermo-nos melhor e mapear em conjunto o que poderiam ser as opções. Perceber onde está o maior potencial, o que é prioritário neste momento, e se as condições estão criadas para avançar.</p>
+                        <p class="moment-desc">Saímos desta sessão com uma perspetiva partilhada. Esta sessão não implica qualquer compromisso. Se houver interesse em avançar, apresentamos uma proposta concreta para a fase seguinte.</p>
+                    </div>
+                </div>
+
+                <!-- Momento 2 -->
+                <div class="moment-item moment-featured reveal reveal-delay-3">
+                    <div class="moment-number">2</div>
+                    <div class="moment-card">
+                        <div class="moment-header">
+                            <h3 class="moment-title">Discovery e ativação</h3>
+                            <span class="moment-badge">5 semanas</span>
+                        </div>
+                        <p class="moment-desc">Se o alinhamento confirmar que faz sentido avançar, o próximo passo é medir o que existe e começar a ativar. Com a liderança envolvida, sem sobrecarregar a equipa.</p>
+
+                        <div class="moment-activities">
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Discovery e mapeamento</strong>
+                                    <span>Sessões com a equipa de catalogação, operações e membros chave. Mapeamento dos workflows core, medição de tempo e custo por processo, identificação de pontos de fricção.</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Análise de oportunidades e roadmap</strong>
+                                    <span>Mapeamento de oportunidades de IA contra as dores reais. Para cada uma: tempo poupado, custo evitado, receita potencial. Roadmap 12 meses com quick wins e visão de produto.</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Workshop de IA e capacitação</strong>
+                                    <span>Dia inteiro com a equipa. Uma parte geral sobre IA, boas práticas e conformidade. Depois, trabalho prático: cada membro sai com um artefacto de IA configurado para o seu contexto de trabalho.</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10h8v2a4 4 0 0 1-8 0v-2z"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Protótipo do produto IA</strong>
+                                    <span>Numa sessão de trabalho conjunto, a própria equipa participa na construção do primeiro protótipo funcional: catalogação assistida, cruzamento de dados históricos com mercado externo, e estimativa de valor baseada no historial real de vendas. Serve para validar a ideia e decidir como avançar.</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Acompanhamento da liderança</strong>
+                                    <span>Se necessário, sessões dedicadas com a equipa de liderança para integrar IA nas rotinas de decisão e gestão.</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
+                                <div class="activity-content">
+                                    <strong>Apresentação final</strong>
+                                    <span>Findings, análise ROI, roadmap, recomendações claras. Uma sessão de trabalho para decidir em conjunto. Entrega de toda a documentação.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Momento 3 -->
+                <div class="moment-item reveal reveal-delay-4">
+                    <div class="moment-number">3</div>
+                    <div class="moment-card">
+                        <div class="moment-header">
+                            <h3 class="moment-title">Fase seguinte</h3>
+                            <span class="moment-badge muted">Após discovery</span>
+                        </div>
+                        <p class="moment-desc">Se os resultados das cinco semanas confirmarem oportunidades com retorno real, chegamos ao final com uma proposta concreta para o que vem a seguir. Construída sobre o que aprendemos juntos.</p>
+                        <p class="moment-desc">Esse passo só faz sentido depois de termos dados concretos para o sustentar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Entregáveis -->
+        <section class="section section-alt">
+            <div class="reveal">
+                <h2 class="section-title">Entregáveis do <em>Momento 2</em></h2>
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card reveal reveal-delay-1">
+                    <strong><span class="deliverable-dot"></span>Mapa de processos atuais</strong>
+                    <span>Workflows core documentados. Fricções e ineficiências identificadas e quantificadas.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-1">
+                    <strong><span class="deliverable-dot"></span>AI Readiness Assessment</strong>
+                    <span>Estado atual da organização face à IA. Pontos fortes, gaps e condições para avançar.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-2">
+                    <strong><span class="deliverable-dot"></span>Mapa de oportunidades AI</strong>
+                    <span>Oportunidades priorizadas por impacto versus esforço. Com o número por baixo de cada uma.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-2">
+                    <strong><span class="deliverable-dot"></span>Roadmap 12 meses</strong>
+                    <span>Faseado, priorizado, com a lógica por trás de cada recomendação. Concreto e flexível.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-3">
+                    <strong><span class="deliverable-dot"></span>Modelo ROI detalhado</strong>
+                    <span>Tempo poupado, custo evitado e receita potencial por alteração proposta.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-3">
+                    <strong><span class="deliverable-dot"></span>Artefactos de IA individuais</strong>
+                    <span>Ferramentas configuradas para cada membro da equipa, prontas a usar no dia a dia.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-4">
+                    <strong><span class="deliverable-dot"></span>Protótipo do produto IA</strong>
+                    <span>Primeira versão funcional de catalogação assistida, cruzamento de dados e estimativa de valor.</span>
+                </div>
+                <div class="deliverable-card reveal reveal-delay-4">
+                    <strong><span class="deliverable-dot"></span>Proposta para fase seguinte</strong>
+                    <span>Se fizer sentido avançar, a proposta estará pronta, construída sobre o que foi aprendido.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="reveal">
+                    <img src="../gus_novo.jpg" alt="Gustavo da Cunha Pimenta" class="about-photo">
+                </div>
+                <div class="about-text">
+                    <div class="reveal">
+                        <h3>Quem acompanha</h3>
+                    </div>
+                    <div class="reveal reveal-delay-1">
+                        <p><a href="https://www.linkedin.com/in/gustavocpimenta/" style="color: var(--red); text-decoration: none; font-weight: 600;">Gustavo Pimenta</a> acompanha pessoalmente todo o projeto. Com décadas de experiência em liderança de produto e transformação digital, levou produtos digitais a setores diversificados e a empresas de todas as dimensões, de startups a corporações.</p>
+                        <p>É fundador da <a href="https://fixedtoflow.com/" style="color: var(--red); text-decoration: none; font-weight: 600;">Fixed to Flow</a>, onde ajuda líderes e organizações a adotarem IA de forma intencional. Através do <a href="https://www.conversa-clara-ia.com/" style="color: var(--red); text-decoration: none; font-weight: 600;">Conversa Clara com a IA</a>, desenha e facilita programas de formação e capacitação em IA para grandes organizações, do setor privado ao estado, incluindo a ANACOM, o regulador nacional para inteligência artificial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section class="next-steps">
+            <div class="next-steps-content">
+                <div class="reveal">
+                    <h2>Próximo passo</h2>
+                    <p>Confirmar disponibilidade para o Momento 1 e alinhar o arranque.</p>
+                    <a href="mailto:gustavo@gustavopimenta.com?subject=Sessão%20de%20Alinhamento%20%7C%20PCV" class="cta-btn">Agendar sessão</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="proposal-footer">
+            <a href="https://fixedtoflow.com" class="footer-logo" target="_blank" rel="noopener noreferrer">
+                <img src="../logo.svg" alt="Fixed to Flow">
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        const PROPOSAL_HASH = '3734cb748e8abff94e838446533caab05c68efd2232a60484c820e61872582bc';
+
+        async function hashPassword(password) {
+            const encoded = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const proposalContent = document.getElementById('proposalContent');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        const isAuthenticated = sessionStorage.getItem('proposal_pcv_auth') === 'true';
+        if (isAuthenticated) {
+            passwordOverlay.classList.add('hidden');
+            proposalContent.classList.add('visible');
+            initScrollReveal();
+        }
+
+        passwordForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const enteredHash = await hashPassword(passwordInput.value);
+
+            if (enteredHash === PROPOSAL_HASH) {
+                sessionStorage.setItem('proposal_pcv_auth', 'true');
+                passwordOverlay.classList.add('hidden');
+                proposalContent.classList.add('visible');
+                setTimeout(initScrollReveal, 100);
+            } else {
+                passwordInput.classList.add('error');
+                passwordError.classList.add('visible');
+                setTimeout(() => {
+                    passwordInput.classList.remove('error');
+                }, 500);
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('visible');
+        });
+
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            reveals.forEach(el => observer.observe(el));
+        }
+
+    </script>
+</body>
+</html>
