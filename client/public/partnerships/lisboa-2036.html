@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisboa 2036: The Simulation Game</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAFAF6;
+    --parchment: #EDE8DC;
+    --sand: #D4CCBA;
+    --stone: #7A7265;
+    --earth: #5A5550;
+    --charcoal: #3A3632;
+    --ink: #1E1C1A;
+    --terracotta: #CC6B35;
+    --terracotta-light: #D9854F;
+    --terracotta-faint: rgba(204, 107, 53, 0.10);
+    --backstage-bg: #2C2926;
+    --backstage-surface: #363330;
+    --backstage-text: #D4CCBA;
+    --backstage-muted: #A69E8E;
+    --backstage-accent: #D9854F;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══ NAV TOGGLE ═══ */
+  .nav-toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sand);
+    transition: background 0.4s ease;
+  }
+
+  .nav-toggle.backstage-active {
+    background: rgba(44, 41, 38, 0.95);
+    border-bottom-color: var(--backstage-surface);
+  }
+
+  .nav-inner {
+    display: flex;
+    gap: 0;
+    background: var(--parchment);
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    transition: all 0.4s ease;
+  }
+
+  .nav-toggle.backstage-active .nav-inner {
+    background: var(--backstage-surface);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  .nav-btn {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.8rem;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--stone);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-btn.active {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .nav-toggle.backstage-active .nav-btn.active {
+    background: var(--terracotta);
+    color: var(--warm-white);
+  }
+
+  .nav-toggle.backstage-active .nav-btn:not(.active) {
+    color: var(--backstage-muted);
+  }
+
+  /* ═══ FRONTSTAGE ═══ */
+  .frontstage {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .frontstage.hidden {
+    display: none;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+    background: var(--warm-white);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .hero-year {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.25;
+    max-width: 720px;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--terracotta);
+  }
+
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--earth);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 28px;
+    background: var(--sand);
+    margin: 0.6rem auto 0;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  /* Hook */
+  .hook {
+    padding: 8rem 2rem;
+    display: flex;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .hook-inner {
+    max-width: 580px;
+  }
+
+  .hook p {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 1.8rem;
+  }
+
+  .hook p:last-child {
+    font-weight: 500;
+    font-style: italic;
+    color: var(--terracotta);
+    margin-bottom: 0;
+  }
+
+  /* Provocation band */
+  .provocation {
+    padding: 4rem 2rem;
+    background: var(--ink);
+    text-align: center;
+  }
+
+  .provocation p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--parchment);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Section headers */
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+
+  /* How it works */
+  .how-it-works {
+    padding: 8rem 2rem;
+    background: var(--warm-white);
+  }
+
+  .how-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .how-intro {
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .how-intro p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--charcoal);
+  }
+
+  .question-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .question-card {
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+
+  .question-card .q-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--sand);
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    line-height: 1;
+  }
+
+  .question-card h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+    max-width: 85%;
+  }
+
+  .question-card p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--earth);
+    font-weight: 300;
+  }
+
+  /* Dispatches */
+  .dispatches {
+    padding: 8rem 2rem;
+    background: var(--cream);
+  }
+
+  .dispatches-header {
+    max-width: 900px;
+    margin: 0 auto 5rem;
+  }
+
+  .dispatches-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .dispatches-header .lead {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--earth);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .dispatch-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .dispatch {
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+    padding: 3.5rem 3rem;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .dispatch:hover {
+    border-color: var(--terracotta-light);
+  }
+
+  .dispatch-num {
+    font-family: var(--serif);
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: var(--parchment);
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .dispatch h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 80%;
+  }
+
+  .dispatch p {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--charcoal);
+    max-width: 90%;
+  }
+
+  .dispatch:last-child {
+    background: var(--terracotta-faint);
+    border-color: var(--terracotta-light);
+  }
+
+  .dispatch:last-child .dispatch-num {
+    color: rgba(184, 105, 74, 0.12);
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    padding: 6rem 2rem;
+    background: var(--parchment);
+    text-align: center;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--charcoal);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  /* What you leave with */
+  .leave-with {
+    padding: 8rem 2rem;
+    background: var(--warm-white);
+  }
+
+  .leave-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .leave-inner h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+
+  .leave-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .leave-item:first-of-type {
+    border-top: 1px solid var(--sand);
+  }
+
+  .leave-item p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--charcoal);
+  }
+
+  .leave-item:last-of-type p {
+    font-style: italic;
+    color: var(--earth);
+  }
+
+  /* Details */
+  .details {
+    padding: 8rem 2rem;
+    background: var(--cream);
+  }
+
+  .details-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .details-inner h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+
+  .detail-row {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .detail-row:first-of-type {
+    border-top: 1px solid var(--sand);
+  }
+
+  .detail-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone);
+    width: 120px;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+
+  .detail-value {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  .detail-value .hosts-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .detail-value .hosts-list li {
+    margin-bottom: 0.2rem;
+  }
+
+  .detail-value .hosts-list .host-org {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--stone);
+    font-weight: 300;
+  }
+
+  /* Method note */
+  .method-note {
+    padding: 4rem 2rem;
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .method-note p {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--stone);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Closing */
+  .closing {
+    padding: 8rem 2rem;
+    background: var(--ink);
+    text-align: center;
+  }
+
+  .closing h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--parchment);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.3;
+  }
+
+  .closing .pre-cta {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--stone);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .cta-btn {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    background: var(--terracotta);
+    color: var(--warm-white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--terracotta-light);
+  }
+
+  /* ═══ EXPERIENCE VIEW ═══ */
+  .experience {
+    display: none;
+    background: var(--backstage-bg);
+    color: var(--backstage-text);
+    min-height: 100vh;
+    padding-top: 3.5rem;
+  }
+
+  .experience.visible {
+    display: block;
+  }
+
+  .experience-hero {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    background: var(--backstage-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .experience-hero .badge {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--backstage-accent);
+    background: rgba(200, 133, 107, 0.1);
+    padding: 0.4rem 1.2rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .experience-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--parchment);
+    max-width: 500px;
+    margin: 0 auto 1.2rem;
+  }
+
+  .experience-hero-sub {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--backstage-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .nav-toggle.experience-active {
+    background: rgba(44, 41, 38, 0.95);
+    border-bottom-color: var(--backstage-surface);
+  }
+
+  .experience-closing {
+    padding: 4rem 2rem 6rem;
+    background: var(--backstage-bg);
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .experience-closing p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--backstage-muted);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ═══ BACKSTAGE ═══ */
+  .backstage {
+    display: none;
+    background: var(--backstage-bg);
+    color: var(--backstage-text);
+    min-height: 100vh;
+    padding-top: 5rem;
+  }
+
+  .backstage.visible {
+    display: block;
+  }
+
+  .backstage-intro {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .backstage-intro .badge {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--backstage-accent);
+    background: rgba(200, 133, 107, 0.1);
+    padding: 0.4rem 1.2rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .backstage-intro p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--backstage-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Backstage sections */
+  .bs-section {
+    padding: 4rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .bs-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .bs-section h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--parchment);
+    margin-bottom: 1.5rem;
+  }
+
+  .bs-section h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--parchment);
+    margin-bottom: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .bs-section h3:first-of-type {
+    margin-top: 0;
+  }
+
+  .bs-section p {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .bs-section strong {
+    font-weight: 500;
+    color: var(--parchment);
+  }
+
+  .bs-section em {
+    color: var(--backstage-accent);
+    font-style: normal;
+  }
+
+  .bs-section ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .bs-section ul li {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.75;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .bs-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 4px;
+    height: 4px;
+    background: var(--backstage-accent);
+    border-radius: 50%;
+  }
+
+  /* Backstage tables */
+  .bs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+  }
+
+  .bs-table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--backstage-accent);
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .bs-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--backstage-text);
+    font-weight: 300;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .bs-table td strong {
+    font-weight: 500;
+    color: var(--parchment);
+  }
+
+  /* Partner cards */
+  .partner-card {
+    background: var(--backstage-surface);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--backstage-accent);
+  }
+
+  .partner-card h3 {
+    margin-top: 0 !important;
+  }
+
+  .partner-gets {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .partner-gets p {
+    font-style: italic;
+    color: var(--backstage-muted) !important;
+    font-size: 0.84rem !important;
+  }
+
+  /* Discussion points */
+  .discussion-list {
+    counter-reset: disc;
+  }
+
+  .discussion-item {
+    background: var(--backstage-surface);
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    counter-increment: disc;
+  }
+
+  .discussion-item::before {
+    content: counter(disc);
+    position: absolute;
+    left: 1.2rem;
+    top: 1.5rem;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--backstage-accent);
+  }
+
+  .discussion-item h4 {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
+  }
+
+  .discussion-item p {
+    font-size: 0.82rem !important;
+    color: var(--backstage-muted) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Phase cards */
+  .phase-card {
+    background: var(--backstage-surface);
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .phase-label {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--backstage-accent);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .phase-label .phase-where {
+    color: var(--backstage-muted);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+  }
+
+  .round-structure {
+    background: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .round-structure ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .round-structure ol li {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+    counter-increment: step;
+    margin-bottom: 0.4rem;
+  }
+
+  .round-structure ol li::before {
+    content: counter(step) ".";
+    position: absolute;
+    left: 0;
+    color: var(--backstage-accent);
+    font-weight: 400;
+  }
+
+  /* Technique cards */
+  .technique-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .technique-card {
+    background: rgba(0,0,0,0.15);
+    padding: 1.5rem;
+    border-left: 3px solid var(--backstage-accent);
+  }
+
+  .technique-card h4 {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--parchment);
+    margin-bottom: 0.4rem;
+  }
+
+  .technique-card .technique-def {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+  }
+
+  .technique-card .technique-where {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--backstage-muted);
+    font-style: italic;
+  }
+
+  /* EPIC cards */
+  .epic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .epic-card {
+    background: var(--backstage-surface);
+    padding: 1.5rem;
+  }
+
+  .epic-card h4 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--backstage-accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .epic-card p {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* Info grid for template sections */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.3rem 1.5rem;
+    margin: 1rem 0;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+  }
+
+  .info-grid dt {
+    font-weight: 500;
+    color: var(--backstage-accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding-top: 0.6rem;
+  }
+
+  .info-grid dd {
+    font-weight: 300;
+    color: var(--backstage-text);
+    line-height: 1.7;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  @media (max-width: 768px) {
+    .technique-grid,
+    .epic-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .info-grid dt {
+      padding-top: 1rem;
+    }
+
+    .info-grid dd {
+      padding-top: 0.2rem;
+    }
+  }
+
+  /* Experience Journey */
+  .experience-journey {
+    padding: 4rem 2rem 8rem;
+  }
+
+  .journey-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .journey-inner h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 3.5rem;
+  }
+
+  .journey-timeline {
+    position: relative;
+    padding-left: 3.5rem;
+  }
+
+  .journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .journey-moment {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+
+  .journey-moment:last-child {
+    padding-bottom: 0;
+  }
+
+  .journey-moment::before {
+    content: '';
+    position: absolute;
+    left: -3.5rem;
+    top: 0.55rem;
+    width: 7px;
+    height: 7px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    transform: translateX(-3px);
+  }
+
+  .journey-time {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--backstage-accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .journey-moment h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--parchment);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .journey-moment p {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--backstage-text);
+  }
+
+  @media (max-width: 768px) {
+    .journey-timeline {
+      padding-left: 2.5rem;
+    }
+
+    .journey-moment::before {
+      left: -2.5rem;
+    }
+
+    .journey-timeline::before {
+      left: 0;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    .question-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dispatch {
+      padding: 2.5rem 2rem;
+    }
+
+    .dispatch-num {
+      font-size: 3rem;
+      top: 1rem;
+      right: 1.2rem;
+    }
+
+    .dispatch h3 {
+      max-width: 75%;
+    }
+
+    .dispatch p {
+      max-width: 100%;
+    }
+
+    .detail-row {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .detail-label {
+      width: auto;
+    }
+
+    .bs-table {
+      font-size: 0.75rem;
+    }
+
+    .bs-table th, .bs-table td {
+      padding: 0.6rem 0.5rem;
+    }
+
+    .nav-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.65rem;
+    }
+  }
+
+  /* ═══ PASSWORD OVERLAY ═══ */
+  .password-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ink);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .password-overlay::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vmax;
+    height: 150vmax;
+    background: radial-gradient(circle, rgba(204, 107, 53, 0.12) 0%, transparent 50%);
+    transform: translate(-50%, -50%);
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .password-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .password-card {
+    background: var(--cream);
+    padding: 56px 48px;
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: card-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  @keyframes card-enter {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .password-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .password-subtitle {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--stone);
+    margin-bottom: 36px;
+  }
+
+  .password-input-group {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .password-input {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 1rem;
+    font-family: var(--sans);
+    border: 2px solid var(--sand);
+    border-radius: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: var(--warm-white);
+  }
+
+  .password-input:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 4px var(--terracotta-faint);
+  }
+
+  .password-input.error {
+    border-color: var(--terracotta);
+    animation: shake 0.5s ease;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+  }
+
+  .password-error {
+    color: var(--terracotta);
+    font-size: 0.9rem;
+    margin-top: 12px;
+    display: none;
+  }
+
+  .password-error.visible {
+    display: block;
+    animation: pw-fade-in 0.3s ease;
+  }
+
+  @keyframes pw-fade-in {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .password-btn {
+    width: 100%;
+    padding: 18px 32px;
+    font-size: 1rem;
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--warm-white);
+    background: var(--terracotta);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.15s ease;
+  }
+
+  .password-btn:hover {
+    background: var(--terracotta-light);
+    transform: translateY(-1px);
+  }
+
+  .page-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+  }
+
+  .page-content.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: 600px) {
+    .password-card {
+      padding: 40px 28px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD OVERLAY -->
+<div class="password-overlay" id="passwordOverlay">
+  <div class="password-card">
+    <h2 class="password-title">Lisboa 2036</h2>
+    <p class="password-subtitle">Enter the password to access this document.</p>
+    <form id="passwordForm">
+      <div class="password-input-group">
+        <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
+      </div>
+      <button type="submit" class="password-btn">View Document</button>
+    </form>
+  </div>
+</div>
+
+<!-- PAGE CONTENT (hidden until authenticated) -->
+<div class="page-content" id="pageContent">
+
+<!-- NAV TOGGLE -->
+<nav class="nav-toggle" id="navToggle">
+  <div class="nav-inner">
+    <button class="nav-btn active" data-view="frontstage" onclick="switchView('frontstage')">Frontstage</button>
+    <button class="nav-btn" data-view="experience" onclick="switchView('experience')">Experience</button>
+    <button class="nav-btn" data-view="backstage" onclick="switchView('backstage')">Backstage</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- FRONTSTAGE -->
+<!-- ════════════════════════════════════════════ -->
+<main class="frontstage" id="frontstage">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-year">Lisboa &middot; 2036</p>
+    <h1>Ten years from now, Lisbon will be a different city.<br><em>This afternoon, you live there.</em></h1>
+    <p class="hero-sub">A social simulation for 20 people. One question: who do we want to be?</p>
+    <p class="hero-scroll">Scroll</p>
+  </section>
+
+  <!-- HOOK -->
+  <section class="hook">
+    <div class="hook-inner reveal">
+      <p>Lisbon is changing. Everyone feels it. Few talk about it honestly.</p>
+      <p>This is an invitation to do that. Not in a panel. Not in a workshop. In five scenarios set ten years from now, with twenty people who actually live here, mixing reactions and discomfort in real time.</p>
+      <p>You come in. You leave different.</p>
+    </div>
+  </section>
+
+  <!-- PROVOCATION -->
+  <section class="provocation reveal">
+    <p>&ldquo;The emotions you feel during the simulation are not distractions. They are data.&rdquo;</p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <div class="how-inner">
+      <div class="how-intro reveal">
+        <p class="section-label">How the afternoon works</p>
+        <p>You join a team of four to five people. Portuguese and international residents, mixed on purpose. Over the course of the afternoon, your team receives five dispatches from 2036. Short scenarios. One paragraph each. They escalate in strangeness and stakes.</p>
+      </div>
+      <div class="question-grid reveal">
+        <div class="question-card">
+          <span class="q-num">01</span>
+          <h3>Your first reaction.</h3>
+          <p>What do you feel before you think?</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">02</span>
+          <h3>Who is most affected.</h3>
+          <p>Really sit with that.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">03</span>
+          <h3>What you want to do about it.</h3>
+          <p>Even if the answer is uncomfortable.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">04</span>
+          <h3>What signal from today connects.</h3>
+          <p>Because none of this is fiction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPATCHES -->
+  <section class="dispatches">
+    <div class="dispatches-header reveal">
+      <p class="section-label">The five dispatches</p>
+      <h2>Five futures. Each one possible.</h2>
+      <p class="lead">These are fictional. The feelings they produce are not. Read them in order.</p>
+    </div>
+
+    <div class="dispatch-list">
+      <article class="dispatch reveal">
+        <span class="dispatch-num">01</span>
+        <h3>The vote that split the wrong way</h3>
+        <p>Lisbon's first Mixed Neighborhood Council forms in Graça. Half the seats go to Portuguese residents, half to foreign residents. Their first vote bans Airbnb across the entire neighborhood. The ban passes. But the votes do not split the way anyone predicted. Some of the strongest voices for the ban come from foreign residents who have lived there for eight years. Some of the strongest opposition comes from Portuguese families who rent out a room to survive. The neighborhood is quieter now. Nobody is sure if that is good or bad.</p>
+      </article>
+
+      <article class="dispatch reveal">
+        <span class="dispatch-num">02</span>
+        <h3>The school that made a choice</h3>
+        <p>The most sought-after primary school in Lisbon now has 60% of students with foreign-born parents. Portuguese is the third language on the playground. The principal made all classes bilingual. Test scores went up. Then came the letters. Half the Portuguese parents celebrating. Half pulling their children out. The teachers did not know which reaction was harder to sit with.</p>
+      </article>
+
+      <article class="dispatch reveal">
+        <span class="dispatch-num">03</span>
+        <h3>The belonging tax break</h3>
+        <p>Portugal launches the Roots Visa. Live in Lisbon for over five years, show active community involvement, and you receive the same tax benefits as a Portuguese citizen. Demand explodes. Neighborhood associations that had been dying come back to life overnight. Then come the volunteering factories: foreign residents completing community hours for the visa without any real connection to the place. Nobody meant for it to happen. Nobody knows how to stop it.</p>
+      </article>
+
+      <article class="dispatch reveal">
+        <span class="dispatch-num">04</span>
+        <h3>The language that slipped away</h3>
+        <p>A 2036 study finds that 40% of young people born in Lisbon to foreign parents do not speak Portuguese fluently. The government responds with mandatory Portuguese classes for all residents. The protest that follows is the largest Lisbon has seen since 2025. One sign reads: &ldquo;You want us here, but you want us to be you.&rdquo; Another sign, carried by a Portuguese woman: &ldquo;Language is not a wall. It is a door.&rdquo;</p>
+      </article>
+
+      <article class="dispatch reveal">
+        <span class="dispatch-num">05</span>
+        <h3>The city that changed the question</h3>
+        <p>Lisbon wins the European Urban Integration Award. The jury notes that Lisbon is the only city in Southern Europe where the word &ldquo;foreigner&rdquo; no longer appears in municipal legislation. The new term is &ldquo;first-generation residents.&rdquo; The mayor, a Portuguese woman born to Angolan parents, gives one line in her acceptance speech: &ldquo;We didn't solve the problem. We changed the question.&rdquo; The audience stands. Not everyone cries. Most do.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="pull-quote reveal">
+    <blockquote>&ldquo;Joy signals what you want. Dread signals what you need to prepare for. Discomfort signals that real thinking is happening.&rdquo;</blockquote>
+  </section>
+
+  <!-- WHAT YOU LEAVE WITH -->
+  <section class="leave-with">
+    <div class="leave-inner reveal">
+      <p class="section-label">After the simulation</p>
+      <h2>What you leave with</h2>
+      <div class="leave-item">
+        <p>A notebook full of your own handwriting. Reactions you did not expect. One thing you want to do differently.</p>
+      </div>
+      <div class="leave-item">
+        <p>Connections with twenty people who were honest in the same room on the same afternoon.</p>
+      </div>
+      <div class="leave-item">
+        <p>A clearer picture of the Lisbon you want to help build. Or a more honest picture of the one you have been avoiding.</p>
+      </div>
+      <div class="leave-item">
+        <p>The questions that do not have clean answers. You take those home too.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="details">
+    <div class="details-inner reveal">
+      <p class="section-label">Logistics</p>
+      <h2>The details</h2>
+      <div class="detail-row">
+        <span class="detail-label">When</span>
+        <span class="detail-value">April 17, 2026 (proposed)</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Where</span>
+        <span class="detail-value">Look Lisbon, Lisbon</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Who</span>
+        <span class="detail-value">20 people, by invitation only. A deliberate mix of Portuguese and international residents.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Duration</span>
+        <span class="detail-value">2:30 PM through dinner (~5.5 hours)</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Language</span>
+        <span class="detail-value">English. Side conversations in any language.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Cost</span>
+        <span class="detail-value">€350 per person. Grants available for those who cannot afford the full price.</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Hosts</span>
+        <span class="detail-value">
+          <ul class="hosts-list">
+            <li>Graça Fonseca <span class="host-org">Futura Foundation</span></li>
+            <li>Nuno Loureiro <span class="host-org">Look Lisbon</span></li>
+            <li>Gus <span class="host-org">Fixed to Flow</span></li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD NOTE -->
+  <section class="method-note reveal">
+    <p>This experience is inspired by the futures thinking methodology of Jane McGonigal, from her book <em>Imaginable</em> (2022), adapted into a facilitated in-person format. The dispatches are fictional. The emotions they generate are real.</p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <h2>The future of Lisbon is not decided.<br>Neither is yours.</h2>
+    <p class="pre-cta">This event runs once. Twenty seats. If you want to be in the room, say so.</p>
+    <button class="cta-btn">Request an Invitation</button>
+  </section>
+
+</main>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- EXPERIENCE -->
+<!-- ════════════════════════════════════════════ -->
+<div class="experience" id="experience">
+
+  <!-- Experience Hero -->
+  <section class="experience-hero">
+    <span class="badge">Facilitator Guide</span>
+    <h1>The Emotional Arc</h1>
+    <p class="experience-hero-sub">What participants feel at each moment of the afternoon. Use this to anticipate the room, calibrate your facilitation, and know when to hold space.</p>
+  </section>
+
+  <!-- Journey Timeline -->
+  <section class="experience-journey">
+    <div class="journey-inner reveal">
+      <div class="journey-timeline">
+
+        <div class="journey-moment">
+          <p class="journey-time">2:30 PM &middot; Arrival</p>
+          <h3>Nervous energy, polite distance</h3>
+          <p>Participants are scanning the room. They do not know each other. Expect small talk as armor. The mix of Portuguese and foreign voices creates curiosity but also hesitation. Handing them a notebook and pen gives them something to hold. It grounds them. Watch for anyone who isolates. A quiet word from a host brings them in.</p>
+        </div>
+
+        <div class="journey-moment">
+          <p class="journey-time">3:30 PM &middot; First Dispatch</p>
+          <h3>Shock of the format</h3>
+          <p>The first reading lands and the room goes silent. Some write immediately, others freeze. Both are valid. The three minutes of silence after reading is the most important moment of the entire afternoon. Do not rush it. Do not fill it. Watch for pens moving. That is the pre-feeling activating. The team discussion that follows will feel cautious. That is normal. Trust the escalation.</p>
+        </div>
+
+        <div class="journey-moment">
+          <p class="journey-time">4:40 PM &middot; Third Dispatch</p>
+          <h3>Defenses come down</h3>
+          <p>By now, the polite distance is gone. Watch for the moment someone says something they did not plan to say. That is the signal the real work has begun. Tables will get louder. Some people will get quieter. Both mean it is working. The mixed teams matter most here: Portuguese and international residents will have visibly different reactions to the same scenario. Do not smooth over the tension. That tension is the point.</p>
+        </div>
+
+        <div class="journey-moment">
+          <p class="journey-time">5:15 PM &middot; Break</p>
+          <h3>Processing in the open air</h3>
+          <p>Do not underestimate this moment. The garden conversations are where people process what just happened. Cross-team exchanges start naturally. Some participants will need to be alone. Let them. Others will cluster and talk urgently. The break is part of the emotional arc, not a pause from it. Resist the impulse to start Phase 2 early.</p>
+        </div>
+
+        <div class="journey-moment">
+          <p class="journey-time">6:05 PM &middot; Final Dispatch</p>
+          <h3>Quiet, not energy</h3>
+          <p>The room is emotionally different from three hours ago. Expect quiet, not applause. The lack of visible energy is a sign it is working. People are sitting with what they feel instead of rushing to respond. Notebooks are full. Some participants will look surprised by their own handwriting. Hold the silence after the final share-out longer than feels comfortable. That silence is where the afternoon lands.</p>
+        </div>
+
+        <div class="journey-moment">
+          <p class="journey-time">8:00 PM &middot; Dinner</p>
+          <h3>The real conversations begin</h3>
+          <p>The formal structure is gone. Watch for new connections forming between people from different teams. Notebooks on the table signal people are still processing. The most honest conversations of the day happen now. Someone will learn another person's name for the first time, four hours in. Do not close the evening. Let it close itself.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Closing -->
+  <section class="experience-closing reveal">
+    <p>If participants leave still thinking about the afternoon the next morning, the facilitation worked.</p>
+  </section>
+
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- BACKSTAGE -->
+<!-- ════════════════════════════════════════════ -->
+<div class="backstage" id="backstage">
+
+  <!-- Intro -->
+  <div class="backstage-intro">
+    <span class="badge">Organizers Only</span>
+    <p>You are now in the back office. What follows is for organizers only: format rationale, methodology notes, logistics, and roles. None of this is shared with guests.</p>
+  </div>
+
+  <!-- Methodology -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Methodology: What We Are Actually Doing</h2>
+      <p>This format synthesizes techniques from Jane McGonigal's <em>Imaginable</em> into a single facilitated afternoon. It is important to be honest about this: McGonigal presents these techniques as a cumulative progression across her book, not as a single-event format. Her large-scale IFTF games (Superstruct, EVOKE) were multi-week online experiences, not afternoon workshops.</p>
+      <p>What we do here is an <strong>adaptation faithful to the spirit and science of her work</strong>, not a replication of a format she runs. We can honestly say this is "inspired by the Imaginable methodology" and "based on futures thinking principles from Jane McGonigal."</p>
+
+      <h3>Techniques Embedded in the Format</h3>
+      <div class="technique-grid">
+        <div class="technique-card">
+          <h4>Episodic Future Thinking (EFT)</h4>
+          <p class="technique-def">Vividly pre-experiencing a future moment using the same neural systems that reconstruct memories. Not analysis from the outside. Immersive simulation from the inside.</p>
+          <p class="technique-where">Every dispatch. The 4 grounding questions.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Pre-Feeling</h4>
+          <p class="technique-def">The real emotional response generated during future simulations. Joy signals what you want. Dread signals what you need to prepare for. These feelings are data, not distraction.</p>
+          <p class="technique-where">Silent individual reaction (3 min after each dispatch).</p>
+        </div>
+        <div class="technique-card">
+          <h4>Hard Empathy</h4>
+          <p class="technique-def">Deliberate effort to understand lives radically unlike your own. Goes beyond ordinary empathy (relating through shared experience) into territory that requires real work.</p>
+          <p class="technique-where">"Who is most affected?" question. Mixed teams.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Signals of Change</h4>
+          <p class="technique-def">Real, concrete, observable examples of something already happening in the world that suggests things are shifting. Small in scale, often surprising, always verifiable.</p>
+          <p class="technique-where">"What signal from today connects?" question.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Urgent Optimism</h4>
+          <p class="technique-def">Not passive hope ("things will be fine") but active, felt agency ("things might be hard, and I can respond"). A trainable psychological posture, not a personality trait.</p>
+          <p class="technique-where">"What do you want to do about it?" question.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Shadow + Positive Imagination</h4>
+          <p class="technique-def">Two deliberate modes of thinking, both essential. Positive imagination builds confidence and reduces paralysis. Shadow imagination builds readiness and prevents denial. Realistic hope is the balance.</p>
+          <p class="technique-where">Dispatches alternate between hopeful and threatening.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Dator's Law</h4>
+          <p class="technique-def">"Any useful statement about the future should, at first, seem ridiculous." If a scenario does not feel strange, it is just an extrapolation of the present, not genuinely useful for building readiness.</p>
+          <p class="technique-where">Dispatches 4 and 5 push into "ridiculous" territory.</p>
+        </div>
+        <div class="technique-card">
+          <h4>Call to Adventure</h4>
+          <p class="technique-def">Shifts the experience from threat response to opportunity detection. Moves people from "that was interesting" to "here is what I will do." Produces urgent optimism rather than anxiety.</p>
+          <p class="technique-where">Phase 4 personal reflection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mixed Room -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Why the Mixed Room Changes Everything</h2>
+      <p>In most futures exercises, Hard Empathy is simulated. You ask someone to imagine being in another person's shoes. Here, the other person is sitting next to them. On the same team.</p>
+      <p>When a Portuguese participant hears Dispatch 4 ("The Language That Was Lost") and the foreign resident next to them has a completely different reaction, that is not an exercise. That is real emotional information. The pre-feeling is genuine. The discomfort is genuine. That is the point.</p>
+    </div>
+  </section>
+
+  <!-- Dispatch Design -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Dispatch Design Notes</h2>
+      <p>The five dispatches follow a deliberate arc:</p>
+      <table class="bs-table">
+        <thead>
+          <tr><th>#</th><th>Title</th><th>Emotional Territory</th><th>Design Intent</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>The Divided Neighborhood</td><td>Shadow + Positive</td><td>Start concrete and plausible. The twist opens curiosity.</td></tr>
+          <tr><td>2</td><td>The School That Chose</td><td>Shadow + Positive + Pre-Feeling</td><td>Touches children, education, identity. Visceral.</td></tr>
+          <tr><td>3</td><td>The Price of Belonging</td><td>Urgent Optimism + Shadow</td><td>A solution with side effects. What does belonging mean?</td></tr>
+          <tr><td>4</td><td>The Language That Was Lost</td><td>Dator's Law + Hard Empathy</td><td>Sounds strange today. But the signals exist.</td></tr>
+          <tr><td>5</td><td>The City That Reinvented Itself</td><td>Positive + Dator's Law</td><td>Ends with genuine possibility. "We changed the question."</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Co-writing the dispatches:</strong> The final versions should be co-written by all three organizers. Graça brings the political and civic angle. Nuno brings the neighborhood perspective. Gus brings the bridge between communities. Each dispatch benefits from being pressure-tested: "Would this land differently for a Portuguese parent vs. a foreign entrepreneur vs. a young activist?"</p>
+    </div>
+  </section>
+
+  <!-- Event Flow -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Event Flow</h2>
+
+      <div class="phase-card">
+        <p class="phase-label">Phase 1: Arrival and Context (30 min) <span class="phase-where">Garden</span></p>
+        <p>Guests arrive. Coffee. Informal conversation. Each person receives a notebook and pen.</p>
+        <p>Brief opening by the three organizers (5 minutes each, no slides):</p>
+        <ul>
+          <li><strong>Graça:</strong> Why thinking about the future matters. Futura Foundation's mission. The concept of "pre-feeling" futures before they arrive.</li>
+          <li><strong>Gus:</strong> What a social simulation is. The rules: no right answers. Emotions are data, not weakness. The goal is to prepare, not predict.</li>
+          <li><strong>Nuno:</strong> Look Lisbon as a meeting place. Why this neighborhood, this city, this conversation.</li>
+        </ul>
+        <p>Form teams of 4-5. Deliberate mix: Portuguese and international residents in every team.</p>
+      </div>
+
+      <div class="phase-card">
+        <p class="phase-label">Phase 2: The Five Rounds (3 hours) <span class="phase-where">Auditorium</span></p>
+        <p>Chairs in clusters of 4-5, not rows. Each round follows the same structure (~35 min):</p>
+        <div class="round-structure">
+          <ol>
+            <li><strong>Dispatch read aloud</strong> (2 min). Read by one of the organizers.</li>
+            <li><strong>Silent individual reaction</strong> (3 min). Write in notebook: first reaction, what do I feel?</li>
+            <li><strong>Team discussion</strong> (20 min). Four guiding questions printed on each table.</li>
+            <li><strong>Brief share-out</strong> (10 min). One spokesperson per team. 2 min each. No debate. Just listen.</li>
+          </ol>
+        </div>
+        <p><strong>15-minute break</strong> between dispatches 3 and 4. Garden. Fresh air. The informal conversations during the break are part of the process.</p>
+      </div>
+
+      <div class="phase-card">
+        <p class="phase-label">Phase 3: Synthesis (45 min) <span class="phase-where">Auditorium</span></p>
+        <p>Co-facilitated by Gus and Graça.</p>
+        <ul>
+          <li>What patterns emerged across the five dispatches?</li>
+          <li>What surprised you about your own reactions?</li>
+          <li>Where did teams diverge the most?</li>
+          <li>What signals from the present came up repeatedly?</li>
+        </ul>
+        <p>This phase does not seek consensus. It seeks patterns and surprises.</p>
+      </div>
+
+      <div class="phase-card">
+        <p class="phase-label">Phase 4: Personal Reflection (30 min) <span class="phase-where">Garden</span></p>
+        <p><strong>Individual (15 min):</strong> "After living this afternoon in 2036, what is one thing I want to change about how I am living in 2026?" Write in the notebook. Be specific.</p>
+        <p><strong>Pairs (15 min):</strong> Share with one person. Not the whole team. Intimacy. Someone who listens and witnesses.</p>
+      </div>
+
+      <div class="phase-card">
+        <p class="phase-label">Dinner (open-ended) <span class="phase-where">Garden</span></p>
+        <p>Dinner is part of the event, not an afterthought. The conversations during dinner are often the most honest ones. Notebooks stay on the table.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Timeline</h2>
+      <table class="bs-table">
+        <thead>
+          <tr><th>Time</th><th>What</th><th>Where</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2:30 PM</td><td>Arrival, coffee</td><td>Garden</td></tr>
+          <tr><td>3:00 PM</td><td>Opening (Graça, Gus, Nuno)</td><td>Auditorium</td></tr>
+          <tr><td>3:30 PM</td><td>Round 1: The Divided Neighborhood</td><td>Auditorium</td></tr>
+          <tr><td>4:05 PM</td><td>Round 2: The School That Chose</td><td>Auditorium</td></tr>
+          <tr><td>4:40 PM</td><td>Round 3: The Price of Belonging</td><td>Auditorium</td></tr>
+          <tr><td>5:15 PM</td><td>Break</td><td>Garden</td></tr>
+          <tr><td>5:30 PM</td><td>Round 4: The Language That Was Lost</td><td>Auditorium</td></tr>
+          <tr><td>6:05 PM</td><td>Round 5: The City That Reinvented Itself</td><td>Auditorium</td></tr>
+          <tr><td>6:40 PM</td><td>Synthesis</td><td>Auditorium</td></tr>
+          <tr><td>7:25 PM</td><td>Personal reflection</td><td>Garden</td></tr>
+          <tr><td>8:00 PM</td><td>Dinner</td><td>Garden / Deck</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Guest Curation -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Guest Curation</h2>
+      <p>The mix is critical. This is not a networking event. It is a simulation that works because of who is in the room.</p>
+
+      <h3>Target Composition (20 people)</h3>
+      <ul>
+        <li><strong>Roughly half Portuguese, half international residents</strong> (does not need to be exact, but close)</li>
+        <li><strong>Diversity of contexts:</strong> entrepreneurs, artists, activists, educators, parents, students, civic leaders</li>
+        <li><strong>People who live in Lisbon</strong> (not visitors or tourists)</li>
+        <li><strong>Openness to discomfort</strong> (screen for this when inviting)</li>
+      </ul>
+
+      <h3>Who Invites Whom</h3>
+      <ul>
+        <li><strong>Graça:</strong> Futura network, civic leaders, young Portuguese women, academia</li>
+        <li><strong>Gus:</strong> Fixed to Flow network, international professionals in Lisbon, entrepreneurs</li>
+        <li><strong>Nuno:</strong> Look Lisbon community, neighborhood residents, creatives, local connections</li>
+      </ul>
+
+      <h3>Invitation Approach</h3>
+      <p>Personal invitation, not a public event page. Each organizer reaches out individually to their invitees. The invitation should convey: this is an experience, not an event. Come prepared to feel something.</p>
+    </div>
+  </section>
+
+  <!-- Partner Roles -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Partner Roles</h2>
+
+      <div class="partner-card">
+        <h3>Graça Fonseca</h3>
+        <ul>
+          <li>Co-writes the dispatches (political, civic, and institutional perspective)</li>
+          <li>Opens the event (framing: why futures thinking, Futura's mission)</li>
+          <li>Co-facilitates synthesis (Phase 3) with Gus</li>
+          <li>Curates guests from Futura network</li>
+        </ul>
+        <div class="partner-gets">
+          <p>Prototype for Futura's Time Machine series. Tangible output (dispatches, patterns identified) for the foundation's work. A live demonstration of the kind of experience Futura wants to create before 2028.</p>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <h3>Nuno Loureiro</h3>
+        <ul>
+          <li>Co-writes the dispatches (neighborhood perspective, lived observation of change)</li>
+          <li>Provides Look Lisbon as venue (paid rental, terms to be agreed)</li>
+          <li>Opens the event (why this neighborhood, this city, this conversation)</li>
+          <li>Active participant in teams (not just a host)</li>
+          <li>Curates guests from his network</li>
+        </ul>
+        <div class="partner-gets">
+          <p>Look Lisbon positioned as a space for meaningful experiences. New people discovering the venue. An active role, not just room rental.</p>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <h3>Gus</h3>
+        <ul>
+          <li>Designs the format and leads facilitation (structure, timings, group dynamics)</li>
+          <li>Co-writes the dispatches (perspective from the intersection of communities)</li>
+          <li>Facilitates the 5 rounds and co-facilitates synthesis</li>
+          <li>Curates guests from Fixed to Flow network</li>
+        </ul>
+        <div class="partner-gets">
+          <p>Building offline experiences as a core part of Fixed to Flow. Strengthened relationships with Graça's and Nuno's networks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Materials and Production</h2>
+
+      <h3>What We Need</h3>
+      <ul>
+        <li>Notebooks and pens for all participants (20 sets)</li>
+        <li>Dispatches printed on quality card stock (5 dispatches x 4 copies per team = 20 prints)</li>
+        <li>Guiding questions printed on table cards (4 cards, one per team table)</li>
+        <li>Large paper or whiteboard for synthesis (Phase 3)</li>
+        <li>No projector. No slides. No screens.</li>
+      </ul>
+
+      <h3>Venue Setup</h3>
+      <ul>
+        <li><strong>Auditorium:</strong> Chairs and small tables in clusters of 4-5 (not rows). Space between clusters for movement.</li>
+        <li><strong>Garden:</strong> Coffee station on arrival. Individual reflection space. Dinner tables.</li>
+        <li><strong>Deck:</strong> Overflow for dinner.</li>
+      </ul>
+
+      <h3>Catering</h3>
+      <ul>
+        <li>Arrival: coffee, water, light snacks</li>
+        <li>Break (5:15 PM): refreshments in the garden</li>
+        <li>Dinner (8:00 PM): seated dinner in the garden. Simple, good food. Wine.</li>
+      </ul>
+
+      <h3>Weather Contingency (Plan B)</h3>
+      <p>If weather does not allow use of the garden/deck, all outdoor phases move indoors:</p>
+      <ul>
+        <li><strong>Arrival and coffee:</strong> Auditorium lobby or entrance area</li>
+        <li><strong>Personal reflection (Phase 4):</strong> Auditorium, with chairs spread out for individual space</li>
+        <li><strong>Dinner:</strong> Indoor setup at Look Lisbon (or alternative nearby venue if the auditorium cannot accommodate dinner seating)</li>
+      </ul>
+      <p>The contingency plan should be confirmed with Nuno when booking the date.</p>
+    </div>
+  </section>
+
+  <!-- Economics -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Economics</h2>
+      <dl class="info-grid">
+        <dt>Price</dt>
+        <dd>€350 per person. Grants available for participants who cannot afford the full price.</dd>
+        <dt>Cost to organize</dt>
+        <dd>~€2,750 (see breakdown below)</dd>
+        <dt>Who covers costs</dt>
+        <dd>Covered by ticket revenue.</dd>
+        <dt>Revenue goal</dt>
+        <dd>Cover costs and generate margin. Revenue split TBD between the three organizers.</dd>
+      </dl>
+
+      <h3>Revenue Projection</h3>
+      <p>20 participants total: 18 paying + 2 grants. 18 x €350 = <strong>€6,300 gross revenue</strong>.</p>
+
+      <h3>Cost Breakdown</h3>
+      <table class="bs-table">
+        <thead>
+          <tr><th>Item</th><th>Estimate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Venue (Look Lisbon)</td><td>€1,000</td></tr>
+          <tr><td>Catering (€35 x 20 pax: coffee, refreshments, dinner with wine)</td><td>€700</td></tr>
+          <tr><td>Facilitator</td><td>€750</td></tr>
+          <tr><td>Materials (notebooks, pens, printed dispatches, table cards)</td><td>€150</td></tr>
+          <tr><td>Contingency</td><td>€150</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>€2,750</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Margin</h3>
+      <p>Gross revenue: €6,300. Total costs: €2,750. <strong>Net margin: ~€3,550</strong> (before revenue split).</p>
+
+      <h3>Revenue Split</h3>
+      <p>TBD. To be discussed openly between the three organizers before the event, not after.</p>
+    </div>
+  </section>
+
+  <!-- Futura Connection -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Connection to Futura Foundation</h2>
+      <p>This event can serve as the <strong>prototype for the first Time Machine.</strong></p>
+      <p>The Time Machine format is still undefined. This simulation game tests exactly the kind of experience Futura wants to create: participatory, futures-focused, emotionally honest, producing tangible output.</p>
+      <p>If it works, the format evolves:</p>
+      <ul>
+        <li><strong>Time Machine #1 (this event):</strong> Lisboa 2036, coexistence between communities</li>
+        <li><strong>Future editions:</strong> Other themes connected to Futura's mission (future of education, women's leadership, participatory democracy)</li>
+        <li><strong>The format scales:</strong> Can run in different cities, with different dispatches, keeping the same structure</li>
+      </ul>
+      <p>The "Cartas do Futuro" concept Graça mentioned fits naturally: the dispatches ARE letters from the future. Phase 4 reflection could include writing a letter to your 2036 self.</p>
+    </div>
+  </section>
+
+  <!-- Experience Design -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Experience Design</h2>
+
+      <h3>Signature Elements</h3>
+      <ul>
+        <li><strong>The notebook:</strong> Every participant writes by hand throughout. Their notebook becomes a personal artifact of the afternoon.</li>
+        <li><strong>The mixed teams:</strong> Portuguese and international residents on every team. The diversity is not a bonus. It is the mechanism.</li>
+        <li><strong>The escalation arc:</strong> Five dispatches that move from plausible to strange. By dispatch 4, the room feels different than it did at dispatch 1.</li>
+        <li><strong>Dinner as resolution:</strong> The event does not end with a closing speech. It ends with food, wine, and the most honest conversations of the day.</li>
+      </ul>
+
+      <h3>EPIC Framework Analysis</h3>
+      <p>From <em>The Power of Moments</em> (Chip & Dan Heath). Which elements create peak moments in this experience?</p>
+      <div class="epic-grid">
+        <div class="epic-card">
+          <h4>Elevation</h4>
+          <p>The entire format breaks routine. Stepping into 2036, receiving "dispatches from the future," the escalating strangeness of the scenarios. No screens, no slides. An afternoon unlike anything else.</p>
+        </div>
+        <div class="epic-card">
+          <h4>Pride</h4>
+          <p>Participants are invited because they are trusted to engage with difficult questions. The personal reflection ("what do I want to change about how I am living in 2026?") honors the courage to look honestly at oneself.</p>
+        </div>
+        <div class="epic-card">
+          <h4>Insight</h4>
+          <p>The dispatches are designed to surface surprising reactions. "Not the way anyone expected" is a recurring motif. The synthesis phase explicitly looks for patterns and surprises. The mixed room guarantees that someone next to you sees the same future differently.</p>
+        </div>
+        <div class="epic-card">
+          <h4>Connection</h4>
+          <p>Five people on a team, debating futures that matter to all of them. The pair sharing in Phase 4 creates intimacy. Dinner continues the conversation. These are bonds forged through shared emotional experience, not small talk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Purpose -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Business Purpose</h2>
+      <dl class="info-grid">
+        <dt>Objective</dt>
+        <dd>Revenue (cover costs, potential margin). Community and network building across the three organizers' worlds.</dd>
+        <dt>For Gus</dt>
+        <dd>Building offline experiences as a core part of Fixed to Flow.</dd>
+        <dt>Outcome</dt>
+        <dd>Each participant leaves with a clearer picture of the Lisbon they want to help build, and a relationship with 20 people who were honest in the same room.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Operational -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Operational</h2>
+      <dl class="info-grid">
+        <dt>Invitation</dt>
+        <dd>Personal message from each organizer to their invitees. Not a public event page.</dd>
+        <dt>RSVP</dt>
+        <dd>Direct reply to the inviting organizer. Keep it personal.</dd>
+        <dt>Pre-event</dt>
+        <dd>Short context note 3 days before: what to expect, what the afternoon asks of you, logistics. No reading material. Come as you are.</dd>
+        <dt>Post-event</dt>
+        <dd>See Post-Event Follow-Up section below.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Post-Event Follow-Up -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Post-Event Follow-Up</h2>
+      <ol>
+        <li><strong>Thank-you message to participants</strong> (within 48 hours). Personal, not templated. Include photos from the event.</li>
+        <li><strong>Feedback request</strong> (sent with or shortly after the thank-you). Short. Not a survey. 2-3 open questions: What stayed with you? What would you change? Would you come back for a different theme?</li>
+        <li><strong>Organizer debrief</strong> (within 1 week). Graça, Gus, Nuno. What worked, what to change, does the format continue? Decide: standalone, part of Time Machine, different theme, pause.</li>
+        <li><strong>Written piece capturing key patterns and insights</strong> from the event. Co-authored or co-signed by the three organizers. Shared with participants first, then published (newsletter, LinkedIn, or similar).</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pre-Launch Checklist -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Pre-Launch Checklist</h2>
+      <ul>
+        <li>Confirm date: April 17, 2026 (proposed, needs alignment with Graça and Nuno)</li>
+        <li>Confirm venue availability with Nuno for that date</li>
+        <li>Agree on venue cost with Nuno</li>
+        <li>Agree on revenue split model between the three organizers</li>
+        <li>Define number of grants and criteria</li>
+        <li>Co-write final dispatches (Graça + Nuno + Gus)</li>
+        <li>Set up payment/ticketing method</li>
+        <li>Confirm weather contingency plan with Nuno</li>
+        <li>Confirm catering (menu, cost, provider)</li>
+        <li>Draft invitation message</li>
+        <li>Each organizer prepares their guest list</li>
+        <li>Send invitations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- First Edition -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>First Edition</h2>
+      <p><strong>Internal framing:</strong> This is a prototype. The format is being tested. The post-event debrief will decide if and how it continues: standalone, part of Futura's Time Machine, different theme, or pause.</p>
+      <p><strong>External framing (for participants):</strong> "This is the first edition." No prototype language. The experience should feel complete and intentional, not experimental.</p>
+    </div>
+  </section>
+
+  <!-- Discussion Points -->
+  <section class="bs-section">
+    <div class="bs-inner">
+      <h2>Discussion Points for the Meeting</h2>
+      <div class="discussion-list">
+        <div class="discussion-item">
+          <h4>Date</h4>
+          <p>When can all three organizers make this happen?</p>
+        </div>
+        <div class="discussion-item">
+          <h4>Budget split</h4>
+          <p>Who covers what? Catering is the main cost.</p>
+        </div>
+        <div class="discussion-item">
+          <h4>Positioning</h4>
+          <p>Is this a future Time Machine edition, or a standalone joint event? Graça's call.</p>
+        </div>
+        <div class="discussion-item">
+          <h4>Theme validation</h4>
+          <p>Is Portuguese/international coexistence the right theme for the first edition, or something broader?</p>
+        </div>
+        <div class="discussion-item">
+          <h4>Dispatches</h4>
+          <p>Current drafts need co-writing with Graça and Nuno. What angles are missing?</p>
+        </div>
+        <div class="discussion-item">
+          <h4>RSVP method</h4>
+          <p>Simple form or direct reply?</p>
+        </div>
+        <div class="discussion-item">
+          <h4>Pre-event communication</h4>
+          <p>What context do participants receive beforehand?</p>
+        </div>
+        <div class="discussion-item">
+          <h4><s>Post-event follow-up</s></h4>
+          <p>Defined above.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // View switching
+  function switchView(view) {
+    const frontstage = document.getElementById('frontstage');
+    const experience = document.getElementById('experience');
+    const backstage = document.getElementById('backstage');
+    const nav = document.getElementById('navToggle');
+    const buttons = document.querySelectorAll('.nav-btn');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-view="${view}"]`).classList.add('active');
+
+    // Hide all views
+    frontstage.classList.add('hidden');
+    experience.classList.remove('visible');
+    backstage.classList.remove('visible');
+    nav.classList.remove('backstage-active');
+    nav.classList.remove('experience-active');
+
+    if (view === 'frontstage') {
+      frontstage.classList.remove('hidden');
+      document.body.style.background = 'var(--cream)';
+    } else if (view === 'experience') {
+      experience.classList.add('visible');
+      nav.classList.add('experience-active');
+      document.body.style.background = 'var(--backstage-bg)';
+    } else {
+      backstage.classList.add('visible');
+      nav.classList.add('backstage-active');
+      document.body.style.background = 'var(--backstage-bg)';
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  window.initScrollReveal = function() {
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  };
+
+  // Only init scroll reveal if already authenticated
+  if (sessionStorage.getItem('lisboa2036_auth') === 'true') {
+    window.initScrollReveal();
+  }
+</script>
+
+</div><!-- end .page-content -->
+
+<script>
+  // ==========================================
+  // PASSWORD CONFIGURATION (SHA-256 hash)
+  // ==========================================
+  const PAGE_HASH = '8f6273da93735c7bb6e77bf86385ac4f95c26631bfbd23311eaa05730d26d5b6';
+
+  async function hashPassword(password) {
+    const encoded = new TextEncoder().encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const passwordOverlay = document.getElementById('passwordOverlay');
+  const pageContent = document.getElementById('pageContent');
+  const passwordForm = document.getElementById('passwordForm');
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordError = document.getElementById('passwordError');
+
+  // Check if already authenticated
+  if (sessionStorage.getItem('lisboa2036_auth') === 'true') {
+    passwordOverlay.classList.add('hidden');
+    pageContent.classList.add('visible');
+  }
+
+  passwordForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const enteredHash = await hashPassword(passwordInput.value);
+
+    if (enteredHash === PAGE_HASH) {
+      sessionStorage.setItem('lisboa2036_auth', 'true');
+      passwordOverlay.classList.add('hidden');
+      pageContent.classList.add('visible');
+      setTimeout(window.initScrollReveal, 100);
+    } else {
+      passwordInput.classList.add('error');
+      passwordError.classList.add('visible');
+      setTimeout(() => { passwordInput.classList.remove('error'); }, 500);
+    }
+  });
+
+  passwordInput.addEventListener('input', function() {
+    passwordError.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
