@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futura Foundation | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy:        #0A1628;
+            --navy-mid:    #162744;
+            --amber:       #E8A838;
+            --amber-dark:  #CC8F2A;
+            --sage:        #7A9E8E;
+            --sage-light:  #E8F0EC;
+            --cream:       #FAF6EF;
+            --white:       #FFFFFF;
+            --black:       #0D0D0D;
+            --gray:        #4A4A4A;
+            --coral:       #E85D4A;
+            --teal:        #2A8B7A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           PASSWORD OVERLAY
+           ========================================== */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--navy);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-overlay.hidden .password-card {
+            transform: scale(1.04);
+            opacity: 0;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .password-card {
+            background: var(--white);
+            padding: 56px 48px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border-top: 6px solid var(--amber);
+            animation: cardEntrance 0.6s ease-out;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .password-logo {
+            margin-bottom: 40px;
+        }
+
+        .password-logo img {
+            height: 22px;
+            width: auto;
+        }
+
+        .password-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .password-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #D0D0D0;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+        }
+
+        .password-input:focus {
+            border-color: var(--amber);
+            box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.15);
+        }
+
+        .password-input.error {
+            border-color: var(--coral);
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .password-error {
+            color: var(--coral);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .password-error.visible {
+            display: block;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.2s ease;
+        }
+
+        .password-btn:hover {
+            background: #1a2d4a;
+        }
+
+        /* ==========================================
+           PROPOSAL CONTENT
+           ========================================== */
+        .proposal-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .proposal-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ==========================================
+           HEADER
+           ========================================== */
+        .proposal-header {
+            padding: 80px 40px 100px;
+            background: var(--navy);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .proposal-header::before {
+            content: 'FUTURA';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(100px, 22vw, 320px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .header-logo {
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-logo img {
+            height: 20px;
+            width: auto;
+            opacity: 0.85;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-confidential {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.35);
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 1;
+        }
+
+        .header-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-label::before {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--amber);
+        }
+
+        .header-client {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.0;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .header-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 500;
+            color: var(--amber);
+            max-width: 550px;
+            margin: 0 auto 28px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .header-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           SECTIONS
+           ========================================== */
+        .section {
+            padding: 120px 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .section > *:not(.feature-grid):not(.role-grid):not(.amplify-protect-grid):not(.investment-table-wrapper) {
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-cream {
+            background: var(--cream);
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-sage-light {
+            background: var(--sage-light);
+        }
+
+        .section-navy {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .section-navy .section-title {
+            color: var(--white);
+        }
+
+        .section-navy p {
+            color: rgba(255, 255, 255, 0.65) !important;
+        }
+
+        .section-navy ul li {
+            color: rgba(255, 255, 255, 0.65) !important;
+        }
+
+        .section-navy ul li strong {
+            color: inherit !important;
+        }
+
+        .section-navy ul li::before {
+            background: var(--amber);
+        }
+
+        .section-black {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-black .section-title {
+            color: var(--white);
+        }
+
+        .section-black p {
+            color: rgba(255, 255, 255, 0.65) !important;
+        }
+
+        .section-black ul li {
+            color: rgba(255, 255, 255, 0.65) !important;
+        }
+
+        .section-black ul li strong {
+            color: inherit !important;
+        }
+
+        .section-black ul li::before {
+            background: var(--amber);
+        }
+
+        .section-black .subsection-title {
+            color: var(--amber);
+        }
+
+        .section-black .section-number {
+            color: rgba(255, 255, 255, 0.04);
+        }
+
+        .section-black .role-card + .role-card {
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .section-black .role-card:nth-child(odd) {
+            border-right-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .section-black .role-card:nth-child(1),
+        .section-black .role-card:nth-child(2) {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .section-black .role-name {
+            color: var(--white);
+        }
+
+        .section-black .role-card ul li {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .section-sage {
+            background: var(--sage);
+            color: var(--white);
+        }
+
+        .section-sage .section-title {
+            color: var(--white);
+        }
+
+        .section-sage p {
+            color: var(--gray);
+        }
+
+        .section-amber {
+            background: var(--amber);
+            color: var(--navy);
+        }
+
+        .section-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 36px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .track-label {
+            font-size: 0.5em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+
+        .section-cream .track-label {
+            color: var(--black);
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--amber);
+        }
+
+        .section-navy .section-title em {
+            color: var(--amber);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.85;
+        }
+
+        .section p + p {
+            margin-top: 24px;
+        }
+
+        .section p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section-navy p strong {
+            color: var(--white);
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 28px 0;
+        }
+
+        .section ul li {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--amber);
+        }
+
+        .section ul li strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* Section number labels */
+        .section-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(8rem, 15vw, 14rem);
+            font-weight: 700;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-navy .section-number {
+            color: rgba(255, 255, 255, 0.04);
+        }
+
+        .section-cream .section-number {
+            color: rgba(0, 0, 0, 0.04);
+        }
+
+        .section > *:not(.section-number) {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           HIGHLIGHT / ROI BOXES
+           ========================================== */
+        .highlight-box {
+            background: #F9F3DB;
+            color: var(--navy);
+            padding: 32px 36px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .highlight-box p {
+            color: var(--navy) !important;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.75;
+        }
+
+        .highlight-box p strong {
+            color: var(--navy) !important;
+            font-weight: 700;
+        }
+
+        .highlight-box .roi-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--navy);
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        /* Navy sections: amber ROI boxes need no change */
+        /* Cream/white sections: amber ROI boxes work as-is */
+
+        /* ==========================================
+           SUBSECTION HEADERS
+           ========================================== */
+        .subsection-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 60px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .subsection-title:first-of-type {
+            margin-top: 40px;
+        }
+
+        .section-navy .subsection-title {
+            color: var(--amber);
+        }
+
+        /* ==========================================
+           FEATURE CARDS GRID (Notion features)
+           ========================================== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin: 36px auto;
+            max-width: 900px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 28px 24px;
+        }
+
+        .section-navy .feature-card {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .feature-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           AMPLIFY & PROTECT GRID
+           ========================================== */
+        .amplify-protect-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 36px auto;
+            max-width: 900px;
+        }
+
+        .ap-card {
+            padding: 40px 32px;
+        }
+
+        .ap-card.amplify {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .ap-card.protect {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .ap-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .ap-card ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .ap-card ul li {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .ap-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+        }
+
+        /* ==========================================
+           ROLE CARDS GRID
+           ========================================== */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            margin: 36px auto;
+            max-width: 900px;
+        }
+
+        .role-card {
+            background: transparent;
+            padding: 32px 28px;
+            border-left: none;
+            border-top: 4px solid var(--amber);
+        }
+
+        .role-card + .role-card {
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .role-card:nth-child(odd) {
+            border-right: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .role-card:nth-child(1),
+        .role-card:nth-child(2) {
+            border-top: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .role-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--black);
+        }
+
+        .role-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--amber-dark);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .role-card ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .role-card ul li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .role-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: var(--amber);
+        }
+
+        /* ==========================================
+           INVESTMENT TABLE
+           ========================================== */
+        .investment-table-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .investment-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: transparent;
+        }
+
+        .investment-table thead th {
+            background: var(--amber);
+            color: var(--navy);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 20px 24px;
+            text-align: left;
+        }
+
+        .investment-table thead th:last-child {
+            text-align: right;
+        }
+
+        .investment-table tbody td {
+            padding: 24px;
+            font-size: 1rem;
+            color: #FFFFFF;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+        }
+
+        .investment-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .investment-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .investment-table tbody td:last-child {
+            text-align: right;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        /* ==========================================
+           ONGOING SUPPORT CARDS
+           ========================================== */
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 700px;
+            margin: 36px auto;
+        }
+
+        .support-card {
+            background: transparent;
+            padding: 32px 24px;
+            border-top: 4px solid var(--amber);
+        }
+
+        .support-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .support-card ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .support-card ul li {
+            font-size: 0.9rem;
+            color: var(--gray);
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .support-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: var(--amber);
+        }
+
+        .support-card ul li strong {
+            color: var(--black);
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about-section {
+            background: var(--white);
+            padding: 120px 40px;
+        }
+
+        .about-content {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 18px;
+            line-height: 1.85;
+        }
+
+        .about-text p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .about-subsection {
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 4px solid var(--amber);
+        }
+
+        .about-subsection h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .about-subsection p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 12px;
+            line-height: 1.85;
+        }
+
+        /* ==========================================
+           NEXT STEPS
+           ========================================== */
+        .next-steps {
+            background: var(--amber);
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .next-steps-content {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .next-steps h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+            text-transform: uppercase;
+        }
+
+        .next-steps p {
+            font-size: 1.1rem;
+            color: var(--navy);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .validity {
+            margin-top: 48px;
+            font-size: 0.9rem;
+            color: var(--navy);
+            opacity: 0.5;
+            line-height: 1.8;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .proposal-footer {
+            padding: 48px 40px;
+            text-align: center;
+            background: var(--navy);
+        }
+
+        .footer-logo img {
+            height: 18px;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 900px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .proposal-header {
+                min-height: 80vh;
+                padding: 60px 24px 80px;
+            }
+
+            .header-confidential {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .section {
+                padding: 80px 24px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .amplify-protect-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-card:nth-child(odd) {
+                border-right: none;
+            }
+
+            .role-card:nth-child(1),
+            .role-card:nth-child(2) {
+                border-bottom: none;
+            }
+
+            .role-card + .role-card {
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
+            }
+
+            .investment-table-wrapper {
+                overflow-x: auto;
+            }
+
+            .password-card {
+                padding: 40px 28px;
+            }
+
+            .section-number {
+                font-size: clamp(5rem, 20vw, 8rem);
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* ==========================================
+           PRINT
+           ========================================== */
+        @media print {
+            .password-overlay { display: none !important; }
+            .proposal-content { opacity: 1 !important; visibility: visible !important; }
+            .section { padding: 40px 20px; }
+            .section-navy { background: #f0f0f0 !important; color: var(--black) !important; }
+            .section-navy .section-title { color: var(--black) !important; }
+            .section-navy p { color: var(--gray) !important; }
+            .section-navy ul li { color: var(--gray) !important; }
+            .section-sage { background: #e8e8e8 !important; color: var(--black) !important; }
+            .support-card { background: #f5f5f5 !important; }
+            .support-card h4 { color: var(--black) !important; }
+            .support-card ul li { color: var(--gray) !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Overlay -->
+    <div class="password-overlay hidden" id="passwordOverlay">
+        <div class="password-card">
+            <div class="password-logo">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </div>
+            <p class="password-subtitle">Crafted with care for the Futura Foundation.</p>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Enter password"
+                        autocomplete="off"
+                        autofocus
+                    >
+                    <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
+                </div>
+                <button type="submit" class="password-btn">View Proposal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proposal Content -->
+    <div class="proposal-content visible" id="proposalContent">
+
+        <!-- Header -->
+        <header class="proposal-header">
+            <div class="header-logo">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </div>
+            <span class="header-confidential">Confidential</span>
+            <span class="header-label">Proposal</span>
+            <h1 class="header-client">Futura Foundation</h1>
+            <p class="header-subtitle">From Vision to Flow</p>
+            <p class="header-date">March 2026</p>
+        </header>
+
+        <!-- Context Section -->
+        <section class="section section-cream">
+            <h2 class="section-title">The <em>Context</em></h2>
+            <p>Futura Foundation is building from scratch. The Dragon Dreaming report maps 18 milestones, 7 strategic objectives, and a backcasting timeline that matches the scale of the ambition. The dream is clear. The foundations need to be equally strong.</p>
+            <p>The DD report itself flagged the #1 constraining force: "Lack of Clear Decision-Making Roles." Today Futura has a small team. That team will grow. And as it grows, coordination complexity multiplies.</p>
+            <p>Governance, decision-making, and operational clarity need to be in place before that happens. The goal is to amplify the team, so that each new person adds momentum, not complexity.</p>
+        </section>
+
+        <!-- Challenge Section -->
+        <section class="section section-white">
+            <div class="section-inner">
+                <h2 class="section-title">The <em>Challenge</em></h2>
+                <p>Futura is a foundation that will only work if it retains its human depth. Its credibility depends on that. The quality of fellow selection, the authenticity of relationships with donors and partners, the vision that makes the whole thing coherent. That's irreplaceable.</p>
+                <p>At the same time, a small team running 18 milestones on a 2028 deadline cannot afford to waste hours re-explaining decisions, searching for documents, or waiting to know who approves what. And when the team starts to grow, the goal is that capacity grows with it, instead of multiplying the coordination problems that naturally come with scale.</p>
+                <p>This requires care.</p>
+                <p>The systems should amplify the team, and the human depth that makes Futura credible should shape every operational choice.</p>
+                <div class="highlight-box">
+                    <p>The approach: ground the core and amplify everything else.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Answer Section -->
+        <section class="section section-sage-light">
+            <h2 class="section-title">Our <em>Answer</em></h2>
+            <p>Graça asked us to think about two things. How to turn this report into something that actually runs. And how to make the team stronger with AI while protecting what counts most: their judgment, their ethics, their values.</p>
+            <p>The two questions have one answer. A solid operational foundation turns the report into a living plan. Thoughtful AI adoption multiplies what the team already does well.</p>
+        </section>
+
+        <!-- How We Work Section -->
+        <section class="section section-white">
+            <div class="section-inner">
+                <h2 class="section-title">How We <em>Work</em></h2>
+                <p>We build with the team.</p>
+                <p>That means co-designing solutions with the people who will actually use them, drawing on the diversity already in the room, and choosing the building blocks based on what Futura specifically needs.</p>
+                <p>We also protect the team's time. Co-design doesn't mean endless workshops. It means structured moments where people contribute meaningfully and get back to their work.</p>
+                <p>The systems are built to grow with Futura. Simple enough to adopt today, structured to expand as the team grows.</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TRACK 1: OPERATIONS & SYSTEMS
+             ========================================== -->
+        <section class="section section-navy">
+            <span class="section-number">01</span>
+            <h2 class="section-title"><span class="track-label">Track 1</span><br><em>Operations & Systems</em></h2>
+            <p>We believe in just enough structure: enough to run clearly, not so much that it slows the team down. The system fits Futura's current size and ambition, and scales as both grow.</p>
+
+            <!-- Governance -->
+            <h3 class="subsection-title">Governance Framework Design</h3>
+            <p>The DD report has more than 10 unanswered governance questions: reporting lines, decision authority between the Board and the operational team, approval processes for expenses, contracts, and vacations, consent versus consensus.</p>
+            <p>The focus here is drafting the actual processes and testing them. The starting point is simple: every decision needs one owner, and everyone else needs to know their role. We'll introduce a couple of lightweight frameworks (think RAPID, think RACI) as tools for building that muscle, then adapt from there.</p>
+            <p>There's also a timing argument. Coordination pairs grow fast: 3 people means 3 pairs to align; 6 people means 15. Designing governance at 3 is cheap. Retrofitting at 6, with new hires already forming habits, costs far more.</p>
+            <p><strong>What this looks like in practice:</strong></p>
+            <ul>
+                <li>Work with the core team to draft governance processes and test them</li>
+                <li>Create simple, visual decision flows: who decides what, who gets consulted, who gets informed</li>
+                <li>Set up a 90-day trial period with a built-in review to adjust what isn't working</li>
+                <li><strong>Deliverable:</strong> a governance document (2-3 pages) with clear, actionable processes</li>
+            </ul>
+            <div class="highlight-box">
+                <span class="roi-label">Return on investment</span>
+                <p>The DD report scored "Lack of Clear Decision-Making Roles" as the #1 constraining force (-8). Every unclear decision costs time: back-and-forth messages, waiting for approval that nobody knows who gives, re-doing work because the wrong person decided. One governance bottleneck resolved per week saves 2-3 hours of coordination time. The coordination pairs argument makes the timing case: 3 people means 3 pairs, 6 people means 15. The cost of designing governance now is a fraction of the cost of fixing misaligned habits after the new hires arrive.</p>
+            </div>
+
+            <!-- Notion Setup -->
+            <h3 class="subsection-title">Notion Setup: Futura's Operating System</h3>
+            <p>This is the moment to design systems right, before the complexity multiplies. Notion fits because it grows with the team: start simple, add structure as needed. It also includes the latest AI models at no extra cost, so there's no separate investment in AI tooling.</p>
+            <p>The design principle is just enough operations: match system complexity to team size. Over-engineering kills adoption. Under-structuring kills coordination.</p>
+            <p><strong>Some of the things we'll build together:</strong></p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Project Tracker</h4>
+                    <p>Each backcasting milestone as a project, with owners, dates, and dependencies. The DD report stops being a PDF and becomes a living plan.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Decision Log</h4>
+                    <p>Every decision captured with context: what was decided, when, by whom, and why. Nothing lives only in someone's memory.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Meeting Notes</h4>
+                    <p>Structured templates with assigned actions and clear follow-up.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Knowledge Base</h4>
+                    <p>Institutional documentation: governance, policies, processes, references.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Partnership CRM</h4>
+                    <p>Tracking relationships with partners, mentors, and donors.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Fellowship Pipeline</h4>
+                    <p>Structure ready when the time comes.</p>
+                </div>
+            </div>
+
+            <p><strong>What comes next.</strong> Notion launched Custom Agents in February 2026: autonomous AI agents that run inside the workspace, triggered by schedules, database changes, or incoming messages. Once the workspace is well-structured, agents can answer repetitive questions from the knowledge base, route partner requests to the right person, and generate weekly status updates automatically. Agents are the final layer. A poorly structured workspace produces bad agent output. This is why setup sequence matters.</p>
+            <p>Notion AI is included in Business plans at no extra cost since January 2026. Every database item gets auto-generated summaries and tags. Semantic search works across the whole workspace. Meeting notes transcribe with one tap. Through Notion's MCP server, the institutional knowledge captured in Notion becomes available to any AI tool the team uses.</p>
+            <p><strong>Fellowship as a learning environment.</strong> Notion is already the platform of choice for cohort programs and learning communities worldwide. As Futura Lab develops, the same workspace can naturally extend to become the fellows' hub: onboarding guides, mentor directories, project portfolios, reading lists. No separate platform needed.</p>
+            <div class="highlight-box">
+                <span class="roi-label">Return on investment</span>
+                <p>A structured workspace pays off everywhere: fewer repeated questions, less context lost between meetings, faster onboarding, traceable decisions. With Notion AI, anyone on the team can query the workspace in natural language and get instant answers. Custom Agents handle recurring tasks automatically. This goes beyond hours recovered. It's a team that operates with more clarity at every step.</p>
+            </div>
+
+            <!-- Context Engineering -->
+            <h3 class="subsection-title">Context Engineering: Institutional Memory</h3>
+            <p>This is the highest-value component that nobody talks about until it's missing.</p>
+            <p>There is no inherited system or archive to rely on. Knowledge lives in people's heads, in WhatsApp messages, in emails buried three months ago. Context engineering means capturing decisions, rationale, and institutional knowledge from the beginning, so the same information is used everywhere, nothing is lost, and no one wastes time re-explaining what was already decided.</p>
+            <p><strong>In practice:</strong></p>
+            <ul>
+                <li>Every decision is captured with context: what was decided, why, what alternatives were considered</li>
+                <li>Every milestone gets a record: what went well, what changed, why</li>
+                <li>When someone new joins, they have access to the "why" behind everything</li>
+                <li>When preparing a presentation for donors, the context is already organized</li>
+                <li>When the fellowship program starts being designed, all prior thinking is accessible</li>
+            </ul>
+            <p>Notion is the tool. Context engineering is the discipline and the architecture. The tool without the discipline gives organized folders full of outdated documents. The discipline without the tool gives good habits with no system to support them.</p>
+            <p>Fixed to Flow teaches the discipline and builds the system to support it.</p>
+            <div class="highlight-box">
+                <span class="roi-label">Return on investment</span>
+                <p>The real return is compounding knowledge. Every decision captured with its rationale becomes a foundation the team builds on. Context doesn't get lost between meetings, it accumulates. New hires read the "why" behind past decisions instead of asking everyone to re-explain. Donor questions get answered from a system, not from someone's memory. Over time, the team stops repeating itself and starts building on what it already knows. That compounding effect is worth more than any number of recovered hours.</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TRACK 2: TEAM AI ENABLEMENT
+             ========================================== -->
+        <section class="section section-cream">
+            <span class="section-number">02</span>
+            <div class="section-inner">
+                <h2 class="section-title"><span class="track-label">Track 2</span><br><em>Team AI Enablement</em></h2>
+                <p>This is where Futura's mission becomes daily work. The team carrying that weight deserves more than a generic AI workshop. This track goes deep: building strong responsible AI guidelines, equipping each person with the AI skills that amplify their specific role, and protecting the team from the real risks that come with uncritical AI adoption. Both sides carry equal weight.</p>
+
+                <!-- Personal Assessment -->
+                <h3 class="subsection-title">Personal Assessment & AI Plan</h3>
+                <p>Before teaching anything, we need to understand each person's actual work.</p>
+                <p>For each team member, an individual assessment covers their daily tasks, tools, pain points, and AI comfort level. The output is a personal AI plan mapping where AI amplifies their specific role and where human judgment stays essential. The plan becomes their roadmap: what to try first, what to build over time, what to revisit in three months.</p>
+                <p>The lens for every assessment is the <strong>"Amplify AND Protect" framework.</strong></p>
+                <p>Foundations are different from companies. The risk of AI for Futura is losing the human depth that makes the mission credible. The framework is a way of thinking that the team internalizes and applies to every new tool and every new workflow.</p>
+            </div>
+
+            <!-- Amplify & Protect Grid -->
+            <div class="amplify-protect-grid">
+                <div class="ap-card amplify">
+                    <h4>Amplify (where AI helps)</h4>
+                    <ul>
+                        <li>Research and information synthesis</li>
+                        <li>Scenario drafting and future thinking: test different hypotheses faster</li>
+                        <li>Draft communications: emails, social media, newsletter</li>
+                        <li>Data organization and reports</li>
+                        <li>Translation and content adaptation</li>
+                        <li>Schedule management and logistics</li>
+                    </ul>
+                </div>
+                <div class="ap-card protect">
+                    <h4>Protect (where humans must lead)</h4>
+                    <ul>
+                        <li>Fellow selection: human judgment, empathy, intuition</li>
+                        <li>Relationships with donors and partners: trust, authenticity</li>
+                        <li>Strategic vision and decision-making</li>
+                        <li>Mentoring and fellow accompaniment</li>
+                        <li>Futura's voice: tone, values, public positioning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-inner">
+                <p>A useful test for each task: "If AI stopped working right now, could we complete this?" Yes means safe. No means the team is in atrophy territory. A peer-reviewed MDPI study (2024) found that frequent AI delegation can reduce independent reasoning capacity over time. The Protect list is a safeguard. It is also a discipline that keeps the team sharp.</p>
+                <p><strong>AI by role.</strong> These profiles are the starting point for each personal plan.</p>
+            </div>
+
+            <!-- Role Cards Grid -->
+            <div class="role-grid">
+                <div class="role-card">
+                    <p class="role-name">Graça</p>
+                    <p class="role-title">CEO</p>
+                    <ul>
+                        <li>Scenario analysis to support decisions</li>
+                        <li>Report and long document synthesis</li>
+                        <li>Strategic correspondence with partners</li>
+                        <li>Meeting preparation: automatic briefings, key points</li>
+                        <li>Speech and presentation drafts</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <p class="role-name">Leonor</p>
+                    <p class="role-title">Operations Manager</p>
+                    <ul>
+                        <li>Social media: calendar, post drafts, engagement analysis</li>
+                        <li>Event planning: checklists, timelines, templates</li>
+                        <li>Email drafts and partner outreach</li>
+                        <li>Podcast show notes</li>
+                        <li>Project management: updates, weekly summaries</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <p class="role-name">Megan</p>
+                    <p class="role-title">Brand Strategist</p>
+                    <ul>
+                        <li>Copywriting: website, newsletter, social media</li>
+                        <li>Visual brainstorming and creative direction briefs</li>
+                        <li>Market research and benchmarking</li>
+                        <li>Adapting content across channels</li>
+                        <li>Brand consistency analysis</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <p class="role-name">Ellen</p>
+                    <p class="role-title">Compliance Officer</p>
+                    <ul>
+                        <li>Contract and legal document review</li>
+                        <li>Legislation and regulation research</li>
+                        <li>Compliance checklists for tax filing and reporting</li>
+                        <li>Internal policy templates</li>
+                        <li>Regulatory deadline monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-inner">
+                <div class="highlight-box">
+                    <span class="roi-label">Return on investment</span>
+                    <p>Each person gets clarity on their top 3-5 AI opportunities within a week. The "I don't know where to start" paralysis ends. In our experience at Fixed to Flow, a well-targeted AI setup recovers up to 50% of the time people spend on routine and repetitive work. For a three-person operational team, that is a significant multiplier on capacity.</p>
+                </div>
+
+                <!-- Group Session -->
+                <h3 class="subsection-title">Group Session & Individual Deep Dives</h3>
+                <p>One hands-on session (up to 6 people) covering AI fundamentals, the "Amplify AND Protect" framework, and practical exercises with real tools. This sets a shared baseline for the whole team: what AI can do, how Futura will use it responsibly, and the language the team will use going forward.</p>
+                <p>The individual deep dives follow. Up to two sessions of 60 minutes each per team member. Tool setup, specific workflows for their role, supervised practice. Each person walks away with working AI workflows they can use the next day.</p>
+                <div class="highlight-box">
+                    <span class="roi-label">Return on investment</span>
+                    <p>The group session creates a shared language across the whole team. Everyone understands the same framework, the same risks, and the same principles from day one. The individual deep dives turn that shared foundation into personal practice. Each person leaves with working AI workflows they can use the next day, built for their specific role and tested in a safe setting.</p>
+                </div>
+
+                <!-- Ethical AI -->
+                <h3 class="subsection-title">Ethical & Responsible AI for Futura</h3>
+                <p>For a foundation built on human development, getting AI right is a matter of values.</p>
+                <p>Futura exists to protect and develop human potential. That purpose shapes every decision, including how the team uses AI. A biased dataset influencing fellow selection. A confidential document exposed through an AI tool. An AI-generated communication sent without disclosure. Each of these is recoverable in the technical sense. None of them are forgettable in the human sense. The damage lands on exactly the people Futura is built to serve.</p>
+                <p>There is also a broader picture. 81% of foundations already use AI to some degree. But only 9% have both an AI policy and active oversight in place (CEP, 2025). Most are already using the tools. Very few are thinking seriously about how. The foundation that builds a principled framework now is ahead of almost every peer organization in the sector.</p>
+                <div class="highlight-box">
+                    <p><strong>The risk asymmetry:</strong> Building a rigorous AI policy costs time and thought. Getting caught without one during an AI incident costs years of trust recovery. The asymmetry is clear. And for a foundation at Futura's stage, where every relationship with a donor or partner is still being built, the cost of a trust breach is especially high.</p>
+                </div>
+                <p><strong>What Futura will have at the end:</strong></p>
+                <ul>
+                    <li>A documented ethical AI policy specific to Futura's mission and operations. This is a first version, designed to evolve as the team grows and tools change.</li>
+                    <li>Clear guidelines for every role: what to use AI for, what to protect, and why</li>
+                    <li>A transparency principle: when AI is used in communications, research, or content, the team knows how to disclose it appropriately</li>
+                    <li>A review rhythm: the framework gets revisited every 6 months as tools and the team evolve</li>
+                </ul>
+                <p>Getting the policy right is simply the right thing to do. The output is a living document Futura can share publicly. One of the few foundations with both a framework and a practice. That is a publishable asset.</p>
+                <div class="highlight-box">
+                    <span class="roi-label">Return on investment</span>
+                    <p>A published AI policy protects Futura's credibility with donors, partners, and fellows before any incident ever happens. It signals that the foundation takes its values seriously in practice, not just in its founding documents. Being ahead of the sector on responsible AI is a positioning asset. And having a living framework means the team can adopt new tools confidently, because the principles are already in place.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ONGOING SUPPORT
+             ========================================== -->
+        <section class="section section-sage-light">
+            <div class="section-inner">
+                <h2 class="section-title">Ongoing <em>Support</em></h2>
+                <p>This is where the relationship compounds over time. The tracks have huge value on their own. This ongoing support is the companion along the way. It is part of Fixed to Flow's ethos to stay alongside the team, to be present as the work evolves and as Futura grows into what it is building toward. The examples below illustrate the kind of support. The specifics will adapt as Futura's needs evolve.</p>
+                <div class="support-grid">
+                    <div class="support-card">
+                        <h4>Strategic Sparring</h4>
+                        <ul>
+                            <li>Regular one-on-one sessions with core team members</li>
+                            <li>Quarterly deep dives</li>
+                            <li>Async access via WhatsApp and email between sessions</li>
+                            <li>Working from Futura's office on a recurring basis, because proximity matters</li>
+                        </ul>
+                    </div>
+                    <div class="support-card">
+                        <h4>Experience Design</h4>
+                        <ul>
+                            <li><strong>Format co-design.</strong> Porto is first (May 2026). Concept, arc, facilitation, and session flow.</li>
+                            <li><strong>Community architecture.</strong> Designing Futura's rings: Core (fellows), Amplifiers (the 15 ambassadors for Nov 2026), Strategic Partners, Extended Community. Including rituals and movement between rings.</li>
+                            <li>Access to Fixed to Flow's network of facilitators, speakers, designers, and community builders</li>
+                        </ul>
+                    </div>
+                    <div class="support-card">
+                        <h4>System Evolution</h4>
+                        <ul>
+                            <li>Evolving and maintaining the Notion workspace, governance processes, and context engineering as Futura grows</li>
+                            <li>Evolving AI practices as tools change</li>
+                            <li>Individual AI mentoring for team members who want ongoing support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             INVESTMENT
+             ========================================== -->
+        <section class="section section-navy">
+            <h2 class="section-title">The <em>Investment</em></h2>
+            <div class="investment-table-wrapper">
+                <table class="investment-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Format</th>
+                            <th>Hours</th>
+                            <th>Investment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Track 1: Operations & Systems</td>
+                            <td>One-time project</td>
+                            <td>Up to 120 hours</td>
+                            <td>&euro;12,000</td>
+                        </tr>
+                        <tr>
+                            <td>Track 2: Team AI Enablement</td>
+                            <td>One-time project</td>
+                            <td>Up to 80 hours</td>
+                            <td>&euro;8,000</td>
+                        </tr>
+                        <tr>
+                            <td>Ongoing Support</td>
+                            <td>Monthly retainer</td>
+                            <td>Up to 15 hours/month</td>
+                            <td>&euro;1,500/month</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The tracks can be run sequentially or in parallel, depending on Futura's priorities. The retainer can start independently or alongside either track.</p>
+            <p>Running both tracks, expect around three months from start to finish. But the work is built incrementally: the team starts seeing tangible benefits within the first month. Running a single track shortens the overall timeline accordingly.</p>
+            <p>Tracks are fixed-scope projects with the investment as quoted. The retainer adjusts to actual hours used each month. If approaching the monthly cap, scope is discussed before continuing.</p>
+            <p>VAT may apply.</p>
+            <p>Hours are provided as a reference. We work on value delivered, not hours counted.</p>
+            <p><strong>Payment</strong></p>
+            <p>Tracks: 50% on approval, 50% on completion of each track.</p>
+            <p>Retainer: Invoiced monthly.</p>
+        </section>
+
+        <!-- ==========================================
+             ABOUT SECTION
+             ========================================== -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Fixed to Flow</h3>
+                    <p>We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+
+                    <div class="about-subsection">
+                        <h4>Team</h4>
+                        <p>Gustavo da Cunha Pimenta (Gus) will lead the collaboration throughout, driving the strategy, facilitating training and mentoring, and overseeing the design of systems and workflows.</p>
+                        <p>When needed, he may bring experienced professionals to support specific areas of the project. This structure ensures strategic leadership with flexibility and responsiveness to Futura's needs.</p>
+                    </div>
+
+                    <div class="about-subsection">
+                        <h4>About Gus</h4>
+                        <p>Born, raised, and based in Lisbon. A city that breeds curiosity, resilience, and a natural ease with people from everywhere. Gus feeds off diversity, and Lisbon is the perfect playground to play.</p>
+                        <p>Builder, mentor, founder. Decades moving between boardrooms and backstreets, startups and soul searching, mentoring founders, advising learning projects, facilitating co-design sessions, and helping people figure out what comes next.</p>
+                        <p>Technology, for Gus, is an amplifier. He brings AI into his work with the same care he brings to everything else: a deep focus on intentional adoption that protects and augments the human skills underneath.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             NEXT STEPS
+             ========================================== -->
+        <section class="next-steps">
+            <div class="next-steps-content">
+                <h2>Next Step</h2>
+                <p>Let's schedule a session to align on scope, timeline, and start date. And if you'd like to explore the proposal further first, let's talk. We'll find the path that works best for both sides.</p>
+                <a href="mailto:gustavo@gustavopimenta.com?subject=Re: Futura Foundation Proposal" class="cta-btn">Schedule a Conversation</a>
+                <p class="validity">Proposal valid for 30 days.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="proposal-footer">
+            <a href="https://fixedtoflow.com" class="footer-logo" target="_blank" rel="noopener noreferrer">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // PASSWORD CONFIGURATION (SHA-256 hash)
+        // ==========================================
+        const PROPOSAL_HASH = '5d8f5ee507080ecef53fcf6b1050c53d7c8dbb8dd1495448d50e5a13a3c7a8b6';
+
+        async function hashPassword(password) {
+            const encoded = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // ==========================================
+        // Password Protection Logic
+        // ==========================================
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const proposalContent = document.getElementById('proposalContent');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        // Check if already authenticated
+        const isAuthenticated = sessionStorage.getItem('proposal_futura_auth') === 'true';
+        if (isAuthenticated) {
+            passwordOverlay.classList.add('hidden');
+            proposalContent.classList.add('visible');
+        }
+
+        passwordForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const inputHash = await hashPassword(passwordInput.value);
+            if (inputHash === PROPOSAL_HASH) {
+                sessionStorage.setItem('proposal_futura_auth', 'true');
+                passwordOverlay.classList.add('hidden');
+                proposalContent.classList.add('visible');
+            } else {
+                passwordInput.classList.add('error');
+                passwordError.classList.add('visible');
+                setTimeout(() => { passwordInput.classList.remove('error'); }, 500);
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('visible');
+        });
+    </script>
+</body>
+</html>
