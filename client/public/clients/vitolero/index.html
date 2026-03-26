@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitolero / Deliverables</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: #fff;
+  color: #111;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.gate-card {
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.gate-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0052FF;
+  margin-bottom: 24px;
+}
+
+.gate-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.gate-sub {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 300;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.gate-input:focus {
+  border-color: #0052FF;
+}
+
+.gate-input.error {
+  border-color: #dc2626;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.gate-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gate-btn:hover { background: #333; }
+
+.gate-error {
+  font-size: 0.72rem;
+  color: #dc2626;
+  margin-top: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.gate-error.visible { opacity: 1; }
+
+.gate-footer {
+  margin-top: 40px;
+  font-size: 0.65rem;
+  color: #AAA;
+  letter-spacing: 0.04em;
+}
+
+.gate.hidden { display: none; }
+
+/* Spinner */
+.gate-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-label">Vitolero</div>
+    <h1 class="gate-title">Protected Content</h1>
+    <p class="gate-sub">Enter the password to view this deliverable.</p>
+    <form id="gateForm">
+      <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off" autofocus>
+      <button type="submit" class="gate-btn" id="gateBtn">Unlock</button>
+      <p class="gate-error" id="gateError">Incorrect password. Please try again.</p>
+    </form>
+    <div class="gate-footer">Fixed to Flow &middot; Confidential</div>
+  </div>
+</div>
+
+<div id="content" style="display:none"></div>
+
+<script id="payload" type="application/octet-stream">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</script>
+
+<script>
+(function() {
+  const ITERATIONS = 600000;
+  const STORAGE_KEY = 'vtl_auth';
+
+  const gate = document.getElementById('gate');
+  const contentEl = document.getElementById('content');
+  const form = document.getElementById('gateForm');
+  const input = document.getElementById('gateInput');
+  const btn = document.getElementById('gateBtn');
+  const errorEl = document.getElementById('gateError');
+  const payloadB64 = document.getElementById('payload').textContent;
+
+  function b64ToBytes(b64) {
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+
+  async function decrypt(password) {
+    const data = b64ToBytes(payloadB64);
+    const salt = data.slice(0, 16);
+    const iv = data.slice(16, 28);
+    const authTag = data.slice(28, 44);
+    const ciphertext = data.slice(44);
+
+    // Combine ciphertext + authTag for WebCrypto (it expects them concatenated)
+    const combined = new Uint8Array(ciphertext.length + authTag.length);
+    combined.set(ciphertext);
+    combined.set(authTag, ciphertext.length);
+
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: salt, iterations: ITERATIONS, hash: 'SHA-256' },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, combined);
+    return new TextDecoder().decode(decrypted);
+  }
+
+  async function unlock(password) {
+    try {
+      const html = await decrypt(password);
+      // Replace the entire document with the decrypted content
+      document.open();
+      document.write(html);
+      document.close();
+      // Store password for cross-page auth
+      try { sessionStorage.setItem(STORAGE_KEY, password); } catch(e) {}
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // Try stored password first
+  (async function() {
+    try {
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const ok = await unlock(stored);
+        if (ok) return;
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    } catch(e) {}
+  })();
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const pw = input.value;
+    if (!pw) return;
+
+    btn.classList.add('loading');
+    btn.textContent = 'Decrypting...';
+
+    // Small delay to let the UI update before heavy PBKDF2
+    await new Promise(r => setTimeout(r, 50));
+
+    const ok = await unlock(pw);
+    if (!ok) {
+      btn.classList.remove('loading');
+      btn.textContent = 'Unlock';
+      input.classList.add('error');
+      errorEl.classList.add('visible');
+      setTimeout(() => input.classList.remove('error'), 400);
+    }
+  });
+
+  input.addEventListener('input', function() {
+    errorEl.classList.remove('visible');
+  });
+})();
+</script>
+
+</body>
+</html>

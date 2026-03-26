@@ -5,7 +5,15 @@
   "installCommand": "npm install",
   "rewrites": [
     {
-      "source": "/:path((?!.*\\.).*)",
+      "source": "/clients/:client",
+      "destination": "/clients/:client/index.html"
+    },
+    {
+      "source": "/clients/:client/",
+      "destination": "/clients/:client/index.html"
+    },
+    {
+      "source": "/:path((?!.*\\.)(?!clients/).*)",
       "destination": "/index.html"
     }
   ]
