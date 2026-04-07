@@ -1,0 +1,4419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitolero / Flow Wireframes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #FAF9F6;
+  --fg: #222;
+  --mid: #777;
+  --light: #bbb;
+  --sketch: #333;
+  --sketch-light: #999;
+  --accent: #0052FF;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --amber: #d97706;
+  --paper: #fff;
+  --shadow: rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.page-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 32px 24px;
+}
+
+.page-header .label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-header h1 span { color: var(--accent); }
+
+.page-header p {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-top: 8px;
+}
+
+/* ── Nav ── */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 32px;
+  overflow-x: auto;
+}
+
+.nav-bar::-webkit-scrollbar { display: none; }
+
+.nav-inner {
+  display: flex;
+  gap: 6px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-width: max-content;
+}
+
+.nav-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: var(--mid);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.active { background: var(--fg); color: #fff; border-color: var(--fg); }
+
+/* ── Section titles ── */
+.section-title {
+  max-width: 1400px;
+  margin: 56px auto 24px;
+  padding: 0 32px;
+}
+
+.section-title .tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.section-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-title p {
+  font-size: 0.82rem;
+  color: var(--mid);
+  font-weight: 300;
+  margin-top: 4px;
+  max-width: 600px;
+}
+
+/* ── Flow container ── */
+.flow-block {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+}
+
+.flow-card {
+  background: var(--paper);
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.flow-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.flow-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  background: #f0f4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.flow-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.flow-scenario {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--sketch-light);
+  font-style: italic;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.flow-persona {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ── Flow strip ── */
+.flow-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x proximity;
+}
+
+.flow-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.flow-strip::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 2px;
+}
+
+.flow-strip::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+/* ── Phone frame (scaled for flows) ── */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.phone-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.phone-sublabel {
+  font-size: 0.62rem;
+  color: var(--mid);
+  font-weight: 400;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.phone {
+  width: 200px;
+  height: 400px;
+  background: var(--paper);
+  border: 2.5px solid var(--sketch);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 3px 5px 0 var(--shadow);
+  filter: url(#sketchy);
+}
+
+.status-bar {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border-bottom: 1.5px solid #eee;
+}
+
+.screen {
+  height: calc(100% - 24px);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Annotation below phone */
+.annotation {
+  font-family: 'Caveat', cursive;
+  color: var(--red);
+  font-size: 0.78rem;
+  margin-top: 8px;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.3;
+}
+
+.annotation.blue { color: var(--accent); }
+.annotation.green { color: var(--green); }
+
+/* ── Flow connector (arrow between phones) ── */
+.flow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0 4px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.connector-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--sketch-light);
+}
+
+.connector-line {
+  width: 28px;
+  height: 0;
+  border-top: 1.5px solid var(--sketch-light);
+}
+
+.connector-head {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--sketch-light);
+}
+
+.connector-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 6px;
+  max-width: 80px;
+  line-height: 1.2;
+}
+
+/* ── Branch connector ── */
+.flow-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.branch-diamond {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--amber);
+  transform: rotate(45deg);
+  background: #fffbeb;
+}
+
+.branch-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--amber);
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ── Progress badge ── */
+.progress-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  padding: 1px 8px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.progress-badge.green { background: var(--green); }
+.progress-badge.amber { background: var(--amber); }
+
+/* ── Phase annotation ── */
+.phase-note {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--amber);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 3px;
+  padding: 1px 6px;
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ── Sketch drawing styles ── */
+.sk-text {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch);
+}
+
+.sk-text-light {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch-light);
+}
+
+.sk-btn {
+  border: 2px solid var(--sketch);
+  border-radius: 16px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  cursor: default;
+}
+
+.sk-btn.filled {
+  background: var(--sketch);
+  color: #fff;
+}
+
+.sk-btn.accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.sk-btn.outline {
+  background: transparent;
+}
+
+.sk-btn.small {
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-width: 1.5px;
+}
+
+.sk-line {
+  border: none;
+  border-top: 1.5px solid var(--sketch);
+  margin: 0;
+  opacity: 0.15;
+}
+
+.sk-box {
+  border: 1.5px solid var(--sketch);
+  border-radius: 4px;
+}
+
+.sk-box-dashed {
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+}
+
+/* ── Cam hatching ── */
+.cam-hatching {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sketch),
+    var(--sketch) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  pointer-events: none;
+}
+
+.cross-hatch {
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  ),
+  repeating-linear-gradient(
+    -45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  );
+}
+
+/* ── Screen-specific styles ── */
+
+/* Camera */
+.cam-screen {
+  flex: 1;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.viewfinder {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--sketch);
+  border-style: solid;
+  border-width: 0;
+}
+
+.bracket.tl { top: 0; left: 0; border-top-width: 2.5px; border-left-width: 2.5px; }
+.bracket.tr { top: 0; right: 0; border-top-width: 2.5px; border-right-width: 2.5px; }
+.bracket.bl { bottom: 0; left: 0; border-bottom-width: 2.5px; border-left-width: 2.5px; }
+.bracket.br { bottom: 0; right: 0; border-bottom-width: 2.5px; border-right-width: 2.5px; }
+
+.cam-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch-light);
+  margin-top: 12px;
+}
+
+.shutter {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shutter-inner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch-light);
+}
+
+.gallery-icon {
+  position: absolute;
+  bottom: 26px;
+  left: 22px;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.diary-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border: 1px solid var(--sketch-light);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+/* Processing */
+.proc-screen {
+  flex: 1;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.proc-photo {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proc-photo .placeholder {
+  width: 60px;
+  height: 80px;
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+  transform: rotate(-2deg);
+}
+
+.proc-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.92);
+  padding: 14px;
+  border-top: 1.5px solid #ddd;
+}
+
+.proc-line {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  margin-bottom: 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.proc-line:nth-child(2) { opacity: 0.6; }
+.proc-line:nth-child(3) { opacity: 0.35; }
+
+.proc-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.proc-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch);
+}
+
+.proc-dot.active { background: var(--sketch); }
+
+/* Identification */
+.id-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.id-photo {
+  height: 100px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.id-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.id-content {
+  flex: 1;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.id-badge {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.id-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  line-height: 1.1;
+}
+
+.id-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch-light);
+  line-height: 1.3;
+}
+
+.id-bar-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+  margin-top: 2px;
+}
+
+.id-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.id-bar-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.id-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-bottom: 2px;
+}
+
+/* Brand picker (Phase 1) */
+.picker-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  gap: 6px;
+}
+
+.picker-search {
+  border: 1.5px solid var(--sketch);
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.picker-search-icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.8rem;
+  color: var(--sketch-light);
+}
+
+.picker-result {
+  padding: 8px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 6px;
+  font-family: 'Caveat', cursive;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.picker-result.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+  background: #f8faff;
+}
+
+.picker-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.picker-line {
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.picker-match {
+  font-size: 0.55rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Recommendation */
+.rec-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.rec-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.rec-filters {
+  display: flex;
+  gap: 4px;
+}
+
+.rec-chip {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch-light);
+}
+
+.rec-chip.active {
+  border-color: var(--sketch);
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+.rec-card {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+}
+
+.rec-card.top {
+  border-color: var(--sketch);
+  border-width: 2px;
+}
+
+.rec-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  min-width: 16px;
+  text-align: center;
+}
+
+.rec-info { flex: 1; }
+
+.rec-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.rec-reason {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+}
+
+.rec-score {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Pairing */
+.pair-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+}
+
+.pair-items {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.pair-item {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.pair-item .icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+}
+
+.pair-item .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+  text-align: center;
+}
+
+.pair-plus {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--sketch-light);
+}
+
+.pair-rationale {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  line-height: 1.3;
+  padding: 0 8px;
+  border-left: 2px solid var(--accent);
+  text-align: left;
+  margin-top: 6px;
+}
+
+.pair-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pair-bar {
+  width: 80px;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.pair-bar-fill {
+  height: 100%;
+  width: 88%;
+  background: var(--green);
+  border-radius: 3px;
+}
+
+.pair-score-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Share card */
+.share-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-preview {
+  flex: 1;
+  margin: 10px;
+  border: 2px solid var(--sketch);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-photo {
+  height: 100px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.share-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.share-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  padding: 16px 10px 8px;
+}
+
+.share-overlay .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.share-overlay .desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.share-details {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.share-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.share-detail-row .label { color: var(--sketch-light); }
+.share-detail-row .value { color: var(--sketch); font-weight: 600; }
+
+.share-domain {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--accent);
+  text-align: center;
+  padding: 4px;
+  border-top: 1px dashed #ddd;
+}
+
+.share-actions {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+
+/* Home */
+.home-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.home-greeting {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.home-stat {
+  flex: 1;
+  padding: 6px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.home-stat-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stat-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.home-section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--sketch);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.home-card {
+  padding: 7px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.home-cam-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch);
+  background: #fff;
+}
+
+/* Import */
+.import-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.import-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.import-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+  margin-top: -4px;
+}
+
+.import-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+
+.import-thumb {
+  aspect-ratio: 1;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.45rem;
+  color: var(--sketch-light);
+  position: relative;
+  background: #f5f5f5;
+}
+
+.import-thumb.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.import-thumb.selected::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.import-bar {
+  height: 5px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.import-bar-fill {
+  height: 100%;
+  width: 60%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Splash screen */
+.splash-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 14px;
+  background: var(--fg);
+  color: #fff;
+}
+
+.splash-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.splash-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.splash-btn {
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.splash-link {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: underline;
+}
+
+/* Permission dialog */
+.permission-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 14px;
+  right: 14px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+
+.permission-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 4px;
+}
+
+.permission-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.permission-btns {
+  display: flex;
+  gap: 6px;
+}
+
+/* Save confirmation */
+.save-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  gap: 10px;
+}
+
+.save-check {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--green);
+}
+
+.save-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  text-align: center;
+}
+
+.save-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.save-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.save-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* Platform picker */
+.platform-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 8px;
+}
+
+.platform-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.platform-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid #eee;
+  border-radius: 8px;
+}
+
+.platform-icon {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.platform-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+/* Diary */
+.diary-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.diary-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.diary-entry {
+  display: flex;
+  gap: 8px;
+  padding: 7px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.diary-thumb {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.diary-info { flex: 1; }
+
+.diary-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.diary-meta {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.diary-rating {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--amber);
+  align-self: center;
+}
+
+/* Taste profile */
+.taste-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.taste-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.taste-gauge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taste-gauge-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  min-width: 50px;
+}
+
+.taste-gauge-bar {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.taste-gauge-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.taste-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.taste-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch);
+}
+
+.taste-tag.strong {
+  border-color: var(--sketch);
+  font-weight: 700;
+}
+
+/* Detail screen */
+.detail-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-photo {
+  height: 90px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.detail-content {
+  flex: 1;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.detail-row .label { color: var(--sketch-light); }
+.detail-row .value { color: var(--sketch); font-weight: 600; }
+
+/* Explore */
+.explore-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+}
+
+.explore-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.explore-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.explore-card {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.explore-card-img {
+  width: 36px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.explore-card-info { flex: 1; }
+
+.explore-card-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.explore-card-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+/* Confirmation toast */
+.toast {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: var(--fg);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+}
+
+.toast-icon {
+  font-size: 0.8rem;
+}
+
+/* Footer */
+.footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--light);
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .flow-card { padding: 16px; }
+  .section-title { margin: 40px auto 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sketch filter -->
+<svg style="position:absolute;width:0;height:0">
+  <filter id="sketchy">
+    <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="4" result="noise" seed="2"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<!-- Header -->
+<div class="page-header">
+  <div style="display:flex;gap:16px;margin-bottom:24px">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; All Deliverables</a>
+    <a href="concept.html#uikit" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; UI Kit</a>
+  </div>
+  <div class="label">Vitolero</div>
+  <h1>Flow <span>Wireframes</span></h1>
+  <p>Step-by-step user flows for onboarding, quick mode, reflective mode, and collections. Sketchy wireframes for iteration. Scroll each flow strip horizontally.</p>
+</div>
+
+<!-- Nav -->
+<div class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-btn active" href="#onboarding">Onboarding</a>
+    <a class="nav-btn" href="#quick">Quick Mode</a>
+    <a class="nav-btn" href="#reflective">Reflective Mode</a>
+    <a class="nav-btn" href="#collections">Collections</a>
+    <a class="nav-btn" href="#brainstorming" style="border-color:var(--amber);color:var(--amber)">Brainstorming</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 1: ONBOARDING                   -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="onboarding">
+  <div class="tag">Section 1</div>
+  <h2>Onboarding</h2>
+  <p>Value first, share after. The identification flow IS the onboarding. No sign-up walls, no wizards.</p>
+</div>
+
+<!-- Flow 1a: Trust Gateway -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 1a</span>
+      <div class="flow-title">Trust Gateway: First Open</div>
+    </div>
+    <div class="flow-scenario">User opens Vitolero for the first time. Has a cigar in hand. Wants to know what it is. <span class="flow-persona">All personas</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Splash -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Welcome</div>
+        <div class="phone-sublabel">First open</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="splash-screen">
+              <div class="splash-logo">Vitolero</div>
+              <div class="splash-tagline">Point your camera at any cigar. We'll tell you the rest.</div>
+              <div class="splash-btn">Open Scanner</div>
+              <div class="splash-link">Don't have a cigar? Import photos</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">No sign-up. No account.<br>Straight to value.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Open Scanner"</div>
+      </div>
+
+      <!-- 2. Permission -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Camera Permission</div>
+        <div class="phone-sublabel">Browser prompt</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="permission-overlay">
+                <div class="permission-title">vitolero.com wants to use your camera</div>
+                <div class="permission-desc">The camera identifies cigars from photos. No data is stored without your permission.</div>
+                <div class="permission-btns">
+                  <div class="sk-btn small outline">Block</div>
+                  <div class="sk-btn small accent">Allow</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Native browser dialog.<br>One-time gate.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">allows camera</div>
+      </div>
+
+      <!-- 3. Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Camera</div>
+        <div class="phone-sublabel">Blank canvas</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Frame a cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">No nav chrome. No menus.<br>Camera IS the app.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps shutter</div>
+      </div>
+
+      <!-- 4. Processing -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Sommelier</div>
+        <div class="phone-sublabel">~10s narrative</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="proc-screen">
+              <div class="proc-photo cross-hatch">
+                <div class="placeholder">user's photo</div>
+              </div>
+              <div class="proc-overlay">
+                <div class="proc-line">"I see a dark wrapper with an oily sheen..."</div>
+                <div class="proc-line">"The band suggests a Padron family..."</div>
+                <div class="proc-line">"Checking vitola proportions..."</div>
+                <div class="proc-dots">
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Narrative IS the value.<br>Not a loading screen.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">AI narrows candidates</div>
+      </div>
+
+      <!-- 5. Brand Picker (Phase 1) -->
+      <div class="phone-wrap">
+        <div class="phone-label">5. Confirm ID</div>
+        <div class="phone-sublabel">Phase 1: manual</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="picker-screen">
+              <div style="font-family:'Caveat',cursive;font-size:0.72rem;color:var(--sketch);font-weight:600;margin-bottom:2px">Which cigar is this?</div>
+              <div class="picker-search">
+                <span class="picker-search-icon">Q</span>
+                <span style="color:var(--sketch-light)">pad...</span>
+              </div>
+              <div class="picker-result selected">
+                <div class="picker-brand">Padron 1926 No. 9</div>
+                <div class="picker-line">Maduro, Robusto</div>
+                <div class="picker-match">Best match</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Padron 1964 Anniversary</div>
+                <div class="picker-line">Maduro, Torpedo</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Padron Family Reserve</div>
+                <div class="picker-line">Natural, Toro</div>
+              </div>
+              <div style="margin-top:auto">
+                <div class="sk-btn accent" style="width:100%">Confirm</div>
+              </div>
+            </div>
+            <div class="phase-note">Phase 1 manual. Phase 2: auto-recognition</div>
+          </div>
+        </div>
+        <div class="annotation">Searchable brand hierarchy.<br>Fuzzy match from AI hints.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">confirms selection</div>
+      </div>
+
+      <!-- 6. Save + Profile Hook -->
+      <div class="phone-wrap">
+        <div class="phone-label">6. Save + Hook</div>
+        <div class="phone-sublabel">Profile starts</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">user's photo</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Padron 1926 No. 9</div>
+                <div class="id-desc">Maduro. Leather, dark chocolate, espresso. Medium-Full.</div>
+                <div class="id-bar-label">Strength</div>
+                <div class="id-bar"><div class="id-bar-fill" style="width:72%"></div></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--accent);margin-top:4px;padding:6px;background:#f0f4ff;border-radius:4px;line-height:1.3">
+                  Saved! You lean toward Nicaraguan Maduros. Save 2 more to unlock AI recommendations.
+                </div>
+                <div class="id-actions">
+                  <div class="sk-btn accent" style="flex:1">Save to My Humidor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Profile hook: creates<br>curiosity + clear next step.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">after save</div>
+      </div>
+
+      <!-- 7. Share Prompt -->
+      <div class="phone-wrap">
+        <div class="phone-label">7. Share Prompt</div>
+        <div class="phone-sublabel">Only after value</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="share-screen">
+              <div class="share-preview">
+                <div class="share-photo cross-hatch">
+                  <div class="placeholder">user's photo</div>
+                  <div class="share-overlay">
+                    <div class="name">Padron 1926 No. 9</div>
+                    <div class="desc">Leather, dark chocolate, espresso</div>
+                  </div>
+                </div>
+                <div class="share-details">
+                  <div class="share-detail-row"><span class="label">Strength</span><span class="value">Medium-Full</span></div>
+                  <div class="share-detail-row"><span class="label">Origin</span><span class="value">Nicaragua</span></div>
+                  <div class="share-detail-row"><span class="label">Wrapper</span><span class="value">Maduro</span></div>
+                </div>
+                <div class="share-domain">vitolero.com/s/a3k9</div>
+              </div>
+              <div class="share-actions">
+                <div class="sk-btn filled" style="flex:1;font-size:0.65rem">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.65rem">Skip</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Share appears AFTER value.<br>Magazine-quality card.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 1b: Snap Progression -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 1b</span>
+      <div class="flow-title">Snap Progression: 3 Cigars to Unlock</div>
+    </div>
+    <div class="flow-scenario">User returns for second and third snaps. Profile builds. Recommendations unlock at snap 3. <span class="flow-persona">Dave / Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Camera with badge -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Camera</div>
+        <div class="phone-sublabel">Return visit</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="progress-badge">1/3</div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Snap 2 more to unlock recs</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+              <div class="diary-icon">diary</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Progress visible.<br>Gentle nudge, not pressure.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">snaps + confirms</div>
+      </div>
+
+      <!-- 2. Second ID -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Second Snap</div>
+        <div class="phone-sublabel">Progress: 2/3</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">cigar #2</div>
+                <div class="progress-badge">2/3</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Oliva Serie V Melanio</div>
+                <div class="id-desc">Ecuadorian Sumatra. Creamy, sweet, cedar.</div>
+                <div class="id-bar-label">Strength</div>
+                <div class="id-bar"><div class="id-bar-fill" style="width:65%"></div></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--accent);margin-top:4px;padding:6px;background:#f0f4ff;border-radius:4px;line-height:1.3">
+                  2/3! One more cigar to unlock AI recommendations.
+                </div>
+                <div class="id-actions">
+                  <div class="sk-btn accent" style="flex:1">Save</div>
+                  <div class="sk-btn outline" style="flex:1">Share</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Anticipation builds.<br>"One more!" creates momentum.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">snaps + confirms</div>
+      </div>
+
+      <!-- 3. Unlock moment -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Unlock!</div>
+        <div class="phone-sublabel">Recommendations active</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check" style="border-color:var(--accent);color:var(--accent)">3</div>
+              <div class="save-title">Recommendations Active!</div>
+              <div class="save-desc">Your taste profile: you lean toward full-bodied Nicaraguan Maduros with chocolate and leather notes.</div>
+              <div class="save-progress-bar"><div class="save-progress-fill" style="width:100%;background:var(--green)"></div></div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light);margin-top:2px">Profile: 3 cigars mapped</div>
+              <div class="sk-btn accent" style="margin-top:8px">See My Recommendations</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">The reward moment.<br>Profile summary reveals taste.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps recs</div>
+      </div>
+
+      <!-- 4. First recs -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. First Recs</div>
+        <div class="phone-sublabel">Personalized feed</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Recommended for You</div>
+              <div class="rec-filters">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">New to me</div>
+                <div class="rec-chip">Budget</div>
+              </div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">Full-bodied. Chocolate + pepper. Matches your palate.</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">My Father Le Bijou</div>
+                  <div class="rec-reason">Dark chocolate, earth, spice</div>
+                </div>
+                <div class="rec-score">91%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Arturo Fuente Opus X</div>
+                  <div class="rec-reason">Cedar, pepper, leather</div>
+                </div>
+                <div class="rec-score">88%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Instant payoff for the<br>3-snap investment.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 1c: Fallback -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 1c</span>
+      <div class="flow-title">Fallback: No Cigar at Hand</div>
+    </div>
+    <div class="flow-scenario">User discovers the app but doesn't have a cigar right now. Photo import builds profile instantly. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Splash (import path) -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Welcome</div>
+        <div class="phone-sublabel">Taps fallback link</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="splash-screen">
+              <div class="splash-logo">Vitolero</div>
+              <div class="splash-tagline">Point your camera at any cigar. We'll tell you the rest.</div>
+              <div class="splash-btn">Open Scanner</div>
+              <div class="splash-link" style="color:rgba(255,255,255,0.8);font-weight:600">Don't have a cigar? Import photos</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Fallback link catches users<br>without a cigar in hand.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Import photos"</div>
+      </div>
+
+      <!-- 2. Photo import grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Select Photos</div>
+        <div class="phone-sublabel">Camera roll</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="import-screen">
+              <div class="import-header">Import Cigar Photos</div>
+              <div class="import-sub">Select photos from your camera roll. We'll identify each one.</div>
+              <div class="import-grid">
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">food</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">selfie</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">dog</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">drink</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);font-weight:600">8 cigar photos selected</div>
+              <div class="sk-btn accent" style="width:100%">Import & Identify</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Cigar photos highlighted.<br>Batch import compresses time-to-value.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">processes batch</div>
+      </div>
+
+      <!-- 3. Batch results -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Profile Ready</div>
+        <div class="phone-sublabel">Instant taste map</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">8</div>
+              <div class="save-title">Profile Ready!</div>
+              <div class="save-desc">8 cigars identified from your camera roll. Your taste profile is built.</div>
+              <div style="width:100%;display:flex;flex-direction:column;gap:4px;margin-top:4px">
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Strength sweet spot</span>
+                  <span style="color:var(--sketch);font-weight:600">Medium-Full</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Preferred wrapper</span>
+                  <span style="color:var(--sketch);font-weight:600">Maduro (62%)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Flavor cluster</span>
+                  <span style="color:var(--sketch);font-weight:600">Earthy / Leather</span>
+                </div>
+              </div>
+              <div class="sk-btn accent" style="margin-top:8px">See My Recommendations</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Weeks of snapping compressed<br>into one session.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 2: QUICK MODE                   -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="quick">
+  <div class="tag">Section 2</div>
+  <h2>Quick Mode</h2>
+  <p>In the moment, at the shop, at the lounge. Camera-first. All personas use these flows.</p>
+</div>
+
+<!-- Flow 2a: Snap & Share Hero -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 2a</span>
+      <div class="flow-title">Snap & Share (Hero Flow)</div>
+    </div>
+    <div class="flow-scenario">Dave is on his back porch Saturday evening with a cigar and bourbon. He wants to capture the moment. <span class="flow-persona">Dave</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Camera</div>
+        <div class="phone-sublabel">App opens here</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Photograph any cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+              <div class="diary-icon">diary</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Default state. Always.<br>Camera is the front door.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps shutter</div>
+      </div>
+
+      <!-- 2. Capture flash -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Capture</div>
+        <div class="phone-sublabel">Instant</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen" style="background:#e0e0e0">
+              <div class="cam-hatching" style="opacity:0.02"></div>
+              <div style="font-family:'Caveat',cursive;font-size:0.8rem;color:var(--sketch-light)">Photo captured</div>
+              <div style="position:absolute;top:10px;left:10px;font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Blur: OK</div>
+              <div style="position:absolute;top:22px;left:10px;font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Light: OK</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Quality checks: blur,<br>brightness, composition.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">auto-proceeds</div>
+      </div>
+
+      <!-- 3. Sommelier -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Sommelier</div>
+        <div class="phone-sublabel">~10s</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="proc-screen">
+              <div class="proc-photo cross-hatch">
+                <div class="placeholder">user's photo</div>
+              </div>
+              <div class="proc-overlay">
+                <div class="proc-line">"I see a dark, oily Maduro wrapper..."</div>
+                <div class="proc-line">"Gold band with embossed lettering..."</div>
+                <div class="proc-line">"Checking the Padron catalog..."</div>
+                <div class="proc-dots">
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Perceived value in &lt;2s.<br>The narrative IS the result.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">confirms ID</div>
+      </div>
+
+      <!-- 4. Identification -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Identified</div>
+        <div class="phone-sublabel">Result + save</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">user's photo</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Padron 1926 No. 9</div>
+                <div class="id-desc">Maduro. Leather, dark chocolate, espresso.</div>
+                <div class="id-bar-label">Strength: Medium-Full</div>
+                <div class="id-bar"><div class="id-bar-fill" style="width:72%"></div></div>
+                <div class="id-actions">
+                  <div class="sk-btn filled" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Similar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Auto-saved to diary.<br>Profile updated silently.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Share"</div>
+      </div>
+
+      <!-- 5. Share card -->
+      <div class="phone-wrap">
+        <div class="phone-label">5. Share Card</div>
+        <div class="phone-sublabel">Magazine quality</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="share-screen">
+              <div class="share-preview">
+                <div class="share-photo cross-hatch">
+                  <div class="placeholder">user's photo</div>
+                  <div class="share-overlay">
+                    <div class="name">Padron 1926 No. 9</div>
+                    <div class="desc">Leather, dark chocolate, espresso</div>
+                  </div>
+                </div>
+                <div class="share-details">
+                  <div class="share-detail-row"><span class="label">Strength</span><span class="value">Medium-Full</span></div>
+                  <div class="share-detail-row"><span class="label">Origin</span><span class="value">Nicaragua</span></div>
+                  <div class="share-detail-row"><span class="label">Wrapper</span><span class="value">Maduro</span></div>
+                </div>
+                <div class="share-domain">vitolero.com/s/a3k9</div>
+              </div>
+              <div class="share-actions">
+                <div class="sk-btn filled" style="flex:1;font-size:0.6rem">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.6rem">Save to roll</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">The card makes Dave<br>look knowledgeable.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Share"</div>
+      </div>
+
+      <!-- 6. Platform picker -->
+      <div class="phone-wrap">
+        <div class="phone-label">6. Platform</div>
+        <div class="phone-sublabel">Web Share API</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="platform-screen">
+              <div class="platform-title">Share to...</div>
+              <div class="platform-option">
+                <div class="platform-icon">Fb</div>
+                <div class="platform-name">Facebook</div>
+              </div>
+              <div class="platform-option">
+                <div class="platform-icon">Ig</div>
+                <div class="platform-name">Instagram Stories</div>
+              </div>
+              <div class="platform-option">
+                <div class="platform-icon">Wa</div>
+                <div class="platform-name">WhatsApp</div>
+              </div>
+              <div class="platform-option">
+                <div class="platform-icon">...</div>
+                <div class="platform-name">More</div>
+              </div>
+              <div style="margin-top:auto;padding-bottom:8px">
+                <div class="sk-btn outline" style="width:100%;font-size:0.65rem">Copy link</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Native share sheet.<br>Image file via Web Share API.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">shares</div>
+      </div>
+
+      <!-- 7. Confirmation -->
+      <div class="phone-wrap">
+        <div class="phone-label">7. Done</div>
+        <div class="phone-sublabel">Back to camera</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Photograph any cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+              <div class="diary-icon">diary</div>
+              <div class="toast">
+                <span class="toast-icon">+</span>
+                Shared and saved to diary
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Returns to camera.<br>Toast confirms action.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 2b: In-Store Recommendation -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 2b</span>
+      <div class="flow-title">In-Store Recommendation</div>
+    </div>
+    <div class="flow-scenario">Carlos is at his local cigar shop. Photos the humidor glass to get personalized picks from what's available. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Camera</div>
+        <div class="phone-sublabel">At the shop</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Photograph any cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+              <div class="diary-icon">diary</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Same entry point.<br>Camera always.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">photos humidor shelf</div>
+      </div>
+
+      <!-- 2. Processing multi -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Multi-ID</div>
+        <div class="phone-sublabel">Shelf scan</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="proc-screen">
+              <div class="proc-photo cross-hatch">
+                <div class="placeholder">shelf photo</div>
+              </div>
+              <div class="proc-overlay">
+                <div class="proc-line">"I can see about 12 different cigars..."</div>
+                <div class="proc-line">"Top row: Arturo Fuente, Padron..."</div>
+                <div class="proc-line">"Matching against your taste profile..."</div>
+                <div class="proc-dots">
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Identifies multiple cigars.<br>Matches against user profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">ranked results</div>
+      </div>
+
+      <!-- 3. Ranked list -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Ranked Picks</div>
+        <div class="phone-sublabel">Personalized</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Best Matches for You</div>
+              <div class="rec-filters">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">Budget</div>
+                <div class="rec-chip">New to me</div>
+                <div class="rec-chip">Strength</div>
+              </div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">Similar to Padron 1926 you rated highly</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">Arturo Fuente Hemingway</div>
+                  <div class="rec-reason">Creamy, cedar. Your wrapper type.</div>
+                </div>
+                <div class="rec-score">89%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Oliva Serie V Double Robusto</div>
+                  <div class="rec-reason">Bold, earthy. New experience.</div>
+                </div>
+                <div class="rec-score">85%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">4</div>
+                <div class="rec-info">
+                  <div class="rec-name">Rocky Patel Vintage 1990</div>
+                  <div class="rec-reason">Smooth, chocolatey</div>
+                </div>
+                <div class="rec-score">82%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Top pick prominent.<br>Filter chips for context.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps #1</div>
+      </div>
+
+      <!-- 4. Detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Cigar Detail</div>
+        <div class="phone-sublabel">Expanded view</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">cigar image</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Liga Privada No. 9</div>
+                <div class="detail-row"><span class="label">Brand</span><span class="value">Drew Estate</span></div>
+                <div class="detail-row"><span class="label">Wrapper</span><span class="value">Connecticut Broadleaf</span></div>
+                <div class="detail-row"><span class="label">Strength</span><span class="value">Full</span></div>
+                <div class="detail-row"><span class="label">Flavor</span><span class="value">Chocolate, pepper, earth</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">90-120 min</span></div>
+                <div class="detail-row"><span class="label">Price range</span><span class="value">$15-18</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);padding:4px 6px;background:#f0f4ff;border-radius:3px;margin-top:2px">
+                  94% match. Similar to the Padron 1926 you rated 9/10.
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn accent" style="flex:1">Save</div>
+                  <div class="sk-btn outline" style="flex:1">Pair</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Full detail: specs, price,<br>personalized match reason.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">buys cigar, smokes later</div>
+      </div>
+
+      <!-- 5. Snap & share later -->
+      <div class="phone-wrap">
+        <div class="phone-label">5. Later: Snap</div>
+        <div class="phone-sublabel">While smoking</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">smoking photo</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Liga Privada No. 9</div>
+                <div class="id-desc">Your #1 match. How was it?</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-top:4px">Rate this cigar (optional)</div>
+                <div style="font-family:'Caveat',cursive;font-size:1rem;color:var(--amber);letter-spacing:2px">* * * * *</div>
+                <div class="id-actions">
+                  <div class="sk-btn filled" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Notes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Profile deepens.<br>Better recs next time.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 2c: Pairing -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 2c</span>
+      <div class="flow-title">Pairing</div>
+    </div>
+    <div class="flow-scenario">Dave has a cigar and photographs the drinks menu at the lounge. Wants the best pairing from what's available. <span class="flow-persona">Dave</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Camera</div>
+        <div class="phone-sublabel">At the lounge</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Photograph any cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Photos cigar + drinks menu<br>in one or two shots.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">photos cigar + menu</div>
+      </div>
+
+      <!-- 2. Processing -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Analyzing</div>
+        <div class="phone-sublabel">Dual scan</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="proc-screen">
+              <div class="proc-photo cross-hatch">
+                <div class="placeholder">cigar + menu</div>
+              </div>
+              <div class="proc-overlay">
+                <div class="proc-line">"Analyzing your Padron 1926..."</div>
+                <div class="proc-line">"Scanning the drinks menu..."</div>
+                <div class="proc-line">"Cross-referencing flavor profiles..."</div>
+                <div class="proc-dots">
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">AI reads the menu,<br>identifies the cigar.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">match found</div>
+      </div>
+
+      <!-- 3. Pairing result -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Pairing</div>
+        <div class="phone-sublabel">Best match</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="pair-screen">
+              <div style="font-family:'Caveat',cursive;font-size:0.88rem;font-weight:700;color:var(--sketch)">Perfect Pair</div>
+              <div class="pair-items">
+                <div class="pair-item">
+                  <div class="icon">cigar</div>
+                  <div class="name">Padron 1926</div>
+                </div>
+                <div class="pair-plus">+</div>
+                <div class="pair-item">
+                  <div class="icon">glass</div>
+                  <div class="name">Maker's Mark</div>
+                </div>
+              </div>
+              <div class="pair-rationale">"The chocolate notes in the Padron complement the vanilla oak in Maker's Mark."</div>
+              <div class="pair-score-wrap">
+                <div class="pair-bar"><div class="pair-bar-fill"></div></div>
+                <div class="pair-score-label">88%</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-top:4px">From the menu at your lounge</div>
+              <div style="display:flex;gap:6px;margin-top:auto;width:100%">
+                <div class="sk-btn filled" style="flex:1">Order this</div>
+                <div class="sk-btn outline" style="flex:1">Alternatives</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Specific drink FROM the menu.<br>Not a generic suggestion.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Alternatives"</div>
+      </div>
+
+      <!-- 4. Alternatives -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Alternatives</div>
+        <div class="phone-sublabel">Other options</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Other Pairings</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-bottom:4px">For Padron 1926 from this menu</div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Maker's Mark Bourbon</div>
+                  <div class="rec-reason">Vanilla oak + chocolate</div>
+                </div>
+                <div class="rec-score">88%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">Woodford Reserve</div>
+                  <div class="rec-reason">Caramel, oak, spice</div>
+                </div>
+                <div class="rec-score">84%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Espresso (double)</div>
+                  <div class="rec-reason">Roast intensity matches Maduro</div>
+                </div>
+                <div class="rec-score">79%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">4</div>
+                <div class="rec-info">
+                  <div class="rec-name">Port Wine (tawny)</div>
+                  <div class="rec-reason">Dried fruit + dark sweetness</div>
+                </div>
+                <div class="rec-score">76%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Ranked by pairing score.<br>All from the actual menu.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 3: REFLECTIVE MODE              -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="reflective">
+  <div class="tag">Section 3</div>
+  <h2>Reflective Mode</h2>
+  <p>At home, between smokes. Browsing, reviewing, discovering. Card and list-based. Enthusiasts and Collectors primarily.</p>
+</div>
+
+<!-- Flow 3a: Home → Recommendations -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 3a</span>
+      <div class="flow-title">Home to Recommendations</div>
+    </div>
+    <div class="flow-scenario">Carlos is at home browsing the app on a weeknight. Exploring what to buy for the weekend. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Reflective entry</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Evening, Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">12</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">3</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">5</div>
+                  <div class="home-stat-label">new recs</div>
+                </div>
+              </div>
+              <div class="home-section-label">Recent</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat evening
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                Liga Privada No. 9 (94% match)
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                My Father Le Bijou (91% match)
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Dashboard: stats, recent,<br>recommendations at a glance.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Recommended"</div>
+      </div>
+
+      <!-- 2. Rec feed -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Recs Feed</div>
+        <div class="phone-sublabel">Full list</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Recommended for You</div>
+              <div class="rec-filters">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">New to me</div>
+                <div class="rec-chip">Under $12</div>
+              </div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">Chocolate + pepper. You'll love this.</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">My Father Le Bijou</div>
+                  <div class="rec-reason">Dark chocolate, earth</div>
+                </div>
+                <div class="rec-score">91%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Arturo Fuente Opus X</div>
+                  <div class="rec-reason">Cedar, pepper, leather</div>
+                </div>
+                <div class="rec-score">88%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">4</div>
+                <div class="rec-info">
+                  <div class="rec-name">Davidoff Grand Cru</div>
+                  <div class="rec-reason">Smooth, light, creamy</div>
+                </div>
+                <div class="rec-score">84%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Scrollable feed.<br>Filter chips for context.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps a card</div>
+      </div>
+
+      <!-- 3. Detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Cigar Detail</div>
+        <div class="phone-sublabel">Full specs</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">cigar photo</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Liga Privada No. 9</div>
+                <div class="detail-row"><span class="label">Brand</span><span class="value">Drew Estate</span></div>
+                <div class="detail-row"><span class="label">Wrapper</span><span class="value">CT Broadleaf</span></div>
+                <div class="detail-row"><span class="label">Strength</span><span class="value">Full</span></div>
+                <div class="detail-row"><span class="label">Flavor</span><span class="value">Chocolate, pepper, earth</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">90-120 min</span></div>
+                <div class="detail-row"><span class="label">Price</span><span class="value">$15-18</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);padding:4px;background:#f0f4ff;border-radius:3px;margin-top:2px">
+                  94% match to your palate
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn accent" style="flex:1">Save</div>
+                  <div class="sk-btn outline" style="flex:1">Share</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Save adds to humidor.<br>Share creates a card.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 3b: Smoking Diary -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 3b</span>
+      <div class="flow-title">Smoking Diary</div>
+    </div>
+    <div class="flow-scenario">Dave reviews what he smoked this month. Checks ratings, remembers pairings, sees patterns. <span class="flow-persona">Dave / Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home tap diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Taps diary</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Hey Dave</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">8</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">2</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+              </div>
+              <div class="home-section-label" style="border-bottom:2px solid var(--accent);padding-bottom:3px;display:inline-block">Your Diary</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Oliva Serie V - Wed
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Romeo y Julieta - Last Sat
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Diary entries on home.<br>Tap to expand.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Your Diary"</div>
+      </div>
+
+      <!-- 2. Diary timeline -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Diary</div>
+        <div class="phone-sublabel">Timeline</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">Smoking Diary</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light)">March 2026</div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar, 8pm. With bourbon.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Wed 26 Mar, 7pm. Solo.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Romeo y Julieta 1875</div>
+                  <div class="diary-meta">Sat 22 Mar. With friends.</div>
+                </div>
+                <div class="diary-rating">7/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Arturo Fuente 8-5-8</div>
+                  <div class="diary-meta">Fri 21 Mar. After dinner.</div>
+                </div>
+                <div class="diary-rating">7/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Timeline of moments.<br>NOT an inventory ledger.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps an entry</div>
+      </div>
+
+      <!-- 3. Smoke detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Smoke Detail</div>
+        <div class="phone-sublabel">Full entry</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">Dave's photo</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Padron 1926 No. 9</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light)">Saturday 29 March, 8:00pm</div>
+                <div class="detail-row"><span class="label">Rating</span><span class="value" style="color:var(--amber)">9/10</span></div>
+                <div class="detail-row"><span class="label">Paired with</span><span class="value">Maker's Mark</span></div>
+                <div class="detail-row"><span class="label">Context</span><span class="value">Back porch, bourbon</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">95 min</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch);margin-top:4px;line-height:1.3;border-left:2px solid var(--accent);padding-left:6px">
+                  "Perfect Saturday evening cigar. The chocolate and leather were outstanding with bourbon."
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn outline" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Similar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">A moment captured.<br>Ritual documentation.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 3c: Taste Evolution -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 3c</span>
+      <div class="flow-title">Taste Profile & Evolution</div>
+    </div>
+    <div class="flow-scenario">Carlos checks how his palate has shifted over 3 months of snapping. Sees patterns he didn't know about. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home tap stats -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Taps stats</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat" style="border-color:var(--accent)">
+                  <div class="home-stat-num">34</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">4</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">8</div>
+                  <div class="home-stat-label">new recs</div>
+                </div>
+              </div>
+              <div class="home-section-label">Your taste profile</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--amber)"></div>
+                Full-body sweet spot. 34 cigars mapped.
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                8 new recommendations this week
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Stats card is the entry<br>to taste profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps profile</div>
+      </div>
+
+      <!-- 2. Taste profile -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Taste Profile</div>
+        <div class="phone-sublabel">Your palate</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen">
+              <div class="taste-header">Your Taste Profile</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Based on 34 cigars</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:4px">Strength</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Mild</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:75%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right">Full</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Wrapper</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Maduro</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:62%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">62%</div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Natural</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:24%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">24%</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Flavor Clusters</div>
+              <div class="taste-tags">
+                <div class="taste-tag strong">chocolate</div>
+                <div class="taste-tag strong">leather</div>
+                <div class="taste-tag">earth</div>
+                <div class="taste-tag">pepper</div>
+                <div class="taste-tag">cedar</div>
+                <div class="taste-tag">espresso</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Origin</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Nicaragua</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:55%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">55%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Passive data. No forms.<br>Built from snap behavior.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">scrolls down</div>
+      </div>
+
+      <!-- 3. Evolution -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Evolution</div>
+        <div class="phone-sublabel">Palate drift</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen">
+              <div class="taste-header">Palate Evolution</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">How your taste has shifted</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">Strength over time</div>
+              <!-- Simplified chart representation -->
+              <div style="height:50px;border:1.5px solid #eee;border-radius:4px;position:relative;overflow:hidden;background:#fafafa">
+                <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to right, rgba(0,82,255,0.05), rgba(0,82,255,0.15));border-top:2px solid var(--accent)"></div>
+                <div style="position:absolute;bottom:50%;left:10%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Jan</div>
+                <div style="position:absolute;bottom:55%;left:40%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Feb</div>
+                <div style="position:absolute;bottom:65%;left:70%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Mar</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent)">Trending: toward full-bodied</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">New flavors discovered</div>
+              <div class="taste-tags">
+                <div class="taste-tag" style="border-color:var(--green);color:var(--green)">+ espresso</div>
+                <div class="taste-tag" style="border-color:var(--green);color:var(--green)">+ molasses</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">Insight</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);line-height:1.3;border-left:2px solid var(--accent);padding-left:6px">
+                "You think you like fruity and floral, but your data says earthy and leather. The palate knows."
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Hidden profile surfaced<br>as insight, not raw data.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 4: COLLECTIONS                  -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="collections">
+  <div class="tag">Section 4</div>
+  <h2>Collections / My Humidor</h2>
+  <p>Smoking diary, not inventory. What you smoked, when, how you rated it. Photo import accelerates profile building.</p>
+</div>
+
+<!-- Flow 4a: My Humidor Overview -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 4a</span>
+      <div class="flow-title">My Humidor: Smoking Diary</div>
+    </div>
+    <div class="flow-scenario">Carlos browses his collection of smoked cigars. Filters by rating to find his favorites. <span class="flow-persona">Carlos / Dave</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Humidor grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. My Humidor</div>
+        <div class="phone-sublabel">Diary view</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">My Humidor</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">34 cigars smoked</div>
+              <div class="rec-filters" style="margin-bottom:2px">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">Top rated</div>
+                <div class="rec-chip">This month</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Smoked 3x. Last: Sat 29 Mar</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Smoked 2x. Last: Wed 26 Mar</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Liga Privada No. 9</div>
+                  <div class="diary-meta">Smoked 1x. Sun 23 Mar</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Romeo y Julieta 1875</div>
+                  <div class="diary-meta">Smoked 2x. Sat 22 Mar</div>
+                </div>
+                <div class="diary-rating">7/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Diary of moments. Not inventory.<br>Filter by rating, date, type.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Top rated"</div>
+      </div>
+
+      <!-- 2. Filtered -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Filtered</div>
+        <div class="phone-sublabel">Top rated</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">My Humidor</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Top rated (8+)</div>
+              <div class="rec-filters" style="margin-bottom:2px">
+                <div class="rec-chip">All</div>
+                <div class="rec-chip active">Top rated</div>
+                <div class="rec-chip">This month</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Maduro. Nicaragua.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Liga Privada No. 9</div>
+                  <div class="diary-meta">CT Broadleaf. Drew Estate.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Ecuadorian Sumatra.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">My Father Le Bijou</div>
+                  <div class="diary-meta">Nicaraguan. Full-bodied.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Quickly find favorites.<br>Shop reference list.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Flow 4b: Photo Import -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 4b</span>
+      <div class="flow-title">Photo Import: Instant Profile</div>
+    </div>
+    <div class="flow-scenario">Carlos imports 20 cigar photos from his camera roll. Months of snapping compressed into one session. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Import prompt -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Import</div>
+        <div class="phone-sublabel">From humidor</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px">
+              <div style="width:48px;height:48px;border:2px dashed var(--sketch-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:1.1rem;color:var(--sketch-light)">+</div>
+              <div style="font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch);text-align:center">Import Cigar Photos</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;color:var(--sketch-light);text-align:center;line-height:1.3">Select existing photos from your camera roll. We'll identify each cigar and build your taste profile instantly.</div>
+              <div class="sk-btn accent" style="margin-top:8px">Choose Photos</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light)">Photos stay on your device</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Privacy-first messaging.<br>Clear value proposition.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">selects photos</div>
+      </div>
+
+      <!-- 2. Selection grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Select</div>
+        <div class="phone-sublabel">Camera roll</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="import-screen">
+              <div class="import-header">Select Cigar Photos</div>
+              <div class="import-sub">We detected 14 potential cigar photos</div>
+              <div class="import-grid">
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">food</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">view</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);font-weight:600">10 photos selected</div>
+              <div class="sk-btn accent" style="width:100%">Import & Identify All</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Auto-detect cigar photos.<br>Pre-selected for convenience.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">processing batch</div>
+      </div>
+
+      <!-- 3. Results -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Complete</div>
+        <div class="phone-sublabel">Profile built</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">10</div>
+              <div class="save-title">Import Complete!</div>
+              <div class="save-desc">10 cigars identified and added to your humidor. Your taste profile just leveled up.</div>
+              <div style="width:100%;display:flex;flex-direction:column;gap:3px;margin-top:4px">
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Total cigars</span>
+                  <span style="color:var(--sketch);font-weight:600">44</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Profile accuracy</span>
+                  <span style="color:var(--green);font-weight:600">High (30+ threshold)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">New flavors found</span>
+                  <span style="color:var(--sketch);font-weight:600">espresso, molasses</span>
+                </div>
+              </div>
+              <div class="sk-btn accent" style="margin-top:8px">View Updated Recommendations</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Weeks of snapping in one batch.<br>Cold-start problem solved.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 5: BRAINSTORMING               -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="brainstorming">
+  <div class="tag" style="color:var(--amber)">Open Questions</div>
+  <h2>Brainstorming</h2>
+  <p>Unresolved navigation and edge case problems. These need answers before wireframes are final.</p>
+</div>
+
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q1</span>
+      <div class="flow-title">Navigation Model: Tab Bar Hidden in Snap Mode</div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--sketch-light);padding-left:12px">
+      <strong>The approach:</strong> 4-tab bar (Home, Snap, Journal, Profile) visible on all screens except camera. Snap mode goes full-screen with an X to exit. This preserves the immersive camera feel while giving persistent access to Journal and the rest of the app.
+    </div>
+
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">How it works:</div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Default entry, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen" style="padding-bottom:44px">
+              <div class="home-greeting">Evening, Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">12</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">3</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+              </div>
+              <div class="home-section-label">Recent</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat evening
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                Liga Privada No. 9 (94%)
+              </div>
+            </div>
+            <!-- Tab bar: Home active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:3px;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Tab bar always visible.<br>Home, Snap, Journal, Profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps Snap</div>
+      </div>
+
+      <!-- 2. Camera full-screen, no tabs -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Snap Mode</div>
+        <div class="phone-sublabel">Full-screen, tabs hidden</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <!-- X button to exit -->
+              <div style="position:absolute;top:8px;left:12px;width:22px;height:22px;border:1.5px solid var(--sketch-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light);background:rgba(255,255,255,0.7)">x</div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">No tab bar. Immersive.<br>X returns to previous tab.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps X</div>
+      </div>
+
+      <!-- 3. Journal with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Journal</div>
+        <div class="phone-sublabel">Diary + Humidor, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen" style="padding-bottom:44px">
+              <div class="diary-header">My Journal</div>
+              <div class="rec-filters" style="margin-bottom:2px">
+                <div class="rec-chip active">Diary</div>
+                <div class="rec-chip">Humidor</div>
+                <div class="rec-chip">Stats</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar. Back porch.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Wed 26 Mar. Lounge.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Liga Privada No. 9</div>
+                  <div class="diary-meta">Sun 23 Mar. Home.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+            </div>
+            <!-- Tab bar: Journal active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:3px;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Journal tab = Diary + Humidor.<br>Sub-tabs inside to switch.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 4. Profile with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Profile</div>
+        <div class="phone-sublabel">Taste profile, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen" style="padding-bottom:44px">
+              <div class="taste-header">My Taste Profile</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Based on 12 cigars</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Strength</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:75%"></div></div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Sweetness</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:40%"></div></div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Spice</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:60%"></div></div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;font-weight:600;color:var(--sketch);margin-top:4px">Flavor DNA</div>
+              <div class="taste-tags">
+                <div class="taste-tag strong">chocolate</div>
+                <div class="taste-tag strong">earth</div>
+                <div class="taste-tag">cedar</div>
+                <div class="taste-tag">pepper</div>
+                <div class="taste-tag">leather</div>
+              </div>
+            </div>
+            <!-- Tab bar: Profile active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:50%;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Taste profile, settings,<br>account.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-top:16px">
+      <strong>The rule:</strong> Tab bar visible on Home, Journal, Profile, and all sub-screens within them. Snap mode is the only full-screen state. X in Snap returns to the previous tab.
+    </div>
+  </div>
+</div>
+
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q2</span>
+      <div class="flow-title">Edge Case: No Cigar, No Photo</div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px">
+      <strong>The problem:</strong> All current flows assume the user has a cigar in front of them or a photo to provide. But what about the user who just downloaded the app and has no cigar at hand, or someone browsing at 2am curious about a cigar they heard about?
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--sketch-light);padding-left:12px;margin-top:8px">
+      <strong>Current coverage:</strong> Flow 1c (Onboarding: Fallback) handles the first-time user with no cigar by suggesting Photo Import or text search. But this only covers onboarding. What about the returning user who opens the app and wants to explore without a camera action?
+    </div>
+    <!-- Scenario wireframes -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Four scenarios without a camera:</div>
+
+    <div class="flow-strip">
+
+      <!-- Scenario: Text search -->
+      <div class="phone-wrap">
+        <div class="phone-label">Text Search</div>
+        <div class="phone-sublabel">"I heard about Opus X"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:7px">
+              <div class="picker-search">
+                <span class="picker-search-icon">Q</span>
+                arturo fuente opus x
+              </div>
+              <div class="picker-result selected">
+                <div class="picker-brand">Arturo Fuente Opus X</div>
+                <div class="picker-line">Dominican. Full body. Cedar, cream, pepper.</div>
+                <div class="picker-match">98% confidence</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Arturo Fuente Don Carlos</div>
+                <div class="picker-line">Dominican. Medium-full. Cedar, leather.</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Arturo Fuente Hemingway</div>
+                <div class="picker-line">Dominican. Medium. Cream, nuts.</div>
+              </div>
+              <div style="margin-top:auto;font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light);text-align:center">Type a name, brand, or description</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Text input as first-class<br>entry alongside camera.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Browse by budget -->
+      <div class="phone-wrap">
+        <div class="phone-label">Browse / Filter</div>
+        <div class="phone-sublabel">"Under $15"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="explore-screen">
+              <div class="explore-header">Explore Cigars</div>
+              <div class="explore-filters">
+                <div class="rec-chip active">Under $15</div>
+                <div class="rec-chip">Medium</div>
+                <div class="rec-chip">Nicaragua</div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">Oliva Serie G</div>
+                  <div class="explore-card-desc">Medium. Cameroon wrapper. $8-12.</div>
+                </div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">Perdomo Lot 23</div>
+                  <div class="explore-card-desc">Medium. Connecticut. $7-10.</div>
+                </div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">CAO Flathead V554</div>
+                  <div class="explore-card-desc">Full. Maduro. $9-13.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Category/filter browsing.<br>No photo needed.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Profile-based rec -->
+      <div class="phone-wrap">
+        <div class="phone-label">Profile Rec</div>
+        <div class="phone-sublabel">"What should I get?"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Tonight's Pick</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-bottom:4px">Based on your taste profile</div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">You love dark Nicaraguans. Haven't tried this yet.</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">My Father Le Bijou</div>
+                  <div class="rec-reason">Similar to your #1 rated Padron.</div>
+                </div>
+                <div class="rec-score">91%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Davidoff Nicaragua</div>
+                  <div class="rec-reason">Stretch pick. Try something lighter?</div>
+                </div>
+                <div class="rec-score">78%</div>
+              </div>
+              <div style="margin-top:auto;font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);text-align:center;padding:4px">Ask for something specific...</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">AI recommends from profile.<br>No camera, no search needed.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Compare -->
+      <div class="phone-wrap">
+        <div class="phone-label">Compare</div>
+        <div class="phone-sublabel">"These two cigars..."</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:6px">
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch)">Compare</div>
+              <div style="display:flex;gap:6px">
+                <div style="flex:1;padding:6px;border:2px solid var(--sketch);border-radius:5px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.7rem;font-weight:700;color:var(--sketch)">Padron 3000</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Maduro</div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.8rem;color:var(--sketch-light);align-self:center">vs</div>
+                <div style="flex:1;padding:6px;border:2px solid var(--sketch);border-radius:5px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.7rem;font-weight:700;color:var(--sketch)">Oliva Serie V</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Melanio</div>
+                </div>
+              </div>
+              <!-- Comparison bars -->
+              <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Strength</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:80%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:90%;background:var(--sketch);border-radius:3px"></div></div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Price</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:40%;background:var(--green);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:65%;background:var(--amber);border-radius:3px"></div></div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Your match</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:88%;background:var(--accent);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:72%;background:var(--accent);border-radius:3px"></div></div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch);border-left:2px solid var(--accent);padding-left:8px;margin-top:auto;line-height:1.3">"The Padron is smoother. The Oliva hits harder. For after dinner, go Padron."</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Research mode. Side-by-side.<br>AI gives a verdict.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:16px">
+      <strong>What we need to decide:</strong> Is text/voice search a first-class entry point alongside camera? Does the Home screen in Reflective Mode cover this (recommendations, browse by category)? Or does this need a dedicated "Explore / Search" path?
+    </div>
+  </div>
+</div>
+
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q3</span>
+      <div class="flow-title">Mode Switching: Quick to Reflective and Back</div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px;margin-bottom:16px">
+      <strong>The problem:</strong> Dave snaps a cigar (Quick), then wants to check his diary from last week (Reflective), then snaps a friend's cigar (Quick again). These are not separate sessions. How does switching work?
+    </div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Quick mode: Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Quick Mode</div>
+        <div class="phone-sublabel">Dave snaps his cigar</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Camera-first. Full screen.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">snaps, saves</div>
+      </div>
+
+      <!-- 2. Result -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Result</div>
+        <div class="phone-sublabel">Identification done</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">&#10003;</div>
+              <div class="save-title">Saved to Humidor</div>
+              <div class="save-desc">Padron 3000 Maduro<br>Your 13th cigar logged</div>
+              <div style="display:flex;gap:6px;width:100%">
+                <div class="sk-btn accent" style="flex:1;font-size:0.62rem">Snap Another</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.62rem">View Humidor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Crossroads: stay in Quick<br>or jump to Reflective?</div>
+      </div>
+
+      <div class="flow-branch">
+        <div class="branch-diamond"></div>
+        <div class="branch-label">where to?</div>
+      </div>
+
+      <!-- 3a. Back to camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">3a. Back to Quick</div>
+        <div class="phone-sublabel">Snap another</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+              <div class="toast">
+                <span class="toast-icon">&#10003;</span>
+                Padron saved. Snap another!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Stays in Quick.<br>Seamless loop.</div>
+      </div>
+
+      <div style="min-width:16px;flex-shrink:0"></div>
+
+      <!-- 3b. Jump to diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">3b. To Reflective</div>
+        <div class="phone-sublabel">Check diary</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">Smoking Diary</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Recent sessions</div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 3000 Maduro</div>
+                  <div class="diary-meta">Just now</div>
+                </div>
+                <div class="diary-rating" style="color:var(--green)">new</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V</div>
+                  <div class="diary-meta">Wed 26 Mar</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Jumps to Reflective.<br>How does Dave get back to camera?</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">wants to snap friend's cigar</div>
+      </div>
+
+      <!-- 4. Back to camera again -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Back to Quick</div>
+        <div class="phone-sublabel">How?</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px">
+              <div style="font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--amber);text-align:center">?</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.78rem;color:var(--sketch);text-align:center;line-height:1.4">How does Dave<br>return to camera?</div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">A. Tab bar "Snap" tab?</div>
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">B. Floating camera button?</div>
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">C. Swipe gesture?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="color:var(--amber)">This is the unsolved question.<br>Connects directly to Q1.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:16px">
+      <strong>What we need to decide:</strong> Are Quick and Reflective truly "modes" or just different screens in a single navigation? The answer shapes the entire app structure. This is the same question as Q1, seen from the user's perspective instead of the architecture perspective.
+    </div>
+  </div>
+</div>
+
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q4</span>
+      <div class="flow-title">Cigar Detail: One Component, Three Contexts</div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px">
+      <strong>The problem:</strong> The cigar detail appears in three different flows. The information layer is always the same (identity, flavor, strength, rating). But the actions change depending on context: did you just snap it, are you browsing a recommendation, or are you reviewing a past smoke? And Pairing (a core feature) should be accessible from all of them.
+    </div>
+
+    <!-- Information Tiers -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Information tiers (same in all contexts):</div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      <div style="padding:10px 14px;border:1.5px solid var(--sketch);border-radius:5px;background:rgba(0,82,255,0.03)">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--accent)">Tier 1: Identity (always visible)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Photo (user's snap or database image) / Brand + Line (e.g. "Padron 1964 Anniversary Series") / Vitola + wrapper (e.g. "Imperial, Natural") / Origin flag</div>
+      </div>
+      <div style="padding:10px 14px;border:1.5px solid var(--sketch);border-radius:5px;background:rgba(0,82,255,0.03)">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--accent)">Tier 2: Character (always visible, persona-adapted)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Flavor notes with icons (Cocoa, Coffee, Cream, Chocolate, Earth) / Strength gauge / Community rating (stars) / Body descriptor ("Medium-full, rich and complex")</div>
+      </div>
+      <div style="padding:10px 14px;border:1.5px dashed var(--sketch-light);border-radius:5px">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--sketch-light)">Tier 3: Deep Detail (expand/scroll, enthusiast+)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Flavor by thirds (first, middle, final) / Wrapper, binder, filler leaf breakdown / Ring gauge + length / Smoke time estimate / Price range / Production details, aging notes</div>
+      </div>
+    </div>
+
+    <!-- Contextual Actions Table -->
+    <div style="margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Three contexts, three action bars:</div>
+
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table style="width:100%;border-collapse:collapse;font-family:'Caveat',cursive;font-size:0.68rem">
+        <thead>
+          <tr style="border-bottom:2px solid var(--sketch)">
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Context</th>
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Scenario</th>
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Actions (concept.md source)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">After Snap</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Just identified a cigar (State 3)</td>
+            <td style="padding:6px 8px;color:var(--sketch)">Save to diary, <strong style="color:var(--accent)">Share</strong>, Find similar, Pair, Expand detail</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">From Recommendation</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Tapped a ranked card at the shop (State 4, Flow 2 Step 5)</td>
+            <td style="padding:6px 8px;color:var(--sketch)"><strong style="color:var(--accent)">Pair</strong>, Share, Find similar. User is deciding whether to buy.</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">From Diary</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Tapped a past smoke entry (Section 5.7)</td>
+            <td style="padding:6px 8px;color:var(--sketch)"><strong style="color:var(--accent)">Share</strong>, Pair, Find similar. Reviewing what you smoked.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-bottom:20px">
+      <strong>Key insight:</strong> Pair appears in all three contexts. It is one of the 5 core features (Section 5.5). "I have a cigar, suggest a drink" is a natural action from any cigar detail. The concept defines pairing as a unified feature regardless of direction.
+    </div>
+
+    <!-- Phone mockups -->
+    <div style="margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Same info, different action bars:</div>
+
+    <div class="flow-strip">
+
+      <!-- 1. After Snap -->
+      <div class="phone-wrap">
+        <div class="phone-label">After Snap</div>
+        <div class="phone-sublabel">Dave just identified his cigar</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <!-- Origin flag -->
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">NIC</div>
+              <!-- Brand + Line -->
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Padron 1964</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Anniversary Series / Imperial (Natural)</div>
+              <!-- Cigar image placeholder -->
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">user's photo</div>
+              <!-- Flavor + Strength row -->
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cocoa</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">coffee</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cream</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">earth</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:75%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+              </div>
+              <!-- Body descriptor -->
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Medium-full, rich and complex"</div>
+              <!-- ACTION BAR: After Snap -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Save</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Pair</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">After identification.<br><strong>Save to diary is primary.</strong><br>Share + Pair available.<br><em>(Concept State 3, Section 5.1 step 6)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 2. From Recommendation -->
+      <div class="phone-wrap">
+        <div class="phone-label">From Recommendation</div>
+        <div class="phone-sublabel">Carlos tapped a ranked card at the shop</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">NIC</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Liga Privada No. 9</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Drew Estate / Robusto (Oscuro)</div>
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">database photo</div>
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">chocolate</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">pepper</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">leather</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cedar</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:90%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Full-bodied, dark and bold"</div>
+              <!-- Match reason from recommendation -->
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--green)">94% match. Similar to your top-rated Padron.</div>
+              <!-- ACTION BAR: From Recommendation -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Pair</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Similar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">From shop recommendation.<br><strong>Pair is primary.</strong><br>User is deciding what to buy<br>and what drink to have with it.<br><em>(Concept State 4, Flow 2 Step 5)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 3. From Diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">From Diary</div>
+        <div class="phone-sublabel">Dave reviewing last Saturday's smoke</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">DOM</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Arturo Fuente Opus X</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Fuente / Robusto (Rosado)</div>
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">your photo, Sat 29 Mar</div>
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cedar</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cream</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">pepper</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">nuts</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:85%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Full, complex, exceptional"</div>
+              <!-- Diary context: date + pairing -->
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch-light)">Sat 29 Mar. Paired with bourbon.</div>
+              <!-- ACTION BAR: From Diary -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Pair</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Similar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">From smoking diary.<br><strong>Share is primary.</strong><br>Pair available ("next time,<br>try it with rye whisky").<br><em>(Concept Section 5.7)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 4. Expanded Detail (Tier 3) -->
+      <div class="phone-wrap">
+        <div class="phone-label">Expanded Detail</div>
+        <div class="phone-sublabel">Tier 3: enthusiast view</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:5px;overflow-y:auto">
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent);cursor:pointer">&#8592; collapse</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--sketch)">Padron 1964 Anniversary</div>
+              <!-- Flavor by thirds -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Flavor by Third</div>
+              <div style="display:flex;gap:4px">
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">First</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Cream, cedar</div>
+                </div>
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Middle</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Coffee, cocoa</div>
+                </div>
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Final</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Earth, spice</div>
+                </div>
+              </div>
+              <!-- Specs -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Specs</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Wrapper: <span style="color:var(--sketch)">Habano (Natural)</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Binder: <span style="color:var(--sketch)">Habano</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Filler: <span style="color:var(--sketch)">Nicaraguan</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Ring: <span style="color:var(--sketch)">50 x 6"</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Smoke time: <span style="color:var(--sketch)">~75 min</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Price: <span style="color:var(--sketch)">$18-24</span></div>
+              </div>
+              <!-- Production -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Production</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);line-height:1.4">Box-pressed. Aged 4 years pre-release. Made in Doral, Miami. The 1964 line commemorates the Padron family's founding year.</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="color:var(--amber)">Expanded Tier 3 detail.<br>Available from any context<br>via "More" or scroll.<br><em>(Concept State 3: "Expand for<br>more detail")</em></div>
+      </div>
+
+    </div>
+
+    <!-- Design decisions -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Open design questions:</div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4a. Pair from everywhere?</strong> The concept defines pairing as a core feature (Section 5.5). Should "Pair this" be available from every cigar detail, or only when the user is actively with the cigar (After Snap, not Diary)?
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4b. Rating: when does it happen?</strong> The concept says rating is "optional" and part of minimum snap data (Section 5.1). But can you rate a cigar later from the diary, or only at snap time? The concept says active input "exists for enthusiasts but is never required" (Principle 3), but does not specify when.
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4c. Share from diary?</strong> The concept defines the share card as generated after a snap (Section 5.1 step 7, State 9). Can you generate a share card for a cigar you smoked last week? The photo and data exist. This would make the diary a second distribution channel.
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<div class="footer">
+  <span>Vitolero / Flow Wireframes v1.0</span>
+  <span>Fixed to Flow / April 2026</span>
+</div>
+
+<!-- Nav scroll-spy -->
+<script>
+const navBtns = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.section-title');
+
+function updateNav() {
+  let current = '';
+  sections.forEach(s => {
+    if (s.getBoundingClientRect().top <= 100) {
+      current = s.id;
+    }
+  });
+  navBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateNav);
+updateNav();
+</script>
+
+</body>
+</html>
