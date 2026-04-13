@@ -183,6 +183,34 @@ Required in `.env`:
 
 ---
 
+## Encrypted Client Pages
+
+Private client pages live under `client/public/clients/<client>/`. The strong pattern encrypts the entire page with AES-256-GCM so the content is unreadable without the password. No plaintext is ever served.
+
+**Script:** `scripts/encrypt-client-page.cjs` (PBKDF2 600k iterations, random salt/IV, browser Web Crypto)
+
+**Source plaintext:** lives in the main claude repo (e.g. `docs/business/clients/lince-capital/proposta/`), never in this repo, so it cannot accidentally end up in `dist/public/`.
+
+**Workflow:**
+
+1. Edit source HTML in the claude repo
+2. Run the encrypt script from this repo:
+   ```bash
+   node scripts/encrypt-client-page.cjs \
+     <absolute-path-to-source.html> \
+     client/public/clients/<client>/index.html \
+     "<password>" \
+     --title "<browser title>" \
+     --label "<gate label>" \
+     --storage-key "<client>_auth"
+   ```
+3. Commit the encrypted output only (source and password stay out of this repo)
+4. Push → Vercel autodeploys; page is live at `https://fixedtoflow.com/clients/<client>`
+
+**Note:** Older proposals under `client/public/proposals/*.html` use a weak SHA-256 hash pattern where the content is plaintext and only a hash gates the UI. Those should be migrated to the strong pattern when touched.
+
+---
+
 ## Documentation Updates
 
 **ALWAYS update deployment-guide.md** when making changes to this website:

@@ -3,10 +3,11 @@
  * Encrypts an HTML page with AES-256-GCM so the content is unreadable without the password.
  *
  * Usage:
- *   node scripts/encrypt-client-page.js <source.html> <output.html> <password> [--title "Page Title"]
+ *   node scripts/encrypt-client-page.cjs <source.html> <output.html> <password> \
+ *     [--title "Page Title"] [--label "Gate Label"] [--storage-key "session_key"]
  *
  * The output is a self-contained HTML page with:
- *   - A password form styled in Vitolero's Swiss Rational aesthetic
+ *   - A password form with a clean gate styled for any client
  *   - The encrypted content as a base64 blob
  *   - Client-side PBKDF2 key derivation + AES-GCM decryption
  */
@@ -17,13 +18,26 @@ const path = require('path');
 
 const args = process.argv.slice(2);
 if (args.length < 3) {
-  console.error('Usage: node encrypt-client-page.js <source.html> <output.html> <password> [--title "Title"]');
+  console.error('Usage: node encrypt-client-page.cjs <source.html> <output.html> <password> [--title "Title"] [--label "Label"] [--storage-key "key"]');
   process.exit(1);
 }
 
 const [sourcePath, outputPath, password] = args;
-const titleIdx = args.indexOf('--title');
-const pageTitle = titleIdx !== -1 ? args[titleIdx + 1] : 'Protected Page';
+
+function getFlag(name, fallback) {
+  const idx = args.indexOf(name);
+  return idx !== -1 && args[idx + 1] ? args[idx + 1] : fallback;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
+const pageTitle = getFlag('--title', 'Protected Page');
+const gateLabel = getFlag('--label', 'Protected Content');
+const storageKey = getFlag('--storage-key', 'fft_auth');
 
 const sourceHtml = fs.readFileSync(sourcePath, 'utf-8');
 
@@ -53,129 +67,189 @@ console.log(`  Iterations: ${ITERATIONS}`);
 
 // Build the loader page
 const loaderHtml = `<!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${pageTitle}</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>${escapeHtml(pageTitle)}</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --red: #E63B2E;
+  --red-dark: #C42B1C;
+  --red-glow: rgba(230, 59, 46, 0.15);
+  --cream: #FAF7F2;
+  --black: #111111;
+  --gray: #555555;
+  --white: #FFFFFF;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Sora', sans-serif;
-  background: #fff;
-  color: #111;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--cream);
+  color: var(--black);
+  line-height: 1.7;
+  overflow: hidden;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-.gate {
+.password-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 24px;
+  overflow: hidden;
 }
 
-.gate-card {
-  max-width: 380px;
-  width: 100%;
+.password-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 50%);
+  transform: translate(-50%, -50%);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.password-card {
+  background: var(--cream);
+  padding: 56px 48px;
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  max-width: 420px;
+  width: 90%;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: card-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
-.gate-label {
-  font-size: 0.6rem;
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.password-logo {
+  margin-bottom: 40px;
+}
+
+.password-logo img {
+  height: 22px;
+  width: auto;
+}
+
+.password-label {
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #0052FF;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.password-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.password-subtitle {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 36px;
+}
+
+.password-input-group {
+  position: relative;
   margin-bottom: 24px;
 }
 
-.gate-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-
-.gate-sub {
-  font-size: 0.8rem;
-  color: #666;
-  font-weight: 300;
-  margin-bottom: 32px;
-  line-height: 1.5;
-}
-
-.gate-input {
+.password-input {
   width: 100%;
-  padding: 12px 16px;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 400;
-  border: 1px solid #E0E0E0;
-  border-radius: 4px;
+  padding: 18px 24px;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  border: 2px solid #E5E5E5;
+  border-radius: 14px;
   outline: none;
-  transition: border-color 0.2s;
-  text-align: center;
-  letter-spacing: 0.04em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--white);
+  color: var(--black);
 }
 
-.gate-input:focus {
-  border-color: #0052FF;
+.password-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px var(--red-glow);
 }
 
-.gate-input.error {
-  border-color: #dc2626;
-  animation: shake 0.4s ease;
+.password-input.error {
+  border-color: var(--red);
+  animation: shake 0.5s ease;
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
 }
 
-.gate-btn {
+.password-error {
+  color: var(--red);
+  font-size: 0.9rem;
+  margin-top: 12px;
+  display: none;
+}
+
+.password-error.visible {
+  display: block;
+  animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.password-btn {
   width: 100%;
-  margin-top: 12px;
-  padding: 12px;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  background: #111;
-  color: #fff;
+  padding: 18px 32px;
+  background: var(--red);
+  color: var(--white);
   border: none;
-  border-radius: 4px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
-.gate-btn:hover { background: #333; }
-
-.gate-error {
-  font-size: 0.72rem;
-  color: #dc2626;
-  margin-top: 12px;
-  opacity: 0;
-  transition: opacity 0.2s;
+.password-btn:hover:not(.loading) {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
 }
 
-.gate-error.visible { opacity: 1; }
-
-.gate-footer {
-  margin-top: 40px;
-  font-size: 0.65rem;
-  color: #AAA;
-  letter-spacing: 0.04em;
-}
-
-.gate.hidden { display: none; }
-
-/* Spinner */
-.gate-btn.loading {
+.password-btn.loading {
   pointer-events: none;
   opacity: 0.7;
 }
@@ -183,28 +257,36 @@ body {
 </head>
 <body>
 
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="gate-label">Vitolero</div>
-    <h1 class="gate-title">Protected Content</h1>
-    <p class="gate-sub">Enter the password to view this deliverable.</p>
+<div class="password-overlay" id="gate">
+  <div class="password-card">
+    <div class="password-logo">
+      <img src="/logo.svg" alt="Fixed to Flow">
+    </div>
+    <div class="password-label">${escapeHtml(gateLabel)}</div>
+    <p class="password-subtitle">Introduza password para aceder.</p>
     <form id="gateForm">
-      <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off" autofocus>
-      <button type="submit" class="gate-btn" id="gateBtn">Unlock</button>
-      <p class="gate-error" id="gateError">Incorrect password. Please try again.</p>
+      <div class="password-input-group">
+        <input
+          type="password"
+          class="password-input"
+          id="gateInput"
+          placeholder="Password"
+          autocomplete="off"
+          autofocus
+        >
+        <p class="password-error" id="gateError">Password incorrecta. Tente novamente.</p>
+      </div>
+      <button type="submit" class="password-btn" id="gateBtn">Ver Proposta</button>
     </form>
-    <div class="gate-footer">Fixed to Flow &middot; Confidential</div>
   </div>
 </div>
-
-<div id="content" style="display:none"></div>
 
 <script id="payload" type="application/octet-stream">${payloadB64}</script>
 
 <script>
 (function() {
   const ITERATIONS = ${ITERATIONS};
-  const STORAGE_KEY = 'vtl_auth';
+  const STORAGE_KEY = ${JSON.stringify(storageKey)};
 
   const gate = document.getElementById('gate');
   const contentEl = document.getElementById('content');
@@ -280,7 +362,7 @@ body {
     if (!pw) return;
 
     btn.classList.add('loading');
-    btn.textContent = 'Decrypting...';
+    btn.textContent = 'A desencriptar...';
 
     // Small delay to let the UI update before heavy PBKDF2
     await new Promise(r => setTimeout(r, 50));
@@ -288,10 +370,10 @@ body {
     const ok = await unlock(pw);
     if (!ok) {
       btn.classList.remove('loading');
-      btn.textContent = 'Unlock';
+      btn.textContent = 'Ver Proposta';
       input.classList.add('error');
       errorEl.classList.add('visible');
-      setTimeout(() => input.classList.remove('error'), 400);
+      setTimeout(() => input.classList.remove('error'), 500);
     }
   });
 
