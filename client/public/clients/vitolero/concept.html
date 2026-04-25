@@ -1740,7 +1740,15 @@ body {
   <div class="header-label">Vitolero</div>
   <h1>Concept <span>Framework</span></h1>
   <p>Design principles, persona priorities, interaction model, social network strategy, and directional UI states for Vitolero's AI cigar recommendation app.</p>
-  <div class="meta">v3.0 &middot; Post-V2 feedback revision &middot; April 2026 &middot; Fixed to Flow</div>
+  <div class="meta">v4.0 &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</div>
+
+  <!-- April 17 pivot banner -->
+  <div style="margin-top:24px;padding:20px 24px;border:2px solid #0052FF;border-radius:4px;background:#F0F5FF;">
+    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#0052FF;margin-bottom:12px;">April 17, 2026 &middot; Snap &amp; Share Pivot</div>
+    <p style="font-size:0.92rem;line-height:1.55;color:#111;margin-bottom:10px;"><strong>The product is now a 3-feature MVP:</strong> Snap &amp; Share with cigar-specific photo filters, one-directional Pairing (cigar to 3 food + 3 drink), and a Pinterest-style Journal. Taste profile, in-store recommendation, discovery feed, bi-directional pairing, Cigar Doctor, photo import, and vitola identification all move to post-MVP.</p>
+    <p style="font-size:0.92rem;line-height:1.55;color:#111;margin-bottom:10px;"><strong>MVP-primary persona:</strong> Dave the Weekend Ritualist (US, solo smoker, Facebook sharer). All other personas are served post-MVP.</p>
+    <p style="font-size:0.85rem;line-height:1.55;color:#666;margin:0;">Source of truth: <a href="../engagement/interactions.md" style="color:#0052FF;">April 17 meeting notes</a>. Current PRD: <a href="../strategy/prd.md" style="color:#0052FF;">strategy/prd.md v1.0</a>. This HTML deliverable is being rebuilt to reflect v4.0; deep sections below still carry v3.0 visualizations and should be read as pre-pivot reference until fully updated.</p>
+  </div>
 </div>
 
 <!-- Sticky Nav -->
@@ -1766,10 +1774,12 @@ body {
   <div class="section" id="context">
     <div class="section-label">Section 1</div>
     <h2>Business Context</h2>
-    <p class="section-intro">Vitolero is an AI-powered cigar companion app. Photo-first identification, recommendations, and social sharing, delivered as a Progressive Web App. No App Store dependency.</p>
-    <p class="section-intro"><strong>The core value proposition:</strong> Snap 3 cigars to unlock your personalized flavor profile and next-buy recommendations. The app delivers personal value first: identification, taste mapping, and recommendations. Sharing is the distribution byproduct, not the hook.</p>
-    <p class="section-intro"><strong>The core constraint:</strong> paid advertising is structurally impossible. EU tobacco directive, platform restrictions across Meta/Google/TikTok, and Apple's history of banning cigar apps close every conventional channel. The product must grow itself.</p>
-    <p class="section-intro">This document is the post-V2 feedback concept framework: personas, principles, interaction model, features, flows, growth strategy, and social network channel strategy. A compass, not a blueprint.</p>
+    <p class="section-intro">Vitolero is an AI-powered cigar companion app. Photo-first identification, pairings, and social sharing, delivered as a Progressive Web App. No App Store dependency.</p>
+    <p class="section-intro"><strong>The core value proposition (v4.0, April 17 pivot):</strong> turn any cigar photo into a magazine-quality share with brand and line auto-identified. Cigar-specific photo filters desaturate the background, keep the cigar saturated, and overlay brand and line information on the photo. The filter is what makes the photo worth sharing. The identification is what makes the share credible.</p>
+    <p class="section-intro"><strong>MVP scope (3 features):</strong> Snap &amp; Share with filters, one-directional Pairing (cigar to 3 food + 3 drink), and Journal (Pinterest-style gallery, account creation on first Journal access).</p>
+    <p class="section-intro"><strong>Deferred to post-MVP:</strong> Signature Taste Profile, In-store Recommendation, Discovery Feed, bi-directional Pairing, menu-aware Pairing, Cigar Doctor, Photo Import, vitola-level identification.</p>
+    <p class="section-intro"><strong>The core constraint:</strong> paid advertising is structurally impossible. EU tobacco directive, platform restrictions across Meta, Google, and TikTok, and Apple's history of banning cigar apps close every conventional channel. The product must grow itself through organic shares and Facebook-group admin partnerships (outreach begins only once MVP is working).</p>
+    <p class="section-intro">This document is the post April 17 pivot concept framework: personas, principles, interaction model, features, flows, growth strategy, and social network channel strategy. A compass, not a blueprint.</p>
 
     <div class="section-label" style="margin-top:24px">Platform Constraints (v1)</div>
     <div class="constraint-grid">
@@ -1826,9 +1836,9 @@ body {
       <p style="font-size: 0.85rem; color: var(--fg);"><strong>Growth is the only goal for v1.</strong> Monetization and data flywheels are secondary concerns. The singular focus is getting users in, getting them to snap, and getting the share loop spinning.</p>
     </div>
 
-    <div class="section-label" style="margin-top:32px">Two-Speed Growth Flywheel</div>
-    <p class="section-intro" style="margin-bottom:16px"><strong>Front wheel (high-speed):</strong> Identification + Signature Taste Profile. Every snap delivers value and builds the profile. These must be perfect because every user passes through them. The share card sits on top.</p>
-    <p class="section-intro" style="margin-bottom:16px"><strong>Back wheel (retention):</strong> Discovery feed, pairings, diary, community. Users branch out based on personality and interests. At this point the user is already hooked.</p>
+    <div class="section-label" style="margin-top:32px">Two-Speed Growth Flywheel (April 17 MVP)</div>
+    <p class="section-intro" style="margin-bottom:16px"><strong>Front wheel (MVP, high-speed):</strong> Photo filter + brand and line identification + share. Every snap produces a share-worthy artifact. The share prompt is the primary action after identification. This front wheel must be perfect because every user passes through it.</p>
+    <p class="section-intro" style="margin-bottom:16px"><strong>Back wheel (post-MVP, retention):</strong> Journal holds the raw photo and brand data in MVP. Post-MVP, the Signature Taste Profile, Discovery Feed, and recommendations ship on top of that data. Switching cost begins accruing once recommendations land.</p>
     <div class="flywheel">
       <div class="flywheel-step">
         <div class="step-num">Step 1</div>
@@ -2022,7 +2032,10 @@ body {
   <div class="section" id="personas">
     <div class="section-label">Section 3</div>
     <h2>Personas</h2>
-    <p class="section-intro">Six user types from community research across 240k+ members. Two are primary targets for v1. Two secondary. Two tertiary, served indirectly. Click any card for details.</p>
+    <p class="section-intro">Six user types from community research across 240k+ members. Kept for long-term product thinking. Click any card for details.</p>
+    <p class="section-intro"><strong>April 17 MVP priority:</strong> Dave (Weekend Ritualist) is the sole MVP-primary persona. He is US-based, smokes alone on weekends with bourbon, and already photographs and shares cigar moments on Facebook. The filter-powered share loop maps directly onto behavior he already has.</p>
+    <p class="section-intro"><strong>Served post-MVP:</strong> Carlos, Mark, Tyler, Jerome, and Richard. Carlos carries a specific caveat: brand and line identification accuracy on well-known cigars is reputation-critical in MVP because he will find the app through Facebook groups and judge it publicly.</p>
+    <p class="section-intro">Operational principle: <strong>build for Dave, design for Dave's Saturday-night solo smoke.</strong></p>
 
     <div class="card-grid three" id="personaGrid"></div>
   </div>
@@ -2846,7 +2859,7 @@ const personaData = [
     type: 'Weekend Ritualist',
     profile: '47, Austin TX. Marketing director. Weekend smoker, ritual-driven.',
     jtbd: 'Help me enjoy my ritual without making it homework.',
-    image: 'casual.jpg',
+    image: 'personas/casual.jpg',
     tier: 'primary',
     primary: true,
     entry: 'Sees a friend\'s share card on Facebook, downloads the app, snaps the cigar he\'s currently smoking.',
@@ -2872,7 +2885,7 @@ const personaData = [
     type: 'Deepening Enthusiast',
     profile: '34, London. Financial analyst. Weekly smoker, building expertise.',
     jtbd: 'Give me precise recommendations that account for what I dislike, not just what I like.',
-    image: 'midlevel.jpg',
+    image: 'personas/midlevel.jpg',
     tier: 'primary',
     primary: true,
     entry: 'Tests identification accuracy with a cigar he already knows well. If the app gets it right, he stays.',
@@ -2898,7 +2911,7 @@ const personaData = [
     type: 'Celebratory Occasional',
     profile: '38, New York. Senior account executive. Celebration smoker.',
     jtbd: 'Tell me what I\'m smoking and help me look knowledgeable.',
-    image: 'status.jpg',
+    image: 'personas/status.jpg',
     tier: 'secondary',
     primary: false,
     howServed: 'Served by the share card (looks knowledgeable without study) and identification flow. No dedicated v1 features needed beyond core.',
@@ -2924,7 +2937,7 @@ const personaData = [
     type: 'Curious Newcomer',
     profile: '28, Lisbon. Junior PM. Got his first cigar at a wedding 3 months ago.',
     jtbd: 'Guide me without making me feel stupid.',
-    image: 'newbie.jpg',
+    image: 'personas/newbie.jpg',
     tier: 'secondary',
     primary: false,
     howServed: 'Same UX as Weekend Ritualist with lighter output depth. Photo-first sidesteps vocabulary gap.',
@@ -2947,7 +2960,7 @@ const personaData = [
     type: 'Collector-Connoisseur',
     profile: '58, Sao Paulo. Retired logistics exec. 20+ years, 400+ cigars.',
     jtbd: 'Match my depth of knowledge and help me manage what I have.',
-    image: 'veteran.jpg',
+    image: 'personas/veteran.jpg',
     tier: 'tertiary',
     primary: false,
     howServed: 'Served by database quality and data ownership, not UX innovation. Tertiary priority for v1.',
@@ -2970,7 +2983,7 @@ const personaData = [
     type: 'Lounge Social',
     profile: '42, Miami FL. Real estate investment manager. Lounge regular.',
     jtbd: 'Help me look knowledgeable at the lounge without deep study.',
-    image: 'status.jpg',
+    image: 'personas/status.jpg',
     tier: 'tertiary',
     primary: false,
     howServed: 'Benefits from share card appeal and quick band lookup. No dedicated v1 flows needed.',
