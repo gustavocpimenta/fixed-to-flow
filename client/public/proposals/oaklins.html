@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oaklins | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy:        #0E3A5F;
+            --navy-mid:    #15527E;
+            --accent:      #4D9B7C;
+            --accent-light:#7FBFA0;
+            --teal-soft:   #A8C9C2;
+            --ice:         #EEF4F2;
+            --ice-light:   #F7FAF8;
+            --highlight:   #DEEDDC;
+            --white:       #FFFFFF;
+            --black:       #0D0D0D;
+            --gray:        #4A4A4A;
+            --gray-light:  #787C85;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           PASSWORD OVERLAY
+           ========================================== */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--navy);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-overlay.hidden .password-card {
+            transform: scale(1.04);
+            opacity: 0;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .password-card {
+            background: var(--white);
+            padding: 56px 48px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border-top: 6px solid var(--accent);
+            animation: cardEntrance 0.6s ease-out;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .password-logo { margin-bottom: 40px; }
+        .password-logo img { height: 22px; width: auto; }
+
+        .password-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #D0D0D0;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+        }
+
+        .password-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(77, 155, 124, 0.18);
+        }
+
+        .password-input.error {
+            border-color: #C8553D;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .password-error {
+            color: #C8553D;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .password-error.visible { display: block; }
+
+        .password-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.2s ease;
+        }
+
+        .password-btn:hover { background: var(--navy-mid); }
+
+        /* ==========================================
+           PROPOSAL CONTENT FADE
+           ========================================== */
+        .proposal-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .proposal-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ==========================================
+           PAGE HERO
+           ========================================== */
+        .page-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, var(--accent) 100%);
+        }
+
+        .page-hero::before {
+            content: 'OAKLINS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(100px, 22vw, 320px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .hero-logo {
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo img {
+            height: 20px;
+            width: auto;
+            opacity: 0.9;
+            filter: brightness(0) invert(1);
+        }
+
+        .hero-confidential {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.35);
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: var(--accent-light);
+        }
+
+        .hero-client {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.2rem, 8.5vw, 6rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.0;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.05rem, 2vw, 1.4rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 640px;
+            margin: 0 auto 28px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.55;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.4;
+            animation: pulse-down 2.5s ease-in-out infinite;
+        }
+
+        .hero-scroll span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--white);
+        }
+
+        .hero-scroll::after {
+            content: '';
+            width: 1px;
+            height: 32px;
+            background: var(--white);
+        }
+
+        @keyframes pulse-down {
+            0%, 100% { opacity: 0.25; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.55; transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ==========================================
+           SECTIONS
+           ========================================== */
+        .section {
+            padding: 120px 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .section > *:not(.feature-grid):not(.dual-grid):not(.cm-list):not(.investment-table-wrapper) {
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-ice { background: var(--ice); }
+        .section-white { background: var(--white); }
+        .section-ice-light { background: var(--ice-light); }
+
+        .section-navy {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .section-navy .section-title { color: var(--white); }
+        .section-navy p { color: rgba(255, 255, 255, 0.72) !important; }
+        .section-navy ul li { color: rgba(255, 255, 255, 0.72) !important; }
+        .section-navy ul li strong { color: inherit !important; }
+        .section-navy ul li::before { background: var(--accent-light); }
+        .section-navy p strong { color: var(--white); }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 36px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .section-navy .section-title em {
+            color: var(--accent-light);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.85;
+        }
+
+        .section p + p { margin-top: 24px; }
+
+        .section p strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section-navy p strong { color: var(--white) !important; }
+
+        .section ul {
+            list-style: none;
+            margin: 28px 0;
+        }
+
+        .section ul li {
+            font-size: 1.1rem;
+            color: var(--gray);
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+        }
+
+        .section ul li strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(8rem, 15vw, 14rem);
+            font-weight: 700;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-navy .section-number { color: rgba(255, 255, 255, 0.05); }
+        .section-ice .section-number,
+        .section-ice-light .section-number,
+        .section-white .section-number { color: rgba(14, 58, 95, 0.05); }
+
+        .section > *:not(.section-number) {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           HIGHLIGHT BOXES
+           ========================================== */
+        .highlight-box {
+            background: var(--highlight);
+            color: var(--navy);
+            padding: 32px 36px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .highlight-box p {
+            color: var(--navy) !important;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.75;
+        }
+
+        .highlight-box p + p { margin-top: 16px; }
+
+        .highlight-box p strong { color: var(--navy) !important; font-weight: 700; }
+
+        .section-navy .highlight-box {
+            background: rgba(127, 191, 160, 0.14);
+            border-left-color: var(--accent-light);
+        }
+        .section-navy .highlight-box p { color: rgba(255, 255, 255, 0.9) !important; }
+        .section-navy .highlight-box p strong { color: var(--white) !important; }
+
+        /* ==========================================
+           SUBSECTIONS
+           ========================================== */
+        .subsection-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 60px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .subsection-title:first-of-type { margin-top: 40px; }
+        .section-navy .subsection-title { color: var(--accent-light); }
+
+        /* ==========================================
+           FEATURE GRID (4 ethics pillars + method bullets)
+           ========================================== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin: 36px auto;
+            max-width: 1000px;
+        }
+
+        .feature-grid.cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 32px 26px;
+        }
+
+        .feature-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.78) !important;
+            line-height: 1.65;
+            margin: 0 !important;
+        }
+
+        .section-white .feature-card,
+        .section-ice .feature-card,
+        .section-ice-light .feature-card {
+            background: var(--white);
+            border: 1px solid rgba(14, 58, 95, 0.08);
+        }
+
+        .section-white .feature-card h4,
+        .section-ice .feature-card h4,
+        .section-ice-light .feature-card h4 {
+            color: var(--navy);
+        }
+
+        .section-white .feature-card p,
+        .section-ice .feature-card p,
+        .section-ice-light .feature-card p {
+            color: var(--gray) !important;
+        }
+
+        /* ==========================================
+           DUAL GRID (used to bracket sub-modes)
+           ========================================== */
+        .dual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2px;
+            margin: 36px auto;
+            max-width: 1000px;
+        }
+
+        .dual-card {
+            background: var(--white);
+            padding: 36px 30px;
+            border: 1px solid rgba(14, 58, 95, 0.08);
+        }
+
+        .dual-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .dual-card .dual-meta {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .dual-card p {
+            font-size: 0.92rem;
+            color: var(--gray) !important;
+            line-height: 1.65;
+            margin: 0 !important;
+        }
+
+        /* ==========================================
+           CM-LIST (numbered deliverables)
+           ========================================== */
+        .cm-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 36px auto;
+            max-width: 800px;
+        }
+
+        .cm-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            align-items: baseline;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(14, 58, 95, 0.12);
+        }
+
+        .cm-item:last-child { border-bottom: none; }
+
+        .cm-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: right;
+        }
+
+        .cm-body h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .cm-body p {
+            font-size: 0.95rem;
+            color: var(--gray) !important;
+            line-height: 1.6;
+            margin: 0 !important;
+        }
+
+        /* ==========================================
+           TABLES
+           ========================================== */
+        .investment-table-wrapper {
+            max-width: 720px;
+            margin: 36px auto;
+        }
+
+        .ts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .ts-table thead th {
+            background: var(--accent);
+            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 20px;
+            text-align: left;
+        }
+
+        .ts-table tbody td {
+            padding: 16px 20px;
+            font-size: 0.98rem;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(14, 58, 95, 0.08);
+        }
+
+        .ts-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--black);
+            width: 30%;
+        }
+
+        .ts-table.fact-table tbody td {
+            font-size: 1.05rem;
+        }
+
+        .ts-table.fact-table tbody td:last-child {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* ==========================================
+           CTA / NEXT STEPS
+           ========================================== */
+        .next-steps {
+            background: var(--accent);
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .next-steps-content { max-width: 560px; margin: 0 auto; }
+
+        .next-steps h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .next-steps p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .validity {
+            margin-top: 48px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .proposal-footer {
+            padding: 48px 40px;
+            text-align: center;
+            background: var(--navy);
+        }
+
+        .footer-logo img {
+            height: 18px;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+        }
+
+        .footer-copy {
+            margin-top: 16px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================
+           LINKS WITHIN BODY
+           ========================================== */
+        .section a, .next-steps a.inline-link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: opacity 0.2s ease;
+        }
+        .section a:hover { opacity: 0.7; }
+        .section-navy a { color: var(--accent-light); border-bottom-color: var(--accent-light); }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 900px) {
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+            .dual-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero {
+                min-height: 85vh;
+                padding: 60px 24px 80px;
+            }
+
+            .hero-confidential {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .section { padding: 80px 24px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .feature-grid.cols-3 { grid-template-columns: 1fr; }
+            .investment-table-wrapper { overflow-x: auto; }
+
+            .section-number {
+                font-size: clamp(5rem, 20vw, 8rem);
+                top: 20px;
+                right: 20px;
+            }
+
+            .next-steps { padding: 80px 24px; }
+            .password-card { padding: 40px 28px; }
+        }
+
+        /* ==========================================
+           PRINT
+           ========================================== */
+        @media print {
+            .password-overlay { display: none !important; }
+            .proposal-content { opacity: 1 !important; visibility: visible !important; }
+            .section { padding: 40px 20px; }
+            .section-navy { background: #f0f0f0 !important; color: var(--black) !important; }
+            .section-navy .section-title { color: var(--black) !important; }
+            .section-navy p { color: var(--gray) !important; }
+            .section-navy ul li { color: var(--gray) !important; }
+            .section-navy .feature-card { background: #ffffff !important; border: 1px solid #ddd !important; }
+            .section-navy .feature-card h4 { color: var(--navy) !important; }
+            .section-navy .feature-card p { color: var(--gray) !important; }
+            .page-hero { min-height: auto; padding: 60px 20px; }
+            .next-steps { background: #f5f5f5 !important; }
+            .next-steps h2, .next-steps p { color: var(--black) !important; }
+            .cta-btn { background: var(--navy) !important; color: var(--white) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         PASSWORD OVERLAY
+         ========================================== -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-card">
+            <div class="password-logo">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </div>
+            <p class="password-subtitle">Preparado com cuidado para a Oaklins.</p>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input
+                        type="password"
+                        class="password-input"
+                        id="passwordInput"
+                        placeholder="Palavra-passe"
+                        autocomplete="off"
+                        autofocus
+                    >
+                    <p class="password-error" id="passwordError">Palavra-passe incorrecta. Tente de novo.</p>
+                </div>
+                <button type="submit" class="password-btn">Ver Proposta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PROPOSAL CONTENT
+         ========================================== -->
+    <div class="proposal-content" id="proposalContent">
+
+        <!-- HERO -->
+        <header class="page-hero">
+            <div class="hero-logo">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </div>
+            <span class="hero-confidential">Confidencial</span>
+            <span class="hero-eyebrow">Proposta de Colaboração</span>
+            <h1 class="hero-client">Oaklins</h1>
+            <p class="hero-title">Diagnóstico, Ética &amp; Capacitação Aplicada em IA</p>
+            <p class="hero-date">Abril 2026</p>
+            <div class="hero-scroll"><span>Scroll</span></div>
+        </header>
+
+        <!-- 01 CONTEXTO -->
+        <section class="section section-ice">
+            <span class="section-number">01</span>
+            <h2 class="section-title">O <em>Contexto</em></h2>
+            <p>A Oaklins é uma casa de mid-market M&amp;A e assessoria financeira com raízes profundas no mercado português, com capacidade em fusões e aquisições, mercados de capital e assessoria estratégica. A equipa em Portugal opera ligada a uma rede de mais de 900 profissionais, com foco específico nos sectores do retalho, materiais de construção, bens de consumo e editorial. Oito anos de conhecimento proprietário acumulado. Uma equipa pequena que se distingue pela qualidade das relações com investidores e clientes: é esse capital relacional, construído ao longo de anos, que define a casa e que nenhuma ferramenta replica.</p>
+            <p>A inteligência artificial já entrou na operação. Algumas pessoas da equipa usam Claude e ChatGPT no trabalho diário. O que ainda não existe é uma forma estruturada de trabalhar com IA em que o conhecimento seja cumulativo e transferível: de pessoa para pessoa, de ferramenta para ferramenta.</p>
+            <p>Paralelamente, a documentação dos mandatos, incluindo teasers e IMs, continua a ser a parte mais consumidora de tempo do negócio. É também a mais passível de aceleração. A questão pertinente é como acelerar a documentação dos mandatos sem erodir o capital relacional e o conhecimento proprietário que distinguem a Oaklins.</p>
+            <p>A conversa de 23 de Abril abriu o caminho para responder a essa questão de forma estruturada: transformar o que hoje são utilizações dispersas numa fundação com critério, política e equipa capaz de continuar a desenvolver-se depois da colaboração terminar.</p>
+        </section>
+
+        <!-- 02 O DESAFIO -->
+        <section class="section section-white">
+            <span class="section-number">02</span>
+            <h2 class="section-title">O <em>Desafio</em></h2>
+            <p><strong>A IA é já uma realidade, mas uma realidade fragmentada.</strong> Cada pessoa usa Claude e ChatGPT por sua conta. Os oito anos de conhecimento proprietário da rede interna não estão a alimentar uma camada partilhada que torne cada interacção mais útil do que a anterior. O conhecimento dispersa-se entre conversas, entre pessoas, entre negócios.</p>
+            <p><strong>O capital relacional tem de sobreviver à aceleração.</strong> Acelerar processos com IA é bem-vindo e, em vários momentos, quase imperativo. A relação com investidores e clientes exige especial cuidado: ritmo certo, presença humana em cada ponto de contacto, e clareza sobre onde a IA acrescenta valor e onde fica de fora.</p>
+            <p><strong>O uso está à frente das regras.</strong> Materiais sensíveis entram em ferramentas de IA sem política partilhada. A Oaklins opera com informação confidencial de investidores e participadas, em mercado regulado, sob NDAs. Resolver esta lacuna é parte essencial da fundação a construir, antes de qualquer expansão do uso.</p>
+        </section>
+
+        <!-- 03 O MÉTODO -->
+        <section class="section section-navy">
+            <span class="section-number">03</span>
+            <h2 class="section-title">O Nosso <em>Método</em></h2>
+            <p><strong>Compreender antes de construir.</strong> Mapear a realidade, ouvir as pessoas, perceber onde está o tempo e onde está o valor antes de qualquer decisão de implementação. Com a evolução dos modelos actuais e das aplicações disponíveis, a maior parte dos casos de uso resolve-se hoje com ferramentas existentes a um custo bastante residual face ao passado.</p>
+            <p><strong>Decidir com critério.</strong> Ter clareza sobre o que importa para o negócio, critérios para o que entra e o que fica de fora, e a capacidade de testar em projectos pequenos antes de um comprometimento maior da organização. O capital relacional funciona como linha vermelha: o que erode a relação cai, mesmo que ganhe tempo.</p>
+            <p><strong>Capacitar a equipa em paralelo.</strong> A capacitação acontece ao mesmo tempo que o diagnóstico, integrada na fundação desde o primeiro dia. O projecto termina com a equipa a saber trabalhar de forma colaborativa, a partilhar aprendizagens entre pessoas e negócios, e a conseguir que o uso da inteligência artificial tenha um efeito cumulativo ao longo do tempo.</p>
+        </section>
+
+        <!-- 04 PILAR 1 - ESTRATÉGIA -->
+        <section class="section section-ice-light">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Pilar 1: <em>Estratégia</em></h2>
+            <p>O projecto assenta em três pilares trabalhados em paralelo. O primeiro é o diagnóstico e o desenho do roadmap.</p>
+            <p>Conduzimos entrevistas individuais a várias pessoas da equipa para compreender a lógica de negócio e o estado actual de maturidade em IA, a partir de diferentes perspectivas.</p>
+            <p>Mapeamos os workflows core dos mandatos: produção de teaser, produção de IM, sourcing e captação, follow-up de investidores, VDR e auditoria, contratos. Onde se gasta tempo, onde vive a informação, onde se perde.</p>
+            <p>Fazemos a leitura do panorama Microsoft (Outlook, OneDrive, SharePoint) e das ferramentas pagas em uso: HubSpot, ferramentas de research de investidores, e restantes ferramentas. Onde vive a informação, como se interliga, o que está a ser usado na prática.</p>
+            <p>Uma fotografia da maturidade em IA da Oaklins, vista no conjunto e função a função.</p>
+            <div class="highlight-box">
+                <p><strong>Output.</strong> Relatório de diagnóstico com matriz de oportunidades (impacto vs. esforço, com "preserva o capital relacional" como terceiro eixo) e roadmap a 12 semanas.</p>
+            </div>
+        </section>
+
+        <!-- 05 PILAR 2 - ÉTICA -->
+        <section class="section section-navy">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Pilar 2: <em>Ética e Responsabilidade</em></h2>
+            <p>A Oaklins opera sob NDAs, com informação confidencial de clientes, investidores e participadas, em mercado regulado. A regulação europeia já está cá: o AI Act vigora desde 2024, com aplicação faseada já em curso, e o GDPR aplica-se há anos. A sensibilidade reputacional do mercado de M&amp;A exige clareza sobre o uso de IA antes de a equipa avançar.</p>
+            <p>A política e as guidelines da Oaklins assentarão em quatro pilares de IA ética e responsável.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Transparência</h4>
+                    <p>A utilização de IA é identificável, explicável e rastreável em documentos sensíveis.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Supervisão Humana</h4>
+                    <p>Outputs críticos são validados por uma pessoa antes de qualquer acção de impacto material.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Responsabilização</h4>
+                    <p>Cada utilização material de IA tem um responsável humano identificável, com processo claro de escalação.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Não-discriminação</h4>
+                    <p>A IA é usada com equidade, evitando enviesamento por factor protegido, em particular em triagem de candidatos e avaliação de oportunidades.</p>
+                </div>
+            </div>
+
+            <p>O documento define o que entra e o que não entra em ferramentas de IA, quem decide nos casos limite, e como a Oaklins escala dúvidas. Reutilizável internamente, evolui à medida que regulação e ferramentas mudam.</p>
+
+            <div class="highlight-box">
+                <p><strong>Output.</strong> Política e guidelines de IA ética e responsável, ajustadas à realidade da Oaklins.</p>
+            </div>
+        </section>
+
+        <!-- 06 PILAR 3 - CAPACITAÇÃO -->
+        <section class="section section-white">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pilar 3: <em>Capacitação Aplicada</em></h2>
+            <p>A IA está a mudar a forma como o trabalho se faz, e as equipas que aproveitam essa mudança são as que percebem as regras do jogo. É importante que cada pessoa entenda os conceitos fundamentais, os aplique no dia a dia, e perceba como fazer com que esse conhecimento cresça com o tempo na sua equipa de trabalho.</p>
+
+            <div class="dual-grid">
+                <div class="dual-card">
+                    <div class="dual-meta">~2h, equipa toda</div>
+                    <h4>Sessão Inicial de Literacia</h4>
+                    <p>Kickoff hands-on. Vocabulário comum, expectativas calibradas, primeiros experimentos em sala. O foco está nas formas de trabalhar que a IA torna possíveis: trabalho replicável que não depende de uma só pessoa, integração com as ferramentas que a equipa já usa, e uso com qualidade gerindo custos. Com linguagem transferível entre as várias ferramentas. Com exercícios práticos sobre material real do trabalho.</p>
+                </div>
+                <div class="dual-card">
+                    <div class="dual-meta">Sessões curtas, ao longo do projecto</div>
+                    <h4>Sessões de Trabalho Aplicado</h4>
+                    <p>A equipa traz objectos reais: um teaser em preparação, uma secção de IM, um thread de follow-up a um investidor. O exercício vai além de construir ferramentas: aprender a estruturar contexto reutilizável entre conversas e entre pessoas, desenvolver formas próprias de partilhar conhecimento da casa com a IA, e distinguir o que ganha em ser sistematizado do que ganha em ser escrito à mão. Artefactos concretos emergem como resultado natural do trabalho: projectos partilhados por deal, instruções reutilizáveis, skills.</p>
+                </div>
+                <div class="dual-card">
+                    <div class="dual-meta">Janela recorrente, formato a definir</div>
+                    <h4>Office Hours</h4>
+                    <p>Tempo combinado ao longo da colaboração (por exemplo, 30 minutos uma vez por semana) em que qualquer pessoa pode trazer uma dor concreta e trabalhá-la connosco. Garante que a capacitação se estende para fora das sessões agendadas.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Output.</strong> Equipa com vocabulário comum e prática partilhada de uso de IA, artefactos construídos sobre o seu próprio contexto, e identificação de cenários de melhoria contínua.</p>
+            </div>
+        </section>
+
+        <!-- 07 ENTREGÁVEIS -->
+        <section class="section section-ice">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Os <em>Entregáveis</em></h2>
+            <p>Seis entregáveis concretos resultam da colaboração, organizados pelos três pilares.</p>
+
+            <div class="cm-list">
+                <div class="cm-item">
+                    <div class="cm-num">01</div>
+                    <div class="cm-body">
+                        <h4>Relatório de Diagnóstico</h4>
+                        <p>Workflows, dados, ferramentas, AI maturity, oportunidades.</p>
+                    </div>
+                </div>
+                <div class="cm-item">
+                    <div class="cm-num">02</div>
+                    <div class="cm-body">
+                        <h4>Roadmap a 12 Semanas</h4>
+                        <p>Com prioridades e lógica subjacente.</p>
+                    </div>
+                </div>
+                <div class="cm-item">
+                    <div class="cm-num">03</div>
+                    <div class="cm-body">
+                        <h4>Política de Utilização de IA Ética e Responsável</h4>
+                        <p>Documento completo, com folha prática de bolso para uso diário.</p>
+                    </div>
+                </div>
+                <div class="cm-item">
+                    <div class="cm-num">04</div>
+                    <div class="cm-body">
+                        <h4>Sessão Inicial de Literacia em IA</h4>
+                        <p>Entregue à equipa, com material de apoio.</p>
+                    </div>
+                </div>
+                <div class="cm-item">
+                    <div class="cm-num">05</div>
+                    <div class="cm-body">
+                        <h4>Sessões de Trabalho Aplicado</h4>
+                        <p>Com artefactos resultantes (projectos partilhados, instruções reutilizáveis, skills).</p>
+                    </div>
+                </div>
+                <div class="cm-item">
+                    <div class="cm-num">06</div>
+                    <div class="cm-body">
+                        <h4>Cenários de Melhoria Contínua</h4>
+                        <p>Identificação e priorização de oportunidades em aberto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 NO FINAL DESTE PROJECTO -->
+        <section class="section section-navy">
+            <span class="section-number">08</span>
+            <h2 class="section-title">No Final do <em>Projecto</em></h2>
+            <p>A Oaklins terá uma estratégia clara sobre como navegar a IA: onde acelerar, onde manter o ritmo humano, em que ordem avançar. O roadmap a 12 semanas fica ancorado em workflows reais e prioridades validadas com os partners.</p>
+            <p>Políticas concretas de uso ético e responsável de IA, ajustadas ao mercado regulado em que a Oaklins opera, com critérios práticos para a equipa aplicar no dia a dia.</p>
+            <p>Uma equipa que trabalha em conjunto sobre o que já está a fazer, com capacidade de melhorar processos existentes e mecanismos para transferir conhecimento entre pessoas e entre deals.</p>
+        </section>
+
+        <!-- 09 TERMOS DE COLABORAÇÃO -->
+        <section class="section section-white">
+            <span class="section-number">09</span>
+            <h2 class="section-title">Termos de <em>Colaboração</em></h2>
+
+            <h3 class="subsection-title">Equipa</h3>
+            <p><a href="https://www.linkedin.com/in/gustavocpimenta/" target="_blank" rel="noopener noreferrer">Gustavo da Cunha Pimenta</a> acompanha pessoalmente todo o projecto, da primeira conversa ao relatório final, com proximidade directa aos partners. Quando o âmbito o pedir, a Fixed to Flow pode mobilizar profissionais adicionais com experiência ganha em projectos similares, mantendo-se o Gustavo como o único interlocutor.</p>
+
+            <h3 class="subsection-title">Investimento</h3>
+            <div class="investment-table-wrapper">
+                <table class="ts-table fact-table">
+                    <tbody>
+                        <tr><td>Valor</td><td>&euro;11.600 + IVA</td></tr>
+                        <tr><td>Duração</td><td>8 a 10 semanas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Faturação e Pagamento</h3>
+            <div class="investment-table-wrapper">
+                <table class="ts-table">
+                    <thead><tr><th>Tranche</th><th>Valor</th><th>Momento</th></tr></thead>
+                    <tbody>
+                        <tr><td>50%</td><td>&euro;5.800 + IVA</td><td>Adjudicação da proposta</td></tr>
+                        <tr><td>50%</td><td>&euro;5.800 + IVA</td><td>Entrega do relatório final</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Validade</h3>
+            <p>Esta proposta é válida por 30 dias a partir da data de recepção.</p>
+        </section>
+
+        <!-- CTA -->
+        <section class="next-steps">
+            <div class="next-steps-content">
+                <h2>Próximo Passo</h2>
+                <p>O próximo passo é o vosso feedback: se esta proposta responde ao que a Oaklins considera necessário neste momento e, caso não responda, o que sentem estar em falta.</p>
+                <a href="mailto:gustavo@gustavopimenta.com?subject=Re%3A%20Oaklins%20%E2%80%94%20Proposta" class="cta-btn">Agendar Conversa</a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="proposal-footer">
+            <a href="https://fixedtoflow.com" class="footer-logo" target="_blank" rel="noopener noreferrer">
+                <img src="https://fixedtoflow.com/logo.svg" alt="Fixed to Flow">
+            </a>
+            <p class="footer-copy">Fixed to Flow &copy; 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // PASSWORD CONFIGURATION (SHA-256 hash of "oaklins-2026")
+        // ==========================================
+        const PROPOSAL_HASH = '8d972c6805f1ce987300e704e011d13a061b9e8f6cb98ab21e0f51f033a28336';
+
+        async function hashPassword(password) {
+            const encoded = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const proposalContent = document.getElementById('proposalContent');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        const isAuthenticated = sessionStorage.getItem('proposal_oaklins_auth') === 'true';
+        if (isAuthenticated) {
+            passwordOverlay.classList.add('hidden');
+            proposalContent.classList.add('visible');
+        }
+
+        passwordForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const inputHash = await hashPassword(passwordInput.value);
+            if (inputHash === PROPOSAL_HASH) {
+                sessionStorage.setItem('proposal_oaklins_auth', 'true');
+                passwordOverlay.classList.add('hidden');
+                proposalContent.classList.add('visible');
+            } else {
+                passwordInput.classList.add('error');
+                passwordError.classList.add('visible');
+                setTimeout(() => { passwordInput.classList.remove('error'); }, 500);
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            passwordError.classList.remove('visible');
+        });
+    </script>
+</body>
+</html>
