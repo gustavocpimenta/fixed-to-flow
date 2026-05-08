@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitolero / Flow Wireframes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #FAF9F6;
+  --fg: #222;
+  --mid: #777;
+  --light: #bbb;
+  --sketch: #333;
+  --sketch-light: #999;
+  --accent: #0052FF;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --amber: #d97706;
+  --paper: #fff;
+  --shadow: rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.page-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 32px 24px;
+}
+
+.page-header .label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-header h1 span { color: var(--accent); }
+
+.page-header p {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-top: 8px;
+}
+
+/* ── Nav ── */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 32px;
+  overflow-x: auto;
+}
+
+.nav-bar::-webkit-scrollbar { display: none; }
+
+.nav-inner {
+  display: flex;
+  gap: 6px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-width: max-content;
+}
+
+.nav-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: var(--mid);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.active { background: var(--fg); color: #fff; border-color: var(--fg); }
+
+/* ── Section titles ── */
+.section-title {
+  max-width: 1400px;
+  margin: 56px auto 24px;
+  padding: 0 32px;
+}
+
+.section-title .tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.section-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-title p {
+  font-size: 0.82rem;
+  color: var(--mid);
+  font-weight: 300;
+  margin-top: 4px;
+  max-width: 600px;
+}
+
+/* ── Flow container ── */
+.flow-block {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+}
+
+.flow-card {
+  background: var(--paper);
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.flow-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.flow-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  background: #f0f4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.flow-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.flow-scenario {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--sketch-light);
+  font-style: italic;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.flow-persona {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ── Flow strip ── */
+.flow-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x proximity;
+}
+
+.flow-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.flow-strip::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 2px;
+}
+
+.flow-strip::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+/* ── Phone frame (scaled for flows) ── */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.phone-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.phone-sublabel {
+  font-size: 0.62rem;
+  color: var(--mid);
+  font-weight: 400;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.phone {
+  width: 200px;
+  height: 400px;
+  background: var(--paper);
+  border: 2.5px solid var(--sketch);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 3px 5px 0 var(--shadow);
+  filter: url(#sketchy);
+}
+
+.status-bar {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border-bottom: 1.5px solid #eee;
+}
+
+.screen {
+  height: calc(100% - 24px);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Annotation below phone */
+.annotation {
+  font-family: 'Caveat', cursive;
+  color: var(--red);
+  font-size: 0.78rem;
+  margin-top: 8px;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.3;
+}
+
+.annotation.blue { color: var(--accent); }
+.annotation.green { color: var(--green); }
+
+/* ── Flow connector (arrow between phones) ── */
+.flow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0 4px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.connector-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--sketch-light);
+}
+
+.connector-line {
+  width: 28px;
+  height: 0;
+  border-top: 1.5px solid var(--sketch-light);
+}
+
+.connector-head {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--sketch-light);
+}
+
+.connector-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 6px;
+  max-width: 80px;
+  line-height: 1.2;
+}
+
+/* ── Branch connector ── */
+.flow-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.branch-diamond {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--amber);
+  transform: rotate(45deg);
+  background: #fffbeb;
+}
+
+.branch-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--amber);
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ── Progress badge ── */
+.progress-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  padding: 1px 8px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.progress-badge.green { background: var(--green); }
+.progress-badge.amber { background: var(--amber); }
+
+/* ── Phase annotation ── */
+.phase-note {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--amber);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 3px;
+  padding: 1px 6px;
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ── Sketch drawing styles ── */
+.sk-text {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch);
+}
+
+.sk-text-light {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch-light);
+}
+
+.sk-btn {
+  border: 2px solid var(--sketch);
+  border-radius: 16px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  cursor: default;
+}
+
+.sk-btn.filled {
+  background: var(--sketch);
+  color: #fff;
+}
+
+.sk-btn.accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.sk-btn.outline {
+  background: transparent;
+}
+
+.sk-btn.small {
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-width: 1.5px;
+}
+
+.sk-line {
+  border: none;
+  border-top: 1.5px solid var(--sketch);
+  margin: 0;
+  opacity: 0.15;
+}
+
+.sk-box {
+  border: 1.5px solid var(--sketch);
+  border-radius: 4px;
+}
+
+.sk-box-dashed {
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+}
+
+/* ── Cam hatching ── */
+.cam-hatching {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sketch),
+    var(--sketch) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  pointer-events: none;
+}
+
+.cross-hatch {
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  ),
+  repeating-linear-gradient(
+    -45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  );
+}
+
+/* ── Screen-specific styles ── */
+
+/* Camera */
+.cam-screen {
+  flex: 1;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.viewfinder {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--sketch);
+  border-style: solid;
+  border-width: 0;
+}
+
+.bracket.tl { top: 0; left: 0; border-top-width: 2.5px; border-left-width: 2.5px; }
+.bracket.tr { top: 0; right: 0; border-top-width: 2.5px; border-right-width: 2.5px; }
+.bracket.bl { bottom: 0; left: 0; border-bottom-width: 2.5px; border-left-width: 2.5px; }
+.bracket.br { bottom: 0; right: 0; border-bottom-width: 2.5px; border-right-width: 2.5px; }
+
+.cam-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch-light);
+  margin-top: 12px;
+}
+
+.shutter {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shutter-inner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch-light);
+}
+
+.gallery-icon {
+  position: absolute;
+  bottom: 26px;
+  left: 22px;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.diary-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border: 1px solid var(--sketch-light);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+/* Processing */
+.proc-screen {
+  flex: 1;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.proc-photo {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proc-photo .placeholder {
+  width: 60px;
+  height: 80px;
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+  transform: rotate(-2deg);
+}
+
+.proc-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.92);
+  padding: 14px;
+  border-top: 1.5px solid #ddd;
+}
+
+.proc-line {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  margin-bottom: 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.proc-line:nth-child(2) { opacity: 0.6; }
+.proc-line:nth-child(3) { opacity: 0.35; }
+
+.proc-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.proc-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch);
+}
+
+.proc-dot.active { background: var(--sketch); }
+
+/* Identification */
+.id-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.id-photo {
+  height: 100px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.id-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.id-content {
+  flex: 1;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.id-badge {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.id-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  line-height: 1.1;
+}
+
+.id-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch-light);
+  line-height: 1.3;
+}
+
+.id-bar-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+  margin-top: 2px;
+}
+
+.id-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.id-bar-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.id-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-bottom: 2px;
+}
+
+/* Brand picker (Phase 1) */
+.picker-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  gap: 6px;
+}
+
+.picker-search {
+  border: 1.5px solid var(--sketch);
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.picker-search-icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.8rem;
+  color: var(--sketch-light);
+}
+
+.picker-result {
+  padding: 8px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 6px;
+  font-family: 'Caveat', cursive;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.picker-result.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+  background: #f8faff;
+}
+
+.picker-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.picker-line {
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.picker-match {
+  font-size: 0.55rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Recommendation */
+.rec-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.rec-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.rec-filters {
+  display: flex;
+  gap: 4px;
+}
+
+.rec-chip {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch-light);
+}
+
+.rec-chip.active {
+  border-color: var(--sketch);
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+.rec-card {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+}
+
+.rec-card.top {
+  border-color: var(--sketch);
+  border-width: 2px;
+}
+
+.rec-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  min-width: 16px;
+  text-align: center;
+}
+
+.rec-info { flex: 1; }
+
+.rec-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.rec-reason {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+}
+
+.rec-score {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Pairing */
+.pair-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+}
+
+.pair-items {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.pair-item {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.pair-item .icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+}
+
+.pair-item .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+  text-align: center;
+}
+
+.pair-plus {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--sketch-light);
+}
+
+.pair-rationale {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  line-height: 1.3;
+  padding: 0 8px;
+  border-left: 2px solid var(--accent);
+  text-align: left;
+  margin-top: 6px;
+}
+
+.pair-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pair-bar {
+  width: 80px;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.pair-bar-fill {
+  height: 100%;
+  width: 88%;
+  background: var(--green);
+  border-radius: 3px;
+}
+
+.pair-score-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Share card */
+.share-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-preview {
+  flex: 1;
+  margin: 10px;
+  border: 2px solid var(--sketch);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-photo {
+  height: 100px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.share-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.share-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  padding: 16px 10px 8px;
+}
+
+.share-overlay .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.share-overlay .desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.share-details {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.share-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.share-detail-row .label { color: var(--sketch-light); }
+.share-detail-row .value { color: var(--sketch); font-weight: 600; }
+
+.share-domain {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--accent);
+  text-align: center;
+  padding: 4px;
+  border-top: 1px dashed #ddd;
+}
+
+.share-actions {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+
+/* Home */
+.home-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.home-greeting {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.home-stat {
+  flex: 1;
+  padding: 6px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.home-stat-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stat-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.home-section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--sketch);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.home-card {
+  padding: 7px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.home-cam-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch);
+  background: #fff;
+}
+
+/* Import */
+.import-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.import-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.import-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+  margin-top: -4px;
+}
+
+.import-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+
+.import-thumb {
+  aspect-ratio: 1;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.45rem;
+  color: var(--sketch-light);
+  position: relative;
+  background: #f5f5f5;
+}
+
+.import-thumb.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.import-thumb.selected::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.import-bar {
+  height: 5px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.import-bar-fill {
+  height: 100%;
+  width: 60%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Splash screen */
+.splash-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 14px;
+  background: var(--fg);
+  color: #fff;
+}
+
+.splash-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.splash-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.splash-btn {
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.splash-link {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: underline;
+}
+
+/* Permission dialog */
+.permission-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 14px;
+  right: 14px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+
+.permission-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 4px;
+}
+
+.permission-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.permission-btns {
+  display: flex;
+  gap: 6px;
+}
+
+/* Save confirmation */
+.save-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  gap: 10px;
+}
+
+.save-check {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--green);
+}
+
+.save-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  text-align: center;
+}
+
+.save-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.save-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.save-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* Platform picker */
+.platform-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 8px;
+}
+
+.platform-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.platform-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid #eee;
+  border-radius: 8px;
+}
+
+.platform-icon {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.platform-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+/* Diary */
+.diary-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.diary-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.diary-entry {
+  display: flex;
+  gap: 8px;
+  padding: 7px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.diary-thumb {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.diary-info { flex: 1; }
+
+.diary-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.diary-meta {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.diary-rating {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--amber);
+  align-self: center;
+}
+
+/* Taste profile */
+.taste-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.taste-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.taste-gauge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taste-gauge-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  min-width: 50px;
+}
+
+.taste-gauge-bar {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.taste-gauge-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.taste-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.taste-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch);
+}
+
+.taste-tag.strong {
+  border-color: var(--sketch);
+  font-weight: 700;
+}
+
+/* Detail screen */
+.detail-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-photo {
+  height: 90px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.detail-content {
+  flex: 1;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.detail-row .label { color: var(--sketch-light); }
+.detail-row .value { color: var(--sketch); font-weight: 600; }
+
+/* Explore */
+.explore-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+}
+
+.explore-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.explore-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.explore-card {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.explore-card-img {
+  width: 36px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.explore-card-info { flex: 1; }
+
+.explore-card-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.explore-card-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+/* Confirmation toast */
+.toast {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: var(--fg);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+}
+
+.toast-icon {
+  font-size: 0.8rem;
+}
+
+/* Footer */
+.footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--light);
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .flow-card { padding: 16px; }
+  .section-title { margin: 40px auto 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sketch filter -->
+<svg style="position:absolute;width:0;height:0">
+  <filter id="sketchy">
+    <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="4" result="noise" seed="2"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<!-- Header -->
+<div class="page-header">
+  <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; All Deliverables</a>
+    <a href="vitolero-flow-wireframes.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; MVP Flow Wireframes</a>
+    <a href="vitolero-flow-wireframes-post-mvp.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--mid);text-decoration:none;letter-spacing:0.02em">Post-MVP Roadmap &#8594;</a>
+  </div>
+  <div class="label">Vitolero</div>
+  <h1>Open <span>Questions</span></h1>
+  <p>Design decisions still open after the April 17 pivot. Some need a call before MVP build can move; others can wait until Phase 2 lands. Each question is tagged for relevance.</p>
+  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">v1.0 &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</p>
+
+  <!-- Framing banner -->
+  <div style="margin-top:24px;padding:20px 24px;border:2px solid #d97706;border-radius:6px;background:#fffbeb;max-width:1100px;font-family:'Sora',sans-serif">
+    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#d97706;margin-bottom:12px">Pending Decisions</div>
+    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>Two tag flavors:</strong> <span style="display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0052FF;padding:2px 7px;border:1px solid #0052FF;border-radius:3px;vertical-align:middle">MVP-relevant</span> means a decision is needed for the current build. <span style="display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#777;padding:2px 7px;border:1px solid #777;border-radius:3px;vertical-align:middle">Post-MVP</span> means the question can wait for Phase 2.</p>
+    <p style="font-size:0.84rem;line-height:1.55;color:#666;margin:0;font-weight:300">PRD v1.0 §12 carries higher-level open questions (filter quality, post-share reacquisition, multi-cigar in one photo, admin partnership structure, Journal layout, collection views). The questions below are the wireframe-level layer of those PRD questions.</p>
+  </div>
+</div>
+
+<!-- Nav -->
+<div class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-btn active" href="#q1">Q1 Navigation</a>
+    <a class="nav-btn" href="#q2">Q2 No Cigar</a>
+    <a class="nav-btn" href="#q3">Q3 Mode Switch</a>
+    <a class="nav-btn" href="#q4">Q4 Cigar Detail</a>
+  </div>
+</div>
+
+<a id="q1"></a>
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:#10b981">Q1</span>
+      <div class="flow-title">Navigation Model: Tab Bar Hidden in Snap Mode <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:#10b981;margin-left:8px;padding:2px 7px;border-radius:3px;vertical-align:middle">Resolved for MVP</span></div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--sketch-light);padding-left:12px">
+      <strong>The approach:</strong> 4-tab bar (Home, Snap, Journal, Profile) visible on all screens except camera. Snap mode goes full-screen with an X to exit. This preserves the immersive camera feel while giving persistent access to Journal and the rest of the app.
+    </div>
+    <div style="margin-top:8px;padding:12px 16px;background:#ecfdf5;border-left:3px solid #10b981;border-radius:0 4px 4px 0;font-size:0.78rem;color:var(--sketch);line-height:1.55">
+      <strong>Resolved May 2026 &middot; MVP answer:</strong> two-pip chrome instead of a tab bar. <strong>Camera pip</strong> (bottom-right) on every non-camera screen except those where the camera is the implicit next action (sommelier, cigar card, filter preview, share). <strong>Journal pip</strong> (top-right) is hidden on the very first session and unlocks when the first identification auto-saves &mdash; Seek-style progressive reveal. Account creation stays deferred to the first Journal tap (PRD &sect;6.3). See the <a href="vitolero-flow-wireframes.html" style="color:var(--accent);text-decoration:underline">main wireframes page</a> for the applied rules and the <a href="../navigation-plan.md" style="color:var(--accent);text-decoration:underline">navigation-plan.md</a> for the full pattern catalog.
+    </div>
+    <div style="margin-top:8px;padding:10px 14px;background:rgba(0,82,255,0.04);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
+      <strong>Post April 17 update (preserved for Phase 2):</strong> Home and Profile tabs are not part of the MVP &mdash; both depend on the recommendations engine and taste profile (post-MVP). The four-tab model below is preserved as the Phase 2 navigation target once Home and Profile have content to show.
+    </div>
+
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">How it works:</div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Default entry, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen" style="padding-bottom:44px">
+              <div class="home-greeting">Evening, Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">12</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">3</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+              </div>
+              <div class="home-section-label">Recent</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat evening
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                Liga Privada No. 9 (94%)
+              </div>
+            </div>
+            <!-- Tab bar: Home active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:3px;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Tab bar always visible.<br>Home, Snap, Journal, Profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps Snap</div>
+      </div>
+
+      <!-- 2. Camera full-screen, no tabs -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Snap Mode</div>
+        <div class="phone-sublabel">Full-screen, tabs hidden</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <!-- X button to exit -->
+              <div style="position:absolute;top:8px;left:12px;width:22px;height:22px;border:1.5px solid var(--sketch-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light);background:rgba(255,255,255,0.7)">x</div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">No tab bar. Immersive.<br>X returns to previous tab.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps X</div>
+      </div>
+
+      <!-- 3. Journal with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Journal</div>
+        <div class="phone-sublabel">Diary view in Journal, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen" style="padding-bottom:44px">
+              <div class="diary-header">My Journal</div>
+              <div class="rec-filters" style="margin-bottom:2px">
+                <div class="rec-chip active">Diary</div>
+                <div class="rec-chip">Stats</div>
+                <div class="rec-chip">Stats</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar. Back porch.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Wed 26 Mar. Lounge.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Liga Privada No. 9</div>
+                  <div class="diary-meta">Sun 23 Mar. Home.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+            </div>
+            <!-- Tab bar: Journal active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:3px;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Journal tab = Diary view in Journal.<br>Sub-tabs inside to switch.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 4. Profile with tab bar -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Profile</div>
+        <div class="phone-sublabel">Taste profile, tabs visible</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen" style="padding-bottom:44px">
+              <div class="taste-header">My Taste Profile</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Based on 12 cigars</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Strength</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:75%"></div></div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Sweetness</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:40%"></div></div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Spice</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:60%"></div></div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;font-weight:600;color:var(--sketch);margin-top:4px">Flavor DNA</div>
+              <div class="taste-tags">
+                <div class="taste-tag strong">chocolate</div>
+                <div class="taste-tag strong">earth</div>
+                <div class="taste-tag">cedar</div>
+                <div class="taste-tag">pepper</div>
+                <div class="taste-tag">leather</div>
+              </div>
+            </div>
+            <!-- Tab bar: Profile active -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1.5px solid #ddd;display:flex;align-items:center;justify-content:space-around;padding:0 8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Home</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:50%"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Snap</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch-light);border-radius:3px"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Journal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+                <div style="width:16px;height:16px;border:1.5px solid var(--sketch);border-radius:50%;background:var(--sketch)"></div>
+                <span style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch);font-weight:700">Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Taste profile, settings,<br>account.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-top:16px">
+      <strong>The rule:</strong> Tab bar visible on Home, Journal, Profile, and all sub-screens within them. Snap mode is the only full-screen state. X in Snap returns to the previous tab.
+    </div>
+  </div>
+</div>
+
+
+<a id="q2"></a>
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q2</span>
+      <div class="flow-title">Edge Case: No Cigar, No Photo <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Post-MVP</span></div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px">
+      <strong>The problem:</strong> All current flows assume the user has a cigar in front of them or a photo to provide. But what about the user who just downloaded the app and has no cigar at hand, or someone browsing at 2am curious about a cigar they heard about?
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--sketch-light);padding-left:12px;margin-top:8px">
+      <strong>Current coverage:</strong> Flow 1c (Photo Import) and the text/voice search ideas below are all <em>post-MVP</em> per PRD §5. Photo import is blocked by Meta API restrictions for FB and queued for after MVP for camera-roll. Text/voice search has no MVP correlate &mdash; the MVP is built around the photo-first hero loop.
+    </div>
+    <div style="margin-top:8px;padding:10px 14px;background:#fafafa;border-left:3px solid var(--mid);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
+      <strong>Post April 17 update:</strong> the MVP answer for "no cigar at hand" is intentionally minimal &mdash; <em>come back when you have one</em>. Dave-the-Weekend-Ritualist (the MVP-primary persona) by definition has a cigar when he opens the app. The text-search and browse-by-budget ideas below remain valuable Phase 2+ explorations, especially for Carlos and Newcomer personas.
+    </div>
+    <!-- Scenario wireframes -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Four scenarios without a camera:</div>
+
+    <div class="flow-strip">
+
+      <!-- Scenario: Text search -->
+      <div class="phone-wrap">
+        <div class="phone-label">Text Search</div>
+        <div class="phone-sublabel">"I heard about Opus X"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:7px">
+              <div class="picker-search">
+                <span class="picker-search-icon">Q</span>
+                arturo fuente opus x
+              </div>
+              <div class="picker-result selected">
+                <div class="picker-brand">Arturo Fuente Opus X</div>
+                <div class="picker-line">Dominican. Full body. Cedar, cream, pepper.</div>
+                <div class="picker-match">98% confidence</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Arturo Fuente Don Carlos</div>
+                <div class="picker-line">Dominican. Medium-full. Cedar, leather.</div>
+              </div>
+              <div class="picker-result">
+                <div class="picker-brand">Arturo Fuente Hemingway</div>
+                <div class="picker-line">Dominican. Medium. Cream, nuts.</div>
+              </div>
+              <div style="margin-top:auto;font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light);text-align:center">Type a name, brand, or description</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Text input as first-class<br>entry alongside camera.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Browse by budget -->
+      <div class="phone-wrap">
+        <div class="phone-label">Browse / Filter</div>
+        <div class="phone-sublabel">"Under $15"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="explore-screen">
+              <div class="explore-header">Explore Cigars</div>
+              <div class="explore-filters">
+                <div class="rec-chip active">Under $15</div>
+                <div class="rec-chip">Medium</div>
+                <div class="rec-chip">Nicaragua</div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">Oliva Serie G</div>
+                  <div class="explore-card-desc">Medium. Cameroon wrapper. $8-12.</div>
+                </div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">Perdomo Lot 23</div>
+                  <div class="explore-card-desc">Medium. Connecticut. $7-10.</div>
+                </div>
+              </div>
+              <div class="explore-card">
+                <div class="explore-card-img">img</div>
+                <div class="explore-card-info">
+                  <div class="explore-card-name">CAO Flathead V554</div>
+                  <div class="explore-card-desc">Full. Maduro. $9-13.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Category/filter browsing.<br>No photo needed.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Profile-based rec -->
+      <div class="phone-wrap">
+        <div class="phone-label">Profile Rec</div>
+        <div class="phone-sublabel">"What should I get?"</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Tonight's Pick</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-bottom:4px">Based on your taste profile</div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">You love dark Nicaraguans. Haven't tried this yet.</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">My Father Le Bijou</div>
+                  <div class="rec-reason">Similar to your #1 rated Padron.</div>
+                </div>
+                <div class="rec-score">91%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Davidoff Nicaragua</div>
+                  <div class="rec-reason">Stretch pick. Try something lighter?</div>
+                </div>
+                <div class="rec-score">78%</div>
+              </div>
+              <div style="margin-top:auto;font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);text-align:center;padding:4px">Ask for something specific...</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">AI recommends from profile.<br>No camera, no search needed.</div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- Scenario: Compare -->
+      <div class="phone-wrap">
+        <div class="phone-label">Compare</div>
+        <div class="phone-sublabel">"These two cigars..."</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:6px">
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch)">Compare</div>
+              <div style="display:flex;gap:6px">
+                <div style="flex:1;padding:6px;border:2px solid var(--sketch);border-radius:5px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.7rem;font-weight:700;color:var(--sketch)">Padron 3000</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Maduro</div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.8rem;color:var(--sketch-light);align-self:center">vs</div>
+                <div style="flex:1;padding:6px;border:2px solid var(--sketch);border-radius:5px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.7rem;font-weight:700;color:var(--sketch)">Oliva Serie V</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Melanio</div>
+                </div>
+              </div>
+              <!-- Comparison bars -->
+              <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Strength</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:80%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:90%;background:var(--sketch);border-radius:3px"></div></div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Price</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:40%;background:var(--green);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:65%;background:var(--amber);border-radius:3px"></div></div>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch-light)">Your match</div>
+                <div style="display:flex;gap:4px;align-items:center">
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:88%;background:var(--accent);border-radius:3px"></div></div>
+                  <div style="flex:1;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:72%;background:var(--accent);border-radius:3px"></div></div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch);border-left:2px solid var(--accent);padding-left:8px;margin-top:auto;line-height:1.3">"The Padron is smoother. The Oliva hits harder. For after dinner, go Padron."</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Research mode. Side-by-side.<br>AI gives a verdict.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:16px">
+      <strong>What we need to decide:</strong> Is text/voice search a first-class entry point alongside camera? Does the Home screen in Reflective Mode cover this (recommendations, browse by category)? Or does this need a dedicated "Explore / Search" path?
+    </div>
+  </div>
+</div>
+
+
+<a id="q3"></a>
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:#10b981">Q3</span>
+      <div class="flow-title">Mode Switching: Quick to Reflective and Back <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:#10b981;margin-left:8px;padding:2px 7px;border-radius:3px;vertical-align:middle">Resolved for MVP</span> <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:4px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Phase 2 reference</span></div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px;margin-bottom:8px">
+      <strong>The problem:</strong> Dave snaps a cigar (Quick), then wants to check his diary from last week (Reflective), then snaps a friend's cigar (Quick again). These are not separate sessions. How does switching work?
+    </div>
+    <div style="margin-bottom:8px;padding:12px 16px;background:#ecfdf5;border-left:3px solid #10b981;border-radius:0 4px 4px 0;font-size:0.78rem;color:var(--sketch);line-height:1.55">
+      <strong>Resolved May 2026 &middot; MVP answer (Option B won):</strong> the floating <strong>camera pip</strong> (bottom-right) is the universal way back to camera. It appears on every screen except the camera itself and screens where camera is the implicit next action. From Journal, Pairing, or the Returning User last-photo state, one tap returns Dave to the viewfinder. No tab bar, no swipe gesture &mdash; just a persistent corner pip. See the <a href="vitolero-flow-wireframes.html#returning" style="color:var(--accent);text-decoration:underline">Returning User flow</a> and <a href="../navigation-plan.md" style="color:var(--accent);text-decoration:underline">navigation-plan.md</a>.
+    </div>
+    <div style="margin-bottom:16px;padding:10px 14px;background:#fafafa;border-left:3px solid var(--mid);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
+      <strong>Post April 17 update (preserved for Phase 2):</strong> Reflective Mode (browsing recommendations, taste evolution) is post-MVP. The full mode-switching design below remains valid for Phase 2 once Reflective Mode lands.
+    </div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Quick mode: Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Quick Mode</div>
+        <div class="phone-sublabel">Dave snaps his cigar</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Camera-first. Full screen.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">snaps, saves</div>
+      </div>
+
+      <!-- 2. Result -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Result</div>
+        <div class="phone-sublabel">Identification done</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">&#10003;</div>
+              <div class="save-title">Saved to Journal</div>
+              <div class="save-desc">Padron 3000 Maduro<br>Your 13th cigar logged</div>
+              <div style="display:flex;gap:6px;width:100%">
+                <div class="sk-btn accent" style="flex:1;font-size:0.62rem">Snap Another</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.62rem">View Journal</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Crossroads: stay in Quick<br>or jump to Reflective?</div>
+      </div>
+
+      <div class="flow-branch">
+        <div class="branch-diamond"></div>
+        <div class="branch-label">where to?</div>
+      </div>
+
+      <!-- 3a. Back to camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">3a. Back to Quick</div>
+        <div class="phone-sublabel">Snap another</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">point at cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">img</div>
+              <div class="toast">
+                <span class="toast-icon">&#10003;</span>
+                Padron saved. Snap another!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Stays in Quick.<br>Seamless loop.</div>
+      </div>
+
+      <div style="min-width:16px;flex-shrink:0"></div>
+
+      <!-- 3b. Jump to diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">3b. To Reflective</div>
+        <div class="phone-sublabel">Check diary</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">Smoking Diary</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Recent sessions</div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 3000 Maduro</div>
+                  <div class="diary-meta">Just now</div>
+                </div>
+                <div class="diary-rating" style="color:var(--green)">new</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V</div>
+                  <div class="diary-meta">Wed 26 Mar</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Jumps to Reflective.<br>How does Dave get back to camera?</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">wants to snap friend's cigar</div>
+      </div>
+
+      <!-- 4. Back to camera again -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Back to Quick</div>
+        <div class="phone-sublabel">How?</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px">
+              <div style="font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--amber);text-align:center">?</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.78rem;color:var(--sketch);text-align:center;line-height:1.4">How does Dave<br>return to camera?</div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">A. Tab bar "Snap" tab?</div>
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">B. Floating camera button?</div>
+                <div style="padding:6px;border:1.5px dashed var(--amber);border-radius:5px;font-family:'Caveat',cursive;font-size:0.62rem;color:var(--amber);text-align:center">C. Swipe gesture?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="color:#10b981"><strong>Resolved (MVP):</strong> Option B.<br>Floating camera pip in bottom-right.<br>Persistent across non-camera screens.</div>
+      </div>
+
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:16px">
+      <strong>What we need to decide:</strong> Are Quick and Reflective truly "modes" or just different screens in a single navigation? The answer shapes the entire app structure. This is the same question as Q1, seen from the user's perspective instead of the architecture perspective.
+    </div>
+  </div>
+</div>
+
+
+<a id="q4"></a>
+<div class="flow-block">
+  <div class="flow-card" style="cursor:default">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--amber)">Q4</span>
+      <div class="flow-title">Cigar Detail: One Component, Three Contexts <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-left:8px;padding:2px 7px;border:1px solid var(--accent);border-radius:3px;vertical-align:middle">MVP-relevant</span></div>
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--amber);padding-left:12px">
+      <strong>The problem:</strong> The cigar detail appears in three different flows. The information layer is always the same (identity, flavor, strength, rating). But the actions change depending on context: did you just snap it, are you browsing a recommendation, or are you reviewing a past smoke? And Pairing (a core feature) should be accessible from all of them.
+    </div>
+    <div style="margin-top:8px;padding:10px 14px;background:rgba(0,82,255,0.04);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
+      <strong>Post April 17 update:</strong> the MVP has two contexts, not three &mdash; <em>After Snap</em> (action bar: Share primary, Pair, Save) and <em>From Journal</em> (action bar: Share, Pair, Heart). The "From Recommendation" context ships with Phase 2. Note also: <strong>brand and line only</strong> at MVP &mdash; vitola, wrapper, binder, filler, ring gauge, smoke time, and price range (Tier 3) are deferred. The Tier 3 expanded detail frame below is Phase 2 reference.
+    </div>
+
+    <!-- Information Tiers -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Information tiers (same in all contexts):</div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      <div style="padding:10px 14px;border:1.5px solid var(--sketch);border-radius:5px;background:rgba(0,82,255,0.03)">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--accent)">Tier 1: Identity (always visible)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Photo (user's snap or database image) / Brand + Line (e.g. "Padron 1964 Anniversary Series") / Vitola + wrapper (e.g. "Imperial, Natural") / Origin flag</div>
+      </div>
+      <div style="padding:10px 14px;border:1.5px solid var(--sketch);border-radius:5px;background:rgba(0,82,255,0.03)">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--accent)">Tier 2: Character (always visible, persona-adapted)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Flavor notes with icons (Cocoa, Coffee, Cream, Chocolate, Earth) / Strength gauge / Community rating (stars) / Body descriptor ("Medium-full, rich and complex")</div>
+      </div>
+      <div style="padding:10px 14px;border:1.5px dashed var(--sketch-light);border-radius:5px">
+        <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--sketch-light)">Tier 3: Deep Detail (expand/scroll, enthusiast+)</div>
+        <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch-light);line-height:1.5;margin-top:2px">Flavor by thirds (first, middle, final) / Wrapper, binder, filler leaf breakdown / Ring gauge + length / Smoke time estimate / Price range / Production details, aging notes</div>
+      </div>
+    </div>
+
+    <!-- Contextual Actions Table -->
+    <div style="margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Three contexts, three action bars:</div>
+
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table style="width:100%;border-collapse:collapse;font-family:'Caveat',cursive;font-size:0.68rem">
+        <thead>
+          <tr style="border-bottom:2px solid var(--sketch)">
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Context</th>
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Scenario</th>
+            <th style="padding:6px 8px;text-align:left;color:var(--sketch);font-size:0.72rem">Actions (concept.md source)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">After Snap</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Just identified a cigar (State 3)</td>
+            <td style="padding:6px 8px;color:var(--sketch)">Save to diary, <strong style="color:var(--accent)">Share</strong>, Find similar, Pair, Expand detail</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">From Recommendation</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Tapped a ranked card at the shop (State 4, Flow 2 Step 5)</td>
+            <td style="padding:6px 8px;color:var(--sketch)"><strong style="color:var(--accent)">Pair</strong>, Share, Find similar. User is deciding whether to buy.</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 8px;font-weight:700;color:var(--sketch)">From Diary</td>
+            <td style="padding:6px 8px;color:var(--sketch-light)">Tapped a past smoke entry (Section 5.7)</td>
+            <td style="padding:6px 8px;color:var(--sketch)"><strong style="color:var(--accent)">Share</strong>, Pair, Find similar. Reviewing what you smoked.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-bottom:20px">
+      <strong>Key insight:</strong> Pair appears in all three contexts. It is one of the 5 core features (Section 5.5). "I have a cigar, suggest a drink" is a natural action from any cigar detail. The concept defines pairing as a unified feature regardless of direction.
+    </div>
+
+    <!-- Phone mockups -->
+    <div style="margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Same info, different action bars:</div>
+
+    <div class="flow-strip">
+
+      <!-- 1. After Snap -->
+      <div class="phone-wrap">
+        <div class="phone-label">After Snap</div>
+        <div class="phone-sublabel">Dave just identified his cigar</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <!-- Origin flag -->
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">NIC</div>
+              <!-- Brand + Line -->
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Padron 1964</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Anniversary Series / Imperial (Natural)</div>
+              <!-- Cigar image placeholder -->
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">user's photo</div>
+              <!-- Flavor + Strength row -->
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cocoa</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">coffee</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cream</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">earth</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:75%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+              </div>
+              <!-- Body descriptor -->
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Medium-full, rich and complex"</div>
+              <!-- ACTION BAR: After Snap -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Save</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Pair</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">After identification.<br><strong>Save to diary is primary.</strong><br>Share + Pair available.<br><em>(Concept State 3, Section 5.1 step 6)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 2. From Recommendation -->
+      <div class="phone-wrap">
+        <div class="phone-label">From Recommendation</div>
+        <div class="phone-sublabel">Carlos tapped a ranked card at the shop</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">NIC</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Liga Privada No. 9</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Drew Estate / Robusto (Oscuro)</div>
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">database photo</div>
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">chocolate</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">pepper</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">leather</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cedar</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:90%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Full-bodied, dark and bold"</div>
+              <!-- Match reason from recommendation -->
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--green)">94% match. Similar to your top-rated Padron.</div>
+              <!-- ACTION BAR: From Recommendation -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Pair</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Similar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">From shop recommendation.<br><strong>Pair is primary.</strong><br>User is deciding what to buy<br>and what drink to have with it.<br><em>(Concept State 4, Flow 2 Step 5)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 3. From Diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">From Diary</div>
+        <div class="phone-sublabel">Dave reviewing last Saturday's smoke</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:4px;position:relative">
+              <div style="position:absolute;top:6px;right:8px;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);border:1px solid #ddd;border-radius:2px;padding:1px 4px">DOM</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.82rem;font-weight:700;color:var(--sketch);line-height:1.1">Arturo Fuente Opus X</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Fuente / Robusto (Rosado)</div>
+              <div style="width:100%;height:55px;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.55rem;color:#bbb;margin:2px 0">your photo, Sat 29 Mar</div>
+              <div style="display:flex;gap:6px;align-items:flex-start">
+                <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px">
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cedar</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">cream</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">pepper</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 5px;background:#f5f0eb;border-radius:8px;color:var(--sketch);border:1px solid #e0d5ca">nuts</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:55px">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Strength</div>
+                  <div style="width:45px;height:5px;background:#eee;border-radius:3px;border:1px solid #ddd;overflow:hidden"><div style="height:100%;width:85%;background:var(--sketch);border-radius:3px"></div></div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Rating</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--amber);letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--sketch);font-style:italic;border-left:2px solid var(--accent);padding-left:6px">"Full, complex, exceptional"</div>
+              <!-- Diary context: date + pairing -->
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch-light)">Sat 29 Mar. Paired with bourbon.</div>
+              <!-- ACTION BAR: From Diary -->
+              <div style="display:flex;gap:4px;margin-top:auto">
+                <div class="sk-btn accent" style="flex:2;font-size:0.58rem;padding:5px 0">Share</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Pair</div>
+                <div class="sk-btn outline" style="flex:1;font-size:0.52rem;padding:5px 0">Similar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">From smoking diary.<br><strong>Share is primary.</strong><br>Pair available ("next time,<br>try it with rye whisky").<br><em>(Concept Section 5.7)</em></div>
+      </div>
+
+      <div style="min-width:24px;flex-shrink:0"></div>
+
+      <!-- 4. Expanded Detail (Tier 3) -->
+      <div class="phone-wrap">
+        <div class="phone-label">Expanded Detail</div>
+        <div class="phone-sublabel">Tier 3: enthusiast view</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:5px;overflow-y:auto">
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent);cursor:pointer">&#8592; collapse</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--sketch)">Padron 1964 Anniversary</div>
+              <!-- Flavor by thirds -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Flavor by Third</div>
+              <div style="display:flex;gap:4px">
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">First</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Cream, cedar</div>
+                </div>
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Middle</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Coffee, cocoa</div>
+                </div>
+                <div style="flex:1;padding:4px;border:1px solid #ddd;border-radius:3px;text-align:center">
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;color:var(--sketch-light)">Final</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch)">Earth, spice</div>
+                </div>
+              </div>
+              <!-- Specs -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Specs</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Wrapper: <span style="color:var(--sketch)">Habano (Natural)</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Binder: <span style="color:var(--sketch)">Habano</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Filler: <span style="color:var(--sketch)">Nicaraguan</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Ring: <span style="color:var(--sketch)">50 x 6"</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Smoke time: <span style="color:var(--sketch)">~75 min</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Price: <span style="color:var(--sketch)">$18-24</span></div>
+              </div>
+              <!-- Production -->
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);margin-top:2px">Production</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);line-height:1.4">Box-pressed. Aged 4 years pre-release. Made in Doral, Miami. The 1964 line commemorates the Padron family's founding year.</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="color:var(--amber)">Expanded Tier 3 detail.<br>Available from any context<br>via "More" or scroll.<br><em>(Concept State 3: "Expand for<br>more detail")</em></div>
+      </div>
+
+    </div>
+
+    <!-- Design decisions -->
+    <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Open design questions:</div>
+
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4a. Pair from everywhere?</strong> The concept defines pairing as a core feature (Section 5.5). Should "Pair this" be available from every cigar detail, or only when the user is actively with the cigar (After Snap, not Diary)?
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4b. Rating: when does it happen?</strong> The concept says rating is "optional" and part of minimum snap data (Section 5.1). But can you rate a cigar later from the diary, or only at snap time? The concept says active input "exists for enthusiasts but is never required" (Principle 3), but does not specify when.
+    </div>
+    <div class="flow-scenario" style="border-left:2px solid var(--red);padding-left:12px;margin-top:8px">
+      <strong>Q4c. Share from diary?</strong> The concept defines the share card as generated after a snap (Section 5.1 step 7, State 9). Can you generate a share card for a cigar you smoked last week? The photo and data exist. This would make the diary a second distribution channel.
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Footer -->
+<div class="footer">
+  <span>Vitolero / Open Questions v1.0</span>
+  <span>Fixed to Flow / April 2026</span>
+</div>
+
+<!-- Nav scroll-spy -->
+<script>
+const navBtns = document.querySelectorAll('.nav-btn');
+const anchors = document.querySelectorAll('a[id]');
+
+function updateNav() {
+  let current = '';
+  anchors.forEach(a => {
+    const top = a.getBoundingClientRect().top;
+    if (top <= 100) current = a.id;
+  });
+  navBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateNav);
+updateNav();
+</script>
+
+</body>
+</html>

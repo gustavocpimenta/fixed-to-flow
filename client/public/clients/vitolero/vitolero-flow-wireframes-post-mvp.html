@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitolero / Flow Wireframes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #FAF9F6;
+  --fg: #222;
+  --mid: #777;
+  --light: #bbb;
+  --sketch: #333;
+  --sketch-light: #999;
+  --accent: #0052FF;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --amber: #d97706;
+  --paper: #fff;
+  --shadow: rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.page-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 32px 24px;
+}
+
+.page-header .label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-header h1 span { color: var(--accent); }
+
+.page-header p {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-top: 8px;
+}
+
+/* ── Nav ── */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 32px;
+  overflow-x: auto;
+}
+
+.nav-bar::-webkit-scrollbar { display: none; }
+
+.nav-inner {
+  display: flex;
+  gap: 6px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-width: max-content;
+}
+
+.nav-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: var(--mid);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.active { background: var(--fg); color: #fff; border-color: var(--fg); }
+
+/* ── Section titles ── */
+.section-title {
+  max-width: 1400px;
+  margin: 56px auto 24px;
+  padding: 0 32px;
+}
+
+.section-title .tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.section-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-title p {
+  font-size: 0.82rem;
+  color: var(--mid);
+  font-weight: 300;
+  margin-top: 4px;
+  max-width: 600px;
+}
+
+/* ── Flow container ── */
+.flow-block {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+}
+
+.flow-card {
+  background: var(--paper);
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.flow-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.flow-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  background: #f0f4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.flow-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.flow-scenario {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--sketch-light);
+  font-style: italic;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.flow-persona {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ── Flow strip ── */
+.flow-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x proximity;
+}
+
+.flow-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.flow-strip::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 2px;
+}
+
+.flow-strip::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+/* ── Phone frame (scaled for flows) ── */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.phone-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.phone-sublabel {
+  font-size: 0.62rem;
+  color: var(--mid);
+  font-weight: 400;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.phone {
+  width: 200px;
+  height: 400px;
+  background: var(--paper);
+  border: 2.5px solid var(--sketch);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 3px 5px 0 var(--shadow);
+  filter: url(#sketchy);
+}
+
+.status-bar {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border-bottom: 1.5px solid #eee;
+}
+
+.screen {
+  height: calc(100% - 24px);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Annotation below phone */
+.annotation {
+  font-family: 'Caveat', cursive;
+  color: var(--red);
+  font-size: 0.78rem;
+  margin-top: 8px;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.3;
+}
+
+.annotation.blue { color: var(--accent); }
+.annotation.green { color: var(--green); }
+
+/* ── Flow connector (arrow between phones) ── */
+.flow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0 4px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.connector-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--sketch-light);
+}
+
+.connector-line {
+  width: 28px;
+  height: 0;
+  border-top: 1.5px solid var(--sketch-light);
+}
+
+.connector-head {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--sketch-light);
+}
+
+.connector-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 6px;
+  max-width: 80px;
+  line-height: 1.2;
+}
+
+/* ── Branch connector ── */
+.flow-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.branch-diamond {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--amber);
+  transform: rotate(45deg);
+  background: #fffbeb;
+}
+
+.branch-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--amber);
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ── Progress badge ── */
+.progress-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  padding: 1px 8px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.progress-badge.green { background: var(--green); }
+.progress-badge.amber { background: var(--amber); }
+
+/* ── Phase annotation ── */
+.phase-note {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--amber);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 3px;
+  padding: 1px 6px;
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ── Sketch drawing styles ── */
+.sk-text {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch);
+}
+
+.sk-text-light {
+  font-family: 'Caveat', cursive;
+  color: var(--sketch-light);
+}
+
+.sk-btn {
+  border: 2px solid var(--sketch);
+  border-radius: 16px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  cursor: default;
+}
+
+.sk-btn.filled {
+  background: var(--sketch);
+  color: #fff;
+}
+
+.sk-btn.accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.sk-btn.outline {
+  background: transparent;
+}
+
+.sk-btn.small {
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-width: 1.5px;
+}
+
+.sk-line {
+  border: none;
+  border-top: 1.5px solid var(--sketch);
+  margin: 0;
+  opacity: 0.15;
+}
+
+.sk-box {
+  border: 1.5px solid var(--sketch);
+  border-radius: 4px;
+}
+
+.sk-box-dashed {
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+}
+
+/* ── Cam hatching ── */
+.cam-hatching {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sketch),
+    var(--sketch) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  pointer-events: none;
+}
+
+.cross-hatch {
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  ),
+  repeating-linear-gradient(
+    -45deg, transparent, transparent 4px,
+    rgba(0,0,0,0.04) 4px, rgba(0,0,0,0.04) 5px
+  );
+}
+
+/* ── Screen-specific styles ── */
+
+/* Camera */
+.cam-screen {
+  flex: 1;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.viewfinder {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--sketch);
+  border-style: solid;
+  border-width: 0;
+}
+
+.bracket.tl { top: 0; left: 0; border-top-width: 2.5px; border-left-width: 2.5px; }
+.bracket.tr { top: 0; right: 0; border-top-width: 2.5px; border-right-width: 2.5px; }
+.bracket.bl { bottom: 0; left: 0; border-bottom-width: 2.5px; border-left-width: 2.5px; }
+.bracket.br { bottom: 0; right: 0; border-bottom-width: 2.5px; border-right-width: 2.5px; }
+
+.cam-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch-light);
+  margin-top: 12px;
+}
+
+.shutter {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shutter-inner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch-light);
+}
+
+.gallery-icon {
+  position: absolute;
+  bottom: 26px;
+  left: 22px;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.diary-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+  border: 1px solid var(--sketch-light);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+/* Processing */
+.proc-screen {
+  flex: 1;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.proc-photo {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proc-photo .placeholder {
+  width: 60px;
+  height: 80px;
+  border: 1.5px dashed var(--sketch-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+  transform: rotate(-2deg);
+}
+
+.proc-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.92);
+  padding: 14px;
+  border-top: 1.5px solid #ddd;
+}
+
+.proc-line {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  margin-bottom: 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.proc-line:nth-child(2) { opacity: 0.6; }
+.proc-line:nth-child(3) { opacity: 0.35; }
+
+.proc-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.proc-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sketch);
+}
+
+.proc-dot.active { background: var(--sketch); }
+
+/* Identification */
+.id-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.id-photo {
+  height: 100px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.id-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.id-content {
+  flex: 1;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.id-badge {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.id-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  line-height: 1.1;
+}
+
+.id-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch-light);
+  line-height: 1.3;
+}
+
+.id-bar-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+  margin-top: 2px;
+}
+
+.id-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.id-bar-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.id-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-bottom: 2px;
+}
+
+/* Brand picker (Phase 1) */
+.picker-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  gap: 6px;
+}
+
+.picker-search {
+  border: 1.5px solid var(--sketch);
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.picker-search-icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.8rem;
+  color: var(--sketch-light);
+}
+
+.picker-result {
+  padding: 8px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 6px;
+  font-family: 'Caveat', cursive;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.picker-result.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+  background: #f8faff;
+}
+
+.picker-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.picker-line {
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+}
+
+.picker-match {
+  font-size: 0.55rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Recommendation */
+.rec-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.rec-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.rec-filters {
+  display: flex;
+  gap: 4px;
+}
+
+.rec-chip {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch-light);
+}
+
+.rec-chip.active {
+  border-color: var(--sketch);
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+.rec-card {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+}
+
+.rec-card.top {
+  border-color: var(--sketch);
+  border-width: 2px;
+}
+
+.rec-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  min-width: 16px;
+  text-align: center;
+}
+
+.rec-info { flex: 1; }
+
+.rec-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.rec-reason {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--sketch-light);
+}
+
+.rec-score {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Pairing */
+.pair-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+}
+
+.pair-items {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.pair-item {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.pair-item .icon {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+}
+
+.pair-item .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+  text-align: center;
+}
+
+.pair-plus {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--sketch-light);
+}
+
+.pair-rationale {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch);
+  line-height: 1.3;
+  padding: 0 8px;
+  border-left: 2px solid var(--accent);
+  text-align: left;
+  margin-top: 6px;
+}
+
+.pair-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pair-bar {
+  width: 80px;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.pair-bar-fill {
+  height: 100%;
+  width: 88%;
+  background: var(--green);
+  border-radius: 3px;
+}
+
+.pair-score-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* Share card */
+.share-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-preview {
+  flex: 1;
+  margin: 10px;
+  border: 2px solid var(--sketch);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-photo {
+  height: 100px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.share-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.share-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  padding: 16px 10px 8px;
+}
+
+.share-overlay .name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.share-overlay .desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.share-details {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.share-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.share-detail-row .label { color: var(--sketch-light); }
+.share-detail-row .value { color: var(--sketch); font-weight: 600; }
+
+.share-domain {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  color: var(--accent);
+  text-align: center;
+  padding: 4px;
+  border-top: 1px dashed #ddd;
+}
+
+.share-actions {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+
+/* Home */
+.home-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.home-greeting {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.home-stat {
+  flex: 1;
+  padding: 6px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.home-stat-num {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.home-stat-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.home-section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--sketch);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.home-card {
+  padding: 7px 10px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--sketch);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.home-cam-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--sketch);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch);
+  background: #fff;
+}
+
+/* Import */
+.import-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 7px;
+}
+
+.import-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.import-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: var(--sketch-light);
+  margin-top: -4px;
+}
+
+.import-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+
+.import-thumb {
+  aspect-ratio: 1;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.45rem;
+  color: var(--sketch-light);
+  position: relative;
+  background: #f5f5f5;
+}
+
+.import-thumb.selected {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.import-thumb.selected::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.import-bar {
+  height: 5px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.import-bar-fill {
+  height: 100%;
+  width: 60%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Splash screen */
+.splash-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 14px;
+  background: var(--fg);
+  color: #fff;
+}
+
+.splash-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.splash-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.splash-btn {
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.splash-link {
+  font-family: 'Caveat', cursive;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: underline;
+}
+
+/* Permission dialog */
+.permission-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 14px;
+  right: 14px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+
+.permission-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sketch);
+  margin-bottom: 4px;
+}
+
+.permission-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.permission-btns {
+  display: flex;
+  gap: 6px;
+}
+
+/* Save confirmation */
+.save-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  gap: 10px;
+}
+
+.save-check {
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--green);
+}
+
+.save-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+  text-align: center;
+}
+
+.save-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: var(--sketch-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.save-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.save-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* Platform picker */
+.platform-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 8px;
+}
+
+.platform-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.platform-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid #eee;
+  border-radius: 8px;
+}
+
+.platform-icon {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.5rem;
+  color: var(--sketch-light);
+}
+
+.platform-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  color: var(--sketch);
+  font-weight: 600;
+}
+
+/* Diary */
+.diary-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.diary-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.diary-entry {
+  display: flex;
+  gap: 8px;
+  padding: 7px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.diary-thumb {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.diary-info { flex: 1; }
+
+.diary-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.diary-meta {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+.diary-rating {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--amber);
+  align-self: center;
+}
+
+/* Taste profile */
+.taste-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.taste-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.taste-gauge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taste-gauge-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+  color: var(--sketch-light);
+  min-width: 50px;
+}
+
+.taste-gauge-bar {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.taste-gauge-fill {
+  height: 100%;
+  background: var(--sketch);
+  border-radius: 3px;
+}
+
+.taste-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.taste-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 0.58rem;
+  padding: 2px 8px;
+  border: 1.5px solid var(--sketch-light);
+  border-radius: 10px;
+  color: var(--sketch);
+}
+
+.taste-tag.strong {
+  border-color: var(--sketch);
+  font-weight: 700;
+}
+
+/* Detail screen */
+.detail-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-photo {
+  height: 90px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-photo .placeholder {
+  font-family: 'Caveat', cursive;
+  font-size: 0.6rem;
+  color: var(--sketch-light);
+}
+
+.detail-content {
+  flex: 1;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-name {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Caveat', cursive;
+  font-size: 0.62rem;
+}
+
+.detail-row .label { color: var(--sketch-light); }
+.detail-row .value { color: var(--sketch); font-weight: 600; }
+
+/* Explore */
+.explore-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+}
+
+.explore-header {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sketch);
+}
+
+.explore-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.explore-card {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1.5px solid #eee;
+  border-radius: 5px;
+}
+
+.explore-card-img {
+  width: 36px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.4rem;
+  color: var(--sketch-light);
+  flex-shrink: 0;
+}
+
+.explore-card-info { flex: 1; }
+
+.explore-card-name {
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--sketch);
+}
+
+.explore-card-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 0.55rem;
+  color: var(--sketch-light);
+}
+
+/* Confirmation toast */
+.toast {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: var(--fg);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+}
+
+.toast-icon {
+  font-size: 0.8rem;
+}
+
+/* Footer */
+.footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--light);
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .flow-card { padding: 16px; }
+  .section-title { margin: 40px auto 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sketch filter -->
+<svg style="position:absolute;width:0;height:0">
+  <filter id="sketchy">
+    <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="4" result="noise" seed="2"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<!-- Header -->
+<div class="page-header">
+  <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; All Deliverables</a>
+    <a href="vitolero-flow-wireframes.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:0.02em">&#8592; MVP Flow Wireframes</a>
+    <a href="vitolero-flow-wireframes-open-questions.html" style="display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--mid);text-decoration:none;letter-spacing:0.02em">Open Questions &#8594;</a>
+  </div>
+  <div class="label">Vitolero</div>
+  <h1>Post-MVP <span>Roadmap</span></h1>
+  <p>Phase 2 and beyond. Flows preserved as directional reference for the long game: recommendations from the taste profile, smoking diary with ratings, taste evolution, and camera-roll photo import.</p>
+  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">v1.0 &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</p>
+
+  <!-- Out-of-scope banner -->
+  <div style="margin-top:24px;padding:20px 24px;border:2px solid #d97706;border-radius:6px;background:#fffbeb;max-width:1100px;font-family:'Sora',sans-serif">
+    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#d97706;margin-bottom:12px">Not for discussion now</div>
+    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>These flows are deliberately out of scope for the current MVP build.</strong> They remain on this page as long-game reference &mdash; the trajectory of where Vitolero goes <em>after</em> the MVP ships and validates the snap-and-share loop.</p>
+    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>Read for context, not for action.</strong> Per PRD v1.0 §10, Phase 2 (recommendations from taste profile) ships <em>weeks</em> after MVP launch once Journal data reaches meaningful volume per user. Phase 3 expands pairing scenarios. Phase 4 (dedicated cigar social network) requires $500K-$1M funding.</p>
+    <p style="font-size:0.84rem;line-height:1.55;color:#666;margin:0;font-weight:300">All MVP work lives on the <a href="vitolero-flow-wireframes.html" style="color:#0052FF;text-decoration:underline">main flow wireframes page</a>. Source of truth: <a href="https://www.notion.so/gustavopimenta/Vitolero-PRD-v1-0-post-April-17-pivot-34c769c82e7281c18c59dbb3d50f363e?source=copy_link" style="color:#0052FF;text-decoration:underline" target="_blank" rel="noopener">PRD v1.0 §10</a>.</p>
+  </div>
+</div>
+
+<!-- Nav -->
+<div class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-btn active" href="#no-cigar">No Cigar at Hand</a>
+    <a class="nav-btn" href="#in-store">In-Store Rec</a>
+    <a class="nav-btn" href="#home-recs">Home &rarr; Recs</a>
+    <a class="nav-btn" href="#smoking-diary">Smoking Diary</a>
+    <a class="nav-btn" href="#taste-evolution">Taste Evolution</a>
+    <a class="nav-btn" href="#photo-import">Photo Import</a>
+  </div>
+</div>
+
+<!-- Phase 2 anchor -->
+<a id="no-cigar"></a>
+<!-- Flow 1c: Fallback (POST-MVP) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 1</span>
+      <div class="flow-title">Fallback: No Cigar at Hand <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Post-MVP</span></div>
+    </div>
+    <div class="flow-scenario">User discovers the app but doesn't have a cigar right now. Photo import builds profile instantly. <span class="flow-persona">Carlos</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Splash (import path) -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Welcome</div>
+        <div class="phone-sublabel">Taps fallback link</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="splash-screen">
+              <div class="splash-logo">Vitolero</div>
+              <div class="splash-tagline">Point your camera at any cigar. We'll tell you the rest.</div>
+              <div class="splash-btn">Open Scanner</div>
+              <div class="splash-link" style="color:rgba(255,255,255,0.8);font-weight:600">Don't have a cigar? Import photos</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Fallback link catches users<br>without a cigar in hand.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Import photos"</div>
+      </div>
+
+      <!-- 2. Photo import grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Select Photos</div>
+        <div class="phone-sublabel">Camera roll</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="import-screen">
+              <div class="import-header">Import Cigar Photos</div>
+              <div class="import-sub">Select photos from your camera roll. We'll identify each one.</div>
+              <div class="import-grid">
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">food</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">selfie</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">dog</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">drink</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);font-weight:600">8 cigar photos selected</div>
+              <div class="sk-btn accent" style="width:100%">Import & Identify</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Cigar photos highlighted.<br>Batch import compresses time-to-value.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">processes batch</div>
+      </div>
+
+      <!-- 3. Batch results -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Profile Ready</div>
+        <div class="phone-sublabel">Instant taste map</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">8</div>
+              <div class="save-title">Profile Ready!</div>
+              <div class="save-desc">8 cigars identified from your camera roll. Your taste profile is built.</div>
+              <div style="width:100%;display:flex;flex-direction:column;gap:4px;margin-top:4px">
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Strength sweet spot</span>
+                  <span style="color:var(--sketch);font-weight:600">Medium-Full</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Preferred wrapper</span>
+                  <span style="color:var(--sketch);font-weight:600">Maduro (62%)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Flavor cluster</span>
+                  <span style="color:var(--sketch);font-weight:600">Earthy / Leather</span>
+                </div>
+              </div>
+              <div class="sk-btn accent" style="margin-top:8px">See My Recommendations</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Weeks of snapping compressed<br>into one session.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<a id="in-store"></a>
+<!-- Flow 2b: In-Store Recommendation (POST-MVP) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 2</span>
+      <div class="flow-title">In-Store Recommendation <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Post-MVP</span></div>
+    </div>
+    <div class="flow-scenario">Carlos is at his local cigar shop. Photos the humidor glass to get personalized picks from what's available. <span class="flow-persona">Carlos (post-MVP)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Camera -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Camera</div>
+        <div class="phone-sublabel">At the shop</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="cam-screen">
+              <div class="cam-hatching"></div>
+              <div class="viewfinder">
+                <div class="bracket tl"></div>
+                <div class="bracket tr"></div>
+                <div class="bracket bl"></div>
+                <div class="bracket br"></div>
+              </div>
+              <div class="cam-hint">Photograph any cigar</div>
+              <div class="shutter"><div class="shutter-inner"></div></div>
+              <div class="gallery-icon">roll</div>
+              <div class="diary-icon">diary</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Same entry point.<br>Camera always.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">photos humidor shelf</div>
+      </div>
+
+      <!-- 2. Processing multi -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Multi-ID</div>
+        <div class="phone-sublabel">Shelf scan</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="proc-screen">
+              <div class="proc-photo cross-hatch">
+                <div class="placeholder">shelf photo</div>
+              </div>
+              <div class="proc-overlay">
+                <div class="proc-line">"I can see about 12 different cigars..."</div>
+                <div class="proc-line">"Top row: Arturo Fuente, Padron..."</div>
+                <div class="proc-line">"Matching against your taste profile..."</div>
+                <div class="proc-dots">
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot active"></div>
+                  <div class="proc-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Identifies multiple cigars.<br>Matches against user profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">ranked results</div>
+      </div>
+
+      <!-- 3. Ranked list -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Ranked Picks</div>
+        <div class="phone-sublabel">Personalized</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Best Matches for You</div>
+              <div class="rec-filters">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">Budget</div>
+                <div class="rec-chip">New to me</div>
+                <div class="rec-chip">Strength</div>
+              </div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">Similar to Padron 1926 you rated highly</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">Arturo Fuente Hemingway</div>
+                  <div class="rec-reason">Creamy, cedar. Your wrapper type.</div>
+                </div>
+                <div class="rec-score">89%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Oliva Serie V Double Robusto</div>
+                  <div class="rec-reason">Bold, earthy. New experience.</div>
+                </div>
+                <div class="rec-score">85%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">4</div>
+                <div class="rec-info">
+                  <div class="rec-name">Rocky Patel Vintage 1990</div>
+                  <div class="rec-reason">Smooth, chocolatey</div>
+                </div>
+                <div class="rec-score">82%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Top pick prominent.<br>Filter chips for context.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps #1</div>
+      </div>
+
+      <!-- 4. Detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">4. Cigar Detail</div>
+        <div class="phone-sublabel">Expanded view</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">cigar image</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Liga Privada No. 9</div>
+                <div class="detail-row"><span class="label">Brand</span><span class="value">Drew Estate</span></div>
+                <div class="detail-row"><span class="label">Wrapper</span><span class="value">Connecticut Broadleaf</span></div>
+                <div class="detail-row"><span class="label">Strength</span><span class="value">Full</span></div>
+                <div class="detail-row"><span class="label">Flavor</span><span class="value">Chocolate, pepper, earth</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">90-120 min</span></div>
+                <div class="detail-row"><span class="label">Price range</span><span class="value">$15-18</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);padding:4px 6px;background:#f0f4ff;border-radius:3px;margin-top:2px">
+                  94% match. Similar to the Padron 1926 you rated 9/10.
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn accent" style="flex:1">Save</div>
+                  <div class="sk-btn outline" style="flex:1">Pair</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Full detail: specs, price,<br>personalized match reason.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">buys cigar, smokes later</div>
+      </div>
+
+      <!-- 5. Snap & share later -->
+      <div class="phone-wrap">
+        <div class="phone-label">5. Later: Snap</div>
+        <div class="phone-sublabel">While smoking</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">smoking photo</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Liga Privada No. 9</div>
+                <div class="id-desc">Your #1 match. How was it?</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);margin-top:4px">Rate this cigar (optional)</div>
+                <div style="font-family:'Caveat',cursive;font-size:1rem;color:var(--amber);letter-spacing:2px">* * * * *</div>
+                <div class="id-actions">
+                  <div class="sk-btn filled" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Notes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Profile deepens.<br>Better recs next time.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<a id="home-recs"></a>
+<!-- Flow 6a: Home → Recommendations (POST-MVP, was 3a) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 3</span>
+      <div class="flow-title">Home to Recommendations <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Phase 2</span></div>
+    </div>
+    <div class="flow-scenario">Carlos is at home browsing the app on a weeknight. Exploring what to buy for the weekend. <span class="flow-persona">Carlos (post-MVP)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Reflective entry</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Evening, Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">12</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">3</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">5</div>
+                  <div class="home-stat-label">new recs</div>
+                </div>
+              </div>
+              <div class="home-section-label">Recent</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat evening
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                Liga Privada No. 9 (94% match)
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                My Father Le Bijou (91% match)
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Dashboard: stats, recent,<br>recommendations at a glance.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Recommended"</div>
+      </div>
+
+      <!-- 2. Rec feed -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Recs Feed</div>
+        <div class="phone-sublabel">Full list</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="rec-screen">
+              <div class="rec-header">Recommended for You</div>
+              <div class="rec-filters">
+                <div class="rec-chip active">All</div>
+                <div class="rec-chip">New to me</div>
+                <div class="rec-chip">Under $12</div>
+              </div>
+              <div class="rec-card top">
+                <div class="rec-num">1</div>
+                <div class="rec-info">
+                  <div class="rec-name">Liga Privada No. 9</div>
+                  <div class="rec-reason">Chocolate + pepper. You'll love this.</div>
+                </div>
+                <div class="rec-score">94%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">2</div>
+                <div class="rec-info">
+                  <div class="rec-name">My Father Le Bijou</div>
+                  <div class="rec-reason">Dark chocolate, earth</div>
+                </div>
+                <div class="rec-score">91%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">3</div>
+                <div class="rec-info">
+                  <div class="rec-name">Arturo Fuente Opus X</div>
+                  <div class="rec-reason">Cedar, pepper, leather</div>
+                </div>
+                <div class="rec-score">88%</div>
+              </div>
+              <div class="rec-card">
+                <div class="rec-num">4</div>
+                <div class="rec-info">
+                  <div class="rec-name">Davidoff Grand Cru</div>
+                  <div class="rec-reason">Smooth, light, creamy</div>
+                </div>
+                <div class="rec-score">84%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Scrollable feed.<br>Filter chips for context.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps a card</div>
+      </div>
+
+      <!-- 3. Detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Cigar Detail</div>
+        <div class="phone-sublabel">Full specs</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">cigar photo</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Liga Privada No. 9</div>
+                <div class="detail-row"><span class="label">Brand</span><span class="value">Drew Estate</span></div>
+                <div class="detail-row"><span class="label">Wrapper</span><span class="value">CT Broadleaf</span></div>
+                <div class="detail-row"><span class="label">Strength</span><span class="value">Full</span></div>
+                <div class="detail-row"><span class="label">Flavor</span><span class="value">Chocolate, pepper, earth</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">90-120 min</span></div>
+                <div class="detail-row"><span class="label">Price</span><span class="value">$15-18</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--accent);padding:4px;background:#f0f4ff;border-radius:3px;margin-top:2px">
+                  94% match to your palate
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn accent" style="flex:1">Save</div>
+                  <div class="sk-btn outline" style="flex:1">Share</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Save adds to Journal.<br>Share creates a card.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<a id="smoking-diary"></a>
+<!-- Flow 6b: Smoking Diary (POST-MVP, was 3b) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 4</span>
+      <div class="flow-title">Smoking Diary <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Phase 2</span></div>
+    </div>
+    <div class="flow-scenario">Dave reviews what he smoked this month. Checks ratings, remembers pairings, sees patterns. <span class="flow-persona">Dave / Carlos (post-MVP)</span></div>
+    <div style="margin-top:8px;padding:10px 14px;background:#fafafa;border-left:3px solid var(--mid);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch-light);line-height:1.5">
+      <strong>Note:</strong> the MVP Journal (Section 4) covers the basic gallery view. The diary view here adds ratings, pairings memory, and pattern surfacing &mdash; all features that depend on data accumulated in the MVP Journal. Ships Phase 2 at the earliest.
+    </div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home tap diary -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Taps diary</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Hey Dave</div>
+              <div class="home-stats">
+                <div class="home-stat">
+                  <div class="home-stat-num">8</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">2</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+              </div>
+              <div class="home-section-label" style="border-bottom:2px solid var(--accent);padding-bottom:3px;display:inline-block">Your Diary</div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Padron 1926 No. 9 - Sat
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Oliva Serie V - Wed
+              </div>
+              <div class="home-card">
+                <div class="home-card-dot"></div>
+                Romeo y Julieta - Last Sat
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Diary entries on home.<br>Tap to expand.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps "Your Diary"</div>
+      </div>
+
+      <!-- 2. Diary timeline -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Diary</div>
+        <div class="phone-sublabel">Timeline</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="diary-screen">
+              <div class="diary-header">Smoking Diary</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light)">March 2026</div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Padron 1926 No. 9</div>
+                  <div class="diary-meta">Sat 29 Mar, 8pm. With bourbon.</div>
+                </div>
+                <div class="diary-rating">9/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Oliva Serie V Melanio</div>
+                  <div class="diary-meta">Wed 26 Mar, 7pm. Solo.</div>
+                </div>
+                <div class="diary-rating">8/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Romeo y Julieta 1875</div>
+                  <div class="diary-meta">Sat 22 Mar. With friends.</div>
+                </div>
+                <div class="diary-rating">7/10</div>
+              </div>
+              <div class="diary-entry">
+                <div class="diary-thumb">photo</div>
+                <div class="diary-info">
+                  <div class="diary-name">Arturo Fuente 8-5-8</div>
+                  <div class="diary-meta">Fri 21 Mar. After dinner.</div>
+                </div>
+                <div class="diary-rating">7/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Timeline of moments.<br>NOT an inventory ledger.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps an entry</div>
+      </div>
+
+      <!-- 3. Smoke detail -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Smoke Detail</div>
+        <div class="phone-sublabel">Full entry</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="detail-screen">
+              <div class="detail-photo cross-hatch">
+                <div class="placeholder">Dave's photo</div>
+              </div>
+              <div class="detail-content">
+                <div class="detail-name">Padron 1926 No. 9</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light)">Saturday 29 March, 8:00pm</div>
+                <div class="detail-row"><span class="label">Rating</span><span class="value" style="color:var(--amber)">9/10</span></div>
+                <div class="detail-row"><span class="label">Paired with</span><span class="value">Maker's Mark</span></div>
+                <div class="detail-row"><span class="label">Context</span><span class="value">Back porch, bourbon</span></div>
+                <div class="detail-row"><span class="label">Smoke time</span><span class="value">95 min</span></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch);margin-top:4px;line-height:1.3;border-left:2px solid var(--accent);padding-left:6px">
+                  "Perfect Saturday evening cigar. The chocolate and leather were outstanding with bourbon."
+                </div>
+                <div class="id-actions" style="margin-top:auto">
+                  <div class="sk-btn outline" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Similar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">A moment captured.<br>Ritual documentation.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<a id="taste-evolution"></a>
+<!-- Flow 6c: Taste Evolution (POST-MVP, was 3c) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 5</span>
+      <div class="flow-title">Taste Profile &amp; Evolution <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Phase 2</span></div>
+    </div>
+    <div class="flow-scenario">Carlos checks how his palate has shifted over 3 months of snapping. Sees patterns he didn't know about. <span class="flow-persona">Carlos (post-MVP)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Home tap stats -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Home</div>
+        <div class="phone-sublabel">Taps stats</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="home-screen">
+              <div class="home-greeting">Carlos</div>
+              <div class="home-stats">
+                <div class="home-stat" style="border-color:var(--accent)">
+                  <div class="home-stat-num">34</div>
+                  <div class="home-stat-label">cigars</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">4</div>
+                  <div class="home-stat-label">this week</div>
+                </div>
+                <div class="home-stat">
+                  <div class="home-stat-num">8</div>
+                  <div class="home-stat-label">new recs</div>
+                </div>
+              </div>
+              <div class="home-section-label">Your taste profile</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--amber)"></div>
+                Full-body sweet spot. 34 cigars mapped.
+              </div>
+              <div class="home-section-label">Recommended</div>
+              <div class="home-card">
+                <div class="home-card-dot" style="background:var(--green)"></div>
+                8 new recommendations this week
+              </div>
+              <div class="home-cam-btn">cam</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Stats card is the entry<br>to taste profile.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps profile</div>
+      </div>
+
+      <!-- 2. Taste profile -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Taste Profile</div>
+        <div class="phone-sublabel">Your palate</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen">
+              <div class="taste-header">Your Taste Profile</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">Based on 34 cigars</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:4px">Strength</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Mild</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:75%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right">Full</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Wrapper</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Maduro</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:62%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">62%</div>
+              </div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Natural</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:24%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">24%</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Flavor Clusters</div>
+              <div class="taste-tags">
+                <div class="taste-tag strong">chocolate</div>
+                <div class="taste-tag strong">leather</div>
+                <div class="taste-tag">earth</div>
+                <div class="taste-tag">pepper</div>
+                <div class="taste-tag">cedar</div>
+                <div class="taste-tag">espresso</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;font-weight:600;color:var(--sketch);margin-top:2px">Origin</div>
+              <div class="taste-gauge">
+                <div class="taste-gauge-label">Nicaragua</div>
+                <div class="taste-gauge-bar"><div class="taste-gauge-fill" style="width:55%"></div></div>
+                <div class="taste-gauge-label" style="text-align:right;font-size:0.55rem">55%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Passive data. No forms.<br>Built from snap behavior.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">scrolls down</div>
+      </div>
+
+      <!-- 3. Evolution -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Evolution</div>
+        <div class="phone-sublabel">Palate drift</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="taste-screen">
+              <div class="taste-header">Palate Evolution</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.6rem;color:var(--sketch-light)">How your taste has shifted</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">Strength over time</div>
+              <!-- Simplified chart representation -->
+              <div style="height:50px;border:1.5px solid #eee;border-radius:4px;position:relative;overflow:hidden;background:#fafafa">
+                <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to right, rgba(0,82,255,0.05), rgba(0,82,255,0.15));border-top:2px solid var(--accent)"></div>
+                <div style="position:absolute;bottom:50%;left:10%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Jan</div>
+                <div style="position:absolute;bottom:55%;left:40%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Feb</div>
+                <div style="position:absolute;bottom:65%;left:70%;font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">Mar</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent)">Trending: toward full-bodied</div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">New flavors discovered</div>
+              <div class="taste-tags">
+                <div class="taste-tag" style="border-color:var(--green);color:var(--green)">+ espresso</div>
+                <div class="taste-tag" style="border-color:var(--green);color:var(--green)">+ molasses</div>
+              </div>
+
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--sketch);margin-top:6px;font-weight:600">Insight</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--sketch-light);line-height:1.3;border-left:2px solid var(--accent);padding-left:6px">
+                "You think you like fruity and floral, but your data says earthy and leather. The palate knows."
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Hidden profile surfaced<br>as insight, not raw data.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<a id="photo-import"></a>
+<!-- Flow 6e: Photo Import (POST-MVP, was 4b) -->
+<div class="flow-block" style="opacity:0.78">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num" style="background:var(--mid)">Flow 6</span>
+      <div class="flow-title">Photo Import: Instant Profile <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-left:8px;padding:2px 7px;border:1px solid var(--mid);border-radius:3px;vertical-align:middle">Phase 2</span></div>
+    </div>
+    <div class="flow-scenario">Carlos imports 20 cigar photos from his camera roll. Months of snapping compressed into one session. <span class="flow-persona">Carlos (post-MVP)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Import prompt -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Import</div>
+        <div class="phone-sublabel">From Journal</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px">
+              <div style="width:48px;height:48px;border:2px dashed var(--sketch-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:1.1rem;color:var(--sketch-light)">+</div>
+              <div style="font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch);text-align:center">Import Cigar Photos</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.68rem;color:var(--sketch-light);text-align:center;line-height:1.3">Select existing photos from your camera roll. We'll identify each cigar and build your taste profile instantly.</div>
+              <div class="sk-btn accent" style="margin-top:8px">Choose Photos</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light)">Photos stay on your device</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Privacy-first messaging.<br>Clear value proposition.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">selects photos</div>
+      </div>
+
+      <!-- 2. Selection grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">2. Select</div>
+        <div class="phone-sublabel">Camera roll</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="import-screen">
+              <div class="import-header">Select Cigar Photos</div>
+              <div class="import-sub">We detected 14 potential cigar photos</div>
+              <div class="import-grid">
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">food</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb">view</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+                <div class="import-thumb selected">cigar</div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);font-weight:600">10 photos selected</div>
+              <div class="sk-btn accent" style="width:100%">Import & Identify All</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Auto-detect cigar photos.<br>Pre-selected for convenience.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">processing batch</div>
+      </div>
+
+      <!-- 3. Results -->
+      <div class="phone-wrap">
+        <div class="phone-label">3. Complete</div>
+        <div class="phone-sublabel">Profile built</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="save-screen">
+              <div class="save-check">10</div>
+              <div class="save-title">Import Complete!</div>
+              <div class="save-desc">10 cigars identified and added to your Journal. Your taste profile just leveled up.</div>
+              <div style="width:100%;display:flex;flex-direction:column;gap:3px;margin-top:4px">
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Total cigars</span>
+                  <span style="color:var(--sketch);font-weight:600">44</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">Profile accuracy</span>
+                  <span style="color:var(--green);font-weight:600">High (30+ threshold)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:'Caveat',cursive;font-size:0.6rem">
+                  <span style="color:var(--sketch-light)">New flavors found</span>
+                  <span style="color:var(--sketch);font-weight:600">espresso, molasses</span>
+                </div>
+              </div>
+              <div class="sk-btn accent" style="margin-top:8px">View Updated Recommendations</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Weeks of snapping in one batch.<br>Cold-start problem solved.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Footer -->
+<div class="footer">
+  <span>Vitolero / Post-MVP Roadmap v1.0</span>
+  <span>Fixed to Flow / April 2026</span>
+</div>
+
+<!-- Nav scroll-spy -->
+<script>
+const navBtns = document.querySelectorAll('.nav-btn');
+const anchors = document.querySelectorAll('a[id]');
+
+function updateNav() {
+  let current = '';
+  anchors.forEach(a => {
+    const top = a.getBoundingClientRect().top;
+    if (top <= 100) current = a.id;
+  });
+  navBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateNav);
+updateNav();
+</script>
+
+</body>
+</html>
