@@ -38,6 +38,14 @@ function escapeHtml(str) {
 const pageTitle = getFlag('--title', 'Protected Page');
 const gateLabel = getFlag('--label', 'Protected Content');
 const storageKey = getFlag('--storage-key', 'fft_auth');
+const lang = getFlag('--lang', 'pt');
+
+// Gate UI copy by language. Portuguese is the default so existing clients are unaffected.
+const GATE_COPY = {
+  pt: { subtitle: 'Introduza password para aceder.', button: 'Ver Proposta', loading: 'A desencriptar...', error: 'Password incorrecta. Tente novamente.' },
+  en: { subtitle: 'Enter the password to access.', button: 'Unlock', loading: 'Decrypting...', error: 'Incorrect password. Please try again.' },
+};
+const copy = GATE_COPY[lang] || GATE_COPY.pt;
 
 const sourceHtml = fs.readFileSync(sourcePath, 'utf-8');
 
@@ -67,7 +75,7 @@ console.log(`  Iterations: ${ITERATIONS}`);
 
 // Build the loader page
 const loaderHtml = `<!DOCTYPE html>
-<html lang="pt">
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -263,7 +271,7 @@ body {
       <img src="/logo.svg" alt="Fixed to Flow">
     </div>
     <div class="password-label">${escapeHtml(gateLabel)}</div>
-    <p class="password-subtitle">Introduza password para aceder.</p>
+    <p class="password-subtitle">${escapeHtml(copy.subtitle)}</p>
     <form id="gateForm">
       <div class="password-input-group">
         <input
@@ -274,9 +282,9 @@ body {
           autocomplete="off"
           autofocus
         >
-        <p class="password-error" id="gateError">Password incorrecta. Tente novamente.</p>
+        <p class="password-error" id="gateError">${escapeHtml(copy.error)}</p>
       </div>
-      <button type="submit" class="password-btn" id="gateBtn">Ver Proposta</button>
+      <button type="submit" class="password-btn" id="gateBtn">${escapeHtml(copy.button)}</button>
     </form>
   </div>
 </div>
@@ -362,7 +370,7 @@ body {
     if (!pw) return;
 
     btn.classList.add('loading');
-    btn.textContent = 'A desencriptar...';
+    btn.textContent = ${JSON.stringify(copy.loading)};
 
     // Small delay to let the UI update before heavy PBKDF2
     await new Promise(r => setTimeout(r, 50));
@@ -370,7 +378,7 @@ body {
     const ok = await unlock(pw);
     if (!ok) {
       btn.classList.remove('loading');
-      btn.textContent = 'Ver Proposta';
+      btn.textContent = ${JSON.stringify(copy.button)};
       input.classList.add('error');
       errorEl.classList.add('visible');
       setTimeout(() => input.classList.remove('error'), 500);
