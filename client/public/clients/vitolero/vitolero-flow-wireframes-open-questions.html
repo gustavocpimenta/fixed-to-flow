@@ -1683,14 +1683,14 @@ body {
   </div>
   <div class="label">Vitolero</div>
   <h1>Open <span>Questions</span></h1>
-  <p>Design decisions still open after the April 17 pivot. Some need a call before MVP build can move; others can wait until Phase 2 lands. Each question is tagged for relevance.</p>
-  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">v1.0 &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</p>
+  <p>Design decisions still open. Some need resolution before MVP build can move; others can wait until Phase 2 lands. Each question is tagged for relevance.</p>
+  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">May 2026 &middot; Fixed to Flow</p>
 
   <!-- Framing banner -->
   <div style="margin-top:24px;padding:20px 24px;border:2px solid #d97706;border-radius:6px;background:#fffbeb;max-width:1100px;font-family:'Sora',sans-serif">
     <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#d97706;margin-bottom:12px">Pending Decisions</div>
     <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>Two tag flavors:</strong> <span style="display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0052FF;padding:2px 7px;border:1px solid #0052FF;border-radius:3px;vertical-align:middle">MVP-relevant</span> means a decision is needed for the current build. <span style="display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#777;padding:2px 7px;border:1px solid #777;border-radius:3px;vertical-align:middle">Post-MVP</span> means the question can wait for Phase 2.</p>
-    <p style="font-size:0.84rem;line-height:1.55;color:#666;margin:0;font-weight:300">PRD v1.0 §12 carries higher-level open questions (filter quality, post-share reacquisition, multi-cigar in one photo, admin partnership structure, Journal layout, collection views). The questions below are the wireframe-level layer of those PRD questions.</p>
+    <p style="font-size:0.84rem;line-height:1.55;color:#666;margin:0;font-weight:300">The PRD §12 carries higher-level open questions (filter quality, post-share reacquisition, multi-cigar in one photo, admin partnership structure, Journal layout, collection views). The questions below are the wireframe-level layer of those PRD questions.</p>
   </div>
 </div>
 
@@ -1715,10 +1715,10 @@ body {
       <strong>The approach:</strong> 4-tab bar (Home, Snap, Journal, Profile) visible on all screens except camera. Snap mode goes full-screen with an X to exit. This preserves the immersive camera feel while giving persistent access to Journal and the rest of the app.
     </div>
     <div style="margin-top:8px;padding:12px 16px;background:#ecfdf5;border-left:3px solid #10b981;border-radius:0 4px 4px 0;font-size:0.78rem;color:var(--sketch);line-height:1.55">
-      <strong>Resolved May 2026 &middot; MVP answer:</strong> two-pip chrome instead of a tab bar. <strong>Camera pip</strong> (bottom-right) on every non-camera screen except those where the camera is the implicit next action (sommelier, cigar card, filter preview, share). <strong>Journal pip</strong> (top-right) is hidden on the very first session and unlocks when the first identification auto-saves &mdash; Seek-style progressive reveal. Account creation stays deferred to the first Journal tap (PRD &sect;6.3). See the <a href="vitolero-flow-wireframes.html" style="color:var(--accent);text-decoration:underline">main wireframes page</a> for the applied rules and the <a href="../navigation-plan.md" style="color:var(--accent);text-decoration:underline">navigation-plan.md</a> for the full pattern catalog.
+      <strong>Resolved &middot; MVP answer:</strong> two-pip chrome instead of a tab bar. <strong>Camera pip</strong> (bottom-right) on every non-camera screen except those where the camera is the implicit next action (sommelier, cigar card, filter preview, share). <strong>Journal pip</strong> (top-right) is hidden on the very first session and unlocks when the first identification auto-saves. Seek-style progressive reveal. Account creation stays deferred to the first Journal tap (PRD &sect;6.3). See the <a href="vitolero-flow-wireframes.html" style="color:var(--accent);text-decoration:underline">main wireframes page</a> for the applied rules and the navigation plan for the full pattern catalog (ships in the downloadable package).
     </div>
     <div style="margin-top:8px;padding:10px 14px;background:rgba(0,82,255,0.04);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
-      <strong>Post April 17 update (preserved for Phase 2):</strong> Home and Profile tabs are not part of the MVP &mdash; both depend on the recommendations engine and taste profile (post-MVP). The four-tab model below is preserved as the Phase 2 navigation target once Home and Profile have content to show.
+      <strong>Update (preserved for Phase 2):</strong> Home and Profile tabs are not part of the MVP. Both depend on the recommendations engine and taste profile (post-MVP). The four-tab model below is preserved as the Phase 2 navigation target once Home and Profile have content to show.
     </div>
 
     <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">How it works:</div>
@@ -1955,10 +1955,10 @@ body {
       <strong>The problem:</strong> All current flows assume the user has a cigar in front of them or a photo to provide. But what about the user who just downloaded the app and has no cigar at hand, or someone browsing at 2am curious about a cigar they heard about?
     </div>
     <div class="flow-scenario" style="border-left:2px solid var(--sketch-light);padding-left:12px;margin-top:8px">
-      <strong>Current coverage:</strong> Flow 1c (Photo Import) and the text/voice search ideas below are all <em>post-MVP</em> per PRD §5. Photo import is blocked by Meta API restrictions for FB and queued for after MVP for camera-roll. Text/voice search has no MVP correlate &mdash; the MVP is built around the photo-first hero loop.
+      <strong>Current coverage:</strong> Flow 1c (Photo Import) and the text/voice search ideas below are all <em>post-MVP</em> per PRD §5. Photo import is blocked by Meta API restrictions for FB and queued for after MVP for camera-roll. Text/voice search has no MVP correlate. The MVP is built around the photo-first hero loop.
     </div>
     <div style="margin-top:8px;padding:10px 14px;background:#fafafa;border-left:3px solid var(--mid);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
-      <strong>Post April 17 update:</strong> the MVP answer for "no cigar at hand" is intentionally minimal &mdash; <em>come back when you have one</em>. Dave-the-Weekend-Ritualist (the MVP-primary persona) by definition has a cigar when he opens the app. The text-search and browse-by-budget ideas below remain valuable Phase 2+ explorations, especially for Carlos and Newcomer personas.
+      <strong>Update:</strong> the MVP answer for "no cigar at hand" is intentionally minimal: <em>come back when you have one</em>. Dave-the-Weekend-Ritualist (the MVP-primary persona) by definition has a cigar when he opens the app. The text-search and browse-by-budget ideas below remain valuable Phase 2+ explorations, especially for Carlos and Newcomer personas.
     </div>
     <!-- Scenario wireframes -->
     <div style="margin-top:20px;margin-bottom:8px;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;color:var(--sketch)">Four scenarios without a camera:</div>
@@ -2150,10 +2150,10 @@ body {
       <strong>The problem:</strong> Dave snaps a cigar (Quick), then wants to check his diary from last week (Reflective), then snaps a friend's cigar (Quick again). These are not separate sessions. How does switching work?
     </div>
     <div style="margin-bottom:8px;padding:12px 16px;background:#ecfdf5;border-left:3px solid #10b981;border-radius:0 4px 4px 0;font-size:0.78rem;color:var(--sketch);line-height:1.55">
-      <strong>Resolved May 2026 &middot; MVP answer (Option B won):</strong> the floating <strong>camera pip</strong> (bottom-right) is the universal way back to camera. It appears on every screen except the camera itself and screens where camera is the implicit next action. From Journal, Pairing, or the Returning User last-photo state, one tap returns Dave to the viewfinder. No tab bar, no swipe gesture &mdash; just a persistent corner pip. See the <a href="vitolero-flow-wireframes.html#returning" style="color:var(--accent);text-decoration:underline">Returning User flow</a> and <a href="../navigation-plan.md" style="color:var(--accent);text-decoration:underline">navigation-plan.md</a>.
+      <strong>Resolved &middot; MVP answer (Option B won):</strong> the floating <strong>camera pip</strong> (bottom-right) is the universal way back to camera. It appears on every screen except the camera itself and screens where camera is the implicit next action. From Journal, Pairing, or the Returning User last-photo state, one tap returns Dave to the viewfinder. No tab bar, no swipe gesture. Just a persistent corner pip. See the <a href="vitolero-flow-wireframes.html#returning" style="color:var(--accent);text-decoration:underline">Returning User flow</a> and the navigation plan (ships in the downloadable package).
     </div>
     <div style="margin-bottom:16px;padding:10px 14px;background:#fafafa;border-left:3px solid var(--mid);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
-      <strong>Post April 17 update (preserved for Phase 2):</strong> Reflective Mode (browsing recommendations, taste evolution) is post-MVP. The full mode-switching design below remains valid for Phase 2 once Reflective Mode lands.
+      <strong>Update (preserved for Phase 2):</strong> Reflective Mode (browsing recommendations, taste evolution) is post-MVP. The full mode-switching design below remains valid for Phase 2 once Reflective Mode lands.
     </div>
 
     <div class="flow-strip">
@@ -2329,7 +2329,7 @@ body {
       <strong>The problem:</strong> The cigar detail appears in three different flows. The information layer is always the same (identity, flavor, strength, rating). But the actions change depending on context: did you just snap it, are you browsing a recommendation, or are you reviewing a past smoke? And Pairing (a core feature) should be accessible from all of them.
     </div>
     <div style="margin-top:8px;padding:10px 14px;background:rgba(0,82,255,0.04);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:0.7rem;color:var(--sketch);line-height:1.5">
-      <strong>Post April 17 update:</strong> the MVP has two contexts, not three &mdash; <em>After Snap</em> (action bar: Share primary, Pair, Save) and <em>From Journal</em> (action bar: Share, Pair, Heart). The "From Recommendation" context ships with Phase 2. Note also: <strong>brand and line only</strong> at MVP &mdash; vitola, wrapper, binder, filler, ring gauge, smoke time, and price range (Tier 3) are deferred. The Tier 3 expanded detail frame below is Phase 2 reference.
+      <strong>Update:</strong> the MVP has two contexts, not three. <em>After Snap</em> (action bar: Share primary, Pair, Save) and <em>From Journal</em> (action bar: Share, Pair, Heart). The "From Recommendation" context ships with Phase 2. Note also: <strong>brand and line only</strong> at MVP. Vitola, wrapper, binder, filler, ring gauge, smoke time, and price range (Tier 3) are deferred. The Tier 3 expanded detail frame below is Phase 2 reference.
     </div>
 
     <!-- Information Tiers -->
@@ -2590,7 +2590,7 @@ body {
 
 <!-- Footer -->
 <div class="footer">
-  <span>Vitolero / Open Questions v1.0</span>
+  <span>Vitolero / Open Questions</span>
   <span>Fixed to Flow / April 2026</span>
 </div>
 

@@ -1744,22 +1744,20 @@ body {
   </div>
   <div class="label">Vitolero</div>
   <h1>Flow <span>Wireframes</span></h1>
-  <p>Step-by-step user flows for the post April 17 MVP: Snap &amp; Share, Pairing, and Journal. Five flows on this page only: First-time, Snap &amp; Share Hero, Pairing, Journal Activation, Returning User. Post-MVP roadmap and open questions live in <a href="vitolero-flow-wireframes-post-mvp.html" style="color:var(--accent);text-decoration:underline">separate sub-pages</a>. Sketchy wireframes for iteration. Scroll each flow strip horizontally.</p>
-  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">v2.1 &middot; MVP only &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</p>
+  <p>Step-by-step user flows for the MVP: Snap &amp; Share, Pairing, and Journal. MVP flows on this page: First-time, Snap &amp; Share Hero, Pairing, Journal Activation, Cigar Detail, Returning User, and Install to Home Screen. Post-MVP roadmap and open questions live in <a href="vitolero-flow-wireframes-post-mvp.html" style="color:var(--accent);text-decoration:underline">separate sub-pages</a>. Sketchy wireframes for iteration. Scroll each flow strip horizontally.</p>
+  <p style="font-size:0.68rem;color:var(--light);margin-top:6px;letter-spacing:0.04em">MVP only &middot; May 2026 &middot; Fixed to Flow</p>
 
-  <!-- April 17 pivot banner -->
+  <!-- Product intro banner -->
   <div style="margin-top:24px;padding:20px 24px;border:2px solid #0052FF;border-radius:6px;background:#F0F5FF;max-width:1100px;font-family:'Sora',sans-serif">
-    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#0052FF;margin-bottom:12px">April 17, 2026 &middot; Snap &amp; Share Pivot</div>
-    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>The product is now a 3-feature MVP:</strong> Snap &amp; Share with cigar-specific photo filters, one-directional Pairing (cigar to 3 food + 3 drink), and a Pinterest-style Journal. Taste profile, in-store recommendation, discovery feed, bi-directional pairing, Cigar Doctor, photo import, and vitola identification all move to post-MVP.</p>
-    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:10px;font-weight:400"><strong>MVP-primary persona:</strong> Dave the Weekend Ritualist (US, solo smoker, Facebook sharer). All other personas are served post-MVP.</p>
-    <p style="font-size:0.84rem;line-height:1.55;color:#666;margin:0;font-weight:300">Source of truth: <a href="https://www.notion.so/gustavopimenta/Vitolero-PRD-v1-0-post-April-17-pivot-34c769c82e7281c18c59dbb3d50f363e?source=copy_link" style="color:#0052FF;text-decoration:underline" target="_blank" rel="noopener">Vitolero PRD v1.0</a> and <a href="concept.html" style="color:#0052FF;text-decoration:underline">Concept Framework v4.0</a>. MVP flows only on this page. <a href="vitolero-flow-wireframes-post-mvp.html" style="color:#0052FF;text-decoration:underline">Post-MVP roadmap</a> and <a href="vitolero-flow-wireframes-open-questions.html" style="color:#0052FF;text-decoration:underline">open questions</a> in separate sub-pages.</p>
+    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#0052FF;margin-bottom:12px">About these flows</div>
+    <p style="font-size:0.92rem;line-height:1.55;color:#222;margin-bottom:0;font-weight:400">These are the MVP user flows for Vitolero, a camera-first cigar app. The app opens to the camera. No sign-up wall. Three features: Snap &amp; Share, Pairing, and Journal. Post-MVP flows and open questions live in separate sub-pages.</p>
   </div>
 
   <!-- Navigation rules callout -->
   <div style="margin-top:18px;padding:18px 22px;border:1.5px solid #b8860b;border-radius:6px;background:#fdf6e3;max-width:1100px;font-family:'Sora',sans-serif">
     <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8b5a00;margin-bottom:10px">Navigation rules &middot; resolved for MVP</div>
-    <p style="font-size:0.86rem;line-height:1.55;color:#222;margin:0 0 10px;font-weight:400">Two pips, one boolean. <strong>Camera pip</strong> (bottom-right) appears on every screen <em>except</em> the camera itself and screens where the camera is the implicit next action (sommelier, cigar card, filter preview, share). <strong>Journal pip</strong> (top-right) is hidden on the very first session and unlocks the moment the first identification auto-saves. <strong>Account creation</strong> stays deferred &mdash; first Journal tap triggers Google sign-in (PRD &sect;6.3); no upfront wall.</p>
-    <p style="font-size:0.78rem;line-height:1.5;color:#555;margin:0;font-weight:400"><strong>Pattern lineage:</strong> Seek (journal-unlocks-after-first-capture), Yuka (anonymous-first), Snapchat (camera-as-home, no chrome). See <a href="../navigation-plan.md" style="color:#8b5a00;text-decoration:underline">navigation-plan.md</a> for the full state/affordance matrix and pattern catalog.</p>
+    <p style="font-size:0.86rem;line-height:1.55;color:#222;margin:0 0 10px;font-weight:400">Two pips, one boolean. <strong>Camera pip</strong> (bottom-right) appears on every screen <em>except</em> the camera itself and screens where the camera is the implicit next action (sommelier, cigar card, filter preview, share). <strong>Journal pip</strong> (top-right) is hidden on the very first session and unlocks the moment the first identification auto-saves. <strong>Account creation</strong> stays deferred. First Journal tap triggers Google sign-in (PRD &sect;6.3); no upfront wall.</p>
+    <p style="font-size:0.78rem;line-height:1.5;color:#555;margin:0;font-weight:400"><strong>Pattern lineage:</strong> Seek (journal-unlocks-after-first-capture), Yuka (anonymous-first), Snapchat (camera-as-home, no chrome). See navigation-plan.md for the full state/affordance matrix and pattern catalog.</p>
   </div>
 </div>
 
@@ -1770,7 +1768,9 @@ body {
     <a class="nav-btn" href="#snap-share">Snap &amp; Share</a>
     <a class="nav-btn" href="#pairing">Pairing</a>
     <a class="nav-btn" href="#journal">Journal</a>
+    <a class="nav-btn" href="#cigar-detail">Cigar Detail</a>
     <a class="nav-btn" href="#returning">Returning User</a>
+    <a class="nav-btn" href="#install">Install</a>
     <span style="display:inline-block;width:1px;background:#ddd;margin:0 6px"></span>
     <a class="nav-btn" href="vitolero-flow-wireframes-post-mvp.html" style="border-color:var(--mid);color:var(--mid)">Post-MVP &rarr;</a>
     <a class="nav-btn" href="vitolero-flow-wireframes-open-questions.html" style="border-color:var(--amber);color:var(--amber)">Open Questions &rarr;</a>
@@ -1786,9 +1786,9 @@ body {
 <div class="section-title" id="first-time">
   <div class="tag">Section 1 &middot; MVP</div>
   <h2>First-time User</h2>
-  <p>Per PRD v1.0 §6.1. Camera is the default state on app open. No sign-up wall. Identification, then share. Pairing is reachable from the share screen or identification result. <strong>Journal pip is hidden on the first session</strong> &mdash; it unlocks the moment the first identification auto-saves. The first tap on the Journal pip triggers Google sign-in (per &sect;6.3).</p>
+  <p>Per the PRD §6.1. Camera is the default state on app open. No sign-up wall. Identification, then share. Pairing is reachable from the share screen or identification result. <strong>Journal pip is hidden on the first session.</strong> It unlocks the moment the first identification auto-saves. The first tap on the Journal pip triggers Google sign-in (per &sect;6.3).</p>
   <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
-    <strong>What changed post April 17:</strong> No "Open Scanner" splash &mdash; the camera <em>is</em> the home. No manual brand picker &mdash; identification surfaces automatically at 80%+ confidence, with up to 3 candidates if ambiguous. No taste-profile hook &mdash; the share is the primary CTA after identification. Save is local (account-less) until the user opens Journal.
+    <strong>Design principles:</strong> No "Open Scanner" splash. The camera <em>is</em> the home. No manual brand picker: identification surfaces automatically at 80%+ confidence, with up to 3 candidates if ambiguous. No taste-profile hook: the share is the primary CTA after identification. Save is local (account-less) until the user opens Journal.
   </div>
 </div>
 
@@ -1801,11 +1801,49 @@ body {
     </div>
     <div class="flow-scenario">Dave opens Vitolero for the first time on his back porch. Cigar lit, bourbon poured. Wants to capture it. <span class="flow-persona">Dave (MVP-primary)</span></div>
     <div style="margin-top:8px;padding:10px 14px;background:rgba(0,82,255,0.04);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:0.72rem;color:var(--sketch);line-height:1.5">
-      <strong>The MVP first-open in 5 frames:</strong> Camera permission &rarr; Camera &rarr; Sommelier processing &rarr; Cigar card (auto-identified, no manual confirmation) &rarr; Share. The cigar is shown directly &mdash; we don't ask the user to pick from a list. Identification surfaces at 80%+ confidence; if ambiguous, up to 3 candidates appear inline on the cigar card.
+      <strong>The MVP first-open in 7 frames:</strong> Welcome &rarr; Camera permission &rarr; Camera &rarr; Sommelier processing (with cancel) &rarr; Cigar card &rarr; Filter (3 looks + bokeh) &rarr; Share (with back). The cigar is shown directly. We don't ask the user to pick from a list. Identification surfaces at 80%+ confidence; if ambiguous, up to 3 candidates appear inline on the cigar card.
     </div>
 
     <div class="flow-strip">
 
+      <!-- 0. Welcome -->
+      <div class="phone-wrap">
+        <div class="phone-label">0. Welcome</div>
+        <div class="phone-sublabel">First open only</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 14px;gap:8px;text-align:center">
+              <div style="width:36px;height:36px;border-radius:8px;background:var(--fg);display:flex;align-items:center;justify-content:center">
+                <svg viewBox="0 0 30 110" width="14" height="52" aria-label="cigar" style="opacity:0.9"><use href="#cigarVertical"/></svg>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;color:var(--sketch);line-height:1.1">Vitolero</div>
+              <div style="display:flex;flex-direction:column;gap:7px;margin-top:2px;max-width:162px;text-align:left">
+                <div style="display:flex;gap:5px;align-items:flex-start">
+                  <span style="color:var(--accent);font-size:0.6rem;line-height:1.2">&#9679;</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.56rem;color:var(--sketch);line-height:1.25">Snap any cigar for instant ID and a magazine-quality share card.</span>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start">
+                  <span style="color:var(--accent);font-size:0.6rem;line-height:1.2">&#9679;</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.56rem;color:var(--sketch);line-height:1.25">Ask for a pairing: food and drink that match what you're smoking.</span>
+                </div>
+                <div style="display:flex;gap:5px;align-items:flex-start">
+                  <span style="color:var(--accent);font-size:0.6rem;line-height:1.2">&#9679;</span>
+                  <span style="font-family:'Caveat',cursive;font-size:0.56rem;color:var(--sketch);line-height:1.25">Everything you snap saves to your Journal.</span>
+                </div>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch-light);line-height:1.4;margin-top:2px">We'll ask for camera access next.</div>
+              <div class="sk-btn accent" style="margin-top:6px;font-size:0.6rem;padding:7px 18px">Get Started</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">One screen, three statements.<br>Sets expectations before the<br>system camera dialog fires.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps Get Started</div>
+      </div>
 
       <!-- 1. Permission -->
       <div class="phone-wrap">
@@ -1887,11 +1925,14 @@ body {
                   <div class="proc-dot active"></div>
                   <div class="proc-dot"></div>
                 </div>
+                <div style="margin-top:8px;text-align:center">
+                  <span style="font-family:'Caveat',cursive;font-size:0.55rem;color:rgba(255,255,255,0.6);text-decoration:underline;cursor:pointer">&#10005; Cancel</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="annotation">Narrative IS the value.<br>Not a loading screen.</div>
+        <div class="annotation">Narrative IS the value.<br>Not a loading screen.<br>Cancel returns to camera.</div>
       </div>
 
       <div class="flow-connector">
@@ -1909,17 +1950,19 @@ body {
           <div class="screen">
             <!-- Journal pip UNLOCKS here: first auto-save fires; camera implicit so no camera pip -->
             <div class="chrome-tr"><div class="chrome-btn jrnl">J<span style="position:absolute;top:-3px;right:-3px;width:6px;height:6px;border-radius:50%;background:#0052FF"></span></div></div>
+            <!-- Back arrow -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Retake</div>
             <div class="id-screen">
               <div class="id-photo cross-hatch">
                 <div class="placeholder">user's photo</div>
               </div>
-              <div class="id-content" style="position:relative">
-                <svg viewBox="0 0 30 110" width="20" height="68" style="position:absolute;top:6px;right:6px" aria-label="Padron 1926"><use href="#cigarVertical"/></svg>
+              <div class="id-content">
                 <div class="id-badge">Identified</div>
-                <div class="id-name" style="padding-right:28px">Padron 1926 No. 9</div>
-                <div class="id-desc" style="padding-right:28px">Maduro. Leather, dark chocolate, espresso. Medium-Full.</div>
+                <div class="id-name">Padron 1926 No. 9</div>
+                <div class="id-desc">Maduro. Leather, dark chocolate, espresso. Medium-Full.</div>
                 <div class="id-bar-label">Strength</div>
                 <div class="id-bar"><div class="id-bar-fill" style="width:72%"></div></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent);margin-top:4px;cursor:pointer;text-decoration:underline">&#9432; Details</div>
                 <div style="font-family:'Caveat',cursive;font-size:0.62rem;color:var(--accent);margin-top:4px;padding:6px;background:#f0f4ff;border-radius:4px;line-height:1.3">
                   Saved automatically. Open Journal to delete or sync across devices.
                 </div>
@@ -1931,23 +1974,78 @@ body {
             </div>
           </div>
         </div>
-        <div class="annotation blue"><strong>Journal pip unlocks here.</strong><br>Auto-save fires &mdash; the J appears<br>(with subtle dot) for the first time.</div>
+        <div class="annotation blue"><strong>Journal pip unlocks here.</strong><br>Back = retake. Details = full cigar info.<br>Auto-save fires on identification.</div>
       </div>
 
       <div class="flow-connector">
         <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
-        <div class="connector-label">after save</div>
+        <div class="connector-label">taps Share</div>
       </div>
 
-      <!-- 5. Share Prompt -->
+      <!-- 5. Filter -->
       <div class="phone-wrap">
-        <div class="phone-label">5. Share Prompt</div>
+        <div class="phone-label">5. Filter</div>
+        <div class="phone-sublabel">3 looks, pick one</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <!-- J pip stays (now unlocked); camera-implicit so no camera pip -->
+            <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to cigar card -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
+            <div class="share-screen">
+              <div class="share-preview">
+                <!-- Photo with bokeh: background softly blurred, cigar kept crisp -->
+                <div class="share-photo cross-hatch" style="height:128px">
+                  <div class="placeholder">cigar crisp &middot; bg softly blurred</div>
+                  <!-- ID overlay ON by default; tap photo to toggle off -->
+                  <div class="share-overlay">
+                    <div class="name">Padron 1926 No. 9</div>
+                    <div class="desc">Leather, dark chocolate, espresso</div>
+                  </div>
+                  <div style="position:absolute;top:6px;right:6px;font-family:'Caveat',cursive;font-size:0.42rem;color:#fff;background:rgba(0,0,0,0.45);padding:1px 6px;border-radius:8px">tap to hide overlay</div>
+                </div>
+                <!-- 3 filters, first active -->
+                <div style="display:flex;gap:8px;padding:9px 10px;justify-content:center">
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:2px solid var(--accent);background:#e8ddd4"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--accent);margin-top:2px;font-weight:700">Classic</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:1.5px solid var(--sketch-light);background:#efe3d2"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);margin-top:2px">Warm</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:1.5px solid var(--sketch-light);background:#cfc4b4"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);margin-top:2px">Noir</div>
+                  </div>
+                </div>
+              </div>
+              <div class="share-actions">
+                <div class="sk-btn filled" style="flex:1;font-size:0.65rem">Next</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">3 filters, names are placeholders.<br>Soft background blur highlights the cigar.<br>Overlay on by default. Tap photo to remove.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">applies filter</div>
+      </div>
+
+      <!-- 6. Share Prompt -->
+      <div class="phone-wrap">
+        <div class="phone-label">6. Share Prompt</div>
         <div class="phone-sublabel">Only after value</div>
         <div class="phone">
           <div class="status-bar"><span>9:41</span><span>LTE</span></div>
           <div class="screen">
             <!-- J pip stays (now unlocked); camera-implicit so no camera pip -->
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to filter -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
             <div class="share-screen">
               <div class="share-preview">
                 <div class="share-photo cross-hatch">
@@ -1971,7 +2069,7 @@ body {
             </div>
           </div>
         </div>
-        <div class="annotation green">Share appears AFTER value.<br>Magazine-quality card.<br>No camera pip &mdash; share is the goal.</div>
+        <div class="annotation green">Share appears AFTER value.<br>Magazine-quality card.<br>No camera pip: share is the goal.</div>
       </div>
 
       <div class="flow-branch">
@@ -2017,9 +2115,9 @@ body {
 <div class="section-title" id="snap-share">
   <div class="tag">Section 2 &middot; MVP Hero</div>
   <h2>Snap &amp; Share</h2>
-  <p>The hero feature. Per PRD v1.0 §4.1, every interaction in the app starts here. Camera default state, photo capture, sommelier-style processing, automatic brand-and-line identification (no vitola), filter selection from 3-5 cigar-specific overlays, magazine-style share card, then handoff to Facebook (deep link via sharer.php) or other platforms (Web Share API).</p>
+  <p>The hero feature. Per the PRD §4.1, every interaction in the app starts here. Camera default state, photo capture, sommelier-style processing, automatic brand-and-line identification (no vitola), filter selection from 3-5 cigar-specific overlays, magazine-style share card, then handoff to Facebook (deep link via sharer.php) or other platforms (Web Share API).</p>
   <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
-    <strong>MVP specs:</strong> identification under 10s, 80%+ confidence threshold, up to 3 candidates if ambiguous, brand and line only (vitola deferred &mdash; full vitola detection pushed processing to 40-50s). Filter pipeline desaturates the background and keeps the cigar saturated; a semi-transparent strip overlay at the bottom carries brand, line, and a subtle Vitolero mark &mdash; magazine-quality, not screenshot-quality. One platform per share. After share, the user leaves the app (post-share reacquisition is acknowledged as an open problem).
+    <strong>MVP specs:</strong> identification under 10s, 80%+ confidence threshold, up to 3 candidates if ambiguous, brand and line only (vitola deferred: full vitola detection pushed processing to 40-50s). Filter pipeline desaturates the background and keeps the cigar saturated; a semi-transparent strip overlay at the bottom carries brand, line, and a subtle Vitolero mark. Magazine-quality, not screenshot-quality. One platform per share. After share, the user leaves the app (post-share reacquisition is acknowledged as an open problem).
   </div>
 </div>
 
@@ -2113,11 +2211,14 @@ body {
                   <div class="proc-dot active"></div>
                   <div class="proc-dot"></div>
                 </div>
+                <div style="margin-top:8px;text-align:center">
+                  <span style="font-family:'Caveat',cursive;font-size:0.55rem;color:rgba(255,255,255,0.6);text-decoration:underline;cursor:pointer">&#10005; Cancel</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="annotation">Perceived value in &lt;2s.<br>The narrative IS the result.</div>
+        <div class="annotation">Perceived value in &lt;2s.<br>The narrative IS the result.<br>Cancel returns to camera.</div>
       </div>
 
       <div class="flow-connector">
@@ -2134,16 +2235,16 @@ body {
           <div class="screen">
             <!-- J stays (returning user, unlocked); camera-implicit so no camera pip -->
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to camera (retake) -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Retake</div>
             <div class="id-screen">
               <div class="id-photo cross-hatch">
                 <div class="placeholder">user's photo</div>
               </div>
-              <div class="id-content" style="position:relative">
-                <!-- Vertical cigar visual: canonical illustration of the identified cigar -->
-                <svg viewBox="0 0 30 110" width="22" height="80" style="position:absolute;top:8px;right:8px" aria-label="Padron 1926 cigar"><use href="#cigarVertical"/></svg>
+              <div class="id-content">
                 <div class="id-badge">Identified</div>
-                <div class="id-name" style="padding-right:30px">Padron 1926 No. 9</div>
-                <div class="id-desc" style="padding-right:30px">Maduro. Leather, dark chocolate, espresso.</div>
+                <div class="id-name">Padron 1926 No. 9</div>
+                <div class="id-desc">Maduro. Leather, dark chocolate, espresso.</div>
                 <div class="id-bar-label">Strength: Medium-Full</div>
                 <div class="id-bar"><div class="id-bar-fill" style="width:72%"></div></div>
                 <div class="id-actions">
@@ -2154,7 +2255,7 @@ body {
             </div>
           </div>
         </div>
-        <div class="annotation blue">Vertical cigar visual is the<br>canonical mark for this cigar.<br>Stable across all entries.</div>
+        <div class="annotation blue">The user's photo already shows<br>the cigar. No duplicate illustration.<br>The big cigar lives on Detail + Pairing.</div>
       </div>
 
       <div class="flow-connector">
@@ -2162,15 +2263,70 @@ body {
         <div class="connector-label">taps "Share"</div>
       </div>
 
-      <!-- 5. Share card -->
+      <!-- 5. Filter -->
       <div class="phone-wrap">
-        <div class="phone-label">5. Share Card</div>
+        <div class="phone-label">5. Filter</div>
+        <div class="phone-sublabel">3 looks, pick one</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <!-- J stays (returning user, unlocked); camera-implicit so no camera pip -->
+            <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to cigar card -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
+            <div class="share-screen">
+              <div class="share-preview">
+                <!-- Photo with bokeh: background softly blurred, cigar kept crisp -->
+                <div class="share-photo cross-hatch" style="height:128px">
+                  <div class="placeholder">cigar crisp &middot; bg softly blurred</div>
+                  <!-- ID overlay ON by default; tap photo to toggle off -->
+                  <div class="share-overlay">
+                    <div class="name">Padron 1926 No. 9</div>
+                    <div class="desc">Leather, dark chocolate, espresso</div>
+                  </div>
+                  <div style="position:absolute;top:6px;right:6px;font-family:'Caveat',cursive;font-size:0.42rem;color:#fff;background:rgba(0,0,0,0.45);padding:1px 6px;border-radius:8px">tap to hide overlay</div>
+                </div>
+                <!-- 3 filters, first active -->
+                <div style="display:flex;gap:8px;padding:9px 10px;justify-content:center">
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:2px solid var(--accent);background:#e8ddd4"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--accent);margin-top:2px;font-weight:700">Classic</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:1.5px solid var(--sketch-light);background:#efe3d2"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);margin-top:2px">Warm</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="width:30px;height:30px;border-radius:4px;border:1.5px solid var(--sketch-light);background:#cfc4b4"></div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);margin-top:2px">Noir</div>
+                  </div>
+                </div>
+              </div>
+              <div class="share-actions">
+                <div class="sk-btn filled" style="flex:1;font-size:0.65rem">Next</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">3 filters, names are placeholders.<br>Soft background blur highlights the cigar.<br>Overlay on by default. Tap photo to remove.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">applies filter</div>
+      </div>
+
+      <!-- 6. Share card -->
+      <div class="phone-wrap">
+        <div class="phone-label">6. Share Card</div>
         <div class="phone-sublabel">Magazine quality</div>
         <div class="phone">
           <div class="status-bar"><span>9:41</span><span>LTE</span></div>
           <div class="screen">
             <!-- J stays (returning user, unlocked); share-screen camera-implicit -->
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to filter -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
             <div class="share-screen">
               <div class="share-preview">
                 <div class="share-photo cross-hatch">
@@ -2204,13 +2360,15 @@ body {
 
       <!-- 6. Platform picker -->
       <div class="phone-wrap">
-        <div class="phone-label">6. Platform</div>
+        <div class="phone-label">7. Platform</div>
         <div class="phone-sublabel">Web Share API</div>
         <div class="phone">
           <div class="status-bar"><span>9:41</span><span>LTE</span></div>
           <div class="screen">
             <!-- J stays; platform picker is part of share, camera-implicit -->
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- Back arrow to share card -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
             <div class="platform-screen">
               <div class="platform-title">Share to...</div>
               <div class="platform-option">
@@ -2245,7 +2403,7 @@ body {
 
       <!-- 7. Facebook (user is now outside the app) -->
       <div class="phone-wrap">
-        <div class="phone-label">7. Facebook</div>
+        <div class="phone-label">8. Facebook</div>
         <div class="phone-sublabel">User left the app</div>
         <div class="phone">
           <div class="status-bar"><span>9:41</span><span>LTE</span></div>
@@ -2273,7 +2431,7 @@ body {
                   <div style="font-family:'Caveat',cursive;font-size:0.38rem;color:#555;background:rgba(255,255,255,0.85);padding:1px 3px;border-radius:2px">Padron 1926 No. 9 &middot; Maduro</div>
                 </div>
                 <div style="padding:5px 6px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;font-weight:700;color:#050505;line-height:1.2">Padron 1926 No. 9 &mdash; Leather, dark chocolate, espresso</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.45rem;font-weight:700;color:#050505;line-height:1.2">Padron 1926 No. 9. Leather, dark chocolate, espresso</div>
                   <div style="font-family:'Caveat',cursive;font-size:0.38rem;color:#65676b;margin-top:1px">vitolero.com</div>
                 </div>
               </div>
@@ -2298,9 +2456,9 @@ body {
 <div class="section-title" id="pairing">
   <div class="tag">Section 3 &middot; MVP</div>
   <h2>Pairing</h2>
-  <p>Per PRD v1.0 §4.2. Reachable from the share screen or the identification result. Input: a cigar line (from the identification result, or entered manually). Output: exactly 6 items in two groups &mdash; 3 food (snack, meal, dessert) and 3 drink (hard liquor or wine, cocktail, coffee or tea). One-directional only: cigar &rarr; food/drink. No reverse direction (drink-to-cigar) and no menu-aware pairing in MVP.</p>
+  <p>Per PRD §4.2. A separate journey from filters and overlays. Photo quality is irrelevant once identification has happened. Input: a cigar line. Output: exactly 6 items, 3 food and 3 drink. One-directional only: cigar &rarr; food/drink. The cigar is the hero (big, vertical) with the pairings listed beside it; item names stand alone, no category tags or icons. Forward navigation always visible (no dead end).</p>
   <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
-    <strong>MVP specs:</strong> 10-15s latency from cigar line input to 6-item result. The list is the final answer &mdash; no order, alternatives, or follow-up actions in MVP.
+    <strong>MVP specs:</strong> 10-15s latency from cigar line input to 6-item result. Layout: large vertical cigar (~80% height) beside a compact pairing list. Per-item category tags and icons removed; Food/Drink dividers de-emphasized. One suggestion highlighted as the featured pairing. After viewing, the user can snap a new cigar or open the Journal. No dead end. Final pairing navigation owned by Dimitar + Fabio.
   </div>
 </div>
 
@@ -2378,79 +2536,50 @@ body {
         <div class="connector-label">6 items appear</div>
       </div>
 
-      <!-- 3. Pairing result: 6 items in 2 groups -->
+      <!-- 3. Pairing result: split-panel -->
       <div class="phone-wrap">
         <div class="phone-label">3. Pairings</div>
-        <div class="phone-sublabel">3 food + 3 drink</div>
+        <div class="phone-sublabel">Split-panel layout</div>
         <div class="phone">
           <div class="status-bar"><span>9:41</span><span>LTE</span></div>
           <div class="screen">
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
             <div class="chrome-br"><div class="chrome-btn cam"><div class="cam-dot"></div></div></div>
-            <div style="flex:1;display:flex;flex-direction:column;padding:6px 8px;gap:3px;overflow-y:auto">
-              <div style="display:flex;align-items:center;gap:5px;margin-top:2px">
-                <svg viewBox="0 0 30 110" width="14" height="50" aria-label="Padron 3000"><use href="#cigarVertical"/></svg>
-                <div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.62rem;font-weight:700;color:var(--sketch);line-height:1">Padron 3000</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light)">Pairs with</div>
-                </div>
+            <!-- Back arrow -->
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Back</div>
+            <div style="flex:1;display:flex;overflow:hidden">
+
+              <!-- LEFT: big vertical cigar (hero, ~80% height) -->
+              <div style="flex-shrink:0;width:86px;display:flex;flex-direction:column;align-items:center;padding:24px 2px 6px;background:#f7f7f5;border-right:1.5px solid #e0e0e0">
+                <svg viewBox="0 0 30 110" style="height:280px;width:auto" aria-label="Padron 3000"><use href="#cigarVertical"/></svg>
+                <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);text-align:center;line-height:1.05;margin-top:4px">Padron 3000</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);text-align:center;line-height:1.1">Maduro &middot; Full-bodied</div>
               </div>
 
-              <!-- Food group -->
-              <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">Food</div>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Snack</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Dark chocolate &amp; almonds</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Cocoa echoes the wrapper</div>
-                  </div>
+              <!-- RIGHT: pairings (no per-item category tags) -->
+              <div style="flex:1;display:flex;flex-direction:column;padding:10px 7px 6px;gap:2px;overflow-y:auto">
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);line-height:1">Pairs well with</div>
+
+                <!-- Food (de-emphasized header) -->
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-top:3px">Food</div>
+                <div style="padding:3px 5px;border:1.5px solid var(--accent);border-radius:3px;background:#f0f4ff">
+                  <div style="font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Dark chocolate &amp; almonds</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.38rem;color:var(--sketch-light)">&#9733; Featured pairing</div>
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Meal</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Grilled ribeye</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Char and fat carry the body</div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Dessert</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Fl&acirc;n with caramel</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Sweet to balance smoke</div>
-                  </div>
-                </div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Grilled ribeye</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Fl&acirc;n with caramel</div>
+
+                <!-- Drink (de-emphasized header) -->
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-top:4px">Drink</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Maker's Mark bourbon</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Old Fashioned</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.54rem;font-weight:700;color:var(--sketch);line-height:1.1">Espresso, double</div>
               </div>
 
-              <!-- Drink group -->
-              <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">Drink</div>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Liquor</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Maker's Mark bourbon</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Vanilla oak meets cocoa</div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Cocktail</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Old Fashioned</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Bitters lift the earth notes</div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Coffee</div>
-                  <div style="flex:1">
-                    <div style="font-family:'Caveat',cursive;font-size:0.55rem;font-weight:700;color:var(--sketch);line-height:1.1">Espresso, double</div>
-                    <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);line-height:1.2">Roast matches the strength</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-        <div class="annotation green">6 items, 2 groups.<br>No order button. No alternatives.<br>The list is the answer.</div>
+        <div class="annotation green">Big cigar beside the pairings.<br>No category tags; headers de-emphasized.<br>Featured pairing keeps its star.<br>Camera + Journal pips continue the flow.</div>
       </div>
 
     </div>
@@ -2464,10 +2593,10 @@ body {
 <div class="section-title" id="journal">
   <div class="tag">Section 4 &middot; MVP</div>
   <h2>Journal</h2>
-  <p>Per PRD v1.0 §4.3. A persistent visual gallery of the user's cigar photos. Every cigar identified is <strong>auto-saved</strong> to the local Journal &mdash; no explicit save action. The user can delete entries later. The first tap on Journal triggers Google sign-in to sync across devices. Pinterest-style masonry (or Instagram-style grid &mdash; layout choice still open). Each entry shows the filtered photo and a cigar card with product information.</p>
+  <p>Per the PRD §4.3. A persistent visual gallery of the user's cigar photos. Every cigar identified is <strong>auto-saved</strong> to the local Journal. No explicit save action. The user can delete entries later. The first tap on Journal triggers Google sign-in to sync across devices. Pinterest-style masonry (or Instagram-style grid, layout choice still open). Each entry shows the filtered photo and a cigar card with product information.</p>
   <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
-    <strong>Auto-save model:</strong> the cigar enters the Journal the moment identification surfaces. No "save?" prompt &mdash; it's already there. Delete is the inverse action, available from the Journal entry detail.<br>
-    <strong>Schema requirement:</strong> the Journal data structure must support future recommendations from day one &mdash; no rebuild when Phase 2 ships. No recommendation UI in MVP, no recommendation logic in MVP, just a schema that fits both.<br>
+    <strong>Auto-save model:</strong> the cigar enters the Journal the moment identification surfaces. No "save?" prompt: it's already there. Delete is the inverse action, available from the Journal entry detail.<br>
+    <strong>Schema requirement:</strong> the Journal data structure must support future recommendations from day one. No rebuild when Phase 2 ships. No recommendation UI in MVP, no recommendation logic in MVP, just a schema that fits both.<br>
     <strong>Pre-account storage:</strong> photos persist locally before sign-in. Local storage is not 100% reliable across devices. The first Journal tap converts that fragile local store into durable cloud storage via Google sign-in.
   </div>
 </div>
@@ -2509,7 +2638,7 @@ body {
             </div>
           </div>
         </div>
-        <div class="annotation blue">Journal pip top-right (already unlocked).<br>No camera pip on identification result &mdash;<br>camera is the implicit next action.</div>
+        <div class="annotation blue">Journal pip top-right (already unlocked).<br>No camera pip on identification result:<br>camera is the implicit next action.</div>
       </div>
 
       <div class="flow-connector">
@@ -2630,19 +2759,288 @@ body {
     </div>
 
     <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-top:16px">
-      <strong>Why this flow matters:</strong> the Journal is the durable relationship. A user who creates an account and builds a Journal has a reason to return beyond the next smoke. Per PRD §6.3 (share abandonment), Journal activation is the only mitigation we currently have for the post-share reacquisition gap. The schema designed here is also the foundation for Phase 2 recommendations &mdash; no rebuild required.
+      <strong>Why this flow matters:</strong> the Journal is the durable relationship. A user who creates an account and builds a Journal has a reason to return beyond the next smoke. Per PRD §6.3 (share abandonment), Journal activation is the only mitigation we currently have for the post-share reacquisition gap. The schema designed here is also the foundation for Phase 2 recommendations. No rebuild required.
     </div>
   </div>
 </div>
 
 
 <!-- ═══════════════════════════════════════ -->
-<!-- SECTION 5: RETURNING USER (MVP)         -->
+<!-- SECTION 5: CIGAR DETAIL SCREEN (MVP)    -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="cigar-detail">
+  <div class="tag">Section 5 &middot; MVP</div>
+  <h2>Cigar Detail Screen</h2>
+  <p>Per the PRD §4.4. The full-data view for a single cigar. Accessible from two entry points: the Cigar Card (via "Details" link after identification) and any Journal entry (tap the cigar card). The identification result card stays lean: brand, line, one-line flavour. This screen is the destination for users who want the complete picture.</p>
+  <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
+    <strong>Fields (in order):</strong> Brand logo &middot; Brand name &middot; Line / vitola &middot; Date smoked &middot; Wrapper &middot; Binder &middot; Filler &middot; Strength &middot; Smoke time &middot; Flavours (first 3 chips; expand for more) &middot; Description paragraph. All read-only in MVP. Back navigation returns to the entry point.
+  </div>
+</div>
+
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 5a</span>
+      <div class="flow-title">Cigar Detail: Full Data View</div>
+    </div>
+    <div class="flow-scenario">Dave taps "Details" on the Cigar Card after identification, or taps a Journal entry. He wants the full breakdown: wrapper, strength, smoke time, flavours. <span class="flow-persona">Dave (MVP-primary)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- Entry: Cigar Card with Details link -->
+      <div class="phone-wrap">
+        <div class="phone-label">Entry: Cigar Card</div>
+        <div class="phone-sublabel">Tap &#9432; Details</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <div style="position:absolute;top:28px;left:8px;z-index:10;font-family:'Caveat',cursive;font-size:0.7rem;color:var(--accent);cursor:pointer">&#8592; Retake</div>
+            <div class="id-screen">
+              <div class="id-photo cross-hatch">
+                <div class="placeholder">user's photo</div>
+              </div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Davidoff Aniversario</div>
+                <div class="id-desc">Ecuador Connecticut. Cedar, cream, leather. Medium.</div>
+                <div class="id-bar-label">Strength</div>
+                <div class="id-bar"><div class="id-bar-fill" style="width:45%"></div></div>
+                <div style="font-family:'Caveat',cursive;font-size:0.55rem;color:var(--accent);margin-top:6px;cursor:pointer;text-decoration:underline">&#9432; Details</div>
+                <div class="id-actions">
+                  <div class="sk-btn filled" style="flex:1">Share</div>
+                  <div class="sk-btn outline" style="flex:1">Pair</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">&#9432; Details link opens<br>the full cigar data view.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps Details</div>
+      </div>
+
+      <!-- Cigar Detail Screen -->
+      <div class="phone-wrap">
+        <div class="phone-label">Cigar Detail</div>
+        <div class="phone-sublabel">Full data, scrollable</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+
+              <!-- Header bar with back -->
+              <div style="padding:5px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:6px;flex-shrink:0">
+                <span style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);cursor:pointer">&#8592;</span>
+                <span style="font-family:'Caveat',cursive;font-size:0.65rem;font-weight:700;color:var(--sketch)">Cigar Detail</span>
+              </div>
+
+              <!-- Scrollable content -->
+              <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column">
+
+                <!-- FIRST FOLD: big vertical cigar (left) + key attributes (bottom-right) -->
+                <div style="min-height:330px;display:flex;gap:6px;padding:10px 10px 6px;flex-shrink:0">
+                  <svg viewBox="0 0 30 110" style="height:300px;width:auto;flex-shrink:0" aria-label="Davidoff Aniversario"><use href="#cigarVertical"/></svg>
+                  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;gap:5px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.64rem;color:var(--sketch)"><span style="color:var(--accent)">&#9733;</span> 4.6 <span style="color:var(--sketch-light);font-size:0.46rem">(218)</span></div>
+                    <div style="display:flex;align-items:center;gap:4px;justify-content:flex-end">
+                      <div style="width:18px;height:18px;border:1.5px solid #ddd;border-radius:4px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.32rem;color:var(--sketch-light)">logo</div>
+                      <div style="font-family:'Caveat',cursive;font-size:0.76rem;font-weight:700;color:var(--sketch);line-height:1">Davidoff</div>
+                    </div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light);line-height:1">Aniversario</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--accent);background:#f0f4ff;border-radius:10px;padding:2px 7px;margin-top:2px">&#9679; 92% taste match</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.44rem;color:var(--sketch-light);margin-top:4px">scroll for specs &darr;</div>
+                  </div>
+                </div>
+
+                <!-- BELOW THE FOLD: full specs -->
+                <div style="padding:8px 10px 10px;display:flex;flex-direction:column;gap:4px;border-top:1.5px solid #eee;background:#fafafa">
+
+                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Smoked May 07, 2026</div>
+
+                  <!-- Detail rows -->
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 6px;margin-top:2px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Wrapper</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Ecuador Connecticut</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Binder</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Dominican Republic</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Filler</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Dominican Republic</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Strength</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Medium</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Smoke Time</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">50 min</div>
+                  </div>
+
+                  <!-- Strength bar -->
+                  <div style="height:3px;background:#eee;border-radius:2px;overflow:hidden;margin-top:1px"><div style="width:45%;height:100%;background:var(--sketch)"></div></div>
+
+                  <!-- Flavours -->
+                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Flavours</div>
+                  <div style="display:flex;gap:3px;flex-wrap:wrap">
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">cedar</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">cream</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">leather</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.42rem;padding:1px 6px;border:1px dashed #bbb;border-radius:10px;color:var(--sketch-light)">+ more</span>
+                  </div>
+
+                  <!-- Description -->
+                  <div style="font-family:'Caveat',cursive;font-size:0.48rem;color:var(--sketch);line-height:1.45;margin-top:2px;padding-top:4px;border-top:1px solid #eee">
+                    The Davidoff Aniversario Special 'R' is a testament to timeless elegance, originally crafted in 1986 to celebrate Zino Davidoff's...
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">All fields from the database.<br>Scrollable. Read-only in MVP.<br>Back returns to entry point.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Flow 5b: Journal entry → Cigar Detail (second entry path) -->
+  <div class="flow-card" style="margin-top:20px">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 5b</span>
+      <div class="flow-title">Cigar Detail: Second Entry Path (Journal)</div>
+    </div>
+    <div class="flow-scenario">Dave opens his Journal weeks later. He taps a past entry to revisit the full breakdown of a cigar he smoked. Same detail destination as Flow 5a, second entry path. <span class="flow-persona">Dave (MVP-primary)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- Entry: Journal grid -->
+      <div class="phone-wrap">
+        <div class="phone-label">Entry: Journal</div>
+        <div class="phone-sublabel">Tap any entry</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="chrome-br"><div class="chrome-btn cam"><div class="cam-dot"></div></div></div>
+            <div style="flex:1;display:flex;flex-direction:column;padding:8px;gap:5px">
+              <div style="font-family:'Caveat',cursive;font-size:0.78rem;font-weight:700;color:var(--sketch);padding-right:30px">Your Journal</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light)">3 cigars &middot; synced</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="aspect-ratio:1/1.3;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:2px solid var(--accent);border-radius:3px;display:flex;align-items:flex-end;padding:3px;cursor:pointer;box-shadow:0 0 0 2px rgba(0,82,255,0.15)">
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch);background:rgba(255,255,255,0.85);padding:1px 3px;border-radius:2px">Davidoff Aniversario</div>
+                  </div>
+                  <div style="aspect-ratio:1/0.9;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1px dashed #ccc;border-radius:3px;display:flex;align-items:flex-end;padding:3px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch);background:rgba(255,255,255,0.85);padding:1px 3px;border-radius:2px">Oliva Serie V</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="aspect-ratio:1/1;background:linear-gradient(135deg,#f5f0eb,#e8ddd4);border:1px dashed #ccc;border-radius:3px;display:flex;align-items:flex-end;padding:3px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch);background:rgba(255,255,255,0.85);padding:1px 3px;border-radius:2px">Padron 1926</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Tap the Davidoff entry<br>(highlighted in blue).</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">taps entry</div>
+      </div>
+
+      <!-- Cigar Detail Screen (same destination as Flow 5a) -->
+      <div class="phone-wrap">
+        <div class="phone-label">Cigar Detail</div>
+        <div class="phone-sublabel">Same destination as 5a</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+
+              <!-- Header bar with back to Journal -->
+              <div style="padding:5px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:6px;flex-shrink:0">
+                <span style="font-family:'Caveat',cursive;font-size:0.65rem;color:var(--accent);cursor:pointer">&#8592; Journal</span>
+                <span style="font-family:'Caveat',cursive;font-size:0.65rem;font-weight:700;color:var(--sketch)">Cigar Detail</span>
+              </div>
+
+              <!-- Scrollable content -->
+              <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column">
+
+                <!-- FIRST FOLD: big vertical cigar (left) + key attributes (bottom-right) -->
+                <div style="min-height:330px;display:flex;gap:6px;padding:10px 10px 6px;flex-shrink:0">
+                  <svg viewBox="0 0 30 110" style="height:300px;width:auto;flex-shrink:0" aria-label="Davidoff Aniversario"><use href="#cigarVertical"/></svg>
+                  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;gap:5px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.64rem;color:var(--sketch)"><span style="color:var(--accent)">&#9733;</span> 4.6 <span style="color:var(--sketch-light);font-size:0.46rem">(218)</span></div>
+                    <div style="display:flex;align-items:center;gap:4px;justify-content:flex-end">
+                      <div style="width:18px;height:18px;border:1.5px solid #ddd;border-radius:4px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:0.32rem;color:var(--sketch-light)">logo</div>
+                      <div style="font-family:'Caveat',cursive;font-size:0.76rem;font-weight:700;color:var(--sketch);line-height:1">Davidoff</div>
+                    </div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.58rem;color:var(--sketch-light);line-height:1">Aniversario</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--accent);background:#f0f4ff;border-radius:10px;padding:2px 7px;margin-top:2px">&#9679; 92% taste match</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.44rem;color:var(--sketch-light);margin-top:4px">scroll for specs &darr;</div>
+                  </div>
+                </div>
+
+                <!-- BELOW THE FOLD: full specs -->
+                <div style="padding:8px 10px 10px;display:flex;flex-direction:column;gap:4px;border-top:1.5px solid #eee;background:#fafafa">
+
+                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Smoked May 07, 2026</div>
+
+                  <!-- Detail rows -->
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 6px;margin-top:2px">
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Wrapper</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Ecuador Connecticut</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Binder</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Dominican Republic</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Filler</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Dominican Republic</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Strength</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">Medium</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em">Smoke Time</div>
+                    <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:600;color:var(--sketch)">50 min</div>
+                  </div>
+
+                  <!-- Strength bar -->
+                  <div style="height:3px;background:#eee;border-radius:2px;overflow:hidden;margin-top:1px"><div style="width:45%;height:100%;background:var(--sketch)"></div></div>
+
+                  <!-- Flavours -->
+                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Flavours</div>
+                  <div style="display:flex;gap:3px;flex-wrap:wrap">
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">cedar</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">cream</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.48rem;padding:1px 6px;border:1px solid #ccc;border-radius:10px;color:var(--sketch)">leather</span>
+                    <span style="font-family:'Caveat',cursive;font-size:0.42rem;padding:1px 6px;border:1px dashed #bbb;border-radius:10px;color:var(--sketch-light)">+ more</span>
+                  </div>
+
+                  <!-- Description -->
+                  <div style="font-family:'Caveat',cursive;font-size:0.48rem;color:var(--sketch);line-height:1.45;margin-top:2px;padding-top:4px;border-top:1px solid #eee">
+                    The Davidoff Aniversario Special 'R' is a testament to timeless elegance, originally crafted in 1986 to celebrate Zino Davidoff's...
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Same detail screen as Flow 5a.<br>Back returns to Journal grid<br>instead of cigar card.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 6: RETURNING USER (MVP)         -->
 <!-- ═══════════════════════════════════════ -->
 <div class="section-title" id="returning">
-  <div class="tag">Section 5 &middot; MVP</div>
+  <div class="tag">Section 6 &middot; MVP</div>
   <h2>Returning User</h2>
-  <p>Per PRD v1.0 §6.2. The app does not open to the camera on every visit &mdash; only on a fresh first open. On reopen, the app shows the last photo taken with action buttons available: Share, Pair, Journal, and a button to snap a new cigar. From there the user can re-engage with a previous result, start a fresh capture, or open Journal.</p>
+  <p>Per the PRD §6.2. The app does not open to the camera on every visit. Only on a fresh first open. On reopen, the app shows the last photo taken with action buttons available: Share, Pair, Journal, and a button to snap a new cigar. From there the user can re-engage with a previous result, start a fresh capture, or open Journal.</p>
   <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--amber);border-radius:6px;background:#fffbeb;font-size:0.78rem;color:var(--fg);line-height:1.55">
     <strong>Open problem (PRD §6.3):</strong> after the user shares and exits the app, there is currently no mechanism to bring them back. Facebook deep links don't return the user; Web Share API has no callback for image-file shares; PWA push notifications are severely limited on iOS. <em>Snap frequency is the leading indicator to watch.</em> Fabio is investigating technical options. Journal activation creates a more durable hook beyond the next smoke.
   </div>
@@ -2717,7 +3115,7 @@ body {
             </div>
           </div>
         </div>
-        <div class="annotation green">Returning user enters camera with<br>Journal pip already unlocked.<br>No camera pip &mdash; you're in camera.</div>
+        <div class="annotation green">Returning user enters camera with<br>Journal pip already unlocked.<br>No camera pip: you're in camera.</div>
       </div>
 
       <div style="min-width:16px;flex-shrink:0"></div>
@@ -2778,45 +3176,24 @@ body {
           <div class="screen">
             <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
             <div class="chrome-br"><div class="chrome-btn cam"><div class="cam-dot"></div></div></div>
-            <div style="flex:1;display:flex;flex-direction:column;padding:6px 8px;gap:3px;overflow-y:auto">
-              <div style="display:flex;align-items:center;gap:5px;margin-top:2px">
-                <svg viewBox="0 0 30 110" width="14" height="50" aria-label="Padron 3000"><use href="#cigarVertical"/></svg>
-                <div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.62rem;font-weight:700;color:var(--sketch);line-height:1">Padron 3000</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light)">Pairs with</div>
-                </div>
+            <div style="flex:1;display:flex;overflow:hidden">
+              <!-- LEFT: big vertical cigar -->
+              <div style="flex-shrink:0;width:80px;display:flex;flex-direction:column;align-items:center;padding:8px 2px 6px;background:#f7f7f5;border-right:1.5px solid #e0e0e0">
+                <svg viewBox="0 0 30 110" style="height:250px;width:auto" aria-label="Padron 3000"><use href="#cigarVertical"/></svg>
+                <div style="font-family:'Caveat',cursive;font-size:0.56rem;font-weight:700;color:var(--sketch);text-align:center;line-height:1.05;margin-top:4px">Padron 3000</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;color:var(--sketch-light);text-align:center">Pairs with</div>
               </div>
-              <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">Food</div>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Snack</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Dark chocolate &amp; almonds</div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Meal</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Grilled ribeye</div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Dessert</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Fl&acirc;n with caramel</div>
-                </div>
+              <!-- RIGHT: pairings (no per-item tags) -->
+              <div style="flex:1;display:flex;flex-direction:column;padding:8px 7px 6px;gap:2px;overflow-y:auto">
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;letter-spacing:0.08em;text-transform:uppercase;color:#bbb">Food</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Dark chocolate &amp; almonds</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Grilled ribeye</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Fl&acirc;n with caramel</div>
+                <div style="font-family:'Caveat',cursive;font-size:0.4rem;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-top:4px">Drink</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Maker's Mark bourbon</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Old Fashioned</div>
+                <div style="padding:3px 5px;border:1px solid #e5e5e5;border-radius:3px;font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch);line-height:1.1">Espresso, double</div>
               </div>
-              <div style="font-family:'Caveat',cursive;font-size:0.5rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">Drink</div>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Liquor</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Maker's Mark bourbon</div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Cocktail</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Old Fashioned</div>
-                </div>
-                <div style="display:flex;align-items:flex-start;gap:5px;padding:3px 4px;border:1px solid #e5e5e5;border-radius:3px">
-                  <div style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light);min-width:32px;text-transform:uppercase;letter-spacing:0.04em">Coffee</div>
-                  <div style="font-family:'Caveat',cursive;font-size:0.52rem;font-weight:700;color:var(--sketch)">Espresso, double</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="annotation">Pairing is always available<br>from the last result.<br>No new snap required.</div>
@@ -2825,7 +3202,7 @@ body {
     </div>
 
     <div class="flow-scenario" style="border-left:2px solid var(--accent);padding-left:12px;margin-top:16px">
-      <strong>Why this flow matters:</strong> the reopen state respects that the user is not always at the moment of capture &mdash; sometimes they're returning to the app in a Tuesday lull, with the Saturday cigar still in their head. Showing the last photo with action buttons removes the "now what?" friction of staring at an empty camera, and gives Pairing and Share a second chance after the first session ended without them.
+      <strong>Why this flow matters:</strong> the reopen state respects that the user is not always at the moment of capture. Sometimes they're returning to the app in a Tuesday lull, with the Saturday cigar still in their head. Showing the last photo with action buttons removes the "now what?" friction of staring at an empty camera, and gives Pairing and Share a second chance after the first session ended without them.
     </div>
   </div>
 </div>
@@ -2836,6 +3213,124 @@ body {
 <a id="post-mvp"></a>
 <a id="brainstorming"></a>
 <a id="collections"></a>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECTION 7: PWA INSTALL (MVP)            -->
+<!-- ═══════════════════════════════════════ -->
+<div class="section-title" id="install">
+  <div class="tag">Section 7 &middot; MVP</div>
+  <h2>Install to Home Screen</h2>
+  <p>Per PRD &sect;4.5. A lightweight prompt that turns first-time visitors into returning users without ever blocking the camera-first flow. Shown only after the first successful identification (never on first open), at most twice. The installed app on the home screen is the most durable surface Vitolero has after a share, so the prompt sells the value first, then guides the install in the fewest possible steps. Split by platform because iOS and Android behave differently.</p>
+  <div style="max-width:880px;margin-top:12px;padding:14px 18px;border:1.5px solid var(--accent);border-radius:6px;background:rgba(0,82,255,0.04);font-size:0.78rem;color:var(--fg);line-height:1.55">
+    <strong>MVP specs:</strong> Trigger: after the first successful identification (first share or first Journal save, whichever comes first). Frequency: at most twice, then never again. iOS (Safari): no <code>beforeinstallprompt</code>, so a custom explainer points at the Share icon. Android (Chrome): capture the native <code>beforeinstallprompt</code> and fire it on demand. Bottom-sheet only; never a full-screen interstitial; never blocks the camera or share.
+  </div>
+</div>
+
+<!-- Flow 7a: Install prompt -->
+<div class="flow-block">
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <span class="flow-num">Flow 7a</span>
+      <div class="flow-title">Install Prompt: Value First, Minimal Steps</div>
+    </div>
+    <div class="flow-scenario">Dave just shared his first cigar. A slim bottom-sheet offers to add Vitolero to his home screen so he is one tap away next time. <span class="flow-persona">Dave (MVP-primary)</span></div>
+
+    <div class="flow-strip">
+
+      <!-- 1. Trigger bottom-sheet -->
+      <div class="phone-wrap">
+        <div class="phone-label">1. Prompt</div>
+        <div class="phone-sublabel">After first ID</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div class="chrome-tr"><div class="chrome-btn jrnl">J</div></div>
+            <!-- dimmed result behind the sheet -->
+            <div class="id-screen" style="opacity:0.4">
+              <div class="id-photo cross-hatch"><div class="placeholder">your photo</div></div>
+              <div class="id-content">
+                <div class="id-badge">Identified</div>
+                <div class="id-name">Padron 1926 No. 9</div>
+                <div class="id-desc">Maduro. Leather, dark chocolate, espresso.</div>
+              </div>
+            </div>
+            <!-- bottom sheet -->
+            <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1.5px solid var(--sketch);border-radius:14px 14px 0 0;padding:9px 12px 11px;display:flex;flex-direction:column;gap:6px;box-shadow:0 -4px 10px rgba(0,0,0,0.08)">
+              <div style="width:32px;height:3px;border-radius:2px;background:#ddd;align-self:center"></div>
+              <div style="font-family:'Caveat',cursive;font-size:0.66rem;font-weight:700;color:var(--sketch);line-height:1.1">Keep Vitolero one tap away</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);line-height:1.3">Add it to your home screen so your next cigar is ready in seconds.</div>
+              <div class="sk-btn accent" style="font-size:0.52rem;padding:6px 0;margin-top:2px">Add to Home Screen</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);text-align:center;cursor:pointer">Not now</div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation blue">Slim bottom-sheet, not a wall.<br>Only after the first success.<br>Shown at most twice.</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="connector-arrow"><div class="connector-line"></div><div class="connector-head"></div></div>
+        <div class="connector-label">by platform</div>
+      </div>
+
+      <!-- 2a. iOS explainer -->
+      <div class="phone-wrap">
+        <div class="phone-label">2a. iOS (Safari)</div>
+        <div class="phone-sublabel">Manual add</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;gap:9px;text-align:center">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--fg);display:flex;align-items:center;justify-content:center">
+                <svg width="15" height="17" viewBox="0 0 24 28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"/><path d="M7 8l5-5 5 5"/><path d="M6 12H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1"/></svg>
+              </div>
+              <div style="font-family:'Caveat',cursive;font-size:0.62rem;font-weight:700;color:var(--sketch);line-height:1.2">Add Vitolero in two taps</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.52rem;color:var(--sketch-light);line-height:1.35;max-width:150px">Tap the <strong style="color:var(--accent)">Share</strong> icon below, then choose <strong style="color:var(--accent)">Add to Home Screen</strong>.</div>
+              <div style="font-family:'Caveat',cursive;font-size:0.46rem;color:var(--sketch-light);margin-top:2px;cursor:pointer">Maybe later</div>
+            </div>
+            <!-- safari toolbar hint -->
+            <div style="border-top:1px solid #eee;padding:5px 0;display:flex;align-items:center;justify-content:center;gap:4px">
+              <svg width="12" height="14" viewBox="0 0 24 28" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"/><path d="M7 8l5-5 5 5"/><path d="M6 12H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1"/></svg>
+              <span style="font-family:'Caveat',cursive;font-size:0.42rem;color:var(--sketch-light)">Safari share bar</span>
+            </div>
+          </div>
+        </div>
+        <div class="annotation">Safari has no install API.<br>Custom explainer + Share-icon hint.</div>
+      </div>
+
+      <div style="min-width:16px;flex-shrink:0"></div>
+
+      <!-- 2b. Android native prompt -->
+      <div class="phone-wrap">
+        <div class="phone-label">2b. Android (Chrome)</div>
+        <div class="phone-sublabel">Native prompt</div>
+        <div class="phone">
+          <div class="status-bar"><span>9:41</span><span>LTE</span></div>
+          <div class="screen">
+            <div style="flex:1;background:#f3f3f3"></div>
+            <!-- chrome native install card -->
+            <div style="position:absolute;left:8px;right:8px;bottom:10px;background:#fff;border:1px solid #ddd;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;box-shadow:0 3px 10px rgba(0,0,0,0.12)">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:26px;height:26px;border-radius:6px;background:var(--fg);display:flex;align-items:center;justify-content:center">
+                  <svg viewBox="0 0 30 110" width="10" height="36" aria-label="Vitolero" style="opacity:0.9"><use href="#cigarVertical"/></svg>
+                </div>
+                <div style="flex:1">
+                  <div style="font-family:'Caveat',cursive;font-size:0.58rem;font-weight:700;color:var(--sketch);line-height:1.1">Install Vitolero</div>
+                  <div style="font-family:'Caveat',cursive;font-size:0.44rem;color:var(--sketch-light);line-height:1.1">vitolero.com</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;align-items:center;margin-top:2px">
+                <div style="font-family:'Caveat',cursive;font-size:0.5rem;color:var(--sketch-light);cursor:pointer">Cancel</div>
+                <div class="sk-btn accent" style="font-size:0.52rem;padding:5px 14px">Install</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="annotation green">Chrome fires the native<br>beforeinstallprompt on demand.<br>One tap to install.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════ -->
 <!-- MORE: SUB-PAGE LINKS                    -->
@@ -2868,7 +3363,7 @@ body {
 
 <!-- Footer -->
 <div class="footer">
-  <span>Vitolero / Flow Wireframes v2.1 &middot; MVP only &middot; Post April 17 pivot</span>
+  <span>Vitolero / Flow Wireframes &middot; MVP only</span>
   <span>Fixed to Flow / April 2026</span>
 </div>
 

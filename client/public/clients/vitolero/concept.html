@@ -1740,14 +1740,10 @@ body {
   <div class="header-label">Vitolero</div>
   <h1>Concept <span>Framework</span></h1>
   <p>Design principles, persona priorities, interaction model, social network strategy, and directional UI states for Vitolero's AI cigar recommendation app.</p>
-  <div class="meta">v4.0 &middot; Post April 17 pivot &middot; April 2026 &middot; Fixed to Flow</div>
+  <div class="meta">May 2026 &middot; Fixed to Flow</div>
 
-  <!-- April 17 pivot banner -->
   <div style="margin-top:24px;padding:20px 24px;border:2px solid #0052FF;border-radius:4px;background:#F0F5FF;">
-    <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#0052FF;margin-bottom:12px;">April 17, 2026 &middot; Snap &amp; Share Pivot</div>
-    <p style="font-size:0.92rem;line-height:1.55;color:#111;margin-bottom:10px;"><strong>The product is now a 3-feature MVP:</strong> Snap &amp; Share with cigar-specific photo filters, one-directional Pairing (cigar to 3 food + 3 drink), and a Pinterest-style Journal. Taste profile, in-store recommendation, discovery feed, bi-directional pairing, Cigar Doctor, photo import, and vitola identification all move to post-MVP.</p>
-    <p style="font-size:0.92rem;line-height:1.55;color:#111;margin-bottom:10px;"><strong>MVP-primary persona:</strong> Dave the Weekend Ritualist (US, solo smoker, Facebook sharer). All other personas are served post-MVP.</p>
-    <p style="font-size:0.85rem;line-height:1.55;color:#666;margin:0;">Source of truth: <a href="https://www.notion.so/gustavopimenta/Vitolero-312769c82e728036a48ffed755a1bfc0?source=copy_link#345769c82e728082b2b8e5103472c226" style="color:#0052FF;" target="_blank" rel="noopener">April 17 meeting notes</a>. Current PRD: <a href="https://www.notion.so/gustavopimenta/Vitolero-PRD-v1-0-post-April-17-pivot-34c769c82e7281c18c59dbb3d50f363e?source=copy_link" style="color:#0052FF;" target="_blank" rel="noopener">Vitolero PRD v1.0 (post-April 17 pivot)</a>. This HTML deliverable is being rebuilt to reflect v4.0; deep sections below still carry v3.0 visualizations and should be read as pre-pivot reference until fully updated.</p>
+    <p style="font-size:0.92rem;line-height:1.55;color:#111;margin:0;">This is the concept framework for the Vitolero AI cigar app: personas, design principles, interaction model, UI kit, flows, and growth strategy.</p>
   </div>
 </div>
 
@@ -1775,13 +1771,13 @@ body {
     <div class="section-label">Section 1</div>
     <h2>Business Context</h2>
     <p class="section-intro">Vitolero is an AI-powered cigar companion app. Photo-first identification, pairings, and social sharing, delivered as a Progressive Web App. No App Store dependency.</p>
-    <p class="section-intro"><strong>The core value proposition (v4.0, April 17 pivot):</strong> turn any cigar photo into a magazine-quality share with brand and line auto-identified. Cigar-specific photo filters desaturate the background, keep the cigar saturated, and overlay brand and line information on the photo. The filter is what makes the photo worth sharing. The identification is what makes the share credible.</p>
-    <p class="section-intro"><strong>MVP scope (3 features):</strong> Snap &amp; Share with filters, one-directional Pairing (cigar to 3 food + 3 drink), and Journal (Pinterest-style gallery, account creation on first Journal access).</p>
-    <p class="section-intro"><strong>Deferred to post-MVP:</strong> Signature Taste Profile, In-store Recommendation, Discovery Feed, bi-directional Pairing, menu-aware Pairing, Cigar Doctor, Photo Import, vitola-level identification.</p>
+    <p class="section-intro"><strong>The core value proposition:</strong> turn any cigar photo into a magazine-quality share with brand and line auto-identified. Each of the 3 cigar-specific filters applies a soft peripheral blur (bokeh) that keeps the cigar sharp while the background softens, then composites a brand overlay (logo, brand name, line, subtle Vitolero mark) as a strip across the bottom. The overlay is on by default and toggles off with a tap; the original photo is always preserved. The filter is what makes the photo worth sharing. The identification is what makes the share credible.</p>
+    <p class="section-intro"><strong>MVP scope (3 features):</strong> Snap &amp; Share with filters, one-directional Pairing (cigar to 3 food + 3 drink), and Journal (Pinterest-style masonry gallery, account creation on first Journal access). A Cigar Detail screen and a PWA install prompt support the loop. Identification runs at three levels: brand and line surface fast for the share loop; specific size (vitola) surfaces later in the Cigar Detail screen.</p>
+    <p class="section-intro"><strong>Deferred to post-MVP:</strong> Signature Taste Profile, In-store Recommendation, Discovery Feed, bi-directional Pairing, menu-aware Pairing, Cigar Doctor, Photo Import, full vitola identification.</p>
     <p class="section-intro"><strong>The core constraint:</strong> paid advertising is structurally impossible. EU tobacco directive, platform restrictions across Meta, Google, and TikTok, and Apple's history of banning cigar apps close every conventional channel. The product must grow itself through organic shares and Facebook-group admin partnerships (outreach begins only once MVP is working).</p>
-    <p class="section-intro">This document is the post April 17 pivot concept framework: personas, principles, interaction model, features, flows, growth strategy, and social network channel strategy. A compass, not a blueprint.</p>
+    <p class="section-intro">This concept framework covers: personas, principles, interaction model, features, flows, growth strategy, and social network channel strategy. A compass, not a blueprint.</p>
 
-    <div class="section-label" style="margin-top:24px">Platform Constraints (v1)</div>
+    <div class="section-label" style="margin-top:24px">Platform Constraints</div>
     <div class="constraint-grid">
       <div class="constraint-block">
         <span class="tag blocked">Constraint</span>
@@ -1798,6 +1794,18 @@ body {
       <div class="constraint-block">
         <span class="tag blocked">Constraint</span>
         <p><strong>No cigar authentication.</strong> Verifying whether a cigar is genuine is not yet technically feasible. Removed from v1 scope.</p>
+      </div>
+      <div class="constraint-block">
+        <span class="tag blocked">Constraint</span>
+        <p><strong>No Facebook API.</strong> Meta's tobacco restrictions block the Facebook API. Distribution uses deep links only. Each share is a separate action. No simultaneous multi-platform sharing.</p>
+      </div>
+      <div class="constraint-block">
+        <span class="tag blocked">Constraint</span>
+        <p><strong>No post-share reacquisition control.</strong> Once the user taps share, they leave the app with no callback. The team is investigating reacquisition mechanisms (Fabio to follow up).</p>
+      </div>
+      <div class="constraint-block">
+        <span class="tag blocked">Constraint</span>
+        <p><strong>Variable gallery aspect ratios.</strong> Photos arriving from the gallery come in portrait, landscape, and square. The interface handles all three without forced cropping.</p>
       </div>
     </div>
   </div>
@@ -1829,14 +1837,14 @@ body {
     </div>
     <div class="constraint-block" style="border: 2px solid var(--green); background: #f0fdf4; padding: 18px 20px; margin-top: 12px;">
       <span class="tag answer" style="font-size: 0.72rem; padding: 4px 10px;">Answer</span>
-      <p style="font-size: 0.85rem; color: var(--fg);"><strong>Value first, share after.</strong> The app delivers identification and personalized recommendations. Users stay because the app learns their palate. The share card rides on top of this value: after every identification, the user is prompted to share. Every shared card carries the Vitolero domain. Organic growth through behavior people already do.</p>
+      <p style="font-size: 0.85rem; color: var(--fg);"><strong>The filter is the hook.</strong> A great-looking share is the first move, not a profile setup. After capture, the cigar-specific bokeh filter and brand overlay make the photo worth sharing, and identification makes the share credible. Every shared card carries the Vitolero domain into communities the app could never buy its way into. Organic growth through behavior people already do.</p>
     </div>
     <div class="constraint-block" style="border: 2px solid var(--accent); background: #eff6ff; padding: 18px 20px; margin-top: 12px;">
       <span class="tag answer" style="font-size: 0.72rem; padding: 4px 10px; background: var(--accent); color: #fff;">Priority</span>
       <p style="font-size: 0.85rem; color: var(--fg);"><strong>Growth is the only goal for v1.</strong> Monetization and data flywheels are secondary concerns. The singular focus is getting users in, getting them to snap, and getting the share loop spinning.</p>
     </div>
 
-    <div class="section-label" style="margin-top:32px">Two-Speed Growth Flywheel (April 17 MVP)</div>
+    <div class="section-label" style="margin-top:32px">Two-Speed Growth Flywheel</div>
     <p class="section-intro" style="margin-bottom:16px"><strong>Front wheel (MVP, high-speed):</strong> Photo filter + brand and line identification + share. Every snap produces a share-worthy artifact. The share prompt is the primary action after identification. This front wheel must be perfect because every user passes through it.</p>
     <p class="section-intro" style="margin-bottom:16px"><strong>Back wheel (post-MVP, retention):</strong> Journal holds the raw photo and brand data in MVP. Post-MVP, the Signature Taste Profile, Discovery Feed, and recommendations ship on top of that data. Switching cost begins accruing once recommendations land.</p>
     <div class="flywheel">
@@ -1846,30 +1854,30 @@ body {
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 2</div>
-        <div class="step-text">App identifies cigar, delivers value (flavor profile, strength, recommendations)</div>
+        <div class="step-text">App applies a bokeh filter and identifies the brand and line</div>
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 3</div>
-        <div class="step-text">User saves to profile. Taste profile updates.</div>
+        <div class="step-text">User picks a filter. The brand overlay composites onto the photo.</div>
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 4</div>
-        <div class="step-text">App prompts: "Generate a share card?"</div>
+        <div class="step-text">User shares the branded card to Facebook, Instagram, or WhatsApp</div>
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 5</div>
-        <div class="step-text">User shares branded card to Instagram, Facebook, WhatsApp</div>
+        <div class="step-text">The photo auto-saves to the Journal. No account needed yet.</div>
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 6</div>
-        <div class="step-text">Friends see the card with Vitolero domain</div>
+        <div class="step-text">Friends see the card with the Vitolero domain</div>
       </div>
       <div class="flywheel-step">
         <div class="step-num">Step 7</div>
-        <div class="step-text">Curiosity drives a new download</div>
+        <div class="step-text">Curiosity drives a new visit</div>
       </div>
     </div>
-    <div class="flywheel-loop"><span>Loop repeats. Value first, share after. Each user is a distribution channel.</span></div>
+    <div class="flywheel-loop"><span>Loop repeats. The filter is the hook, the share is the engine. Each user is a distribution channel.</span></div>
 
     <div class="section-label" style="margin-top:32px">Monetization Phases</div>
     <div class="phase-cards">
@@ -1920,7 +1928,7 @@ body {
         </ul>
       </div>
     </div>
-    <p class="section-intro" style="margin-top:12px">Photo import accelerates this flywheel. Users who bring existing cigar photos from their camera roll or Facebook history build a taste profile in minutes instead of weeks. Every imported photo also generates a labeled training pair.</p>
+    <p class="section-intro" style="margin-top:12px">Photo import (post-MVP) will accelerate this flywheel. Users who bring existing cigar photos from their camera roll build a taste profile in minutes instead of weeks. Every imported photo also generates a labeled training pair.</p>
 
     <div class="section-label" style="margin-top:32px">Key Metrics</div>
     <table class="data-table">
@@ -2033,7 +2041,7 @@ body {
     <div class="section-label">Section 3</div>
     <h2>Personas</h2>
     <p class="section-intro">Six user types from community research across 240k+ members. Kept for long-term product thinking. Click any card for details.</p>
-    <p class="section-intro"><strong>April 17 MVP priority:</strong> Dave (Weekend Ritualist) is the sole MVP-primary persona. He is US-based, smokes alone on weekends with bourbon, and already photographs and shares cigar moments on Facebook. The filter-powered share loop maps directly onto behavior he already has.</p>
+    <p class="section-intro"><strong>MVP priority:</strong> Dave (Weekend Ritualist) is the sole MVP-primary persona. He is US-based, smokes alone on weekends with bourbon, and already photographs and shares cigar moments on Facebook. The filter-powered share loop maps directly onto behavior he already has.</p>
     <p class="section-intro"><strong>Served post-MVP:</strong> Carlos, Mark, Tyler, Jerome, and Richard. Carlos carries a specific caveat: brand and line identification accuracy on well-known cigars is reputation-critical in MVP because he will find the app through Facebook groups and judge it publicly.</p>
     <p class="section-intro">Operational principle: <strong>build for Dave, design for Dave's Saturday-night solo smoke.</strong></p>
 
@@ -2116,13 +2124,13 @@ body {
   <div class="section" id="jtbd">
     <div class="section-label">Section 5</div>
     <h2>Jobs to Be Done</h2>
-    <p class="section-intro">Five universal jobs shared by every persona. Eight persona-specific jobs (including Dimitar's reformulations). Identify is the entry point to value. Share is the entry point to growth.</p>
+    <p class="section-intro">Seven jobs span the personas. The MVP serves Identify, Enhance via filter, Share, and Pair directly, with Remember partly covered by the Journal. Choose, Discover, and the full taste profile are post-MVP. Identify is the entry point to value. Share is the entry point to growth.</p>
 
     <div class="section-label" style="margin-top:24px">Universal Jobs</div>
     <div class="jtbd-card">
-      <h4>Identify</h4>
+      <h4>Identify <span class="tag core">MVP</span></h4>
       <div class="jtbd-statement">"Tell me what this is."</div>
-      <div class="jtbd-feature">Photo in, identification out. The first value delivered. The universal entry point for every persona at every stage.</div>
+      <div class="jtbd-feature">Photo in, identification out. The first value delivered. Brand and line in MVP; vitola surfaces in the Cigar Detail screen. The universal entry point for every persona at every stage.</div>
       <div class="jtbd-personas">
         <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> Curiosity. "What's this cigar my friend gave me?"</div>
         <div class="jtbd-persona"><span class="jtbd-persona-label">Enthusiast</span> Validation. Tests if the app gets it right before trusting it.</div>
@@ -2132,9 +2140,19 @@ body {
       </div>
     </div>
     <div class="jtbd-card">
-      <h4>Choose</h4>
+      <h4>Enhance via filter <span class="tag core">MVP</span></h4>
+      <div class="jtbd-statement">"Make my photo look worth sharing."</div>
+      <div class="jtbd-feature">The hero job. A cigar-specific bokeh filter and brand overlay turn a phone snapshot into a magazine-quality card. No skill required from the user.</div>
+      <div class="jtbd-personas">
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> The reason the in-app share beats the native camera. Accepts the default filter.</div>
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Occasional</span> The card is the value. The filter makes it look effortless.</div>
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Newcomer</span> Looks knowledgeable without knowing the vocabulary.</div>
+      </div>
+    </div>
+    <div class="jtbd-card">
+      <h4>Choose <span class="tag keep">Post-MVP</span></h4>
       <div class="jtbd-statement">"Help me choose."</div>
-      <div class="jtbd-feature">The in-store recommendation job. Contextual: user has options in front of them and needs guidance.</div>
+      <div class="jtbd-feature">The in-store recommendation job (post-MVP, needs the taste profile). Contextual: user has options in front of them and needs guidance.</div>
       <div class="jtbd-personas">
         <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> "Something good" from whatever's in the shop. Low friction, clear winner.</div>
         <div class="jtbd-persona"><span class="jtbd-persona-label">Enthusiast</span> "Something I haven't tried that matches my profile but excludes what I dislike."</div>
@@ -2143,9 +2161,9 @@ body {
       </div>
     </div>
     <div class="jtbd-card">
-      <h4>Discover</h4>
+      <h4>Discover <span class="tag keep">Post-MVP</span></h4>
       <div class="jtbd-statement">"Find great cigars for me."</div>
-      <div class="jtbd-feature">The exploration job. Not contextual: user wants to expand their world beyond what they already know. Drives retention.</div>
+      <div class="jtbd-feature">The exploration job (post-MVP, needs the taste profile). Not contextual: user wants to expand their world beyond what they already know. Drives retention.</div>
       <div class="jtbd-personas">
         <div class="jtbd-persona"><span class="jtbd-persona-label">Enthusiast</span> "Show me something I haven't seen." Discovery is the primary retention driver.</div>
         <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> "What else would I like?" Expands the ritual with new finds.</div>
@@ -2153,9 +2171,9 @@ body {
       </div>
     </div>
     <div class="jtbd-card">
-      <h4>Remember</h4>
+      <h4>Remember <span class="tag core">MVP: Journal</span> <span class="tag keep">profile post-MVP</span></h4>
       <div class="jtbd-statement">"Remember what I like."</div>
-      <div class="jtbd-feature">No persona wants to re-explain preferences. The Signature Taste Profile is the hidden engine behind this job. Built from snap behavior, never from forms.</div>
+      <div class="jtbd-feature">The Journal keeps a visual record in MVP. The Signature Taste Profile (post-MVP) is the hidden engine that later turns that history into recommendations. Built from snap behavior, never from forms.</div>
       <div class="jtbd-personas">
         <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> Will not rate or log. Profile must build from photos and saves.</div>
         <div class="jtbd-persona"><span class="jtbd-persona-label">Enthusiast</span> Will actively rate, note, and track. Wants to see their profile evolve.</div>
@@ -2165,9 +2183,19 @@ body {
       </div>
     </div>
     <div class="jtbd-card">
-      <h4>Share</h4>
+      <h4>Pair <span class="tag core">MVP</span></h4>
+      <div class="jtbd-statement">"What goes with this cigar?"</div>
+      <div class="jtbd-feature">One-directional: cigar line to 3 food and 3 drink suggestions, one featured. A cigar-beside-list, text-only result with item names only. The next value layer after sharing.</div>
+      <div class="jtbd-personas">
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> Most frequent pairing scenario. "What goes with the bourbon I just poured?"</div>
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Occasional</span> A pairing makes the evening feel complete.</div>
+        <div class="jtbd-persona"><span class="jtbd-persona-label">Newcomer</span> Guidance without a vocabulary barrier.</div>
+      </div>
+    </div>
+    <div class="jtbd-card">
+      <h4>Share <span class="tag core">MVP</span></h4>
       <div class="jtbd-statement">"Show what I'm smoking."</div>
-      <div class="jtbd-feature">The distribution engine. Prompted after value delivery, not before. Users share because the card makes them look knowledgeable.</div>
+      <div class="jtbd-feature">The distribution engine. Prompted after the filter is applied and identification is shown. Users share because the card makes them look knowledgeable.</div>
       <div class="jtbd-personas">
         <div class="jtbd-persona"><span class="jtbd-persona-label">Ritualist</span> Shares as-is. Zero friction. The card is the moment captured.</div>
         <div class="jtbd-persona"><span class="jtbd-persona-label">Enthusiast</span> Adds tasting notes. The card reflects genuine expertise.</div>
@@ -2213,98 +2241,85 @@ body {
   <div class="section" id="features">
     <div class="section-label">Section 6</div>
     <h2>Main Features</h2>
-    <p class="section-intro">v1 priority matrix. Seven core features, two killed. Value first, share after.</p>
+    <p class="section-intro">Three MVP features, plus two supporting screens. Everything else is deferred. Share-first: the filter is the hook, identification makes it credible, the rest deepens the value.</p>
 
     <table class="data-table">
       <thead>
-        <tr><th>Feature</th><th>Priority</th><th>Personas</th><th>JTBD</th></tr>
+        <tr><th>Feature</th><th>Priority</th><th>MVP status</th><th>Personas served</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td>Cigar Identification</td>
+          <td><strong>Snap &amp; Share</strong> (filters + brand-line ID + overlay)</td>
           <td><span class="tag core">Core</span></td>
+          <td>Active</td>
           <td>All</td>
-          <td>"Tell me what this is." The first value delivered.</td>
         </tr>
         <tr>
-          <td>Signature Taste Profile (hidden)</td>
+          <td><strong>Pairing</strong> (one-directional, cigar line to 6 items)</td>
           <td><span class="tag core">Core</span></td>
-          <td>All</td>
-          <td>"Remember what I like." Hidden engine behind recommendations. Not user-facing.</td>
+          <td>Active</td>
+          <td>Dave, Mark, Tyler</td>
         </tr>
         <tr>
-          <td>Snap &amp; Share</td>
-          <td><span class="tag core">Core (Distribution)</span></td>
-          <td>All</td>
-          <td>"Show what I'm smoking." Prompted after value delivery.</td>
-        </tr>
-        <tr>
-          <td>In-store Recommendation</td>
+          <td><strong>Journal</strong> (Pinterest-style masonry, deferred account)</td>
           <td><span class="tag core">Core</span></td>
-          <td>Ritualist, Enthusiast</td>
-          <td>"Help me choose."</td>
+          <td>Active</td>
+          <td>Dave, Carlos, Richard</td>
         </tr>
         <tr>
-          <td>Cigar Discovery / Recommendation Feed</td>
-          <td><span class="tag core">Core</span></td>
-          <td>All (Enthusiast primary)</td>
-          <td>"Find great cigars for me." Drives retention.</td>
+          <td><strong>Cigar Detail</strong> (deep-info screen)</td>
+          <td><span class="tag keep">Supporting</span></td>
+          <td>Active</td>
+          <td>Carlos, Richard (Dave glances)</td>
         </tr>
         <tr>
-          <td>Pairing (unified)</td>
-          <td><span class="tag core">Core</span></td>
-          <td>Ritualist, Occasional</td>
-          <td>"Pair my cigar."</td>
+          <td><strong>Install to Home Screen</strong> (PWA prompt)</td>
+          <td><span class="tag keep">Supporting</span></td>
+          <td>Active</td>
+          <td>All (after first ID)</td>
         </tr>
-        <tr>
-          <td>Onboarding (value-first progressive)</td>
-          <td><span class="tag core">Core</span></td>
-          <td>All</td>
-          <td>Value first: snap, identify, build profile. Share prompted after. See Trust Gateway concept.</td>
-        </tr>
-        <tr>
-          <td>Photo Import</td>
-          <td><span class="tag core">Core</span></td>
-          <td>All (Enthusiast primary)</td>
-          <td>Camera roll import (Phase 1). Facebook import has Meta API restrictions.</td>
-        </tr>
-        <tr>
-          <td>Smoking Diary</td>
-          <td><span class="tag keep">Keep</span></td>
-          <td>Enthusiast, Connoisseur</td>
-          <td>Timeline of snaps. Not an inventory tracker.</td>
-        </tr>
-        <tr>
-          <td>Cigar Doctor</td>
-          <td><span class="tag killed">Killed</span></td>
-          <td>(Connoisseur)</td>
-          <td>Infrequent. Future paywall.</td>
-        </tr>
-        <tr>
-          <td>Instagram browsing</td>
-          <td><span class="tag killed">Killed</span></td>
-          <td>None</td>
-          <td>Low-priority engagement.</td>
-        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-label" style="margin-top:28px">Deferred to Post-MVP</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Feature</th><th>Why deferred</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Signature Taste Profile (passive, hidden)</td><td>Requires a critical mass of snaps. Powers recommendations and advanced pairing.</td></tr>
+        <tr><td>In-store Recommendation</td><td>Depends on the taste profile. Photo of a humidor display, ranked against preferences.</td></tr>
+        <tr><td>Discovery Feed</td><td>Depends on the taste profile. "Find great cigars for me."</td></tr>
+        <tr><td>Bi-directional Pairing</td><td>Drink to cigar. Adds complexity without expanding the primary use case.</td></tr>
+        <tr><td>Menu-aware Pairing</td><td>Photo of a drinks menu plus cigar. Requires menu OCR.</td></tr>
+        <tr><td>Cigar Doctor</td><td>Photo of a damaged cigar, analysis and repair. Infrequent. Strong paywall candidate.</td></tr>
+        <tr><td>Photo Import</td><td>Camera roll import to accelerate the taste profile. No profile in MVP, so no need yet.</td></tr>
+        <tr><td>Full vitola identification</td><td>Size surfaces in Cigar Detail when it resolves. Precise detection at share-flow speed runs 40 to 50 seconds, too slow for MVP.</td></tr>
+        <tr><td>Instagram browsing</td><td>Low-priority engagement feature.</td></tr>
+        <tr><td>Browser extension (Facebook import)</td><td>Meta API restrictions make this impractical. Revisit post-funding.</td></tr>
       </tbody>
     </table>
 
     <div style="margin-top: 20px;">
       <div class="decision">
-        <h4><span class="tag core">Key Decision</span> Value first, share after</h4>
-        <p>The core proposition is "Snap 3 cigars to unlock your personalized flavor profile and next-buy recommendations." Identification and profile building are the value. Sharing is the distribution byproduct.</p>
+        <h4><span class="tag core">Key Decision</span> Share-first, the filter is the hook</h4>
+        <p>The first move is a great-looking share, not a profile setup. The bokeh filter and brand overlay make the photo worth sharing. Identification makes the share credible. No "snap 3 cigars to unlock." No wizard before value.</p>
       </div>
       <div class="decision">
-        <h4><span class="tag core">Key Decision</span> Signature Taste Profile replaces Collection/Humidor</h4>
-        <p>Hidden engine behind Discovery and Recommendations. Not surfaced to users: (1) proprietary advantage, (2) may conflict with user self-perception of their taste.</p>
+        <h4><span class="tag core">Key Decision</span> Three features, everything else deferred</h4>
+        <p>Snap &amp; Share, Pairing, and Journal, supported by a Cigar Detail screen and a PWA install prompt. Taste profile, recommendations, and discovery wait for post-MVP. A pre-seed team ships a launchable product, not a feature-complete one.</p>
+      </div>
+      <div class="decision">
+        <h4><span class="tag core">Key Decision</span> Account creation deferred to Journal</h4>
+        <p>Snap, filter, identify, share, and pair all work with no account. The first tap on the Journal triggers a one-tap Google or Apple sign-in. The wall arrives only when there is something worth saving.</p>
+      </div>
+      <div class="decision">
+        <h4><span class="tag core">Key Decision</span> Pairing locked: cigar beside the list, one featured, text-only</h4>
+        <p>A big vertical cigar beside the 6 suggestions, item names only (no category tags or icons), Food and Drink dividers de-emphasized. Exactly one featured pairing per result. Text-only, because the visual budget is spent on the share card and speed matters in the 10 to 15 second budget. One-directional in MVP.</p>
       </div>
       <div class="decision">
         <h4><span class="tag killed">Killed</span> Cigar Doctor</h4>
-        <p>Community research confirms cigar damage/defect questions are infrequent. Strong candidate for a future premium tier.</p>
-      </div>
-      <div class="decision">
-        <h4><span class="tag core">Merged</span> Pairing</h4>
-        <p>"Cigar to drink" and "drink to cigar" are the same feature from the user's perspective. One unified pairing feature.</p>
+        <p>Community research confirms cigar damage and defect questions are infrequent. Strong candidate for a future premium tier.</p>
       </div>
     </div>
   </div>
@@ -2327,15 +2342,15 @@ body {
     <div class="principle">
       <div class="principle-number">Principle 2</div>
       <h3>Perceived value in 10 seconds.</h3>
-      <p>The sommelier narrative IS the first result. Within 1 to 2 seconds of capture, the user sees the AI analyzing their photo. "I see a dark wrapper with an oily sheen..." delivers perceived value before the final identification lands. No wizard, no account creation, no feature tour. The user feels the app working the moment they tap the shutter.</p>
+      <p>The filter result is visible almost immediately, before identification completes. A brief narrative runs during processing ("I see a dark wrapper with a gold band... Checking the database...") and the brand-plus-line result lands within 10 seconds. The heavy sommelier narrative from v3 is scaled back: brand-plus-line is fast, and the overlay now tells the story the narrative used to carry. The point is that the user sees something happening from the first moment.</p>
       <div class="failure">Failure: If the user sees nothing happening for more than 2 seconds after capture, the design failed.</div>
     </div>
 
     <div class="principle">
       <div class="principle-number">Principle 3</div>
       <h3>The app reads you.</h3>
-      <p>Profile building happens passively from behavior: what you photograph, what you ask about, what you return to, what you skip. The app detects the interaction type and adapts the interface accordingly. Active input exists for enthusiasts but is never required.</p>
-      <div class="failure">Failure: A casual user must actively configure preferences for good recommendations.</div>
+      <p>In MVP, "reading you" means the returning user opens to their last photo, not a blank camera. The app remembers what you were doing. Full profile building is post-MVP, but the principle of continuity applies from day one.</p>
+      <div class="failure">Failure: The app treats every session like a fresh start.</div>
     </div>
 
     <div class="principle">
@@ -2353,18 +2368,18 @@ body {
     </div>
 
     <div class="principle">
-      <div class="principle-number">Principle 06</div>
+      <div class="principle-number">Principle 6</div>
       <h3>Every photo is marketing.</h3>
-      <p>The share card is the growth engine. The product must make sharing feel natural, not transactional. No CTAs, no "download our app." The domain does the attribution.</p>
+      <p>The filter is the growth engine. The product must make sharing feel natural, not transactional. No CTAs, no "download our app." The domain does the attribution. The filtered photo with the brand overlay should look like something a cigar magazine produced, not a screenshot of an app.</p>
       <div class="failure">Failure: If the share card doesn't look like something a cigar magazine produced, the design failed.</div>
     </div>
 
     <div class="section-label" style="margin-top:32px">Layer 2: Design Implications</div>
     <ul class="implications">
       <li><strong>Output depth scales with the user, not the feature.</strong> The same identification result shows different levels of detail by persona.</li>
-      <li><strong>First Encounter must deliver perceived value in under 10 seconds.</strong> The sommelier narrative begins within 1 to 2 seconds of capture, giving the user immediate feedback. Onboarding happens after the first result, not before.</li>
+      <li><strong>First Encounter must deliver perceived value in under 10 seconds.</strong> The filter result shows almost immediately and a brief narrative covers the brand-plus-line identification. Onboarding happens after the first result, not before.</li>
       <li><strong>The app needs two modes, not six personas.</strong> Jobs cluster into two interaction patterns (Quick and Reflective), not six separate persona experiences.</li>
-      <li><strong>Passive profile building is non-negotiable.</strong> Most personas will not actively rate, log, or journal. The app must build profiles from behavior.</li>
+      <li><strong>Returning users get continuity.</strong> The app opens to the last photo taken, not a blank camera. Deep profile building is post-MVP, but continuity applies from day one.</li>
       <li><strong>Churn follows a predictable pattern.</strong> First Encounter and Early Use are the danger zones. All retention investment goes to these two stages.</li>
     </ul>
 
@@ -2373,12 +2388,12 @@ body {
       <div class="mode-card mode-highlight">
         <span class="material-icons-round mode-icon">bolt</span>
         <h4>Quick Mode</h4>
-        <div class="mode-context">In the moment, at the shop, at the lounge</div>
+        <div class="mode-context">On the porch, at the lounge, in the moment</div>
         <ul>
-          <li>Identify this cigar</li>
-          <li>Recommend from what's here</li>
-          <li>Pair with this drink</li>
           <li>Snap and share</li>
+          <li>Apply a filter</li>
+          <li>Identify this cigar</li>
+          <li>Pair with food and drink</li>
         </ul>
         <div class="mode-who">Camera-first. All personas.</div>
       </div>
@@ -2387,30 +2402,49 @@ body {
         <h4>Reflective Mode</h4>
         <div class="mode-context">At home, between smokes</div>
         <ul>
-          <li>Browse recommendations</li>
-          <li>Manage collection</li>
-          <li>Review past smokes</li>
-          <li>Track history</li>
+          <li>Browse the Journal</li>
+          <li>Open Cigar Detail</li>
+          <li>Favorite past smokes</li>
+          <li>Review history</li>
         </ul>
-        <div class="mode-who">List/card-based. Enthusiasts, Connoisseurs.</div>
+        <div class="mode-who">Journal-based. Dave browsing, Carlos going deeper.</div>
       </div>
     </div>
     <p class="section-intro">Context-based switching. The app infers which mode from behavior. Camera open equals Quick. Scrolling diary equals Reflective. The mode is a design lens, not a user-facing concept.</p>
-    <div class="constraint-block" style="border: 2px solid var(--amber); background: #fffbeb; padding: 18px 20px; margin-top: 12px;">
-      <span class="tag blocked" style="background: var(--amber);">Open Question</span>
-      <p style="font-size: 0.85rem; color: var(--fg);"><strong>Mode switching needs concrete definition.</strong> What signals trigger the switch? What is the fallback when inference is ambiguous? (Presumably Quick Mode.) Should users have an explicit toggle? Needs resolution before Call 3.</p>
-    </div>
+    <p class="section-intro" style="margin-top:12px">Mode is inferred, not chosen. Camera open is Quick. Browsing the Journal is Reflective. There is no user-facing toggle in MVP, and when inference is ambiguous the app defaults to Quick.</p>
   </div>
 
   <!-- 8. UI Kit -->
   <div class="section" id="uikit">
     <div class="section-label">Section 8</div>
-    <h2>UI Kit: 9 Reference States</h2>
-    <p class="section-intro">The building blocks of the interface. Each state defines what appears, what the user can do, and what varies by persona. Click any state for details.</p>
+    <h2>UI Kit: 10 Reference States</h2>
+    <p class="section-intro">The building blocks of the MVP interface. Each state defines what appears, what the user can do, and what varies by persona. Click any state for details.</p>
 
     <div class="uikit-grid">
-      <!-- State 1: Camera -->
+      <!-- State 1: Welcome -->
       <div class="uikit-item" onclick="showUIDetail(0)">
+        <div class="uikit-frame">
+          <div class="uikit-statusbar"></div>
+          <div class="uikit-screen">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;padding:0 10px;text-align:center">
+              <div style="width:26px;height:26px;border-radius:6px;background:var(--accent);display:flex;align-items:center;justify-content:center"><span class="material-icons-round" style="font-size:16px;color:#fff">local_fire_department</span></div>
+              <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.04em;color:var(--fg)">Vitolero</div>
+              <div style="display:flex;flex-direction:column;gap:2px;text-align:left;max-width:96%">
+                <div style="font-size:0.3rem;color:var(--mid);line-height:1.35">&bull; Snap any cigar for instant ID and a share card.</div>
+                <div style="font-size:0.3rem;color:var(--mid);line-height:1.35">&bull; Ask for a food and drink pairing.</div>
+                <div style="font-size:0.3rem;color:var(--mid);line-height:1.35">&bull; Everything saves to your Journal.</div>
+              </div>
+              <div style="margin-top:4px;font-size:0.34rem;font-weight:600;color:#fff;background:var(--accent);padding:4px 10px;border-radius:20px">Get Started</div>
+            </div>
+          </div>
+        </div>
+        <div class="uikit-label">Welcome State</div>
+        <div class="uikit-desc">First open. Identity + camera CTA.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#first-time">See in flow &rarr;</a>
+      </div>
+
+      <!-- State 2: Camera -->
+      <div class="uikit-item" onclick="showUIDetail(1)">
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
@@ -2427,99 +2461,61 @@ body {
           </div>
         </div>
         <div class="uikit-label">Camera State</div>
-        <div class="uikit-desc">Quick Mode entry. Default state.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
-      </div>
-
-      <!-- State 2: Processing -->
-      <div class="uikit-item" onclick="showUIDetail(1)">
-        <div class="uikit-frame">
-          <div class="uikit-statusbar"></div>
-          <div class="uikit-screen">
-            <div class="mock-processing">
-              <div class="narrative-line">I see a dark wrapper with an oily sheen...</div>
-              <div class="narrative-line">The band suggests a Padron family...</div>
-              <div class="narrative-line">Checking the vitola proportions...</div>
-            </div>
-          </div>
-        </div>
-        <div class="uikit-label">Processing</div>
-        <div class="uikit-desc">Sommelier narrative during AI work.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
+        <div class="uikit-desc">Default on a fresh open. Two-pip nav.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#snap-share">See in flow &rarr;</a>
       </div>
 
       <!-- State 3: Identification -->
-      <div class="uikit-item" onclick="showUIDetail(2)">
-        <div class="uikit-frame">
-          <div class="uikit-statusbar"></div>
-          <div class="uikit-screen">
-            <div class="mock-result">
-              <div class="result-image"><span class="material-icons-round">photo_camera</span></div>
-              <div class="result-name">Padron 3000 Maduro</div>
-              <div class="result-desc">Full-bodied. Chocolate, earth, coffee. Nicaragua.</div>
-              <div style="font-size:0.35rem;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px">Strength</div>
-              <div class="result-bar"><div class="result-bar-fill" style="width:75%"></div></div>
-              <div class="result-actions">
-                <div class="action-btn primary">Save</div>
-                <div class="action-btn secondary">Similar</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="uikit-label">Identification</div>
-        <div class="uikit-desc">Single cigar result card.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
-      </div>
-
-      <!-- State 4: Recommendation -->
       <div class="uikit-item" onclick="showUIDetail(3)">
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
-            <div class="mock-ranked">
-              <div class="filter-row">
-                <div class="filter-chip active">All</div>
-                <div class="filter-chip">Budget</div>
-                <div class="filter-chip">New</div>
+            <div class="mock-result">
+              <div class="result-image"><span class="material-icons-round">local_fire_department</span></div>
+              <div class="result-name">Padron 1926 No. 9</div>
+              <div class="result-desc">Full-bodied. Chocolate, leather, espresso. Nicaragua.</div>
+              <div style="font-size:0.35rem;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px">Strength</div>
+              <div class="result-bar"><div class="result-bar-fill" style="width:85%"></div></div>
+              <div class="result-actions">
+                <div class="action-btn primary">Share</div>
+                <div class="action-btn secondary">Pair</div>
               </div>
-              <div class="rank-card">
-                <div class="rank-num">1</div>
-                <div class="rank-info">
-                  <div class="rank-name">Padron 3000 Maduro</div>
-                  <div class="rank-reason">Matches your chocolate/earth profile</div>
-                </div>
-                <div class="rank-score">92%</div>
+              <div style="font-size:0.32rem;color:var(--accent);font-weight:600;margin-top:4px;text-align:center">Details &rarr;</div>
+            </div>
+          </div>
+        </div>
+        <div class="uikit-label">Identification Result</div>
+        <div class="uikit-desc">Brand and line. Share, Pair, Details.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#snap-share">See in flow &rarr;</a>
+      </div>
+
+      <!-- State 4: Filter Preview -->
+      <div class="uikit-item" onclick="showUIDetail(2)">
+        <div class="uikit-frame">
+          <div class="uikit-statusbar"></div>
+          <div class="uikit-screen">
+            <div style="display:flex;flex-direction:column;height:100%">
+              <div style="flex:1;background:linear-gradient(135deg,#3a2a1e,#1a1410);display:flex;align-items:center;justify-content:center;border-radius:4px 4px 0 0">
+                <span class="material-icons-round" style="font-size:26px;color:rgba(255,255,255,0.5)">filter_tilt_shift</span>
               </div>
-              <div class="rank-card">
-                <div class="rank-num">2</div>
-                <div class="rank-info">
-                  <div class="rank-name">Oliva Serie V</div>
-                  <div class="rank-reason">Full-bodied, similar strength</div>
+              <div style="background:rgba(20,16,12,0.92);padding:5px 7px;display:flex;flex-direction:column;gap:1px">
+                <div style="font-size:0.42rem;font-weight:700;color:#fff;letter-spacing:0.02em">PADRON 1926 No. 9</div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:0.3rem;color:rgba(255,255,255,0.65)">Maduro</span>
+                  <span style="font-size:0.3rem;color:#fff;font-weight:700">&#9707; Vitolero</span>
                 </div>
-                <div class="rank-score">87%</div>
               </div>
-              <div class="rank-card">
-                <div class="rank-num">3</div>
-                <div class="rank-info">
-                  <div class="rank-name">Arturo Fuente 858</div>
-                  <div class="rank-reason">Milder alternative, cedar notes</div>
-                </div>
-                <div class="rank-score">79%</div>
-              </div>
-              <div class="rank-card">
-                <div class="rank-num">4</div>
-                <div class="rank-info">
-                  <div class="rank-name">Romeo y Julieta</div>
-                  <div class="rank-reason">Smooth, great value</div>
-                </div>
-                <div class="rank-score">74%</div>
+              <div style="display:flex;gap:3px;justify-content:center;padding:4px 0">
+                <div style="width:10px;height:10px;border-radius:3px;background:var(--accent)"></div>
+                <div style="width:10px;height:10px;border-radius:3px;background:var(--border)"></div>
+                <div style="width:10px;height:10px;border-radius:3px;background:var(--border)"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="uikit-label">Recommendation</div>
-        <div class="uikit-desc">Ranked list from shelf scan.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
+        <div class="uikit-label">Filter Preview State</div>
+        <div class="uikit-desc">Bokeh blur + brand overlay. 3 filters.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#snap-share">See in flow &rarr;</a>
       </div>
 
       <!-- State 5: Pairing -->
@@ -2527,107 +2523,60 @@ body {
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
-            <div class="mock-pairing">
-              <div class="pair-items">
-                <div class="pair-item">
-                  <span class="material-icons-round">local_fire_department</span>
-                  <span>Padron 3000</span>
+            <div style="display:flex;height:100%;gap:4px">
+              <!-- LEFT: big vertical cigar -->
+              <div style="width:30%;background:linear-gradient(135deg,#5a3a22,#241a12);border-radius:3px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px">
+                <span style="font-size:0.26rem;color:rgba(255,255,255,0.6)">cigar</span>
+              </div>
+              <!-- RIGHT: cigar name + pairings (item names only, no category tags) -->
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div style="font-size:0.38rem;font-weight:700;color:var(--fg)">Padron 1926 No. 9</div>
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <div style="background:#fff;border:1px solid var(--border);border-radius:3px;padding:2px 5px;font-size:0.32rem;font-weight:700;color:var(--fg)">&#9733; Maker's Mark</div>
+                  <div style="background:#fff;border:1px solid var(--border);border-radius:3px;padding:2px 5px;font-size:0.32rem;color:var(--fg)">Espresso</div>
+                  <div style="background:#fff;border:1px solid var(--border);border-radius:3px;padding:2px 5px;font-size:0.32rem;color:var(--fg)">Dark chocolate</div>
                 </div>
-                <div class="pair-item">
-                  <span class="material-icons-round">local_bar</span>
-                  <span>Maker's Mark</span>
+                <div style="display:flex;gap:3px;margin-top:auto">
+                  <div style="flex:1;font-size:0.3rem;text-align:center;background:var(--accent);color:#fff;border-radius:3px;padding:2px">New Snap</div>
+                  <div style="flex:1;font-size:0.3rem;text-align:center;border:1px solid var(--border);border-radius:3px;padding:2px;color:var(--fg)">Journal</div>
                 </div>
               </div>
-              <div class="pair-rationale">Chocolate notes complement vanilla oak.</div>
-              <div class="pair-score-bar"><div class="pair-score-fill"></div></div>
-              <div style="font-size:0.32rem;color:var(--mid);font-weight:400;width:100%;display:flex;justify-content:space-between"><span>Pairing score</span><span style="color:var(--green);font-weight:600">88%</span></div>
             </div>
           </div>
         </div>
-        <div class="uikit-label">Pairing</div>
-        <div class="uikit-desc">Cigar + drink result.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
+        <div class="uikit-label">Pairing Result</div>
+        <div class="uikit-desc">Cigar beside the list. 6 items, one featured.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#pairing">See in flow &rarr;</a>
       </div>
 
-      <!-- State 6: Home -->
+      <!-- State 6: Journal -->
       <div class="uikit-item" onclick="showUIDetail(5)">
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
-            <div class="mock-home">
-              <div class="home-greeting">Good evening, Dave</div>
-              <div class="home-stats">
-                <div class="home-stat"><div class="stat-num">12</div><div class="stat-label">Cigars</div></div>
-                <div class="home-stat"><div class="stat-num">3</div><div class="stat-label">New recs</div></div>
-              </div>
-              <div class="home-section-title">Recent activity</div>
-              <div class="home-card">Identified Padron 3000 Maduro</div>
-              <div class="home-section-title">Recommended for you</div>
-              <div class="home-card">Oliva Serie V Melanio</div>
-              <div class="home-card">My Father Le Bijou 1922</div>
+            <div style="column-count:2;column-gap:4px;height:100%;overflow:hidden">
+              <div style="background:linear-gradient(135deg,#3a2a1e,#1a1410);height:34px;border-radius:3px;margin-bottom:4px;break-inside:avoid"></div>
+              <div style="background:linear-gradient(135deg,#5a3a22,#241a12);height:48px;border-radius:3px;margin-bottom:4px;break-inside:avoid"></div>
+              <div style="background:linear-gradient(135deg,#4a3320,#1f160f);height:46px;border-radius:3px;margin-bottom:4px;break-inside:avoid"></div>
+              <div style="background:linear-gradient(135deg,#6a4628,#2a1d12);height:30px;border-radius:3px;margin-bottom:4px;break-inside:avoid"></div>
             </div>
           </div>
         </div>
-        <div class="uikit-label">Home State</div>
-        <div class="uikit-desc">Reflective Mode entry.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#reflective">See in flow &rarr;</a>
+        <div class="uikit-label">Journal State</div>
+        <div class="uikit-desc">Masonry gallery. Tap a card for detail.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#journal">See in flow &rarr;</a>
       </div>
 
-      <!-- State 7: Onboarding -->
+      <!-- State 7: Share Card -->
       <div class="uikit-item" onclick="showUIDetail(6)">
-        <div class="uikit-frame">
-          <div class="uikit-statusbar"></div>
-          <div class="uikit-screen">
-            <div class="mock-onboarding">
-              <div class="crosshair" style="width:40px;height:40px;position:relative;margin-bottom:6px">
-                <div class="bracket tl" style="width:8px;height:8px"></div>
-                <div class="bracket tr" style="width:8px;height:8px"></div>
-                <div class="bracket bl" style="width:8px;height:8px"></div>
-                <div class="bracket br" style="width:8px;height:8px"></div>
-              </div>
-              <div class="onboard-label">Photograph any cigar<br>to begin</div>
-              <div class="shutter" style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:var(--accent)"></div></div>
-              <div class="onboard-prompt">No sign-up required</div>
-            </div>
-          </div>
-        </div>
-        <div class="uikit-label">Onboarding</div>
-        <div class="uikit-desc">Progressive, deferred.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#onboarding">See in flow &rarr;</a>
-      </div>
-
-      <!-- State 8: Empty -->
-      <div class="uikit-item" onclick="showUIDetail(7)">
-        <div class="uikit-frame">
-          <div class="uikit-statusbar"></div>
-          <div class="uikit-screen">
-            <div class="mock-empty">
-              <span class="material-icons-round">photo_camera</span>
-              <div class="empty-title">Your cigar world starts<br>with one photo.</div>
-              <div class="empty-sub">Or tell us about your cigar life</div>
-              <div style="display:flex;gap:3px;margin-top:6px">
-                <div style="width:18px;height:18px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center"><span class="material-icons-round" style="font-size:10px;color:var(--light)">mic</span></div>
-                <div style="width:18px;height:18px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center"><span class="material-icons-round" style="font-size:10px;color:var(--light)">edit</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="uikit-label">Empty State</div>
-        <div class="uikit-desc">First-time, no profile.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#onboarding">See in flow &rarr;</a>
-      </div>
-
-      <!-- State 9: Share Card -->
-      <div class="uikit-item" onclick="showUIDetail(8)">
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
             <div class="mock-result">
               <div class="result-image"><span class="material-icons-round">share</span></div>
-              <div class="result-name">Padron 3000 Maduro</div>
-              <div class="result-desc">Full-bodied. Chocolate, earth, coffee. Nicaragua.</div>
-              <div style="font-size:0.35rem;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px">Strength</div>
-              <div class="result-bar"><div class="result-bar-fill" style="width:75%"></div></div>
+              <div class="result-name">Padron 1926 No. 9</div>
+              <div class="result-desc">Full-bodied. Chocolate, leather, espresso. Nicaragua.</div>
+              <div style="font-size:0.32rem;color:var(--mid);margin-top:4px">Sharing to Facebook</div>
               <div class="result-actions">
                 <div class="action-btn primary">Share</div>
                 <div class="action-btn secondary">Save</div>
@@ -2637,44 +2586,97 @@ body {
         </div>
         <div class="uikit-label">Share Card State</div>
         <div class="uikit-desc">Branded share card preview.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#quick">See in flow &rarr;</a>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#snap-share">See in flow &rarr;</a>
       </div>
 
-      <!-- State 10: Photo Import -->
-      <div class="uikit-item" onclick="showUIDetail(9)">
+      <!-- State 8: Cigar Detail -->
+      <div class="uikit-item" onclick="showUIDetail(7)">
         <div class="uikit-frame">
           <div class="uikit-statusbar"></div>
           <div class="uikit-screen">
-            <div class="mock-result">
-              <div class="result-image"><span class="material-icons-round">photo_library</span></div>
-              <div class="result-name">Import Photos</div>
-              <div class="result-desc">12 cigars found. Building profile...</div>
-              <div style="font-size:0.35rem;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px">Progress</div>
-              <div class="result-bar"><div class="result-bar-fill" style="width:60%"></div></div>
-              <div class="result-actions">
-                <div class="action-btn primary">Import</div>
-                <div class="action-btn secondary">Skip</div>
+            <div style="display:flex;flex-direction:column;height:100%;gap:3px;overflow:hidden">
+              <!-- FIRST FOLD: big cigar left + key attributes right -->
+              <div style="display:flex;gap:4px">
+                <div style="width:26%;background:linear-gradient(135deg,#5a3a22,#241a12);border-radius:3px;min-height:48px"></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:2px;justify-content:center">
+                  <div style="font-size:0.32rem;color:var(--fg)"><span style="color:var(--accent)">&#9733;</span> 4.6 <span style="color:var(--mid);font-size:0.26rem">(218)</span></div>
+                  <div style="font-size:0.4rem;font-weight:700;color:var(--fg);line-height:1.1">Padron 1926 No. 9</div>
+                  <div style="font-size:0.3rem;color:var(--mid)">Maduro &middot; Nicaragua</div>
+                  <div style="font-size:0.26rem;color:var(--accent);background:#eef2ff;border-radius:8px;padding:1px 5px">92% taste match</div>
+                </div>
+              </div>
+              <!-- BELOW THE FOLD: specs -->
+              <div style="display:flex;justify-content:space-between;font-size:0.3rem;color:var(--fg)"><span style="color:var(--mid)">Wrapper</span><span>Maduro</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.3rem;color:var(--fg)"><span style="color:var(--mid)">Smoke time</span><span>75 min</span></div>
+              <div style="font-size:0.3rem;color:var(--mid)">Strength</div>
+              <div class="result-bar"><div class="result-bar-fill" style="width:85%"></div></div>
+              <div style="display:flex;flex-wrap:wrap;gap:2px;margin-top:1px">
+                <span style="font-size:0.28rem;background:#f0ede9;border-radius:8px;padding:1px 4px;color:var(--fg)">Chocolate</span>
+                <span style="font-size:0.28rem;background:#f0ede9;border-radius:8px;padding:1px 4px;color:var(--fg)">Leather</span>
+                <span style="font-size:0.28rem;background:var(--accent);border-radius:8px;padding:1px 4px;color:#fff">+ more</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="uikit-label">Photo Import State</div>
-        <div class="uikit-desc">Batch import from gallery.</div>
-        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#collections">See in flow &rarr;</a>
+        <div class="uikit-label">Cigar Detail State</div>
+        <div class="uikit-desc">Big cigar + rating, specs below the fold.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#cigar-detail">See in flow &rarr;</a>
+      </div>
+
+      <!-- State 9: PWA Install -->
+      <div class="uikit-item" onclick="showUIDetail(8)">
+        <div class="uikit-frame">
+          <div class="uikit-statusbar"></div>
+          <div class="uikit-screen">
+            <div style="display:flex;flex-direction:column;height:100%;justify-content:flex-end">
+              <div style="flex:1;background:linear-gradient(135deg,#3a2a1e,#1a1410);border-radius:4px;margin-bottom:4px"></div>
+              <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 7px;box-shadow:0 -2px 8px rgba(0,0,0,0.08)">
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:3px">
+                  <span class="material-icons-round" style="font-size:12px;color:var(--accent)">add_to_home_screen</span>
+                  <span style="font-size:0.36rem;font-weight:700;color:var(--fg)">Add to Home Screen</span>
+                </div>
+                <div style="font-size:0.3rem;color:var(--mid);line-height:1.35;margin-bottom:4px">Tap Share, then Add to Home Screen.</div>
+                <div style="display:flex;gap:3px;align-items:center">
+                  <div style="flex:1;font-size:0.3rem;text-align:center;background:var(--accent);color:#fff;border-radius:3px;padding:2px">Got it</div>
+                  <div style="font-size:0.3rem;text-align:center;color:var(--mid);padding:2px 6px">Not now</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="uikit-label">PWA Install State</div>
+        <div class="uikit-desc">Add-to-home-screen prompt after first ID.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#snap-share">See in flow &rarr;</a>
+      </div>
+
+      <!-- State 10: Empty -->
+      <div class="uikit-item" onclick="showUIDetail(9)">
+        <div class="uikit-frame">
+          <div class="uikit-statusbar"></div>
+          <div class="uikit-screen">
+            <div class="mock-empty">
+              <span class="material-icons-round">photo_camera</span>
+              <div class="empty-title">Your cigar world starts<br>with one photo.</div>
+            </div>
+          </div>
+        </div>
+        <div class="uikit-label">Empty State</div>
+        <div class="uikit-desc">First-time, empty Journal.</div>
+        <a class="uikit-flow-link" href="vitolero-flow-wireframes.html#first-time">See in flow &rarr;</a>
       </div>
     </div>
     <a class="uikit-cta" href="vitolero-flow-wireframes.html">
       <span class="material-icons-round" style="font-size:18px">view_carousel</span>
-      Explore all 12 flows in detail
+      Explore the MVP flow wireframes in detail
       <span class="material-icons-round" style="font-size:16px">arrow_forward</span>
     </a>
   </div>
 
   <!-- 9. Flows -->
   <div class="section" id="flows">
-    <div class="section-label">Section 8</div>
+    <div class="section-label">Section 9</div>
     <h2>User Flow Sketches</h2>
-    <p class="section-intro">Two flows that demonstrate the app's grammar. The hero flow shows the growth engine in action. The second flow shows the core utility loop.</p>
+    <p class="section-intro">Three flows that demonstrate the app's grammar. The hero flow shows why new people discover the app. The retention flow shows why they come back. The depth flow shows how a returning user goes deeper through the Journal.</p>
 
     <!-- Flow 1 -->
     <div class="flow-container">
@@ -2682,140 +2684,164 @@ body {
         <div class="flow-icon"><span class="material-icons-round">photo_camera</span></div>
         <h3>Flow 1: Snap &amp; Share (Hero Flow)</h3>
       </div>
-      <div class="flow-scenario">Dave (Weekend Ritualist) is on his back porch on a Saturday evening with a cigar and bourbon. He wants to capture the moment.</div>
+      <div class="flow-scenario">Dave (Weekend Ritualist) is on his back porch on a Saturday evening with a cigar. He wants to capture the moment and share it to his Facebook cigar group.</div>
 
       <div class="flow-steps">
         <div class="flow-step">
           <div class="flow-step-num">1</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Camera State</div>
-            <div class="flow-step-desc">Dave opens the app. The camera is already active. He points it at the cigar in his hand.</div>
+            <div class="flow-step-title">Welcome Screen (first open only)</div>
+            <div class="flow-step-desc">On his very first open, Dave sees the app identity and three short statements about what Vitolero does. He taps "Get Started." The camera permission dialog appears. This screen never shows again.</div>
           </div>
         </div>
         <div class="flow-step">
           <div class="flow-step-num">2</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Capture</div>
-            <div class="flow-step-desc">He taps the shutter. The app captures a close-up of the cigar with the band visible.</div>
+            <div class="flow-step-title">Camera State</div>
+            <div class="flow-step-desc">Camera is active. He points it at the cigar in his hand and taps the shutter.</div>
           </div>
         </div>
         <div class="flow-step">
           <div class="flow-step-num">3</div>
           <div class="flow-step-content">
             <div class="flow-step-title">Processing State</div>
-            <div class="flow-step-desc">"I see a dark wrapper with an oily sheen... The band suggests a Padron family... Checking the vitola proportions..."</div>
+            <div class="flow-step-desc">A brief narrative streams while the brand and line resolve in under 10 seconds. A cancel pill is visible throughout, so Dave can return to the camera if he framed the wrong cigar.</div>
           </div>
         </div>
         <div class="flow-step highlight">
           <div class="flow-step-num">4</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Result: Identification</div>
-            <div class="flow-step-desc">"Padron 3000 Maduro. Full-bodied with chocolate and earth. Nicaragua." The result card appears with brand, line, vitola, flavor, strength.</div>
-          </div>
-        </div>
-        <div class="flow-step highlight">
-          <div class="flow-step-num">5</div>
-          <div class="flow-step-content">
-            <div class="flow-step-title">Save to Profile</div>
-            <div class="flow-step-desc">Dave taps "Save to My Humidor." The cigar is logged. Profile updates: "You lean toward Nicaraguan Maduros. Save 2 more to unlock AI recommendations."</div>
+            <div class="flow-step-title">Identification Result</div>
+            <div class="flow-step-desc">"Padron 1926 No. 9 Maduro." Brand and line, a flavor summary, and a strength indicator. A "Details" button is available for the full Cigar Detail screen. Dave ignores it for now.</div>
           </div>
         </div>
         <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Filter Preview State</div>
+            <div class="flow-step-desc">A soft peripheral blur isolates the cigar while the background softens. A brand strip appears at the bottom. Dave picks one of the 3 filters. Tapping the image would toggle the overlay off.</div>
+          </div>
+        </div>
+        <div class="flow-step highlight">
           <div class="flow-step-num">6</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Share Prompt (After Value)</div>
-            <div class="flow-step-desc">"Looks like a great smoke. Generate a share card?" A branded card appears: the photo with a clean overlay. Looks like something from a cigar magazine.</div>
+            <div class="flow-step-title">Share Card State</div>
+            <div class="flow-step-desc">Dave taps "Share to Facebook." The deep link opens the share dialog. His group sees the branded photo with the Vitolero domain under the image. Three members ask where the card came from.</div>
           </div>
         </div>
         <div class="flow-step">
           <div class="flow-step-num">7</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Share to Facebook</div>
-            <div class="flow-step-desc">Dave taps Share. The card goes to Facebook. No CTA, no "download our app." The domain on the card does the attribution. Three friends ask where the card came from.</div>
+            <div class="flow-step-title">Return</div>
+            <div class="flow-step-desc">The photo is saved to Dave's Journal. He never created an account. A PWA install prompt appears as a bottom-sheet card, offering to add Vitolero to his home screen.</div>
           </div>
         </div>
       </div>
 
       <div class="flow-why">
         <h4>Why this flow matters</h4>
-        <p>Value first, share after. Dave got identification, flavor profile, and a profile update before being asked to share. He shared because the card makes him look knowledgeable, not because the app told him to. Three friends now know about the app. Every snap builds the profile. Every share is distribution.</p>
+        <p>Dave shared because the photo looked great, not because the app told him to. Three friends now know about the app. The identification happened as a byproduct of behavior Dave already does. If this flow is not effortless, or if the filtered photo does not look impressive enough to share, the product has not worked.</p>
       </div>
     </div>
 
     <!-- Flow 2 -->
     <div class="flow-container">
       <div class="flow-header">
-        <div class="flow-icon"><span class="material-icons-round">storefront</span></div>
-        <h3>Flow 2: In-Store Recommendation</h3>
+        <div class="flow-icon"><span class="material-icons-round">replay</span></div>
+        <h3>Flow 2: Reopen, Continue, Pair (Retention Flow)</h3>
       </div>
-      <div class="flow-scenario">Carlos (Deepening Enthusiast) is at his local cigar shop. He wants something that matches his taste but tries something new.</div>
+      <div class="flow-scenario">Dave opens the app later that same evening. He wants to see what he was smoking and find something to pair with the bourbon he just poured.</div>
 
       <div class="flow-steps">
         <div class="flow-step">
           <div class="flow-step-num">1</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Camera State</div>
-            <div class="flow-step-desc">Carlos opens the app. The camera is already active. He points it at the humidor glass display.</div>
+            <div class="flow-step-title">Returning User State</div>
+            <div class="flow-step-desc">The app opens to the last photo taken, not the camera. The Padron 1926 is on screen with action buttons available.</div>
           </div>
         </div>
         <div class="flow-step">
           <div class="flow-step-num">2</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Capture</div>
-            <div class="flow-step-desc">He taps the shutter. The app captures a wide shot of the shelf showing about 12 different cigars.</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-step-num">3</div>
-          <div class="flow-step-content">
-            <div class="flow-step-title">Processing State</div>
-            <div class="flow-step-desc">"I can see about 12 different cigars on this shelf... Identifying the Arturo Fuente in the top row... The dark wrapper on the second shelf looks like a Padron..."</div>
+            <div class="flow-step-title">Tap Pairing</div>
+            <div class="flow-step-desc">Dave taps the pairing button. The app generates 6 suggestions based on the Padron 1926 line.</div>
           </div>
         </div>
         <div class="flow-step highlight">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Pairing Result</div>
+            <div class="flow-step-desc">3 food and 3 drink options listed beside the cigar. "Maker's Mark Bourbon" is the featured pairing: "The chocolate and leather notes in the 1926 complement the vanilla and caramel in Maker's Mark."</div>
+          </div>
+        </div>
+        <div class="flow-step">
           <div class="flow-step-num">4</div>
           <div class="flow-step-content">
-            <div class="flow-step-title">Result: Recommendation</div>
-            <div class="flow-step-desc">#1 pick: "Padron 3000 Maduro. 92% match. Full-bodied with chocolate and earth. Similar to the Oliva Serie V you saved last month." Four more options below, accounting for his dislikes.</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-step-num">5</div>
-          <div class="flow-step-content">
-            <div class="flow-step-title">Detail View</div>
-            <div class="flow-step-desc">Taps the top card. Full details: flavor profile, strength, smoke time, price range. "Save to collection" and "Pair with a drink?" prompts.</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-step-num">6</div>
-          <div class="flow-step-content">
-            <div class="flow-step-title">Optional: Pairing</div>
-            <div class="flow-step-desc">"Try this with a bourbon. The sweetness complements the chocolate notes." Could also photograph the bar's drink menu.</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-step-num">7</div>
-          <div class="flow-step-content">
-            <div class="flow-step-title">Save and Exit</div>
-            <div class="flow-step-desc">Saves the recommendation, buys the cigar. Total interaction: under 90 seconds.</div>
+            <div class="flow-step-title">Journal</div>
+            <div class="flow-step-desc">Dave taps the Journal icon. A sign-in sheet appears with Google and Apple ID options. He taps one. His photo is now saved to his account.</div>
           </div>
         </div>
       </div>
 
       <div class="flow-why">
         <h4>Why this flow matters</h4>
-        <p>This is the core utility loop. Carlos came because the app respects what he dislikes, not just what he likes. The recommendation precision is what keeps enthusiasts coming back.</p>
+        <p>Dave returned without a prompt or notification. The value was immediate. The pairing gave him something useful for the moment he was already in. The Journal trigger created the account with minimal friction. This is how casual use becomes regular use.</p>
+      </div>
+    </div>
+
+    <!-- Flow 3 -->
+    <div class="flow-container">
+      <div class="flow-header">
+        <div class="flow-icon"><span class="material-icons-round">menu_book</span></div>
+        <h3>Flow 3: Journal to Cigar Detail (Depth Flow)</h3>
+      </div>
+      <div class="flow-scenario">Dave opens the app a few days later. He is curious about the tobacco composition of the Padron 1926 he smoked.</div>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Last Photo State</div>
+            <div class="flow-step-desc">The app opens to the last photo taken. Dave taps the Journal pip in the top-right corner.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Journal State</div>
+            <div class="flow-step-desc">The masonry gallery shows his recent cigars. He taps the Padron 1926 card.</div>
+          </div>
+        </div>
+        <div class="flow-step highlight">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Cigar Detail Screen</div>
+            <div class="flow-step-desc">Brand logo, line, wrapper (Maduro), binder, filler, strength indicator, smoke time, flavour chips. He taps "+ more" to expand the full flavour cluster inline, then reads the description paragraph.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Back</div>
+            <div class="flow-step-desc">Dave taps the back arrow, labelled "Journal." He returns to the masonry gallery.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-why">
+        <h4>Why this flow matters</h4>
+        <p>The Journal is not just a photo album. It is the entry point to the depth layer. The Cigar Detail screen gives Carlos-type users what they came for without cluttering the share flow that Dave needs. One app, two depths, no conflict.</p>
       </div>
     </div>
 
     <div class="flow-why" style="margin-left:0;margin-top:32px;border-left:2px solid var(--accent)">
-      <h4>Why these two flows</h4>
-      <p>The hero flow shows the growth engine: every snap becomes marketing, every share becomes distribution. The utility flow shows the retention loop: precise recommendations that account for individual taste. Together they demonstrate the app's grammar. Camera in, intelligence out, profile builds silently, sharing happens naturally.</p>
+      <h4>Why these three flows</h4>
+      <p>The hero flow shows the growth engine: every snap becomes a great-looking share, every share becomes distribution. The retention flow shows why Dave comes back: immediate value with no prompt. The depth flow shows how the Journal opens into Cigar Detail for users who want more. Camera in, share out, the Journal holds the history, and depth is one tap away.</p>
     </div>
 
     <div class="flow-why" style="margin-left:0;margin-top:12px">
       <h4>Note on onboarding</h4>
-      <p>Previous v1 included a dedicated onboarding flow. In v2, onboarding is folded into the Snap &amp; Share hero flow. The first snap IS onboarding. Value delivery and profile building happen simultaneously. No separate entry sequence needed.</p>
+      <p>There is no separate onboarding sequence. A one-time welcome screen sets context before the camera permission, then the first snap IS onboarding. Value arrives before any account, wizard, or quiz.</p>
     </div>
   </div>
 
@@ -2847,7 +2873,7 @@ body {
 
 <!-- Footer -->
 <div class="footer">
-  <span>Fixed to Flow &middot; March 2026</span>
+  <span>Fixed to Flow &middot; May 2026 &middot; Concept Framework</span>
   <span>AI-First UX Concept Design</span>
 </div>
 
@@ -2862,7 +2888,7 @@ const personaData = [
     image: 'personas/casual.jpg',
     tier: 'primary',
     primary: true,
-    entry: 'Sees a friend\'s share card on Facebook, downloads the app, snaps the cigar he\'s currently smoking.',
+    entry: 'Sees a friend\'s share card on Facebook, opens the app, snaps the cigar he\'s currently smoking.',
     success: 'Uses the app 2-4 times/week. Snaps and shares become part of the weekly ritual.',
     churn: 'Medium. App demands too much input. Feels like work instead of ritual enhancement.',
     rationale: 'Largest addressable audience. The share card growth loop depends on this persona.',
@@ -3128,107 +3154,100 @@ window.addEventListener('scroll', updateNav);
 // UI Kit detail data
 const uiStates = [
   {
+    title: 'Welcome State',
+    mode: 'First Open Only',
+    appears: 'The first screen a new user sees, before any system permission dialog. App identity (logo and name), three short statements that set expectations (instant ID and share card, pairing, Journal), and a single CTA ("Get Started") that triggers the camera permission request. No navigation chrome, no secondary actions.',
+    actions: 'Tap the CTA to proceed (primary). This is the only action on this screen.',
+    variations: [
+      { persona: 'All Personas', desc: 'Universal. The screen disappears permanently after the first session.' }
+    ]
+  },
+  {
     title: 'Camera State',
     mode: 'Quick Mode Entry',
-    appears: 'Full-screen camera viewfinder. Corner brackets frame the center. One line: "Photograph any cigar." Shutter button at bottom. No menu, no tabs, no navigation chrome. Two-pip rule: Camera pip (bottom-right) appears on every non-camera screen except those where camera is the implicit next action; Journal pip (top-right) is hidden on the very first session and unlocks when the first identification auto-saves (Seek-style progressive reveal). Account creation deferred to first Journal tap.',
-    actions: 'Take a photo (primary). On a fresh first-open: nothing else, screen intentionally empty. On returning sessions: tap Journal pip to access the Journal (triggers Google sign-in on first tap).',
+    appears: 'Full-screen camera viewfinder. Corner brackets frame the cigar. One line: "Photograph any cigar." Shutter button at bottom. Two-pip navigation: a Camera pip (bottom-right) on every non-camera screen, and a Journal pip (top-right) hidden on the first session and unlocked once the first identification auto-saves. No tab bar.',
+    actions: 'Take a photo (primary). On a fresh first-open, nothing else. On returning sessions, tap the Journal pip (triggers Google or Apple sign-in on first tap).',
     variations: [
       { persona: 'All Personas', desc: 'Universal. The pip rule is gated by hasIdentifiedAtLeastOnce, persisted in local storage.' }
     ]
   },
   {
-    title: 'Processing State',
+    title: 'Filter Preview State',
     mode: 'Quick Mode',
-    appears: 'Captured photo as background, slightly dimmed. Text stream appearing line by line: "I see a dark wrapper with an oily sheen... The band suggests a Padron family..." Sommelier narrative keeps users engaged during 10-second processing.',
-    actions: 'Wait (engaged by narrative). Cancel and return to camera.',
+    appears: 'The captured photo with the filter applied in real time. A soft peripheral blur (bokeh) keeps the cigar sharp while the background softens. A semi-transparent strip at the bottom carries the brand logo, brand name, line, and a subtle Vitolero mark. The overlay is on by default; tapping the image toggles it off. The user can choose from 3 filters.',
+    actions: 'Accept the filter and proceed to share (primary). Change the filter. Toggle the overlay by tapping the image. Save to Journal without sharing. Access pairing.',
     variations: [
-      { persona: 'Newcomer', desc: 'Simpler language. "I can see a golden band with red lettering..."' },
-      { persona: 'Enthusiast', desc: 'Technical observations. "Colorado Maduro shade, suggesting San Andreas leaf..."' },
-      { persona: 'Connoisseur', desc: 'Production-level detail. Factory references, vintage cues.' }
+      { persona: 'Dave (Weekend Ritualist)', desc: 'Accepts the default filter and shares.' },
+      { persona: 'Carlos (Deepening Enthusiast)', desc: 'May switch filters before sharing.' }
     ]
   },
   {
-    title: 'Result: Identification',
+    title: 'Identification Result',
     mode: 'Quick Mode',
-    appears: 'Cigar photo at top. Brand and line name prominent. Below: flavor profile, strength indicator, origin, vitola. Actions: "Save to collection" and "Find similar."',
-    actions: 'Save to collection. Find similar. Share. Expand for more detail.',
+    appears: 'The captured photo, brand and line identified. Brand and line prominent. A brief flavor summary, strength indicator, and origin. Two primary actions: "Share" and "Pair with food and drink." A "Details" button opens the full Cigar Detail screen.',
+    actions: 'Share the photo (primary). Access pairing. Tap "Details" for the Cigar Detail screen. Save to Journal.',
     variations: [
-      { persona: 'Newcomer', desc: '"Mild and creamy, great for beginners." One clear action.' },
-      { persona: 'Enthusiast', desc: 'Full specs, flavor wheel, comparison to profile.' },
-      { persona: 'Connoisseur', desc: 'Production details, community ratings, aging notes.' }
+      { persona: 'Casual user', desc: 'Sees the name and a plain-language summary.' },
+      { persona: 'Experienced user', desc: 'Sees richer specifications and uses the Details button.' }
     ]
   },
   {
-    title: 'Result: Recommendation',
+    title: 'Pairing Result',
     mode: 'Quick Mode',
-    appears: 'Ranked card list. Top pick prominent with "Best match" label. Each card: photo, name, match score, one-line reason. Filter chips: Budget, Strength, New to me.',
-    actions: 'Tap any card for detail. Apply filters. Re-scan. Save recommendations.',
+    appears: 'A large vertical cigar on the left with its name and a one-line flavour note; the 6-item list beside it on the right. Item names only, with no per-item category tags or icons. The Food and Drink group dividers are de-emphasized. Exactly one suggestion is the featured pairing (star + label). Forward actions "New Snap" and "Journal" are always visible.',
+    actions: 'View pairings. Start a new snap (primary forward action). Open the Journal. Return to the photo to share.',
     variations: [
-      { persona: 'Newcomer', desc: 'Top 3 with simple reasons.' },
-      { persona: 'Enthusiast', desc: 'Full ranked list with detailed match criteria.' },
-      { persona: 'Occasional', desc: 'Authenticity indicators and occasion fit.' }
+      { persona: 'Dave (Weekend Ritualist)', desc: 'Sees the pairings and picks one.' },
+      { persona: 'Carlos (Deepening Enthusiast)', desc: 'Notes whether the rationale holds up.' }
     ]
   },
   {
-    title: 'Result: Pairing',
-    mode: 'Quick Mode',
-    appears: 'Stacked layout. Cigar on one side, drink on the other. Pairing rationale. Visual score. Alternative suggestions below.',
-    actions: 'Accept pairing. See alternatives. Save combination. Swap direction.',
-    variations: [
-      { persona: 'Ritualist', desc: 'Straightforward pairing recommendation.' },
-      { persona: 'Enthusiast', desc: 'Flavor interaction detail.' },
-      { persona: 'Occasional', desc: 'Occasion framing. "Perfect for an evening celebration."' }
-    ]
-  },
-  {
-    title: 'Home State',
+    title: 'Journal State',
     mode: 'Reflective Mode Entry',
-    appears: 'Personal dashboard. Greeting. Quick stats (cigars, new recommendations). Recent activity. Sections: "Continue exploring," "Your collection," "Recommended for you."',
-    actions: 'Browse recommendations. Manage collection. Review history. Jump to camera.',
+    appears: 'Pinterest-style masonry gallery of photos taken through the app. Each photo shows the brand and line overlay. Favorites are flagged. Browseable by recency. Tapping a cigar card opens the Cigar Detail screen. Accessing the Journal for the first time triggers Google or Apple ID sign-in. Search and filter are post-MVP.',
+    actions: 'Browse photos. Tap a cigar card to open Cigar Detail. Favorite a photo. Return to the camera.',
     variations: [
-      { persona: 'Ritualist', desc: 'Simple view with recent activity and a few recs.' },
-      { persona: 'Enthusiast', desc: 'Profile stats, taste evolution, discovery opportunities.' },
-      { persona: 'Connoisseur', desc: 'Collection management front and center. Inventory counts.' }
-    ]
-  },
-  {
-    title: 'Onboarding State',
-    mode: 'Progressive, Deferred',
-    appears: 'Camera state with overlay: "Photograph any cigar to begin." No sign-up. After first ID, prompt: "Add 2 more cigars." After 3 cigars: profile summary.',
-    actions: 'Take photo (main). Skip to browsing. Voice/text entry as fallback.',
-    variations: [
-      { persona: 'All Personas', desc: 'Same entry. Output adapts after first interaction based on detected expertise.' }
-    ]
-  },
-  {
-    title: 'Empty State',
-    mode: 'No Profile',
-    appears: '"Your cigar world starts with one photo." Camera icon. Below: "Or tell us about your cigar life" (voice/text fallback). No empty lists. Everything points to first action.',
-    actions: 'Take photo. Voice input. Text description. Browse trending cigars.',
-    variations: [
-      { persona: 'All Personas', desc: 'Universal. Exists to guide toward first interaction.' }
+      { persona: 'Dave (Weekend Ritualist)', desc: 'Browses his recent snaps.' },
+      { persona: 'Richard (Collector, post-MVP)', desc: 'Will want far deeper analytics than this state provides.' }
     ]
   },
   {
     title: 'Share Card State',
     mode: 'Quick Mode',
-    appears: 'Share card preview. Photo with branded overlay: brand, line, vitola, flavor, strength. Share to Facebook (primary) or other platforms. The domain on the card does the attribution. No CTAs, no "download our app."',
-    actions: 'Share to Facebook (primary). Share to other platforms. Save to timeline. Edit card (future).',
+    appears: 'Final preview of the filtered photo as it will appear when shared. Brand overlay visible. A confirmation of the destination platform. Share button prominent. Optional caption before sharing. The domain on the card does the attribution. No CTAs, no "download our app."',
+    actions: 'Confirm and share (primary). Change platform. Save to camera roll instead. Cancel.',
     variations: [
-      { persona: 'Weekend Ritualist', desc: 'Default. Clean card with photo and key details. Optimized for Facebook sharing.' },
-      { persona: 'Celebratory Occasional', desc: 'Same card. The occasion context makes sharing feel natural.' },
-      { persona: 'Lounge Social', desc: 'Same card. Social currency for the lounge setting.' }
+      { persona: 'Dave (Weekend Ritualist)', desc: 'Taps share immediately.' },
+      { persona: 'Carlos (Deepening Enthusiast)', desc: 'Checks the identification one more time.' }
     ]
   },
   {
-    title: 'Photo Import State',
-    mode: 'Onboarding / Reflective Mode',
-    appears: 'Batch import screen. Gallery picker showing cigar photos. Progress as each photo is identified. Profile summary updating in real time.',
-    actions: 'Select photos from camera roll. Import from social media. View identification progress. See profile summary build. Skip to manual entry.',
+    title: 'Cigar Detail State',
+    mode: 'Reflective / Deep Info',
+    appears: 'Two zones. First fold: a large vertical cigar on the left, with key attributes alongside it (customer rating, brand logo and name, line, and a post-MVP taste-match preview shown as a placeholder). Below the fold: date smoked, wrapper, binder, filler, strength (label + visual indicator), smoke time in minutes, flavour chips (first 3 visible, "+ more" expands inline), and a description paragraph. Scrollable, all fields read-only in MVP. If vitola has not resolved, that field shows a loading state or is omitted. The back arrow is labelled to reflect the origin ("Retake" or "Journal").',
+    actions: 'Scroll to read full specs. Tap "+ more" to expand the flavour cluster inline. Tap back to return to the identification result or Journal entry.',
     variations: [
-      { persona: 'Enthusiast', desc: 'Primary user. Has hundreds of cigar photos across camera roll and Facebook groups. Instant profile from existing collection.' },
-      { persona: 'Connoisseur', desc: 'Deep history. Browser extension (Phase 2) imports years of Facebook group posts and forum activity.' },
-      { persona: 'Weekend Ritualist', desc: 'Moderate collection. Camera roll has enough weekend cigar photos to build a solid starting profile.' }
+      { persona: 'Carlos (Deepening Enthusiast)', desc: 'Uses this screen the most.' },
+      { persona: 'Dave (Weekend Ritualist)', desc: 'May glance at it.' },
+      { persona: 'Richard (Collector, post-MVP)', desc: 'Will want export options not available in MVP.' }
+    ]
+  },
+  {
+    title: 'PWA Install State',
+    mode: 'Reacquisition',
+    appears: 'A bottom-sheet card from the identification result screen, shown after the first share or first save to Journal. On iOS: an explainer card with a small illustration of the iOS Share icon and instructions to add to the home screen. On Android: the native browser install prompt. Triggered only after at least one successful identification. Dismissable with "Not now."',
+    actions: 'Follow the install instructions (primary). Dismiss with "Not now." The prompt appears at most once more after dismissal, then never again in MVP.',
+    variations: [
+      { persona: 'All Personas', desc: 'Universal once the trigger condition is met. Never blocks the camera or the share flow.' }
+    ]
+  },
+  {
+    title: 'Empty State',
+    mode: 'No Photos Yet',
+    appears: '"Your cigar world starts with one photo." A camera icon. No empty lists, no blank dashboards. Everything points toward that first action.',
+    actions: 'Take a photo (primary). Browse without a profile (secondary).',
+    variations: [
+      { persona: 'All Personas', desc: 'Universal. Everyone starts here.' }
     ]
   }
 ];

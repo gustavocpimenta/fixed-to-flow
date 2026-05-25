@@ -127,6 +127,32 @@ body {
   color: var(--accent);
 }
 
+.card.download {
+  background: var(--accent);
+  color: #fff;
+  margin-top: 8px;
+}
+
+.card.download:hover {
+  background: #003FCC;
+}
+
+.card.download .card-icon {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.card.download .card-text p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.card.download .card-arrow {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.card.download:hover .card-arrow {
+  color: #fff;
+}
+
 .footer {
   margin-top: 48px;
   padding-top: 24px;
@@ -152,16 +178,7 @@ body {
       <div class="card-icon"><span class="material-icons-round">architecture</span></div>
       <div class="card-text">
         <h3>Concept Framework</h3>
-        <p>Personas, design principles, UI Kit, and user flows for Call 2</p>
-      </div>
-      <span class="material-icons-round card-arrow">arrow_forward</span>
-    </a>
-
-    <a class="card" href="archive/visual-directions.html">
-      <div class="card-icon"><span class="material-icons-round">palette</span></div>
-      <div class="card-text">
-        <h3>Visual Design Directions</h3>
-        <p>5 distinct visual approaches with phone mockups, palettes, and typography</p>
+        <p>Personas, design principles, UI Kit, and user flows</p>
       </div>
       <span class="material-icons-round card-arrow">arrow_forward</span>
     </a>
@@ -170,15 +187,24 @@ body {
       <div class="card-icon"><span class="material-icons-round">view_carousel</span></div>
       <div class="card-text">
         <h3>Flow Wireframes</h3>
-        <p>5 MVP flows: First-time, Snap &amp; Share, Pairing, Journal, Returning User</p>
+        <p>MVP flows: First-time, Snap &amp; Share, Pairing, Journal, Cigar Detail, Returning User</p>
       </div>
       <span class="material-icons-round card-arrow">arrow_forward</span>
+    </a>
+
+    <a class="card download" href="vitolero-handoff.zip" download>
+      <div class="card-icon"><span class="material-icons-round">folder_zip</span></div>
+      <div class="card-text">
+        <h3>Download the package</h3>
+        <p>The full concept, PRD, research, and wireframes as a single file</p>
+      </div>
+      <span class="material-icons-round card-arrow">file_download</span>
     </a>
 
   </div>
 
   <div class="footer">
-    <span>Fixed to Flow &middot; April 2026</span>
+    <span>Fixed to Flow &middot; May 2026</span>
     <span>AI-First UX Concept Design</span>
   </div>
 </div>
