@@ -1,213 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vitolero / Deliverables</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<title>Vitolero</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #FFFFFF;
-  --fg: #111;
-  --mid: #666;
-  --light: #AAA;
-  --accent: #0052FF;
-  --border: #E0E0E0;
-  --card-bg: #F5F5F5;
+  --red: #E63B2E;
+  --red-dark: #C42B1C;
+  --red-glow: rgba(230, 59, 46, 0.15);
+  --cream: #FAF7F2;
+  --black: #111111;
+  --gray: #555555;
+  --white: #FFFFFF;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Sora', sans-serif;
-  background: var(--bg);
-  color: var(--fg);
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--cream);
+  color: var(--black);
+  line-height: 1.7;
+  overflow: hidden;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-.page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 80px 24px 120px;
-}
-
-.header {
-  margin-bottom: 48px;
-}
-
-.header-label {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--fg);
-  display: inline-block;
-}
-
-.header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-
-.header p {
-  font-size: 0.85rem;
-  color: var(--mid);
-  font-weight: 300;
-  line-height: 1.6;
-  max-width: 480px;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: var(--card-bg);
-  border-radius: 4px;
-  text-decoration: none;
-  color: var(--fg);
-  transition: background 0.2s;
-}
-
-.card:hover {
-  background: #EBEBEB;
-}
-
-.card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 4px;
-  background: var(--accent);
+.password-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  overflow: hidden;
 }
 
-.card-icon .material-icons-round {
-  font-size: 22px;
-  color: #fff;
+.password-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 50%);
+  transform: translate(-50%, -50%);
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
-.card-text h3 {
-  font-size: 0.9rem;
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.password-card {
+  background: var(--cream);
+  padding: 56px 48px;
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: card-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.password-logo {
+  margin-bottom: 40px;
+}
+
+.password-logo img {
+  height: 22px;
+  width: auto;
+}
+
+.password-label {
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 2px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
 }
 
-.card-text p {
-  font-size: 0.75rem;
-  color: var(--mid);
-  font-weight: 300;
+.password-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: var(--black);
+  line-height: 1.2;
 }
 
-.card-arrow {
-  margin-left: auto;
-  color: var(--light);
-  font-size: 20px;
-  transition: color 0.2s;
+.password-subtitle {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 36px;
 }
 
-.card:hover .card-arrow {
-  color: var(--accent);
+.password-input-group {
+  position: relative;
+  margin-bottom: 24px;
 }
 
-.card.download {
-  background: var(--accent);
-  color: #fff;
-  margin-top: 8px;
+.password-input {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  border: 2px solid #E5E5E5;
+  border-radius: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--white);
+  color: var(--black);
 }
 
-.card.download:hover {
-  background: #003FCC;
+.password-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px var(--red-glow);
 }
 
-.card.download .card-icon {
-  background: rgba(255, 255, 255, 0.18);
+.password-input.error {
+  border-color: var(--red);
+  animation: shake 0.5s ease;
 }
 
-.card.download .card-text p {
-  color: rgba(255, 255, 255, 0.78);
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
 }
 
-.card.download .card-arrow {
-  color: rgba(255, 255, 255, 0.65);
+.password-error {
+  color: var(--red);
+  font-size: 0.9rem;
+  margin-top: 12px;
+  display: none;
 }
 
-.card.download:hover .card-arrow {
-  color: #fff;
+.password-error.visible {
+  display: block;
+  animation: fade-in 0.3s ease;
 }
 
-.footer {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-  font-size: 0.7rem;
-  color: var(--light);
-  display: flex;
-  justify-content: space-between;
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.password-btn {
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.password-btn:hover:not(.loading) {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 59, 46, 0.35);
+}
+
+.password-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
 }
 </style>
 </head>
 <body>
 
-<div class="page">
-  <div class="header">
-    <div class="header-label">Vitolero</div>
-    <h1>Deliverables</h1>
-    <p>UX concept deliverables for Vitolero's AI cigar recommendation app. Click any card to view.</p>
-  </div>
-
-  <div class="cards">
-    <a class="card" href="concept.html">
-      <div class="card-icon"><span class="material-icons-round">architecture</span></div>
-      <div class="card-text">
-        <h3>Concept Framework</h3>
-        <p>Personas, design principles, UI Kit, and user flows</p>
+<div class="password-overlay" id="gate">
+  <div class="password-card">
+    <div class="password-logo">
+      <img src="/logo.svg" alt="Fixed to Flow">
+    </div>
+    <div class="password-label">Vitolero Deliverables</div>
+    <p class="password-subtitle">Introduza password para aceder.</p>
+    <form id="gateForm">
+      <div class="password-input-group">
+        <input
+          type="password"
+          class="password-input"
+          id="gateInput"
+          placeholder="Password"
+          autocomplete="off"
+          autofocus
+        >
+        <p class="password-error" id="gateError">Password incorrecta. Tente novamente.</p>
       </div>
-      <span class="material-icons-round card-arrow">arrow_forward</span>
-    </a>
-
-    <a class="card" href="vitolero-flow-wireframes.html">
-      <div class="card-icon"><span class="material-icons-round">view_carousel</span></div>
-      <div class="card-text">
-        <h3>Flow Wireframes</h3>
-        <p>MVP flows: First-time, Snap &amp; Share, Pairing, Journal, Cigar Detail, Returning User</p>
-      </div>
-      <span class="material-icons-round card-arrow">arrow_forward</span>
-    </a>
-
-    <a class="card download" href="vitolero-handoff.zip" download>
-      <div class="card-icon"><span class="material-icons-round">folder_zip</span></div>
-      <div class="card-text">
-        <h3>Download the package</h3>
-        <p>The full concept, PRD, research, and wireframes as a single file</p>
-      </div>
-      <span class="material-icons-round card-arrow">file_download</span>
-    </a>
-
-  </div>
-
-  <div class="footer">
-    <span>Fixed to Flow &middot; May 2026</span>
-    <span>AI-First UX Concept Design</span>
+      <button type="submit" class="password-btn" id="gateBtn">Ver Proposta</button>
+    </form>
   </div>
 </div>
+
+<script id="payload" type="application/octet-stream">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</script>
+
+<script>
+(function() {
+  const ITERATIONS = 600000;
+  const STORAGE_KEY = "vitolero_auth";
+
+  const gate = document.getElementById('gate');
+  const contentEl = document.getElementById('content');
+  const form = document.getElementById('gateForm');
+  const input = document.getElementById('gateInput');
+  const btn = document.getElementById('gateBtn');
+  const errorEl = document.getElementById('gateError');
+  const payloadB64 = document.getElementById('payload').textContent;
+
+  function b64ToBytes(b64) {
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+
+  async function decrypt(password) {
+    const data = b64ToBytes(payloadB64);
+    const salt = data.slice(0, 16);
+    const iv = data.slice(16, 28);
+    const authTag = data.slice(28, 44);
+    const ciphertext = data.slice(44);
+
+    // Combine ciphertext + authTag for WebCrypto (it expects them concatenated)
+    const combined = new Uint8Array(ciphertext.length + authTag.length);
+    combined.set(ciphertext);
+    combined.set(authTag, ciphertext.length);
+
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: salt, iterations: ITERATIONS, hash: 'SHA-256' },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, combined);
+    return new TextDecoder().decode(decrypted);
+  }
+
+  async function unlock(password) {
+    try {
+      const html = await decrypt(password);
+      // Replace the entire document with the decrypted content
+      document.open();
+      document.write(html);
+      document.close();
+      // Store password for cross-page auth
+      try { sessionStorage.setItem(STORAGE_KEY, password); } catch(e) {}
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // Try stored password first
+  (async function() {
+    try {
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const ok = await unlock(stored);
+        if (ok) return;
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    } catch(e) {}
+  })();
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const pw = input.value;
+    if (!pw) return;
+
+    btn.classList.add('loading');
+    btn.textContent = 'A desencriptar...';
+
+    // Small delay to let the UI update before heavy PBKDF2
+    await new Promise(r => setTimeout(r, 50));
+
+    const ok = await unlock(pw);
+    if (!ok) {
+      btn.classList.remove('loading');
+      btn.textContent = 'Ver Proposta';
+      input.classList.add('error');
+      errorEl.classList.add('visible');
+      setTimeout(() => input.classList.remove('error'), 500);
+    }
+  });
+
+  input.addEventListener('input', function() {
+    errorEl.classList.remove('visible');
+  });
+})();
+</script>
 
 </body>
 </html>
