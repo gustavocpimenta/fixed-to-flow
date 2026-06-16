@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -179,7 +179,7 @@ body {
     <div class="password-logo">
       <img src="/logo.svg" alt="Fixed to Flow">
     </div>
-    <p class="password-subtitle">Introduza password para aceder.</p>
+    <p class="password-subtitle">Enter the password to view this proposal.</p>
     <form id="gateForm">
       <div class="password-input-group">
         <input
@@ -190,9 +190,9 @@ body {
           autocomplete="off"
           autofocus
         >
-        <p class="password-error" id="gateError">Password incorrecta. Tente novamente.</p>
+        <p class="password-error" id="gateError">Incorrect password. Please try again.</p>
       </div>
-      <button type="submit" class="password-btn" id="gateBtn">Ver Proposta</button>
+      <button type="submit" class="password-btn" id="gateBtn">View Proposal</button>
     </form>
   </div>
 </div>
@@ -278,7 +278,7 @@ body {
     if (!pw) return;
 
     btn.classList.add('loading');
-    btn.textContent = "A desencriptar...";
+    btn.textContent = "Decrypting...";
 
     // Small delay to let the UI update before heavy PBKDF2
     await new Promise(r => setTimeout(r, 50));
@@ -286,7 +286,7 @@ body {
     const ok = await unlock(pw);
     if (!ok) {
       btn.classList.remove('loading');
-      btn.textContent = "Ver Proposta";
+      btn.textContent = "View Proposal";
       input.classList.add('error');
       errorEl.classList.add('visible');
       setTimeout(() => input.classList.remove('error'), 500);
