@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Cities | Fixed to Flow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green:      #F2FF94;   /* Open Cities chartreuse — accent fill only */
+            --green-deep: #E4F25A;   /* deeper chartreuse for markers / hover */
+            --ink:        #202020;   /* Open Cities near-black — hero, headings, emphasis */
+            --black:      #111111;   /* body text */
+            --cream:      #FAF7F2;   /* body background */
+            --cream-dark: #F5F0E8;   /* tinted band */
+            --white:      #FFFFFF;   /* alt sections */
+            --gray:       #555555;   /* body copy */
+            --gray-light: #999999;   /* muted meta */
+            --light:      #FCFBF6;   /* near-white text on dark */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           REVEAL (progressive enhancement)
+           ========================================== */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .js .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.08s; }
+        .reveal-d2 { transition-delay: 0.16s; }
+        .reveal-d3 { transition-delay: 0.24s; }
+
+        /* ==========================================
+           HEADER (dark, cinematic)
+           ========================================== */
+        .proposal-header {
+            padding: 80px 40px 100px;
+            background: var(--ink);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .proposal-header::before {
+            content: 'OPEN CITIES';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(70px, 15vw, 240px);
+            font-weight: 400;
+            color: rgba(242, 255, 148, 0.05);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: 0.02em;
+        }
+
+        .header-kicker {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--light);
+            opacity: 0.55;
+            margin-bottom: 56px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-confidential {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 1;
+        }
+
+        .header-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-label::before {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--green);
+        }
+
+        .header-client {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(3.8rem, 9.5vw, 6.8rem);
+            font-weight: 400;
+            color: var(--light);
+            margin-bottom: 22px;
+            line-height: 1.02;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .header-client .lead-o { font-style: italic; }
+
+        .header-subtitle {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+            font-weight: 400;
+            color: var(--green);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+
+        .header-date {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           SECTIONS (light, alternating)
+           ========================================== */
+        .section {
+            padding: 110px 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .section > *:not(.investment-table-wrapper) {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section { background: var(--cream); color: var(--black); }
+        .section-alt { background: var(--white); }
+
+        .section-inner { max-width: 800px; margin: 0 auto; }
+
+        .section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 36px;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title em { font-style: italic; color: var(--ink); }
+
+        .track-label {
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            background: var(--green);
+            color: var(--ink);
+            padding: 5px 12px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.85;
+            color: var(--gray);
+        }
+
+        .section p + p { margin-top: 22px; }
+
+        .section p strong { color: var(--ink); font-weight: 600; }
+
+        .section ul { list-style: none; margin: 26px 0; }
+
+        .section ul li {
+            font-size: 1.08rem;
+            color: var(--gray);
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 9px;
+            height: 9px;
+            background: var(--green-deep);
+        }
+
+        .section ul li strong { color: var(--ink); font-weight: 600; }
+
+        /* Subsection headers */
+        .subsection-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.9rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 18px;
+            margin-top: 64px;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .subsection-title:first-of-type { margin-top: 44px; }
+
+        .lead-in {
+            font-size: 1.15rem !important;
+            color: var(--black) !important;
+            opacity: 0.92;
+        }
+
+        /* ==========================================
+           ROI / HIGHLIGHT BOX
+           ========================================== */
+        .roi-box {
+            padding: 28px 32px;
+            margin: 36px 0;
+            border-left: 3px solid var(--green-deep);
+            background: rgba(242, 255, 148, 0.22);
+        }
+
+        .roi-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--ink);
+        }
+
+        .roi-box p { margin-bottom: 0; font-size: 1.02rem; color: var(--black); }
+
+        /* ==========================================
+           INVESTMENT TABLE
+           ========================================== */
+        .investment-table-wrapper { max-width: 880px; margin: 12px auto 36px; }
+
+        .investment-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .investment-table thead th {
+            background: var(--ink);
+            color: var(--green);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 18px 22px;
+            text-align: left;
+        }
+        .investment-table thead th:last-child { text-align: right; }
+
+        .investment-table tbody td {
+            padding: 22px;
+            font-size: 1rem;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            vertical-align: top;
+        }
+        .investment-table tbody td:first-child { font-weight: 600; color: var(--ink); }
+        .investment-table tbody td:last-child {
+            text-align: right;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--ink);
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .investment-table tr.total-row td {
+            border-bottom: none;
+            border-top: 2px solid var(--ink);
+            padding-top: 24px;
+        }
+        .investment-table tr.total-row td:first-child {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        .investment-table tr.total-row td:last-child {
+            background: var(--green);
+            color: var(--ink);
+            font-size: 1.6rem;
+        }
+
+        .invest-note {
+            font-size: 0.95rem !important;
+            color: var(--gray) !important;
+        }
+        .invest-note strong { color: var(--ink); }
+
+        /* ==========================================
+           ABOUT
+           ========================================== */
+        .about-tagline {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: 1.5rem !important;
+            color: var(--ink) !important;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .about-subsection {
+            margin-top: 44px;
+            padding-top: 40px;
+            border-top: 2px solid rgba(32, 32, 32, 0.12);
+        }
+
+        .about-subsection h4 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        /* ==========================================
+           NEXT STEP (dark ink band)
+           ========================================== */
+        .next-step {
+            background: var(--ink);
+            padding: 120px 40px;
+            text-align: center;
+            color: var(--light);
+        }
+
+        .next-step-inner { max-width: 620px; margin: 0 auto; }
+
+        .next-step h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 28px;
+            color: var(--green);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+
+        .next-step p {
+            font-size: 1.12rem;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 17px 42px;
+            background: var(--green);
+            color: var(--ink);
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-radius: 100px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        background 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+        .cta-btn:hover {
+            background: var(--green-deep);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(242, 255, 148, 0.25);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .proposal-footer {
+            padding: 56px 40px;
+            text-align: center;
+            background: var(--cream);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .footer-wordmark {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--ink);
+            opacity: 0.7;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+        }
+        .footer-meta {
+            margin-top: 14px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-light);
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 768px) {
+            .proposal-header { min-height: 86vh; padding: 60px 24px 80px; }
+            .header-confidential { position: static; margin-bottom: 20px; }
+            .section { padding: 72px 24px; }
+            .next-step { padding: 90px 24px; }
+            .investment-table-wrapper { overflow-x: auto; }
+            .investment-table thead th,
+            .investment-table tbody td { padding: 16px 14px; }
+        }
+
+        /* ==========================================
+           PRINT
+           ========================================== */
+        @media print {
+            body { background: #fff; color: #000; }
+            .js .reveal { opacity: 1 !important; transform: none !important; }
+            .section { padding: 40px 20px; background: #fff !important; }
+            .proposal-header { background: #fff !important; color: #000 !important; min-height: auto; }
+            .proposal-header::before { display: none; }
+            .header-kicker, .header-client, .header-date { color: #000 !important; }
+            .header-subtitle { color: #5F6E00 !important; }
+            .next-step { background: #f4f7d8 !important; color: #000 !important; }
+            .next-step h2 { color: #000 !important; }
+            .next-step p, .next-step .validity { color: #222 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="proposal-header">
+        <span class="header-confidential">Confidential</span>
+        <span class="header-kicker">Fixed to Flow</span>
+        <span class="header-label">Proposal</span>
+        <h1 class="header-client"><span class="lead-o">O</span>pen Cities</h1>
+        <p class="header-subtitle">From vision to flow</p>
+        <p class="header-date">June 2026</p>
+    </header>
+
+    <!-- Context -->
+    <section class="section section-alt">
+        <h2 class="section-title reveal"><em>Context</em></h2>
+        <p class="reveal">Open Cities is launching its first program with the vision clear and the system to run it still missing. Decisions, processes, and context live in the founders' heads and scattered across Google Drive, Slack, WhatsApp, and Film Freeway. A small team across four cities is about to need a single place to know where things are without asking. External funders are about to need traceable, structured reporting. And the team already reaches for AI, each person their own way, with none of it shared.</p>
+        <p class="reveal">The moment matters. Operations, governance, and AI built now, with a small team and before the cohort arrives, hold their shape far better than structure assembled mid-program under pressure. This is the window to set strong principles and a base that grows.</p>
+    </section>
+
+    <!-- Challenge -->
+    <section class="section">
+        <h2 class="section-title reveal">The <em>Challenge</em></h2>
+        <p class="reveal">Open Cities has a clear vision on governance. They are clear on who decides, who gives input, who needs to be aligned, and who is informed. The intention is there. What never followed is the operations layer that carries it into daily work. Governance without operations stays on paper.</p>
+        <p class="reveal">So everything keeps running through the founders. Legal documentation, Banco de Fomento, investors, participant agreements, mentor recruitment, program coordination. A small founding team, many threads, and information scattered across Google Drive, Slack, WhatsApp, and Film Freeway.</p>
+        <p class="reveal">The tooling tells the same story. Someone tried to set Notion up a month ago and it stalled. It sits there still, without the structure a professional approach brings, and the program is starting.</p>
+        <p class="reveal">This challenge lives on four levels:</p>
+        <ul class="reveal">
+            <li><strong>Governance.</strong> Take the decision grid from the retreat as the starting point and turn it into something that flows, articulated with strong operations for an AI world.</li>
+            <li><strong>Operational.</strong> A single hub where information lives, decisions are recorded, and every team member knows where things are without having to ask.</li>
+            <li><strong>Tracking.</strong> Banco de Fomento and investors require structured reporting, traceable decisions, and checks-and-balances. The system produces this as a view of work that already exists.</li>
+            <li><strong>Context as asset.</strong> The program will generate rare knowledge about filmmakers, technologies, mentors, and creative processes. Captured with intention, that context can become a product. It also becomes an asset for everyday operations and governance: the team talks directly with its own context layer, and that changes how the organization works.</li>
+        </ul>
+    </section>
+
+    <!-- Our Method -->
+    <section class="section section-alt">
+        <h2 class="section-title reveal">Our <em>Method</em></h2>
+        <p class="reveal"><strong>Understand before building.</strong> Map the reality, listen to the people, understand where time is spent and where the value sits before any implementation decision.</p>
+        <p class="reveal"><strong>Decide with criteria.</strong> Have clarity on what matters for the organization, criteria for what goes in and what stays out, and the capacity to test small before committing the team.</p>
+        <p class="reveal"><strong>Enable the team in parallel.</strong> Enablement happens at the same time as the build, integrated from day one. The work ends with the team knowing how to operate the system autonomously, with no dependency on an external operator.</p>
+    </section>
+
+    <!-- The Approach -->
+    <section class="section">
+        <h2 class="section-title reveal">The <em>Approach</em></h2>
+        <p class="reveal">The work splits into two tracks built to move in parallel and feed each other. Track 1, Operations and Systems, builds the spine: governance that flows, Notion as the single hub, and the program captured as living context. Track 2, AI Enablement, brings the team into that system and makes AI a shared layer the whole team draws on. As they advance together, the line between them blurs: stronger operations give AI more to work with, and AI makes the operations lighter to run.</p>
+    </section>
+
+    <!-- Track 1 -->
+    <section class="section section-alt">
+        <div class="section-inner">
+            <span class="track-label reveal">Track 1</span>
+            <h2 class="section-title reveal"><em>Operations and Systems</em></h2>
+
+            <h3 class="subsection-title reveal">Governance: from the grid to daily practice</h3>
+            <p class="reveal">There is already a spark to build on. The decision grid made during the company retreat is a real starting point, and it already expresses the founders' point of view on how decisions should run. What is missing is the next step: translating it into concrete processes the team uses, that satisfy external reporting requirements, and that do not create unnecessary bureaucracy.</p>
+            <p class="reveal">The approach is straightforward: every decision has an owner. Everyone knows their role. Processes are designed with the core team, tested during a trial period, and adjusted based on what does not work.</p>
+            <p class="reveal">For Open Cities, governance carries an additional layer: the requirements of Banco de Fomento and the investors. The decision system has to produce traceability and checks-and-balances without turning operations into a bureaucracy machine. Both objectives can coexist, as long as the architecture is designed with both in mind from the beginning.</p>
+            <p class="reveal"><strong>What this includes:</strong></p>
+            <ul class="reveal">
+                <li>Work with the team to operationalize the existing decision grid into clear, actionable processes</li>
+                <li>Create decision flows that serve both internal coordination and external reporting requirements simultaneously</li>
+                <li>Define a trial period with a built-in review to adjust what is not working</li>
+                <li><strong>Deliverable:</strong> a governance document of 2-3 pages, with clear, actionable processes, suitable for sharing with investors and funders</li>
+            </ul>
+            <div class="roi-box reveal">
+                <span class="roi-label">Return on investment</span>
+                <p>The governance designed now with a small team costs far less than the one retrofitted after the program is running at full speed. Every decision captured correctly from the start is also Banco de Fomento reporting that does not need to be reconstructed at the end of the quarter.</p>
+            </div>
+
+            <h3 class="subsection-title reveal">Notion: the single hub</h3>
+            <p class="reveal">Notion has been identified as the solution. The question is what gets built there and in what sequence.</p>
+            <p class="reveal">When we help a business take off, we work with a simple principle: just enough operations, just enough governance, and then expand from there. Enough structure to solve the immediate problem without creating overhead nobody will maintain. A small, distributed team needs a system that everyone can use the day after the setup session. Minimum viable structure, with room to grow.</p>
+            <p class="reveal">Notion includes AI in Business plans at no extra cost: automatic summaries, semantic search, meeting transcription. Once the system is built, institutional knowledge becomes available to any AI tool the team uses.</p>
+            <p class="reveal"><strong>What gets built:</strong></p>
+            <ul class="reveal">
+                <li><strong>Program hub.</strong> The cohort, the selected filmmakers, the status of each project, the sessions, the mentors. Film Freeway manages applications; Notion manages the program after selection.</li>
+                <li><strong>Relationship management.</strong> Investors, partners, mentors, funding entities. Interaction history, follow-ups, context for every meeting.</li>
+                <li><strong>Tasks and projects.</strong> Who is doing what, by when, across the program and the organization. Notion setup, mentor recruitment, participant agreements, reporting deadlines, each with an owner and a due date.</li>
+                <li><strong>Decision log.</strong> Every relevant decision captured with context: what was decided, when, by whom, and why. Structured reporting with one click.</li>
+                <li><strong>Knowledge base.</strong> Governance, policies, processes, references. The place where institutional knowledge lives and depends on nobody's memory.</li>
+                <li><strong>Meeting notes.</strong> Templates with assigned actions and clear follow-up. Automatic transcription turns into tasks without manual work.</li>
+            </ul>
+            <p class="reveal">None of these sit in isolation. They are connected databases that talk to each other: a decision links to the meeting where it was made, a task links to the project and the person it serves, a filmmaker links to their sessions and their mentors. Update something once and it updates everywhere it matters. That is what turns a set of pages into a system.</p>
+            <div class="roi-box reveal">
+                <span class="roi-label">Return on investment</span>
+                <p>A distributed team operating from a single hub stops losing context between timezones and conversations. Coordination sits on a shared system that holds the context the whole team needs. External reporting requirements become a view of what already exists, ready when the quarter closes.</p>
+            </div>
+
+            <h3 class="subsection-title reveal">Context engineering: capturing the program as an asset</h3>
+            <p class="reveal">This is the highest-value layer that nobody talks about until it is missing.</p>
+            <p class="reveal">Open Cities' inaugural program will generate knowledge that very likely no other organization will have: how specific independent filmmakers work with AI, which creative processes work with which technologies, what mentors say off the record, what the technology company partners bring that is different. That knowledge exists in potential. The question is whether it remains scattered across emails and individual memory, or is captured with intention from the start.</p>
+            <p class="reveal">Context engineering is the discipline of capturing decisions, rationale, and learnings with the right architecture, so that the same information is used everywhere, nothing is lost, and what the program produces can eventually become a product.</p>
+            <p class="reveal"><strong>In practice:</strong></p>
+            <ul class="reveal">
+                <li>Every program decision captured with context: what was decided, why, what alternatives were considered</li>
+                <li>Every cohort session with a record: what worked, what changed, why</li>
+                <li>Mentor and technology company learnings organized in an accessible, reusable way</li>
+                <li>An architecture that allows the knowledge accumulated in one edition to feed the next</li>
+            </ul>
+            <p class="reveal">Once this context layer exists, the team can talk to it directly: ask what was decided and why, what worked in a past session, what a mentor recommended, and get an answer grounded in the program's own records. The same shift the connected system brings to daily operations, now applied to everything the program learns.</p>
+            <p class="reveal">Notion is where this lives. What Fixed to Flow brings is the discipline of capturing it with the right architecture from the start, so the context stays clean enough to build on and valuable enough to become a product.</p>
+            <div class="roi-box reveal">
+                <span class="roi-label">Return on investment</span>
+                <p>The knowledge the program produces stops being ephemeral. It is captured in an architecture that grows edition by edition, that can be the foundation of a future product, and that makes Open Cities an organization that learns in a structured way about what it does.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track 2 -->
+    <section class="section">
+        <div class="section-inner">
+            <span class="track-label reveal">Track 2</span>
+            <h2 class="section-title reveal"><em>AI Enablement</em></h2>
+
+            <h3 class="subsection-title reveal">From individual use to shared context layer</h3>
+            <p class="reveal">The team already uses AI. ChatGPT, Claude, a Dobbin enterprise assistant connected to Slack that never really got adopted. The pattern is the same as almost everywhere: each person uses it their own way, context is not shared, the work is not replicable.</p>
+            <p class="reveal">The shift in this track is from individual use to a shared context layer. The knowledge gained in one AI conversation becomes available for the next, and for other team members. Instructions written once can be used a hundred times. A shared project means context lives with the team and is accessible to everyone.</p>
+            <p class="reveal">Enablement organizes across two moments:</p>
+            <p class="reveal"><strong>Group session with the whole team.</strong> Hands-on literacy. Shared vocabulary, calibrated expectations, first experiments with real Open Cities material. Focus on the ways of working that AI makes possible: reusable context across conversations, work that does not depend on one person, integration with the tools already in use.</p>
+            <p class="reveal"><strong>One-on-one mentoring for three people: the two founders and one more team member.</strong> Personal sessions tuned to each person's real work, with the Amplify AND Protect framework as the lens throughout: AI amplifies what is routine, human judgment leads where there is relationship, vision, and creative criteria. For the founders, much of the organization lives in their heads, and the mentoring amplifies their capacity directly: using AI to synthesize, prepare, draft, and decide faster, so response capacity grows without growing headcount. For the third person, the work starts from their specific role: where time goes, what makes sense to delegate, and a practical AI plan they can run with.</p>
+            <div class="roi-box reveal">
+                <span class="roi-label">Return on investment</span>
+                <p>The team stops rewriting context from scratch. Work done once is available permanently and to everyone on the team. The founding team gains response capacity without growing headcount. And Open Cities begins operating with internal coherence between what it promotes externally and how it works internally.</p>
+            </div>
+
+            <h3 class="subsection-title reveal">Ethical &amp; Responsible AI</h3>
+            <p class="reveal">Open Cities has already drawn its own line: the artist's hand. Creative integrity and the human relationship with filmmakers are central to what the organization stands for. Responsible AI use is part of Track 2 precisely because that principle deserves to live in daily practice, shaped by the people doing the work.</p>
+            <p class="reveal">Film-specific risks are real. A filmmaker's unreleased material surfaced through an AI tool during program review. Confidential investor information crossing into an AI conversation it was never meant to enter. These are not hypotheticals. They are recoverable in the technical sense and much harder to recover from in the relational one.</p>
+            <div class="roi-box reveal">
+                <span class="roi-label">A note on expertise</span>
+                <p>We do not position ourselves as authorities on AI ethics. We bring a structured process for working through it with the Open Cities team, grounded in the organization's own values and operational context. The output belongs to Open Cities.</p>
+            </div>
+            <p class="reveal"><strong>What this includes:</strong></p>
+            <ul class="reveal">
+                <li>A working responsible AI framework developed with the Open Cities team, anchored to the organization's mission, program structure, and creative context.</li>
+                <li>Shared clarity across roles: where AI fits, what warrants care, and the reasoning that makes those lines durable as tools evolve.</li>
+                <li>A transparency principle for when and how AI touches a filmmaker's work, a communication, or a selection process.</li>
+                <li>A built-in intention to revisit the framework as the program and tools develop, on a rhythm that makes sense for the team.</li>
+            </ul>
+            <div class="roi-box reveal">
+                <span class="roi-label">Return on investment</span>
+                <p>A shared AI framework builds internal trust and gives the team a reliable basis for adopting new tools. People make better calls when they know the principles are already worked out. For an organization with filmmakers, mentors, and partners in the mix, that clarity matters before any difficult situation arises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What flow looks like -->
+    <section class="section section-alt">
+        <h2 class="section-title reveal">What <em>flow</em> looks like</h2>
+        <p class="reveal">The brief is clear: start with strong principles and a solid base that grows over time, with no need for a finished system tomorrow.</p>
+        <p class="reveal">This approach was designed with that logic. The first results are visible quickly: governance operationalized, Notion with basic structure working, team with a shared vocabulary about AI. That initial work is simple by design. Complexity enters when use reveals where it is needed.</p>
+        <p class="reveal">Picture the team a few months in. Someone in Porto opens Notion in the morning and sees exactly where every project stands, with no message to anyone. A founder asks the system what was decided about a partnership and why, and reads the answer in seconds. When Banco de Fomento asks for an update, the report is a view that already exists, ready in minutes. The second cohort starts, and everything the first one taught is already there to build on. AI handles the first pass, and the team brings the judgment only people have.</p>
+        <p class="reveal">That is the state this work moves toward: a system that carries the weight the founders carry today, so the people are free to do the work only they can do.</p>
+    </section>
+
+    <!-- Investment -->
+    <section class="section">
+        <h2 class="section-title reveal">The <em>Investment</em></h2>
+        <div class="investment-table-wrapper reveal">
+            <table class="investment-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Reference hours</th>
+                        <th>Investment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Track 1: Operations and Systems</td>
+                        <td>Up to 130 hours</td>
+                        <td>&euro;13,000</td>
+                    </tr>
+                    <tr>
+                        <td>Track 2: AI Enablement</td>
+                        <td>Up to 100 hours</td>
+                        <td>&euro;12,000</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Total one-time</td>
+                        <td></td>
+                        <td>&euro;25,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="reveal invest-note">The two tracks can run in sequence or in parallel, depending on Open Cities' priorities.</p>
+        <p class="reveal invest-note">Running both tracks, expect around two to three months from start to finish. The work is built incrementally: the team starts seeing tangible benefits within the first month.</p>
+        <p class="reveal invest-note">Hours are provided as a reference. The work is measured by value delivered. VAT applies at the current legal rate.</p>
+        <p class="reveal invest-note"><strong>Payment.</strong> Tracks: 50% on award, 50% on completion of each track.</p>
+        <p class="reveal invest-note"><strong>Validity.</strong> This proposal is valid for 30 days.</p>
+    </section>
+
+    <!-- Team -->
+    <section class="section section-alt">
+        <h2 class="section-title reveal"><em>Team</em></h2>
+        <p class="reveal">Gustavo da Cunha Pimenta leads the entire project personally, from the first conversation to the final deliverable, driving the strategy, leading the diagnosis, facilitating enablement, and maintaining direct proximity with Open Cities leadership throughout every phase.</p>
+        <p class="reveal">Where the scope requires it, Fixed to Flow can bring experienced professionals to support specific areas, with Gustavo remaining the sole point of contact. This structure ensures consistent strategic leadership with flexibility to respond to the project's concrete needs.</p>
+    </section>
+
+    <!-- About -->
+    <section class="section">
+        <h2 class="section-title reveal"><em>About</em></h2>
+        <p class="reveal about-tagline">We help leaders and teams blend AI and human skills to stay AI-ready, future-focused, and adaptable.</p>
+        <div class="about-subsection reveal">
+            <h4>About Gustavo</h4>
+            <p>Born, raised, and living in Lisbon. A city that breeds curiosity, resilience, and an easy comfort with people from everywhere. Gus thrives on diversity, and Lisbon is the perfect playground for it.</p>
+            <p>Builder, mentor, founder. Decades moving between boardrooms and backstreets, startups and soul searching, mentoring founders, advising learning projects, facilitating co-design sessions, and helping people figure out what comes next.</p>
+            <p>Technology, for Gus, is an amplifier. He brings AI into his work with the same care he brings to everything else: a deep focus on intentional adoption that protects and augments the human skills underneath.</p>
+        </div>
+    </section>
+
+    <!-- Next step -->
+    <section class="next-step">
+        <div class="next-step-inner">
+            <h2 class="reveal">Next step</h2>
+            <p class="reveal">The next step is a short conversation to confirm that this proposal responds to what Open Cities considers necessary at this moment, and to surface anything that feels missing.</p>
+            <a class="cta-btn reveal" href="mailto:gustavo@gustavopimenta.com?subject=Open%20Cities%3A%20booking%20a%20call">Book a call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="proposal-footer">
+        <a href="https://fixedtoflow.com" class="footer-wordmark" target="_blank" rel="noopener noreferrer">Fixed to Flow</a>
+        <p class="footer-meta">Confidential proposal for Open Cities &middot; 2026</p>
+    </footer>
+
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                reveals.forEach(el => el.classList.add('visible'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            reveals.forEach(el => observer.observe(el));
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollReveal);
+        } else {
+            initScrollReveal();
+        }
+    </script>
+</body>
+</html>
