@@ -462,10 +462,172 @@
         }
 
         /* ==========================================
+           GATE (password) — mirrors the cover
+           ========================================== */
+        .proposal-content { display: none; }
+        .proposal-content.visible { display: block; }
+
+        .gate-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--ink);
+            padding: 80px 40px;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gate-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .gate-overlay::before {
+            content: 'OPEN CITIES';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(70px, 15vw, 240px);
+            font-weight: 400;
+            color: rgba(242, 255, 148, 0.05);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: 0.02em;
+        }
+
+        .gate-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+            animation: gate-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+        @keyframes gate-enter {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .gate-kicker {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--light);
+            opacity: 0.55;
+            margin-bottom: 40px;
+        }
+        .gate-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 26px;
+        }
+        .gate-label::before {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--green);
+        }
+        .gate-client {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 4.6rem);
+            font-weight: 400;
+            color: var(--light);
+            line-height: 1.02;
+            letter-spacing: -0.01em;
+            margin-bottom: 18px;
+        }
+        .gate-client .lead-o { font-style: italic; }
+        .gate-subtitle {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+            color: var(--green);
+            margin-bottom: 44px;
+            line-height: 1.5;
+        }
+
+        .gate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .gate-input {
+            width: 100%;
+            padding: 17px 22px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--light);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            outline: none;
+            text-align: center;
+            letter-spacing: 1px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .gate-input::placeholder { color: rgba(255, 255, 255, 0.4); letter-spacing: normal; }
+        .gate-input:focus {
+            border-color: var(--green);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow: 0 0 0 4px rgba(242, 255, 148, 0.12);
+        }
+        .gate-input.error { border-color: #ff6b5e; animation: gate-shake 0.5s ease; }
+        @keyframes gate-shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .gate-btn {
+            width: 100%;
+            padding: 17px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+            color: var(--ink);
+            background: var(--green);
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gate-btn:hover {
+            background: var(--green-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(242, 255, 148, 0.2);
+        }
+        .gate-btn:active { transform: translateY(0); }
+
+        .gate-error {
+            color: #ff8a7f;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            min-height: 1.1em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gate-error.visible { opacity: 1; }
+
+        /* ==========================================
            PRINT
            ========================================== */
         @media print {
             body { background: #fff; color: #000; }
+            .gate-overlay { display: none !important; }
             .js .reveal { opacity: 1 !important; transform: none !important; }
             .section { padding: 40px 20px; background: #fff !important; }
             .proposal-header { background: #fff !important; color: #000 !important; min-height: auto; }
@@ -479,6 +641,23 @@
     </style>
 </head>
 <body>
+
+    <!-- Password gate (mirrors the cover) -->
+    <div class="gate-overlay" id="gate">
+        <div class="gate-inner">
+            <div class="gate-kicker">Fixed to Flow</div>
+            <div class="gate-label">Proposal</div>
+            <h1 class="gate-client"><span class="lead-o">O</span>pen Cities</h1>
+            <p class="gate-subtitle">From vision to flow</p>
+            <form class="gate-form" id="gateForm">
+                <input type="password" class="gate-input" id="gateInput" placeholder="Enter password" autocomplete="off" autofocus>
+                <button type="submit" class="gate-btn" id="gateBtn">View proposal</button>
+                <p class="gate-error" id="gateError">Incorrect password. Please try again.</p>
+            </form>
+        </div>
+    </div>
+
+    <div class="proposal-content" id="proposalContent">
 
     <!-- Header -->
     <header class="proposal-header">
@@ -523,7 +702,7 @@
     <!-- The Approach -->
     <section class="section">
         <h2 class="section-title reveal">The <em>Approach</em></h2>
-        <p class="reveal">The work splits into two tracks built to move in parallel and feed each other. Track 1, Operations and Systems, builds the spine: governance that flows, Notion as the single hub, and the program captured as living context. Track 2, AI Enablement, brings the team into that system and makes AI a shared layer the whole team draws on. As they advance together, the line between them blurs: stronger operations give AI more to work with, and AI makes the operations lighter to run.</p>
+        <p class="reveal">The work splits into two tracks built to move in parallel and feed each other. Track 1, Operations and Systems, builds the spine: governance that flows, Notion as the single hub, and the program captured as living context. Track 2, AI Enablement, brings the team into that system and makes AI a shared layer the whole team draws on, adopted responsibly and with clear judgment about where it belongs. As they advance together, the line between them blurs: stronger operations give AI more to work with, and AI makes the operations lighter to run.</p>
     </section>
 
     <!-- Track 1 -->
@@ -567,10 +746,14 @@
                 <p>A distributed team operating from a single hub stops losing context between timezones and conversations. Coordination sits on a shared system that holds the context the whole team needs. External reporting requirements become a view of what already exists, ready when the quarter closes.</p>
             </div>
 
+            <h3 class="subsection-title reveal">Claude: the accelerator next to the hub</h3>
+            <p class="reveal">Notion holds the information. Some of the work, though, lives outside it: a funding document to draft, a spreadsheet of applications to make sense of, a contract to review, a question that needs real research before a decision. That is where Claude comes in. It does not replace Notion and it is not the center of the system. It is the accelerator for file work and intensive thinking that a database is not built for.</p>
+            <p class="reveal">The two reinforce each other. Claude connects to the Notion workspace, so the context the team captures there becomes something Claude can draw on, and the output of a Claude session lands back in Notion as structured, shared knowledge. Notion AI for what lives in Notion, Claude with Cowork for documents, spreadsheets, and deep work.</p>
+
             <h3 class="subsection-title reveal">Context engineering: capturing the program as an asset</h3>
             <p class="reveal">This is the highest-value layer that nobody talks about until it is missing.</p>
             <p class="reveal">Open Cities' inaugural program will generate knowledge that very likely no other organization will have: how specific independent filmmakers work with AI, which creative processes work with which technologies, what mentors say off the record, what the technology company partners bring that is different. That knowledge exists in potential. The question is whether it remains scattered across emails and individual memory, or is captured with intention from the start.</p>
-            <p class="reveal">Context engineering is the discipline of capturing decisions, rationale, and learnings with the right architecture, so that the same information is used everywhere, nothing is lost, and what the program produces can eventually become a product.</p>
+            <p class="reveal">Context engineering, here, is capturing decisions, rationale, and learnings with the right architecture, so that the same information is used everywhere, nothing is lost, and what the program produces can eventually become a product.</p>
             <p class="reveal"><strong>In practice:</strong></p>
             <ul class="reveal">
                 <li>Every program decision captured with context: what was decided, why, what alternatives were considered</li>
@@ -579,7 +762,7 @@
                 <li>An architecture that allows the knowledge accumulated in one edition to feed the next</li>
             </ul>
             <p class="reveal">Once this context layer exists, the team can talk to it directly: ask what was decided and why, what worked in a past session, what a mentor recommended, and get an answer grounded in the program's own records. The same shift the connected system brings to daily operations, now applied to everything the program learns.</p>
-            <p class="reveal">Notion is where this lives. What Fixed to Flow brings is the discipline of capturing it with the right architecture from the start, so the context stays clean enough to build on and valuable enough to become a product.</p>
+            <p class="reveal">Notion is where this lives. What Fixed to Flow brings is the discipline of capturing it with the right architecture from the start, so the context stays clean enough to build on and, for an organization generating the kind of knowledge Open Cities will generate, valuable enough to eventually become a product.</p>
             <div class="roi-box reveal">
                 <span class="roi-label">Return on investment</span>
                 <p>The knowledge the program produces stops being ephemeral. It is captured in an architecture that grows edition by edition, that can be the foundation of a future product, and that makes Open Cities an organization that learns in a structured way about what it does.</p>
@@ -597,8 +780,8 @@
             <p class="reveal">The team already uses AI. ChatGPT, Claude, a Dobbin enterprise assistant connected to Slack that never really got adopted. The pattern is the same as almost everywhere: each person uses it their own way, context is not shared, the work is not replicable.</p>
             <p class="reveal">The shift in this track is from individual use to a shared context layer. The knowledge gained in one AI conversation becomes available for the next, and for other team members. Instructions written once can be used a hundred times. A shared project means context lives with the team and is accessible to everyone.</p>
             <p class="reveal">Enablement organizes across two moments:</p>
-            <p class="reveal"><strong>Group session with the whole team.</strong> Hands-on literacy. Shared vocabulary, calibrated expectations, first experiments with real Open Cities material. Focus on the ways of working that AI makes possible: reusable context across conversations, work that does not depend on one person, integration with the tools already in use.</p>
-            <p class="reveal"><strong>One-on-one mentoring for three people: the two founders and one more team member.</strong> Personal sessions tuned to each person's real work, with the Amplify AND Protect framework as the lens throughout: AI amplifies what is routine, human judgment leads where there is relationship, vision, and creative criteria. For the founders, much of the organization lives in their heads, and the mentoring amplifies their capacity directly: using AI to synthesize, prepare, draft, and decide faster, so response capacity grows without growing headcount. For the third person, the work starts from their specific role: where time goes, what makes sense to delegate, and a practical AI plan they can run with.</p>
+            <p class="reveal"><strong>Group session with the whole team.</strong> Hands-on literacy, worked live in Claude with real Open Cities material. Shared vocabulary, calibrated expectations, and first results in the same session: a funding document drafted with Cowork, a spreadsheet of applications read in minutes, a shared Project so the context the team builds is available to everyone instead of trapped in one person's chat history. The focus stays on the ways of working AI makes possible: reusable context across conversations, work that does not depend on one person, and a shared layer the whole team draws on.</p>
+            <p class="reveal"><strong>One-on-one mentoring for three people: the two founders and one more team member.</strong> Personal sessions tuned to each person's real work, with the Amplify AND Protect framework as the lens throughout: AI amplifies what is routine, human judgment leads where there is relationship, vision, and creative criteria. For the founders, much of the organization lives in their heads, and the mentoring amplifies their capacity directly: using Claude to synthesize, prepare, draft, and decide faster. A partnership memo turned around in an afternoon, a board update pulled together from scattered notes, so response capacity grows without growing headcount. For the third person, the work starts from their specific role: where time goes, what makes sense to delegate, and a practical plan for using Claude in their day-to-day.</p>
             <div class="roi-box reveal">
                 <span class="roi-label">Return on investment</span>
                 <p>The team gets amplified. Each person feels in charge of their work, the founders gain capacity without hiring, and what once lived in scattered threads now flows through one place everyone trusts.</p>
@@ -628,8 +811,6 @@
     <!-- What flow looks like -->
     <section class="section section-alt">
         <h2 class="section-title reveal">What <em>flow</em> looks like</h2>
-        <p class="reveal">The brief is clear: start with strong principles and a solid base that grows over time, with no need for a finished system tomorrow.</p>
-        <p class="reveal">This approach was designed with that logic. The first results are visible quickly: governance operationalized, Notion with basic structure working, team with a shared vocabulary about AI. That initial work is simple by design. Complexity enters when use reveals where it is needed.</p>
         <p class="reveal">Picture the team a few months in. Someone in Porto opens Notion in the morning and sees exactly where every project stands, with no message to anyone. A founder asks the system what was decided about a partnership and why, and reads the answer in seconds. When Banco de Fomento asks for an update, the report is a view that already exists, ready in minutes. The second cohort starts, and everything the first one taught is already there to build on. AI handles the first pass, and the team brings the judgment only people have.</p>
         <p class="reveal">That is the state this work moves toward: a system that carries the weight the founders carry today, so the people are free to do the work only they can do.</p>
     </section>
@@ -654,7 +835,7 @@
                     </tr>
                     <tr>
                         <td>Track 2: AI Enablement</td>
-                        <td>Up to 100 hours</td>
+                        <td>Up to 120 hours</td>
                         <td>&euro;12,000</td>
                     </tr>
                     <tr class="total-row">
@@ -668,7 +849,7 @@
         <p class="reveal invest-note">The two tracks can run in sequence or in parallel, depending on Open Cities' priorities.</p>
         <p class="reveal invest-note">Running both tracks, expect around two to three months from start to finish. The work is built incrementally: the team starts seeing tangible benefits within the first month.</p>
         <p class="reveal invest-note">Hours are provided as a reference. The work is measured by value delivered. VAT applies at the current legal rate.</p>
-        <p class="reveal invest-note"><strong>Payment.</strong> Tracks: 50% on award, 50% on completion of each track.</p>
+        <p class="reveal invest-note"><strong>Payment.</strong> 40% on award, 30% at the midpoint, 30% on delivery.</p>
         <p class="reveal invest-note"><strong>Validity.</strong> This proposal is valid for 30 days.</p>
     </section>
 
@@ -706,6 +887,8 @@
         <p class="footer-meta">Confidential proposal for Open Cities &middot; 2026</p>
     </footer>
 
+    </div><!-- /proposalContent -->
+
     <script>
         document.documentElement.classList.remove('no-js');
         document.documentElement.classList.add('js');
@@ -727,11 +910,51 @@
             reveals.forEach(el => observer.observe(el));
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initScrollReveal);
-        } else {
-            initScrollReveal();
+        // ==========================================
+        // PASSWORD GATE (SHA-256 hash)
+        // Generate hash: printf '%s' 'YourPassword' | shasum -a 256
+        // ==========================================
+        const PROPOSAL_HASH = '6ba0a1789637a8c62780180aaa2a704a3882e4a056cba1c1384d8e270a20a07b';
+        const AUTH_KEY = 'proposal_opencities_auth';
+
+        const gate = document.getElementById('gate');
+        const proposalContent = document.getElementById('proposalContent');
+        const gateForm = document.getElementById('gateForm');
+        const gateInput = document.getElementById('gateInput');
+        const gateError = document.getElementById('gateError');
+
+        async function hashPassword(password) {
+            const data = new TextEncoder().encode(password);
+            const buf = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
+
+        function unlock() {
+            gate.classList.add('hidden');
+            proposalContent.classList.add('visible');
+            setTimeout(initScrollReveal, 100);
+        }
+
+        if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+            unlock();
+        }
+
+        gateForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const entered = await hashPassword(gateInput.value);
+            if (entered === PROPOSAL_HASH) {
+                sessionStorage.setItem(AUTH_KEY, 'true');
+                unlock();
+            } else {
+                gateInput.classList.add('error');
+                gateError.classList.add('visible');
+                setTimeout(() => gateInput.classList.remove('error'), 500);
+            }
+        });
+
+        gateInput.addEventListener('input', function () {
+            gateError.classList.remove('visible');
+        });
     </script>
 </body>
 </html>
